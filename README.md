@@ -1,6 +1,6 @@
 # plotly-react-editor
 
-> 
+> Standalone React-based editor panel for Plotly charts 
 
 ## Installation
 
@@ -22,6 +22,10 @@ To build the dist version:
 ```bash
 $ npm run prepublish
 ```
+
+## See also
+
+- [plotlyjs-react](https://github.com/plotly/plotlyjs-react)
 
 ## License
 
