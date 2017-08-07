@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import PlotEditor from "../../src/plotly.js-react-editor.jsx";
 var fs = require("fs");
 import path from "path";
-import styles from "./index.css";
 
 class App extends React.Component {
   render() {
