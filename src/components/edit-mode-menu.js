@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { klass } from "../common";
 
-import EditModeMenuItem from "./edit-mode-menu-item.jsx";
+import EditModeMenuItem from "./edit-mode-menu-item.js";
 
 export default class EditModeMenu extends Component {
   render() {
@@ -9,6 +9,7 @@ export default class EditModeMenu extends Component {
       <div className="editModeMenu">
         <EditModeMenuItem
           name="Graph"
+          expanded
           onChangeSection={this.props.onChangeSection}
           currentSection={this.props.currentSection}
           sections={["Create", "Filter", "Group"]}

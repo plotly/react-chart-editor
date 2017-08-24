@@ -6,7 +6,7 @@ export default class EditModeMenuItem extends Component {
     super(props);
 
     this.state = {
-      expanded: true,
+      expanded: props.expanded,
     };
 
     this.toggleExpanded = this.toggleExpanded.bind(this);
@@ -51,3 +51,7 @@ export default class EditModeMenuItem extends Component {
     );
   }
 }
+
+EditModeMenuItem.defaultProps = {
+  expanded: false,
+};

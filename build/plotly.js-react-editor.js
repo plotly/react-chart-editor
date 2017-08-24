@@ -124,7 +124,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _common = require("../common");
 
-var _editModeMenuItem = require("./edit-mode-menu-item.jsx");
+var _editModeMenuItem = require("./edit-mode-menu-item.js");
 
 var _editModeMenuItem2 = _interopRequireDefault(_editModeMenuItem);
 
@@ -172,7 +172,7 @@ var EditModeMenu = function (_Component) {
 
 exports.default = EditModeMenu;
 
-},{"../common":1,"./edit-mode-menu-item.jsx":2}],4:[function(require,module,exports){
+},{"../common":1,"./edit-mode-menu-item.js":2}],4:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -199,7 +199,7 @@ var _constants = require("./constants");
 
 var _constants2 = _interopRequireDefault(_constants);
 
-var _editModeMenu = require("./components/edit-mode-menu.jsx");
+var _editModeMenu = require("./components/edit-mode-menu.js");
 
 var _editModeMenu2 = _interopRequireDefault(_editModeMenu);
 
@@ -251,5 +251,5 @@ var PlotlyReactEditor = function (_Component) {
 
 exports.default = PlotlyReactEditor;
 
-},{"./components/edit-mode-menu.jsx":3,"./constants":4}]},{},[5])(5)
+},{"./components/edit-mode-menu.js":3,"./constants":4}]},{},[5])(5)
 });
