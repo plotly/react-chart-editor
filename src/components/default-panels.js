@@ -5,7 +5,11 @@ import TraceAccordion from "./trace-accordion";
 import Panel from "./panel";
 import Select from "./select";
 
-class Panels extends Component {
+/*
+ * These are the built-in panels for the editor. If the editor has children specified,
+ * those panels will override these.
+ */
+class DefaultPanels extends Component {
   constructor(props, context) {
     super(props);
     this.dataSources = context.dataSources;
@@ -26,6 +30,16 @@ class Panels extends Component {
                 { label: "Scatter line", value: "lines+markers" },
               ]}
             />
+
+            <Select label="X" attr="xsrc" options={this.dataSourceNames} />
+
+            <Select label="Y" attr="ysrc" options={this.dataSourceNames} />
+
+            <Select
+              label="Marker Size"
+              attr="marker.size"
+              options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14]}
+            />
           </TraceAccordion>
         </Panel>
       </div>
@@ -33,9 +47,9 @@ class Panels extends Component {
   }
 }
 
-Panels.contextTypes = {
+DefaultPanels.contextTypes = {
   dataSources: PropTypes.object,
   dataSourceNames: PropTypes.array,
 };
 
-export default Panels;
+export default DefaultPanels;

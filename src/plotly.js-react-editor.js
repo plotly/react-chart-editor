@@ -5,7 +5,7 @@ import constants from "./constants";
 import Panel from "./components/panel";
 import EditModeMenu from "./components/edit-mode-menu.js";
 import Select from "./components/select";
-import Panels from "./components/panels";
+import DefaultPanels from "./components/default-panels";
 
 export default class PlotlyReactEditor extends Component {
   constructor(props) {
@@ -24,7 +24,6 @@ export default class PlotlyReactEditor extends Component {
   getChildContext() {
     var gd = this.props.graphDiv || {};
     var dataSourceNames = Object.keys(this.props.dataSources || {});
-    console.log("dataSourceNames:", dataSourceNames);
     return {
       data: gd.data,
       fullData: gd._fullData,
@@ -49,8 +48,8 @@ export default class PlotlyReactEditor extends Component {
           currentSection={this.state.section}
           onChangeSection={this.setSection}
         />
-
-        {this.props.graphDiv && <Panels />}
+        {this.props.graphDiv &&
+          (this.props.children ? this.props.children : <DefaultPanels />)}
       </div>
     );
   }
