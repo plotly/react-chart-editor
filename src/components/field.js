@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import nestedProperty from "plotly.js/src/lib/nested_property";
 
+const SRC_ATTR_PATTERN = /src$/;
+
 class Field extends Component {
   constructor(props, context) {
     super(props);
@@ -13,6 +15,8 @@ class Field extends Component {
     this._fullProperty = nestedProperty(this._fullData, this.props.attr);
     this.updatePlot = this.updatePlot.bind(this);
     this._contextUpdate = context.handleUpdate;
+    this.dataSources = context.dataSources;
+    this.dataSourceNames = context.dataSourceNames;
 
     this.state = {
       value: this.fullValue,
@@ -47,7 +51,11 @@ class Field extends Component {
   }
 
   get fullValue() {
-    return this._fullProperty.get();
+    if (SRC_ATTR_PATTERN.test(this.props.attr)) {
+      return this._property.get();
+    } else {
+      return this._fullProperty.get();
+    }
   }
 
   set value(newValue) {

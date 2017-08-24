@@ -11,6 +11,18 @@ class Select extends Field {
   }
 
   render() {
+    var options = this.props.options;
+
+    for (let i = 0; i < options.length; i++) {
+      let opt = options[i];
+      if (typeof opt !== "object") {
+        options[i] = {
+          label: opt,
+          value: opt,
+        };
+      }
+    }
+
     return (
       <label className="field">
         <span className="field-title">
@@ -22,7 +34,7 @@ class Select extends Field {
           className="field-control"
           onChange={this.updatePlot}
         >
-          {this.props.options.map(this.renderOption)}
+          {options.map(this.renderOption)}
         </select>
       </label>
     );

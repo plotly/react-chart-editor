@@ -1,10 +1,17 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import TraceAccordion from "./trace-accordion";
 import Panel from "./panel";
 import Select from "./select";
 
-class Editor extends Component {
+class Panels extends Component {
+  constructor(props, context) {
+    super(props);
+    this.dataSources = context.dataSources;
+    this.dataSourceNames = context.dataSourceNames;
+  }
+
   render() {
     return (
       <div>
@@ -19,16 +26,6 @@ class Editor extends Component {
                 { label: "Scatter line", value: "lines+markers" },
               ]}
             />
-
-            <Select
-              label="Marker Color"
-              attr="marker.color"
-              options={[
-                { label: "Red", value: "red" },
-                { label: "Green", value: "green" },
-                { label: "Blue", value: "blue" },
-              ]}
-            />
           </TraceAccordion>
         </Panel>
       </div>
@@ -36,4 +33,9 @@ class Editor extends Component {
   }
 }
 
-export default Editor;
+Panels.contextTypes = {
+  dataSources: PropTypes.object,
+  dataSourceNames: PropTypes.array,
+};
+
+export default Panels;

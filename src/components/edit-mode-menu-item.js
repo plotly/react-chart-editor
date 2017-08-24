@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { klass } from "../common";
 
 export default class EditModeMenuItem extends Component {
   constructor(props) {

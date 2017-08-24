@@ -5,7 +5,7 @@ import constants from "./constants";
 import Panel from "./components/panel";
 import EditModeMenu from "./components/edit-mode-menu.js";
 import Select from "./components/select";
-import Editor from "./components/editor";
+import Panels from "./components/panels";
 
 export default class PlotlyReactEditor extends Component {
   constructor(props) {
@@ -23,6 +23,8 @@ export default class PlotlyReactEditor extends Component {
 
   getChildContext() {
     var gd = this.props.graphDiv || {};
+    var dataSourceNames = Object.keys(this.props.dataSources || {});
+    console.log("dataSourceNames:", dataSourceNames);
     return {
       data: gd.data,
       fullData: gd._fullData,
@@ -30,16 +32,14 @@ export default class PlotlyReactEditor extends Component {
       fullLayout: gd._fullLayout,
       handleUpdate: this.updateProp.bind(this),
       section: this.state.section.toLowerCase(),
+      dataSources: this.props.dataSources,
+      dataSourceNames: dataSourceNames,
     };
   }
 
   updateProp(attr, value) {
     this.props.onUpdate &&
       this.props.onUpdate(this.props.graphDiv, attr, value);
-  }
-
-  renderPanels() {
-    return <Editor />;
   }
 
   render() {
@@ -50,13 +50,15 @@ export default class PlotlyReactEditor extends Component {
           onChangeSection={this.setSection}
         />
 
-        {this.props.graphDiv && this.renderPanels()}
+        {this.props.graphDiv && <Panels />}
       </div>
     );
   }
 }
 
 PlotlyReactEditor.childContextTypes = {
+  dataSources: PropTypes.object,
+  dataSourceNames: PropTypes.array,
   data: PropTypes.array,
   fullData: PropTypes.array,
   layout: PropTypes.object,

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { klass } from "../common";
 
 import EditModeMenuItem from "./edit-mode-menu-item.js";
 
