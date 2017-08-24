@@ -18,7 +18,7 @@ class Select extends Field {
         </span>
 
         <select
-          value={this.props.fullValue}
+          value={this.state.value}
           className="field-control"
           onChange={this.updatePlot}
         >

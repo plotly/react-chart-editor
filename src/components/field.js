@@ -5,6 +5,7 @@ import nestedProperty from "plotly.js/src/lib/nested_property";
 class Field extends Component {
   constructor(props, context) {
     super(props);
+
     this._index = context.traceIndex;
     this._data = context.data[this._index];
     this._fullData = context.fullData[this._index];
@@ -12,16 +13,22 @@ class Field extends Component {
     this._fullProperty = nestedProperty(this._fullData, this.props.attr);
     this.updatePlot = this.updatePlot.bind(this);
     this._contextUpdate = context.handleUpdate;
+
+    this.state = {
+      value: this.fullValue,
+    };
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
     this._index = nextContext.traceIndex;
     this._contextUpdate = nextContext.handleUpdate;
+
     if (nextContext.data) {
       this._data = nextContext.data[this._index];
     } else {
       this._data = [];
     }
+
     if (nextContext.fullData) {
       this._fullData = nextContext.fullData[this._index];
     } else {
@@ -31,6 +38,7 @@ class Field extends Component {
 
   updatePlot(event) {
     this.value = event.target.value;
+    this.setState({ value: event.target.value });
     this._contextUpdate && this._contextUpdate(this.props.attr, this.value);
   }
 
