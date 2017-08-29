@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "A React component for plotly.js charts",
   "author": "Plotly, Inc.",
-  "main": "lib/plotly.js-react-editor.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/plotly/plotly.js-react-editor.git"
