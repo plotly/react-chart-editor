@@ -21,7 +21,7 @@
     "example:deploy": "netlify deploy example/dist",
     "make:lib": "mkdir -p lib && babel src --out-dir lib --presets=es2015,react --source-maps --plugins babel-plugin-add-module-exports",
     "make:build": "mkdir -p build && browserify src/plotly.js-react-editor.js -o ./build/plotly.js-react-editor.js -t [ babelify --presets [ es2015 react ] ] -t browserify-global-shim --standalone createPlotlyComponent && uglifyjs ./build/plotly.js-react-editor.js --compress --mangle --output ./build/plotly.js-react-editor.min.js --source-map filename=build/plotly.js-react-editor.min.js.map",
-    "prepublish": "npm run make:lib && npm run make:build",
+    "prepublishOnly": "npm run make:lib && npm run make:build",
     "lint": "prettier --trailing-comma es5 --write \"{src,example/src}/**/*.{js,jsx}\"",
     "precommit": "lint-staged",
     "test": "jest",
