@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import isNumeric from "fast-isnumeric";
 import classnames from "classnames";
-import * as customPropTypes from "@workspace/utils/customPropTypes";
 
 export const UP_ARROW = 38;
 export const DOWN_ARROW = 40;
@@ -96,7 +95,7 @@ export default class NumericInput extends Component {
   }
 }
 
-NumericInput.propTypes = {
+/*NumericInput.propTypes = {
   value: customPropTypes.customOneOfType([
     PropTypes.string,
     customPropTypes.isNumeric,
@@ -107,7 +106,7 @@ NumericInput.propTypes = {
   step: PropTypes.number,
   showArrows: PropTypes.bool,
   editableClassName: PropTypes.string,
-};
+};*/
 
 NumericInput.defaultProps = {
   showError: false,

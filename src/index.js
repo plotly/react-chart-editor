@@ -1,9 +1,9 @@
 import PlotlyReactEditor from "./plotly.js-react-editor";
 
-import Field from "./components/field";
-import Select from "./components/select";
-import Panel from "./components/panel";
-import TraceAccordion from "./components/trace-accordion";
+import Field from "./components/Field";
+import Select from "./components/fields/Select";
+import Panel from "./components/Panel";
+import TraceAccordion from "./components/TraceAccordion";
 
 PlotlyReactEditor.Field = Field;
 PlotlyReactEditor.Select = Select;

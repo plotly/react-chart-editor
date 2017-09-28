@@ -1,3 +1,3 @@
 export default {
-  baseClassName: "plotlyjsReactEditor",
+  baseClass: "plotly-editor",
 };

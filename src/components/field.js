@@ -40,9 +40,9 @@ class Field extends Component {
     }
   }
 
-  updatePlot(event) {
-    this.value = event.target.value;
-    this.setState({ value: event.target.value });
+  updatePlot(value) {
+    this.value = value;
+    this.setState({ value: value });
     this._contextUpdate && this._contextUpdate(this.props.attr, this.value);
   }
 

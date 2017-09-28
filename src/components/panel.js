@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { bem } from "../common";
 
 class Panel extends Component {
   constructor(props, context) {
@@ -13,11 +14,7 @@ class Panel extends Component {
 
   render() {
     if (this.props.name === this.section) {
-      return (
-        <div className="panel">
-          {this.props.children}
-        </div>
-      );
+      return <div className={bem("panel")}>{this.props.children}</div>;
     } else {
       return <div />;
     }

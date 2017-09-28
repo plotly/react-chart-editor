@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import NumericInputStatefulWrapper from "./NumericInputStatefulWrapper";
 import { keepWithinMaxMin } from "@workspace/utils/number";

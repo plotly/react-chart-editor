@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import constants from "./constants";
+import { bem, setLocale } from "./common";
 
-import Panel from "./components/panel";
-import EditModeMenu from "./components/edit-mode-menu.js";
-import Select from "./components/select";
-import DefaultPanels from "./components/default-panels";
+import Panel from "./components/Panel";
+import ModeMenu from "./components/ModeMenu";
+import Select from "./components/Select";
+import DefaultPanels from "./components/DefaultPanels";
 
 export default class PlotlyReactEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      section: "Graph-Create",
+      section: "Style-Traces",
     };
+    setLocale(props.locale || "en");
 
     this.setSection = this.setSection.bind(this);
   }
@@ -43,8 +45,8 @@ export default class PlotlyReactEditor extends Component {
 
   render() {
     return (
-      <div className="plotlyjsReactEditor">
-        <EditModeMenu
+      <div className={bem()}>
+        <ModeMenu
           currentSection={this.state.section}
           onChangeSection={this.setSection}
         />
