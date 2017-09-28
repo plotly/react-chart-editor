@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-/**
- * A generic component to handle text that can be edited when the user
- * clicks on it.
- */
+// A generic component to handle text that can be edited when the user
+// clicks on it.
 class EditableText extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +11,10 @@ class EditableText extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  getRef(c) {
+    this._ref = c;
   }
 
   // Selects/highlights all of the text in the filename input
@@ -37,16 +39,10 @@ class EditableText extends Component {
   }
 
   handleKeyPress(event) {
-    /*
-         * This will force handleUpdate to be called via the input's onBlur
-         */
+    // This will force handleUpdate to be called via the input's onBlur
     if ((event.keyCode || event.which) === 13) {
-      this.refs.text.blur();
+      this._ref.blur();
     }
-  }
-
-  focus() {
-    this.refs.text.focus();
   }
 
   render() {
@@ -63,7 +59,7 @@ class EditableText extends Component {
     } = this.props;
     return (
       <input
-        ref="text"
+        ref={c => this.getRef}
         type={type}
         className={className || ""}
         value={text}

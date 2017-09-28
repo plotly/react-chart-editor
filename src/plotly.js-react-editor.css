@@ -2,7 +2,7 @@
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #aaa;
   display: inline-block;
-  width: 375px;
+  width: 425px;
   min-height: 600px;
   overflow: hidden;
 }
@@ -102,8 +102,8 @@
   width: 100%;
   padding: 6px 0;
   display: block;
-  font-size: 13px;
   color: #6D6D6D;
+  font-size: 13px;
 }
 
 .plotly-editor__field:not(:last-child) {
@@ -123,6 +123,14 @@
   display: inline-block;
   padding-right: 0.5em;
 }
+
+.plotly-editor__field__widget {
+  width: 70%;
+  padding-left: 18px;
+  display: inline-block;
+  padding-right: 12px;
+}
+
 
 .plotly-editor__trace-panel__panel {
   background: #ffffff;
@@ -212,6 +220,9 @@
   padding: 6px 6px 6px 12px;
   width: 80px;
   vertical-align: middle;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
 }
 
 .numeric-input__caret-box {
@@ -220,33 +231,22 @@
   margin-left: 6px;
   margin-right: 12px;
   vertical-align: middle;
+  box-sizing: border-box;
 }
 
 .numeric-input__caret:first-child {
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .numeric-input__caret {
   cursor: pointer;
   background-color: #f8f8f9;
   border: 1px solid #bec8d9;
-  font-size: 14px;
   border-radius: 1px;
-  width: 14px;
-  height: 14px;
-  position: relative;
-}
-
-.numeric-top-caret-modifier {
-  position: absolute;
-  top: 2px;
-  left: -1px;
-}
-
-.numeric-bottom-caret-modifier {
-  position: absolute;
-  top: -4px;
-  left: -1px;
+  width: 13px;
+  height: 13px;
+  line-height: 12px;
+  text-align: center;
 }
 
 .icon-caret-down:before {
@@ -257,4 +257,39 @@
 .icon-caret-up:before {
   font-size: 8px;
   content: '\25b2';
+}
+
+.colorpicker-container {
+  display: inline-block;
+  line-height: 2;
+  position: relative;
+}
+
+.colorpicker {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #dcdddd;
+  vertical-align: middle;
+  padding-top: 3px;
+  padding-left: 3px;
+  box-sizing: border-box;
+}
+
+.colorpicker-swatch {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.colorpicker-selected-color {
+  margin-left: 12px;
+  color: #777;
+  font-weight: 300;
+  font-size: 12px;
+  display: inline-block;
+  vertical-align: middle;
+  text-transform: uppercase;
 }

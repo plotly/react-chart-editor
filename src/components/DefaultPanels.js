@@ -4,8 +4,9 @@ import { _ } from "../common";
 
 import TraceAccordion from "./TraceAccordion";
 import Panel from "./Panel";
-import Select from "./fields/Select";
-import Numeric from "./fields/Numeric";
+import Select from "./Select";
+import Numeric from "./Numeric";
+import ColorPicker from "./Color";
 import Section from "./Section";
 
 /*
@@ -62,7 +63,7 @@ class DefaultPanels extends Component {
 
                 <Section heading={_("style.traces.display")} />
 
-                <Section heading={_("style.traces.line-width")}>
+                <Section heading={_("style.traces.points")}>
                   <Numeric
                     label={_("style.traces.marker-opacity")}
                     min={0}
@@ -71,15 +72,30 @@ class DefaultPanels extends Component {
                     attr="marker.opacity"
                   />
 
+                  <ColorPicker label={_("Marker Color")} attr="marker.color" />
+
                   <Numeric
                     label={_("style.traces.marker-size")}
+                    min={0}
                     attr="marker.size"
                   />
 
                   <Numeric
                     label={_("style.traces.marker-line-width")}
+                    min={0}
                     attr="marker.line.width"
                   />
+                </Section>
+
+                <Section heading={_("style.traces.lines")}>
+                  <Numeric
+                    label={_("style.traces.line-width")}
+                    min={0}
+                    step={1.0}
+                    attr="line.width"
+                  />
+
+                  <ColorPicker label={_("Line color")} attr="line.color" />
                 </Section>
               </div>
             )}

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import isNumeric from "fast-isnumeric";
 import { MIXED_VALUES, MIXED_MODE_VALUE } from "../workspace-constants";
-//import { keepWithinMaxMin } from "@workspace/utils/number";
+import { clamp } from "../../common";
 
 // mapPropsToState, What is this absurdity?!? NumericInputStatefulWrapper
 // maintains state so that users can muck around in the inner NumericInput
@@ -124,7 +124,7 @@ export default class NumericInputStatefulWrapper extends Component {
       }
 
       if (numericBounds) {
-        //updatedValue = keepWithinMaxMin(updatedValue, min, max);
+        updatedValue = clamp(updatedValue, min, max);
       } else if (isNumeric(min)) {
         updatedValue = Math.max(min, updatedValue);
       } else if (isNumeric(max)) {
@@ -149,8 +149,7 @@ export default class NumericInputStatefulWrapper extends Component {
   }
 }
 
-/*NumericInputStatefulWrapper.propTypes = {
-
+NumericInputStatefulWrapper.propTypes = {
   // defaultValue is default value used when
   // A) a user leaves the input empty or filled with spaces.
   // B) a user is moving out of mixed mode.
@@ -181,12 +180,13 @@ export default class NumericInputStatefulWrapper extends Component {
   // when incrementing and decrementing.
   step: PropTypes.number,
 
-  value: customPropTypes.customOneOfType([
+  value: PropTypes.any,
+  /*value: customPropTypes.customOneOfType([
     PropTypes.string,
     customPropTypes.isNumeric,
     customPropTypes.isNull,
-  ]).isDefined,
-};*/
+  ]).isDefined,*/
+};
 
 NumericInputStatefulWrapper.defaultProps = {
   showArrows: true,

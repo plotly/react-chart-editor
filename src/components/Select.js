@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Field from "../Field";
-import { bem } from "../../common";
+import Field from "./Field";
+import { bem } from "../common";
 
 class Select extends Field {
   renderOption(attrs, i) {

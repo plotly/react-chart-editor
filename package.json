@@ -84,6 +84,8 @@
   "dependencies": {
     "fast-isnumeric": "^1.1.1",
     "object-assign": "^4.1.1",
-    "prop-types": "^15.5.10"
+    "prop-types": "^15.5.10",
+    "react-color": "^2.13.8",
+    "tinycolor2": "^1.4.1"
   }
 }

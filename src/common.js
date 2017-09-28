@@ -1,5 +1,5 @@
 import constants from "./constants";
-import dictionaries from "./dictionary";
+import dictionaries from "./dictionaries";
 
 /*
 * BEM helper
@@ -58,7 +58,6 @@ export function _(str) {
 
   var ref = state.dictionary;
 
-  console.log("ref:", ref);
   for (var i = 0; i < parts.length; i++) {
     if (ref[parts[i]]) {
       ref = ref[parts[i]];
@@ -68,4 +67,8 @@ export function _(str) {
   }
 
   return ref;
+}
+
+export function clamp(value, min, max) {
+  return Math.max(min, Math.min(max, value));
 }

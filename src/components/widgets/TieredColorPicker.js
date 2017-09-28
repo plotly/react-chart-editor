@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Fields from "react-color/lib/components/sketched/SketchFields";
-import PresetColors from "react-color/lib/components/sketched/SketchPresetColors";
+import Fields from "react-color/lib/components/sketch/SketchFields";
+import PresetColors from "react-color/lib/components/sketch/SketchPresetColors";
 import {
   Alpha,
   Hue,
@@ -9,8 +9,7 @@ import {
   Checkboard,
 } from "react-color/lib/components/common";
 import { CustomPicker } from "react-color";
-import { _ } from "@common/utils/i18n";
-import Environment from "@common/utils/environment";
+import { _ } from "../../common";
 
 // Plotly JS default colors.
 export const defaultColors = [
@@ -36,14 +35,10 @@ function TieredColorPicker(props) {
     backgroundColor: `rgba(${r}, ${g}, ${b}, ${a})`,
   };
 
-  const isOnPrem = Environment.isOnPrem;
-
   return (
     <div>
       <div>
-        <p className="color-picker-title">
-          {!isOnPrem ? _("Custom colors (Pro users)") : _("Custom colors")}
-        </p>
+        <p className="color-picker-title">{_("Custom colors")}</p>
         <div className="color-picker-saturation">
           <Saturation {...props} />
         </div>
@@ -66,9 +61,7 @@ function TieredColorPicker(props) {
         </div>
       </div>
       <div>
-        <p className="color-picker-title">
-          {!isOnPrem ? _("Default colors (Free users)") : _("Default colors")}
-        </p>
+        <p className="color-picker-title">{_("Default colors")}</p>
         <div className="color-picker-preset-colors js-color-picker-preset-colors">
           <PresetColors colors={defaultColors} onClick={onChangeComplete} />
         </div>

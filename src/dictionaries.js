@@ -1,21 +1,18 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
+export default {
   en: {
     style: {
       traces: {
         display: "Display",
         trace: "Trace",
         opacity: "Opacity",
+        points: "Points",
+        lines: "Lines",
         "marker-opacity": "Marker Opacity",
         "marker-size": "Diameter",
         "line-width": "Line Width",
-        "marker-line-width": "Border-width"
-      }
-    }
+        "marker-line-width": "Border-width",
+      },
+    },
   },
   es: {
     style: {
@@ -23,13 +20,13 @@ exports.default = {
         display: "Visualización",
         trace: "Rastro",
         opacity: "Opacidad",
+        points: "Puntos",
+        lines: "Líneas",
         "marker-opacity": "opacidad del marcador",
         "marker-size": "diámetro",
         "line-width": "ancho de línea",
-        "marker-line-width": "ancho del borde"
-      }
-    }
-  }
+        "marker-line-width": "ancho del borde",
+      },
+    },
+  },
 };
-module.exports = exports["default"];
-//# sourceMappingURL=dictionary.js.map
