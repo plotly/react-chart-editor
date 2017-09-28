@@ -1,11 +1,8 @@
 import React from "react";
 import CheckboxGroup from "./CheckboxGroup";
 
-/*
- * Component handles activeOption with shape "x+y+z"
- * and ties it to the CheckboxGroup Component
- */
-
+// Component handles activeOption with shape "x+y+z"
+// and ties it to the CheckboxGroup Component
 const FlaglistCheckboxGroup = React.createClass({
   propTypes: {
     options: React.PropTypes.arrayOf(
@@ -20,10 +17,8 @@ const FlaglistCheckboxGroup = React.createClass({
     orientation: React.PropTypes.string,
   },
 
-  /*
-     * convert plotly.js's "all" or "none" option in its `flaglist` type
-     * to a series of options separated by `+` that our component can handle
-     */
+  // convert plotly.js's "all" or "none" option in its `flaglist` type
+  // to a series of options separated by `+` that our component can handle
   _parseFlags(option) {
     let activeOption;
     if (option === "all") {
@@ -49,18 +44,14 @@ const FlaglistCheckboxGroup = React.createClass({
     };
   },
 
-  /*
-     * Sync local state to parent props.
-     */
+  // Sync local state to parent props.
   componentWillReceiveProps(nextProps) {
     this.setState({ activeOption: this._parseFlags(nextProps.activeOption) });
   },
 
-  /*
-     * Called whenever a checkbox is changed, this updates the local
-     * state to reflect the new activeOptions and then called props.onChange with
-     * the new options.
-     */
+  // Called whenever a checkbox is changed, this updates the local
+  // state to reflect the new activeOptions and then called props.onChange with
+  // the new options.
   handleChange(newOptions) {
     let newActiveOptions = "";
 
@@ -80,10 +71,8 @@ const FlaglistCheckboxGroup = React.createClass({
     this.props.onChange(newActiveOptions);
   },
 
-  /*
-     * Turns the activeOptions "e.g "x+y+z" into an array that
-     * the CheckboxGroup component can handle
-     */
+  // Turns the activeOptions "e.g "x+y+z" into an array that
+  // the CheckboxGroup component can handle
   renderCheckedOption() {
     const activeOptions = this.state.activeOption.split("+");
     const allOptions = this.props.options;

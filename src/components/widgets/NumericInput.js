@@ -17,6 +17,7 @@ export default class NumericInput extends Component {
   }
 
   onKeyDown(e) {
+    console.log("keydown");
     switch (e.keyCode) {
       case UP_ARROW:
         return this.incrementValue("increase");

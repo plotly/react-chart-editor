@@ -29,21 +29,17 @@ const CheckboxGroup = React.createClass({
     };
   },
 
-  /*
-     * We've gotten new props from a parent. Sync local state so its
-     * up to date with parent props.
-     */
+  // We've gotten new props from a parent. Sync local state so its
+  // up to date with parent props.
   componentWillReceiveProps(nextProps) {
     this.setState({
       options: nextProps.options,
     });
   },
 
-  /*
-     * Called whenever a checkbox is changed, this updates the local
-     * state to reflect the change and then called props.onChange with
-     * the new options.
-     */
+  // Called whenever a checkbox is changed, this updates the local
+  // state to reflect the change and then called props.onChange with
+  // the new options.
   handleChange(evt) {
     // Which one was changed?
     const targetCheckbox = evt.target.getAttribute("data-value");
@@ -73,9 +69,7 @@ const CheckboxGroup = React.createClass({
     this.props.onChange(newOptions);
   },
 
-  /**
-     * @returns {nodeList} Array-list list of DOM nodes of type "checkbox"
-     */
+  // @returns {nodeList} Array-list list of DOM nodes of type "checkbox"
   getCheckboxes() {
     return ReactDOM.findDOMNode(this).querySelectorAll("div.checkbox__box");
   },
@@ -83,10 +77,8 @@ const CheckboxGroup = React.createClass({
   renderOptions() {
     const { orientation } = this.props;
 
-    /*
-         * Loop through the options assigned to state
-         * and create a checkbox element for each
-         */
+    // Loop through the options assigned to state
+    // and create a checkbox element for each
     return this.state.options.map((option, i) => {
       const checkClass = classnames(["checkbox__check", "icon"], {
         "icon-check-mark": option.checked,

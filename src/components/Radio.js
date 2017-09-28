@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Field from "./Field";
-import ColorPicker from "./widgets/ColorPicker";
+import RadioBlocks from "./widgets/RadioBlocks";
 import { bem } from "../common";
 
-class Color extends Field {
+class Radio extends Field {
   render() {
     return (
       <div className={bem("field")}>
@@ -11,9 +11,13 @@ class Color extends Field {
           <div className={bem("field", "title-text")}>{this.props.label}</div>
         </div>
         <div className={bem("field", "widget")}>
-          <ColorPicker
-            selectedColor={this.state.value}
-            onColorChange={this.updatePlot}
+          <RadioBlocks
+            options={[
+              { value: true, label: "Connect" },
+              { value: false, label: "Blank" },
+            ]}
+            activeOption={this.state.value}
+            onOptionChange={this.updatePlot}
           />
         </div>
       </div>
@@ -21,4 +25,4 @@ class Color extends Field {
   }
 }
 
-export default Color;
+export default Radio;

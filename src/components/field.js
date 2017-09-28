@@ -41,6 +41,7 @@ class Field extends Component {
   }
 
   updatePlot(value) {
+    console.log("value:", value);
     this.value = value;
     this.setState({ value: value });
     this._contextUpdate && this._contextUpdate(this.props.attr, this.value);

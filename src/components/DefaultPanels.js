@@ -6,8 +6,10 @@ import TraceAccordion from "./TraceAccordion";
 import Panel from "./Panel";
 import Select from "./Select";
 import Numeric from "./Numeric";
-import ColorPicker from "./Color";
+//import ColorPicker from "./Color";
 import Section from "./Section";
+import Flaglist from "./Flaglist";
+import Radio from "./Radio";
 
 /*
  * These are the built-in panels for the editor. If the editor has children specified,
@@ -23,7 +25,7 @@ class DefaultPanels extends Component {
   render() {
     return (
       <div>
-        <Panel name="graph-create">
+        {/*<Panel name="graph-create">
           <TraceAccordion
             render={() => (
               <div>
@@ -45,7 +47,7 @@ class DefaultPanels extends Component {
               </div>
             )}
           />
-        </Panel>
+        </Panel>*/}
 
         <Panel name="style-traces">
           <TraceAccordion
@@ -61,7 +63,15 @@ class DefaultPanels extends Component {
                   />
                 </Section>
 
-                <Section heading={_("style.traces.display")} />
+                <Section heading={_("style.traces.display")}>
+                  <Flaglist
+                    attr="mode"
+                    options={[
+                      { label: "Lines", value: "lines" },
+                      { label: "Points", value: "markers" },
+                    ]}
+                  />
+                </Section>
 
                 <Section heading={_("style.traces.points")}>
                   <Numeric
@@ -72,7 +82,7 @@ class DefaultPanels extends Component {
                     attr="marker.opacity"
                   />
 
-                  <ColorPicker label={_("Marker Color")} attr="marker.color" />
+                  {/*<ColorPicker label={_("Marker Color")} attr="marker.color" />*/}
 
                   <Numeric
                     label={_("style.traces.marker-size")}
@@ -88,14 +98,22 @@ class DefaultPanels extends Component {
                 </Section>
 
                 <Section heading={_("style.traces.lines")}>
-                  <Numeric
+                  {/*<Numeric
                     label={_("style.traces.line-width")}
                     min={0}
                     step={1.0}
                     attr="line.width"
-                  />
+                  />*/}
 
-                  <ColorPicker label={_("Line color")} attr="line.color" />
+                  {/*<ColorPicker
+                    label={_("Line color")}
+                    attr="line.color"
+                  />*/}
+
+                  {/*<Radio
+                    label={_("Connect Gaps")}
+                    attr="connectgaps"
+                  />*/}
                 </Section>
               </div>
             )}
