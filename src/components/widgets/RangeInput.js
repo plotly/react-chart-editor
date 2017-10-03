@@ -54,7 +54,6 @@ class RangeInput extends Component {
       <span className={controlBlockClassName}>
         <span className="block grid-50">
           <NumericInputStatefulWrapper
-            ref="inputMin"
             value={this.state.valueMin}
             type="text"
             onUpdate={this.onUpdate.bind(this, "valueMin")}
@@ -64,7 +63,6 @@ class RangeInput extends Component {
         </span>
         <span className="block grid-50">
           <NumericInputStatefulWrapper
-            ref="inputMax"
             value={this.state.valueMax}
             type="text"
             onUpdate={this.onUpdate.bind(this, "valueMax")}
@@ -79,7 +77,7 @@ class RangeInput extends Component {
 
 RangeInput.propTypes = {
   // value = ['valueMin', 'valueMax']
-  value: React.PropTypes.array.isRequired,
+  value: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
   min: PropTypes.number,
   max: PropTypes.number,

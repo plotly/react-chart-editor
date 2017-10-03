@@ -7,7 +7,6 @@ class HTMLEditor extends TextAreaInput {
     return (
       <div className="html-editor">
         <textarea
-          ref="textinput"
           value={this.state.value}
           placeholder={this.props.placeholder}
           onChange={this.onChange}

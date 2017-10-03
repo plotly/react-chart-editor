@@ -40,7 +40,6 @@ export default class AnchorPositioning extends Component {
               type="radio"
               checked={defaultActive}
               onChange={this.handleChange}
-              ref={label}
               name={this.state.uid}
               value={value}
             />

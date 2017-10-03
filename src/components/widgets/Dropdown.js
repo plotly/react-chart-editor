@@ -9,10 +9,6 @@ class Dropdown extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  focus() {
-    this.refs.dropdown.focus();
-  }
-
   onChange(selection) {
     const { multi, onChange, valueKey } = this.props;
 
@@ -50,7 +46,6 @@ class Dropdown extends Component {
     return (
       <div className="dropdown-container" style={dropdownStyle}>
         <Select
-          ref="dropdown"
           backspaceToRemoveMessage={backspaceToRemoveMessage}
           placeholder={placeholder}
           clearable={clearable}
@@ -83,31 +78,22 @@ Dropdown.defaultProps = {
 };
 
 Dropdown.propTypes = {
-  backspaceToRemoveMessage: React.PropTypes.string,
-  clearable: React.PropTypes.bool,
-  onChange: React.PropTypes.func.isRequired,
-  options: React.PropTypes.array.isRequired,
-  placeholder: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.object,
-  ]),
-  searchable: React.PropTypes.bool,
-  minWidth: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
-  ]),
-  valueKey: React.PropTypes.string,
-  value: React.PropTypes.any,
-  multi: React.PropTypes.bool,
-  optionRenderer: React.PropTypes.func,
-  valueRenderer: React.PropTypes.func,
-  noResultsText: React.PropTypes.string,
-  disabled: React.PropTypes.bool,
-  className: React.PropTypes.string,
-  width: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number,
-  ]),
+  backspaceToRemoveMessage: PropTypes.string,
+  clearable: PropTypes.bool,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
+  placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  searchable: PropTypes.bool,
+  minWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  valueKey: PropTypes.string,
+  value: PropTypes.any,
+  multi: PropTypes.bool,
+  optionRenderer: PropTypes.func,
+  valueRenderer: PropTypes.func,
+  noResultsText: PropTypes.string,
+  disabled: PropTypes.bool,
+  className: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 module.exports = Dropdown;

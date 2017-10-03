@@ -27,6 +27,11 @@ class UploadShapefile extends Component {
     this.renderErrorState = this.renderErrorState.bind(this);
     this.renderLoadingState = this.renderLoadingState.bind(this);
     this.renderDropzone = this.renderDropzone.bind(this);
+    this.getRef = this.getRef.bind(this);
+  }
+
+  getRef(c) {
+    this._ref = c;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -93,7 +98,7 @@ class UploadShapefile extends Component {
   renderDropzone(content) {
     return (
       <Dropzone
-        ref="dzone"
+        ref={this.getRef}
         onDrop={this.upload}
         className="upload-shapefile upload-shapefile__inactive-dropzone"
         activeClassName="upload-shapefile upload-shapefile__active-dropzone"
@@ -112,7 +117,7 @@ class UploadShapefile extends Component {
 
     return this.renderDropzone(
       <span className="+vertically-horizontally-centered-content upload-shapefile__dropzone-content">
-        <a onClick={() => this.refs.dzone.open()}>upload </a>
+        <a onClick={() => this_ref.open()}>upload </a>
         {_(
           "a GeoJSON file (.json or .geojson) or a .zip file containing a .shp, .shx, and .dbf file"
         )}
@@ -134,7 +139,7 @@ class UploadShapefile extends Component {
     return this.renderDropzone(
       <div className="upload-shapefile__dropzone-content +vertically-horizontally-centered-content">
         <div className="+text-error">{this.state.message}</div>
-        <a onClick={() => this.refs.dzone.open()}>{_("Upload again")}</a>
+        <a onClick={() => this._ref.open()}>{_("Upload again")}</a>
       </div>
     );
   }

@@ -35,6 +35,11 @@ class Slider extends Component {
     this.startSlider = this.startSlider.bind(this);
     this.stopSlider = this.stopSlider.bind(this);
     this.renderFill = this.renderFill.bind(this);
+    this.getRef = this.getRef.bind(this);
+  }
+
+  getRef(c) {
+    this._ref = c;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -53,14 +58,14 @@ class Slider extends Component {
 
   positionToValue(position) {
     const dimension = orientation[this.props.orientation].dimension;
-    const sliderSize = findDOMNode(this.refs.sliderBox)[dimension];
+    const sliderSize = findDOMNode(this._ref)[dimension];
     const positionModifier = 100 / sliderSize;
 
     return Math.round(position * positionModifier);
   }
 
   getPosition(event) {
-    const sliderBox = findDOMNode(this.refs.sliderBox);
+    const sliderBox = findDOMNode(this._ref);
     const zeroPoint = orientation[this.props.orientation].zeroPoint;
     const mouseCoordinate =
       event[orientation[this.props.orientation].clientAxis];
@@ -156,7 +161,11 @@ class Slider extends Component {
     });
 
     return (
-      <div className={sliderBox} ref="sliderBox" onMouseDown={this.moveSlider}>
+      <div
+        className={sliderBox}
+        ref={this.getRef}
+        onMouseDown={this.moveSlider}
+      >
         {this.renderFill()}
         <div
           className={sliderHandle}
@@ -170,7 +179,7 @@ class Slider extends Component {
 }
 
 Slider.propTypes = {
-  value: React.PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onChange: PropTypes.func.isRequired,
   min: PropTypes.number,
   max: PropTypes.number,

@@ -46,12 +46,7 @@ export default class UpgradeLink extends Component {
     );
     /* eslint-disable no-script-url */
     return (
-      <a
-        href="javascript:;"
-        className={className}
-        onClick={handleUpgradeLink}
-        ref="upgrade"
-      >
+      <a href="javascript:;" className={className} onClick={handleUpgradeLink}>
         {_("Upgrade")}
       </a>
     );

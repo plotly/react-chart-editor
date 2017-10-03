@@ -1,25 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import CheckboxGroup from "./CheckboxGroup";
 
 // Component handles activeOption with shape "x+y+z"
 // and ties it to the CheckboxGroup Component
-const FlaglistCheckboxGroup = React.createClass({
-  propTypes: {
-    options: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        value: React.PropTypes.string.isRequired,
-        label: React.PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    activeOption: React.PropTypes.string,
-    onChange: React.PropTypes.func,
-    className: React.PropTypes.string,
-    orientation: React.PropTypes.string,
-  },
+class FlaglistCheckboxGroup extends Component {
+  constructor(props) {
+    super(props);
+
+    let currentActiveOption;
+    if (props.activeOption !== null) {
+      currentActiveOption = props.activeOption;
+    } else {
+      currentActiveOption = "";
+    }
+
+    this.state = {
+      activeOption: this.parseFlags(currentActiveOption),
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   // convert plotly.js's "all" or "none" option in its `flaglist` type
   // to a series of options separated by `+` that our component can handle
-  _parseFlags(option) {
+  parseFlags(option) {
     let activeOption;
     if (option === "all") {
       activeOption = this.props.options.map(o => o.value).join("+");
@@ -29,25 +34,12 @@ const FlaglistCheckboxGroup = React.createClass({
       activeOption = option;
     }
     return activeOption;
-  },
-
-  getInitialState() {
-    let currentActiveOption;
-    if (this.props.activeOption !== null) {
-      currentActiveOption = this.props.activeOption;
-    } else {
-      currentActiveOption = "";
-    }
-
-    return {
-      activeOption: this._parseFlags(currentActiveOption),
-    };
-  },
+  }
 
   // Sync local state to parent props.
   componentWillReceiveProps(nextProps) {
-    this.setState({ activeOption: this._parseFlags(nextProps.activeOption) });
-  },
+    this.setState({ activeOption: this.parseFlags(nextProps.activeOption) });
+  }
 
   // Called whenever a checkbox is changed, this updates the local
   // state to reflect the new activeOptions and then called props.onChange with
@@ -69,7 +61,7 @@ const FlaglistCheckboxGroup = React.createClass({
 
     this.setState({ activeOption: newActiveOptions });
     this.props.onChange(newActiveOptions);
-  },
+  }
 
   // Turns the activeOptions "e.g "x+y+z" into an array that
   // the CheckboxGroup component can handle
@@ -95,7 +87,7 @@ const FlaglistCheckboxGroup = React.createClass({
     });
 
     return newOptions;
-  },
+  }
 
   render() {
     return (
@@ -106,7 +98,20 @@ const FlaglistCheckboxGroup = React.createClass({
         orientation={this.props.orientation}
       />
     );
-  },
-});
+  }
+}
+
+FlaglistCheckboxGroup.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  activeOption: PropTypes.string,
+  onChange: PropTypes.func,
+  className: PropTypes.string,
+  orientation: PropTypes.string,
+};
 
 module.exports = FlaglistCheckboxGroup;

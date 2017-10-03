@@ -25,6 +25,11 @@ export default class DelayedTextInput extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.getRef = this.getRef.bind(this);
+  }
+
+  getRef(c) {
+    this._ref = c;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -62,7 +67,7 @@ export default class DelayedTextInput extends Component {
 
     // Allow the input to be saved when the enter key is pressed
     if (key === 13) {
-      const value = this.refs.text.value;
+      const value = this._ref.value;
 
       if (onEnter) {
         onEnter(value);
@@ -91,7 +96,7 @@ export default class DelayedTextInput extends Component {
     const { value } = this.state;
     return (
       <input
-        ref="text"
+        ref={this.getRef}
         type={type}
         className={className || ""}
         value={value}

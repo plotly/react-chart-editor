@@ -36,7 +36,6 @@ class RadioBlocks extends Component {
       <div
         className={optionClass}
         key={value}
-        ref={label}
         checked={defaultActive}
         onClick={() => this.handleChange(value)}
       >

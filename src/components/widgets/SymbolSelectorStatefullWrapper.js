@@ -72,7 +72,7 @@ SymbolSelectorStatefulWrapper.propTypes = {
   activeOption: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   symbolColor: PropTypes.string.isRequired,
-  is3D: React.PropTypes.bool,
-  borderColor: React.PropTypes.string,
-  traceType: React.PropTypes.string,
+  is3D: PropTypes.bool,
+  borderColor: PropTypes.string,
+  traceType: PropTypes.string,
 };

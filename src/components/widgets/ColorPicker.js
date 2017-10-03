@@ -77,7 +77,6 @@ class ColorPicker extends Component {
       <div className="colorpicker-container js-colorpicker-container">
         <div className="colorpicker">
           <div
-            ref="swatch"
             className="colorpicker-swatch +cursor-clickable js-colorpicker-swatch"
             style={swatchStyle}
             onClick={this.toggleVisible}
@@ -85,7 +84,6 @@ class ColorPicker extends Component {
         </div>
 
         <div
-          ref="selectedColorText"
           className="colorpicker-selected-color +hover-grey"
           onClick={this.toggleVisible}
         >
@@ -96,7 +94,6 @@ class ColorPicker extends Component {
           <div className="color-picker__popover js-color-picker-popover">
             <div className="color-picker__cover" onClick={this.toggleVisible} />
             <TieredColorPicker
-              ref="react-color"
               color={selectedColor.toRgbString()}
               onChangeComplete={this.onSelectedColorChange}
             />

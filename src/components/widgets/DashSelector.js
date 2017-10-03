@@ -5,7 +5,7 @@ import * as customPropTypes from "@workspace/utils/customPropTypes";
 const DashSelector = React.createClass({
   propTypes: {
     activeOption: customPropTypes.customOneOfType([
-      React.PropTypes.oneOf([
+      PropTypes.oneOf([
         "solid",
         "dot",
         "dash",
@@ -15,8 +15,8 @@ const DashSelector = React.createClass({
       ]),
       customPropTypes.isNull,
     ]).isDefined,
-    onChange: React.PropTypes.func.isRequired,
-    lineColor: React.PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    lineColor: PropTypes.string,
   },
 
   // Set the initial state
@@ -170,7 +170,6 @@ const DashSelector = React.createClass({
     return (
       <span className="widget-dropdown">
         <Dropdown
-          ref="dropdown"
           value={this.state.activeOption}
           options={this.renderDashList(this.state.lineColor)}
           onChange={this.onSelect}

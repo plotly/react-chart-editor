@@ -11,6 +11,7 @@ class EditableText extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.getRef = this.getRef.bind(this);
   }
 
   getRef(c) {
@@ -59,7 +60,7 @@ class EditableText extends Component {
     } = this.props;
     return (
       <input
-        ref={c => this.getRef}
+        ref={this.getRef}
         type={type}
         className={className || ""}
         value={text}

@@ -242,7 +242,6 @@ const FontSelector = React.createClass({
     return (
       <span className="font-dropdown widget-dropdown">
         <Dropdown
-          ref="dropdown"
           value={this.state.activeOption}
           options={this.getBasicFontOptions()}
           onChange={tieredOnSelect}

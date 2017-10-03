@@ -11,10 +11,8 @@ import Section from "./Section";
 import Flaglist from "./Flaglist";
 import Radio from "./Radio";
 
-/*
- * These are the built-in panels for the editor. If the editor has children specified,
- * those panels will override these.
- */
+// These are the built-in panels for the editor. If the editor has children specified,
+// those panels will override these.
 class DefaultPanels extends Component {
   constructor(props, context) {
     super(props);
@@ -25,7 +23,7 @@ class DefaultPanels extends Component {
   render() {
     return (
       <div>
-        {/*<Panel name="graph-create">
+        <Panel name="graph-create">
           <TraceAccordion
             render={() => (
               <div>
@@ -47,7 +45,7 @@ class DefaultPanels extends Component {
               </div>
             )}
           />
-        </Panel>*/}
+        </Panel>
 
         <Panel name="style-traces">
           <TraceAccordion
@@ -98,22 +96,16 @@ class DefaultPanels extends Component {
                 </Section>
 
                 <Section heading={_("style.traces.lines")}>
-                  {/*<Numeric
+                  <Numeric
                     label={_("style.traces.line-width")}
                     min={0}
                     step={1.0}
                     attr="line.width"
-                  />*/}
+                  />
 
-                  {/*<ColorPicker
-                    label={_("Line color")}
-                    attr="line.color"
-                  />*/}
+                  {/*<ColorPicker label={_("Line color")} attr="line.color"/>*/}
 
-                  {/*<Radio
-                    label={_("Connect Gaps")}
-                    attr="connectgaps"
-                  />*/}
+                  <Radio label={_("Connect Gaps")} attr="connectgaps" />
                 </Section>
               </div>
             )}

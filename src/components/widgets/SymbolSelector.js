@@ -4,14 +4,14 @@ import { isTooLight } from "@workspace/utils/color";
 
 const SymbolSelector = React.createClass({
   propTypes: {
-    activeOption: React.PropTypes.string,
-    toggleMenu: React.PropTypes.func.isRequired,
-    changeSymbol: React.PropTypes.func.isRequired,
-    symbolColor: React.PropTypes.string,
-    isOpen: React.PropTypes.bool,
-    is3D: React.PropTypes.bool,
-    borderColor: React.PropTypes.string,
-    traceType: React.PropTypes.string,
+    activeOption: PropTypes.string,
+    toggleMenu: PropTypes.func.isRequired,
+    changeSymbol: PropTypes.func.isRequired,
+    symbolColor: PropTypes.string,
+    isOpen: PropTypes.bool,
+    is3D: PropTypes.bool,
+    borderColor: PropTypes.string,
+    traceType: PropTypes.string,
   },
 
   toggleMenu(e) {
@@ -530,7 +530,6 @@ const SymbolSelector = React.createClass({
       return (
         <div
           className="symbol-selector__item"
-          ref={value}
           key={value}
           onClick={this.changeSymbol.bind(this, value)}
         >
@@ -565,12 +564,8 @@ const SymbolSelector = React.createClass({
 
     return (
       <div>
-        <div
-          ref="toggle"
-          className="symbol-selector__toggle"
-          onClick={this.toggleMenu}
-        >
-          <span ref="title" className="symbol-selector__toggle_option">
+        <div className="symbol-selector__toggle" onClick={this.toggleMenu}>
+          <span className="symbol-selector__toggle_option">
             {this.renderActiveOption()}
           </span>
           <span className="symbol-selector__toggle__caret">

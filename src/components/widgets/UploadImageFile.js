@@ -27,6 +27,11 @@ class UploadImagefile extends Component {
     this.renderErrorState = this.renderErrorState.bind(this);
     this.renderLoadingState = this.renderLoadingState.bind(this);
     this.renderDropzone = this.renderDropzone.bind(this);
+    this.getRef = this.getRef.bind(this);
+  }
+
+  getRef(c) {
+    this._ref = c;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -84,7 +89,7 @@ class UploadImagefile extends Component {
   renderDropzone(content) {
     return (
       <Dropzone
-        ref="dzone"
+        ref={this.getRef}
         onDrop={this.upload}
         className="upload-imagefile js-upload-imagefile upload-imagefile__inactive-dropzone"
         activeClassName="upload-imagefile upload-imagefile__active-dropzone"
@@ -99,7 +104,7 @@ class UploadImagefile extends Component {
     return this.renderDropzone(
       <div className="upload-imagefile__dropzone-content full-height">
         <span className="+vertically-horizontally-centered-content">
-          <a onClick={() => this.refs.dzone.open()}>upload</a>{" "}
+          <a onClick={() => this._ref.open()}>upload</a>{" "}
           <span>or drag and drop an image</span>
         </span>
       </div>
@@ -121,7 +126,7 @@ class UploadImagefile extends Component {
       <div className="full-height">
         <div className="+vertically-horizontally-centered-content full-width">
           <div className="+text-error">{this.state.message}</div>
-          <a onClick={() => this.refs.dzone.open()}>{_("Upload again")}</a>
+          <a onClick={() => this._ref.open()}>{_("Upload again")}</a>
         </div>
       </div>
     );

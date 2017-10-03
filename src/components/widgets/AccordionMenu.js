@@ -224,7 +224,6 @@ export default class AccordionMenu extends Component {
           iconClass={iconClass}
           key={id}
           id={id}
-          ref={id}
           isOpen={this.state.subMenuStates[id]}
           isRemovable={isRemovable}
           removeMenuHandler={this.props.removeMenuHandler}
@@ -289,7 +288,6 @@ export default class AccordionMenu extends Component {
       this.props.subMenus.length > 0 ? (
         <div
           className="accordion-menu-button +float-left js-test-collapse-text"
-          ref="collapse"
           onClick={this.toggleAllHandler}
         >
           {this.anySubMenusOpen() ? (

@@ -64,6 +64,10 @@ const RichTextEditor = React.createClass({
     };
   },
 
+  getRef(c) {
+    this._ref = c;
+  },
+
   getInitialState() {
     /*
          * Initially set state based on the plotly.js annotation content.
@@ -178,7 +182,7 @@ const RichTextEditor = React.createClass({
   },
 
   focus() {
-    this.refs.editor.focus();
+    this._ref.focus();
   },
 
   // Used to properly calculate user selection coordinates.
@@ -374,7 +378,7 @@ const RichTextEditor = React.createClass({
             onFocus={this.onFocus}
             placeholder={this.props.placeholder}
             spellCheck={false}
-            ref="editor"
+            ref={this.getRef}
           />
         </div>
         {this.renderLinkEditor(selectedLinkID)}

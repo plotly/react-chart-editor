@@ -92,16 +92,12 @@ class RadioItems extends Component {
 
     return (
       <div className={optionClass} key={value}>
-        <label
-          className={labelWrapperClass}
-          ref={icon ? "iconOption" : "textOption"}
-        >
+        <label className={labelWrapperClass}>
           <input
             type="radio"
             className="radio-item__input"
             checked={defaultActive}
             onChange={onChange}
-            ref={label}
             name={this.state.uid}
             value={value}
           />

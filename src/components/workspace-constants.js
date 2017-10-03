@@ -40,27 +40,22 @@ export const EDIT_MODE_MENU_ITEMS = [
   {
     mode: EDIT_MODE.GRAPH,
     text: "Graph",
-    refName: "graphModeToggle",
   },
   {
     mode: EDIT_MODE.STYLE,
     text: "Style",
-    refName: "styleModeToggle",
   },
   {
     mode: EDIT_MODE.ANALYSIS,
     text: "Analysis",
-    refName: "analysisModeToggle",
   },
   {
     mode: EDIT_MODE.JSON,
     text: "JSON",
-    refName: "jsonModeToggle",
   },
   {
     mode: EDIT_MODE.EXPORT,
     text: "Export",
-    refName: "exportModeToggle",
   },
 ];
 
@@ -68,52 +63,42 @@ export const STYLE_MODE_MENU_ITEMS = [
   {
     mode: STYLE_MODE.TRACES,
     text: "Traces",
-    refName: "tracesStyleModeToggle",
   },
   {
     mode: STYLE_MODE.LAYOUT,
     text: "Layout",
-    refName: "layoutStyleModeToggle",
   },
   {
     mode: STYLE_MODE.NOTES,
     text: "Notes",
-    refName: "notesStyleModeToggle",
   },
   {
     mode: STYLE_MODE.AXES,
     text: "Axes",
-    refName: "axesStyleModeToggle",
   },
   {
     mode: STYLE_MODE.LEGEND,
     text: "Legend",
-    refName: "legendStyleModeToggle",
   },
   {
     mode: STYLE_MODE.COLOR_BARS,
     text: "Color Bars",
-    refName: "colorBarsStyleModeToggle",
   },
   {
     mode: STYLE_MODE.SHAPES,
     text: "Shapes",
-    refName: "shapesStyleModeToggle",
   },
   {
     mode: STYLE_MODE.MAPBOX_LAYERS,
     text: "GeoJSON",
-    refName: "mapboxLayersToggle",
   },
   {
     mode: STYLE_MODE.IMAGES,
     text: "Images",
-    refName: "imagesStyleModeToggle",
   },
   {
     mode: STYLE_MODE.MOBILE,
     text: "Mobile",
-    refName: "MobileStyleModeToggle",
   },
 ];
 
@@ -121,17 +106,14 @@ export const GRAPH_MODE_MENU_ITEMS = [
   {
     mode: GRAPH_MODE.CREATE,
     text: "create",
-    refName: "createGraphModeToggle",
   },
   {
     mode: GRAPH_MODE.FILTER,
     text: "filter",
-    refName: "filterGraphModeToggle",
   },
   {
     mode: GRAPH_MODE.GROUPBY,
     text: "group",
-    refName: "groupbyGraphModeToggle",
   },
 ];
 

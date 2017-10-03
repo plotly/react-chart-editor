@@ -2,12 +2,12 @@ import React from "react";
 
 const TextAreaInput = React.createClass({
   propTypes: {
-    value: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    placeholder: React.PropTypes.string.isRequired,
-    visibleRows: React.PropTypes.number,
-    areaWidth: React.PropTypes.number,
-    textareaClass: React.PropTypes.string,
+    value: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+    placeholder: PropTypes.string.isRequired,
+    visibleRows: PropTypes.number,
+    areaWidth: PropTypes.number,
+    textareaClass: PropTypes.string,
   },
 
   getDefaultProps() {
@@ -42,7 +42,6 @@ const TextAreaInput = React.createClass({
     return (
       <span>
         <textarea
-          ref="textinput"
           value={this.state.value}
           rows={this.props.visibleRows}
           cols={this.props.areaWidth}

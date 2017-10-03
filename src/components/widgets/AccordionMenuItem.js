@@ -88,7 +88,7 @@ class AccordionMenuItem extends Component {
 
     return (
       <div className="accordion-item js-accordion-layer">
-        <div ref="toggle" className={subMenuOpen} onClick={onToggle}>
+        <div className={subMenuOpen} onClick={onToggle}>
           <span className="+float-left">
             <div className={iconDirection}>
               <i className="icon-angle-down" />
@@ -100,9 +100,7 @@ class AccordionMenuItem extends Component {
               </div>
             ) : null}
 
-            <div ref="title" className={titleClass}>
-              {title}
-            </div>
+            <div className={titleClass}>{title}</div>
           </span>
           {closeIcon}
         </div>

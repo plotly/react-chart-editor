@@ -41,7 +41,6 @@ const StyleButtonGroup = React.createClass({
         {styles.map(({ label, value }) => (
           <StyleButton
             key={value}
-            ref={value}
             active={isActive(currentStyle, value)}
             label={label}
             onToggle={onToggle}

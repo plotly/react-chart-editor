@@ -86,7 +86,7 @@ Hint.propTypes = {
     "top",
     "top-left",
   ]),
-  children: React.PropTypes.node,
+  children: PropTypes.node,
 };
 
 Hint.defaultProps = {

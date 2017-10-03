@@ -223,12 +223,10 @@ ColorPaletteSelector.propTypes = {
      * Can be an array if we're trying to group style traces:
      * https://github.com/plotly/streambed/issues/7973
      */
-  userDataIndex: React.PropTypes.oneOfType([
-    React.PropTypes.number,
-    React.PropTypes.array,
-  ]).isRequired,
-  isGrouped: React.PropTypes.bool,
-  isPie: React.PropTypes.bool.isRequired,
+  userDataIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.array])
+    .isRequired,
+  isGrouped: PropTypes.bool,
+  isPie: PropTypes.bool.isRequired,
 };
 
 ColorPaletteSelector.defaultProps = {

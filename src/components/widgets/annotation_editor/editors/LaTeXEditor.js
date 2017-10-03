@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import { isLaTeXExpr as isWrapped } from "@workspace/components/widgets/annotation_editor/convertFormats";
 
@@ -60,7 +61,6 @@ class LaTeXEditor extends Component {
     return (
       <div className="latex-editor">
         <textarea
-          ref="textinput"
           value={this.state.value}
           placeholder={this.props.placeholder}
           onChange={this.onChange}
@@ -73,9 +73,9 @@ class LaTeXEditor extends Component {
 }
 
 LaTeXEditor.propTypes = {
-  onChange: React.PropTypes.func.isRequired,
-  value: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 LaTeXEditor.defaultProps = {

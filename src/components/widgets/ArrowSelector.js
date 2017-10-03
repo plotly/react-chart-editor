@@ -94,7 +94,6 @@ class ArrowSelector extends Component {
     return (
       <span className="widget-dropdown">
         <Dropdown
-          ref="dropdown"
           value={this.state.activeOption}
           options={this.arrowGenerator()}
           onChange={this.onSelect}

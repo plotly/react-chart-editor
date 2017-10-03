@@ -17,12 +17,18 @@ class LinkEditor extends Component {
       position: this.getUpdatedPosition(props),
       originalLinkURL: props.linkURL,
     };
+
+    this.getRef = this.getRef.bind(this);
+  }
+
+  getRef(c) {
+    this._ref = c;
   }
 
   componentDidMount() {
     // Focus the input field if the URL value is empty
     if (this.props.linkURL.trim() === "") {
-      findDOMNode(this.refs.input).focus();
+      this._ref && this._ref.focus();
     }
   }
 
@@ -41,10 +47,11 @@ class LinkEditor extends Component {
     // Cursor dissappears when component rerenders, to make sure it's present
     // we're using setSelection range to make it appear at the end of text:
     // https://github.com/plotly/streambed/issues/9964
-    findDOMNode(this.refs.input).setSelectionRange(
-      this.props.linkURL.length,
-      this.props.linkURL.length
-    );
+    this._ref &&
+      this._ref.setSelectionRange(
+        this.props.linkURL.length,
+        this.props.linkURL.length
+      );
   }
 
   getUpdatedPosition(props) {
@@ -104,7 +111,7 @@ class LinkEditor extends Component {
           onFocus={onFocus}
           onChange={ev => this.onInputChange(ev.target.value)}
           onKeyDown={ev => this.onInputKeyDown(ev)}
-          ref="input"
+          ref={this.getRef}
           value={linkURL}
           placeholder={placeholderText}
         />

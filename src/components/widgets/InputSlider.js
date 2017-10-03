@@ -53,7 +53,6 @@ class InputSlider extends Component {
     return (
       <div>
         <EditableText
-          ref="sliderText"
           className="slider__input"
           text={textValue}
           type="text"
@@ -77,7 +76,7 @@ class InputSlider extends Component {
 }
 
 InputSlider.propTypes = {
-  value: React.PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   onChange: PropTypes.func.isRequired,
   min: PropTypes.number,
   max: PropTypes.number,

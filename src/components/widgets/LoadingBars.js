@@ -2,18 +2,14 @@ import React from "react";
 
 var LoadingBars = React.createClass({
   propTypes: {
-    className: React.PropTypes.string,
-    loadingText: React.PropTypes.string,
+    className: PropTypes.string,
+    loadingText: PropTypes.string,
   },
 
   renderLoadingText: function() {
     if (!this.props.loadingText) return null;
 
-    return (
-      <h2 className="plotlybars-text" ref="loadingText">
-        {this.props.loadingText}
-      </h2>
-    );
+    return <h2 className="plotlybars-text">{this.props.loadingText}</h2>;
   },
   render: function() {
     let bars = [];

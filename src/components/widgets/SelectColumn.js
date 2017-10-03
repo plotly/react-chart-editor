@@ -162,7 +162,6 @@ export class UnconnectedSelectColumn extends Component {
       <span className="widget-dropdown">
         <Dropdown
           className={`${TEST_SELECTOR_CLASS}-${label}`}
-          ref={"dropdown"}
           options={options}
           value={value}
           searchable={true}

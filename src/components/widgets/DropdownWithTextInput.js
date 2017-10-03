@@ -104,7 +104,6 @@ export default class DropdownWithTextInput extends Component {
     return (
       <span className="font-dropdown">
         <Dropdown
-          ref="dropdown"
           clearable={clearable}
           value={value}
           options={list}
@@ -122,11 +121,11 @@ DropdownWithTextInput.defaultProps = {
 };
 
 DropdownWithTextInput.propTypes = {
-  options: React.PropTypes.array.isRequired,
+  options: PropTypes.array.isRequired,
   onUpdate: PropTypes.func.isRequired,
-  value: React.PropTypes.any,
-  minWidth: React.PropTypes.string,
-  clearable: React.PropTypes.bool,
-  customValue: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
+  value: PropTypes.any,
+  minWidth: PropTypes.string,
+  clearable: PropTypes.bool,
+  customValue: PropTypes.string,
+  placeholder: PropTypes.string,
 };
