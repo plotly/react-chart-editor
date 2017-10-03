@@ -61,6 +61,7 @@
     "json-beautify": "^1.0.1",
     "lint-staged": "^4.0.2",
     "netlify-cli": "^1.2.2",
+    "node-sass": "^4.5.3",
     "nodemon": "^1.11.0",
     "onetime": "^1.1.0",
     "plotly.js": "^1.29.2",
@@ -69,6 +70,7 @@
     "react-addons-test-utils": "^15.6.0",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1",
+    "sass-loader": "^6.0.6",
     "uglify-js": "^3.0.26",
     "uglifyify": "^4.0.3"
   },

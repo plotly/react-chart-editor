@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import constants from "./constants";
-import { bem, setLocale } from "./common";
+import { bem } from "./common";
 
 import Panel from "./components/Panel";
 import ModeMenu from "./components/ModeMenu";
 import Select from "./components/Select";
 import DefaultPanels from "./components/DefaultPanels";
+import dictionaries from "./dictionaries";
 
 export default class PlotlyReactEditor extends Component {
   constructor(props) {
@@ -14,7 +15,6 @@ export default class PlotlyReactEditor extends Component {
     this.state = {
       section: "Style-Traces",
     };
-    setLocale(props.locale || "en");
 
     this.setSection = this.setSection.bind(this);
   }
@@ -27,6 +27,8 @@ export default class PlotlyReactEditor extends Component {
     var gd = this.props.graphDiv || {};
     var dataSourceNames = Object.keys(this.props.dataSources || {});
     return {
+      locale: this.props.locale,
+      dictionaries: dictionaries,
       data: gd.data,
       fullData: gd._fullData,
       layout: gd.layout,
@@ -57,7 +59,13 @@ export default class PlotlyReactEditor extends Component {
   }
 }
 
+PlotlyReactEditor.defaultProps = {
+  locale: "en",
+};
+
 PlotlyReactEditor.childContextTypes = {
+  locale: PropTypes.string,
+  dictionaries: PropTypes.object,
   dataSources: PropTypes.object,
   dataSourceNames: PropTypes.array,
   data: PropTypes.array,

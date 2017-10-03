@@ -1,5 +1,4 @@
 import constants from "./constants";
-import dictionaries from "./dictionaries";
 
 /*
 * BEM helper
@@ -46,27 +45,13 @@ export function bem(block, element, modifiers) {
   return out.join(" ");
 }
 
-var state = {};
-
-export function setLocale(locale) {
-  state.locale = locale;
-  state.dictionary = dictionaries[locale];
-}
-
-export function _(str) {
-  var parts = str.split(".");
-
-  var ref = state.dictionary;
-
-  for (var i = 0; i < parts.length; i++) {
-    if (ref[parts[i]]) {
-      ref = ref[parts[i]];
-    } else {
-      return str;
-    }
+export function _(dictionaries, locale, key) {
+  const dict = dictionaries[locale];
+  if (dict && dict.hasOwnProperty(key)) {
+    return dict[key];
+  } else {
+    return key;
   }
-
-  return ref;
 }
 
 export function clamp(value, min, max) {

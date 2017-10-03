@@ -1,0 +1,380 @@
+.plotly-editor {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border: 1px solid #aaa;
+  display: inline-block;
+  width: 425px;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.plotly-editor__mode-menu {
+  user-select: none;
+  height: 100%;
+  width: 100px;
+  text-align: center;
+  background: #fff;
+  overflow-y: scroll;
+  float: left;
+  border-right: 1px solid #f3f6fa;
+}
+
+.plotly-editor__mode-menu-section--is-active {
+  color: #2a3f5f;
+  font-weight: 600;
+  cursor: default;
+  border-left: 3px solid #119DFF;
+}
+
+.plotly-editor__mode-menu-section {
+  background-color: #fff;
+  cursor: pointer;
+  width: 100%;
+}
+
+.plotly-editor__mode-menu-section__title {
+  color: #506784;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 12px 0;
+  text-transform: capitalize;
+  text-align: left;
+}
+
+.plotly-editor__mode-menu-section__title:before {
+  width: 0;
+  height: 0;
+  display: inline-block;
+  margin-left: 8px;
+  margin-right: 8px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+
+  border-left: 5px solid #506784;
+  content: '';
+  transition: all 0.15s ease-in-out;
+}
+
+.plotly-editor__mode-menu-section--is-expanded .plotly-editor__mode-menu-section__title:before {
+  transform: rotate(90deg);
+}
+
+.plotly-editor__mode-menu-section--is-expanded .plotly-editor__mode-menu-section__title {
+  box-shadow: 0px 3px 4px rgba(80,103,132,0.2);
+  position: relative;
+}
+
+.plotly-editor__mode-menu-item {
+  color: #69738a;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 14px;
+  text-transform: capitalize;
+  background-color: #f3f6fa;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 25%;
+  text-align: left;
+}
+
+.plotly-editor__mode-menu-item--is-active {
+  border-left: 3px solid #119DFF;
+  color: #2a3f5f;
+  font-weight: 600;
+  cursor: default;
+}
+
+.plotly-editor__panel {
+  position: absolute;
+  top: 21px;
+  left: 0px;
+  bottom: 5px;
+  right: 1px;
+  margin-left: 100px;
+  background-color: #f3f6fa;
+  overflow-y: scroll;
+  padding-left: 12px;
+  padding-right: 12px;
+  padding-top: 12px;
+}
+
+.plotly-editor__field {
+  width: 100%;
+  padding: 6px 0;
+  display: block;
+  color: #6D6D6D;
+  font-size: 13px;
+}
+
+.plotly-editor__field:not(:last-child) {
+  border-bottom: 1px solid #f8f8f9;
+}
+
+.plotly-editor__field__no-title {
+  width: 100%;
+  padding: 0 12px;
+}
+
+.plotly-editor__field__title {
+  padding-left: 0.5em;
+  color: #69738a;
+  font-size: 14px;
+  width: 36%;
+  display: inline-block;
+}
+
+.plotly-editor__field__control {
+  width: 60%;
+  display: inline-block;
+  padding-right: 0.5em;
+}
+
+.plotly-editor__field__widget {
+  width: 70%;
+  padding-left: 18px;
+  display: inline-block;
+  padding-right: 12px;
+}
+
+
+.plotly-editor__trace-panel__panel {
+  background: #ffffff;
+  border: 1px solid #bec8d9;
+  border-width: 0 1px 1px 1px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-bottom: 6px;
+}
+
+.plotly-editor__trace-panel__top {
+  clear: both;
+  padding: 6px 12px;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 13px;
+  border: 1px solid #a2b1c6;
+  background-color: #a2b1c6;
+  height: 15px;
+  border-radius: 5px;
+  text-shadow: 0px 1px 2px rgba(42,63,95,0.7);
+  -moz-transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out,border 0.1s ease-in-out;
+  -o-transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out,border 0.1s ease-in-out;
+  -webkit-transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out,border 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out,border 0.1s ease-in-out;
+}
+
+.plotly-editor__trace-panel__top--active {
+  color: #fff;
+  background-color: #506784;
+  border: 1px solid #506784;
+  border-radius: 5px 5px 0 0;
+}
+
+.plotly-editor__field {
+  color: #6D6D6D;
+  font-size: 13px;
+  line-height: 13px;
+  padding: 6px 0;
+  border-top: 1px solid #f8f8f9;
+  min-height: 32px;
+  font-weight: 300;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.plotly-editor__field__title {
+  width: 30%;
+  padding-left: 12px;
+  display: inline-block;
+  line-height: 18px;
+  text-transform: capitalize;
+}
+
+.plotly-editor__field__title-text {
+  text-transform: capitalize;
+  cursor: default;
+}
+
+.plotly-editor__section__heading {
+  font-size: 13px;
+  color: #69738a;
+  font-weight: 400;
+  cursor: default;
+  background-color: #F4FAFF;
+  padding: 6px 12px;
+  clear: both;
+  text-transform: capitalize;
+}
+
+.numeric-input__wrapper {
+  line-height: 20px;
+  max-width: 100%;
+}
+
+.numeric-input__number {
+  display: inline-block;
+  border: 1px solid #bec8d9;
+  background: white;
+  cursor: text;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  border-radius: 2px;
+  padding: 6px 6px 6px 12px;
+  width: 80px;
+  vertical-align: middle;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+}
+
+.numeric-input__caret-box {
+  display: inline-block;
+  max-height: 32px;
+  margin-left: 6px;
+  margin-right: 12px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.numeric-input__caret:first-child {
+  margin-bottom: 2px;
+}
+
+.numeric-input__caret {
+  cursor: pointer;
+  background-color: #f8f8f9;
+  border: 1px solid #bec8d9;
+  border-radius: 1px;
+  width: 13px;
+  height: 13px;
+  line-height: 12px;
+  text-align: center;
+}
+
+.icon-caret-down:before {
+  font-size: 8px;
+  content: '\25bc';
+}
+
+.icon-caret-up:before {
+  font-size: 8px;
+  content: '\25b2';
+}
+
+.colorpicker-container {
+  display: inline-block;
+  line-height: 2;
+  position: relative;
+}
+
+.colorpicker {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #dcdddd;
+  vertical-align: middle;
+  padding-top: 3px;
+  padding-left: 3px;
+  box-sizing: border-box;
+}
+
+.colorpicker-swatch {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.colorpicker-selected-color {
+  margin-left: 12px;
+  color: #777;
+  font-weight: 300;
+  font-size: 12px;
+  display: inline-block;
+  vertical-align: middle;
+  text-transform: uppercase;
+}
+
+.checkbox__group {
+  padding-left: 12px;
+  text-align: left;
+}
+
+.checkbox__item {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: default;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.checkbox__item--vertical {
+  display: block;
+  clear: both;
+}
+
+.checkbox__box {
+  height: 18px;
+  width: 18px;
+  border: 1px solid #a9b3c7;
+  border-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.checkbox__check {
+  color: #6D6D6D;
+  font-size: 12px;
+}
+
+.icon-check-mark:before {
+  content: "\2714";
+}
+
+.checkbox__label {
+  padding-left: 6px;
+  font-size: 12px;
+  display: inline-block;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.radio-block__option {
+  padding: 6px 12px;
+  background-color: #fff;
+  border-top: 1px solid #c8d4e3;
+  border-bottom: 1px solid #c8d4e3;
+  border-right: 1px solid #c8d4e3;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.radio-block__option--active {
+  background-color: #119DFF;
+  color: #fff;
+  border: 1px solid #0D76BF;
+  margin-left: -1px;
+  cursor: default;
+}
+
+.radio-block__option:last-child {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.radio-block__option:first-child {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-left: 1px solid #c8d4e3;
+}
+
