@@ -7,30 +7,7 @@ export default class ModeMenu extends Component {
   render() {
     return (
       <div className={bem("mode-menu")}>
-        <ModeMenuSection
-          label="Graph"
-          section="graph"
-          expanded
-          onChangeSection={this.props.onChangeSection}
-          currentSection={this.props.currentSection}
-          sections={["Create", "Filter", "Group"]}
-        />
-        <ModeMenuSection
-          label="Style"
-          section="style"
-          expanded
-          onChangeSection={this.props.onChangeSection}
-          currentSection={this.props.currentSection}
-          sections={[
-            "Traces",
-            "Layout",
-            "Notes",
-            "Axes",
-            "Legend",
-            "Shapes",
-            "Images",
-          ]}
-        />
+        {this.props.sections.map(this.renderSection)}
       </div>
     );
   }

@@ -1,13 +1,7 @@
-import PlotlyReactEditor from "./plotly.js-react-editor";
+import PlotlyReactEditor from "./PlotlyReactEditor";
 
-import Field from "./components/Field";
-import Select from "./components/Select";
-import Panel from "./components/Panel";
-import TraceAccordion from "./components/TraceAccordion";
+import components from "./components";
 
-PlotlyReactEditor.Field = Field;
-PlotlyReactEditor.Select = Select;
-PlotlyReactEditor.Panel = Panel;
-PlotlyReactEditor.TraceAccordion = TraceAccordion;
+Object.assign(PlotlyReactEditor, components);
 
 export default PlotlyReactEditor;

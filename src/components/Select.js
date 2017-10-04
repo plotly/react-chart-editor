@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Field from "./Field";
+import FieldBase from "./FieldBase";
 import { bem } from "../common";
 
-class Select extends Field {
+class Select extends FieldBase {
   renderOption(attrs, i) {
     return (
       <option key={`option-${i}`} value={attrs.value}>

@@ -4,7 +4,7 @@ import nestedProperty from "plotly.js/src/lib/nested_property";
 
 const SRC_ATTR_PATTERN = /src$/;
 
-class Field extends Component {
+class FieldBase extends Component {
   constructor(props, context) {
     super(props);
 
@@ -65,7 +65,7 @@ class Field extends Component {
   }
 }
 
-Field.contextTypes = {
+FieldBase.contextTypes = {
   data: PropTypes.array,
   fullData: PropTypes.array,
   layout: PropTypes.object,
@@ -74,4 +74,4 @@ Field.contextTypes = {
   traceIndex: PropTypes.number,
 };
 
-export default Field;
+export default FieldBase;

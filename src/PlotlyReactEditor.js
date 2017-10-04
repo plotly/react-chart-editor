@@ -1,28 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import constants from "./constants";
-import { bem } from "./common";
 
-import Panel from "./components/Panel";
-import ModeMenu from "./components/ModeMenu";
-import Select from "./components/Select";
-import DefaultPanels from "./components/DefaultPanels";
-import dictionaries from "./dictionaries";
+import constants from "./lib/constants";
+import { bem } from "./lib/common";
+import dictionaries from "./i18n";
+import components from "./components";
 
-export default class PlotlyReactEditor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      section: "Style-Traces",
-    };
+import DefaultEditor from "./DefaultEditor";
 
-    this.setSection = this.setSection.bind(this);
-  }
-
-  setSection(section) {
-    this.setState({ section });
-  }
-
+class PlotlyReactEditor extends Component {
   getChildContext() {
     var gd = this.props.graphDiv || {};
     var dataSourceNames = Object.keys(this.props.dataSources || {});
@@ -34,7 +20,6 @@ export default class PlotlyReactEditor extends Component {
       layout: gd.layout,
       fullLayout: gd._fullLayout,
       handleUpdate: this.updateProp.bind(this),
-      section: this.state.section.toLowerCase(),
       dataSources: this.props.dataSources,
       dataSourceNames: dataSourceNames,
     };
@@ -48,12 +33,8 @@ export default class PlotlyReactEditor extends Component {
   render() {
     return (
       <div className={bem()}>
-        <ModeMenu
-          currentSection={this.state.section}
-          onChangeSection={this.setSection}
-        />
         {this.props.graphDiv &&
-          (this.props.children ? this.props.children : <DefaultPanels />)}
+          (this.props.children ? this.props.children : <DefaultEditor />)}
       </div>
     );
   }
@@ -73,5 +54,8 @@ PlotlyReactEditor.childContextTypes = {
   layout: PropTypes.object,
   fullLayout: PropTypes.object,
   handleUpdate: PropTypes.func,
-  section: PropTypes.string,
 };
+
+Object.assign(PlotlyReactEditor, components);
+
+export default PlotlyReactEditor;

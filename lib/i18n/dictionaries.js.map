@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/i18n/dictionaries.js"],"names":["en","es"],"mappings":";;;;;kBAAe;AACbA,MAAI,EADS;AAEbC,MAAI;AAFS,C","file":"dictionaries.js","sourcesContent":["export default {\n  en: {},\n  es: {},\n};\n"]}

@@ -8,7 +8,7 @@ export default class ModeMenuSection extends Component {
     super(props);
 
     this.state = {
-      expanded: props.expanded,
+      expanded: this.props.section === this.props.selectedSection,
     };
 
     this.toggleExpanded = this.toggleExpanded.bind(this);
@@ -20,20 +20,21 @@ export default class ModeMenuSection extends Component {
     this.setState({ expanded: !this.state.expanded });
   }
 
-  onChangeSection(item) {
-    this.props.onChangeSection(this.props.label + "-" + item);
+  onChangeSection(panel) {
+    this.props.onChangeSection(this.props.section, panel);
   }
 
-  renderSubItem(item, i) {
+  renderSubItem(panel, i) {
     const isActive =
-      this.props.currentSection === this.props.label + "-" + item;
+      this.props.selectedPanel === panel &&
+      this.props.section === this.props.selectedSection;
 
     return (
       <ModeMenuItem
         key={"subitem-" + i}
         active={isActive}
-        onClick={() => this.onChangeSection(item)}
-        label={item}
+        onClick={() => this.onChangeSection(panel)}
+        label={panel}
       />
     );
   }
@@ -49,9 +50,9 @@ export default class ModeMenuSection extends Component {
           onClick={this.toggleExpanded}
           className={bem("mode-menu-section", "title")}
         >
-          {this.props.label}
+          {this.props.section}
         </div>
-        {this.state.expanded && this.props.sections.map(this.renderSubItem)}
+        {this.state.expanded && this.props.panels.map(this.renderSubItem)}
       </div>
     );
   }

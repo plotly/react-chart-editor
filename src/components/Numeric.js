@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Field from "./Field";
+import FieldBase from "./FieldBase";
 import NumericInput from "./widgets/NumericInputStatefulWrapper";
 import { bem } from "../common";
 
-class Numeric extends Field {
+class Numeric extends FieldBase {
   render() {
     return (
       <div className={bem("field")}>

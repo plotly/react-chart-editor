@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Field from "./Field";
+import FieldBase from "./FieldBase";
 import RadioBlocks from "./widgets/RadioBlocks";
 import { bem } from "../common";
 
-class Radio extends Field {
+class Radio extends FieldBase {
   render() {
     return (
       <div className={bem("field")}>

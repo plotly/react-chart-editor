@@ -40,7 +40,7 @@ class TraceAccordion extends Component {
   renderPanel(d, i) {
     return (
       <TracePanel key={i} index={i}>
-        {this.props.render()}
+        {this.props.children}
       </TracePanel>
     );
   }

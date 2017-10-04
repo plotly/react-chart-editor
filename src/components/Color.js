@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Field from "./Field";
+import FieldBase from "./FieldBase";
 import ColorPicker from "./widgets/ColorPicker";
 import { bem } from "../common";
 
-class Color extends Field {
+class Color extends FieldBase {
   render() {
     return (
       <div className={bem("field")}>
