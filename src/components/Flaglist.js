@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import FieldBase from "./FieldBase";
 import FlaglistCheckboxGroup from "./widgets/FlaglistCheckboxGroup";
-import { bem } from "../common";
+import { bem } from "../lib";
 
 class Flaglist extends FieldBase {
-  render() {
+  renderField() {
     return (
       <div className={bem("field")}>
         <div className={bem("field", "no-title")}>

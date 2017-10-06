@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FieldBase from "./FieldBase";
-import { bem } from "../common";
+import { bem } from "../lib";
 
 class Select extends FieldBase {
   renderOption(attrs, i) {
@@ -11,7 +11,7 @@ class Select extends FieldBase {
     );
   }
 
-  render() {
+  renderField() {
     var options = this.props.options;
 
     for (let i = 0; i < options.length; i++) {

@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import constants from "./lib/constants";
-import { bem } from "./lib/common";
-import dictionaries from "./i18n";
-import components from "./components";
+import { bem } from "./lib";
+import dictionaries from "./locales";
+// import component from './components';
 
 import DefaultEditor from "./DefaultEditor";
 
@@ -13,6 +13,7 @@ class PlotlyReactEditor extends Component {
     var gd = this.props.graphDiv || {};
     var dataSourceNames = Object.keys(this.props.dataSources || {});
     return {
+      graphDiv: gd,
       locale: this.props.locale,
       dictionaries: dictionaries,
       data: gd.data,
@@ -47,6 +48,7 @@ PlotlyReactEditor.defaultProps = {
 PlotlyReactEditor.childContextTypes = {
   locale: PropTypes.string,
   dictionaries: PropTypes.object,
+  graphDiv: PropTypes.any,
   dataSources: PropTypes.object,
   dataSourceNames: PropTypes.array,
   data: PropTypes.array,
@@ -56,6 +58,6 @@ PlotlyReactEditor.childContextTypes = {
   handleUpdate: PropTypes.func,
 };
 
-Object.assign(PlotlyReactEditor, components);
+// Object.assign(PlotlyReactEditor, components);
 
 export default PlotlyReactEditor;

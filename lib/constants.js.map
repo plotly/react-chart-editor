@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/constants.js"],"names":["baseClass"],"mappings":";;;;;kBAAe;AACbA,aAAW;AADE,C","file":"constants.js","sourcesContent":["export default {\n  baseClass: \"plotly-editor\",\n};\n"]}

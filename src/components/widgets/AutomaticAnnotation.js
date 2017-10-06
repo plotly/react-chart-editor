@@ -7,10 +7,10 @@ import RadioBlocks from "./RadioBlocks";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ToolMenuItem from "./ToolMenuItem";
-import { _ } from "@common/utils/i18n";
+import { _ } from "../../lib";
 import { contains, has, empty, merge } from "ramda";
 import { relayout } from "@workspace/actions/workspace";
-import { showNotification } from "@common/actions/notification";
+// import { showNotification } from "@common/actions/notification";
 
 export const DEFAULT_ANNOTATION_VALUES = {
   ax: 0,

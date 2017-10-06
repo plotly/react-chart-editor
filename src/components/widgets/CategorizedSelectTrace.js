@@ -2,7 +2,7 @@ import {
   CHART_TYPE_ICON,
   CATEGORY_LAYOUT,
 } from "@workspace/constants/workspace";
-import { _ } from "@common/utils/i18n";
+import { _ } from "../../lib";
 import { GET_ENCODING_SCHEMA } from "@workspace/constants/graphTable";
 import { immutableTraceSelectOptionsShape } from "@workspace/utils/customPropTypes";
 import { SELECT_PLOT_META } from "@workspace/constants/selectPlot";

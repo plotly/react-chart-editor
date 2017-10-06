@@ -1,26 +1,31 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { localize } from "./lib";
 
-import {
-  TraceAccordion,
-  Panel,
-  Select,
-  Numeric,
-  ColorPicker,
-  Section,
-  Flaglist,
-  Radio,
-  PanelsWithModeMenu,
-  PlotlyEditorBase,
-} from "./components";
+import TraceAccordion from "./components/TraceAccordion";
+import Panel from "./components/Panel";
+import Select from "./components/Select";
+import Numeric from "./components/Numeric";
+import ColorPicker from "./components/Color";
+import Section from "./components/Section";
+import Flaglist from "./components/Flaglist";
+import Radio from "./components/Radio";
+import PanelMenuWrapper from "./components/PanelMenuWrapper";
 
 // These are the built-in panels for the editor. If the editor has children specified,
 // those panels will override these.
-class DefaultEditor extends PlotlyEditorBase {
+class DefaultEditor extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.dataSources = context.dataSources;
+    this.dataSourceNames = context.dataSourceNames;
+  }
+
   render() {
-    const _ = this._;
+    const _ = this.props.localize;
 
     return (
-      <PanelsWithModeMenu>
+      <PanelMenuWrapper>
         <Panel section="Graph" name="Create">
           <TraceAccordion>
             <Select
@@ -33,11 +38,9 @@ class DefaultEditor extends PlotlyEditorBase {
               ]}
             />
 
-            <Select label="X" attr="xsrc" options={this.dataSourceNames} />
+            <Select label="X" attr="xsrc" options={this.dataSourceNames} show />
 
-            <Select label="Y" attr="ysrc" options={this.dataSourceNames} />
-
-            <Numeric label={_("Marker Size")} attr="marker.size" />
+            <Select label="Y" attr="ysrc" options={this.dataSourceNames} show />
           </TraceAccordion>
         </Panel>
 
@@ -93,13 +96,25 @@ class DefaultEditor extends PlotlyEditorBase {
 
               <ColorPicker label={_("Line color")} attr="line.color" />
 
-              <Radio label={_("Connect Gaps")} attr="connectgaps" />
+              <Radio
+                label={_("Connect Gaps")}
+                attr="connectgaps"
+                options={[
+                  { value: true, label: "Connect" },
+                  { value: false, label: "Blank" },
+                ]}
+              />
             </Section>
           </TraceAccordion>
         </Panel>
-      </PanelsWithModeMenu>
+      </PanelMenuWrapper>
     );
   }
 }
 
-export default DefaultEditor;
+DefaultEditor.contextTypes = {
+  dataSources: PropTypes.object,
+  dataSourceNames: PropTypes.array,
+};
+
+export default localize(DefaultEditor);

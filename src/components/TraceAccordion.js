@@ -5,7 +5,7 @@ import React, {
   isValidElement,
 } from "react";
 import PropTypes from "prop-types";
-import { bem } from "../common";
+import { bem } from "../lib";
 
 class TracePanel extends Component {
   getChildContext() {

@@ -8,6 +8,7 @@ class FieldBase extends Component {
   constructor(props, context) {
     super(props);
 
+    this._gd = context.graphDiv;
     this._index = context.traceIndex;
     this._data = context.data[this._index];
     this._fullData = context.fullData[this._index];
@@ -61,17 +62,31 @@ class FieldBase extends Component {
   set value(newValue) {
     this._property.set(newValue);
 
-    this._contextUpdate(gd, this._data, this.props.attr, newValue);
+    this._contextUpdate(this._gd, this._data, this.props.attr, newValue);
+  }
+
+  render() {
+    var full = this.fullValue;
+    if ((full !== undefined && full !== null) || this.props.show) {
+      return this.renderField();
+    } else {
+      return <div />;
+    }
   }
 }
 
 FieldBase.contextTypes = {
+  graphDiv: PropTypes.any,
   data: PropTypes.array,
   fullData: PropTypes.array,
   layout: PropTypes.object,
   fullLayout: PropTypes.object,
   handleUpdate: PropTypes.func,
   traceIndex: PropTypes.number,
+};
+
+FieldBase.defaultProps = {
+  show: false,
 };
 
 export default FieldBase;

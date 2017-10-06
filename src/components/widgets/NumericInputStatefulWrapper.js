@@ -2,8 +2,8 @@ import NumericInput from "./NumericInput";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import isNumeric from "fast-isnumeric";
-import { MIXED_VALUES, MIXED_MODE_VALUE } from "../workspace-constants";
-import { clamp } from "../../common";
+import { MIXED_VALUES, MIXED_MODE_VALUE } from "../../lib/constants";
+import { clamp } from "../../lib";
 
 // mapPropsToState, What is this absurdity?!? NumericInputStatefulWrapper
 // maintains state so that users can muck around in the inner NumericInput

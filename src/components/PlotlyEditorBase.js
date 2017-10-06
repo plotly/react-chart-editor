@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import Base from "./Base";
 import PropTypes from "prop-types";
 
-export default class PlotlyEditorBase extends Base {
+class PlotlyEditorBase extends Component {
   constructor(props, context) {
     super(props, context);
     this.dataSources = context.dataSources;
@@ -19,3 +19,5 @@ PlotlyEditorBase.contextTypes = Object.assign(
   },
   Base.contextTypes
 );
+
+export default PlotlyEditorBase;

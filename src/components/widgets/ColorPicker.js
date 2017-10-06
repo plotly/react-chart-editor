@@ -10,7 +10,7 @@ import {
   Checkboard,
 } from "react-color/lib/components/common";
 import { CustomPicker as customPicker } from "react-color";
-import { _ } from "../../common";
+import { _ } from "../../lib";
 
 const defaultColors = [
   "#444444",

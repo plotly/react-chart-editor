@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import FieldBase from "./FieldBase";
 import NumericInput from "./widgets/NumericInputStatefulWrapper";
-import { bem } from "../common";
+import { bem } from "../lib";
 
 class Numeric extends FieldBase {
-  render() {
+  renderField() {
     return (
       <div className={bem("field")}>
         <div className={bem("field", "title")}>

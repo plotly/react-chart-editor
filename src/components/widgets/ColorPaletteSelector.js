@@ -1,5 +1,5 @@
 import COLOR_SCALES from "@workspace/constants/color";
-import Environment from "@common/utils/environment";
+// import Environment from "@common/utils/environment";
 import PropTypes from "prop-types";
 import React, { Component } from "react";
 
