@@ -1,4 +1,4 @@
-# plotly-react-editor
+# react-plotly.js-editor
 
 > Standalone React-based editor panel for Plotly charts 
 
@@ -25,7 +25,7 @@ $ npm run prepublish
 
 ## See also
 
-- [plotlyjs-react](https://github.com/plotly/plotlyjs-react)
+- [react-plotly.js](https://github.com/plotly/react-plotly.js)
 
 ## License
 
