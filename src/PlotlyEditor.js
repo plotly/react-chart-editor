@@ -8,6 +8,8 @@ import dictionaries from "./locales";
 
 import DefaultEditor from "./DefaultEditor";
 
+export { Hub } from "./hub";
+
 class PlotlyEditor extends Component {
   getChildContext() {
     var gd = this.props.graphDiv || {};

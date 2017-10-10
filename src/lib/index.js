@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { baseClass } from "./constants";
 import PropTypes from "prop-types";
 
+export { findAttrs } from "./find-attrs";
+
 //
 // BEM helper
 //

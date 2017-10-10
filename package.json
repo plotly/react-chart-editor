@@ -64,7 +64,6 @@
     "node-sass": "^4.5.3",
     "nodemon": "^1.11.0",
     "onetime": "^1.1.0",
-    "plotly.js": "^1.29.2",
     "prettier": "^1.5.3",
     "react": "^15.6.1",
     "react-addons-test-utils": "^15.6.0",
@@ -88,6 +87,7 @@
     "object-assign": "^4.1.1",
     "prop-types": "^15.5.10",
     "react-color": "^2.13.8",
-    "tinycolor2": "^1.4.1"
+    "tinycolor2": "^1.4.1",
+    "plotly.js": "^1.31.0"
   }
 }
