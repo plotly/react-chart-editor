@@ -8,7 +8,7 @@ import dictionaries from "./locales";
 
 import DefaultEditor from "./DefaultEditor";
 
-class PlotlyReactEditor extends Component {
+class PlotlyEditor extends Component {
   getChildContext() {
     var gd = this.props.graphDiv || {};
     var dataSourceNames = Object.keys(this.props.dataSources || {});
@@ -41,11 +41,11 @@ class PlotlyReactEditor extends Component {
   }
 }
 
-PlotlyReactEditor.defaultProps = {
+PlotlyEditor.defaultProps = {
   locale: "en",
 };
 
-PlotlyReactEditor.childContextTypes = {
+PlotlyEditor.childContextTypes = {
   locale: PropTypes.string,
   dictionaries: PropTypes.object,
   graphDiv: PropTypes.any,
@@ -58,6 +58,6 @@ PlotlyReactEditor.childContextTypes = {
   handleUpdate: PropTypes.func,
 };
 
-// Object.assign(PlotlyReactEditor, components);
+// Object.assign(PlotlyEditor, components);
 
-export default PlotlyReactEditor;
+export default PlotlyEditor;
