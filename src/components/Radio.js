@@ -13,7 +13,7 @@ class Radio extends FieldBase {
         <div className={bem("field", "widget")}>
           <RadioBlocks
             options={this.props.options}
-            activeOption={this.state.value}
+            activeOption={this.fullValue}
             onOptionChange={this.updatePlot}
           />
         </div>

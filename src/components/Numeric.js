@@ -12,7 +12,7 @@ class Numeric extends FieldBase {
         </div>
         <div className={bem("field", "widget")}>
           <NumericInput
-            value={this.state.value}
+            value={this.fullValue}
             step={this.props.step}
             min={this.props.min}
             max={this.props.max}

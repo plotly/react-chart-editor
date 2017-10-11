@@ -37,6 +37,10 @@ class TraceAccordion extends Component {
     this.renderPanel = this.renderPanel.bind(this);
   }
 
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    this.data = (nextContext && nextContext.data) || [];
+  }
+
   renderPanel(d, i) {
     return (
       <TracePanel key={i} index={i}>

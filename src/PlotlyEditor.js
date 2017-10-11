@@ -4,11 +4,8 @@ import PropTypes from "prop-types";
 import constants from "./lib/constants";
 import { bem } from "./lib";
 import dictionaries from "./locales";
-// import component from './components';
 
 import DefaultEditor from "./DefaultEditor";
-
-export { Hub } from "./hub";
 
 class PlotlyEditor extends Component {
   getChildContext() {
@@ -59,7 +56,4 @@ PlotlyEditor.childContextTypes = {
   fullLayout: PropTypes.object,
   handleUpdate: PropTypes.func,
 };
-
-// Object.assign(PlotlyEditor, components);
-
 export default PlotlyEditor;

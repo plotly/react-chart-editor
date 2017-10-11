@@ -12,7 +12,7 @@ class Color extends FieldBase {
         </div>
         <div className={bem("field", "widget")}>
           <ColorPicker
-            selectedColor={this.state.value}
+            selectedColor={this.fullValue}
             onColorChange={this.updatePlot}
           />
         </div>

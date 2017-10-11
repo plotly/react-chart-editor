@@ -1,13 +1,55 @@
-import { findAttrs } from "./lib";
+//import { findAttrs } from "./lib";
 import nestedProperty from "plotly.js/src/lib/nested_property";
 import extend from "plotly.js/src/lib/extend";
 
 const SRC_ATTR_PATTERN = /src$/;
 
-export default function PlotlyReactHub(config) {
+function findAttrs(obj, pattern) {
+  let newAttrs;
+  let type = typeof obj;
+  let attrs = [];
+  if (Array.isArray(obj)) {
+    for (let i = 0; i < obj.length; i++) {
+      if (!Array.isArray(obj[i]) && typeof obj[i] !== "object") {
+        return null;
+      }
+      if (!!(newAttrs = findAttrs(obj[i]))) {
+        for (let j = 0; j < newAttrs.length; j++) {
+          if (!pattern || pattern.test(newAttrs[j])) {
+            attrs.push("[" + i + "]." + newAttrs[j]);
+          }
+        }
+      }
+    }
+  } else if (type === "object" || type === "function") {
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        if (!!(newAttrs = findAttrs(obj[key]))) {
+          for (let j = 0; j < newAttrs.length; j++) {
+            if (!pattern || pattern.test(newAttrs[j])) {
+              attrs.push(
+                key + (Array.isArray(obj[key]) ? "" : ".") + newAttrs[j]
+              );
+            }
+          }
+        } else {
+          if (!pattern || pattern.test(key)) {
+            attrs.push(key);
+          }
+        }
+      }
+    }
+  }
+
+  return attrs.length ? attrs : null;
+}
+
+export default function PlotlyHub(config) {
   config = config || {};
   this.dataSources = config.dataSources || {};
   this.setState = config.setState;
+  this.revision = config.revision || 0;
+  let editorRevision = 0;
 
   //
   // @method setDataSources
@@ -20,6 +62,7 @@ export default function PlotlyReactHub(config) {
   // @returns {object} dataSorces - the sanitized data references
   //
   this.setDataSources = data => {
+    if (config.debug) console.log("set data sources");
     // Explicitly clear out and transfer object properties in order to sanitize
     // the input, at least up to its type, which plotly.js will handle sanitizing.
     this.dataSources = {};
@@ -29,9 +72,18 @@ export default function PlotlyReactHub(config) {
       this.dataSources[refs[i]] = data[refs[i]];
     }
 
-    this.setState({ foo: Math.random() });
+    this.refresh();
 
     return this.dataSources;
+  };
+
+  //
+  // @method refresh
+  //
+  this.refresh = () => {
+    this.setState({
+      revision: ++this.revision,
+    });
   };
 
   //
@@ -45,6 +97,8 @@ export default function PlotlyReactHub(config) {
   // @returns {object} output data with substitutions
   //
   this.dereference = data => {
+    if (config.debug) console.log("dereferencing", data);
+    if (!data) return;
     for (let j = 0; j < data.length; j++) {
       //data[j] = extend.extendDeepNoArrays({}, data[j]);
       let srcAttrs = findAttrs(data[j], SRC_ATTR_PATTERN) || [];
@@ -71,12 +125,10 @@ export default function PlotlyReactHub(config) {
   // @param {object} gd - graph div
   //
   this.handlePlotUpdate = gd => {
-    if (config.debug) console.log("plot was updated");
+    if (config.debug) console.log("handle plot update");
     this.graphDiv = gd;
 
-    //this.setState({
-    //gd: gd
-    //});
+    this.setState({ __editorRevision: ++editorRevision });
   };
 
   //
@@ -101,6 +153,14 @@ export default function PlotlyReactHub(config) {
   //
   this.handleEditorUpdate = (data, layout, attr, value) => {
     if (config.debug) console.log("editor triggered an update");
-    this.setState({ foo: Math.random() });
+    this.refresh();
+  };
+
+  //
+  // @method getGraphDiv
+  //
+  this.getGraphDiv = gd => {
+    if (config.debug) console.log("received graph div");
+    this.setState({ gd: gd });
   };
 }

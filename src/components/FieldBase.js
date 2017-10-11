@@ -8,43 +8,37 @@ class FieldBase extends Component {
   constructor(props, context) {
     super(props);
 
-    this._gd = context.graphDiv;
-    this._index = context.traceIndex;
-    this._data = context.data[this._index];
-    this._fullData = context.fullData[this._index];
-    this._property = nestedProperty(this._data, this.props.attr);
-    this._fullProperty = nestedProperty(this._fullData, this.props.attr);
-    this.updatePlot = this.updatePlot.bind(this);
-    this._contextUpdate = context.handleUpdate;
+    this.setLocals(props, context);
+
     this.dataSources = context.dataSources;
     this.dataSourceNames = context.dataSourceNames;
 
-    this.state = {
-      value: this.fullValue,
-    };
+    this.updatePlot = this.updatePlot.bind(this);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this._index = nextContext.traceIndex;
-    this._contextUpdate = nextContext.handleUpdate;
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    this.setLocals(nextProps, nextContext);
+  }
 
-    if (nextContext.data) {
-      this._data = nextContext.data[this._index];
-    } else {
-      this._data = [];
-    }
+  setLocals(props, context) {
+    props = props || this.props;
 
-    if (nextContext.fullData) {
-      this._fullData = nextContext.fullData[this._index];
-    } else {
-      this._fullData = [];
-    }
+    this._index = context.traceIndex;
+
+    // gd, data, fullData:
+    this._gd = context.graphDiv;
+    this._data = context.data[this._index] || [];
+    this._fullData = context.fullData[this._index] || [];
+
+    // Property accessors:
+    this._fullProperty = nestedProperty(this._fullData, props.attr);
+    this._property = nestedProperty(this._data, props.attr);
+
+    this._contextUpdate = context.handleUpdate;
   }
 
   updatePlot(value) {
-    this.value = value;
-    this.setState({ value: value });
-    this._contextUpdate && this._contextUpdate(this.props.attr, this.value);
+    this._contextUpdate && this._contextUpdate(this.props.attr, value);
   }
 
   get value() {
@@ -61,7 +55,6 @@ class FieldBase extends Component {
 
   set value(newValue) {
     this._property.set(newValue);
-
     this._contextUpdate(this._gd, this._data, this.props.attr, newValue);
   }
 

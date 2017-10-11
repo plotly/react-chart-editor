@@ -29,7 +29,7 @@ class Select extends FieldBase {
         <span className={bem("field", "title")}>{this.props.label}</span>
 
         <select
-          value={this.state.value}
+          value={this.fullValue}
           className={bem("field", "control")}
           onChange={e => this.updatePlot(e.target.value)}
         >

@@ -10,7 +10,7 @@ class Flaglist extends FieldBase {
         <div className={bem("field", "no-title")}>
           <FlaglistCheckboxGroup
             options={this.props.options}
-            activeOption={this.state.value}
+            activeOption={this.fullValue}
             onChange={this.updatePlot}
           />
         </div>

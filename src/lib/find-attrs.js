@@ -1,4 +1,4 @@
-module.exports = function findAttrs(obj, pattern) {
+export function findAttrs(obj, pattern) {
   let newAttrs;
   let type = typeof obj;
   let attrs = [];
@@ -36,4 +36,4 @@ module.exports = function findAttrs(obj, pattern) {
   }
 
   return attrs.length ? attrs : null;
-};
+}
