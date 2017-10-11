@@ -33,7 +33,7 @@ TracePanel.childContextTypes = {
 class TraceAccordion extends Component {
   constructor(props, context) {
     super(props);
-    this.data = context.data;
+    this.data = context.data || [];
     this.renderPanel = this.renderPanel.bind(this);
   }
 
