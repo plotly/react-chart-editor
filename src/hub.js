@@ -155,12 +155,4 @@ export default function PlotlyHub(config) {
     if (config.debug) console.log("editor triggered an update");
     this.refresh();
   };
-
-  //
-  // @method getGraphDiv
-  //
-  this.getGraphDiv = gd => {
-    if (config.debug) console.log("received graph div");
-    this.setState({ gd: gd });
-  };
 }
