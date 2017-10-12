@@ -152,6 +152,7 @@ export default function PlotlyHub(config) {
   // @method handleEditorUpdate
   //
   this.handleEditorUpdate = (gd, update, traces) => {
+    console.log("gd, update, traces:", gd, update, traces);
     if (config.debug) console.log("editor triggered an update");
 
     Plotly.restyle(gd, update, traces);

@@ -1,10 +1,10 @@
-import PlotlyReactEditor from "./PlotlyReactEditor";
+import PlotlyEditor from "./PlotlyEditor";
 
 import components from "./components";
 
-Object.assign(PlotlyReactEditor, components);
+Object.assign(PlotlyEditor, components);
 
 import Hub from "./hub";
 export { Hub };
 
-export default PlotlyReactEditor;
+export default PlotlyEditor;
