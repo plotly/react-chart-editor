@@ -19,15 +19,15 @@ class PlotlyEditor extends Component {
       fullData: gd._fullData,
       layout: gd.layout,
       fullLayout: gd._fullLayout,
-      handleUpdate: this.updateProp.bind(this),
+      onUpdate: this.updateProp.bind(this),
       dataSources: this.props.dataSources,
       dataSourceNames: dataSourceNames,
     };
   }
 
-  updateProp(attr, value) {
+  updateProp(updates, traces) {
     this.props.onUpdate &&
-      this.props.onUpdate(this.props.graphDiv, attr, value);
+      this.props.onUpdate(this.props.graphDiv, updates, traces);
   }
 
   render() {
@@ -54,6 +54,6 @@ PlotlyEditor.childContextTypes = {
   fullData: PropTypes.array,
   layout: PropTypes.object,
   fullLayout: PropTypes.object,
-  handleUpdate: PropTypes.func,
+  onUpdate: PropTypes.func,
 };
 export default PlotlyEditor;

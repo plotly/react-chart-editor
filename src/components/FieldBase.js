@@ -34,11 +34,13 @@ class FieldBase extends Component {
     this._fullProperty = nestedProperty(this._fullData, props.attr);
     this._property = nestedProperty(this._data, props.attr);
 
-    this._contextUpdate = context.handleUpdate;
+    this.onUpdate = context.onUpdate;
   }
 
   updatePlot(value) {
-    this._contextUpdate && this._contextUpdate(this.props.attr, value);
+    let update = {};
+    update[this.props.attr] = [value];
+    this.onUpdate && this.onUpdate(update, [this._index]);
   }
 
   get value() {
@@ -53,10 +55,10 @@ class FieldBase extends Component {
     }
   }
 
-  set value(newValue) {
-    this._property.set(newValue);
-    this._contextUpdate(this._gd, this._data, this.props.attr, newValue);
-  }
+  //set value(newValue) {
+  //this._property.set(newValue);
+  //this.onUpdate(this._gd, this._data, this.props.attr, newValue);
+  //}
 
   render() {
     var full = this.fullValue;
@@ -74,7 +76,7 @@ FieldBase.contextTypes = {
   fullData: PropTypes.array,
   layout: PropTypes.object,
   fullLayout: PropTypes.object,
-  handleUpdate: PropTypes.func,
+  onUpdate: PropTypes.func,
   traceIndex: PropTypes.number,
 };
 
