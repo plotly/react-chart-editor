@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { bem } from "../common";
+import { bem } from "../lib";
 
 class Section extends Component {
   constructor(props, context) {

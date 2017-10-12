@@ -5,7 +5,7 @@ import React, {
   isValidElement,
 } from "react";
 import PropTypes from "prop-types";
-import { bem } from "../common";
+import { bem } from "../lib";
 
 class TracePanel extends Component {
   getChildContext() {
@@ -33,8 +33,15 @@ TracePanel.childContextTypes = {
 class TraceAccordion extends Component {
   constructor(props, context) {
     super(props);
-    this.data = context.data;
+    this.data = context.data || [];
     this.renderPanel = this.renderPanel.bind(this);
+    this.addTrace = this.addTrace.bind(this);
+
+    this.onUpdate = context.onUpdate;
+  }
+
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    this.data = (nextContext && nextContext.data) || [];
   }
 
   renderPanel(d, i) {
@@ -45,13 +52,27 @@ class TraceAccordion extends Component {
     );
   }
 
+  addTrace() {
+    this.onUpdate && this.onUpdate(null, [], "addTrace");
+  }
+
   render() {
-    return <div className="tracePanel">{this.data.map(this.renderPanel)}</div>;
+    return (
+      <div className="tracePanel">
+        {this.props.canAdd && (
+          <a href="#" onClick={this.addTrace}>
+            Add
+          </a>
+        )}
+        {this.data.map(this.renderPanel)}
+      </div>
+    );
   }
 }
 
 TraceAccordion.contextTypes = {
   data: PropTypes.array,
+  onUpdate: PropTypes.func,
 };
 
 export default TraceAccordion;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { bem } from "../common";
+import { bem } from "../lib";
 
 class Heading extends Component {
   constructor(props, context) {
@@ -12,7 +12,7 @@ class Heading extends Component {
     this.section = nextContext.section;
   }
 
-  render() {
+  renderField() {
     return (
       <div className={bem("section")}>
         <div className={bem("section", "heading")}>{this.props.label}</div>

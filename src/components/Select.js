@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FieldBase from "./FieldBase";
-import { bem } from "../common";
+import { bem } from "../lib";
 
 class Select extends FieldBase {
   renderOption(attrs, i) {
@@ -11,8 +11,8 @@ class Select extends FieldBase {
     );
   }
 
-  render() {
-    var options = this.props.options;
+  renderField() {
+    var options = (this.props.options || []).slice();
 
     for (let i = 0; i < options.length; i++) {
       let opt = options[i];
@@ -24,12 +24,16 @@ class Select extends FieldBase {
       }
     }
 
+    if (this.props.hasBlank) {
+      options.unshift({ label: "", value: "" });
+    }
+
     return (
       <label className={bem("field")}>
         <span className={bem("field", "title")}>{this.props.label}</span>
 
         <select
-          value={this.state.value}
+          value={this.fullValue}
           className={bem("field", "control")}
           onChange={e => this.updatePlot(e.target.value)}
         >

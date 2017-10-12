@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import FieldBase from "./FieldBase";
 import RadioBlocks from "./widgets/RadioBlocks";
-import { bem } from "../common";
+import { bem } from "../lib";
 
 class Radio extends FieldBase {
-  render() {
+  renderField() {
     return (
       <div className={bem("field")}>
         <div className={bem("field", "title")}>
@@ -12,11 +12,8 @@ class Radio extends FieldBase {
         </div>
         <div className={bem("field", "widget")}>
           <RadioBlocks
-            options={[
-              { value: true, label: "Connect" },
-              { value: false, label: "Blank" },
-            ]}
-            activeOption={this.state.value}
+            options={this.props.options}
+            activeOption={this.fullValue}
             onOptionChange={this.updatePlot}
           />
         </div>
