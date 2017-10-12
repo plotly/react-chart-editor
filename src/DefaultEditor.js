@@ -36,6 +36,7 @@ class DefaultEditor extends Component {
                 { label: "Scatter", value: "markers" },
                 { label: "Scatter line", value: "lines+markers" },
               ]}
+              show
             />
 
             <Select
