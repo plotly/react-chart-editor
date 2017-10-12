@@ -12,7 +12,7 @@ class Select extends FieldBase {
   }
 
   renderField() {
-    var options = this.props.options;
+    var options = (this.props.options || []).slice();
 
     for (let i = 0; i < options.length; i++) {
       let opt = options[i];
@@ -22,6 +22,10 @@ class Select extends FieldBase {
           value: opt,
         };
       }
+    }
+
+    if (this.props.hasBlank) {
+      options.unshift({ label: "", value: "" });
     }
 
     return (

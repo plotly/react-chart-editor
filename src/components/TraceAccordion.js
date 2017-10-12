@@ -35,6 +35,9 @@ class TraceAccordion extends Component {
     super(props);
     this.data = context.data || [];
     this.renderPanel = this.renderPanel.bind(this);
+    this.addTrace = this.addTrace.bind(this);
+
+    this.onUpdate = context.onUpdate;
   }
 
   componentWillUpdate(nextProps, nextState, nextContext) {
@@ -49,13 +52,27 @@ class TraceAccordion extends Component {
     );
   }
 
+  addTrace() {
+    this.onUpdate && this.onUpdate(null, [], "addTrace");
+  }
+
   render() {
-    return <div className="tracePanel">{this.data.map(this.renderPanel)}</div>;
+    return (
+      <div className="tracePanel">
+        {this.props.canAdd && (
+          <a href="#" onClick={this.addTrace}>
+            Add
+          </a>
+        )}
+        {this.data.map(this.renderPanel)}
+      </div>
+    );
   }
 }
 
 TraceAccordion.contextTypes = {
   data: PropTypes.array,
+  onUpdate: PropTypes.func,
 };
 
 export default TraceAccordion;

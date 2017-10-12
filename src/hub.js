@@ -151,19 +151,28 @@ export default function PlotlyHub(config) {
   //
   // @method handleEditorUpdate
   //
-  this.handleEditorUpdate = (gd, update, traces) => {
+  this.handleEditorUpdate = (gd, update, traces, type) => {
     if (config.debug) console.log("editor triggered an update");
 
-    for (let i = 0; i < traces.length; i++) {
-      for (let attr in update) {
-        let prop = nestedProperty(gd.data[traces[i]], attr);
-        let value = update[attr][i];
-        if (value !== undefined) {
-          prop.set(value);
+    switch (type) {
+      default:
+      case "update":
+        for (let i = 0; i < traces.length; i++) {
+          for (let attr in update) {
+            let prop = nestedProperty(gd.data[traces[i]], attr);
+            let value = update[attr][i];
+            if (value !== undefined) {
+              prop.set(value);
+            }
+          }
         }
-      }
-    }
 
-    this.refresh();
+        this.refresh();
+        break;
+      case "addTrace":
+        gd.data.push({ x: [], y: [] });
+        this.refresh();
+        break;
+    }
   };
 }

@@ -27,7 +27,7 @@ class DefaultEditor extends Component {
     return (
       <PanelMenuWrapper>
         <Panel section="Graph" name="Create">
-          <TraceAccordion>
+          <TraceAccordion canAdd>
             <Select
               label="Plot Type"
               attr="mode"
@@ -38,9 +38,21 @@ class DefaultEditor extends Component {
               ]}
             />
 
-            <Select label="X" attr="xsrc" options={this.dataSourceNames} show />
+            <Select
+              label="X"
+              attr="xsrc"
+              options={this.dataSourceNames}
+              show
+              hasBlank
+            />
 
-            <Select label="Y" attr="ysrc" options={this.dataSourceNames} show />
+            <Select
+              label="Y"
+              attr="ysrc"
+              options={this.dataSourceNames}
+              show
+              hasBlank
+            />
           </TraceAccordion>
         </Panel>
 
