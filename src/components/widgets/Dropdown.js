@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-select";
-import { map, prop } from "ramda";
+import PropTypes from "prop-types";
 
 class Dropdown extends Component {
   constructor(props) {
@@ -15,10 +15,12 @@ class Dropdown extends Component {
     if (!selection) {
       return onChange(null);
     } else if (multi) {
-      return onChange(map(prop(valueKey), selection));
+      console.log(valueKey, selection);
+      throw new Error("TODO: de-ramda");
+      //return onChange(map(prop(valueKey), selection));
     }
 
-    return onChange(prop(valueKey, selection));
+    return onChange(selection[valueKey]);
   }
 
   render() {
@@ -39,10 +41,19 @@ class Dropdown extends Component {
       className,
       width,
     } = this.props;
+
     const dropdownStyle = { minWidth };
     if (width) {
       dropdownStyle.width = width;
     }
+
+    const opts = options.slice();
+    for (let i = 0; i < opts.length; i++) {
+      if (typeof opts[i] === "string") {
+        opts[i] = { label: opts[i], [valueKey]: opts[i] };
+      }
+    }
+
     return (
       <div className="dropdown-container" style={dropdownStyle}>
         <Select
@@ -50,7 +61,7 @@ class Dropdown extends Component {
           placeholder={placeholder}
           clearable={clearable}
           value={value}
-          options={options}
+          options={opts}
           searchable={searchable}
           onChange={this.onChange}
           multi={multi}
