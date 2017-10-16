@@ -173,6 +173,12 @@ export default function PlotlyHub(config) {
         gd.data.push({ x: [], y: [] });
         this.refresh();
         break;
+      case "deleteTraces":
+        if (traces.length) {
+          gd.data = gd.data.splice(traces[0], 1);
+          this.refresh();
+        }
+        break;
     }
   };
 }

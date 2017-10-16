@@ -8,10 +8,20 @@ import PropTypes from "prop-types";
 import { bem } from "../lib";
 
 class TracePanel extends Component {
+  constructor(props) {
+    super(props);
+    this.deleteTrace = this.deleteTrace.bind(this);
+  }
+
   getChildContext() {
     return {
       traceIndex: this.props.index,
     };
+  }
+
+  deleteTrace() {
+    this.props.onUpdate &&
+      this.props.onUpdate(null, [this.props.index], "deleteTraces");
   }
 
   render() {
@@ -19,6 +29,13 @@ class TracePanel extends Component {
       <div>
         <div className={bem("trace-panel", "top", ["active"])}>
           Trace {this.props.index}
+          <a
+            className={bem("trace-panel", "delete")}
+            href="#"
+            onClick={this.deleteTrace}
+          >
+            ×
+          </a>
         </div>
         <div className={bem("trace-panel", "panel")}>{this.props.children}</div>
       </div>
@@ -46,7 +63,7 @@ class TraceAccordion extends Component {
 
   renderPanel(d, i) {
     return (
-      <TracePanel key={i} index={i}>
+      <TracePanel key={i} index={i} onUpdate={this.onUpdate}>
         {this.props.children}
       </TracePanel>
     );

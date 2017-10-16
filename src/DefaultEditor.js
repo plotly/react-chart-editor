@@ -4,13 +4,13 @@ import { localize } from "./lib";
 
 import TraceAccordion from "./components/TraceAccordion";
 import Panel from "./components/Panel";
-import Select from "./components/Select";
 import Numeric from "./components/Numeric";
 import ColorPicker from "./components/Color";
 import Section from "./components/Section";
 import Flaglist from "./components/Flaglist";
 import Radio from "./components/Radio";
 import PanelMenuWrapper from "./components/PanelMenuWrapper";
+import Dropdown from "./components/Dropdown";
 
 // These are the built-in panels for the editor. If the editor has children specified,
 // those panels will override these.
@@ -28,8 +28,9 @@ class DefaultEditor extends Component {
       <PanelMenuWrapper>
         <Panel section="Graph" name="Create">
           <TraceAccordion canAdd>
-            <Select
+            <Dropdown
               label="Plot Type"
+              clearable={false}
               attr="mode"
               options={[
                 { label: "Line", value: "lines" },
@@ -38,18 +39,20 @@ class DefaultEditor extends Component {
               ]}
             />
 
-            <Select
+            <Dropdown
               label="X"
               attr="xsrc"
               options={this.dataSourceNames}
+              clearable={false}
               show
               hasBlank
             />
 
-            <Select
+            <Dropdown
               label="Y"
               attr="ysrc"
               options={this.dataSourceNames}
+              clearable={false}
               show
               hasBlank
             />
@@ -76,6 +79,23 @@ class DefaultEditor extends Component {
                   { label: "Points", value: "markers" },
                 ]}
               />
+            </Section>
+
+            <Section heading={_("Filled Area")}>
+              <Dropdown
+                label="Fill to"
+                attr="fill"
+                clearable={false}
+                options={[
+                  { label: "None", value: "none" },
+                  { label: "Y = 0", value: "tozeroy" },
+                  { label: "X = 0", value: "tozerox" },
+                  { label: "Previous Y", value: "tonexty" },
+                  { label: "Previous X", value: "tonextx" },
+                ]}
+              />
+
+              <ColorPicker label={_("Color")} attr="fillcolor" />
             </Section>
 
             <Section heading={_("Points")}>
