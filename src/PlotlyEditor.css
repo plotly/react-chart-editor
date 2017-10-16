@@ -378,3 +378,10 @@
   border-left: 1px solid #c8d4e3;
 }
 
+.plotly-editor__trace-panel__delete {
+  float: right;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
+}
