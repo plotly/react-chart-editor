@@ -56,7 +56,6 @@
     "event-emitter": "^0.3.5",
     "gl": "^4.0.4",
     "hat": "0.0.3",
-    "husky": "^0.14.3",
     "insert-css": "^2.0.0",
     "jest": "^20.0.4",
     "json-beautify": "^1.0.1",
@@ -78,12 +77,6 @@
   },
   "browserify-global-shim": {
     "react": "React"
-  },
-  "lint-staged": {
-    "{src,example/src}/**/*.{js,jsx}": [
-      "prettier --write --trailing-comma es5",
-      "git add"
-    ]
   },
   "dependencies": {
     "fast-isnumeric": "^1.1.1",
