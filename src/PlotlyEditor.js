@@ -12,6 +12,7 @@ class PlotlyEditor extends Component {
     var gd = this.props.graphDiv || {};
     var dataSourceNames = Object.keys(this.props.dataSources || {});
     return {
+      plotly: this.props.plotly,
       graphDiv: gd,
       locale: this.props.locale,
       dictionaries: dictionaries,
@@ -45,6 +46,7 @@ PlotlyEditor.defaultProps = {
 };
 
 PlotlyEditor.childContextTypes = {
+  plotly: PropTypes.object,
   locale: PropTypes.string,
   dictionaries: PropTypes.object,
   graphDiv: PropTypes.any,
