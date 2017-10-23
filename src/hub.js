@@ -1,6 +1,6 @@
 //import { findAttrs } from "./lib";
-import nestedProperty from "plotly.js/src/lib/nested_property";
-import extend from "plotly.js/src/lib/extend";
+import nestedProperty from 'plotly.js/src/lib/nested_property';
+import extend from 'plotly.js/src/lib/extend';
 
 const SRC_ATTR_PATTERN = /src$/;
 
@@ -10,25 +10,25 @@ function findAttrs(obj, pattern) {
   let attrs = [];
   if (Array.isArray(obj)) {
     for (let i = 0; i < obj.length; i++) {
-      if (!Array.isArray(obj[i]) && typeof obj[i] !== "object") {
+      if (!Array.isArray(obj[i]) && typeof obj[i] !== 'object') {
         return null;
       }
       if (!!(newAttrs = findAttrs(obj[i]))) {
         for (let j = 0; j < newAttrs.length; j++) {
           if (!pattern || pattern.test(newAttrs[j])) {
-            attrs.push("[" + i + "]." + newAttrs[j]);
+            attrs.push('[' + i + '].' + newAttrs[j]);
           }
         }
       }
     }
-  } else if (type === "object" || type === "function") {
+  } else if (type === 'object' || type === 'function') {
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) {
         if (!!(newAttrs = findAttrs(obj[key]))) {
           for (let j = 0; j < newAttrs.length; j++) {
             if (!pattern || pattern.test(newAttrs[j])) {
               attrs.push(
-                key + (Array.isArray(obj[key]) ? "" : ".") + newAttrs[j]
+                key + (Array.isArray(obj[key]) ? '' : '.') + newAttrs[j]
               );
             }
           }
@@ -62,7 +62,7 @@ export default function PlotlyHub(config) {
   // @returns {object} dataSorces - the sanitized data references
   //
   this.setDataSources = data => {
-    if (config.debug) console.log("set data sources");
+    if (config.debug) console.log('set data sources');
     // Explicitly clear out and transfer object properties in order to sanitize
     // the input, at least up to its type, which plotly.js will handle sanitizing.
     this.dataSources = {};
@@ -82,7 +82,7 @@ export default function PlotlyHub(config) {
   //
   this.refresh = () => {
     this.setState({
-      revision: ++this.revision,
+      revision: ++this.revision
     });
   };
 
@@ -97,14 +97,14 @@ export default function PlotlyHub(config) {
   // @returns {object} output data with substitutions
   //
   this.dereference = data => {
-    if (config.debug) console.log("dereferencing", data);
+    if (config.debug) console.log('dereferencing', data);
     if (!data) return;
     for (let j = 0; j < data.length; j++) {
       //data[j] = extend.extendDeepNoArrays({}, data[j]);
       let srcAttrs = findAttrs(data[j], SRC_ATTR_PATTERN) || [];
       for (let i = 0; i < srcAttrs.length; i++) {
         let srcAttr = srcAttrs[i];
-        let unsrcd = srcAttr.replace(SRC_ATTR_PATTERN, "");
+        let unsrcd = srcAttr.replace(SRC_ATTR_PATTERN, '');
         let srcStr = nestedProperty(data[j], srcAttr);
         let dst = nestedProperty(data[j], unsrcd);
 
@@ -125,10 +125,10 @@ export default function PlotlyHub(config) {
   // @param {object} gd - graph div
   //
   this.handlePlotUpdate = gd => {
-    if (config.debug) console.log("handle plot update");
+    if (config.debug) console.log('handle plot update');
     this.graphDiv = gd;
 
-    this.setState({ __editorRevision: ++editorRevision });
+    this.setState({__editorRevision: ++editorRevision});
   };
 
   //
@@ -140,11 +140,11 @@ export default function PlotlyHub(config) {
   // @param {object} gd - graph div
   //
   this.handlePlotInitialized = gd => {
-    if (config.debug) console.log("plot was initialized");
+    if (config.debug) console.log('plot was initialized');
     this.graphDiv = gd;
 
     this.setState({
-      gd: gd,
+      gd: gd
     });
   };
 
@@ -152,11 +152,11 @@ export default function PlotlyHub(config) {
   // @method handleEditorUpdate
   //
   this.handleEditorUpdate = (gd, update, traces, type) => {
-    if (config.debug) console.log("editor triggered an update");
+    if (config.debug) console.log('editor triggered an update');
 
     switch (type) {
       default:
-      case "update":
+      case 'update':
         for (let i = 0; i < traces.length; i++) {
           for (let attr in update) {
             let prop = nestedProperty(gd.data[traces[i]], attr);
@@ -169,11 +169,11 @@ export default function PlotlyHub(config) {
 
         this.refresh();
         break;
-      case "addTrace":
-        gd.data.push({ x: [], y: [] });
+      case 'addTrace':
+        gd.data.push({x: [], y: []});
         this.refresh();
         break;
-      case "deleteTraces":
+      case 'deleteTraces':
         if (traces.length) {
           gd.data = gd.data.splice(traces[0], 1);
           this.refresh();
