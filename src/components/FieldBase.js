@@ -24,6 +24,7 @@ class FieldBase extends Component {
     props = props || this.props;
 
     this._index = context.traceIndex;
+    this._isSrc = SRC_ATTR_PATTERN.test(this.props.attr);
 
     // gd, data, fullData:
     this._gd = context.graphDiv;
@@ -33,6 +34,10 @@ class FieldBase extends Component {
     // Property accessors:
     this._fullProperty = nestedProperty(this._fullData, props.attr);
     this._property = nestedProperty(this._data, props.attr);
+    if (this._isSrc) {
+      const derefAttr = props.attr.slice(0, props.attr.length - 3);
+      this._derefProperty = nestedProperty(this._fullData, derefAttr);
+    }
 
     this.onUpdate = context.onUpdate;
   }
@@ -48,21 +53,25 @@ class FieldBase extends Component {
   }
 
   get fullValue() {
-    if (SRC_ATTR_PATTERN.test(this.props.attr)) {
+    if (this._isSrc) {
       return this._property.get();
     } else {
       return this._fullProperty.get();
     }
   }
 
-  //set value(newValue) {
-  //this._property.set(newValue);
-  //this.onUpdate(this._gd, this._data, this.props.attr, newValue);
-  //}
-
   render() {
-    var full = this.fullValue;
-    if ((full !== undefined && full !== null) || this.props.show) {
+    let fullValue;
+
+    // if this is a src reference we want to show or hide the component based
+    // on the full dereferenced value. Ie if this is `xsrc` we want to check the
+    // fullData `x`.
+    if (this._derefProperty) {
+      fullValue = this._derefProperty.get();
+    } else {
+      fullValue = this.fullValue;
+    }
+    if ((fullValue !== undefined && fullValue !== null) || this.props.show) {
       return this.renderField();
     } else {
       return <div />;
