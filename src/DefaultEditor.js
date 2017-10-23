@@ -11,14 +11,20 @@ import Section from './components/Section';
 import TraceAccordion from './components/TraceAccordion';
 import {localize} from './lib';
 
-// These are the built-in panels for the editor. If the editor has children specified,
-// those panels will override these.
-
 class DefaultEditor extends Component {
   constructor(props, context) {
     super(props, context);
     this.dataSources = context.dataSources;
     this.dataSourceNames = context.dataSourceNames;
+
+    const Plotly = context.plotly;
+    const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
+    const traceTypes = Object.keys(Plotly.PlotSchema.get().traces);
+    const labels = traceTypes.map(capitalize);
+    this.traceOptions = traceTypes.map((t, i) => ({
+      label: labels[i],
+      value: t
+    }));
   }
 
   render() {
@@ -31,13 +37,20 @@ class DefaultEditor extends Component {
             <Dropdown
               label="Plot Type"
               clearable={false}
+              attr="type"
+              options={this.traceOptions}
+              show
+            />
+
+            <Dropdown
+              label="Scatter Mode"
+              clearable={false}
               attr="mode"
               options={[
                 {label: 'Line', value: 'lines'},
                 {label: 'Scatter', value: 'markers'},
                 {label: 'Scatter line', value: 'lines+markers'}
               ]}
-              show
             />
 
             <Dropdown
@@ -45,7 +58,6 @@ class DefaultEditor extends Component {
               attr="xsrc"
               options={this.dataSourceNames}
               clearable={false}
-              show
               hasBlank
             />
 
@@ -54,7 +66,14 @@ class DefaultEditor extends Component {
               attr="ysrc"
               options={this.dataSourceNames}
               clearable={false}
-              show
+              hasBlank
+            />
+
+            <Dropdown
+              label="Z"
+              attr="zsrc"
+              options={this.dataSourceNames}
+              clearable={false}
               hasBlank
             />
           </TraceAccordion>
@@ -147,7 +166,8 @@ class DefaultEditor extends Component {
 
 DefaultEditor.contextTypes = {
   dataSources: PropTypes.object,
-  dataSourceNames: PropTypes.array
+  dataSourceNames: PropTypes.array,
+  plotly: PropTypes.object
 };
 
 export default localize(DefaultEditor);
