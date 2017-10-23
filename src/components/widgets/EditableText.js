@@ -107,4 +107,4 @@ EditableText.defaultProps = {
   type: "text",
 };
 
-module.exports = EditableText;
+export default EditableText;

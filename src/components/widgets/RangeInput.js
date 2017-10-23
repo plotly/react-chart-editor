@@ -83,4 +83,4 @@ RangeInput.propTypes = {
   max: PropTypes.number,
 };
 
-module.exports = RangeInput;
+export default RangeInput;

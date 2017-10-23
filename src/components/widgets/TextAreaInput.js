@@ -54,4 +54,4 @@ const TextAreaInput = React.createClass({
   },
 });
 
-module.exports = TextAreaInput;
+export default TextAreaInput;

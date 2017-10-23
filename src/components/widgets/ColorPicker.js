@@ -151,4 +151,4 @@ ColorPicker.propTypes = {
   selectedColor: PropTypes.string
 };
 
-module.exports = ColorPicker;
+export default ColorPicker;

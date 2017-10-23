@@ -37,4 +37,4 @@ function mapPlotToProps(plot, props) {
   return { options };
 }
 
-module.exports = connectWorkspacePlot(mapPlotToProps)(Anchor);
+export default connectWorkspacePlot(mapPlotToProps)(Anchor);

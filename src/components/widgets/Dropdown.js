@@ -107,4 +107,4 @@ Dropdown.propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-module.exports = Dropdown;
+export default Dropdown;

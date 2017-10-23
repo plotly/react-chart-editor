@@ -29,4 +29,4 @@ Spinny.propTypes = {
   text: PropTypes.string,
 };
 
-module.exports = Spinny;
+export default Spinny;

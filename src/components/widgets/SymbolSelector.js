@@ -581,4 +581,4 @@ const SymbolSelector = React.createClass({
   },
 });
 
-module.exports = SymbolSelector;
+export default SymbolSelector;
