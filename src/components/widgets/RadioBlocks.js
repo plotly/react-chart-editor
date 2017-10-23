@@ -85,4 +85,4 @@ RadioBlocks.propTypes = {
   alignment: PropTypes.string,
 };
 
-module.exports = RadioBlocks;
+export default RadioBlocks;

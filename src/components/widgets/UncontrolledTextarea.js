@@ -36,4 +36,4 @@ class UncontrolledTextarea extends Component {
   }
 }
 
-module.exports = UncontrolledTextarea;
+export default UncontrolledTextarea;

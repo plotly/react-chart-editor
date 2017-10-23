@@ -197,4 +197,4 @@ Slider.defaultProps = {
   fill: true,
 };
 
-module.exports = Slider;
+export default Slider;

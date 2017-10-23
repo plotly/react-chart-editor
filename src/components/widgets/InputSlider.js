@@ -90,4 +90,4 @@ InputSlider.defaultProps = {
   step: 1,
 };
 
-module.exports = InputSlider;
+export default InputSlider;

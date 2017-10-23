@@ -183,4 +183,4 @@ UploadShapefile.propTypes = {
   value: PropTypes.object.isRequired,
 };
 
-module.exports = UploadShapefile;
+export default UploadShapefile;

@@ -1,17 +1,18 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
-import constants from "./lib/constants";
-import { bem } from "./lib";
-import dictionaries from "./locales";
+import constants from './lib/constants';
+import {bem} from './lib';
+import dictionaries from './locales';
 
-import DefaultEditor from "./DefaultEditor";
+import DefaultEditor from './DefaultEditor';
 
 class PlotlyEditor extends Component {
   getChildContext() {
     var gd = this.props.graphDiv || {};
     var dataSourceNames = Object.keys(this.props.dataSources || {});
     return {
+      plotly: this.props.plotly,
       graphDiv: gd,
       locale: this.props.locale,
       dictionaries: dictionaries,
@@ -21,7 +22,7 @@ class PlotlyEditor extends Component {
       fullLayout: gd._fullLayout,
       onUpdate: this.updateProp.bind(this),
       dataSources: this.props.dataSources,
-      dataSourceNames: dataSourceNames,
+      dataSourceNames: dataSourceNames
     };
   }
 
@@ -41,10 +42,11 @@ class PlotlyEditor extends Component {
 }
 
 PlotlyEditor.defaultProps = {
-  locale: "en",
+  locale: 'en'
 };
 
 PlotlyEditor.childContextTypes = {
+  plotly: PropTypes.object,
   locale: PropTypes.string,
   dictionaries: PropTypes.object,
   graphDiv: PropTypes.any,
@@ -54,6 +56,7 @@ PlotlyEditor.childContextTypes = {
   fullData: PropTypes.array,
   layout: PropTypes.object,
   fullLayout: PropTypes.object,
-  onUpdate: PropTypes.func,
+  onUpdate: PropTypes.func
 };
+
 export default PlotlyEditor;

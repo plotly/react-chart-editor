@@ -69,4 +69,4 @@ CheckboxGroup.defaultProps = {
   className: "",
 };
 
-module.exports = CheckboxGroup;
+export default CheckboxGroup;

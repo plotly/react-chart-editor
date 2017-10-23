@@ -618,4 +618,4 @@ MapboxStyleUrl.propTypes = {
   onTokenChange: PropTypes.func,
 };
 
-module.exports = MapboxStyleUrlController;
+export default MapboxStyleUrlController;

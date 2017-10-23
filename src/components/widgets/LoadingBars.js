@@ -31,4 +31,4 @@ var LoadingBars = React.createClass({
   },
 });
 
-module.exports = LoadingBars;
+export default LoadingBars;

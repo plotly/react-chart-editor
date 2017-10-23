@@ -197,4 +197,4 @@ function exportUrl(ext, base, shareKey) {
   return url;
 }
 
-module.exports = DownloadDropdown;
+export default DownloadDropdown;
