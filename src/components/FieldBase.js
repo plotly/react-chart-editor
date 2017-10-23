@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import nestedProperty from "plotly.js/src/lib/nested_property";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import nestedProperty from 'plotly.js/src/lib/nested_property';
 
 const SRC_ATTR_PATTERN = /src$/;
 
@@ -77,11 +77,11 @@ FieldBase.contextTypes = {
   layout: PropTypes.object,
   fullLayout: PropTypes.object,
   onUpdate: PropTypes.func,
-  traceIndex: PropTypes.number,
+  traceIndex: PropTypes.number
 };
 
 FieldBase.defaultProps = {
-  show: false,
+  show: false
 };
 
 export default FieldBase;
