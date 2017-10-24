@@ -12,6 +12,7 @@ class FieldBase extends Component {
 
     this.dataSources = context.dataSources;
     this.dataSourceNames = context.dataSourceNames;
+    this.plotSchema = context.plotSchema;
 
     this.updatePlot = this.updatePlot.bind(this);
   }
@@ -24,27 +25,35 @@ class FieldBase extends Component {
     props = props || this.props;
 
     this._index = context.traceIndex;
-    this._isSrc = SRC_ATTR_PATTERN.test(this.props.attr);
 
     // gd, data, fullData:
     this._gd = context.graphDiv;
-    this._data = context.data[this._index] || [];
-    this._fullData = context.fullData[this._index] || [];
+    this._trace = context.data[context.traceIndex] || {};
+    this._fullTrace = context.fullData[context.fullTraceIndex] || {};
+
+    const traceAttr = `${this._fullTrace.type}.attributes.${props.attr}`;
+    const attr = nestedProperty(context.plotSchema.traces, traceAttr).get();
+    if (attr && (attr.valType === 'data_array' || attr.arrayOk)) {
+      this._refAttr = `${props.attr}src`;
+      this._refProperty = nestedProperty(this._trace, this._refAttr);
+    }
 
     // Property accessors:
-    this._fullProperty = nestedProperty(this._fullData, props.attr);
-    this._property = nestedProperty(this._data, props.attr);
-    if (this._isSrc) {
-      const derefAttr = props.attr.slice(0, props.attr.length - 3);
-      this._derefProperty = nestedProperty(this._fullData, derefAttr);
-    }
+    this._fullProperty = nestedProperty(this._fullTrace, props.attr);
+    this._property = nestedProperty(this._trace, props.attr);
 
     this.onUpdate = context.onUpdate;
   }
 
   updatePlot(value) {
     let update = {};
-    update[this.props.attr] = [value];
+
+    if (this._refAttr) {
+      update[this._refAttr] = [value];
+    } else {
+      update[this.props.attr] = [value];
+    }
+
     this.onUpdate && this.onUpdate(update, [this._index]);
   }
 
@@ -53,25 +62,23 @@ class FieldBase extends Component {
   }
 
   get fullValue() {
-    if (this._isSrc) {
-      return this._property.get();
+    if (this._refAttr) {
+      return this._refProperty.get();
     } else {
       return this._fullProperty.get();
     }
   }
 
   render() {
-    let fullValue;
+    const fullValue = this.fullValue;
 
-    // if this is a src reference we want to show or hide the component based
-    // on the full dereferenced value. Ie if this is `xsrc` we want to check the
-    // fullData `x`.
-    if (this._derefProperty) {
-      fullValue = this._derefProperty.get();
-    } else {
-      fullValue = this.fullValue;
-    }
-    if ((fullValue !== undefined && fullValue !== null) || this.props.show) {
+    // if this is a src reference we always show the option as the user may
+    // want to select data even if the attribute isn't yet present in fullData.
+    if (
+      this.props.show ||
+      this._refAttr ||
+      (fullValue !== undefined && fullValue !== null)
+    ) {
       return this.renderField();
     } else {
       return <div />;
@@ -80,17 +87,19 @@ class FieldBase extends Component {
 }
 
 FieldBase.contextTypes = {
-  graphDiv: PropTypes.any,
   data: PropTypes.array,
   fullData: PropTypes.array,
-  layout: PropTypes.object,
   fullLayout: PropTypes.object,
+  fullTraceIndex: PropTypes.number,
+  graphDiv: PropTypes.any,
+  layout: PropTypes.object,
   onUpdate: PropTypes.func,
-  traceIndex: PropTypes.number
+  plotSchema: PropTypes.object,
+  traceIndex: PropTypes.number,
 };
 
 FieldBase.defaultProps = {
-  show: false
+  show: false,
 };
 
 export default FieldBase;
