@@ -55,7 +55,7 @@ class DefaultEditor extends Component {
 
             <Dropdown
               label="X"
-              attr="xsrc"
+              attr="x"
               options={this.dataSourceNames}
               clearable={false}
               hasBlank
@@ -63,7 +63,7 @@ class DefaultEditor extends Component {
 
             <Dropdown
               label="Y"
-              attr="ysrc"
+              attr="y"
               options={this.dataSourceNames}
               clearable={false}
               hasBlank
@@ -71,7 +71,7 @@ class DefaultEditor extends Component {
 
             <Dropdown
               label="Z"
-              attr="zsrc"
+              attr="z"
               options={this.dataSourceNames}
               clearable={false}
               hasBlank
