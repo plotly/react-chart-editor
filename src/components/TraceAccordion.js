@@ -1,4 +1,4 @@
-import React, {Component, Children, cloneElement, isValidElement} from 'react';
+import React, {Component, Children, isValidElement} from 'react';
 import PropTypes from 'prop-types';
 import {bem} from '../lib';
 
@@ -9,8 +9,18 @@ class TracePanel extends Component {
   }
 
   getChildContext() {
+    const fullData = this.context.fullData || [];
+    let fullTraceIndex;
+
+    for (let i = 0; i < fullData.length; i++) {
+      if (this.props.index === fullData[i].index) {
+        fullTraceIndex = i;
+        break;
+      }
+    }
     return {
       traceIndex: this.props.index,
+      fullTraceIndex: fullTraceIndex,
     };
   }
 
@@ -38,7 +48,12 @@ class TracePanel extends Component {
   }
 }
 
+TracePanel.contextTypes = {
+  fullData: PropTypes.array,
+};
+
 TracePanel.childContextTypes = {
+  fullTraceIndex: PropTypes.number,
   traceIndex: PropTypes.number,
 };
 
