@@ -1,7 +1,7 @@
-import React, { cloneElement, Component } from "react";
-import PropTypes from "prop-types";
-import { bem, localize } from "../lib";
-import ModeMenuSection from "./ModeMenuSection";
+import React, {cloneElement, Component} from 'react';
+import PropTypes from 'prop-types';
+import {bem, localize} from '../lib';
+import ModeMenuSection from './ModeMenuSection';
 
 class PanelsWithModeMenu extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class PanelsWithModeMenu extends Component {
   }
 
   setPanel(section, panel) {
-    this.setState({ section, panel });
+    this.setState({section, panel});
   }
 
   renderSection(section, i) {
@@ -51,7 +51,7 @@ class PanelsWithModeMenu extends Component {
         obj = sections[sectionIndex];
       } else {
         sectionLookup[section] = sections.length;
-        obj = { name: section, panels: [] };
+        obj = {name: section, panels: []};
         sections.push(obj);
       }
 
@@ -66,7 +66,7 @@ class PanelsWithModeMenu extends Component {
 
     return (
       <div>
-        <div className={bem("mode-menu")}>
+        <div className={bem('mode-menu')}>
           {menuOpts.map(this.renderSection)}
         </div>
 
