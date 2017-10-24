@@ -1,11 +1,6 @@
-import React, {
-  Component,
-  Children,
-  cloneElement,
-  isValidElement,
-} from "react";
-import PropTypes from "prop-types";
-import { bem } from "../lib";
+import React, {Component, Children, cloneElement, isValidElement} from 'react';
+import PropTypes from 'prop-types';
+import {bem} from '../lib';
 
 class TracePanel extends Component {
   constructor(props) {
@@ -21,23 +16,23 @@ class TracePanel extends Component {
 
   deleteTrace() {
     this.props.onUpdate &&
-      this.props.onUpdate(null, [this.props.index], "deleteTraces");
+      this.props.onUpdate(null, [this.props.index], 'deleteTraces');
   }
 
   render() {
     return (
       <div>
-        <div className={bem("trace-panel", "top", ["active"])}>
+        <div className={bem('trace-panel', 'top', ['active'])}>
           Trace {this.props.index}
           <a
-            className={bem("trace-panel", "delete")}
+            className={bem('trace-panel', 'delete')}
             href="#"
             onClick={this.deleteTrace}
           >
             ×
           </a>
         </div>
-        <div className={bem("trace-panel", "panel")}>{this.props.children}</div>
+        <div className={bem('trace-panel', 'panel')}>{this.props.children}</div>
       </div>
     );
   }
@@ -70,7 +65,7 @@ class TraceAccordion extends Component {
   }
 
   addTrace() {
-    this.onUpdate && this.onUpdate(null, [], "addTrace");
+    this.onUpdate && this.onUpdate(null, [], 'addTrace');
   }
 
   render() {
