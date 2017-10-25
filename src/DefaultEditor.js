@@ -52,6 +52,22 @@ class DefaultEditor extends Component {
             />
 
             <Dropdown
+              label="Labels"
+              attr="labels"
+              options={this.context.dataSourceNames}
+              clearable={false}
+              hasBlank
+            />
+
+            <Dropdown
+              label="Values"
+              attr="values"
+              options={this.context.dataSourceNames}
+              clearable={false}
+              hasBlank
+            />
+
+            <Dropdown
               label="X"
               attr="x"
               options={this.context.dataSourceNames}
