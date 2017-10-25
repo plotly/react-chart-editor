@@ -14,8 +14,6 @@ import {localize} from './lib';
 class DefaultEditor extends Component {
   constructor(props, context) {
     super(props, context);
-    this.dataSources = context.dataSources;
-    this.dataSourceNames = context.dataSourceNames;
 
     const Plotly = context.plotly;
     const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
@@ -23,7 +21,7 @@ class DefaultEditor extends Component {
     const labels = traceTypes.map(capitalize);
     this.traceOptions = traceTypes.map((t, i) => ({
       label: labels[i],
-      value: t
+      value: t,
     }));
   }
 
@@ -49,14 +47,14 @@ class DefaultEditor extends Component {
               options={[
                 {label: 'Line', value: 'lines'},
                 {label: 'Scatter', value: 'markers'},
-                {label: 'Scatter line', value: 'lines+markers'}
+                {label: 'Scatter line', value: 'lines+markers'},
               ]}
             />
 
             <Dropdown
               label="X"
               attr="x"
-              options={this.dataSourceNames}
+              options={this.context.dataSourceNames}
               clearable={false}
               hasBlank
             />
@@ -64,7 +62,7 @@ class DefaultEditor extends Component {
             <Dropdown
               label="Y"
               attr="y"
-              options={this.dataSourceNames}
+              options={this.context.dataSourceNames}
               clearable={false}
               hasBlank
             />
@@ -72,7 +70,7 @@ class DefaultEditor extends Component {
             <Dropdown
               label="Z"
               attr="z"
-              options={this.dataSourceNames}
+              options={this.context.dataSourceNames}
               clearable={false}
               hasBlank
             />
@@ -96,7 +94,7 @@ class DefaultEditor extends Component {
                 attr="mode"
                 options={[
                   {label: 'Lines', value: 'lines'},
-                  {label: 'Points', value: 'markers'}
+                  {label: 'Points', value: 'markers'},
                 ]}
               />
             </Section>
@@ -111,7 +109,7 @@ class DefaultEditor extends Component {
                   {label: 'Y = 0', value: 'tozeroy'},
                   {label: 'X = 0', value: 'tozerox'},
                   {label: 'Previous Y', value: 'tonexty'},
-                  {label: 'Previous X', value: 'tonextx'}
+                  {label: 'Previous X', value: 'tonextx'},
                 ]}
               />
 
@@ -153,7 +151,7 @@ class DefaultEditor extends Component {
                 attr="connectgaps"
                 options={[
                   {value: true, label: 'Connect'},
-                  {value: false, label: 'Blank'}
+                  {value: false, label: 'Blank'},
                 ]}
               />
             </Section>
@@ -165,9 +163,8 @@ class DefaultEditor extends Component {
 }
 
 DefaultEditor.contextTypes = {
-  dataSources: PropTypes.object,
   dataSourceNames: PropTypes.array,
-  plotly: PropTypes.object
+  plotly: PropTypes.object,
 };
 
 export default localize(DefaultEditor);
