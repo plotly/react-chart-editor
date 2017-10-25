@@ -37,6 +37,9 @@ class PanelsWithModeMenu extends Component {
   computeMenuOptions(props) {
     var obj, child, section, name;
     var children = props.children;
+    if (!Array.isArray(children)) {
+      children = [children];
+    }
     var sectionLookup = {};
     var sectionIndex;
     var sections = [];
@@ -63,13 +66,15 @@ class PanelsWithModeMenu extends Component {
   render() {
     var menuOpts = this.computeMenuOptions(this.props);
 
+    var children = Array.isArray(this.props.children) ? this.props.children : [this.props.children];
+
     return (
       <div>
         <div className={bem('mode-menu')}>
           {menuOpts.map(this.renderSection)}
         </div>
 
-        {this.props.children.map((child, i) =>
+        {children.map((child, i) =>
           cloneElement(child, {
             key: i,
             visible:
