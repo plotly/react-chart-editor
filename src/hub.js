@@ -82,7 +82,7 @@ export default function PlotlyHub(config) {
   //
   this.refresh = () => {
     this.setState({
-      revision: ++this.revision
+      revision: ++this.revision,
     });
   };
 
@@ -144,7 +144,7 @@ export default function PlotlyHub(config) {
     this.graphDiv = gd;
 
     this.setState({
-      gd: gd
+      gd: gd,
     });
   };
 
