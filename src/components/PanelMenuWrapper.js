@@ -1,5 +1,4 @@
 import React, {cloneElement, Component} from 'react';
-import PropTypes from 'prop-types';
 import {bem, localize} from '../lib';
 import ModeMenuSection from './ModeMenuSection';
 
