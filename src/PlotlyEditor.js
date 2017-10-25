@@ -12,17 +12,18 @@ class PlotlyEditor extends Component {
     var gd = this.props.graphDiv || {};
     var dataSourceNames = Object.keys(this.props.dataSources || {});
     return {
-      plotly: this.props.plotly,
-      graphDiv: gd,
-      locale: this.props.locale,
-      dictionaries: dictionaries,
       data: gd.data,
-      fullData: gd._fullData,
-      layout: gd.layout,
-      fullLayout: gd._fullLayout,
-      onUpdate: this.updateProp.bind(this),
+      dataSourceNames: dataSourceNames,
       dataSources: this.props.dataSources,
-      dataSourceNames: dataSourceNames
+      dictionaries: dictionaries,
+      fullData: gd._fullData,
+      fullLayout: gd._fullLayout,
+      graphDiv: gd,
+      layout: gd.layout,
+      locale: this.props.locale,
+      onUpdate: this.updateProp.bind(this),
+      plotSchema: this.props.plotly.PlotSchema.get(),
+      plotly: this.props.plotly,
     };
   }
 
@@ -42,21 +43,22 @@ class PlotlyEditor extends Component {
 }
 
 PlotlyEditor.defaultProps = {
-  locale: 'en'
+  locale: 'en',
 };
 
 PlotlyEditor.childContextTypes = {
-  plotly: PropTypes.object,
-  locale: PropTypes.string,
-  dictionaries: PropTypes.object,
-  graphDiv: PropTypes.any,
-  dataSources: PropTypes.object,
-  dataSourceNames: PropTypes.array,
   data: PropTypes.array,
+  dataSourceNames: PropTypes.array,
+  dataSources: PropTypes.object,
+  dictionaries: PropTypes.object,
   fullData: PropTypes.array,
-  layout: PropTypes.object,
   fullLayout: PropTypes.object,
-  onUpdate: PropTypes.func
+  graphDiv: PropTypes.any,
+  layout: PropTypes.object,
+  locale: PropTypes.string,
+  onUpdate: PropTypes.func,
+  plotSchema: PropTypes.object,
+  plotly: PropTypes.object,
 };
 
 export default PlotlyEditor;
