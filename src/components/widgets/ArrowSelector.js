@@ -114,4 +114,4 @@ ArrowSelector.propTypes = {
   Plotly: PropTypes.object.isRequired,
 };
 
-module.exports = ArrowSelector;
+export default ArrowSelector;

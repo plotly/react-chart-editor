@@ -123,4 +123,4 @@ AccordionMenuItem.propTypes = {
   isRemovable: PropTypes.bool,
 };
 
-module.exports = AccordionMenuItem;
+export default AccordionMenuItem;

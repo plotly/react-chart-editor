@@ -164,4 +164,4 @@ UploadImagefile.propTypes = {
   value: PropTypes.string.isRequired,
 };
 
-module.exports = UploadImagefile;
+export default UploadImagefile;

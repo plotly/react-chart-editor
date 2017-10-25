@@ -19,4 +19,4 @@ WorkspaceNote.propTypes = {
   note: PropTypes.string,
 };
 
-module.exports = WorkspaceNote;
+export default WorkspaceNote;

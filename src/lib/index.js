@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { baseClass } from "./constants";
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
+import {baseClass} from './constants';
+import PropTypes from 'prop-types';
 
-export { findAttrs } from "./find-attrs";
+export {findAttrs} from './find-attrs';
 
 //
 // BEM helper
@@ -29,11 +29,11 @@ export function bem(block, element, modifiers) {
   }
 
   if (block && block.length) {
-    c += "__" + block;
+    c += '__' + block;
   }
 
   if (element && element.length) {
-    c += "__" + element;
+    c += '__' + element;
   }
 
   out.push(c);
@@ -41,12 +41,12 @@ export function bem(block, element, modifiers) {
     for (i = 0; i < modifiers.length; i++) {
       modifier = modifiers[i];
       if (modifier && modifier.length) {
-        out.push(c + "--" + modifier);
+        out.push(c + '--' + modifier);
       }
     }
   }
 
-  return out.join(" ");
+  return out.join(' ');
 }
 
 export function clamp(value, min, max) {

@@ -256,4 +256,4 @@ const FontSelector = React.createClass({
   },
 });
 
-module.exports = FontSelector;
+export default FontSelector;

@@ -1,50 +1,50 @@
-import Fields from "react-color/lib/components/sketch/SketchFields";
-import PresetColors from "react-color/lib/components/sketch/SketchPresetColors";
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import tinycolor from "tinycolor2";
+import Fields from 'react-color/lib/components/sketch/SketchFields';
+import PresetColors from 'react-color/lib/components/sketch/SketchPresetColors';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import tinycolor from 'tinycolor2';
 import {
   Alpha,
   Hue,
   Saturation,
-  Checkboard,
-} from "react-color/lib/components/common";
-import { CustomPicker as customPicker } from "react-color";
-import { _ } from "../../lib";
+  Checkboard
+} from 'react-color/lib/components/common';
+import {CustomPicker as customPicker} from 'react-color';
+import {_} from '../../lib';
 
 const defaultColors = [
-  "#444444",
-  "#ffffff",
-  "#1f77b4", // muted blue
-  "#ff7f0e", // safety orange
-  "#2ca02c", // cooked asparagus green
-  "#d62728", // brick red
-  "#9467bd", // muted purple
-  "#8c564b", // chestnut brown
-  "#e377c2", // raspberry yogurt pink
-  "#7f7f7f", // middle gray
-  "#bcbd22", // curry yellow-green
-  "#17becf", // blue-teal
+  '#444444',
+  '#ffffff',
+  '#1f77b4', // muted blue
+  '#ff7f0e', // safety orange
+  '#2ca02c', // cooked asparagus green
+  '#d62728', // brick red
+  '#9467bd', // muted purple
+  '#8c564b', // chestnut brown
+  '#e377c2', // raspberry yogurt pink
+  '#7f7f7f', // middle gray
+  '#bcbd22', // curry yellow-green
+  '#17becf' // blue-teal
 ];
 
 // Utility functions for converting ColorPicker color objects or raw strings
 // into TinyColor objects.
 const extractRGB = c => c.rgb || c;
-const getColorSource = c => (c.source === "hex" ? c.hex : extractRGB(c));
+const getColorSource = c => (c.source === 'hex' ? c.hex : extractRGB(c));
 const toTinyColor = c => tinycolor(getColorSource(c));
 
 const CustomColorPicker = customPicker(function(props) {
-  const { rgb, onChangeComplete } = props;
-  const { r, g, b, a } = rgb;
+  const {rgb, onChangeComplete} = props;
+  const {r, g, b, a} = rgb;
 
   const activeColor = {
-    backgroundColor: `rgba(${r}, ${g}, ${b}, ${a})`,
+    backgroundColor: `rgba(${r}, ${g}, ${b}, ${a})`
   };
 
   return (
     <div>
       <div>
-        <p className="color-picker-title">{_("Custom colors")}</p>
+        <p className="color-picker-title">{_('Custom colors')}</p>
         <div className="color-picker-saturation">
           <Saturation {...props} />
         </div>
@@ -67,7 +67,7 @@ const CustomColorPicker = customPicker(function(props) {
         </div>
       </div>
       <div>
-        <p className="color-picker-title">{_("Default colors")}</p>
+        <p className="color-picker-title">{_('Default colors')}</p>
         <div className="color-picker-preset-colors js-color-picker-preset-colors">
           <PresetColors colors={defaultColors} onClick={onChangeComplete} />
         </div>
@@ -81,7 +81,7 @@ class ColorPicker extends Component {
     super(props);
 
     this.state = {
-      isVisible: false,
+      isVisible: false
     };
 
     this.onSelectedColorChange = this.onSelectedColorChange.bind(this);
@@ -100,7 +100,7 @@ class ColorPicker extends Component {
   }
 
   toggleVisible() {
-    this.setState({ isVisible: !this.state.isVisible });
+    this.setState({isVisible: !this.state.isVisible});
   }
 
   render() {
@@ -113,7 +113,7 @@ class ColorPicker extends Component {
 
     // We need inline style here to assign the background color
     // dynamically.
-    const swatchStyle = { backgroundColor: rgbString };
+    const swatchStyle = {backgroundColor: rgbString};
 
     return (
       <div className="colorpicker-container js-colorpicker-container">
@@ -148,7 +148,7 @@ class ColorPicker extends Component {
 
 ColorPicker.propTypes = {
   onColorChange: PropTypes.func.isRequired,
-  selectedColor: PropTypes.string,
+  selectedColor: PropTypes.string
 };
 
-module.exports = ColorPicker;
+export default ColorPicker;

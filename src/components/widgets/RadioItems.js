@@ -146,4 +146,4 @@ RadioItems.propTypes = {
   orientation: PropTypes.oneOf(["vertical", "horizontal"]),
 };
 
-module.exports = RadioItems;
+export default RadioItems;

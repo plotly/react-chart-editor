@@ -1,11 +1,6 @@
-import React, {
-  Component,
-  Children,
-  cloneElement,
-  isValidElement,
-} from "react";
-import PropTypes from "prop-types";
-import { bem } from "../lib";
+import React, {Component, Children, isValidElement} from 'react';
+import PropTypes from 'prop-types';
+import {bem} from '../lib';
 
 class TracePanel extends Component {
   constructor(props) {
@@ -14,36 +9,51 @@ class TracePanel extends Component {
   }
 
   getChildContext() {
+    const fullData = this.context.fullData || [];
+    let fullTraceIndex;
+
+    for (let i = 0; i < fullData.length; i++) {
+      if (this.props.index === fullData[i].index) {
+        fullTraceIndex = i;
+        break;
+      }
+    }
     return {
       traceIndex: this.props.index,
+      fullTraceIndex: fullTraceIndex,
     };
   }
 
   deleteTrace() {
     this.props.onUpdate &&
-      this.props.onUpdate(null, [this.props.index], "deleteTraces");
+      this.props.onUpdate(null, [this.props.index], 'deleteTraces');
   }
 
   render() {
     return (
       <div>
-        <div className={bem("trace-panel", "top", ["active"])}>
+        <div className={bem('trace-panel', 'top', ['active'])}>
           Trace {this.props.index}
           <a
-            className={bem("trace-panel", "delete")}
+            className={bem('trace-panel', 'delete')}
             href="#"
             onClick={this.deleteTrace}
           >
             ×
           </a>
         </div>
-        <div className={bem("trace-panel", "panel")}>{this.props.children}</div>
+        <div className={bem('trace-panel', 'panel')}>{this.props.children}</div>
       </div>
     );
   }
 }
 
+TracePanel.contextTypes = {
+  fullData: PropTypes.array,
+};
+
 TracePanel.childContextTypes = {
+  fullTraceIndex: PropTypes.number,
   traceIndex: PropTypes.number,
 };
 
@@ -70,7 +80,7 @@ class TraceAccordion extends Component {
   }
 
   addTrace() {
-    this.onUpdate && this.onUpdate(null, [], "addTrace");
+    this.onUpdate && this.onUpdate(null, [], 'addTrace');
   }
 
   render() {

@@ -114,4 +114,4 @@ FlaglistCheckboxGroup.propTypes = {
   orientation: PropTypes.string,
 };
 
-module.exports = FlaglistCheckboxGroup;
+export default FlaglistCheckboxGroup;

@@ -184,4 +184,4 @@ const DashSelector = React.createClass({
   },
 });
 
-module.exports = DashSelector;
+export default DashSelector;

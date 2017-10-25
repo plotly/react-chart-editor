@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import nestedProperty from "plotly.js/src/lib/nested_property";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import nestedProperty from 'plotly.js/src/lib/nested_property';
 
 const SRC_ATTR_PATTERN = /src$/;
 
@@ -12,6 +12,7 @@ class FieldBase extends Component {
 
     this.dataSources = context.dataSources;
     this.dataSourceNames = context.dataSourceNames;
+    this.plotSchema = context.plotSchema;
 
     this.updatePlot = this.updatePlot.bind(this);
   }
@@ -27,19 +28,32 @@ class FieldBase extends Component {
 
     // gd, data, fullData:
     this._gd = context.graphDiv;
-    this._data = context.data[this._index] || [];
-    this._fullData = context.fullData[this._index] || [];
+    this._trace = context.data[context.traceIndex] || {};
+    this._fullTrace = context.fullData[context.fullTraceIndex] || {};
+
+    const traceAttr = `${this._fullTrace.type}.attributes.${props.attr}`;
+    const attr = nestedProperty(context.plotSchema.traces, traceAttr).get();
+    if (attr && (attr.valType === 'data_array' || attr.arrayOk)) {
+      this._refAttr = `${props.attr}src`;
+      this._refProperty = nestedProperty(this._trace, this._refAttr);
+    }
 
     // Property accessors:
-    this._fullProperty = nestedProperty(this._fullData, props.attr);
-    this._property = nestedProperty(this._data, props.attr);
+    this._fullProperty = nestedProperty(this._fullTrace, props.attr);
+    this._property = nestedProperty(this._trace, props.attr);
 
     this.onUpdate = context.onUpdate;
   }
 
   updatePlot(value) {
     let update = {};
-    update[this.props.attr] = [value];
+
+    if (this._refAttr) {
+      update[this._refAttr] = [value];
+    } else {
+      update[this.props.attr] = [value];
+    }
+
     this.onUpdate && this.onUpdate(update, [this._index]);
   }
 
@@ -48,21 +62,23 @@ class FieldBase extends Component {
   }
 
   get fullValue() {
-    if (SRC_ATTR_PATTERN.test(this.props.attr)) {
-      return this._property.get();
+    if (this._refAttr) {
+      return this._refProperty.get();
     } else {
       return this._fullProperty.get();
     }
   }
 
-  //set value(newValue) {
-  //this._property.set(newValue);
-  //this.onUpdate(this._gd, this._data, this.props.attr, newValue);
-  //}
-
   render() {
-    var full = this.fullValue;
-    if ((full !== undefined && full !== null) || this.props.show) {
+    const fullValue = this.fullValue;
+
+    // if this is a src reference we always show the option as the user may
+    // want to select data even if the attribute isn't yet present in fullData.
+    if (
+      this.props.show ||
+      this._refAttr ||
+      (fullValue !== undefined && fullValue !== null)
+    ) {
       return this.renderField();
     } else {
       return <div />;
@@ -71,12 +87,14 @@ class FieldBase extends Component {
 }
 
 FieldBase.contextTypes = {
-  graphDiv: PropTypes.any,
   data: PropTypes.array,
   fullData: PropTypes.array,
-  layout: PropTypes.object,
   fullLayout: PropTypes.object,
+  fullTraceIndex: PropTypes.number,
+  graphDiv: PropTypes.any,
+  layout: PropTypes.object,
   onUpdate: PropTypes.func,
+  plotSchema: PropTypes.object,
   traceIndex: PropTypes.number,
 };
 
