@@ -36,6 +36,9 @@ class FieldBase extends Component {
     if (attr && (attr.valType === 'data_array' || attr.arrayOk)) {
       this._refAttr = `${props.attr}src`;
       this._refProperty = nestedProperty(this._trace, this._refAttr);
+    } else {
+      this._refAttr = void 0;
+      this._refProperty = void 0;
     }
 
     // Property accessors:
