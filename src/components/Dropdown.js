@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import FieldBase from "./FieldBase";
 import DropdownWidget from "./widgets/Dropdown";
-import { bem } from "../lib";
+import { bem, connectToPlot } from "../lib";
 
-class Dropdown extends FieldBase {
-  renderField() {
+class Dropdown extends Component {
+  render () {
     return (
       <div className={bem("field")}>
         <div className={bem("field", "title")}>
@@ -13,8 +13,8 @@ class Dropdown extends FieldBase {
         <div className={bem("field", "widget")}>
           <DropdownWidget
             options={this.props.options}
-            value={this.fullValue}
-            onChange={this.updatePlot}
+            value={this.props.fullValue()}
+            onChange={this.props.updatePlot}
             clearable={this.props.clearable}
           />
         </div>
@@ -23,4 +23,4 @@ class Dropdown extends FieldBase {
   }
 }
 
-export default Dropdown;
+export default connectToPlot(Dropdown);

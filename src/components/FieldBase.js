@@ -31,6 +31,10 @@ class FieldBase extends Component {
     this._trace = context.data[context.traceIndex] || {};
     this._fullTrace = context.fullData[context.fullTraceIndex] || {};
 
+    // Property accessors:
+    this._fullProperty = nestedProperty(this._fullTrace, props.attr);
+    this._property = nestedProperty(this._trace, props.attr);
+
     const traceAttr = `${this._fullTrace.type}.attributes.${props.attr}`;
     const attr = nestedProperty(context.plotSchema.traces, traceAttr).get();
     if (attr && (attr.valType === 'data_array' || attr.arrayOk)) {
@@ -40,10 +44,6 @@ class FieldBase extends Component {
       this._refAttr = void 0;
       this._refProperty = void 0;
     }
-
-    // Property accessors:
-    this._fullProperty = nestedProperty(this._fullTrace, props.attr);
-    this._property = nestedProperty(this._trace, props.attr);
 
     this.onUpdate = context.onUpdate;
   }
