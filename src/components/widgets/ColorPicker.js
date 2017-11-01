@@ -7,10 +7,10 @@ import {
   Alpha,
   Hue,
   Saturation,
-  Checkboard
+  Checkboard,
 } from 'react-color/lib/components/common';
 import {CustomPicker as customPicker} from 'react-color';
-import {_} from '../../lib';
+import {localize} from '../../lib';
 
 const defaultColors = [
   '#444444',
@@ -24,7 +24,7 @@ const defaultColors = [
   '#e377c2', // raspberry yogurt pink
   '#7f7f7f', // middle gray
   '#bcbd22', // curry yellow-green
-  '#17becf' // blue-teal
+  '#17becf', // blue-teal
 ];
 
 // Utility functions for converting ColorPicker color objects or raw strings
@@ -33,55 +33,59 @@ const extractRGB = c => c.rgb || c;
 const getColorSource = c => (c.source === 'hex' ? c.hex : extractRGB(c));
 const toTinyColor = c => tinycolor(getColorSource(c));
 
-const CustomColorPicker = customPicker(function(props) {
-  const {rgb, onChangeComplete} = props;
-  const {r, g, b, a} = rgb;
+const CustomColorPicker = localize(
+  customPicker(function(props) {
+    const {rgb, onChangeComplete} = props;
+    const {r, g, b, a} = rgb;
 
-  const activeColor = {
-    backgroundColor: `rgba(${r}, ${g}, ${b}, ${a})`
-  };
+    const activeColor = {
+      backgroundColor: `rgba(${r}, ${g}, ${b}, ${a})`,
+    };
 
-  return (
-    <div>
+    const _ = props.localize;
+
+    return (
       <div>
-        <p className="color-picker-title">{_('Custom colors')}</p>
-        <div className="color-picker-saturation">
-          <Saturation {...props} />
-        </div>
-        <div className="color-picker-controls +flex">
-          <div className="color-picker-sliders">
-            <div className="color-picker-slider">
-              <Hue {...props} />
+        <div>
+          <p className="color-picker-title">{_('Custom colors')}</p>
+          <div className="color-picker-saturation">
+            <Saturation {...props} />
+          </div>
+          <div className="color-picker-controls +flex">
+            <div className="color-picker-sliders">
+              <div className="color-picker-slider">
+                <Hue {...props} />
+              </div>
+              <div className="color-picker-slider">
+                <Alpha {...props} />
+              </div>
             </div>
-            <div className="color-picker-slider">
-              <Alpha {...props} />
+            <div className="color-picker-active">
+              <Checkboard />
+              <div style={activeColor} className="color-picker-active-swatch" />
             </div>
           </div>
-          <div className="color-picker-active">
-            <Checkboard />
-            <div style={activeColor} className="color-picker-active-swatch" />
+          <div className="color-picker-custom-input">
+            <Fields {...props} onChange={onChangeComplete} />
           </div>
         </div>
-        <div className="color-picker-custom-input">
-          <Fields {...props} onChange={onChangeComplete} />
+        <div>
+          <p className="color-picker-title">{_('Default colors')}</p>
+          <div className="color-picker-preset-colors js-color-picker-preset-colors">
+            <PresetColors colors={defaultColors} onClick={onChangeComplete} />
+          </div>
         </div>
       </div>
-      <div>
-        <p className="color-picker-title">{_('Default colors')}</p>
-        <div className="color-picker-preset-colors js-color-picker-preset-colors">
-          <PresetColors colors={defaultColors} onClick={onChangeComplete} />
-        </div>
-      </div>
-    </div>
-  );
-});
+    );
+  })
+);
 
 class ColorPicker extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      isVisible: false
+      isVisible: false,
     };
 
     this.onSelectedColorChange = this.onSelectedColorChange.bind(this);
@@ -148,7 +152,7 @@ class ColorPicker extends Component {
 
 ColorPicker.propTypes = {
   onColorChange: PropTypes.func.isRequired,
-  selectedColor: PropTypes.string
+  selectedColor: PropTypes.string,
 };
 
 export default ColorPicker;

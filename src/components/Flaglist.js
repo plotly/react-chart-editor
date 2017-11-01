@@ -1,17 +1,16 @@
-import React, { Component } from "react";
-import FieldBase from "./FieldBase";
-import FlaglistCheckboxGroup from "./widgets/FlaglistCheckboxGroup";
-import { bem } from "../lib";
+import React, {Component} from 'react';
+import FlaglistCheckboxGroup from './widgets/FlaglistCheckboxGroup';
+import {bem, connectToPlot} from '../lib';
 
-class Flaglist extends FieldBase {
-  renderField() {
+class Flaglist extends Component {
+  render() {
     return (
-      <div className={bem("field")}>
-        <div className={bem("field", "no-title")}>
+      <div className={bem('field')}>
+        <div className={bem('field', 'no-title')}>
           <FlaglistCheckboxGroup
             options={this.props.options}
-            activeOption={this.fullValue}
-            onChange={this.updatePlot}
+            activeOption={this.props.fullValue()}
+            onChange={this.props.updatePlot}
           />
         </div>
       </div>
@@ -19,4 +18,4 @@ class Flaglist extends FieldBase {
   }
 }
 
-export default Flaglist;
+export default connectToPlot(Flaglist);

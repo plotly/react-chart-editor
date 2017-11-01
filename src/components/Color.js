@@ -1,19 +1,18 @@
-import React, { Component } from "react";
-import FieldBase from "./FieldBase";
-import ColorPicker from "./widgets/ColorPicker";
-import { bem } from "../lib";
+import React, {Component} from 'react';
+import ColorPicker from './widgets/ColorPicker';
+import {bem, connectToPlot} from '../lib';
 
-class Color extends FieldBase {
-  renderField() {
+class Color extends Component {
+  render() {
     return (
-      <div className={bem("field")}>
-        <div className={bem("field", "title")}>
-          <div className={bem("field", "title-text")}>{this.props.label}</div>
+      <div className={bem('field')}>
+        <div className={bem('field', 'title')}>
+          <div className={bem('field', 'title-text')}>{this.props.label}</div>
         </div>
-        <div className={bem("field", "widget")}>
+        <div className={bem('field', 'widget')}>
           <ColorPicker
-            selectedColor={this.fullValue}
-            onColorChange={this.updatePlot}
+            selectedColor={this.props.fullValue()}
+            onColorChange={this.props.updatePlot}
           />
         </div>
       </div>
@@ -21,4 +20,4 @@ class Color extends FieldBase {
   }
 }
 
-export default Color;
+export default connectToPlot(Color);
