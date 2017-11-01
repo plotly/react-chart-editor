@@ -1,5 +1,6 @@
 import ColorPicker from './components/Color';
 import Dropdown from './components/Dropdown';
+import DataSelector from './components/DataSelector';
 import Flaglist from './components/Flaglist';
 import Numeric from './components/Numeric';
 import Panel from './components/Panel';
@@ -40,18 +41,7 @@ class DefaultEditor extends Component {
               show
             />
 
-            <Dropdown
-              label="Scatter Mode"
-              clearable={false}
-              attr="mode"
-              options={[
-                {label: 'Line', value: 'lines'},
-                {label: 'Scatter', value: 'markers'},
-                {label: 'Scatter line', value: 'lines+markers'},
-              ]}
-            />
-
-            <Dropdown
+            <DataSelector
               label="Labels"
               attr="labels"
               options={this.context.dataSourceNames}
@@ -59,7 +49,7 @@ class DefaultEditor extends Component {
               hasBlank
             />
 
-            <Dropdown
+            <DataSelector
               label="Values"
               attr="values"
               options={this.context.dataSourceNames}
@@ -67,7 +57,7 @@ class DefaultEditor extends Component {
               hasBlank
             />
 
-            <Dropdown
+            <DataSelector
               label="X"
               attr="x"
               options={this.context.dataSourceNames}
@@ -75,7 +65,7 @@ class DefaultEditor extends Component {
               hasBlank
             />
 
-            <Dropdown
+            <DataSelector
               label="Y"
               attr="y"
               options={this.context.dataSourceNames}
@@ -83,7 +73,7 @@ class DefaultEditor extends Component {
               hasBlank
             />
 
-            <Dropdown
+            <DataSelector
               label="Z"
               attr="z"
               options={this.context.dataSourceNames}
