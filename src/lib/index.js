@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {baseClass} from './constants';
 import PropTypes from 'prop-types';
 
-export { default as findAttrs } from './find-attrs';
-export { default as connectToPlot } from './connectToPlot'
+export {default as findAttrs} from './find-attrs';
+export {default as connectToPlot} from './connectToPlot';
 
 //
 // BEM helper
