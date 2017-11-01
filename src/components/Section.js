@@ -1,7 +1,11 @@
-import React, { Component, cloneElement } from "react";
-import PropTypes from "prop-types";
-import { bem } from "../lib";
-import unpackPlotProps from '../lib/unpackPlotProps'
+import React, {Component, cloneElement} from 'react';
+import PropTypes from 'prop-types';
+import {bem} from '../lib';
+import unpackPlotProps from '../lib/unpackPlotProps';
+
+function childIsVisible(child) {
+  return Boolean((child.props || {}).isVisible);
+}
 
 class Section extends Component {
   constructor(props, context) {
@@ -14,7 +18,7 @@ class Section extends Component {
     this.children = this.processChildren(nextContext);
   }
 
-  processChildren (context) {
+  processChildren(context) {
     let children = this.props.children;
     if (!Array.isArray(children)) {
       children = [children];
@@ -23,7 +27,6 @@ class Section extends Component {
 
     for (let i = 0; i < children.length; i++) {
       let child = children[i];
-
 
       let isAttr = !!child.props.attr;
       let childProps = Object.assign(
@@ -39,12 +42,14 @@ class Section extends Component {
   }
 
   render() {
-    return (
-      <div className={bem("section")}>
-        <div className={bem("section", "heading")}>{this.props.heading}</div>
+    const hasVisibleChildren = this.children.some(childIsVisible);
+
+    return hasVisibleChildren ? (
+      <div className={bem('section')}>
+        <div className={bem('section', 'heading')}>{this.props.heading}</div>
         {this.children}
       </div>
-    );
+    ) : null;
   }
 }
 
