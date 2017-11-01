@@ -5,7 +5,7 @@ import unpackPlotProps from './unpackPlotProps';
 export default function connectToPlot(BaseComponent) {
   class PlotConnectedComponent extends Component {
     constructor(props, context) {
-      super(props);
+      super(props, context);
 
       this.setLocals(props, context);
     }
@@ -16,9 +16,8 @@ export default function connectToPlot(BaseComponent) {
 
     setLocals(props, context) {
       if (props.plotProps) {
-        // Sections analyze children, iterate over them to unpack the props,
-        // and then send those props to the children. If they're available,
-        // then they don't need to be recomputed:
+        // If we have already been connected with plotProps and computed their
+        // values then we do not need to recompute them.
         this.plotProps = props.plotProps;
       } else {
         // Otherwise, this is just a bare component (not in a section) and it needs
@@ -28,9 +27,13 @@ export default function connectToPlot(BaseComponent) {
     }
 
     render() {
-      const props = Object.assign({}, this.props, this.plotProps);
+      const {plotProps = this.plotProps, ...props} = Object.assign(
+        {},
+        this.props,
+        this.plotProps
+      );
       if (props.isVisible) {
-        return <BaseComponent {...props} />;
+        return <BaseComponent {...props} plotProps={plotProps} />;
       } else {
         return null;
       }

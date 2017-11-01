@@ -4,7 +4,7 @@ import {bem} from '../lib';
 import unpackPlotProps from '../lib/unpackPlotProps';
 
 function childIsVisible(child) {
-  return Boolean((child.props || {}).isVisible);
+  return Boolean((child.props.plotProps || {}).isVisible);
 }
 
 class Section extends Component {
@@ -23,16 +23,14 @@ class Section extends Component {
     if (!Array.isArray(children)) {
       children = [children];
     }
-    children = children.slice();
+    children = children.filter(c => Boolean(c));
 
     for (let i = 0; i < children.length; i++) {
       let child = children[i];
 
       let isAttr = !!child.props.attr;
-      let childProps = Object.assign(
-        isAttr ? unpackPlotProps(child.props, context) : {},
-        child.props
-      );
+      let plotProps = isAttr ? unpackPlotProps(child.props, context) : {};
+      let childProps = Object.assign({plotProps}, child.props);
       childProps.key = i;
 
       children[i] = cloneElement(child, childProps, child.children);
