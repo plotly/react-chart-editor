@@ -57,8 +57,8 @@ PlotlyEditor.childContextTypes = {
   layout: PropTypes.object,
   locale: PropTypes.string,
   onUpdate: PropTypes.func,
-  plotSchema: PropTypes.object,
-  plotly: PropTypes.object,
+  plotSchema: PropTypes.object.isRequired,
+  plotly: PropTypes.object.isRequired,
 };
 
 export default PlotlyEditor;

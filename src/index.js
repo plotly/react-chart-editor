@@ -1,10 +1,39 @@
-import PlotlyEditor from "./PlotlyEditor";
+import Hub from './hub';
+import PlotlyEditor from './PlotlyEditor';
+import {localize} from './lib';
 
-import components from "./components";
+import {
+  Base,
+  ColorPicker,
+  DataSelector,
+  Dropdown,
+  Flaglist,
+  Numeric,
+  Panel,
+  PanelMenuWrapper,
+  Radio,
+  Section,
+  Select,
+  TraceAccordion,
+  TraceSelector,
+} from './components';
 
-Object.assign(PlotlyEditor, components);
-
-import Hub from "./hub";
-export { Hub };
+export {
+  localize,
+  Hub,
+  Base,
+  ColorPicker,
+  DataSelector,
+  Dropdown,
+  Flaglist,
+  Numeric,
+  Panel,
+  PanelMenuWrapper,
+  Radio,
+  Section,
+  Select,
+  TraceAccordion,
+  TraceSelector,
+};
 
 export default PlotlyEditor;
