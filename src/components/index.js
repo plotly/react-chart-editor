@@ -1,27 +1,29 @@
-// None of this works. Not the slightest idea why. :|
+import Base from './Base';
+import ColorPicker from './Color';
+import DataSelector from './DataSelector';
+import Dropdown from './Dropdown';
+import Flaglist from './Flaglist';
+import Numeric from './Numeric';
+import Panel from './Panel';
+import PanelMenuWrapper from './PanelMenuWrapper';
+import Radio from './Radio';
+import Section from './Section';
+import Select from './Select';
+import TraceAccordion from './TraceAccordion';
+import TraceSelector from './TraceSelector';
 
-// import Base from "./Base";
-// import TraceAccordion from "./TraceAccordion";
-// import Panel from "./Panel";
-// import Select from "./Select";
-// import Numeric from "./Numeric";
-// import ColorPicker from "./Color";
-// import Section from "./Section";
-// import Flaglist from "./Flaglist";
-// import Radio from "./Radio";
-// import PanelMenuWrapper from "./PanelMenuWrapper";
-// import PlotlyEditorBase from "./PlotlyEditorBase";
-
-// export default {
-//Base: Base,
-//TraceAccordion: TraceAccordion,
-//Panel: Panel,
-//Select: Select,
-//Numeric: Numeric,
-//ColorPicker: ColorPicker,
-//Section: Section,
-//Flaglist: Flaglist,
-//Radio: Radio,
-// PanelMenuWrapper: PanelMenuWrapper,
-//PlotlyEditorBase: PlotlyEditorBase,
-// };
+export {
+  Base,
+  ColorPicker,
+  DataSelector,
+  Dropdown,
+  Flaglist,
+  Numeric,
+  Panel,
+  PanelMenuWrapper,
+  Radio,
+  Section,
+  Select,
+  TraceAccordion,
+  TraceSelector,
+};
