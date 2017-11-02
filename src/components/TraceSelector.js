@@ -5,18 +5,21 @@ import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {connectToPlot} from '../lib';
 
 class TraceSelector extends Component {
-  constructor() {
-    super();
+  constructor(props, context) {
+    super(props, context);
     this.updatePlot = this.updatePlot.bind(this);
     this.fullValue = this.fullValue.bind(this);
+
+    const scatterAttrs = this.context.plotSchema.traces.scatter.attributes;
+    this.fillTypes = scatterAttrs.fill.values.filter(v => v !== 'none');
   }
 
   updatePlot(value) {
     let update;
     if (value === 'line') {
-      update = {type: ['scatter'], mode: ['lines']};
+      update = {type: ['scatter'], mode: ['lines'], fill: ['none']};
     } else if (value === 'scatter') {
-      update = {type: ['scatter'], mode: ['markers']};
+      update = {type: ['scatter'], mode: ['markers'], fill: ['none']};
     } else if (value === 'area') {
       update = {type: ['scatter'], fill: ['tozeroy']};
     } else {
@@ -36,7 +39,7 @@ class TraceSelector extends Component {
     const mode = nestedProperty(this.props.trace, 'mode').get();
     const fill = nestedProperty(this.props.trace, 'fill').get();
 
-    if (type === 'scatter' && fill === 'tozeroy') {
+    if (type === 'scatter' && this.fillTypes.includes(fill)) {
       return 'area';
     }
 
@@ -56,5 +59,9 @@ class TraceSelector extends Component {
     return <Dropdown {...this.props} plotProps={modifiedPlotProps} />;
   }
 }
+
+TraceSelector.contextTypes = {
+  plotSchema: PropTypes.object,
+};
 
 export default connectToPlot(TraceSelector);
