@@ -177,7 +177,8 @@ class DefaultEditor extends Component {
 }
 
 DefaultEditor.contextTypes = {
-  plotSchema: PropTypes.object,
+  dataSourceNames: PropTypes.array.isRequired,
+  plotSchema: PropTypes.object.isRequired,
 };
 
 export default localize(DefaultEditor);
