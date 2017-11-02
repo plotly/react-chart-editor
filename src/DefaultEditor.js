@@ -17,9 +17,8 @@ class DefaultEditor extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const Plotly = context.plotly;
     const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
-    const traceTypes = Object.keys(Plotly.PlotSchema.get().traces);
+    const traceTypes = Object.keys(context.plotSchema.traces);
     const labels = traceTypes.map(capitalize);
     this.traceOptions = traceTypes.map((t, i) => ({
       label: labels[i],
@@ -178,8 +177,7 @@ class DefaultEditor extends Component {
 }
 
 DefaultEditor.contextTypes = {
-  dataSourceNames: PropTypes.array,
-  plotly: PropTypes.object,
+  plotSchema: PropTypes.object,
 };
 
 export default localize(DefaultEditor);
