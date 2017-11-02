@@ -1,23 +1,22 @@
-import React, { Component } from "react";
-import FieldBase from "./FieldBase";
-import NumericInput from "./widgets/NumericInputStatefulWrapper";
-import { bem } from "../lib";
+import React, {Component} from 'react';
+import NumericInput from './widgets/NumericInputStatefulWrapper';
+import {bem, connectToPlot} from '../lib';
 
-class Numeric extends FieldBase {
-  renderField() {
+class Numeric extends Component {
+  render() {
     return (
-      <div className={bem("field")}>
-        <div className={bem("field", "title")}>
-          <div className={bem("field", "title-text")}>{this.props.label}</div>
+      <div className={bem('field')}>
+        <div className={bem('field', 'title')}>
+          <div className={bem('field', 'title-text')}>{this.props.label}</div>
         </div>
-        <div className={bem("field", "widget")}>
+        <div className={bem('field', 'widget')}>
           <NumericInput
-            value={this.fullValue}
+            value={this.props.fullValue()}
             step={this.props.step}
             min={this.props.min}
             max={this.props.max}
-            onChange={this.updatePlot}
-            onUpdate={this.updatePlot}
+            onChange={this.props.updatePlot}
+            onUpdate={this.props.updatePlot}
             showArrows
           />
         </div>
@@ -26,4 +25,4 @@ class Numeric extends FieldBase {
   }
 }
 
-export default Numeric;
+export default connectToPlot(Numeric);

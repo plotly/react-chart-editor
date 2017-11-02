@@ -31,7 +31,6 @@ export default function unpackPlotProps(props, context) {
 
   plotProps.onUpdate = context.onUpdate;
 
-  // Create a fullValue getter:
   plotProps.fullValue = function fullValue() {
     if (dataSrcExists) {
       // we use the non-full version for src information as Plotly.js does
@@ -42,9 +41,6 @@ export default function unpackPlotProps(props, context) {
       return plotProps.fullProperty.get();
     }
   };
-
-  // The value getter:
-  plotProps.value = plotProps.property.get.bind(plotProps.property);
 
   // An update callback:
   plotProps.updatePlot = function updatePlot(value) {

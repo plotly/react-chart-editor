@@ -1,6 +1,7 @@
 import ColorPicker from './components/Color';
 import Dropdown from './components/Dropdown';
 import DataSelector from './components/DataSelector';
+import TraceSelector from './components/TraceSelector';
 import Flaglist from './components/Flaglist';
 import Numeric from './components/Numeric';
 import Panel from './components/Panel';
@@ -16,14 +17,21 @@ class DefaultEditor extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const Plotly = context.plotly;
     const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
-    const traceTypes = Object.keys(Plotly.PlotSchema.get().traces);
+    const traceTypes = Object.keys(context.plotSchema.traces);
     const labels = traceTypes.map(capitalize);
     this.traceOptions = traceTypes.map((t, i) => ({
       label: labels[i],
       value: t,
     }));
+
+    const i = this.traceOptions.findIndex(opt => opt.value === 'scatter');
+    this.traceOptions.splice(
+      i + 1,
+      0,
+      {label: 'Line', value: 'line'},
+      {label: 'Area', value: 'area'}
+    );
   }
 
   render() {
@@ -33,10 +41,10 @@ class DefaultEditor extends Component {
       <PanelMenuWrapper>
         <Panel section="Graph" name="Create">
           <TraceAccordion canAdd>
-            <Dropdown
+            <TraceSelector
               label="Plot Type"
-              clearable={false}
               attr="type"
+              clearable={false}
               options={this.traceOptions}
               show
             />
@@ -169,8 +177,7 @@ class DefaultEditor extends Component {
 }
 
 DefaultEditor.contextTypes = {
-  dataSourceNames: PropTypes.array,
-  plotly: PropTypes.object,
+  plotSchema: PropTypes.object,
 };
 
 export default localize(DefaultEditor);

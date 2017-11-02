@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Select from "react-select";
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
+import Select from 'react-select';
+import PropTypes from 'prop-types';
 
 class Dropdown extends Component {
   constructor(props) {
@@ -10,13 +10,13 @@ class Dropdown extends Component {
   }
 
   onChange(selection) {
-    const { multi, onChange, valueKey } = this.props;
+    const {multi, onChange, valueKey} = this.props;
 
     if (!selection) {
       return onChange(null);
     } else if (multi) {
       console.log(valueKey, selection);
-      throw new Error("TODO: de-ramda");
+      throw new Error('TODO: de-ramda');
       //return onChange(map(prop(valueKey), selection));
     }
 
@@ -42,15 +42,15 @@ class Dropdown extends Component {
       width,
     } = this.props;
 
-    const dropdownStyle = { minWidth };
+    const dropdownStyle = {minWidth};
     if (width) {
       dropdownStyle.width = width;
     }
 
     const opts = options.slice();
     for (let i = 0; i < opts.length; i++) {
-      if (typeof opts[i] === "string") {
-        opts[i] = { label: opts[i], [valueKey]: opts[i] };
+      if (typeof opts[i] === 'string') {
+        opts[i] = {label: opts[i], [valueKey]: opts[i]};
       }
     }
 
@@ -80,11 +80,11 @@ class Dropdown extends Component {
 Dropdown.defaultProps = {
   clearable: true,
   multi: false,
-  noResultsText: "no results...",
-  placeholder: "select an option...",
+  noResultsText: 'no results...',
+  placeholder: 'select an option...',
   searchable: false,
-  minWidth: "150px",
-  valueKey: "value",
+  minWidth: '150px',
+  valueKey: 'value',
   disabled: false,
 };
 
