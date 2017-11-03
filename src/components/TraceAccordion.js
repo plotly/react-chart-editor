@@ -1,4 +1,4 @@
-import React, {Component, Children, isValidElement} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bem} from '../lib';
 
@@ -13,27 +13,27 @@ class TracePanel extends Component {
     let fullTraceIndex;
 
     for (let i = 0; i < fullData.length; i++) {
-      if (this.props.index === fullData[i].index) {
+      if (this.props.traceIndex === fullData[i].index) {
         fullTraceIndex = i;
         break;
       }
     }
     return {
-      traceIndex: this.props.index,
+      traceIndex: this.props.traceIndex,
       fullTraceIndex: fullTraceIndex,
     };
   }
 
   deleteTrace() {
     this.props.onUpdate &&
-      this.props.onUpdate(null, [this.props.index], 'deleteTraces');
+      this.props.onUpdate(null, [this.props.traceIndex], 'deleteTraces');
   }
 
   render() {
     return (
       <div>
         <div className={bem('trace-panel', 'top', ['active'])}>
-          Trace {this.props.index}
+          Trace {this.props.traceIndex}
           <a
             className={bem('trace-panel', 'delete')}
             href="#"

@@ -26,7 +26,7 @@ class TraceSelector extends Component {
       update = {type: [value]};
     }
 
-    this.props.onUpdate && this.props.onUpdate(update, [this.props.index]);
+    this.props.onUpdate && this.props.onUpdate(update, [this.props.traceIndex]);
   }
 
   fullValue() {

@@ -5,7 +5,7 @@ export default function unpackPlotProps(props, context, ComponentClass) {
 
   // Indexing and referencing:
   plotProps.attr = props.attr;
-  plotProps.index = context.traceIndex;
+  plotProps.traceIndex = context.traceIndex;
 
   // gd, data, fullData:
   plotProps.gd = context.graphDiv;
@@ -28,7 +28,7 @@ export default function unpackPlotProps(props, context, ComponentClass) {
   plotProps.onUpdate = context.onUpdate;
   plotProps.updatePlot = function updatePlot(value) {
     const update = {[plotProps.attr]: [value]};
-    plotProps.onUpdate && plotProps.onUpdate(update, [plotProps.index]);
+    plotProps.onUpdate && plotProps.onUpdate(update, [plotProps.traceIndex]);
   };
 
   // Visibility:
