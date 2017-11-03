@@ -29,7 +29,9 @@ class Section extends Component {
       let child = children[i];
 
       let isAttr = !!child.props.attr;
-      let plotProps = isAttr ? unpackPlotProps(child.props, context) : {};
+      let plotProps = isAttr
+        ? unpackPlotProps(child.props, context, child.constructor)
+        : {};
       let childProps = Object.assign({plotProps}, child.props);
       childProps.key = i;
 
