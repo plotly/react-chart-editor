@@ -1,4 +1,4 @@
-import Dropdown from './Dropdown';
+import {UnconnectedDropdown} from './Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
@@ -51,12 +51,12 @@ class TraceSelector extends Component {
   }
 
   render() {
-    const modifiedPlotProps = Object.assign({}, this.plotProps, {
+    const props = Object.assign({}, this.props, {
       fullValue: this.fullValue,
       updatePlot: this.updatePlot,
     });
 
-    return <Dropdown {...this.props} plotProps={modifiedPlotProps} />;
+    return <UnconnectedDropdown {...props} />;
   }
 }
 
