@@ -1,8 +1,9 @@
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 
-export default function unpackPlotProps(props, context) {
+export default function unpackPlotProps(props, context, ComponentClass) {
   const plotProps = {};
 
+  // Indexing and referencing:
   plotProps.attr = props.attr;
   plotProps.index = context.traceIndex;
 
@@ -14,47 +15,33 @@ export default function unpackPlotProps(props, context) {
   // Property accessors:
   plotProps.fullProperty = nestedProperty(plotProps.fullTrace, plotProps.attr);
   plotProps.property = nestedProperty(plotProps.trace, plotProps.attr);
+  plotProps.fullValue = () => plotProps.fullProperty.get();
 
-  let dataSrcExists = false;
-  if (props.isDataSrc) {
-    const traceAttr = `${plotProps.fullTrace.type}.attributes.${props.attr}`;
-    const attr = nestedProperty(context.plotSchema.traces, traceAttr).get();
-    if (attr && (attr.valType === 'data_array' || attr.arrayOk)) {
-      dataSrcExists = true;
-      plotProps.srcAttr = plotProps.attr + 'src';
-      plotProps.srcProperty = nestedProperty(
-        plotProps.trace,
-        plotProps.srcAttr
-      );
-    }
-  }
+  // Property descriptions and meta:
+  plotProps.attrMeta =
+    nestedProperty(
+      context.plotSchema.traces,
+      `${plotProps.fullTrace.type}.attributes.${plotProps.attr}`
+    ).get() || {};
 
+  // Update data functions:
   plotProps.onUpdate = context.onUpdate;
-
-  plotProps.fullValue = function fullValue() {
-    if (dataSrcExists) {
-      // we use the non-full version for src information as Plotly.js does
-      // not pass src information into fullData or fullLayout. It is a
-      // "user land" only attribute.
-      return plotProps.srcProperty.get();
-    } else {
-      return plotProps.fullProperty.get();
-    }
-  };
-
-  // An update callback:
   plotProps.updatePlot = function updatePlot(value) {
-    const attr = dataSrcExists ? plotProps.srcAttr : plotProps.attr;
-    const update = {[attr]: [value]};
+    const update = {[plotProps.attr]: [value]};
     plotProps.onUpdate && plotProps.onUpdate(update, [plotProps.index]);
   };
 
+  // Visibility:
   const fv = plotProps.fullValue();
-  if (props.show || dataSrcExists || (fv !== undefined && fv !== null)) {
+  if (props.show || (fv !== undefined && fv !== null)) {
     plotProps.isVisible = true;
   } else {
     plotProps.isVisible = false;
   }
+
+  // Allow Component Classes to further augment plotProps:
+  ComponentClass.unpackPlotProps &&
+    ComponentClass.unpackPlotProps(props, context, plotProps);
 
   return plotProps;
 }

@@ -1,3 +1,4 @@
+import DataSelector from '../DataSelector';
 import DropdownWidget from '../widgets/Dropdown';
 import React from 'react';
 import {TestEditor, fixtures, plotly} from '../../lib/test-utils';
@@ -16,23 +17,17 @@ function render(overrides = {}) {
 describe('DataSelector', () => {
   it('contains options defined by dataSources', () => {
     const {dataSources} = fixtures.scatter();
-    const wrapper = render({dataSources});
+    const wrapper = render({dataSources}).find(DropdownWidget);
     expect(wrapper.prop('options')).toEqual(Object.keys(dataSources));
   });
 
-  it('sets srcAttr and srcProperty when attr is data_array', () => {
-    const wrapper = render();
-    expect(wrapper.prop('srcAttr')).toBe('xsrc');
-    expect(wrapper.prop('srcProperty').get()).toBe('x1');
+  it('uses gd.data dataSrc value not fullValue when data_array', () => {
+    const wrapper = render().find(DropdownWidget);
+    expect(wrapper.prop('value')).toBe('x1');
   });
 
   // arrayOk not implemented in defaultEditor yet
-  it('sets srcAttr and srcProperty when attr is arrayOk', () => {});
-
-  it('uses srcProperty as fullValue', () => {
-    const wrapper = render();
-    expect(wrapper.prop('fullValue')()).toBe('x1');
-  });
+  it('uses gd.data dataSrc value not fullValue when arrayOk', () => {});
 
   it('calls updatePlot with srcAttr', () => {
     const onUpdate = jest.fn();

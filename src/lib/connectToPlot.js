@@ -22,7 +22,7 @@ export default function connectToPlot(BaseComponent) {
       } else {
         // Otherwise, this is just a bare component (not in a section) and it needs
         // processing:
-        this.plotProps = unpackPlotProps(props, context);
+        this.plotProps = unpackPlotProps(props, context, BaseComponent);
       }
     }
 
