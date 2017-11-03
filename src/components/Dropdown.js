@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import DropdownWidget from './widgets/Dropdown';
 import {bem, connectToPlot} from '../lib';
 
-class Dropdown extends Component {
+export class UnconnectedDropdown extends Component {
   render() {
     return (
       <div className={bem('field')}>
@@ -22,4 +22,4 @@ class Dropdown extends Component {
   }
 }
 
-export default connectToPlot(Dropdown);
+export default connectToPlot(UnconnectedDropdown);
