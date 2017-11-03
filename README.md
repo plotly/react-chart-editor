@@ -1,6 +1,10 @@
 # plotly-react-editor
 
-> Standalone React-based editor panel for Plotly charts 
+> Standalone React-based editor panel for Plotly charts
+
+master ![master](https://circleci.com/gh/plotly/react-plotly.js-editor/tree/master.svg?style=svg&circle-token=df4574e01732846dba81d800d062be5f0fef5641)
+
+develop ![develop](https://circleci.com/gh/plotly/react-plotly.js-editor/tree/develop.svg?style=svg&circle-token=df4574e01732846dba81d800d062be5f0fef5641)
 
 ## Installation
 
