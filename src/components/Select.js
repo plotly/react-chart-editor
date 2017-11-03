@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import FieldBase from "./FieldBase";
-import { bem } from "../lib";
+import React, {Component} from 'react';
+import {bem, connectToPlot} from '../lib';
 
-class Select extends FieldBase {
+class Select extends Component {
   renderOption(attrs, i) {
     return (
       <option key={`option-${i}`} value={attrs.value}>
@@ -16,7 +15,7 @@ class Select extends FieldBase {
 
     for (let i = 0; i < options.length; i++) {
       let opt = options[i];
-      if (typeof opt !== "object") {
+      if (typeof opt !== 'object') {
         options[i] = {
           label: opt,
           value: opt,
@@ -25,16 +24,16 @@ class Select extends FieldBase {
     }
 
     if (this.props.hasBlank) {
-      options.unshift({ label: "", value: "" });
+      options.unshift({label: '', value: ''});
     }
 
     return (
-      <label className={bem("field")}>
-        <span className={bem("field", "title")}>{this.props.label}</span>
+      <label className={bem('field')}>
+        <span className={bem('field', 'title')}>{this.props.label}</span>
 
         <select
           value={this.fullValue}
-          className={bem("field", "control")}
+          className={bem('field', 'control')}
           onChange={e => this.updatePlot(e.target.value)}
         >
           {options.map(this.renderOption)}
@@ -44,4 +43,4 @@ class Select extends FieldBase {
   }
 }
 
-export default Select;
+export default connectToPlot(Select);
