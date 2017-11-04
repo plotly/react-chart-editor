@@ -76,9 +76,9 @@
   "dependencies": {
     "fast-isnumeric": "^1.1.1",
     "object-assign": "^4.1.1",
+    "plotly.js": "^1.31.0",
     "prop-types": "^15.5.10",
     "react-color": "^2.13.8",
-    "tinycolor2": "^1.4.1",
-    "plotly.js": "^1.31.0"
+    "tinycolor2": "^1.4.1"
   }
 }
