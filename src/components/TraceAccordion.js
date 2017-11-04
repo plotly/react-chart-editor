@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {bem} from '../lib';
+import {bem, findFullTraceIndex} from '../lib';
 
 class TracePanel extends Component {
   constructor(props) {
@@ -9,18 +9,12 @@ class TracePanel extends Component {
   }
 
   getChildContext() {
-    const fullData = this.context.fullData || [];
-    let fullTraceIndex;
-
-    for (let i = 0; i < fullData.length; i++) {
-      if (this.props.traceIndex === fullData[i].index) {
-        fullTraceIndex = i;
-        break;
-      }
-    }
     return {
       traceIndex: this.props.traceIndex,
-      fullTraceIndex: fullTraceIndex,
+      fullTraceIndex: findFullTraceIndex(
+        this.context.fullData,
+        this.props.traceIndex
+      ),
     };
   }
 
@@ -48,6 +42,11 @@ class TracePanel extends Component {
   }
 }
 
+TracePanel.propTypes = {
+  traceIndex: PropTypes.number.isRequired,
+  onUpdate: PropTypes.func,
+};
+
 TracePanel.contextTypes = {
   fullData: PropTypes.array,
 };
@@ -73,7 +72,7 @@ class TraceAccordion extends Component {
 
   renderPanel(d, i) {
     return (
-      <TracePanel key={i} index={i} onUpdate={this.onUpdate}>
+      <TracePanel key={i} traceIndex={i} onUpdate={this.onUpdate}>
         {this.props.children}
       </TracePanel>
     );
