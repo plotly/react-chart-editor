@@ -1,6 +1,7 @@
 import plotly from 'plotly.js';
 import PlotlyEditor from '../PlotlyEditor';
 import {configure} from 'enzyme';
+import {dereference} from '../lib';
 import Adapter from 'enzyme-adapter-react-15';
 
 configure({adapter: new Adapter()});
@@ -12,27 +13,44 @@ const fixtures = {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
       },
-      graphDiv: setupGraphDiv({
+      graphDiv: {
         data: [{type: 'scatter', mode: 'markers', xsrc: 'x1', ysrc: 'y1'}],
         layout: {},
-      }),
+      },
     };
   },
+
   pie() {
     return {
       dataSources: {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
       },
-      graphDiv: setupGraphDiv({
+      graphDiv: {
         data: [
           {type: 'pie', mode: 'markers', labelssrc: 'x1', valuessrc: 'y1'},
         ],
         layout: {},
-      }),
+      },
     };
   },
 };
+
+function applyConfig(config = {}, {graphDiv: {data, layout}, dataSources}) {
+  if (config.deref) {
+    dereference(data, dataSources);
+  }
+
+  // replace simple graphDiv with properly mocked GD including fullData/fullLayout
+  const graphDiv = setupGraphDiv({data, layout});
+
+  return {dataSources, graphDiv};
+}
+
+Object.keys(fixtures).forEach(k => {
+  const fixtureFunc = fixtures[k];
+  fixtures[k] = config => applyConfig(config, fixtureFunc());
+});
 
 function newGraphDiv() {
   const graphDiv = window.document.createElement('div');
