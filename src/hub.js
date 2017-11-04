@@ -1,7 +1,5 @@
-import {findAttrs} from './lib';
+import {dereference} from './lib';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-
-const SRC_ATTR_PATTERN = /src$/;
 
 export default function PlotlyHub(config = {}) {
   this.dataSources = config.dataSources || {};
@@ -22,7 +20,7 @@ export default function PlotlyHub(config = {}) {
   this.setDataSources = data => {
     if (config.debug) console.log('set data sources');
 
-      // Explicitly clear out and transfer object properties in order to sanitize
+    // Explicitly clear out and transfer object properties in order to sanitize
     // the input, at least up to its type, which plotly.js will handle sanitizing.
     this.dataSources = {};
     let refs = Object.keys(data || {});
@@ -58,20 +56,9 @@ export default function PlotlyHub(config = {}) {
   this.dereference = data => {
     if (config.debug) console.log('dereferencing', data);
     if (!data) return;
-    for (let j = 0; j < data.length; j++) {
-      //data[j] = extend.extendDeepNoArrays({}, data[j]);
-      let srcAttrs = findAttrs(data[j], SRC_ATTR_PATTERN) || [];
-      for (let i = 0; i < srcAttrs.length; i++) {
-        let srcAttr = srcAttrs[i];
-        let unsrcd = srcAttr.replace(SRC_ATTR_PATTERN, '');
-        let srcStr = nestedProperty(data[j], srcAttr);
-        let dst = nestedProperty(data[j], unsrcd);
 
-        let src = this.dataSources[srcStr.get()];
+    dereference(data, this.dataSources);
 
-        dst.set(src);
-      }
-    }
     return data;
   };
 
