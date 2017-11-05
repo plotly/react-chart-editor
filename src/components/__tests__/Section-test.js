@@ -1,6 +1,7 @@
 import Section from '../Section';
 import Flaglist from '../Flaglist';
 import Numeric from '../Numeric';
+import Trace from '../Trace';
 import React from 'react';
 import {TestEditor, fixtures, plotly} from '../../lib/test-utils';
 import {mount} from 'enzyme';
@@ -14,17 +15,18 @@ describe('Section', () => {
         onUpdate={jest.fn()}
         {...fixtures.scatter({deref: true})}
       >
-        <Section heading="test-section">
-          <Flaglist
-            attr="mode"
-            traceIndex={0}
-            options={[
-              {label: 'Lines', value: 'lines'},
-              {label: 'Points', value: 'markers'},
-            ]}
-          />
-          <Numeric attr="hole" min={0} max={1} step={0.1} traceIndex={0} />
-        </Section>
+        <Trace traceIndex={0}>
+          <Section heading="test-section">
+            <Flaglist
+              attr="mode"
+              options={[
+                {label: 'Lines', value: 'lines'},
+                {label: 'Points', value: 'markers'},
+              ]}
+            />
+            <Numeric attr="hole" min={0} max={1} step={0.1} />
+          </Section>
+        </Trace>
       </TestEditor>
     ).find('[heading="test-section"]');
 
@@ -51,10 +53,12 @@ describe('Section', () => {
         onUpdate={jest.fn()}
         {...fixtures.scatter({deref: true})}
       >
-        <Section heading="test-section">
-          <Numeric attr="pull" min={0} max={1} step={0.1} traceIndex={0} />
-          <Numeric attr="hole" min={0} max={1} step={0.1} traceIndex={0} />
-        </Section>
+        <Trace traceIndex={0}>
+          <Section heading="test-section">
+            <Numeric attr="pull" min={0} max={1} step={0.1} traceIndex={0} />
+            <Numeric attr="hole" min={0} max={1} step={0.1} traceIndex={0} />
+          </Section>
+        </Trace>
       </TestEditor>
     ).find('[heading="test-section"]');
 

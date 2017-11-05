@@ -6,16 +6,12 @@ export default function unpackPlotProps(props, context, ComponentClass) {
   const plotProps = {};
 
   // Indexing and referencing:
-  if (isNumeric(props.traceIndex)) {
-    plotProps.traceIndex = props.traceIndex;
-    plotProps.fullTraceIndex = props.fullTraceIndex;
-  } else if (isNumeric(context.traceIndex)) {
-    plotProps.traceIndex = context.traceIndex;
-    plotProps.fullTraceIndex = context.fullTraceIndex;
-  } else {
+  plotProps.traceIndex = context.traceIndex;
+  plotProps.fullTraceIndex = context.fullTraceIndex;
+  if (!isNumeric(plotProps.traceIndex)) {
     throw new Error(
-      `Data field ${ComponentClass.name} must be supplied a traceIndex ` +
-        `via props or context`
+      `Data field ${ComponentClass.name} must be nested inside <Trace> or ` +
+        '<TraceAccordion>'
     );
   }
 
