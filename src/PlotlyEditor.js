@@ -8,6 +8,13 @@ import dictionaries from './locales';
 import DefaultEditor from './DefaultEditor';
 
 class PlotlyEditor extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    // we only need to compute this once.
+    this.plotSchema = this.props.plotly.PlotSchema.get();
+  }
+
   getChildContext() {
     var gd = this.props.graphDiv || {};
     var dataSourceNames = Object.keys(this.props.dataSources || {});
@@ -22,7 +29,7 @@ class PlotlyEditor extends Component {
       layout: gd.layout,
       locale: this.props.locale,
       onUpdate: this.updateProp.bind(this),
-      plotSchema: this.props.plotly.PlotSchema.get(),
+      plotSchema: this.plotSchema,
       plotly: this.props.plotly,
     };
   }
