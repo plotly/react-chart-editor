@@ -18,7 +18,13 @@ class DefaultEditor extends Component {
     super(props, context);
 
     const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
-    const traceTypes = Object.keys(context.plotSchema.traces);
+
+    // Filter out Polar "area" type (it is fairly broken and we want to present
+    // scatter with fill as an "area" chart type for convenience.
+    const traceTypes = Object.keys(context.plotSchema.traces).filter(
+      t => t !== 'area'
+    );
+
     const labels = traceTypes.map(capitalize);
     this.traceOptions = traceTypes.map((t, i) => ({
       label: labels[i],
