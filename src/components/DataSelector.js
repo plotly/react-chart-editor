@@ -9,29 +9,29 @@ function attributeIsData(meta = {}) {
 }
 
 class DataSelector extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.setLocals(props, context);
-    this.updatePlot = this.updatePlot.bind(this);
-  }
-
   static unpackPlotProps(props, context, plotProps) {
     if (attributeIsData(plotProps.attrMeta)) {
       plotProps.isVisible = true;
     }
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setLocals(nextProps, nextContext);
+  constructor(props, context) {
+    super(props);
+
+    this.setLocals(props);
+    this.updatePlot = this.updatePlot.bind(this);
   }
 
-  setLocals(props, context) {
+  componentWillReceiveProps(nextProps) {
+    this.setLocals(nextProps);
+  }
+
+  setLocals(props) {
     this.dataSrcExists = false;
     if (attributeIsData(props.attrMeta)) {
       this.dataSrcExists = true;
       this.srcAttr = props.attr + 'src';
-      this.srcProperty = nestedProperty(props.trace, this.srcAttr);
+      this.srcProperty = nestedProperty(props.container, this.srcAttr);
     }
   }
 
@@ -44,8 +44,7 @@ class DataSelector extends Component {
 
   updatePlot(value) {
     const attr = this.dataSrcExists ? this.srcAttr : this.props.attr;
-    const update = {[attr]: [value]};
-    this.props.onUpdate && this.props.onUpdate(update, [this.props.traceIndex]);
+    this.props.updateContainer && this.props.updateContainer({[attr]: [value]});
   }
 
   render() {
@@ -66,9 +65,5 @@ class DataSelector extends Component {
     );
   }
 }
-
-DataSelector.contextTypes = {
-  plotSchema: PropTypes.object,
-};
 
 export default connectToPlot(DataSelector);

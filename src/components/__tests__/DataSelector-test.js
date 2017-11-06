@@ -1,6 +1,6 @@
-import DataSelector from '../DataSelector';
 import DropdownWidget from '../widgets/Dropdown';
 import React from 'react';
+import {EDITOR_ACTIONS} from '../../constants';
 import {TestEditor, fixtures, plotly} from '../../lib/test-utils';
 import {mount} from 'enzyme';
 
@@ -33,7 +33,10 @@ describe('DataSelector', () => {
     const onUpdate = jest.fn();
     const wrapper = render({onUpdate}).find(DropdownWidget);
     wrapper.prop('onChange')('y2');
-    expect(onUpdate.mock.calls[0][1]).toEqual({xsrc: ['y2']});
+    expect(onUpdate.mock.calls[0][0].payload).toEqual({
+      update: {xsrc: ['y2']},
+      traceIndexes: [0],
+    });
   });
 
   it('is invisible when a data src does not exist for trace type', () => {

@@ -34,9 +34,9 @@ class PlotlyEditor extends Component {
     };
   }
 
-  updateProp(updates, traces, type) {
-    this.props.onUpdate &&
-      this.props.onUpdate(this.props.graphDiv, updates, traces, type);
+  updateProp(event) {
+    const {graphDiv} = this.props;
+    this.props.onUpdate && this.props.onUpdate({graphDiv, ...event});
   }
 
   render() {

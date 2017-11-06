@@ -54,15 +54,10 @@ class Section extends Component {
 }
 
 Section.contextTypes = {
-  data: PropTypes.array,
-  fullData: PropTypes.array,
-  fullLayout: PropTypes.object,
-  fullTraceIndex: PropTypes.number,
-  graphDiv: PropTypes.any,
-  layout: PropTypes.object,
-  plotly: PropTypes.object.isRequired,
-  onUpdate: PropTypes.func,
-  traceIndex: PropTypes.number,
+  container: PropTypes.object,
+  fullContainer: PropTypes.object,
+  getValObject: PropTypes.func,
+  updateContainer: PropTypes.func,
 };
 
 export default Section;

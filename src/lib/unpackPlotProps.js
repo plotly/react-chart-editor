@@ -3,57 +3,42 @@ import isNumeric from 'fast-isnumeric';
 import findFullTraceIndex from './findFullTraceIndex';
 
 export default function unpackPlotProps(props, context, ComponentClass) {
-  const plotProps = {};
+  const {updateContainer, container, fullContainer} = context;
 
-  // Indexing and referencing:
-  plotProps.traceIndex = context.traceIndex;
-  plotProps.fullTraceIndex = context.fullTraceIndex;
-  if (!isNumeric(plotProps.traceIndex)) {
+  if (!container || !fullContainer) {
     throw new Error(
-      `Data field ${ComponentClass.name} must be nested inside <Trace> or ` +
-        '<TraceAccordion>'
+      `${ComponentClass.name} must be nested within a <Trace>, <TraceAccordion> ` +
+        'or <Layout> container'
     );
   }
 
-  if (!isNumeric(plotProps.fullTraceIndex)) {
-    plotProps.fullTraceIndex = findFullTraceIndex(
-      context.fullData,
-      plotProps.traceIndex
-    );
-  }
-
-  // gd, data, fullData:
-  plotProps.gd = context.graphDiv;
-  plotProps.trace = context.data[plotProps.traceIndex] || {};
-  plotProps.fullTrace = context.fullData[plotProps.fullTraceIndex] || {};
-
-  // Property accessors:
-  plotProps.attr = props.attr;
-  plotProps.fullProperty = nestedProperty(plotProps.fullTrace, plotProps.attr);
-  plotProps.property = nestedProperty(plotProps.trace, plotProps.attr);
-  plotProps.fullValue = () => plotProps.fullProperty.get();
+  // Property accessors and meta information:
+  const fullProperty = nestedProperty(fullContainer, props.attr);
+  const property = nestedProperty(container, props.attr);
+  const fullValue = () => fullProperty.get();
 
   // Property descriptions and meta:
-  plotProps.attrMeta =
-    context.plotly.PlotSchema.getTraceValObject(
-      plotProps.fullTrace,
-      plotProps.attr
-    ) || {};
+  const attrMeta = context.getValObject(props.attr) || {};
 
   // Update data functions:
-  plotProps.onUpdate = context.onUpdate;
-  plotProps.updatePlot = function updatePlot(value) {
-    const update = {[plotProps.attr]: [value]};
-    plotProps.onUpdate && plotProps.onUpdate(update, [plotProps.traceIndex]);
-  };
+  const updatePlot = v =>
+    updateContainer && updateContainer({[plotProps.attr]: [v]});
 
   // Visibility:
-  const fv = plotProps.fullValue();
+  let isVisible = false;
+  const fv = fullValue();
   if (props.show || (fv !== undefined && fv !== null)) {
-    plotProps.isVisible = true;
-  } else {
-    plotProps.isVisible = false;
+    isVisible = true;
   }
+
+  const plotProps = {
+    attrMeta,
+    container,
+    fullContainer,
+    fullValue,
+    isVisible,
+    updatePlot,
+  };
 
   // Allow Component Classes to further augment plotProps:
   ComponentClass.unpackPlotProps &&

@@ -41,15 +41,10 @@ export default function connectToPlot(BaseComponent) {
   }
 
   PlotConnectedComponent.contextTypes = {
-    data: PropTypes.array,
-    fullData: PropTypes.array,
-    fullLayout: PropTypes.object,
-    fullTraceIndex: PropTypes.number,
-    graphDiv: PropTypes.any,
-    layout: PropTypes.object,
-    onUpdate: PropTypes.func,
-    plotly: PropTypes.object.isRequired,
-    traceIndex: PropTypes.number,
+    container: PropTypes.object,
+    fullContainer: PropTypes.object,
+    getValObject: PropTypes.func,
+    updateContainer: PropTypes.func,
   };
 
   return PlotConnectedComponent;

@@ -1,34 +1,33 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Trace from './Trace';
+import {EDITOR_ACTIONS} from '../constants';
 
 export default class TraceAccordion extends Component {
   constructor(props, context) {
     super(props);
-    this.data = context.data || [];
-    this.renderPanel = this.renderPanel.bind(this);
+
     this.addTrace = this.addTrace.bind(this);
-
-    this.onUpdate = context.onUpdate;
-  }
-
-  componentWillUpdate(nextProps, nextState, nextContext) {
-    this.data = (nextContext && nextContext.data) || [];
+    this.renderPanel = this.renderPanel.bind(this);
   }
 
   renderPanel(d, i) {
     return (
-      <Trace key={i} traceIndex={i} onUpdate={this.onUpdate}>
+      <Trace key={i} traceIndex={i}>
         {this.props.children}
       </Trace>
     );
   }
 
   addTrace() {
-    this.onUpdate && this.onUpdate(null, [], 'addTrace');
+    this.context.onUpdate &&
+      this.context.onUpdate({
+        type: EDITOR_ACTIONS.ADD_TRACE,
+      });
   }
 
   render() {
+    const data = this.context.data || [];
     return (
       <div className="tracePanel">
         {this.props.canAdd && (
@@ -36,7 +35,7 @@ export default class TraceAccordion extends Component {
             Add
           </a>
         )}
-        {this.data.map(this.renderPanel)}
+        {data.map(this.renderPanel)}
       </div>
     );
   }

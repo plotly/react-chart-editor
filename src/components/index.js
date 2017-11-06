@@ -9,6 +9,7 @@ import PanelMenuWrapper from './PanelMenuWrapper';
 import Radio from './Radio';
 import Section from './Section';
 import Select from './Select';
+import Trace from './Trace';
 import TraceAccordion from './TraceAccordion';
 import TraceSelector from './TraceSelector';
 
@@ -24,6 +25,7 @@ export {
   Radio,
   Section,
   Select,
+  Trace,
   TraceAccordion,
   TraceSelector,
 };
