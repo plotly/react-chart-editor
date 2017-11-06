@@ -60,8 +60,8 @@ Section.contextTypes = {
   fullTraceIndex: PropTypes.number,
   graphDiv: PropTypes.any,
   layout: PropTypes.object,
+  plotly: PropTypes.object.isRequired,
   onUpdate: PropTypes.func,
-  plotSchema: PropTypes.object,
   traceIndex: PropTypes.number,
 };
 

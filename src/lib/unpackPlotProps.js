@@ -35,10 +35,10 @@ export default function unpackPlotProps(props, context, ComponentClass) {
 
   // Property descriptions and meta:
   plotProps.attrMeta =
-    nestedProperty(
-      context.plotSchema.traces,
-      `${plotProps.fullTrace.type}.attributes.${plotProps.attr}`
-    ).get() || {};
+    context.plotly.PlotSchema.getTraceValObject(
+      plotProps.fullTrace,
+      plotProps.attr
+    ) || {};
 
   // Update data functions:
   plotProps.onUpdate = context.onUpdate;

@@ -48,7 +48,7 @@ export default function connectToPlot(BaseComponent) {
     graphDiv: PropTypes.any,
     layout: PropTypes.object,
     onUpdate: PropTypes.func,
-    plotSchema: PropTypes.object,
+    plotly: PropTypes.object.isRequired,
     traceIndex: PropTypes.number,
   };
 
