@@ -44,7 +44,7 @@ class DataSelector extends Component {
 
   updatePlot(value) {
     const attr = this.dataSrcExists ? this.srcAttr : this.props.attr;
-    this.props.updateContainer && this.props.updateContainer({[attr]: [value]});
+    this.props.updateContainer && this.props.updateContainer({[attr]: value});
   }
 
   render() {

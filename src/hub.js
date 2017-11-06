@@ -107,7 +107,7 @@ export default function PlotlyHub(config = {}) {
           for (const attr in payload.update) {
             const traceIndex = payload.traceIndexes[i];
             const prop = nestedProperty(graphDiv.data[traceIndex], attr);
-            const value = payload.update[attr][i];
+            const value = payload.update[attr];
             if (value !== undefined) {
               prop.set(value);
             }

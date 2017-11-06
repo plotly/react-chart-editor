@@ -17,13 +17,13 @@ class TraceSelector extends Component {
   updatePlot(value) {
     let update;
     if (value === 'line') {
-      update = {type: ['scatter'], mode: ['lines'], fill: ['none']};
+      update = {type: 'scatter', mode: 'lines', fill: 'none'};
     } else if (value === 'scatter') {
-      update = {type: ['scatter'], mode: ['markers'], fill: ['none']};
+      update = {type: 'scatter', mode: 'markers', fill: 'none'};
     } else if (value === 'area') {
-      update = {type: ['scatter'], fill: ['tozeroy']};
+      update = {type: 'scatter', fill: 'tozeroy'};
     } else {
-      update = {type: [value]};
+      update = {type: value};
     }
 
     this.props.updateContainer && this.props.updateContainer(update);

@@ -34,7 +34,7 @@ describe('DataSelector', () => {
     const wrapper = render({onUpdate}).find(DropdownWidget);
     wrapper.prop('onChange')('y2');
     expect(onUpdate.mock.calls[0][0].payload).toEqual({
-      update: {xsrc: ['y2']},
+      update: {xsrc: 'y2'},
       traceIndexes: [0],
     });
   });

@@ -21,8 +21,7 @@ export default function unpackPlotProps(props, context, ComponentClass) {
   const attrMeta = context.getValObject(props.attr) || {};
 
   // Update data functions:
-  const updatePlot = v =>
-    updateContainer && updateContainer({[plotProps.attr]: [v]});
+  const updatePlot = v => updateContainer && updateContainer({[props.attr]: v});
 
   // Visibility:
   let isVisible = false;
@@ -37,6 +36,7 @@ export default function unpackPlotProps(props, context, ComponentClass) {
     fullContainer,
     fullValue,
     isVisible,
+    updateContainer,
     updatePlot,
   };
 
