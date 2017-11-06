@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { bem } from "../lib";
+import React, {Component} from 'react';
+import {bem} from '../lib';
 
-import ModeMenuItem from "./ModeMenuItem";
+import ModeMenuItem from './ModeMenuItem';
 
 export default class ModeMenuSection extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class ModeMenuSection extends Component {
   }
 
   toggleExpanded() {
-    this.setState({ expanded: !this.state.expanded });
+    this.setState({expanded: !this.state.expanded});
   }
 
   onChangeSection(panel) {
@@ -31,7 +31,7 @@ export default class ModeMenuSection extends Component {
 
     return (
       <ModeMenuItem
-        key={"subitem-" + i}
+        key={'subitem-' + i}
         active={isActive}
         onClick={() => this.onChangeSection(panel)}
         label={panel}
@@ -42,13 +42,13 @@ export default class ModeMenuSection extends Component {
   render() {
     return (
       <div
-        className={bem("mode-menu-section", [
-          this.state.expanded ? "is-expanded" : "",
+        className={bem('mode-menu-section', [
+          this.state.expanded ? 'is-expanded' : '',
         ])}
       >
         <div
           onClick={this.toggleExpanded}
-          className={bem("mode-menu-section", "title")}
+          className={bem('mode-menu-section', 'title')}
         >
           {this.props.section}
         </div>
