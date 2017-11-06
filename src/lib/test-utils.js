@@ -1,4 +1,5 @@
 import plotly from 'plotly.js';
+import {extendDeep} from 'plotly.js/src/lib/extend';
 import PlotlyEditor from '../PlotlyEditor';
 import {configure} from 'enzyme';
 import {dereference} from '../lib';
@@ -37,6 +38,12 @@ const fixtures = {
 };
 
 function applyConfig(config = {}, {graphDiv: {data, layout}, dataSources}) {
+  if (config.layout) {
+    extendDeep(layout, config.layout);
+  }
+  if (config.data) {
+    extendDeep(data, config.data);
+  }
   if (config.deref) {
     dereference(data, dataSources);
   }
