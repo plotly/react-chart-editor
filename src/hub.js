@@ -99,7 +99,7 @@ export default function PlotlyHub(config = {}) {
   // @method handleEditorUpdate
   //
   this.handleEditorUpdate = ({graphDiv, type, payload}) => {
-      if (config.debug) console.log(`Editor triggered an event of type ${type}`);
+    if (config.debug) console.log(`Editor triggered an event of type ${type}`);
 
     switch (type) {
       case EDITOR_ACTIONS.UPDATE_TRACES:
@@ -126,6 +126,17 @@ export default function PlotlyHub(config = {}) {
           graphDiv.data = graphDiv.data.splice(payload[0], 1);
           this.refresh();
         }
+        break;
+
+      case EDITOR_ACTIONS.UPDATE_LAYOUT:
+        for (const attr in payload.update) {
+          const prop = nestedProperty(graphDiv.layout, attr);
+          const value = payload.update[attr];
+          if (value !== undefined) {
+            prop.set(value);
+          }
+        }
+        this.refresh();
         break;
 
       default:

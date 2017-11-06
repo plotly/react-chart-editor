@@ -3,6 +3,7 @@ import ColorPicker from './Color';
 import DataSelector from './DataSelector';
 import Dropdown from './Dropdown';
 import Flaglist from './Flaglist';
+import Layout from './Layout';
 import Numeric from './Numeric';
 import Panel from './Panel';
 import PanelMenuWrapper from './PanelMenuWrapper';
@@ -19,6 +20,7 @@ export {
   DataSelector,
   Dropdown,
   Flaglist,
+  Layout,
   Numeric,
   Panel,
   PanelMenuWrapper,

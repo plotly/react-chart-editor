@@ -1,16 +1,19 @@
-import ColorPicker from './components/Color';
-import Dropdown from './components/Dropdown';
-import DataSelector from './components/DataSelector';
-import TraceSelector from './components/TraceSelector';
-import Flaglist from './components/Flaglist';
-import Numeric from './components/Numeric';
-import Panel from './components/Panel';
-import PanelMenuWrapper from './components/PanelMenuWrapper';
-import PropTypes from 'prop-types';
-import Radio from './components/Radio';
 import React, {Component} from 'react';
-import Section from './components/Section';
-import TraceAccordion from './components/TraceAccordion';
+import PropTypes from 'prop-types';
+import {
+  ColorPicker,
+  DataSelector,
+  Dropdown,
+  Flaglist,
+  Layout,
+  Numeric,
+  Panel,
+  PanelMenuWrapper,
+  Radio,
+  Section,
+  TraceAccordion,
+  TraceSelector,
+} from './components';
 import {localize} from './lib';
 
 class DefaultEditor extends Component {
@@ -176,6 +179,11 @@ class DefaultEditor extends Component {
               />
             </Section>
           </TraceAccordion>
+        </Panel>
+        <Panel section="Style" name="Layout">
+          <Layout>
+            <Numeric label={_('Plot Width')} min={100} step={10} attr="width" />
+          </Layout>
         </Panel>
       </PanelMenuWrapper>
     );
