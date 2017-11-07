@@ -1,7 +1,10 @@
+import Fold from './Fold';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import Trace from './Trace';
 import {EDITOR_ACTIONS} from '../constants';
+import {connectTraceToPlot} from '../lib';
+
+const TraceFold = connectTraceToPlot(Fold);
 
 export default class TraceAccordion extends Component {
   constructor(props, context) {
@@ -13,9 +16,9 @@ export default class TraceAccordion extends Component {
 
   renderPanel(d, i) {
     return (
-      <Trace key={i} traceIndex={i}>
+      <TraceFold key={i} traceIndex={i} name={`Trace ${i}`}>
         {this.props.children}
-      </Trace>
+      </TraceFold>
     );
   }
 
@@ -29,7 +32,7 @@ export default class TraceAccordion extends Component {
   render() {
     const data = this.context.data || [];
     return (
-      <div className="tracePanel">
+      <div>
         {this.props.canAdd && (
           <a href="#" onClick={this.addTrace}>
             Add

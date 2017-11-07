@@ -1,10 +1,12 @@
 import Section from '../Section';
 import Flaglist from '../Flaglist';
 import Numeric from '../Numeric';
-import Trace from '../Trace';
+import {connectTraceToPlot} from '../../lib';
 import React from 'react';
 import {TestEditor, fixtures, plotly} from '../../lib/test-utils';
 import {mount} from 'enzyme';
+
+const TraceSection = connectTraceToPlot(Section);
 
 describe('Section', () => {
   it('is visible if it contains any visible children', () => {
@@ -15,20 +17,21 @@ describe('Section', () => {
         onUpdate={jest.fn()}
         {...fixtures.scatter({deref: true})}
       >
-        <Trace traceIndex={0}>
-          <Section heading="test-section">
-            <Flaglist
-              attr="mode"
-              options={[
-                {label: 'Lines', value: 'lines'},
-                {label: 'Points', value: 'markers'},
-              ]}
-            />
-            <Numeric attr="hole" min={0} max={1} step={0.1} />
-          </Section>
-        </Trace>
+        <TraceSection traceIndex={0} heading="test-section">
+          <Flaglist
+            attr="mode"
+            options={[
+              {label: 'Lines', value: 'lines'},
+              {label: 'Points', value: 'markers'},
+            ]}
+          />
+          <Numeric attr="hole" min={0} max={1} step={0.1} />
+        </TraceSection>
       </TestEditor>
-    ).find('[heading="test-section"]');
+    )
+      .find('[heading="test-section"]')
+      // we use last to select the Section within the higher-level component
+      .last();
 
     expect(wrapper.children().length).toBe(1);
     expect(
@@ -53,18 +56,20 @@ describe('Section', () => {
         onUpdate={jest.fn()}
         {...fixtures.scatter({deref: true})}
       >
-        <Trace traceIndex={0}>
-          <Section heading="test-section">
-            <Numeric attr="pull" min={0} max={1} step={0.1} traceIndex={0} />
-            <Numeric attr="hole" min={0} max={1} step={0.1} traceIndex={0} />
-          </Section>
-        </Trace>
+        <TraceSection traceIndex={0} heading="test-section">
+          <Numeric attr="pull" min={0} max={1} step={0.1} traceIndex={0} />
+          <Numeric attr="hole" min={0} max={1} step={0.1} traceIndex={0} />
+        </TraceSection>
       </TestEditor>
-    ).find('[heading="test-section"]');
+    )
+      .find('[heading="test-section"]')
+      // we use last to select the Section within the higher-level component
+      .last();
+
+    // childAt(0) unwraps higher-level component
+    expect(wrapper.children().length).toBe(0);
 
     expect(wrapper.find(Flaglist).exists()).toBe(false);
     expect(wrapper.find(Numeric).exists()).toBe(false);
-
-    expect(wrapper.children().length).toBe(0);
   });
 });

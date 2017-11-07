@@ -1,6 +1,6 @@
 import Hub from './hub';
 import PlotlyEditor from './PlotlyEditor';
-import {localize} from './lib';
+import {localize, connectToPlot, connectTraceToPlot} from './lib';
 import {EDITOR_ACTIONS} from './constants';
 
 import {
@@ -9,6 +9,7 @@ import {
   DataSelector,
   Dropdown,
   Flaglist,
+  Fold,
   Layout,
   Numeric,
   Panel,
@@ -16,19 +17,19 @@ import {
   Radio,
   Section,
   Select,
-  Trace,
   TraceAccordion,
   TraceSelector,
 } from './components';
 
 export {
-  localize,
-  Hub,
+  Fold,
   Base,
   ColorPicker,
   DataSelector,
   Dropdown,
+  EDITOR_ACTIONS,
   Flaglist,
+  Hub,
   Layout,
   Numeric,
   Panel,
@@ -36,10 +37,11 @@ export {
   Radio,
   Section,
   Select,
-  Trace,
   TraceAccordion,
   TraceSelector,
-  EDITOR_ACTIONS,
+  connectToPlot,
+  connectTraceToPlot,
+  localize,
 };
 
 export default PlotlyEditor;

@@ -1,5 +1,6 @@
 import bem from './bem';
 import connectToPlot from './connectToPlot';
+import connectTraceToPlot from './connectTraceToPlot';
 import dereference from './dereference';
 import findFullTraceIndex from './findFullTraceIndex';
 import localize, {localizeString} from './localize';
@@ -13,6 +14,7 @@ export {
   bem,
   clamp,
   connectToPlot,
+  connectTraceToPlot,
   dereference,
   findFullTraceIndex,
   localize,
