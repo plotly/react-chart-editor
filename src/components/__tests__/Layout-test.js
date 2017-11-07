@@ -2,7 +2,6 @@ import Layout from '../Layout';
 import Numeric from '../Numeric';
 import NumericInput from '../widgets/NumericInputStatefulWrapper';
 import React from 'react';
-import Section from '../Section';
 import {EDITOR_ACTIONS} from '../../constants';
 import {TestEditor, fixtures, plotly} from '../../lib/test-utils';
 import {mount} from 'enzyme';
