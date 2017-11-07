@@ -137,7 +137,7 @@
 }
 
 
-.plotly-editor__trace-panel__panel {
+.plotly-editor__accordion-panel__panel {
   background: #ffffff;
   border: 1px solid #bec8d9;
   border-width: 0 1px 1px 1px;
@@ -146,7 +146,7 @@
   margin-bottom: 6px;
 }
 
-.plotly-editor__trace-panel__top {
+.plotly-editor__accordion-panel__top {
   clear: both;
   padding: 6px 12px;
   color: #ffffff;
@@ -163,11 +163,19 @@
   transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out,border 0.1s ease-in-out;
 }
 
-.plotly-editor__trace-panel__top--active {
+.plotly-editor__accordion-panel__top--active {
   color: #fff;
   background-color: #506784;
   border: 1px solid #506784;
   border-radius: 5px 5px 0 0;
+}
+
+.plotly-editor__accordion-panel__delete {
+  float: right;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5em;
 }
 
 .plotly-editor__field {
@@ -376,12 +384,4 @@
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   border-left: 1px solid #c8d4e3;
-}
-
-.plotly-editor__trace-panel__delete {
-  float: right;
-  display: inline-block;
-  color: white;
-  text-decoration: none;
-  font-size: 1.5em;
 }
