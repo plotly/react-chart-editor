@@ -1,46 +1,51 @@
-import Layout from '../Layout';
-import Numeric from '../Numeric';
+import {Section, Numeric, Panel, Fold} from '..';
 import NumericInput from '../widgets/NumericInputStatefulWrapper';
 import React from 'react';
 import {EDITOR_ACTIONS} from '../../constants';
 import {TestEditor, fixtures, plotly} from '../../lib/test-utils';
+import {connectLayoutToPlot} from '../../lib';
 import {mount} from 'enzyme';
 
-function render(config = {}) {
-  const editorProps = {
-    ...fixtures.scatter(config.fixture),
-    onUpdate: jest.fn(),
-    ...config.props,
-  };
+const Layouts = [Panel, Fold, Section].map(connectLayoutToPlot);
+const Editor = props => (
+  <TestEditor {...{plotly, onUpdate: jest.fn(), ...props}} />
+);
 
-  // return the inner-most plot connected dropdown (last)
-  return mount(
-    <TestEditor {...editorProps} plotly={plotly}>
-      <Layout>
-        <Numeric label="Width" min={100} step={10} attr="width" />
-      </Layout>
-    </TestEditor>
-  ).find(Layout);
-}
+Layouts.forEach(Layout => {
+  describe(`<${Layout.displayName}>`, () => {
+    it(`wraps container with fullValue pointing to gd._fullLayout`, () => {
+      const wrapper = mount(
+        <Editor {...fixtures.scatter({layout: {width: 100}})}>
+          <Layout>
+            <Numeric label="Width" min={100} step={10} attr="width" />
+          </Layout>
+        </Editor>
+      )
+        .find('[attr="width"]')
+        .find(NumericInput);
 
-describe('Layout', () => {
-  it('wraps components with container pointing to gd._fullLayout', () => {
-    const wrapper = render({fixture: {layout: {width: 100}}})
-      .find('[attr="width"]')
-      .find(NumericInput);
+      expect(wrapper.prop('value')).toBe(100);
+    });
 
-    expect(wrapper.prop('value')).toBe(100);
-  });
+    it(`sends updates to gd._layout`, () => {
+      const onUpdate = jest.fn();
+      const wrapper = mount(
+        <Editor
+          onUpdate={onUpdate}
+          {...fixtures.scatter({layout: {width: 100}})}
+        >
+          <Layout>
+            <Numeric label="Width" min={100} step={10} attr="width" />
+          </Layout>
+        </Editor>
+      )
+        .find('[attr="width"]')
+        .find(NumericInput);
 
-  it('sends updates to gd._layout', () => {
-    const onUpdate = jest.fn();
-    const wrapper = render({props: {onUpdate}, fixture: {layout: {width: 100}}})
-      .find('[attr="width"]')
-      .find(NumericInput);
-
-    wrapper.prop('onChange')(200);
-    const event = onUpdate.mock.calls[0][0];
-    expect(event.type).toBe(EDITOR_ACTIONS.UPDATE_LAYOUT);
-    expect(event.payload).toEqual({update: {width: 200}});
+      wrapper.prop('onChange')(200);
+      const event = onUpdate.mock.calls[0][0];
+      expect(event.type).toBe(EDITOR_ACTIONS.UPDATE_LAYOUT);
+      expect(event.payload).toEqual({update: {width: 200}});
+    });
   });
 });

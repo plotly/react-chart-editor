@@ -1,4 +1,5 @@
 import bem from './bem';
+import connectLayoutToPlot from './connectLayoutToPlot';
 import connectToContainer from './connectToContainer';
 import connectTraceToPlot from './connectTraceToPlot';
 import dereference from './dereference';
@@ -10,12 +11,18 @@ function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
 }
 
+function getDisplayName(WrappedComponent) {
+  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
+
 export {
   bem,
   clamp,
+  connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
   dereference,
+  getDisplayName,
   findFullTraceIndex,
   localize,
   localizeString,

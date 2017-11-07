@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import unpackPlotProps from './unpackPlotProps';
+import {getDisplayName} from '../lib';
 
-export default function connectToContainer(BaseComponent) {
+export default function connectToContainer(WrappedComponent) {
   class ContainerConnectedComponent extends Component {
     constructor(props, context) {
       super(props, context);
@@ -22,7 +23,7 @@ export default function connectToContainer(BaseComponent) {
       } else {
         // Otherwise, this is just a bare component (not in a section) and it needs
         // processing:
-        this.plotProps = unpackPlotProps(props, context, BaseComponent);
+        this.plotProps = unpackPlotProps(props, context, WrappedComponent);
       }
     }
 
@@ -33,12 +34,16 @@ export default function connectToContainer(BaseComponent) {
         this.plotProps
       );
       if (props.isVisible) {
-        return <BaseComponent {...props} plotProps={plotProps} />;
+        return <WrappedComponent {...props} plotProps={plotProps} />;
       } else {
         return null;
       }
     }
   }
+
+  ContainerConnectedComponent.displayName = `ContainerConnected${getDisplayName(
+    WrappedComponent
+  )}`;
 
   ContainerConnectedComponent.contextTypes = {
     container: PropTypes.object,

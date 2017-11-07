@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {bem, findFullTraceIndex} from '../lib';
+import {findFullTraceIndex, getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from '../constants';
 
-export default function connectTraceToPlot(BaseComponent) {
+export default function connectTraceToPlot(WrappedComponent) {
   class TraceConnectedComponent extends Component {
     constructor(props) {
       super(props);
@@ -50,9 +50,13 @@ export default function connectTraceToPlot(BaseComponent) {
     render() {
       // Do not pass down traceIndex prop specific to wrapped component API.
       const {traceIndex, ...props} = this.props;
-      return <BaseComponent {...props} />;
+      return <WrappedComponent {...props} />;
     }
   }
+
+  TraceConnectedComponent.displayName = `TraceConnected${getDisplayName(
+    WrappedComponent
+  )}`;
 
   TraceConnectedComponent.propTypes = {
     traceIndex: PropTypes.number.isRequired,

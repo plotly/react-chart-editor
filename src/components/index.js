@@ -4,7 +4,6 @@ import DataSelector from './DataSelector';
 import Dropdown from './Dropdown';
 import Flaglist from './Flaglist';
 import Fold from './Fold';
-import Layout from './Layout';
 import Numeric from './Numeric';
 import Panel from './Panel';
 import PanelMenuWrapper from './PanelMenuWrapper';
@@ -21,7 +20,6 @@ export {
   Dropdown,
   Flaglist,
   Fold,
-  Layout,
   Numeric,
   Panel,
   PanelMenuWrapper,

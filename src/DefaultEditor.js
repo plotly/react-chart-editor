@@ -5,7 +5,7 @@ import {
   DataSelector,
   Dropdown,
   Flaglist,
-  Layout,
+  Fold,
   Numeric,
   Panel,
   PanelMenuWrapper,
@@ -14,7 +14,9 @@ import {
   TraceAccordion,
   TraceSelector,
 } from './components';
-import {localize} from './lib';
+import {localize, connectLayoutToPlot} from './lib';
+
+const LayoutPanel = connectLayoutToPlot(Panel);
 
 class DefaultEditor extends Component {
   constructor(props, context) {
@@ -180,11 +182,22 @@ class DefaultEditor extends Component {
             </Section>
           </TraceAccordion>
         </Panel>
-        <Panel section="Style" name="Layout">
-          <Layout>
-            <Numeric label={_('Plot Width')} min={100} step={10} attr="width" />
-          </Layout>
-        </Panel>
+        <LayoutPanel section="Style" name={_('Layout')}>
+          <Fold name={_('Canvas')}>
+            <Numeric label={_('Fixed Width')} min={100} step={1} attr="width" />
+          </Fold>
+        </LayoutPanel>
+        <LayoutPanel section="Style" name={_('Legend')}>
+          <Section heading={_('Legend')}>
+            <Radio
+              attr="showlegend"
+              options={[
+                {value: true, label: _('Show')},
+                {value: false, label: _('Hide')},
+              ]}
+            />
+          </Section>
+        </LayoutPanel>
       </PanelMenuWrapper>
     );
   }
