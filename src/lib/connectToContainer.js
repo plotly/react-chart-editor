@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import unpackPlotProps from './unpackPlotProps';
 
-export default function connectToPlot(BaseComponent) {
-  class PlotConnectedComponent extends Component {
+export default function connectToContainer(BaseComponent) {
+  class ContainerConnectedComponent extends Component {
     constructor(props, context) {
       super(props, context);
 
@@ -40,12 +40,12 @@ export default function connectToPlot(BaseComponent) {
     }
   }
 
-  PlotConnectedComponent.contextTypes = {
+  ContainerConnectedComponent.contextTypes = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
     getValObject: PropTypes.func,
     updateContainer: PropTypes.func,
   };
 
-  return PlotConnectedComponent;
+  return ContainerConnectedComponent;
 }

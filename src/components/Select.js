@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {bem, connectToPlot} from '../lib';
+import {bem, connectToContainer} from '../lib';
 
 class Select extends Component {
   renderOption(attrs, i) {
@@ -43,4 +43,4 @@ class Select extends Component {
   }
 }
 
-export default connectToPlot(Select);
+export default connectToContainer(Select);

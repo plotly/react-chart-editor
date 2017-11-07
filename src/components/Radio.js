@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import RadioBlocks from './widgets/RadioBlocks';
-import {bem, connectToPlot} from '../lib';
+import {bem, connectToContainer} from '../lib';
 
 class Radio extends Component {
   render() {
@@ -21,4 +21,4 @@ class Radio extends Component {
   }
 }
 
-export default connectToPlot(Radio);
+export default connectToContainer(Radio);

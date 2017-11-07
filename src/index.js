@@ -1,6 +1,6 @@
 import Hub from './hub';
 import PlotlyEditor from './PlotlyEditor';
-import {localize, connectToPlot, connectTraceToPlot} from './lib';
+import {localize, connectToContainer, connectTraceToPlot} from './lib';
 import {EDITOR_ACTIONS} from './constants';
 
 import {
@@ -39,7 +39,7 @@ export {
   Select,
   TraceAccordion,
   TraceSelector,
-  connectToPlot,
+  connectToContainer,
   connectTraceToPlot,
   localize,
 };

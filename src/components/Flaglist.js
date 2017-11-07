@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FlaglistCheckboxGroup from './widgets/FlaglistCheckboxGroup';
-import {bem, connectToPlot} from '../lib';
+import {bem, connectToContainer} from '../lib';
 
 class Flaglist extends Component {
   render() {
@@ -18,4 +18,4 @@ class Flaglist extends Component {
   }
 }
 
-export default connectToPlot(Flaglist);
+export default connectToContainer(Flaglist);

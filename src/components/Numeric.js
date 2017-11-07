@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import NumericInput from './widgets/NumericInputStatefulWrapper';
-import {bem, connectToPlot} from '../lib';
+import {bem, connectToContainer} from '../lib';
 
 class Numeric extends Component {
   render() {
@@ -25,4 +25,4 @@ class Numeric extends Component {
   }
 }
 
-export default connectToPlot(Numeric);
+export default connectToContainer(Numeric);

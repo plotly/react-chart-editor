@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ColorPicker from './widgets/ColorPicker';
-import {bem, connectToPlot} from '../lib';
+import {bem, connectToContainer} from '../lib';
 
 class Color extends Component {
   render() {
@@ -20,4 +20,4 @@ class Color extends Component {
   }
 }
 
-export default connectToPlot(Color);
+export default connectToContainer(Color);

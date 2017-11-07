@@ -2,7 +2,7 @@ import DropdownWidget from './widgets/Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {bem, connectToPlot} from '../lib';
+import {bem, connectToContainer} from '../lib';
 
 function attributeIsData(meta = {}) {
   return meta.valType === 'data_array' || meta.arrayOk;
@@ -66,4 +66,4 @@ class DataSelector extends Component {
   }
 }
 
-export default connectToPlot(DataSelector);
+export default connectToContainer(DataSelector);

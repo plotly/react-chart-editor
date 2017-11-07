@@ -1,5 +1,5 @@
 import bem from './bem';
-import connectToPlot from './connectToPlot';
+import connectToContainer from './connectToContainer';
 import connectTraceToPlot from './connectTraceToPlot';
 import dereference from './dereference';
 import findFullTraceIndex from './findFullTraceIndex';
@@ -13,7 +13,7 @@ function clamp(value, min, max) {
 export {
   bem,
   clamp,
-  connectToPlot,
+  connectToContainer,
   connectTraceToPlot,
   dereference,
   findFullTraceIndex,

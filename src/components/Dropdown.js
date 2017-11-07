@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import DropdownWidget from './widgets/Dropdown';
-import {bem, connectToPlot} from '../lib';
+import {bem, connectToContainer} from '../lib';
 
 export class UnconnectedDropdown extends Component {
   render() {
@@ -22,4 +22,4 @@ export class UnconnectedDropdown extends Component {
   }
 }
 
-export default connectToPlot(UnconnectedDropdown);
+export default connectToContainer(UnconnectedDropdown);
