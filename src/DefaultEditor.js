@@ -106,13 +106,7 @@ class DefaultEditor extends Component {
         <Panel group="Style" name="Traces">
           <TraceAccordion>
             <Section name={_('Trace')}>
-              <Numeric
-                label={_('Opacity')}
-                min={0}
-                max={1}
-                step={0.1}
-                attr="opacity"
-              />
+              <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
             </Section>
 
             <Section name={_('Display')}>
@@ -145,30 +139,19 @@ class DefaultEditor extends Component {
             <Section name={_('Points')}>
               <Numeric
                 label={_('Marker Opacity')}
-                min={0}
-                max={1}
                 step={0.1}
                 attr="marker.opacity"
               />
 
               <ColorPicker label={_('Marker Color')} attr="marker.color" />
 
-              <Numeric label={_('Size')} min={0} attr="marker.size" />
+              <Numeric label={_('Size')} attr="marker.size" />
 
-              <Numeric
-                label={_('Line width')}
-                min={0}
-                attr="marker.line.width"
-              />
+              <Numeric label={_('Line width')} attr="marker.line.width" />
             </Section>
 
             <Section name={_('Lines')}>
-              <Numeric
-                label={_('Width')}
-                min={0}
-                step={1.0}
-                attr="line.width"
-              />
+              <Numeric label={_('Width')} step={1.0} attr="line.width" />
 
               <ColorPicker label={_('Line color')} attr="line.color" />
 
@@ -188,7 +171,6 @@ class DefaultEditor extends Component {
           <Fold name={_('Canvas')}>
             <Numeric
               label={_('Fixed Width')}
-              min={100}
               step={1}
               attr="width"
               postfix="px"
@@ -216,7 +198,6 @@ class DefaultEditor extends Component {
               />
               <Numeric
                 label={_('Size')}
-                min={1}
                 step={1}
                 attr="legend.font.size"
                 postfix="px"
@@ -225,7 +206,6 @@ class DefaultEditor extends Component {
             <Section name={_('Legend Box')}>
               <Numeric
                 label={_('Border Width')}
-                min={0}
                 step={1}
                 attr="legend.borderwidth"
                 postfix="px"
@@ -233,10 +213,15 @@ class DefaultEditor extends Component {
             </Section>
             <Section name={_('Positioning')}>
               <Numeric
-                label={_('Border Width')}
-                min={0}
-                step={1}
-                attr="legend.borderwidth"
+                label={_('X Position')}
+                step={0.01}
+                attr="legend.x"
+                postfix="px"
+              />
+              <Numeric
+                label={_('Y Position')}
+                step={0.01}
+                attr="legend.y"
                 postfix="px"
               />
             </Section>
