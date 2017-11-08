@@ -1,6 +1,7 @@
 import DropdownWidget from './widgets/Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
+import Field from './Field';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {bem, connectToContainer} from '../lib';
 
@@ -49,19 +50,14 @@ class DataSelector extends Component {
 
   render() {
     return (
-      <div className={bem('field')}>
-        <div className={bem('field', 'title')}>
-          <div className={bem('field', 'title-text')}>{this.props.label}</div>
-        </div>
-        <div className={bem('field', 'widget')}>
-          <DropdownWidget
-            options={this.props.options}
-            value={this.fullValue()}
-            onChange={this.updatePlot}
-            clearable={this.props.clearable}
-          />
-        </div>
-      </div>
+      <Field label={this.props.label} postfix={this.props.postfix}>
+        <DropdownWidget
+          options={this.props.options}
+          value={this.fullValue()}
+          onChange={this.updatePlot}
+          clearable={this.props.clearable}
+        />
+      </Field>
     );
   }
 }
