@@ -1,6 +1,6 @@
+import ModeMenuSection from './sidebar/ModeMenuSection';
 import React, {cloneElement, Component} from 'react';
 import {bem, localize} from '../lib';
-import ModeMenuSection from './ModeMenuSection';
 
 class PanelsWithModeMenu extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {bem} from '../lib';
+import {bem} from '../../lib';
 
 import ModeMenuItem from './ModeMenuItem';
 
