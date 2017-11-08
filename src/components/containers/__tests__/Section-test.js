@@ -1,9 +1,8 @@
-import Section from '../Section';
-import Flaglist from '../Flaglist';
-import Numeric from '../Numeric';
-import {connectTraceToPlot} from '../../lib';
 import React from 'react';
-import {TestEditor, fixtures, plotly} from '../../lib/test-utils';
+import Section from '../Section';
+import {Flaglist, Numeric} from '../../fields';
+import {TestEditor, fixtures, plotly} from '../../../lib/test-utils';
+import {connectTraceToPlot} from '../../../lib';
 import {mount} from 'enzyme';
 
 const TraceSection = connectTraceToPlot(Section);

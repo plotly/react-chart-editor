@@ -1,9 +1,10 @@
-import {Section, Numeric, Panel, Fold} from '..';
-import NumericInput from '../widgets/NumericInputStatefulWrapper';
+import {Numeric} from '../../fields';
+import {Fold, Panel, Section} from '..';
+import NumericInput from '../../widgets/NumericInputStatefulWrapper';
 import React from 'react';
-import {EDITOR_ACTIONS} from '../../constants';
-import {TestEditor, fixtures, plotly} from '../../lib/test-utils';
-import {connectLayoutToPlot} from '../../lib';
+import {EDITOR_ACTIONS} from '../../../constants';
+import {TestEditor, fixtures, plotly} from '../../../lib/test-utils';
+import {connectLayoutToPlot} from '../../../lib';
 import {mount} from 'enzyme';
 
 const Layouts = [Panel, Fold, Section].map(connectLayoutToPlot);
