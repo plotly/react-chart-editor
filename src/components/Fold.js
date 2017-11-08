@@ -3,25 +3,32 @@ import PropTypes from 'prop-types';
 import {bem} from '../lib';
 
 export default class Fold extends Component {
-  render() {
+  renderHeader() {
     const {deleteContainer} = this.context;
     const {canDelete, name} = this.props;
     const doDelete = canDelete && typeof deleteContainer === 'function';
     return (
+      <div className={bem('accordion-panel', 'top', ['active'])}>
+        {this.props.name}
+        {doDelete ? (
+          <a
+            className={bem('accordion-panel', 'delete')}
+            href="#"
+            onClick={deleteContainer}
+          >
+            ×
+          </a>
+        ) : null}
+      </div>
+    );
+  }
+
+  render() {
+    const modifiers = this.props.hideHeader ? ['noheader'] : null;
+    return (
       <div>
-        <div className={bem('accordion-panel', 'top', ['active'])}>
-          {this.props.name}
-          {doDelete ? (
-            <a
-              className={bem('accordion-panel', 'delete')}
-              href="#"
-              onClick={deleteContainer}
-            >
-              ×
-            </a>
-          ) : null}
-        </div>
-        <div className={bem('accordion-panel', 'panel')}>
+        {this.props.hideHeader ? null : this.renderHeader()}
+        <div className={bem('accordion-panel', 'panel', modifiers)}>
           {this.props.children}
         </div>
       </div>
@@ -31,6 +38,7 @@ export default class Fold extends Component {
 
 Fold.propTypes = {
   canDelete: PropTypes.bool,
+  hideHeader: PropTypes.bool,
   name: PropTypes.string,
 };
 

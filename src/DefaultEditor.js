@@ -104,7 +104,7 @@ class DefaultEditor extends Component {
 
         <Panel section="Style" name="Traces">
           <TraceAccordion>
-            <Section heading={_('Trace')}>
+            <Section name={_('Trace')}>
               <Numeric
                 label={_('Opacity')}
                 min={0}
@@ -114,7 +114,7 @@ class DefaultEditor extends Component {
               />
             </Section>
 
-            <Section heading={_('Display')}>
+            <Section name={_('Display')}>
               <Flaglist
                 attr="mode"
                 options={[
@@ -124,7 +124,7 @@ class DefaultEditor extends Component {
               />
             </Section>
 
-            <Section heading={_('Filled Area')}>
+            <Section name={_('Filled Area')}>
               <Dropdown
                 label="Fill to"
                 attr="fill"
@@ -141,7 +141,7 @@ class DefaultEditor extends Component {
               <ColorPicker label={_('Color')} attr="fillcolor" />
             </Section>
 
-            <Section heading={_('Points')}>
+            <Section name={_('Points')}>
               <Numeric
                 label={_('Marker Opacity')}
                 min={0}
@@ -161,7 +161,7 @@ class DefaultEditor extends Component {
               />
             </Section>
 
-            <Section heading={_('Lines')}>
+            <Section name={_('Lines')}>
               <Numeric
                 label={_('Width')}
                 min={0}
@@ -182,21 +182,25 @@ class DefaultEditor extends Component {
             </Section>
           </TraceAccordion>
         </Panel>
+
         <LayoutPanel section="Style" name={_('Layout')}>
           <Fold name={_('Canvas')}>
             <Numeric label={_('Fixed Width')} min={100} step={1} attr="width" />
           </Fold>
         </LayoutPanel>
+
         <LayoutPanel section="Style" name={_('Legend')}>
-          <Section heading={_('Legend')}>
-            <Radio
-              attr="showlegend"
-              options={[
-                {value: true, label: _('Show')},
-                {value: false, label: _('Hide')},
-              ]}
-            />
-          </Section>
+          <Fold hideHeader>
+            <Section name={_('Legend')}>
+              <Radio
+                attr="showlegend"
+                options={[
+                  {value: true, label: _('Show')},
+                  {value: false, label: _('Hide')},
+                ]}
+              />
+            </Section>
+          </Fold>
         </LayoutPanel>
       </PanelMenuWrapper>
     );
