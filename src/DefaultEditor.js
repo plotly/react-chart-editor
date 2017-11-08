@@ -185,7 +185,13 @@ class DefaultEditor extends Component {
 
         <LayoutPanel section="Style" name={_('Layout')}>
           <Fold name={_('Canvas')}>
-            <Numeric label={_('Fixed Width')} min={100} step={1} attr="width" />
+            <Numeric
+              label={_('Fixed Width')}
+              min={100}
+              step={1}
+              attr="width"
+              postfix="px"
+            />
           </Fold>
         </LayoutPanel>
 
