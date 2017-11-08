@@ -40,6 +40,13 @@ export default function unpackPlotProps(props, context, ComponentClass) {
     updatePlot,
   };
 
+  if (isNumeric(attrMeta.max)) {
+    plotProps.max = attrMeta.max;
+  }
+  if (isNumeric(attrMeta.min)) {
+    plotProps.min = attrMeta.min;
+  }
+
   // Allow Component Classes to further augment plotProps:
   ComponentClass.unpackPlotProps &&
     ComponentClass.unpackPlotProps(props, context, plotProps);
