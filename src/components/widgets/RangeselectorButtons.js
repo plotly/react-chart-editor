@@ -14,7 +14,7 @@ import AccordionMenu from "./AccordionMenu";
 import connectWorkspacePlot from "@workspace/utils/connectWorkspacePlot";
 
 // eslint-disable-next-line
-import GenericStylePanel from "@workspace/components/panels/EditModeMenu/Style/GenericStyleComponents/Generic";
+import GenericStylePanel from "@workspace/components/panels/EditSidebar/Style/GenericStyleComponents/Generic";
 import { _ } from "@common/utils/i18n";
 import { CONTROL_TYPES } from "@workspace/constants/workspace";
 import { relayout } from "@workspace/actions/workspace";

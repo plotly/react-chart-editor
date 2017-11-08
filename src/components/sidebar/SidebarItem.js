@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {bem} from '../../lib';
 
-export default class ModeMenuItem extends Component {
+export default class SidebarItem extends Component {
   render() {
     return (
       <div
         onClick={this.props.onClick}
-        className={bem('mode-menu-item', [
+        className={bem('sidebar-item', [
           this.props.active ? 'is-active' : '',
         ])}
       >

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {bem} from '../../lib';
 
-import ModeMenuItem from './ModeMenuItem';
+import SidebarItem from './SidebarItem';
 
-export default class ModeMenuSection extends Component {
+export default class SidebarSection extends Component {
   constructor(props) {
     super(props);
 
@@ -30,7 +30,7 @@ export default class ModeMenuSection extends Component {
       this.props.section === this.props.selectedSection;
 
     return (
-      <ModeMenuItem
+      <SidebarItem
         key={'subitem-' + i}
         active={isActive}
         onClick={() => this.onChangeSection(panel)}
@@ -42,13 +42,13 @@ export default class ModeMenuSection extends Component {
   render() {
     return (
       <div
-        className={bem('mode-menu-section', [
+        className={bem('sidebar-section', [
           this.state.expanded ? 'is-expanded' : '',
         ])}
       >
         <div
           onClick={this.toggleExpanded}
-          className={bem('mode-menu-section', 'title')}
+          className={bem('sidebar-section', 'title')}
         >
           {this.props.section}
         </div>
@@ -58,6 +58,6 @@ export default class ModeMenuSection extends Component {
   }
 }
 
-ModeMenuSection.defaultProps = {
+SidebarSection.defaultProps = {
   expanded: false,
 };

@@ -1,8 +1,8 @@
-import ModeMenuSection from './sidebar/ModeMenuSection';
+import SidebarSection from './sidebar/SidebarSection';
 import React, {cloneElement, Component} from 'react';
 import {bem, localize} from '../lib';
 
-class PanelsWithModeMenu extends Component {
+class PanelsWithSidebar extends Component {
   constructor(props) {
     super(props);
 
@@ -23,7 +23,7 @@ class PanelsWithModeMenu extends Component {
 
   renderSection(section, i) {
     return (
-      <ModeMenuSection
+      <SidebarSection
         key={i}
         selectedSection={this.state.section}
         selectedPanel={this.state.panel}
@@ -70,7 +70,7 @@ class PanelsWithModeMenu extends Component {
 
     return (
       <div>
-        <div className={bem('mode-menu')}>
+        <div className={bem('sidebar')}>
           {menuOpts.map(this.renderSection)}
         </div>
 
@@ -87,4 +87,4 @@ class PanelsWithModeMenu extends Component {
   }
 }
 
-export default localize(PanelsWithModeMenu);
+export default localize(PanelsWithSidebar);
