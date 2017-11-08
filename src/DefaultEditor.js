@@ -14,6 +14,7 @@ import {
   TraceAccordion,
   TraceSelector,
 } from './components';
+import {DEFAULT_FONTS} from './constants';
 import {localize, connectLayoutToPlot} from './lib';
 
 const LayoutPanel = connectLayoutToPlot(Panel);
@@ -205,6 +206,45 @@ class DefaultEditor extends Component {
                   {value: false, label: _('Hide')},
                 ]}
               />
+            </Section>
+            <Section name={_('Text')}>
+              <Dropdown
+                label={_('Typeface')}
+                attr="legend.font.family"
+                clearable={false}
+                options={[...DEFAULT_FONTS]}
+              />
+              <Numeric
+                label={_('Size')}
+                min={1}
+                step={1}
+                attr="legend.font.size"
+                postfix="px"
+              />
+            </Section>
+            <Section name={_('Legend Box')}>
+              <Numeric
+                label={_('Border Width')}
+                min={0}
+                step={1}
+                attr="legend.borderwidth"
+                postfix="px"
+              />
+            </Section>
+            <Section name={_('Positioning')}>
+              <Numeric
+                label={_('Border Width')}
+                min={0}
+                step={1}
+                attr="legend.borderwidth"
+                postfix="px"
+              />
+            </Section>
+            <Section name={_('Orientation')}>
+              <div />
+            </Section>
+            <Section name={_('Trace Order')}>
+              <div />
             </Section>
           </Fold>
         </LayoutPanel>
