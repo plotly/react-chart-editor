@@ -1,0 +1,23 @@
+.plotly-editor {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border: 1px solid #aaa;
+  display: inline-block;
+  width: 425px;
+  min-height: 600px;
+  overflow: hidden;
+
+  @import 'sidebar/main';
+  @import 'containers/main';
+  @import 'fields/main';
+  @import 'widgets/main';
+
+  .icon-caret-down:before {
+    font-size: 8px;
+    content: '\25bc';
+  }
+
+  .icon-caret-up:before {
+    font-size: 8px;
+    content: '\25b2';
+  }
+}
