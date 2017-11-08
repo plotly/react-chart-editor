@@ -50,7 +50,7 @@ class DefaultEditor extends Component {
 
     return (
       <PanelMenuWrapper>
-        <Panel section="Graph" name="Create">
+        <Panel group="Graph" name="Create">
           <TraceAccordion canAdd>
             <TraceSelector
               label="Plot Type"
@@ -102,7 +102,7 @@ class DefaultEditor extends Component {
           </TraceAccordion>
         </Panel>
 
-        <Panel section="Style" name="Traces">
+        <Panel group="Style" name="Traces">
           <TraceAccordion>
             <Section name={_('Trace')}>
               <Numeric
@@ -183,7 +183,7 @@ class DefaultEditor extends Component {
           </TraceAccordion>
         </Panel>
 
-        <LayoutPanel section="Style" name={_('Layout')}>
+        <LayoutPanel group="Style" name={_('Layout')}>
           <Fold name={_('Canvas')}>
             <Numeric
               label={_('Fixed Width')}
@@ -195,7 +195,7 @@ class DefaultEditor extends Component {
           </Fold>
         </LayoutPanel>
 
-        <LayoutPanel section="Style" name={_('Legend')}>
+        <LayoutPanel group="Style" name={_('Legend')}>
           <Fold hideHeader>
             <Section name={_('Legend')}>
               <Radio
