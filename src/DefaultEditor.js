@@ -159,8 +159,8 @@ class DefaultEditor extends Component {
                 label={_('Connect Gaps')}
                 attr="connectgaps"
                 options={[
-                  {value: true, label: 'Connect'},
-                  {value: false, label: 'Blank'},
+                  {label: _('Connect'), value: true},
+                  {label: _('Blank'), value: false},
                 ]}
               />
             </Section>
@@ -184,8 +184,8 @@ class DefaultEditor extends Component {
               <Radio
                 attr="showlegend"
                 options={[
-                  {value: true, label: _('Show')},
-                  {value: false, label: _('Hide')},
+                  {label: _('Show'), value: true},
+                  {label: _('Hide'), value: false},
                 ]}
               />
             </Section>
@@ -226,10 +226,22 @@ class DefaultEditor extends Component {
               />
             </Section>
             <Section name={_('Orientation')}>
-              <div />
+              <Radio
+                attr="legend.orientation"
+                options={[
+                  {label: _('Vertical'), value: 'v'},
+                  {label: _('Horizontal'), value: 'h'},
+                ]}
+              />
             </Section>
             <Section name={_('Trace Order')}>
-              <div />
+              <Radio
+                attr="legend.traceorder"
+                options={[
+                  {label: _('Normal'), value: 'normal'},
+                  {label: _('Reversed'), value: 'reversed'},
+                ]}
+              />
             </Section>
           </Fold>
         </LayoutPanel>
