@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import RadioBlocks from './widgets/RadioBlocks';
+import RadioBlocks from '../widgets/RadioBlocks';
 import Field from './Field';
-import {bem, connectToContainer} from '../lib';
+import {bem, connectToContainer} from '../../lib';
 
 class Radio extends Component {
   render() {

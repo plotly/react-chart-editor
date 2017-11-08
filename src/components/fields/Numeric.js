@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import NumericInput from './widgets/NumericInputStatefulWrapper';
+import NumericInput from '../widgets/NumericInputStatefulWrapper';
 import Field from './Field';
-import {bem, connectToContainer} from '../lib';
+import {bem, connectToContainer} from '../../lib';
 
 class Numeric extends Component {
   render() {

@@ -9,7 +9,6 @@ import {
 import {EDITOR_ACTIONS} from './constants';
 
 import {
-  Base,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -21,19 +20,17 @@ import {
   PanelMenuWrapper,
   Radio,
   Section,
-  Select,
   TraceAccordion,
   TraceSelector,
 } from './components';
 
 export {
-  Fold,
-  Base,
   ColorPicker,
   DataSelector,
   Dropdown,
   EDITOR_ACTIONS,
   Flaglist,
+  Fold,
   Hub,
   Layout,
   Numeric,
@@ -41,7 +38,6 @@ export {
   PanelMenuWrapper,
   Radio,
   Section,
-  Select,
   TraceAccordion,
   TraceSelector,
   connectLayoutToPlot,

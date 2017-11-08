@@ -1,9 +1,9 @@
-import DropdownWidget from './widgets/Dropdown';
+import DropdownWidget from '../widgets/Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Field from './Field';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {bem, connectToContainer} from '../lib';
+import {bem, connectToContainer} from '../../lib';
 
 function attributeIsData(meta = {}) {
   return meta.valType === 'data_array' || meta.arrayOk;

@@ -2,7 +2,7 @@ import {UnconnectedDropdown} from './Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {connectToContainer} from '../lib';
+import {connectToContainer} from '../../lib';
 
 class TraceSelector extends Component {
   constructor(props, context) {

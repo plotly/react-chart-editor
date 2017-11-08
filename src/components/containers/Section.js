@@ -1,7 +1,7 @@
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
-import {bem} from '../lib';
-import unpackPlotProps from '../lib/unpackPlotProps';
+import {bem} from '../../lib';
+import unpackPlotProps from '../../lib/unpackPlotProps';
 
 function childIsVisible(child) {
   return Boolean((child.props.plotProps || {}).isVisible);
