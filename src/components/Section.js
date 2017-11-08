@@ -46,7 +46,7 @@ class Section extends Component {
 
     return hasVisibleChildren ? (
       <div className={bem('section')}>
-        <div className={bem('section', 'heading')}>{this.props.heading}</div>
+        <div className={bem('section', 'heading')}>{this.props.name}</div>
         {this.children}
       </div>
     ) : null;

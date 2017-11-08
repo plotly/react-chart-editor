@@ -17,7 +17,7 @@ describe('Section', () => {
         onUpdate={jest.fn()}
         {...fixtures.scatter({deref: true})}
       >
-        <TraceSection traceIndex={0} heading="test-section">
+        <TraceSection traceIndex={0} name="test-section">
           <Flaglist
             attr="mode"
             options={[
@@ -29,7 +29,7 @@ describe('Section', () => {
         </TraceSection>
       </TestEditor>
     )
-      .find('[heading="test-section"]')
+      .find('[name="test-section"]')
       // we use last to select the Section within the higher-level component
       .last();
 
@@ -56,13 +56,13 @@ describe('Section', () => {
         onUpdate={jest.fn()}
         {...fixtures.scatter({deref: true})}
       >
-        <TraceSection traceIndex={0} heading="test-section">
+        <TraceSection traceIndex={0} name="test-section">
           <Numeric attr="pull" min={0} max={1} step={0.1} traceIndex={0} />
           <Numeric attr="hole" min={0} max={1} step={0.1} traceIndex={0} />
         </TraceSection>
       </TestEditor>
     )
-      .find('[heading="test-section"]')
+      .find('[name="test-section"]')
       // we use last to select the Section within the higher-level component
       .last();
 
