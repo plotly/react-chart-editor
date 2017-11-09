@@ -1,16 +1,17 @@
 $swatch-size: 20px;
-$color-picker-width: 250px;
-$color-picker-border-color: #bbb;
+$colorpicker-width: 250px;
+$colorpicker-border-color: #bbb;
 $saturation-picker-height: 160px;
 $slider-picker-height: 10px;
 
-.color-picker__popover {
+
+.colorpicker__popover {
     left: -90px;
     position: absolute;
     top: 100%;
 
     margin: 0.5 * $half-spacing-unit 0 $base-spacing-unit;
-    width: $color-picker-width;
+    width: $colorpicker-width;
     background-color: $color-white;
 
     border-radius: $border-radius;
@@ -22,7 +23,7 @@ $slider-picker-height: 10px;
     @include z-index("cloud");
 }
 
-.color-picker__cover {
+.colorpicker__cover {
     position: fixed;
     top: 0;
     right: 0;
@@ -31,11 +32,7 @@ $slider-picker-height: 10px;
     @include z-index("underground");
 }
 
-/*
- * TODO: hover interactions for ColorPicker
- * https://github.com/plotly/streambed/issues/5353
- */
-.colorpicker-container {
+.colorpicker__container {
     display: inline-block;
     line-height: 2;
     position: relative;
@@ -48,72 +45,72 @@ $slider-picker-height: 10px;
     border-radius: 50%;
     border: 1px solid $lightgrey;
     vertical-align: middle;
-    padding-top: $workspace-quarter-unit;
-    padding-left: $workspace-quarter-unit;
+    padding-top: $sixth-spacing-unit;
+    padding-left: $sixth-spacing-unit;
 
 }
 
-.colorpicker-selected-color {
-    margin-left: $workspace-unit;
+.colorpicker__selected-color {
+    margin-left: $half-spacing-unit;
     color: $color-muted-text;
     font-weight: $font-weight-light;
-    font-size: $font-size-xs-rem;
+    font-size: $font-size-small;
     display: inline-block;
     vertical-align: middle;
     text-transform: uppercase;
 }
 
-.colorpicker-swatch {
+.colorpicker__swatch {
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     vertical-align: middle;
 }
 
 .toolLabel {
     color: $color-muted-text;
-    font-size: $font-size-xs-rem;
+    font-size: $font-size-small;
     font-weight: $font-weight-light;
 }
 
-/* Tieried Color Picker */
-.color-picker-component {
+%colorpicker__component {
     position: relative;
     overflow: hidden;
     margin: 0 $half-spacing-unit;
-    border: 1px solid $color-picker-border-color;
+    border: 1px solid $colorpicker-border-color;
     border-radius: $border-radius / 2;
     cursor: pointer;
 }
 
+
 /* Saturation wrapper style */
-.color-picker-saturation {
-    @extend .color-picker-component;
+.colorpicker__saturation {
+    @extend %colorpicker__component;
     height: $saturation-picker-height;
 }
 
 /* Wrapper style for Hue and Alpha sliders and swatch */
-.color-picker-controls {
+.colorpicker__controls {
     margin: 0 $half-spacing-unit;
 
-    .color-picker-sliders {
+    .colorpicker__sliders {
         width: 200px;
 
-        .color-picker-slider {
-            @extend .color-picker-component;
+        .colorpicker__slider {
+            @extend %colorpicker__component;
             margin: auto 0;
             height: $slider-picker-height;
             margin-top: 0.25 * $half-spacing-unit;
         }
     }
 
-    .color-picker-active {
-        @extend .color-picker-component;
+    .colorpicker__active {
+        @extend %colorpicker__component;
         height: $base-spacing-unit;
         width: $base-spacing-unit;
         margin: 0.25 * $half-spacing-unit 0px 0px 0.5 * $half-spacing-unit;
 
-        .color-picker-active-swatch {
+        .colorpicker__active-swatch {
             position: absolute;
             top: 0; right: 0; bottom: 0; left: 0;
             border-radius: $border-radius / 2;
@@ -122,54 +119,13 @@ $slider-picker-height: 10px;
     }
 }
 
-.color-picker-custom-input {
-    margin: 0 $half-spacing-unit;
-    margin-top: 0.25 * $half-spacing-unit;
-    text-align: center;
-}
-
-.color-picker-preset-colors {
+.colorpicker__preset-colors {
     margin: 0 $half-spacing-unit;
 }
 
-.color-picker-title {
+.colorpicker__title {
     $title-margin: 0.25 * $half-spacing-unit;
     margin: $title-margin $title-margin * 2;
     font-size: $h5-size;
     font-weight: $font-weight-semibold;
-}
-
-.colorpicker-container {
-  display: inline-block;
-  line-height: 2;
-  position: relative;
-}
-
-.colorpicker {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid #dcdddd;
-  vertical-align: middle;
-  padding-top: 3px;
-  padding-left: 3px;
-  box-sizing: border-box;
-}
-
-.colorpicker-swatch {
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-}
-
-.colorpicker-selected-color {
-  margin-left: 12px;
-  color: #777;
-  font-weight: 300;
-  font-size: 12px;
-  display: inline-block;
-  vertical-align: middle;
-  text-transform: uppercase;
 }
