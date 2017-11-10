@@ -1,14 +1,8 @@
-import CogMenu from './CogMenu';
+import SubPanel from './SubPanel';
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
-import {bem, icon} from '../../lib';
+import {icon} from '../../lib';
 import unpackPlotProps from '../../lib/unpackPlotProps';
-
-const classNames = {
-  section: bem('section'),
-  sectionHeading: bem('section', 'heading'),
-  sectionCogMenu: `${bem('section', 'cog-menu')} ${icon('cog')}`,
-};
 
 function childIsVisible(child) {
   return Boolean((child.props.plotProps || {}).isVisible);
@@ -19,7 +13,7 @@ class Section extends Component {
     super(props, context);
 
     this.children = null;
-    this.cogMenu = null;
+    this.subPanel = null;
 
     this.processAndSetChildren(context);
   }
@@ -35,48 +29,43 @@ class Section extends Component {
     }
 
     const attrChildren = [];
-    let cogMenu = null;
+    let subPanel = null;
 
     for (let i = 0; i < children.length; i++) {
       let child = children[i];
       if (!child) {
         continue;
       }
-      if (child.type === CogMenu) {
-        // Process the first cogMenu. Ignore the rest.
-        if (cogMenu) {
+      if (child.type === SubPanel) {
+        // Process the first subPanel. Ignore the rest.
+        if (subPanel) {
           continue;
         }
-        cogMenu = child;
+        subPanel = child;
         continue;
       }
 
       let isAttr = !!child.props.attr;
       let plotProps = isAttr
         ? unpackPlotProps(child.props, context, child.constructor)
-        : {};
+        : {isVisible: true};
       let childProps = Object.assign({plotProps}, child.props);
       childProps.key = i;
-
-      attrChildren.push(cloneElement(child, childProps, child.children));
+      attrChildren.push(cloneElement(child, childProps));
     }
 
     this.children = attrChildren.length ? attrChildren : null;
-    this.cogMenu = cogMenu;
+    this.subPanel = subPanel;
   }
 
   render() {
     const hasVisibleChildren = this.children.some(childIsVisible);
 
     return hasVisibleChildren ? (
-      <div className={classNames.section}>
-        <div className={classNames.sectionHeading}>
+      <div className="section">
+        <div className="section__heading">
           {this.props.name}
-          {this.cogMenu ? (
-            <span>
-              <i className={classNames.sectionCogMenu} />
-            </span>
-          ) : null}
+          {this.subPanel}
         </div>
         {this.children}
       </div>

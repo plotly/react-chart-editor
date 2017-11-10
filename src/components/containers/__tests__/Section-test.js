@@ -1,6 +1,6 @@
 import React from 'react';
 import Section from '../Section';
-import {Flaglist, Numeric} from '../../fields';
+import {Flaglist, Info, Numeric} from '../../fields';
 import {TestEditor, fixtures, plotly} from '../../../lib/test-utils';
 import {connectTraceToPlot} from '../../../lib';
 import {mount} from 'enzyme';
@@ -45,6 +45,24 @@ describe('Section', () => {
         .childAt(0) // unwrap higher-level component
         .exists()
     ).toBe(false);
+  });
+
+  fit('is visible if it contains any non attr children', () => {
+    const wrapper = mount(
+      <TestEditor
+        plotly={plotly}
+        onUpdate={jest.fn()}
+        {...fixtures.scatter({deref: true})}
+      >
+        <Section name="test-section">
+          <Info>INFO</Info>
+        </Section>
+      </TestEditor>
+    ).find('[name="test-section"]');
+
+    expect(wrapper.children().length).toBe(1);
+    expect(wrapper.find(Info).exists()).toBe(true);
+    expect(wrapper.find(Info).text()).toBe('INFO');
   });
 
   it('is not visible if it contains no visible children', () => {
