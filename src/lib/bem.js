@@ -43,3 +43,7 @@ export default function bem(block, element, modifiers) {
 
   return out.join(' ');
 }
+
+export function icon(iconName) {
+  return `plotlyjs_editor__icon-${iconName}`;
+}
