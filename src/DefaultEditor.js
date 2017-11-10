@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
-  CogMenu,
+  SubPanel,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -223,8 +223,8 @@ class DefaultEditor extends Component {
               />
             </Section>
             <Section name={_('Positioning')}>
-              <CogMenu>
-                <Section>
+              <SubPanel>
+                <Section name={_('Anchor Point')}>
                   <Info>
                     {_(
                       'The positioning inputs are relative to the ' +
@@ -240,7 +240,7 @@ class DefaultEditor extends Component {
                     ]}
                   />
                   <Radio
-                    attr="legend.orientation"
+                    attr="legend.yanchor"
                     options={[
                       {label: _('Top'), value: 'top'},
                       {label: _('Middle'), value: 'middle'},
@@ -248,7 +248,7 @@ class DefaultEditor extends Component {
                     ]}
                   />
                 </Section>
-              </CogMenu>
+              </SubPanel>
               <Numeric
                 label={_('X Position')}
                 step={0.01}
