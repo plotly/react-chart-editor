@@ -2,21 +2,24 @@ import {
   ColorPicker,
   Dropdown,
   Flaglist,
+  Info,
   Radio,
   DataSelector,
   Numeric,
   TraceSelector,
 } from './fields';
 
-import {Fold, Panel, Section, TraceAccordion} from './containers';
+import {CogMenu, Fold, Panel, Section, TraceAccordion} from './containers';
 import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
+  CogMenu,
   ColorPicker,
   DataSelector,
   Dropdown,
   Flaglist,
   Fold,
+  Info,
   Numeric,
   Panel,
   PanelMenuWrapper,

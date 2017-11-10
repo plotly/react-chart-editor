@@ -9,11 +9,13 @@ import {
 import {EDITOR_ACTIONS} from './constants';
 
 import {
+  CogMenu,
   ColorPicker,
   DataSelector,
   Dropdown,
   Flaglist,
   Fold,
+  Info,
   Layout,
   Numeric,
   Panel,
@@ -25,12 +27,14 @@ import {
 } from './components';
 
 export {
+  CogMenu,
   ColorPicker,
   DataSelector,
   Dropdown,
   EDITOR_ACTIONS,
   Flaglist,
   Fold,
+  Info,
   Hub,
   Layout,
   Numeric,
