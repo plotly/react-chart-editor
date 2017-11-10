@@ -59,7 +59,9 @@ class Section extends Component {
   }
 
   render() {
-    const hasVisibleChildren = this.children.some(childIsVisible);
+    const hasVisibleChildren =
+      (this.children && this.children.some(childIsVisible)) ||
+      Boolean(this.subPanel);
 
     return hasVisibleChildren ? (
       <div className="section">

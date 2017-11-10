@@ -15,12 +15,13 @@ export default class SubPanel extends Component {
 
   render() {
     const toggleClass = `subpanel__toggle ${this.props.toggleIconClass}`;
+    const isVisible = this.props.show || this.state.isVisible;
     return (
       <span>
         <span>
           <i className={toggleClass} onClick={this.toggleVisibility} />
         </span>
-        {this.state.isVisible ? (
+        {isVisible ? (
           <div className="subpanel">
             <div className="subpanel__cover" onClick={this.toggleVisibility} />
             <div>{this.props.children}</div>
@@ -33,6 +34,7 @@ export default class SubPanel extends Component {
 
 SubPanel.propTypes = {
   toggleIconClass: PropTypes.string.isRequired,
+  show: PropTypes.bool,
 };
 
 SubPanel.defaultProps = {

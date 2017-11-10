@@ -1,5 +1,6 @@
 import React from 'react';
 import Section from '../Section';
+import SubPanel from '../SubPanel';
 import {Flaglist, Info, Numeric} from '../../fields';
 import {TestEditor, fixtures, plotly} from '../../../lib/test-utils';
 import {connectTraceToPlot} from '../../../lib';
@@ -47,7 +48,7 @@ describe('Section', () => {
     ).toBe(false);
   });
 
-  fit('is visible if it contains any non attr children', () => {
+  it('is visible if it contains any non attr children', () => {
     const wrapper = mount(
       <TestEditor
         plotly={plotly}
@@ -88,5 +89,27 @@ describe('Section', () => {
 
     expect(wrapper.find(Flaglist).exists()).toBe(false);
     expect(wrapper.find(Numeric).exists()).toBe(false);
+  });
+
+  it('will render first subPanel even with no visible attrs', () => {
+    const wrapper = mount(
+      <TestEditor
+        plotly={plotly}
+        onUpdate={jest.fn()}
+        {...fixtures.scatter({deref: true})}
+      >
+        <Section name="test-section">
+          <SubPanel show>
+            <Info>INFO</Info>
+          </SubPanel>
+          <SubPanel show>
+            <Info>MISINFORMATION</Info>
+          </SubPanel>
+        </Section>
+      </TestEditor>
+    ).find('[name="test-section"]');
+
+    expect(wrapper.find(Info).length).toBe(1);
+    expect(wrapper.find(Info).text()).toBe('INFO');
   });
 });
