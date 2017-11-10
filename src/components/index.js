@@ -9,11 +9,11 @@ import {
   TraceSelector,
 } from './fields';
 
-import {CogMenu, Fold, Panel, Section, TraceAccordion} from './containers';
+import {SubPanel, Fold, Panel, Section, TraceAccordion} from './containers';
 import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
-  CogMenu,
+  SubPanel,
   ColorPicker,
   DataSelector,
   Dropdown,

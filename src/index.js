@@ -9,7 +9,7 @@ import {
 import {EDITOR_ACTIONS} from './constants';
 
 import {
-  CogMenu,
+  SubPanel,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -27,7 +27,7 @@ import {
 } from './components';
 
 export {
-  CogMenu,
+  SubPanel,
   ColorPicker,
   DataSelector,
   Dropdown,
