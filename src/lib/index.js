@@ -1,4 +1,4 @@
-import bem from './bem';
+import bem, {icon} from './bem';
 import connectLayoutToPlot from './connectLayoutToPlot';
 import connectToContainer from './connectToContainer';
 import connectTraceToPlot from './connectTraceToPlot';
@@ -24,6 +24,7 @@ export {
   dereference,
   getDisplayName,
   findFullTraceIndex,
+  icon,
   localize,
   localizeString,
   makeAttrSetterPath,

@@ -51,7 +51,7 @@ export const UPDATE_PLOT_DIRTY = "WORKSPACE_UPDATE_PLOT_DIRTY";
 
 export const ADD_SHARE_FID = "WORKSPACE_ADD_SHARE_FID";
 
-// Spec used to create the EditModeMenu Buttons
+// Spec used to create the EditSidebar Buttons
 export const EDIT_MODE_MENU_ITEMS = [
   {
     mode: EDIT_MODE.GRAPH,

@@ -1,0 +1,18 @@
+@charset 'utf-8';
+@import 'variables';
+@import 'mixins';
+@import 'helpers';
+@import 'icons/main';
+
+.plotly-editor {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  border: 1px solid #aaa;
+  display: inline-block;
+  width: 425px;
+  min-height: 600px;
+  overflow: hidden;
+
+  @import 'components/main';
+}
+
+@import 'shame'

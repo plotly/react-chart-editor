@@ -21,6 +21,27 @@ const fixtures = {
     };
   },
 
+  area() {
+    return {
+      dataSources: {
+        x1: [1, 2, 3],
+        y1: [2, 3, 4],
+      },
+      graphDiv: {
+        data: [
+          {
+            type: 'scatter',
+            mode: 'markers+lines',
+            fill: 'tozeroy',
+            xsrc: 'x1',
+            ysrc: 'y1',
+          },
+        ],
+        layout: {},
+      },
+    };
+  },
+
   pie() {
     return {
       dataSources: {

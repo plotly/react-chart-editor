@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {findFullTraceIndex, getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from '../constants';
 
@@ -20,7 +21,11 @@ export default function connectTraceToPlot(WrappedComponent) {
       const fullTraceIndex = findFullTraceIndex(fullData, traceIndex);
       const fullTrace = fullData[fullTraceIndex] || {};
       return {
-        getValObject: plotly.PlotSchema.getTraceValObject.bind(null, fullTrace),
+        getValObject: attr =>
+          plotly.PlotSchema.getTraceValObject(
+            fullTrace,
+            nestedProperty({}, attr).parts
+          ),
         updateContainer: this.updateTrace,
         deleteContainer: this.deleteTrace,
         container: trace,

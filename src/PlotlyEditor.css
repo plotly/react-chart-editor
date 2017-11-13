@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 
-.plotly-editor__mode-menu {
+.plotly-editor__sidebar {
   user-select: none;
   height: 100%;
   width: 100px;
@@ -18,20 +18,20 @@
   border-right: 1px solid #f3f6fa;
 }
 
-.plotly-editor__mode-menu-section--is-active {
+.plotly-editor__sidebar-group--is-active {
   color: #2a3f5f;
   font-weight: 600;
   cursor: default;
   border-left: 3px solid #119DFF;
 }
 
-.plotly-editor__mode-menu-section {
+.plotly-editor__sidebar-group {
   background-color: #fff;
   cursor: pointer;
   width: 100%;
 }
 
-.plotly-editor__mode-menu-section__title {
+.plotly-editor__sidebar-group__title {
   color: #506784;
   font-size: 14px;
   font-weight: 400;
@@ -40,7 +40,7 @@
   text-align: left;
 }
 
-.plotly-editor__mode-menu-section__title:before {
+.plotly-editor__sidebar-group__title:before {
   width: 0;
   height: 0;
   display: inline-block;
@@ -54,16 +54,16 @@
   transition: all 0.15s ease-in-out;
 }
 
-.plotly-editor__mode-menu-section--is-expanded .plotly-editor__mode-menu-section__title:before {
+.plotly-editor__sidebar-group--is-expanded .plotly-editor__sidebar-group__title:before {
   transform: rotate(90deg);
 }
 
-.plotly-editor__mode-menu-section--is-expanded .plotly-editor__mode-menu-section__title {
+.plotly-editor__sidebar-group--is-expanded .plotly-editor__sidebar-group__title {
   box-shadow: 0px 3px 4px rgba(80,103,132,0.2);
   position: relative;
 }
 
-.plotly-editor__mode-menu-item {
+.plotly-editor__sidebar-item {
   color: #69738a;
   cursor: pointer;
   font-size: 14px;
@@ -77,7 +77,7 @@
   text-align: left;
 }
 
-.plotly-editor__mode-menu-item--is-active {
+.plotly-editor__sidebar-item--is-active {
   border-left: 3px solid #119DFF;
   color: #2a3f5f;
   font-weight: 600;
@@ -121,6 +121,10 @@
   padding: 0 12px;
 }
 
+.plotly-editor__field__no-title--center {
+  text-align: center;
+}
+
 .plotly-editor__field__title {
   padding-left: 0.5em;
   color: #69738a;
@@ -129,17 +133,16 @@
   display: inline-block;
 }
 
-.plotly-editor__field__control {
-  width: 60%;
-  display: inline-block;
-  padding-right: 0.5em;
-}
-
 .plotly-editor__field__widget {
-  width: 70%;
+  width: 64%;
   padding-left: 18px;
   display: inline-block;
   padding-right: 12px;
+}
+
+.plotly-editor__field__widget--postfix {
+  width: 50%;
+  padding-right: 0px;
 }
 
 .plotly-editor__accordion-panel__panel {
@@ -151,16 +154,9 @@
   margin-bottom: 6px;
 }
 
-/* Same as above with constant border width */
 .plotly-editor__accordion-panel__panel--noheader {
-  background: #ffffff;
-  border: 1px solid #bec8d9;
   border-width: 1px 1px 1px 1px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  margin-bottom: 6px;
 }
-
 
 .plotly-editor__accordion-panel__top {
   clear: both;
