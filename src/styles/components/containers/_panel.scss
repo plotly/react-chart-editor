@@ -1,0 +1,47 @@
+.panel {
+  position: absolute;
+  top: 21px;
+  left: 0px;
+  bottom: 5px;
+  right: 1px;
+  margin-left: 100px;
+  background-color: $color-page-background;
+  overflow-y: scroll;
+  padding-left: $half-spacing-unit;
+  padding-right: $half-spacing-unit;
+  padding-top: $half-spacing-unit;
+}
+
+.subpanel__toggle {
+  padding-left: 12px;
+  padding-right: 12px;
+  vertical-align: middle;
+}
+
+.subpanel{
+  position: absolute;
+  border-radius: 2px;
+  text-transform: none;
+  text-align: left;
+  border: $fold-border;
+
+  align-content: center;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  left: 0;
+  right: 0;
+
+  margin: 0 24px;
+  min-width: 200px;
+  background-color: $color-white;
+
+  @include z-index("cloud");
+}
+
+.subpanel__cover {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  @include z-index("underground");
+}

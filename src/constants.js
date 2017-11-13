@@ -14,4 +14,5 @@ export const DEFAULT_FONTS = [
   {label: 'Times', value: '"Times New Roman", Times, "Droid Serif", serif'},
   {label: 'Futura', value: '"Century Gothic", Futura, Roboto, sans-serif'},
   {label: 'Georgia', value: 'Georgia, "Droid Serif", serif'},
+  {label: 'Open Sans', value: '"Open Sans", verdana, arial, sans-serif'},
 ];

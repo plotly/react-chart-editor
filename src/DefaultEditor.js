@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
+  SubPanel,
   ColorPicker,
   DataSelector,
   Dropdown,
   Flaglist,
   Fold,
+  Info,
   Numeric,
   Panel,
   PanelMenuWrapper,
@@ -202,6 +204,7 @@ class DefaultEditor extends Component {
                 attr="legend.font.size"
                 postfix="px"
               />
+              <ColorPicker label={_('Color')} attr="legend.font.color" />
             </Section>
             <Section name={_('Legend Box')}>
               <Numeric
@@ -210,8 +213,42 @@ class DefaultEditor extends Component {
                 attr="legend.borderwidth"
                 postfix="px"
               />
+              <ColorPicker
+                label={_('Border Color')}
+                attr="legend.bordercolor"
+              />
+              <ColorPicker
+                label={_('Background Color')}
+                attr="legend.bgcolor"
+              />
             </Section>
             <Section name={_('Positioning')}>
+              <SubPanel>
+                <Section name={_('Anchor Point')}>
+                  <Info>
+                    {_(
+                      'The positioning inputs are relative to the ' +
+                        'anchor points on the text box'
+                    )}
+                  </Info>
+                  <Radio
+                    attr="legend.xanchor"
+                    options={[
+                      {label: _('Left'), value: 'left'},
+                      {label: _('Center'), value: 'center'},
+                      {label: _('Right'), value: 'right'},
+                    ]}
+                  />
+                  <Radio
+                    attr="legend.yanchor"
+                    options={[
+                      {label: _('Top'), value: 'top'},
+                      {label: _('Middle'), value: 'middle'},
+                      {label: _('Bottom'), value: 'bottom'},
+                    ]}
+                  />
+                </Section>
+              </SubPanel>
               <Numeric
                 label={_('X Position')}
                 step={0.01}
