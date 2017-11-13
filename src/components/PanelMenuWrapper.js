@@ -1,84 +1,84 @@
+import SidebarGroup from './sidebar/SidebarGroup';
 import React, {cloneElement, Component} from 'react';
 import {bem, localize} from '../lib';
-import ModeMenuSection from './ModeMenuSection';
 
-class PanelsWithModeMenu extends Component {
+class PanelsWithSidebar extends Component {
   constructor(props) {
     super(props);
 
     var opts = this.computeMenuOptions(props);
 
     this.state = {
-      section: opts[0].name,
+      group: opts[0].name,
       panel: opts[0].panels[0],
     };
 
     this.setPanel = this.setPanel.bind(this);
-    this.renderSection = this.renderSection.bind(this);
+    this.renderGroup = this.renderGroup.bind(this);
   }
 
-  setPanel(section, panel) {
-    this.setState({section, panel});
+  setPanel(group, panel) {
+    this.setState({group, panel});
   }
 
-  renderSection(section, i) {
+  renderGroup(group, i) {
     return (
-      <ModeMenuSection
+      <SidebarGroup
         key={i}
-        selectedSection={this.state.section}
+        selectedGroup={this.state.group}
         selectedPanel={this.state.panel}
-        section={section.name}
-        panels={section.panels}
-        onChangeSection={this.setPanel}
+        group={group.name}
+        panels={group.panels}
+        onChangeGroup={this.setPanel}
       />
     );
   }
 
   computeMenuOptions(props) {
-    var obj, child, section, name;
+    var obj, child, group, name;
     var children = props.children;
     if (!Array.isArray(children)) {
       children = [children];
     }
-    var sectionLookup = {};
-    var sectionIndex;
-    var sections = [];
+    var groupLookup = {};
+    var groupIndex;
+    var groups = [];
     for (var i = 0; i < children.length; i++) {
       child = children[i];
-      section = child.props.section;
+      group = child.props.group;
       name = child.props.name;
 
-      if (sectionLookup.hasOwnProperty(section)) {
-        sectionIndex = sectionLookup[section];
-        obj = sections[sectionIndex];
+      if (groupLookup.hasOwnProperty(group)) {
+        groupIndex = groupLookup[group];
+        obj = groups[groupIndex];
       } else {
-        sectionLookup[section] = sections.length;
-        obj = {name: section, panels: []};
-        sections.push(obj);
+        groupLookup[group] = groups.length;
+        obj = {name: group, panels: []};
+        groups.push(obj);
       }
 
       obj.panels.push(name);
     }
 
-    return sections;
+    return groups;
   }
 
   render() {
     var menuOpts = this.computeMenuOptions(this.props);
 
-    var children = Array.isArray(this.props.children) ? this.props.children : [this.props.children];
+    var children = Array.isArray(this.props.children)
+      ? this.props.children
+      : [this.props.children];
 
     return (
       <div>
-        <div className={bem('mode-menu')}>
-          {menuOpts.map(this.renderSection)}
-        </div>
+        <div className={bem('sidebar')}>{menuOpts.map(this.renderGroup)}</div>
 
         {children.map((child, i) =>
           cloneElement(child, {
             key: i,
             visible:
-              this.state.section === child.props.section &&
+              this.state.group === child.props.group &&
               this.state.panel === child.props.name,
           })
         )}
@@ -87,4 +87,4 @@ class PanelsWithModeMenu extends Component {
   }
 }
 
-export default localize(PanelsWithModeMenu);
+export default localize(PanelsWithSidebar);
