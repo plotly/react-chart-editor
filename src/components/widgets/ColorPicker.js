@@ -47,31 +47,31 @@ const CustomColorPicker = localize(
     return (
       <div>
         <div>
-          <p className="color-picker-title">{_('Custom colors')}</p>
-          <div className="color-picker-saturation">
+          <p className="colorpicker__title">{_('Custom colors')}</p>
+          <div className="colorpicker__saturation">
             <Saturation {...props} />
           </div>
-          <div className="color-picker-controls +flex">
-            <div className="color-picker-sliders">
-              <div className="color-picker-slider">
+          <div className="colorpicker__controls +flex">
+            <div className="colorpicker__sliders">
+              <div className="colorpicker__slider">
                 <Hue {...props} />
               </div>
-              <div className="color-picker-slider">
+              <div className="colorpicker__slider">
                 <Alpha {...props} />
               </div>
             </div>
-            <div className="color-picker-active">
+            <div className="colorpicker__active">
               <Checkboard />
-              <div style={activeColor} className="color-picker-active-swatch" />
+              <div style={activeColor} className="colorpicker__active-swatch" />
             </div>
           </div>
-          <div className="color-picker-custom-input">
+          <div className="colorpicker__custom-input">
             <Fields {...props} onChange={onChangeComplete} />
           </div>
         </div>
         <div>
-          <p className="color-picker-title">{_('Default colors')}</p>
-          <div className="color-picker-preset-colors js-color-picker-preset-colors">
+          <p className="colorpicker__title">{_('Default colors')}</p>
+          <div className="colorpicker__preset-colors">
             <PresetColors colors={defaultColors} onClick={onChangeComplete} />
           </div>
         </div>
@@ -120,25 +120,25 @@ class ColorPicker extends Component {
     const swatchStyle = {backgroundColor: rgbString};
 
     return (
-      <div className="colorpicker-container js-colorpicker-container">
+      <div className="colorpicker__container">
         <div className="colorpicker">
           <div
-            className="colorpicker-swatch +cursor-clickable js-colorpicker-swatch"
+            className="colorpicker__swatch +cursor-clickable"
             style={swatchStyle}
             onClick={this.toggleVisible}
           />
         </div>
 
         <div
-          className="colorpicker-selected-color +hover-grey"
+          className="colorpicker__selected-color +hover-grey"
           onClick={this.toggleVisible}
         >
           {colorText}
         </div>
 
         {this.state.isVisible && (
-          <div className="color-picker__popover js-color-picker-popover">
-            <div className="color-picker__cover" onClick={this.toggleVisible} />
+          <div className="colorpicker__popover">
+            <div className="colorpicker__cover" onClick={this.toggleVisible} />
             <CustomColorPicker
               color={rgbString}
               onChangeComplete={this.onSelectedColorChange}

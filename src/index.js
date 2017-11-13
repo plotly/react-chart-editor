@@ -1,39 +1,53 @@
 import Hub from './hub';
 import PlotlyEditor from './PlotlyEditor';
-import {localize} from './lib';
+import {
+  localize,
+  connectLayoutToPlot,
+  connectToContainer,
+  connectTraceToPlot,
+} from './lib';
+import {EDITOR_ACTIONS} from './constants';
 
 import {
-  Base,
+  SubPanel,
   ColorPicker,
   DataSelector,
   Dropdown,
   Flaglist,
+  Fold,
+  Info,
+  Layout,
   Numeric,
   Panel,
   PanelMenuWrapper,
   Radio,
   Section,
-  Select,
   TraceAccordion,
   TraceSelector,
 } from './components';
 
 export {
-  localize,
-  Hub,
-  Base,
+  SubPanel,
   ColorPicker,
   DataSelector,
   Dropdown,
+  EDITOR_ACTIONS,
   Flaglist,
+  Fold,
+  Info,
+  Hub,
+  Layout,
   Numeric,
   Panel,
   PanelMenuWrapper,
   Radio,
   Section,
-  Select,
   TraceAccordion,
   TraceSelector,
+  connectLayoutToPlot,
+  connectToContainer,
+  connectTraceToPlot,
+  localize,
 };
 
 export default PlotlyEditor;

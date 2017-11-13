@@ -1,7 +1,6 @@
-import {findAttrs} from './lib';
+import {dereference} from './lib';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-
-const SRC_ATTR_PATTERN = /src$/;
+import {EDITOR_ACTIONS} from './constants';
 
 export default function PlotlyHub(config = {}) {
   this.dataSources = config.dataSources || {};
@@ -22,7 +21,7 @@ export default function PlotlyHub(config = {}) {
   this.setDataSources = data => {
     if (config.debug) console.log('set data sources');
 
-      // Explicitly clear out and transfer object properties in order to sanitize
+    // Explicitly clear out and transfer object properties in order to sanitize
     // the input, at least up to its type, which plotly.js will handle sanitizing.
     this.dataSources = {};
     let refs = Object.keys(data || {});
@@ -58,20 +57,9 @@ export default function PlotlyHub(config = {}) {
   this.dereference = data => {
     if (config.debug) console.log('dereferencing', data);
     if (!data) return;
-    for (let j = 0; j < data.length; j++) {
-      //data[j] = extend.extendDeepNoArrays({}, data[j]);
-      let srcAttrs = findAttrs(data[j], SRC_ATTR_PATTERN) || [];
-      for (let i = 0; i < srcAttrs.length; i++) {
-        let srcAttr = srcAttrs[i];
-        let unsrcd = srcAttr.replace(SRC_ATTR_PATTERN, '');
-        let srcStr = nestedProperty(data[j], srcAttr);
-        let dst = nestedProperty(data[j], unsrcd);
 
-        let src = this.dataSources[srcStr.get()];
+    dereference(data, this.dataSources);
 
-        dst.set(src);
-      }
-    }
     return data;
   };
 
@@ -110,34 +98,49 @@ export default function PlotlyHub(config = {}) {
   //
   // @method handleEditorUpdate
   //
-  this.handleEditorUpdate = (gd, update, traces, type) => {
-    if (config.debug) console.log('editor triggered an update');
+  this.handleEditorUpdate = ({graphDiv, type, payload}) => {
+    if (config.debug) console.log(`Editor triggered an event of type ${type}`);
 
     switch (type) {
-      default:
-      case 'update':
-        for (let i = 0; i < traces.length; i++) {
-          for (let attr in update) {
-            let prop = nestedProperty(gd.data[traces[i]], attr);
-            let value = update[attr][i];
+      case EDITOR_ACTIONS.UPDATE_TRACES:
+        for (let i = 0; i < payload.traceIndexes.length; i++) {
+          for (const attr in payload.update) {
+            const traceIndex = payload.traceIndexes[i];
+            const prop = nestedProperty(graphDiv.data[traceIndex], attr);
+            const value = payload.update[attr];
             if (value !== undefined) {
               prop.set(value);
             }
           }
         }
+        this.refresh();
+        break;
 
+      case EDITOR_ACTIONS.ADD_TRACE:
+        graphDiv.data.push({x: [], y: []});
         this.refresh();
         break;
-      case 'addTrace':
-        gd.data.push({x: [], y: []});
-        this.refresh();
-        break;
-      case 'deleteTraces':
-        if (traces.length) {
-          gd.data = gd.data.splice(traces[0], 1);
+
+      case EDITOR_ACTIONS.DELETE_TRACE:
+        if (payload.traceIndexes && payload.traceIndexes.length) {
+          graphDiv.data = graphDiv.data.splice(payload[0], 1);
           this.refresh();
         }
         break;
+
+      case EDITOR_ACTIONS.UPDATE_LAYOUT:
+        for (const attr in payload.update) {
+          const prop = nestedProperty(graphDiv.layout, attr);
+          const value = payload.update[attr];
+          if (value !== undefined) {
+            prop.set(value);
+          }
+        }
+        this.refresh();
+        break;
+
+      default:
+        throw new Error('must specify an action type to handleEditorUpdate');
     }
   };
 }
