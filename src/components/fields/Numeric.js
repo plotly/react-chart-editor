@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
-import NumericInput from '../widgets/NumericInputStatefulWrapper';
 import Field from './Field';
+import NumericInput from '../widgets/NumericInputStatefulWrapper';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 import {bem, connectToContainer} from '../../lib';
 
 class Numeric extends Component {
   render() {
     return (
-      <Field label={this.props.label} postfix={this.props.postfix}>
+      <Field {...this.props}>
         <NumericInput
           value={this.props.fullValue()}
           step={this.props.step}
@@ -20,5 +21,14 @@ class Numeric extends Component {
     );
   }
 }
+
+Numeric.propTypes = {
+  fullValue: PropTypes.func,
+  min: PropTypes.number,
+  max: PropTypes.number,
+  step: PropTypes.number,
+  updatePlot: PropTypes.func,
+  ...Field.propTypes,
+};
 
 export default connectToContainer(Numeric);

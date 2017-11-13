@@ -8,11 +8,11 @@ export default class Fold extends Component {
     const {canDelete, name} = this.props;
     const doDelete = canDelete && typeof deleteContainer === 'function';
     return (
-      <div className={bem('accordion-panel', 'top', ['active'])}>
+      <div className={bem('fold', 'top', ['active'])}>
         {this.props.name}
         {doDelete ? (
           <a
-            className={bem('accordion-panel', 'delete')}
+            className={bem('fold', 'delete')}
             href="#"
             onClick={deleteContainer}
           >
@@ -28,9 +28,7 @@ export default class Fold extends Component {
     return (
       <div>
         {this.props.hideHeader ? null : this.renderHeader()}
-        <div className={bem('accordion-panel', 'panel', modifiers)}>
-          {this.props.children}
-        </div>
+        <div className={bem('fold', modifiers)}>{this.props.children}</div>
       </div>
     );
   }

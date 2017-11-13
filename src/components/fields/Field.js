@@ -5,7 +5,6 @@ import {bem} from '../../lib';
 export default class Field extends Component {
   render() {
     let postfix = null;
-    let widgetModifier = null;
     if (this.props.postfix) {
       postfix = (
         <div className={bem('field', 'postfix')}>
@@ -14,16 +13,21 @@ export default class Field extends Component {
           </div>
         </div>
       );
-      widgetModifier = ['prefix'];
     }
-    if (this.props.noTitle) {
+
+    if (!this.props.label) {
+      const noTitleModifier = this.props.center ? ['center'] : null;
       return (
         <div className={bem('field')}>
-          <div className={bem('field', 'no-title')}>{this.props.children}</div>
+          <div className={bem('field', 'no-title', noTitleModifier)}>
+            {this.props.children}
+          </div>
           {postfix}
         </div>
       );
     }
+
+    const widgetModifier = this.props.postfix ? ['postfix'] : null;
     return (
       <div className={bem('field')}>
         <div className={bem('field', 'title')}>
@@ -39,7 +43,11 @@ export default class Field extends Component {
 }
 
 Field.propTypes = {
+  center: PropTypes.bool,
   label: PropTypes.string,
-  noTitle: PropTypes.bool,
   postfix: PropTypes.string,
+};
+
+Field.defaultProps = {
+  center: false,
 };
