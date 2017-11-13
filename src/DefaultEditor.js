@@ -1,17 +1,25 @@
-import ColorPicker from './components/Color';
-import Dropdown from './components/Dropdown';
-import DataSelector from './components/DataSelector';
-import TraceSelector from './components/TraceSelector';
-import Flaglist from './components/Flaglist';
-import Numeric from './components/Numeric';
-import Panel from './components/Panel';
-import PanelMenuWrapper from './components/PanelMenuWrapper';
-import PropTypes from 'prop-types';
-import Radio from './components/Radio';
 import React, {Component} from 'react';
-import Section from './components/Section';
-import TraceAccordion from './components/TraceAccordion';
-import {localize} from './lib';
+import PropTypes from 'prop-types';
+import {
+  SubPanel,
+  ColorPicker,
+  DataSelector,
+  Dropdown,
+  Flaglist,
+  Fold,
+  Info,
+  Numeric,
+  Panel,
+  PanelMenuWrapper,
+  Radio,
+  Section,
+  TraceAccordion,
+  TraceSelector,
+} from './components';
+import {DEFAULT_FONTS} from './constants';
+import {localize, connectLayoutToPlot} from './lib';
+
+const LayoutPanel = connectLayoutToPlot(Panel);
 
 class DefaultEditor extends Component {
   constructor(props, context) {
@@ -45,7 +53,7 @@ class DefaultEditor extends Component {
 
     return (
       <PanelMenuWrapper>
-        <Panel section="Graph" name="Create">
+        <Panel group="Graph" name="Create">
           <TraceAccordion canAdd>
             <TraceSelector
               label="Plot Type"
@@ -97,19 +105,13 @@ class DefaultEditor extends Component {
           </TraceAccordion>
         </Panel>
 
-        <Panel section="Style" name="Traces">
+        <Panel group="Style" name="Traces">
           <TraceAccordion>
-            <Section heading={_('Trace')}>
-              <Numeric
-                label={_('Opacity')}
-                min={0}
-                max={1}
-                step={0.1}
-                attr="opacity"
-              />
+            <Section name={_('Trace')}>
+              <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
             </Section>
 
-            <Section heading={_('Display')}>
+            <Section name={_('Display')}>
               <Flaglist
                 attr="mode"
                 options={[
@@ -119,7 +121,7 @@ class DefaultEditor extends Component {
               />
             </Section>
 
-            <Section heading={_('Filled Area')}>
+            <Section name={_('Filled Area')}>
               <Dropdown
                 label="Fill to"
                 attr="fill"
@@ -136,33 +138,22 @@ class DefaultEditor extends Component {
               <ColorPicker label={_('Color')} attr="fillcolor" />
             </Section>
 
-            <Section heading={_('Points')}>
+            <Section name={_('Points')}>
               <Numeric
                 label={_('Marker Opacity')}
-                min={0}
-                max={1}
                 step={0.1}
                 attr="marker.opacity"
               />
 
               <ColorPicker label={_('Marker Color')} attr="marker.color" />
 
-              <Numeric label={_('Size')} min={0} attr="marker.size" />
+              <Numeric label={_('Size')} attr="marker.size" />
 
-              <Numeric
-                label={_('Line width')}
-                min={0}
-                attr="marker.line.width"
-              />
+              <Numeric label={_('Line width')} attr="marker.line.width" />
             </Section>
 
-            <Section heading={_('Lines')}>
-              <Numeric
-                label={_('Width')}
-                min={0}
-                step={1.0}
-                attr="line.width"
-              />
+            <Section name={_('Lines')}>
+              <Numeric label={_('Width')} step={1.0} attr="line.width" />
 
               <ColorPicker label={_('Line color')} attr="line.color" />
 
@@ -170,13 +161,127 @@ class DefaultEditor extends Component {
                 label={_('Connect Gaps')}
                 attr="connectgaps"
                 options={[
-                  {value: true, label: 'Connect'},
-                  {value: false, label: 'Blank'},
+                  {label: _('Connect'), value: true},
+                  {label: _('Blank'), value: false},
                 ]}
               />
             </Section>
           </TraceAccordion>
         </Panel>
+
+        <LayoutPanel group="Style" name={_('Layout')}>
+          <Fold name={_('Canvas')}>
+            <Numeric
+              label={_('Fixed Width')}
+              step={1}
+              attr="width"
+              postfix="px"
+            />
+          </Fold>
+        </LayoutPanel>
+
+        <LayoutPanel group="Style" name={_('Legend')}>
+          <Fold hideHeader>
+            <Section name={_('Legend')}>
+              <Radio
+                attr="showlegend"
+                options={[
+                  {label: _('Show'), value: true},
+                  {label: _('Hide'), value: false},
+                ]}
+              />
+            </Section>
+            <Section name={_('Text')}>
+              <Dropdown
+                label={_('Typeface')}
+                attr="legend.font.family"
+                clearable={false}
+                options={[...DEFAULT_FONTS]}
+              />
+              <Numeric
+                label={_('Size')}
+                step={1}
+                attr="legend.font.size"
+                postfix="px"
+              />
+              <ColorPicker label={_('Color')} attr="legend.font.color" />
+            </Section>
+            <Section name={_('Legend Box')}>
+              <Numeric
+                label={_('Border Width')}
+                step={1}
+                attr="legend.borderwidth"
+                postfix="px"
+              />
+              <ColorPicker
+                label={_('Border Color')}
+                attr="legend.bordercolor"
+              />
+              <ColorPicker
+                label={_('Background Color')}
+                attr="legend.bgcolor"
+              />
+            </Section>
+            <Section name={_('Positioning')}>
+              <SubPanel>
+                <Section name={_('Anchor Point')}>
+                  <Info>
+                    {_(
+                      'The positioning inputs are relative to the ' +
+                        'anchor points on the text box'
+                    )}
+                  </Info>
+                  <Radio
+                    attr="legend.xanchor"
+                    options={[
+                      {label: _('Left'), value: 'left'},
+                      {label: _('Center'), value: 'center'},
+                      {label: _('Right'), value: 'right'},
+                    ]}
+                  />
+                  <Radio
+                    attr="legend.yanchor"
+                    options={[
+                      {label: _('Top'), value: 'top'},
+                      {label: _('Middle'), value: 'middle'},
+                      {label: _('Bottom'), value: 'bottom'},
+                    ]}
+                  />
+                </Section>
+              </SubPanel>
+              <Numeric
+                label={_('X Position')}
+                step={0.01}
+                attr="legend.x"
+                postfix="px"
+              />
+              <Numeric
+                label={_('Y Position')}
+                step={0.01}
+                attr="legend.y"
+                postfix="px"
+              />
+            </Section>
+            <Section name={_('Orientation')}>
+              <Radio
+                attr="legend.orientation"
+                options={[
+                  {label: _('Vertical'), value: 'v'},
+                  {label: _('Horizontal'), value: 'h'},
+                ]}
+              />
+            </Section>
+            <Section name={_('Trace Order')}>
+              <Radio
+                attr="legend.traceorder"
+                options={[
+                  {label: _('Normal'), value: 'normal'},
+                  {label: _('Reversed'), value: 'reversed'},
+                ]}
+              />
+            </Section>
+          </Fold>
+        </LayoutPanel>
       </PanelMenuWrapper>
     );
   }

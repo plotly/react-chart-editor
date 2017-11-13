@@ -1,5 +1,6 @@
 import {dereference} from './lib';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
+import {EDITOR_ACTIONS} from './constants';
 
 export default function PlotlyHub(config = {}) {
   this.dataSources = config.dataSources || {};
@@ -97,34 +98,49 @@ export default function PlotlyHub(config = {}) {
   //
   // @method handleEditorUpdate
   //
-  this.handleEditorUpdate = (gd, update, traces, type) => {
-    if (config.debug) console.log('editor triggered an update');
+  this.handleEditorUpdate = ({graphDiv, type, payload}) => {
+    if (config.debug) console.log(`Editor triggered an event of type ${type}`);
 
     switch (type) {
-      default:
-      case 'update':
-        for (let i = 0; i < traces.length; i++) {
-          for (let attr in update) {
-            let prop = nestedProperty(gd.data[traces[i]], attr);
-            let value = update[attr][i];
+      case EDITOR_ACTIONS.UPDATE_TRACES:
+        for (let i = 0; i < payload.traceIndexes.length; i++) {
+          for (const attr in payload.update) {
+            const traceIndex = payload.traceIndexes[i];
+            const prop = nestedProperty(graphDiv.data[traceIndex], attr);
+            const value = payload.update[attr];
             if (value !== undefined) {
               prop.set(value);
             }
           }
         }
+        this.refresh();
+        break;
 
+      case EDITOR_ACTIONS.ADD_TRACE:
+        graphDiv.data.push({x: [], y: []});
         this.refresh();
         break;
-      case 'addTrace':
-        gd.data.push({x: [], y: []});
-        this.refresh();
-        break;
-      case 'deleteTraces':
-        if (traces.length) {
-          gd.data = gd.data.splice(traces[0], 1);
+
+      case EDITOR_ACTIONS.DELETE_TRACE:
+        if (payload.traceIndexes && payload.traceIndexes.length) {
+          graphDiv.data = graphDiv.data.splice(payload[0], 1);
           this.refresh();
         }
         break;
+
+      case EDITOR_ACTIONS.UPDATE_LAYOUT:
+        for (const attr in payload.update) {
+          const prop = nestedProperty(graphDiv.layout, attr);
+          const value = payload.update[attr];
+          if (value !== undefined) {
+            prop.set(value);
+          }
+        }
+        this.refresh();
+        break;
+
+      default:
+        throw new Error('must specify an action type to handleEditorUpdate');
     }
   };
 }

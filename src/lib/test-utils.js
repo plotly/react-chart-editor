@@ -1,4 +1,5 @@
 import plotly from 'plotly.js';
+import {extendDeep} from 'plotly.js/src/lib/extend';
 import PlotlyEditor from '../PlotlyEditor';
 import {configure} from 'enzyme';
 import {dereference} from '../lib';
@@ -15,6 +16,27 @@ const fixtures = {
       },
       graphDiv: {
         data: [{type: 'scatter', mode: 'markers', xsrc: 'x1', ysrc: 'y1'}],
+        layout: {},
+      },
+    };
+  },
+
+  area() {
+    return {
+      dataSources: {
+        x1: [1, 2, 3],
+        y1: [2, 3, 4],
+      },
+      graphDiv: {
+        data: [
+          {
+            type: 'scatter',
+            mode: 'markers+lines',
+            fill: 'tozeroy',
+            xsrc: 'x1',
+            ysrc: 'y1',
+          },
+        ],
         layout: {},
       },
     };
@@ -37,6 +59,12 @@ const fixtures = {
 };
 
 function applyConfig(config = {}, {graphDiv: {data, layout}, dataSources}) {
+  if (config.layout) {
+    extendDeep(layout, config.layout);
+  }
+  if (config.data) {
+    extendDeep(data, config.data);
+  }
   if (config.deref) {
     dereference(data, dataSources);
   }
