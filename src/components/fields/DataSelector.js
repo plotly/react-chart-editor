@@ -50,7 +50,7 @@ class DataSelector extends Component {
 
   render() {
     return (
-      <Field label={this.props.label} postfix={this.props.postfix}>
+      <Field {...this.props}>
         <DropdownWidget
           options={this.props.options}
           value={this.fullValue()}
@@ -61,5 +61,13 @@ class DataSelector extends Component {
     );
   }
 }
+
+DataSelector.propTypes = {
+  fullValue: PropTypes.func,
+  options: PropTypes.array.isRequired,
+  updatePlot: PropTypes.func,
+  clearable: PropTypes.bool,
+  ...Field.propTypes,
+};
 
 export default connectToContainer(DataSelector);

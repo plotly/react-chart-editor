@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Field from './Field';
@@ -6,7 +7,7 @@ import {bem, connectToContainer} from '../../lib';
 class Radio extends Component {
   render() {
     return (
-      <Field label={this.props.label} postfix={this.props.postfix}>
+      <Field {...this.props}>
         <RadioBlocks
           options={this.props.options}
           activeOption={this.props.fullValue()}
@@ -16,5 +17,19 @@ class Radio extends Component {
     );
   }
 }
+
+Radio.propTypes = {
+  center: PropTypes.bool,
+  fullValue: PropTypes.func,
+  options: PropTypes.array.isRequired,
+  updatePlot: PropTypes.func,
+  ...Field.propTypes,
+};
+
+// for better appearance <Radio> overrides <Field> {center: false}
+// default prop. This can be overridden manually using props for <Radio>.
+Radio.defaultProps = {
+  center: true,
+};
 
 export default connectToContainer(Radio);
