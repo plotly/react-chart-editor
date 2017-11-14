@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
-  SubPanel,
+  AxesSelector,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -13,13 +13,15 @@ import {
   PanelMenuWrapper,
   Radio,
   Section,
+  SubPanel,
   TraceAccordion,
   TraceSelector,
 } from './components';
 import {DEFAULT_FONTS} from './constants';
-import {localize, connectLayoutToPlot} from './lib';
+import {localize, connectAxesToLayout, connectLayoutToPlot} from './lib';
 
 const LayoutPanel = connectLayoutToPlot(Panel);
+const AxesFold = connectAxesToLayout(Fold);
 
 class DefaultEditor extends Component {
   constructor(props, context) {
@@ -27,7 +29,7 @@ class DefaultEditor extends Component {
 
     const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
 
-    // Filter out Polar "area" type (it is fairly broken and we want to present
+    // Filter out Polar "area" type as it is fairly broken and we want to present
     // scatter with fill as an "area" chart type for convenience.
     const traceTypes = Object.keys(context.plotSchema.traces).filter(
       t => t !== 'area'
@@ -178,6 +180,38 @@ class DefaultEditor extends Component {
               postfix="px"
             />
           </Fold>
+        </LayoutPanel>
+
+        <LayoutPanel group="Style" name={_('Axes')}>
+          <AxesFold name={_('Titles')}>
+            <AxesSelector />
+            <Dropdown
+              label={_('Typeface')}
+              attr="font.family"
+              clearable={false}
+              options={[...DEFAULT_FONTS]}
+            />
+            <Numeric label={_('Size')} step={1} attr="font.size" postfix="px" />
+            <ColorPicker label={_('Color')} attr="font.color" />
+          </AxesFold>
+          <AxesFold name={_('Range')}>
+            <AxesSelector />
+          </AxesFold>
+          <AxesFold name={_('Lines')}>
+            <AxesSelector />
+          </AxesFold>
+          <AxesFold name={_('Tick Labels')}>
+            <AxesSelector />
+          </AxesFold>
+          <AxesFold name={_('Tick Markers')}>
+            <AxesSelector />
+          </AxesFold>
+          <AxesFold name={_('Zoom Interactivity')}>
+            <AxesSelector />
+          </AxesFold>
+          <AxesFold name={_('Layout')}>
+            <AxesSelector />
+          </AxesFold>
         </LayoutPanel>
 
         <LayoutPanel group="Style" name={_('Legend')}>
