@@ -16,7 +16,6 @@ class Numeric extends Component {
           max={this.props.max}
           onChange={this.props.updatePlot}
           onUpdate={this.props.updatePlot}
-          multiValued={this.props.multiValued}
           showArrows
         />
       </Field>
@@ -31,7 +30,6 @@ Numeric.propTypes = {
   max: PropTypes.number,
   step: PropTypes.number,
   updatePlot: PropTypes.func,
-  multiValued: PropTypes.bool,
   ...Field.propTypes,
 };
 

@@ -76,7 +76,7 @@ export default class NumericInputStatefulWrapper extends Component {
       } else {
         valueUpdate = value - step;
       }
-    } else if (this.props.multiValued) {
+    } else {
       // if we are multi-valued and the user is incrementing or decrementing
       // update with some sane value so we can "break" out of multi-valued mode.
       if (isNumeric(defaultValue)) {
@@ -141,7 +141,6 @@ NumericInputStatefulWrapper.propTypes = {
   showArrows: PropTypes.bool,
   step: PropTypes.number,
   value: PropTypes.any,
-  multiValued: PropTypes.bool
 };
 
 NumericInputStatefulWrapper.defaultProps = {
