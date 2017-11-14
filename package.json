@@ -19,7 +19,8 @@
     "lint": "prettier  --write \"{src}/**/*.{js,jsx}\"",
     "test": "jest",
     "watch": "nodemon --exec \"npm run make:lib\" -w src",
-    "watch-test": "jest --watch"
+    "watch-test": "jest --watch",
+    "eslint:check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
   },
   "keywords": [
     "graphing",
@@ -32,6 +33,7 @@
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.0.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -48,6 +50,10 @@
     "envify": "^4.1.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-15": "^1.0.4",
+    "eslint": "^4.11.0",
+    "eslint-config-prettier": "^2.7.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-react": "^7.4.0",
     "event-emitter": "^0.3.5",
     "gl": "^4.0.4",
     "hat": "0.0.3",
