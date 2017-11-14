@@ -1,3 +1,4 @@
+import AxesSelector from './AxesSelector';
 import ColorPicker from './Color';
 import Dropdown from './Dropdown';
 import Flaglist from './Flaglist';
@@ -8,6 +9,7 @@ import Numeric from './Numeric';
 import TraceSelector from './TraceSelector';
 
 export {
+  AxesSelector,
   ColorPicker,
   Dropdown,
   Flaglist,

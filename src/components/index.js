@@ -1,4 +1,5 @@
 import {
+  AxesSelector,
   ColorPicker,
   Dropdown,
   Flaglist,
@@ -13,6 +14,7 @@ import {SubPanel, Fold, Panel, Section, TraceAccordion} from './containers';
 import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
+  AxesSelector,
   SubPanel,
   ColorPicker,
   DataSelector,
