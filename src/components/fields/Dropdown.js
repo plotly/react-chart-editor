@@ -2,7 +2,7 @@ import DropdownWidget from '../widgets/Dropdown';
 import Field from './Field';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem, connectToContainer} from '../../lib';
+import {connectToContainer} from '../../lib';
 
 export class UnconnectedDropdown extends Component {
   render() {
