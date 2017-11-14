@@ -1,21 +1,31 @@
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import isNumeric from 'fast-isnumeric';
-import findFullTraceIndex from './findFullTraceIndex';
+import {MULTI_VALUED, MULTI_VALUED_PLACEHOLDER} from './constants';
 
 export default function unpackPlotProps(props, context, ComponentClass) {
-  const {updateContainer, container, fullContainer} = context;
+  const {container, defaultContainer, fullContainer, updateContainer} = context;
 
   if (!container || !fullContainer) {
     throw new Error(
-      `${ComponentClass.name} must be nested within a <Trace>, <TraceAccordion> ` +
-        'or <Layout> container'
+      `${ComponentClass.name} must be nested within a component connected ` +
+        'to a plotly.js container.'
     );
   }
 
   // Property accessors and meta information:
   const fullProperty = nestedProperty(fullContainer, props.attr);
-  const property = nestedProperty(container, props.attr);
-  const fullValue = () => fullProperty.get();
+  const fullValue = () => {
+    const fv = fullProperty.get();
+    if (fv === MULTI_VALUED) {
+      return MULTI_VALUED_PLACEHOLDER;
+    }
+    return fv;
+  };
+
+  let defaultValue = props.defaultValue;
+  if (defaultValue === void 0 && defaultContainer) {
+    defaultValue = nestedProperty(defaultContainer, props.attr).get();
+  }
 
   // Property descriptions and meta:
   const attrMeta = context.getValObject(props.attr) || {};
@@ -23,21 +33,25 @@ export default function unpackPlotProps(props, context, ComponentClass) {
   // Update data functions:
   const updatePlot = v => updateContainer && updateContainer({[props.attr]: v});
 
-  // Visibility:
+  // Visibility and multiValues:
+  const fv = fullProperty.get();
+  const multiValued = fv === MULTI_VALUED;
+
   let isVisible = false;
-  const fv = fullValue();
-  if (props.show || (fv !== undefined && fv !== null)) {
+  if (props.show || (fv !== void 0 && fv !== null)) {
     isVisible = true;
   }
 
   const plotProps = {
     attrMeta,
     container,
+    defaultValue,
     fullContainer,
     fullValue,
     isVisible,
     updateContainer,
     updatePlot,
+    multiValued,
   };
 
   if (isNumeric(attrMeta.max)) {
@@ -47,9 +61,10 @@ export default function unpackPlotProps(props, context, ComponentClass) {
     plotProps.min = attrMeta.min;
   }
 
-  // Allow Component Classes to further augment plotProps:
-  ComponentClass.unpackPlotProps &&
-    ComponentClass.unpackPlotProps(props, context, plotProps);
+  // Give Component Classes the space to modify plotProps:
+  if (ComponentClass.modifyPlotProps) {
+    ComponentClass.modifyPlotProps(props, context, plotProps);
+  }
 
   return plotProps;
 }

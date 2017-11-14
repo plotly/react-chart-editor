@@ -39,9 +39,9 @@ export default function connectToContainer(WrappedComponent) {
       );
       if (props.isVisible) {
         return <WrappedComponent {...props} plotProps={plotProps} />;
-      } else {
-        return null;
       }
+
+      return null;
     }
   }
 
@@ -51,6 +51,7 @@ export default function connectToContainer(WrappedComponent) {
 
   ContainerConnectedComponent.contextTypes = {
     container: PropTypes.object,
+    defaultContainer: PropTypes.object,
     fullContainer: PropTypes.object,
     getValObject: PropTypes.func,
     updateContainer: PropTypes.func,

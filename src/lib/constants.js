@@ -8,10 +8,10 @@ export const baseClass = "plotly-editor";
  * strings, we include a non-printable character (ESC) so it's not something
  * people could type.
  */
-export const MIXED_VALUES = "\x1bMIXED_VALUES";
+export const MULTI_VALUED = "\x1bMIXED_VALUES";
 
 // how mixed values are represented in text inputs
-export const MIXED_MODE_VALUE = "-";
+export const MULTI_VALUED_PLACEHOLDER = "-";
 
 /*
 export const CLEAR_WORKSPACE = "WORKSPACE_CLEAR_WORKSPACE";
