@@ -3,10 +3,13 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import dictionaries from './locales';
 import {bem} from './lib';
+import {noShame} from './shame';
 
 class PlotlyEditor extends Component {
   constructor(props, context) {
     super(props, context);
+
+    noShame({plotly: this.props.plotly});
 
     // we only need to compute this once.
     this.plotSchema = this.props.plotly.PlotSchema.get();
