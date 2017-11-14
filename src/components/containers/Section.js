@@ -1,7 +1,6 @@
 import SubPanel from './SubPanel';
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
-import {icon} from '../../lib';
 import unpackPlotProps from '../../lib/unpackPlotProps';
 
 function childIsVisible(child) {
@@ -32,7 +31,7 @@ class Section extends Component {
     let subPanel = null;
 
     for (let i = 0; i < children.length; i++) {
-      let child = children[i];
+      const child = children[i];
       if (!child) {
         continue;
       }
@@ -45,11 +44,11 @@ class Section extends Component {
         continue;
       }
 
-      let isAttr = !!child.props.attr;
-      let plotProps = isAttr
+      const isAttr = Boolean(child.props.attr);
+      const plotProps = isAttr
         ? unpackPlotProps(child.props, context, child.constructor)
         : {isVisible: true};
-      let childProps = Object.assign({plotProps}, child.props);
+      const childProps = Object.assign({plotProps}, child.props);
       childProps.key = i;
       attrChildren.push(cloneElement(child, childProps));
     }
@@ -75,8 +74,14 @@ class Section extends Component {
   }
 }
 
+Section.propTypes = {
+  children: PropTypes.node,
+  name: PropTypes.string,
+};
+
 Section.contextTypes = {
   container: PropTypes.object,
+  defaultContainer: PropTypes.object,
   fullContainer: PropTypes.object,
   getValObject: PropTypes.func,
   updateContainer: PropTypes.func,
