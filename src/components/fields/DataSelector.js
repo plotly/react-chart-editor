@@ -3,27 +3,27 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Field from './Field';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {bem, connectToContainer} from '../../lib';
+import {connectToContainer} from '../../lib';
 
 function attributeIsData(meta = {}) {
   return meta.valType === 'data_array' || meta.arrayOk;
 }
 
 class DataSelector extends Component {
-  static unpackPlotProps(props, context, plotProps) {
+  static modifyPlotProps(props, context, plotProps) {
     if (attributeIsData(plotProps.attrMeta)) {
       plotProps.isVisible = true;
     }
   }
 
-  constructor(props, context) {
+  constructor(props) {
     super(props);
 
-    this.setLocals(props);
     this.updatePlot = this.updatePlot.bind(this);
+    this.setLocals(props);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillUpdate(nextProps) {
     this.setLocals(nextProps);
   }
 
