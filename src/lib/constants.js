@@ -1,4 +1,4 @@
-export const baseClass = "plotly-editor";
+export const baseClass = 'plotly-editor';
 
 /*
  * Control represents multiple settings (like for several axes)
@@ -8,10 +8,20 @@ export const baseClass = "plotly-editor";
  * strings, we include a non-printable character (ESC) so it's not something
  * people could type.
  */
-export const MULTI_VALUED = "\x1bMIXED_VALUES";
+export const MULTI_VALUED = '\x1bMIXED_VALUES';
 
 // how mixed values are represented in text inputs
-export const MULTI_VALUED_PLACEHOLDER = "---";
+export const MULTI_VALUED_PLACEHOLDER = '---';
+
+export const multiValueText = {
+  title: 'Multiple Values',
+  text:
+    'This input has multiple values associated with it. ' +
+    'Changing this setting will override these custom inputs.',
+  subText:
+    "Common Case: An 'All' tab might display this message " +
+    'because the X and Y tabs contain different settings.',
+};
 
 /*
 export const CLEAR_WORKSPACE = "WORKSPACE_CLEAR_WORKSPACE";
