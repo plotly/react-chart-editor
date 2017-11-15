@@ -1,48 +1,20 @@
-.subpanel {
-  position: absolute;
-  border-radius: 2px;
-  text-transform: none;
-  text-align: left;
-  border: 1px solid $color-border;
-
-  align-content: center;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
-  left: 0;
-  right: 0;
-
-  margin: 0 24px;
-  min-width: 200px;
-  background-color: $color-white;
-
-  @include z-index("cloud");
-}
-
-.subpanel__cover {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  @include z-index("underground");
-}
-
-.subpanel__container {
+.menupanel {
   padding-top: 0;
 }
 
-.subpanel__container--ownline {
+.menupanel--ownline {
   padding-top: 6px;
 }
 
-.subpanel__icon-span {
+.menupanel__icon-span {
   font-size: $font-size-small;
 }
 
-.subpanel__icon-span--question {
+.menupanel__icon-span--question {
   color: $color-link-light;
 }
 
-.subpanel__icon {
+.menupanel__icon {
   padding-left: 6px;
   padding-right: 6px;
   vertical-align: middle;

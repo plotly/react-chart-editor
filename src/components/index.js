@@ -11,13 +11,13 @@ import {
   TraceSelector,
 } from './fields';
 
-import {SubPanel, Fold, Panel, Section, TraceAccordion} from './containers';
+import {MenuPanel, Fold, Panel, Section, TraceAccordion} from './containers';
 import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
   AxesSelector,
   AxesRange,
-  SubPanel,
+  MenuPanel,
   ColorPicker,
   DataSelector,
   Dropdown,

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import SubPanel from '../containers/SubPanel';
+import MenuPanel from '../containers/MenuPanel';
 import classnames from 'classnames';
 import {bem, localize} from '../../lib';
 import {multiValueText} from '../../lib/constants';
@@ -48,11 +48,11 @@ class Field extends Component {
         <div className={fieldClass}>
           {children}
           {multiValued ? (
-            <SubPanel label={_(multiValueText.title)} ownline question>
+            <MenuPanel label={_(multiValueText.title)} ownline question>
               <div className="info__title">{_(multiValueText.title)}</div>
               <div className="info__text">{_(multiValueText.text)}</div>
               <div className="info__sub-text">{_(multiValueText.subText)}</div>
-            </SubPanel>
+            </MenuPanel>
           ) : null}
         </div>
         {postfix ? (

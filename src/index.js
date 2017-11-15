@@ -12,7 +12,6 @@ import {EDITOR_ACTIONS} from './constants';
 import {
   AxesRange,
   AxesSelector,
-  SubPanel,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -25,6 +24,7 @@ import {
   PanelMenuWrapper,
   Radio,
   Section,
+  MenuPanel,
   TraceAccordion,
   TraceSelector,
 } from './components';
@@ -32,7 +32,7 @@ import {
 export {
   AxesRange,
   AxesSelector,
-  SubPanel,
+  MenuPanel,
   ColorPicker,
   DataSelector,
   Dropdown,

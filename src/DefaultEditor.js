@@ -14,7 +14,8 @@ import {
   PanelMenuWrapper,
   Radio,
   Section,
-  SubPanel,
+  MenuPanel,
+  SymbolSelector,
   TraceAccordion,
   TraceSelector,
 } from './components';
@@ -278,7 +279,7 @@ class DefaultEditor extends Component {
               />
             </Section>
             <Section name={_('Positioning')}>
-              <SubPanel>
+              <MenuPanel>
                 <Section name={_('Anchor Point')}>
                   <Info>
                     {_(
@@ -303,7 +304,7 @@ class DefaultEditor extends Component {
                     ]}
                   />
                 </Section>
-              </SubPanel>
+              </MenuPanel>
               <Numeric
                 label={_('X Position')}
                 step={0.01}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Section from '../Section';
-import SubPanel from '../SubPanel';
+import MenuPanel from '../MenuPanel';
 import {Flaglist, Info, Numeric} from '../../fields';
 import {TestEditor, fixtures, plotly} from '../../../lib/test-utils';
 import {connectTraceToPlot} from '../../../lib';
@@ -91,7 +91,7 @@ describe('Section', () => {
     expect(wrapper.find(Numeric).exists()).toBe(false);
   });
 
-  it('will render first subPanel even with no visible attrs', () => {
+  it('will render first menuPanel even with no visible attrs', () => {
     const wrapper = mount(
       <TestEditor
         plotly={plotly}
@@ -99,12 +99,12 @@ describe('Section', () => {
         {...fixtures.scatter({deref: true})}
       >
         <Section name="test-section">
-          <SubPanel show>
+          <MenuPanel show>
             <Info>INFO</Info>
-          </SubPanel>
-          <SubPanel show>
+          </MenuPanel>
+          <MenuPanel show>
             <Info>MISINFORMATION</Info>
-          </SubPanel>
+          </MenuPanel>
         </Section>
       </TestEditor>
     ).find('[name="test-section"]');
