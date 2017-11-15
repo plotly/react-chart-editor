@@ -3,7 +3,13 @@ import isNumeric from 'fast-isnumeric';
 import {MULTI_VALUED, MULTI_VALUED_PLACEHOLDER} from './constants';
 
 export default function unpackPlotProps(props, context, ComponentClass) {
-  const {container, defaultContainer, fullContainer, updateContainer} = context;
+  const {
+    container,
+    getValObject,
+    defaultContainer,
+    fullContainer,
+    updateContainer,
+  } = context;
 
   if (!container || !fullContainer) {
     throw new Error(
@@ -46,6 +52,7 @@ export default function unpackPlotProps(props, context, ComponentClass) {
     attrMeta,
     container,
     defaultValue,
+    getValObject,
     fullContainer,
     fullValue,
     isVisible,

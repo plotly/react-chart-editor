@@ -5,13 +5,13 @@ import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {connectToContainer} from '../../lib';
 
 class TraceSelector extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     this.updatePlot = this.updatePlot.bind(this);
     this.fullValue = this.fullValue.bind(this);
 
-    const scatterAttrs = this.context.plotSchema.traces.scatter.attributes;
-    this.fillTypes = scatterAttrs.fill.values.filter(v => v !== 'none');
+    const fillMeta = props.getValObject('fill');
+    this.fillTypes = fillMeta.values.filter(v => v !== 'none');
   }
 
   updatePlot(value) {
@@ -26,18 +26,19 @@ class TraceSelector extends Component {
       update = {type: value};
     }
 
-    this.props.updateContainer && this.props.updateContainer(update);
+    if (this.props.updateContainer) {
+      this.props.updateContainer(update);
+    }
   }
 
   fullValue() {
-    const type = this.props.fullValue();
+    const {container, fullValue} = this.props;
+    const type = fullValue();
 
-    // we use gd.data instead of fullData so that we can show the trace
-    // even if the trace is not visible due to missing data.
-    // If we used fullData mode or fill will be undefined as the fullTrace
-    // isn't computed when not visible.
-    const mode = nestedProperty(this.props.trace, 'mode').get();
-    const fill = nestedProperty(this.props.trace, 'fill').get();
+    // If we used fullData mode or fill it may be undefined if the fullTrace
+    // is not visible and therefore does not have these values computed.
+    const mode = nestedProperty(container, 'mode').get();
+    const fill = nestedProperty(container, 'fill').get();
 
     if (type === 'scatter' && this.fillTypes.includes(fill)) {
       return 'area';
@@ -60,8 +61,11 @@ class TraceSelector extends Component {
   }
 }
 
-TraceSelector.contextTypes = {
-  plotSchema: PropTypes.object,
+TraceSelector.propTypes = {
+  getValObject: PropTypes.func.isRequired,
+  container: PropTypes.object.isRequired,
+  fullValue: PropTypes.func.isRequired,
+  updateContainer: PropTypes.func,
 };
 
 export default connectToContainer(TraceSelector);
