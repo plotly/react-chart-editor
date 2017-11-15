@@ -8,6 +8,7 @@ import {
   Radio,
   DataSelector,
   Numeric,
+  SymbolSelector,
   TraceSelector,
 } from './fields';
 
@@ -29,6 +30,7 @@ export {
   PanelMenuWrapper,
   Radio,
   Section,
+  SymbolSelector,
   TraceAccordion,
   TraceSelector,
 };

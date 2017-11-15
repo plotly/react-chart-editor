@@ -143,24 +143,17 @@ class DefaultEditor extends Component {
             </Section>
 
             <Section name={_('Points')}>
-              <Numeric
-                label={_('Marker Opacity')}
-                step={0.1}
-                attr="marker.opacity"
-              />
-
-              <ColorPicker label={_('Marker Color')} attr="marker.color" />
-
+              <ColorPicker label={_('Color')} attr="marker.color" />
+              <Numeric label={_('Opacity')} step={0.1} attr="marker.opacity" />
               <Numeric label={_('Size')} attr="marker.size" />
-
-              <Numeric label={_('Line width')} attr="marker.line.width" />
+              <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
+              <Numeric label={_('Border Width')} attr="marker.line.width" />
+              <ColorPicker label={_('Border Color')} attr="marker.line.color" />
             </Section>
 
             <Section name={_('Lines')}>
               <Numeric label={_('Width')} step={1.0} attr="line.width" />
-
-              <ColorPicker label={_('Line color')} attr="line.color" />
-
+              <ColorPicker label={_('Line Color')} attr="line.color" />
               <Radio
                 label={_('Connect Gaps')}
                 attr="connectgaps"

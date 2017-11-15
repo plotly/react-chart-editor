@@ -25,6 +25,7 @@ import {
   Radio,
   Section,
   MenuPanel,
+  SymbolSelector,
   TraceAccordion,
   TraceSelector,
 } from './components';
@@ -47,6 +48,7 @@ export {
   PanelMenuWrapper,
   Radio,
   Section,
+  SymbolSelector,
   TraceAccordion,
   TraceSelector,
   connectAxesToLayout,

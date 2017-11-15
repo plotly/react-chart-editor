@@ -7,6 +7,7 @@ import Info from './Info';
 import Radio from './Radio';
 import DataSelector from './DataSelector';
 import Numeric from './Numeric';
+import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 
 export {
@@ -19,5 +20,6 @@ export {
   Radio,
   DataSelector,
   Numeric,
+  SymbolSelector,
   TraceSelector,
 };
