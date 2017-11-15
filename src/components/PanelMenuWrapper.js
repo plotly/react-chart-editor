@@ -1,6 +1,6 @@
 import SidebarGroup from './sidebar/SidebarGroup';
 import React, {cloneElement, Component} from 'react';
-import {bem, localize} from '../lib';
+import {bem} from '../lib';
 
 class PanelsWithSidebar extends Component {
   constructor(props) {
@@ -87,4 +87,4 @@ class PanelsWithSidebar extends Component {
   }
 }
 
-export default localize(PanelsWithSidebar);
+export default PanelsWithSidebar;
