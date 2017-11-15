@@ -43,7 +43,7 @@ $slider-picker-height: 10px;
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 1px solid $lightgrey;
+    border: 1px solid $color-gray-light;
     vertical-align: middle;
     padding-top: $sixth-spacing-unit;
     padding-left: $sixth-spacing-unit;
@@ -52,7 +52,7 @@ $slider-picker-height: 10px;
 
 .colorpicker__selected-color {
     margin-left: $half-spacing-unit;
-    color: $color-muted-text;
+    color: $color-black-pale;
     font-weight: $font-weight-light;
     font-size: $font-size-small;
     display: inline-block;
@@ -68,7 +68,7 @@ $slider-picker-height: 10px;
 }
 
 .toolLabel {
-    color: $color-muted-text;
+    color: $color-black-pale;
     font-size: $font-size-small;
     font-weight: $font-weight-light;
 }

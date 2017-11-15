@@ -2,8 +2,10 @@
  * SIZING AND WEIGHTS
  */
 $font-weight-light: 300;
+$font-weight-normal: 400;
 $font-weight-semibold: 600;
 $font-size-small: 12px;
+$font-size-medium: 14px;
 $h5-size: 16px !default;
 
 /*
@@ -24,14 +26,70 @@ $border-radius-5: 5px;
 /*
  * COLORS
  */
+$color-black-dark: #000;
+$color-black-paleish: #333;
+$color-black-pale: #666;
+$color-black: #111;
+$color-navyblue: #284576;
+$color-blue: #119DFF;
+$color-blue-dark: darken($color-blue, 20%);
+$color-blue-pale: #45a9ff;
+$color-blue-paleish: #2391fe;
+$color-cyan-pale: #9bd1ff;
+$color-gold: #f7bd0c;
+$color-gray-blue: #69738a;
+$color-gray-blue-pale: #bec8d9;
+$color-gray-dark: #888;
+$color-gray-light: #ddd;
+$color-gray: #ccc;
+$color-green-cyan: #53cf9d;
+$color-green-pale: #dff0d8;
+$color-green: #3c763d;
+$color-red-pale: #f2dede;
+$color-red: #a94442;
+$color-white-blue: #f4faff;
+$color-white-dark: #eee;
+$color-white-darkish: #f8f8f8;
 $color-white: #ffffff;
-$lightgrey: #dcdddd;
-$color-muted-text: #777;
-$dark-grey: #4c5059;
-$color-page-background: #f3f6fa;
-$color-highlight-darker: #bec8d9;
+
+// ---
+// Text and Backgrounds
+// ---
+$color-rhino-core:                    #2a3f5f; // Active state text, emphasized text
+$color-rhino-dark:                    #506784; // Default text color
+$color-rhino-medium-1:                #a2b1c6;
+$color-rhino-medium-2:                #c8d4e3; // Border Default
+$color-rhino-light-1:                 #dfe8f3; // Border Secondary
+$color-rhino-light-2:                 #ebf0f8; // Button Secondary
+$color-rhino-light-3:                 #f3f6fa; // Page Background
+$color-rhino-light-4:                 #fafbfd; // Modal Tabbed Content Background
+
+
+// ---
+// Primary
+// --
+$color-dodger:                        #119DFF; // Accent
+$color-dodger-shade:                  #0D76BF; // Link Hover
+
+// ---
+// Accent
+// ---
+$color-aqua:                          #09ffff;
+$color-aqua-shade:                    #19d3f3; // Body Text
+$color-lavender:                      #e763fa;
+$color-lavender-shade:                #ab63fa;
+$color-cornflower:                    #636efa;
+$color-emerald:                       #00cc96; // CTA's on blue backgrounds
+$color-sienna:                        #ef553b; // CTA's on blue backgrounds
+
+// ---
+// Buttons
+// ---
+$color-button-default:                #119dff;
+$color-button-hover:                  #0f89df;
+$color-button-active:                 #0d76bf;
 
 /*
  * COMPONENT
  */
-$fold-border: 1px solid $color-highlight-darker;
+$fold-border: 1px solid $color-gray-blue-pale;
