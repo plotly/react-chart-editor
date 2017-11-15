@@ -5,6 +5,12 @@ import {getDisplayName} from '../lib';
 
 export default function connectToContainer(WrappedComponent) {
   class ContainerConnectedComponent extends Component {
+    static modifyPlotProps(props, context, plotProps) {
+      if (WrappedComponent.modifyPlotProps) {
+        WrappedComponent.modifyPlotProps(props, context, plotProps);
+      }
+    }
+
     constructor(props, context) {
       super(props, context);
 

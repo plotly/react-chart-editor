@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
   AxesSelector,
+  AxesRange,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -194,9 +195,29 @@ class DefaultEditor extends Component {
             <Numeric label={_('Size')} step={1} attr="font.size" postfix="px" />
             <ColorPicker label={_('Color')} attr="font.color" />
           </AxesFold>
+
           <AxesFold name={_('Range')}>
             <AxesSelector />
+            <Section name={_('Selection')}>
+              <Radio
+                attr="autorange"
+                options={[
+                  {label: _('Auto'), value: true},
+                  {label: _('Custom'), value: false},
+                ]}
+              />
+              <AxesRange label={_('Min')} attr="range[0]" />
+              <AxesRange label={_('Max')} attr="range[1]" />
+              <Radio
+                attr="type"
+                options={[
+                  {label: _('Linear'), value: 'linear'},
+                  {label: _('log'), value: 'log'},
+                ]}
+              />
+            </Section>
           </AxesFold>
+
           <AxesFold name={_('Lines')}>
             <AxesSelector />
           </AxesFold>

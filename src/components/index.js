@@ -1,4 +1,5 @@
 import {
+  AxesRange,
   AxesSelector,
   ColorPicker,
   Dropdown,
@@ -15,6 +16,7 @@ import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
   AxesSelector,
+  AxesRange,
   SubPanel,
   ColorPicker,
   DataSelector,

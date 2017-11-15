@@ -46,7 +46,7 @@ class Section extends Component {
 
       const isAttr = Boolean(child.props.attr);
       const plotProps = isAttr
-        ? unpackPlotProps(child.props, context, child.constructor)
+        ? unpackPlotProps(child.props, context, child.type)
         : {isVisible: true};
       const childProps = Object.assign({plotProps}, child.props);
       childProps.key = i;

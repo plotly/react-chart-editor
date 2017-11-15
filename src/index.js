@@ -10,6 +10,7 @@ import {
 import {EDITOR_ACTIONS} from './constants';
 
 import {
+  AxesRange,
   AxesSelector,
   SubPanel,
   ColorPicker,
@@ -29,6 +30,7 @@ import {
 } from './components';
 
 export {
+  AxesRange,
   AxesSelector,
   SubPanel,
   ColorPicker,

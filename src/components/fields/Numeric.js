@@ -16,7 +16,7 @@ class Numeric extends Component {
           max={this.props.max}
           onChange={this.props.updatePlot}
           onUpdate={this.props.updatePlot}
-          showArrows
+          showArrows={this.props.showArrows}
         />
       </Field>
     );
@@ -28,9 +28,14 @@ Numeric.propTypes = {
   fullValue: PropTypes.func,
   min: PropTypes.number,
   max: PropTypes.number,
+  showArrows: PropTypes.number,
   step: PropTypes.number,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
+};
+
+Numeric.defaultProps = {
+  showArrows: true,
 };
 
 export default connectToContainer(Numeric);
