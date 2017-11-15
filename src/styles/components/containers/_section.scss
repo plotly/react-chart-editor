@@ -1,10 +1,10 @@
 .section__heading {
   display: flex;
-  font-size: 13px;
-  color: #69738a;
+  font-size: $font-size;
+  color: $color-header-text;
   font-weight: 400;
   cursor: default;
-  background-color: #F4FAFF;
+  background-color: $color-section-header-background;
   padding: 6px 12px;
   clear: both;
   text-transform: capitalize;

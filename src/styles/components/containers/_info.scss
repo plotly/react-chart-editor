@@ -1,5 +1,5 @@
 .info__title {
-    color: $color-blue-pale;
+    color: $color-link-light;
     font-size: $font-size-medium;
     font-weight: $font-weight-normal;
     line-height: 18px;
@@ -8,14 +8,14 @@
 
 .info__text {
     padding: $quarter-spacing-unit $half-spacing-unit;
-    color: $color-rhino-dark;
+    color: $color-secondary-text;
     font-size: $font-size-small;
     font-weight: $font-weight-light;
     line-height: 18px;
 }
 
 .info__sub-text {
-    color: $color-navyblue;
+    color: $color-brand;
     font-size: $font-size-small;
     font-weight: $font-weight-light;
     line-height: 14px;
