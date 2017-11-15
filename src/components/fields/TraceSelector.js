@@ -11,7 +11,11 @@ class TraceSelector extends Component {
     this.fullValue = this.fullValue.bind(this);
 
     const fillMeta = props.getValObject('fill');
-    this.fillTypes = fillMeta.values.filter(v => v !== 'none');
+    if (fillMeta) {
+      this.fillTypes = fillMeta.values.filter(v => v !== 'none');
+    } else {
+      this.fillTypes = [];
+    }
   }
 
   updatePlot(value) {

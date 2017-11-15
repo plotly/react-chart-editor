@@ -89,8 +89,8 @@ EditableText.propTypes = {
   // Called on input keyDown events
   onKeyDown: PropTypes.func,
 
-  // Input value property
-  text: PropTypes.string,
+  // Input value property ...
+  text: PropTypes.any,
 
   // Input properties
   placeholder: PropTypes.string,
