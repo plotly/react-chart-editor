@@ -34,7 +34,10 @@ export default function unpackPlotProps(props, context, ComponentClass) {
   }
 
   // Property descriptions and meta:
-  const attrMeta = context.getValObject(props.attr) || {};
+  let attrMeta;
+  if (getValObject) {
+    attrMeta = context.getValObject(props.attr) || {};
+  }
 
   // Update data functions:
   const updatePlot = v => updateContainer && updateContainer({[props.attr]: v});
@@ -61,11 +64,13 @@ export default function unpackPlotProps(props, context, ComponentClass) {
     multiValued,
   };
 
-  if (isNumeric(attrMeta.max)) {
-    plotProps.max = attrMeta.max;
-  }
-  if (isNumeric(attrMeta.min)) {
-    plotProps.min = attrMeta.min;
+  if (attrMeta) {
+    if (isNumeric(attrMeta.max)) {
+      plotProps.max = attrMeta.max;
+    }
+    if (isNumeric(attrMeta.min)) {
+      plotProps.min = attrMeta.min;
+    }
   }
 
   // Give Component Classes the space to modify plotProps:

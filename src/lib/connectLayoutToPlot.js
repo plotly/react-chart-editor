@@ -14,12 +14,17 @@ export default function connectLayoutToPlot(WrappedComponent) {
 
     getChildContext() {
       const {layout, fullLayout, plotly} = this.context;
-      return {
-        getValObject: attr =>
+
+      let getValObject;
+      if (plotly) {
+        getValObject = attr =>
           plotly.PlotSchema.getLayoutValObject(
             fullLayout,
             nestedProperty({}, attr).parts
-          ),
+          );
+      }
+      return {
+        getValObject,
         updateContainer: this.updateContainer,
         container: layout,
         fullContainer: fullLayout,
@@ -48,7 +53,7 @@ export default function connectLayoutToPlot(WrappedComponent) {
   LayoutConnectedComponent.contextTypes = {
     layout: PropTypes.object,
     fullLayout: PropTypes.object,
-    plotly: PropTypes.object.isRequired,
+    plotly: PropTypes.object,
     onUpdate: PropTypes.func,
   };
 

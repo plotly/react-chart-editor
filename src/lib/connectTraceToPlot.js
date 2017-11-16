@@ -20,12 +20,18 @@ export default function connectTraceToPlot(WrappedComponent) {
       const trace = data[traceIndex] || {};
       const fullTraceIndex = findFullTraceIndex(fullData, traceIndex);
       const fullTrace = fullData[fullTraceIndex] || {};
-      return {
-        getValObject: attr =>
+
+      let getValObject;
+      if (plotly) {
+        getValObject = attr =>
           plotly.PlotSchema.getTraceValObject(
             fullTrace,
             nestedProperty({}, attr).parts
-          ),
+          );
+      }
+
+      return {
+        getValObject,
         updateContainer: this.updateTrace,
         deleteContainer: this.deleteTrace,
         container: trace,
@@ -70,7 +76,7 @@ export default function connectTraceToPlot(WrappedComponent) {
   TraceConnectedComponent.contextTypes = {
     fullData: PropTypes.array,
     data: PropTypes.array,
-    plotly: PropTypes.object.isRequired,
+    plotly: PropTypes.object,
     onUpdate: PropTypes.func,
   };
 
