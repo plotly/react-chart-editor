@@ -28,32 +28,6 @@ const LayoutPanel = connectLayoutToPlot(Panel);
 const AxesFold = connectAxesToLayout(Fold);
 
 class DefaultEditor extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
-
-    // Filter out Polar "area" type as it is fairly broken and we want to present
-    // scatter with fill as an "area" chart type for convenience.
-    const traceTypes = Object.keys(context.plotSchema.traces).filter(
-      t => t !== 'area'
-    );
-
-    const labels = traceTypes.map(capitalize);
-    this.traceOptions = traceTypes.map((t, i) => ({
-      label: labels[i],
-      value: t,
-    }));
-
-    const i = this.traceOptions.findIndex(opt => opt.value === 'scatter');
-    this.traceOptions.splice(
-      i + 1,
-      0,
-      {label: 'Line', value: 'line'},
-      {label: 'Area', value: 'area'}
-    );
-  }
-
   render() {
     const _ = this.props.localize;
 
@@ -65,7 +39,6 @@ class DefaultEditor extends Component {
               label="Plot Type"
               attr="type"
               clearable={false}
-              options={this.traceOptions}
               show
             />
 
@@ -115,6 +88,18 @@ class DefaultEditor extends Component {
           <TraceAccordion>
             <Section name={_('Trace')}>
               <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
+            </Section>
+
+            <Section name={_('Text Attributes')}>
+              <Flaglist
+                attr="textinfo"
+                options={[
+                  {label: 'Label', value: 'label'},
+                  {label: 'Text', value: 'text'},
+                  {label: 'Value', value: 'value'},
+                  {label: '%', value: 'percent'},
+                ]}
+              />
             </Section>
 
             <Section name={_('Display')}>
@@ -252,21 +237,21 @@ class DefaultEditor extends Component {
             </Section>
           </AxesFold>
 
-          <AxesFold name={_('Lines')}>
-            <AxesSelector />
-          </AxesFold>
-          <AxesFold name={_('Tick Labels')}>
-            <AxesSelector />
-          </AxesFold>
-          <AxesFold name={_('Tick Markers')}>
-            <AxesSelector />
-          </AxesFold>
-          <AxesFold name={_('Zoom Interactivity')}>
-            <AxesSelector />
-          </AxesFold>
-          <AxesFold name={_('Layout')}>
-            <AxesSelector />
-          </AxesFold>
+          {/* <AxesFold name={_('Lines')}>
+              <AxesSelector />
+              </AxesFold>
+              <AxesFold name={_('Tick Labels')}>
+              <AxesSelector />
+              </AxesFold>
+              <AxesFold name={_('Tick Markers')}>
+              <AxesSelector />
+              </AxesFold>
+              <AxesFold name={_('Zoom Interactivity')}>
+              <AxesSelector />
+              </AxesFold>
+              <AxesFold name={_('Layout')}>
+              <AxesSelector />
+              </AxesFold> */}
         </LayoutPanel>
 
         <LayoutPanel group="Style" name={_('Legend')}>
@@ -378,7 +363,6 @@ class DefaultEditor extends Component {
 
 DefaultEditor.contextTypes = {
   dataSourceNames: PropTypes.array.isRequired,
-  plotSchema: PropTypes.object.isRequired,
 };
 
 export default localize(DefaultEditor);
