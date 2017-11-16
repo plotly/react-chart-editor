@@ -12,7 +12,14 @@ import {
   TraceSelector,
 } from './fields';
 
-import {MenuPanel, Fold, Panel, Section, TraceAccordion} from './containers';
+import {
+  MenuPanel,
+  Fold,
+  Panel,
+  Section,
+  TraceAccordion,
+  TraceMarkerSection,
+} from './containers';
 import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
@@ -32,5 +39,6 @@ export {
   Section,
   SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
 };

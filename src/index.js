@@ -27,6 +27,7 @@ import {
   MenuPanel,
   SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
 } from './components';
 
@@ -50,6 +51,7 @@ export {
   Section,
   SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
   connectAxesToLayout,
   connectLayoutToPlot,

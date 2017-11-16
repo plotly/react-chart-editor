@@ -17,6 +17,7 @@ import {
   MenuPanel,
   SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
 } from './components';
 import {DEFAULT_FONTS} from './constants';
@@ -142,14 +143,21 @@ class DefaultEditor extends Component {
               <ColorPicker label={_('Color')} attr="fillcolor" />
             </Section>
 
-            <Section name={_('Points')}>
+            <TraceMarkerSection>
+              <Radio
+                attr="orientation"
+                options={[
+                  {label: _('Vertical'), value: 'v'},
+                  {label: _('Horizontal'), value: 'h'},
+                ]}
+              />
               <ColorPicker label={_('Color')} attr="marker.color" />
               <Numeric label={_('Opacity')} step={0.1} attr="marker.opacity" />
               <Numeric label={_('Size')} attr="marker.size" />
               <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
               <Numeric label={_('Border Width')} attr="marker.line.width" />
               <ColorPicker label={_('Border Color')} attr="marker.line.color" />
-            </Section>
+            </TraceMarkerSection>
 
             <Section name={_('Lines')}>
               <Numeric label={_('Width')} step={1.0} attr="line.width" />

@@ -45,9 +45,14 @@ class Section extends Component {
       }
 
       const isAttr = Boolean(child.props.attr);
-      const plotProps = isAttr
-        ? unpackPlotProps(child.props, context, child.type)
-        : {isVisible: true};
+      let plotProps;
+      if (child.plotProps) {
+        plotProps = child.plotProps;
+      } else if (isAttr) {
+        plotProps = unpackPlotProps(child.props, context, child.type);
+      } else {
+        plotProps = {isVisible: true};
+      }
       const childProps = Object.assign({plotProps}, child.props);
       childProps.key = i;
       attrChildren.push(cloneElement(child, childProps));
