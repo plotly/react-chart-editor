@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   AxesSelector,
   AxesRange,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -176,10 +177,41 @@ class DefaultEditor extends Component {
 
         <LayoutPanel group="Style" name={_('Layout')}>
           <Fold name={_('Canvas')}>
-            <Numeric
+            <Radio
+              attr="autosize"
+              options={[
+                {label: _('Auto'), value: true},
+                {label: _('Custom'), value: false},
+              ]}
+            />
+            <CanvasSize
               label={_('Fixed Width')}
               step={1}
               attr="width"
+              postfix="px"
+            />
+            <CanvasSize
+              label={_('Fixed Height')}
+              step={1}
+              attr="height"
+              postfix="px"
+            />
+            <ColorPicker label={_('Color')} attr="paper_bgcolor" />
+          </Fold>
+          <Fold name={_('Margins and Padding')}>
+            <Numeric label={_('Top')} step={1} attr="margin.t" postfix="px" />
+            <Numeric
+              label={_('Bottom')}
+              step={1}
+              attr="margin.b"
+              postfix="px"
+            />
+            <Numeric label={_('Left')} step={1} attr="margin.l" postfix="px" />
+            <Numeric label={_('Right')} step={1} attr="margin.r" postfix="px" />
+            <Numeric
+              label={_('Padding')}
+              step={1}
+              attr="margin.pad"
               postfix="px"
             />
           </Fold>

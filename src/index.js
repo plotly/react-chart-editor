@@ -12,6 +12,7 @@ import {EDITOR_ACTIONS} from './constants';
 import {
   AxesRange,
   AxesSelector,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -35,6 +36,7 @@ export {
   AxesRange,
   AxesSelector,
   MenuPanel,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,

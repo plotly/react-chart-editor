@@ -1,6 +1,7 @@
 import {
   AxesRange,
   AxesSelector,
+  CanvasSize,
   ColorPicker,
   Dropdown,
   Flaglist,
@@ -26,6 +27,7 @@ export {
   AxesSelector,
   AxesRange,
   MenuPanel,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
