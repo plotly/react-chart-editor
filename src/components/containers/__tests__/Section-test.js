@@ -2,7 +2,7 @@ import React from 'react';
 import Section from '../Section';
 import MenuPanel from '../MenuPanel';
 import {Flaglist, Info, Numeric} from '../../fields';
-import {TestEditor, fixtures, plotly} from '../../../lib/test-utils';
+import {TestEditor, fixtures} from '../../../lib/test-utils';
 import {connectTraceToPlot} from '../../../lib';
 import {mount} from 'enzyme';
 
@@ -12,11 +12,7 @@ describe('Section', () => {
   it('is visible if it contains any visible children', () => {
     // mode is visible with scatter. Hole is not visible. Section should show.
     const wrapper = mount(
-      <TestEditor
-        plotly={plotly}
-        onUpdate={jest.fn()}
-        {...fixtures.scatter({deref: true})}
-      >
+      <TestEditor onUpdate={jest.fn()} {...fixtures.scatter({deref: true})}>
         <TraceSection traceIndex={0} name="test-section">
           <Flaglist
             attr="mode"
@@ -50,11 +46,7 @@ describe('Section', () => {
 
   it('is visible if it contains any non attr children', () => {
     const wrapper = mount(
-      <TestEditor
-        plotly={plotly}
-        onUpdate={jest.fn()}
-        {...fixtures.scatter({deref: true})}
-      >
+      <TestEditor onUpdate={jest.fn()} {...fixtures.scatter({deref: true})}>
         <Section name="test-section">
           <Info>INFO</Info>
         </Section>
@@ -69,11 +61,7 @@ describe('Section', () => {
   it('is not visible if it contains no visible children', () => {
     // pull and hole are not scatter attrs. Section should not show.
     const wrapper = mount(
-      <TestEditor
-        plotly={plotly}
-        onUpdate={jest.fn()}
-        {...fixtures.scatter({deref: true})}
-      >
+      <TestEditor onUpdate={jest.fn()} {...fixtures.scatter({deref: true})}>
         <TraceSection traceIndex={0} name="test-section">
           <Numeric attr="pull" min={0} max={1} step={0.1} traceIndex={0} />
           <Numeric attr="hole" min={0} max={1} step={0.1} traceIndex={0} />
@@ -93,11 +81,7 @@ describe('Section', () => {
 
   it('will render first menuPanel even with no visible attrs', () => {
     const wrapper = mount(
-      <TestEditor
-        plotly={plotly}
-        onUpdate={jest.fn()}
-        {...fixtures.scatter({deref: true})}
-      >
+      <TestEditor onUpdate={jest.fn()} {...fixtures.scatter({deref: true})}>
         <Section name="test-section">
           <MenuPanel show>
             <Info>INFO</Info>

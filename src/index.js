@@ -12,6 +12,7 @@ import {EDITOR_ACTIONS} from './constants';
 import {
   AxesRange,
   AxesSelector,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -27,6 +28,7 @@ import {
   MenuPanel,
   SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
 } from './components';
 
@@ -34,6 +36,7 @@ export {
   AxesRange,
   AxesSelector,
   MenuPanel,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -50,6 +53,7 @@ export {
   Section,
   SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
   connectAxesToLayout,
   connectLayoutToPlot,

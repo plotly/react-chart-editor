@@ -1,6 +1,7 @@
 import {
   AxesRange,
   AxesSelector,
+  CanvasSize,
   ColorPicker,
   Dropdown,
   Flaglist,
@@ -12,13 +13,21 @@ import {
   TraceSelector,
 } from './fields';
 
-import {MenuPanel, Fold, Panel, Section, TraceAccordion} from './containers';
+import {
+  MenuPanel,
+  Fold,
+  Panel,
+  Section,
+  TraceAccordion,
+  TraceMarkerSection,
+} from './containers';
 import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
   AxesSelector,
   AxesRange,
   MenuPanel,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -32,5 +41,6 @@ export {
   Section,
   SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
 };
