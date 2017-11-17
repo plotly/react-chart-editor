@@ -28,7 +28,7 @@ Numeric.propTypes = {
   fullValue: PropTypes.func,
   min: PropTypes.number,
   max: PropTypes.number,
-  showArrows: PropTypes.number,
+  showArrows: PropTypes.bool,
   step: PropTypes.number,
   updatePlot: PropTypes.func,
   ...Field.propTypes,

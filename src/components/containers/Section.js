@@ -1,4 +1,4 @@
-import SubPanel from './SubPanel';
+import MenuPanel from './MenuPanel';
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import unpackPlotProps from '../../lib/unpackPlotProps';
@@ -12,7 +12,7 @@ class Section extends Component {
     super(props, context);
 
     this.children = null;
-    this.subPanel = null;
+    this.menuPanel = null;
 
     this.processAndSetChildren(context);
   }
@@ -28,45 +28,50 @@ class Section extends Component {
     }
 
     const attrChildren = [];
-    let subPanel = null;
+    let menuPanel = null;
 
     for (let i = 0; i < children.length; i++) {
       const child = children[i];
       if (!child) {
         continue;
       }
-      if (child.type === SubPanel) {
-        // Process the first subPanel. Ignore the rest.
-        if (subPanel) {
+      if (child.type === MenuPanel) {
+        // Process the first menuPanel. Ignore the rest.
+        if (menuPanel) {
           continue;
         }
-        subPanel = child;
+        menuPanel = child;
         continue;
       }
 
       const isAttr = Boolean(child.props.attr);
-      const plotProps = isAttr
-        ? unpackPlotProps(child.props, context, child.type)
-        : {isVisible: true};
+      let plotProps;
+      if (child.plotProps) {
+        plotProps = child.plotProps;
+      } else if (isAttr) {
+        plotProps = unpackPlotProps(child.props, context, child.type);
+      } else {
+        plotProps = {isVisible: true};
+      }
       const childProps = Object.assign({plotProps}, child.props);
       childProps.key = i;
       attrChildren.push(cloneElement(child, childProps));
     }
 
     this.children = attrChildren.length ? attrChildren : null;
-    this.subPanel = subPanel;
+    this.menuPanel = menuPanel;
   }
 
   render() {
     const hasVisibleChildren =
       (this.children && this.children.some(childIsVisible)) ||
-      Boolean(this.subPanel);
+      Boolean(this.menuPanel);
 
     return hasVisibleChildren ? (
       <div className="section">
         <div className="section__heading">
           {this.props.name}
-          {this.subPanel}
+          {this.menuPanel}
         </div>
         {this.children}
       </div>

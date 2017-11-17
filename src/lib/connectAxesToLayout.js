@@ -34,9 +34,11 @@ function deepCopyPublic(value) {
 /*
  * Test that we can connectLayoutToPlot(connectAxesToLayout(Panel))
  */
-function setMultiValuedContainer(intoObj, fromObj, key, searchArrays) {
+function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
   var intoVal = intoObj[key],
     fromVal = fromObj[key];
+
+  var searchArrays = config.searchArrays;
 
   // don't merge private attrs
   if (
@@ -126,18 +128,22 @@ export default function connectAxesToLayout(WrappedComponent) {
     setLocals(nextProps, nextState, nextContext) {
       const {plotly, graphDiv, container, fullContainer} = nextContext;
       const {axesTarget} = nextState;
-      this.axes = plotly.Axes.list(graphDiv);
+      if (plotly) {
+        this.axes = plotly.Axes.list(graphDiv);
+      } else {
+        this.axes = [];
+      }
       this.axesOptions = computeAxesOptions(fullContainer, this.axes);
 
       if (axesTarget === 'allaxes') {
         const multiValuedContainer = deepCopyPublic(this.axes[0]);
-        this.axes
-          .slice(1)
-          .forEach(ax =>
-            Object.keys(ax).forEach(key =>
-              setMultiValuedContainer(multiValuedContainer, ax, key)
-            )
-          );
+        this.axes.slice(1).forEach(ax =>
+          Object.keys(ax).forEach(key =>
+            setMultiValuedContainer(multiValuedContainer, ax, key, {
+              searchArrays: true,
+            })
+          )
+        );
         this.fullContainer = multiValuedContainer;
         this.defaultContainer = this.axes[0];
         // what should this be set to? Probably doesn't matter.
@@ -214,8 +220,8 @@ export default function connectAxesToLayout(WrappedComponent) {
     container: PropTypes.object.isRequired,
     fullContainer: PropTypes.object.isRequired,
     graphDiv: PropTypes.object.isRequired,
-    plotly: PropTypes.object.isRequired,
-    updateContainer: PropTypes.func.isRequired,
+    plotly: PropTypes.object,
+    updateContainer: PropTypes.func,
   };
 
   AxesConnectedComponent.childContextTypes = {

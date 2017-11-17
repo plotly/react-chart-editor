@@ -7,38 +7,34 @@ import {connectTraceToPlot} from '../../lib';
 const TraceFold = connectTraceToPlot(Fold);
 
 export default class TraceAccordion extends Component {
-  constructor(props, context) {
+  constructor(props) {
     super(props);
 
     this.addTrace = this.addTrace.bind(this);
-    this.renderPanel = this.renderPanel.bind(this);
-  }
-
-  renderPanel(d, i) {
-    return (
-      <TraceFold key={i} traceIndex={i} name={`Trace ${i}`}>
-        {this.props.children}
-      </TraceFold>
-    );
   }
 
   addTrace() {
-    this.context.onUpdate &&
+    if (this.context.onUpdate) {
       this.context.onUpdate({
         type: EDITOR_ACTIONS.ADD_TRACE,
       });
+    }
   }
 
   render() {
     const data = this.context.data || [];
     return (
       <div>
-        {this.props.canAdd && (
+        {this.props.canAdd ? (
           <a href="#" onClick={this.addTrace}>
             Add
           </a>
-        )}
-        {data.map(this.renderPanel)}
+        ) : null}
+        {data.map((d, i) => (
+          <TraceFold key={i} traceIndex={i} name={`Trace ${i}`}>
+            {this.props.children}
+          </TraceFold>
+        ))}
       </div>
     );
   }
@@ -50,5 +46,6 @@ TraceAccordion.contextTypes = {
 };
 
 TraceAccordion.propTypes = {
+  children: PropTypes.node,
   canAdd: PropTypes.bool,
 };
