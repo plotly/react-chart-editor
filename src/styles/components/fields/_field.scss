@@ -1,0 +1,59 @@
+.field {
+  align-items: center;
+  border-top: 1px solid #f8f8f9;
+  color: #6D6D6D;
+  display: flex;
+  font-size: $font-size;
+  font-weight: $font-weight-light;
+  justify-content: flex-start;
+  line-height: $font-size;
+  min-height: 32px;
+  padding: 6px 0;
+  width: 100%;
+}
+
+.field:not(:last-child) {
+  border-bottom: 1px solid #f8f8f9;
+}
+
+.field__no-title {
+  width: 100%;
+  padding: 0 12px;
+}
+
+.field__no-title--center {
+  text-align: center;
+}
+
+.field__title {
+  padding-left: 0.5em;
+  color: #69738a;
+  font-size: 14px;
+  width: 36%;
+  display: inline-block;
+}
+
+.field__widget {
+  width: 64%;
+  padding-left: 12px;
+  display: inline-block;
+  padding-right: 12px;
+}
+
+.field__widget--postfix {
+  width: 50%;
+  padding-right: 0px;
+}
+
+.field__title {
+  width: 30%;
+  padding-left: 12px;
+  display: inline-block;
+  line-height: 18px;
+  text-transform: capitalize;
+}
+
+.field__title-text {
+  text-transform: capitalize;
+  cursor: default;
+}

@@ -1,0 +1,13 @@
+.panel {
+  position: absolute;
+  top: 21px;
+  left: 0px;
+  bottom: 5px;
+  right: 1px;
+  margin-left: 100px;
+  background-color: $color-panel-background;
+  overflow-y: scroll;
+  padding-left: $half-spacing-unit;
+  padding-right: $half-spacing-unit;
+  padding-top: $half-spacing-unit;
+}

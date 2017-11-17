@@ -1,59 +1,81 @@
 import nestedProperty from 'plotly.js/src/lib/nested_property';
+import isNumeric from 'fast-isnumeric';
+import {MULTI_VALUED, MULTI_VALUED_PLACEHOLDER} from './constants';
 
-export default function unpackPlotProps(props, context) {
-  const plotProps = {};
+export default function unpackPlotProps(props, context, ComponentClass) {
+  const {
+    container,
+    getValObject,
+    defaultContainer,
+    fullContainer,
+    updateContainer,
+  } = context;
 
-  plotProps.attr = props.attr;
-  plotProps.index = context.traceIndex;
+  if (!container || !fullContainer) {
+    throw new Error(
+      `${ComponentClass.name} must be nested within a component connected ` +
+        'to a plotly.js container.'
+    );
+  }
 
-  // gd, data, fullData:
-  plotProps.gd = context.graphDiv;
-  plotProps.trace = context.data[context.traceIndex] || {};
-  plotProps.fullTrace = context.fullData[context.fullTraceIndex] || {};
+  // Property accessors and meta information:
+  const fullProperty = nestedProperty(fullContainer, props.attr);
+  const fullValue = () => {
+    const fv = fullProperty.get();
+    if (fv === MULTI_VALUED) {
+      return MULTI_VALUED_PLACEHOLDER;
+    }
+    return fv;
+  };
 
-  // Property accessors:
-  plotProps.fullProperty = nestedProperty(plotProps.fullTrace, plotProps.attr);
-  plotProps.property = nestedProperty(plotProps.trace, plotProps.attr);
+  let defaultValue = props.defaultValue;
+  if (defaultValue === void 0 && defaultContainer) {
+    defaultValue = nestedProperty(defaultContainer, props.attr).get();
+  }
 
-  let dataSrcExists = false;
-  if (props.isDataSrc) {
-    const traceAttr = `${plotProps.fullTrace.type}.attributes.${props.attr}`;
-    const attr = nestedProperty(context.plotSchema.traces, traceAttr).get();
-    if (attr && (attr.valType === 'data_array' || attr.arrayOk)) {
-      dataSrcExists = true;
-      plotProps.srcAttr = plotProps.attr + 'src';
-      plotProps.srcProperty = nestedProperty(
-        plotProps.trace,
-        plotProps.srcAttr
-      );
+  // Property descriptions and meta:
+  let attrMeta;
+  if (getValObject) {
+    attrMeta = context.getValObject(props.attr) || {};
+  }
+
+  // Update data functions:
+  const updatePlot = v => updateContainer && updateContainer({[props.attr]: v});
+
+  // Visibility and multiValues:
+  const fv = fullProperty.get();
+  const multiValued = fv === MULTI_VALUED;
+
+  let isVisible = false;
+  if (props.show || (fv !== void 0 && fv !== null)) {
+    isVisible = true;
+  }
+
+  const plotProps = {
+    attrMeta,
+    container,
+    defaultValue,
+    getValObject,
+    fullContainer,
+    fullValue,
+    isVisible,
+    updateContainer,
+    updatePlot,
+    multiValued,
+  };
+
+  if (attrMeta) {
+    if (isNumeric(attrMeta.max)) {
+      plotProps.max = attrMeta.max;
+    }
+    if (isNumeric(attrMeta.min)) {
+      plotProps.min = attrMeta.min;
     }
   }
 
-  plotProps.onUpdate = context.onUpdate;
-
-  plotProps.fullValue = function fullValue() {
-    if (dataSrcExists) {
-      // we use the non-full version for src information as Plotly.js does
-      // not pass src information into fullData or fullLayout. It is a
-      // "user land" only attribute.
-      return plotProps.srcProperty.get();
-    } else {
-      return plotProps.fullProperty.get();
-    }
-  };
-
-  // An update callback:
-  plotProps.updatePlot = function updatePlot(value) {
-    const attr = dataSrcExists ? plotProps.srcAttr : plotProps.attr;
-    const update = {[attr]: [value]};
-    plotProps.onUpdate && plotProps.onUpdate(update, [plotProps.index]);
-  };
-
-  const fv = plotProps.fullValue();
-  if (props.show || dataSrcExists || (fv !== undefined && fv !== null)) {
-    plotProps.isVisible = true;
-  } else {
-    plotProps.isVisible = false;
+  // Give Component Classes the space to modify plotProps:
+  if (ComponentClass.modifyPlotProps) {
+    ComponentClass.modifyPlotProps(props, context, plotProps);
   }
 
   return plotProps;

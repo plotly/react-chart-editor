@@ -1,0 +1,46 @@
+.numeric-input__wrapper {
+  line-height: 20px;
+  max-width: 100%;
+}
+
+.numeric-input__number {
+  display: inline-block;
+  border: 1px solid $color-border;
+  background: white;
+  cursor: text;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+  border-radius: 2px;
+  padding: 6px 6px 6px 12px;
+  width: 62px;
+  vertical-align: middle;
+  font-size: inherit;
+  color: inherit;
+  font-family: inherit;
+}
+
+.numeric-input__caret-box {
+  display: inline-block;
+  max-height: 32px;
+  margin-left: 6px;
+  margin-right: 12px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.numeric-input__caret:first-child {
+  margin-bottom: 2px;
+}
+
+.numeric-input__caret {
+  cursor: pointer;
+  background-color: #f8f8f9;
+  border: 1px solid #bec8d9;
+  border-radius: 1px;
+  width: $font-size;
+  height: $font-size;
+  line-height: 12px;
+  text-align: center;
+}

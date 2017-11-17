@@ -1,29 +1,46 @@
-import Base from './Base';
-import ColorPicker from './Color';
-import DataSelector from './DataSelector';
-import Dropdown from './Dropdown';
-import Flaglist from './Flaglist';
-import Numeric from './Numeric';
-import Panel from './Panel';
+import {
+  AxesRange,
+  AxesSelector,
+  CanvasSize,
+  ColorPicker,
+  Dropdown,
+  Flaglist,
+  Info,
+  Radio,
+  DataSelector,
+  Numeric,
+  SymbolSelector,
+  TraceSelector,
+} from './fields';
+
+import {
+  MenuPanel,
+  Fold,
+  Panel,
+  Section,
+  TraceAccordion,
+  TraceMarkerSection,
+} from './containers';
 import PanelMenuWrapper from './PanelMenuWrapper';
-import Radio from './Radio';
-import Section from './Section';
-import Select from './Select';
-import TraceAccordion from './TraceAccordion';
-import TraceSelector from './TraceSelector';
 
 export {
-  Base,
+  AxesSelector,
+  AxesRange,
+  MenuPanel,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
   Flaglist,
+  Fold,
+  Info,
   Numeric,
   Panel,
   PanelMenuWrapper,
   Radio,
   Section,
-  Select,
+  SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
 };

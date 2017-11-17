@@ -1,4 +1,4 @@
-export const baseClass = "plotly-editor";
+export const baseClass = 'plotly-editor';
 
 /*
  * Control represents multiple settings (like for several axes)
@@ -8,447 +8,414 @@ export const baseClass = "plotly-editor";
  * strings, we include a non-printable character (ESC) so it's not something
  * people could type.
  */
-export const MIXED_VALUES = "\x1bMIXED_VALUES";
+export const MULTI_VALUED = '\x1bMIXED_VALUES';
 
 // how mixed values are represented in text inputs
-export const MIXED_MODE_VALUE = "-";
+export const MULTI_VALUED_PLACEHOLDER = '---';
 
-/*
-export const CLEAR_WORKSPACE = "WORKSPACE_CLEAR_WORKSPACE";
-
-export const EDIT_MODE = {
-  ANALYSIS: "WORKSPACE_EDIT_MODE_ANALYSIS",
-  GRAPH: "WORKSPACE_EDIT_MODE_GRAPH",
-  STYLE: "WORKSPACE_EDIT_MODE_STYLE",
-  SHARE: "WORKSPACE_EDIT_MODE_SHARE",
-  EXPORT: "WORKSPACE_EDIT_MODE_EXPORT",
-  JSON: "WORKSPACE_EDIT_MODE_JSON",
+export const multiValueText = {
+  title: 'Multiple Values',
+  text:
+    'This input has multiple values associated with it. ' +
+    'Changing this setting will override these custom inputs.',
+  subText:
+    "Common Case: An 'All' tab might display this message " +
+    'because the X and Y tabs contain different settings.',
 };
 
-export const STYLE_MODE = {
-  TRACES: "WORKSPACE_STYLE_MODE_TRACES",
-  LAYOUT: "WORKSPACE_STYLE_MODE_LAYOUT",
-  NOTES: "WORKSPACE_STYLE_MODE_NOTES",
-  AXES: "WORKSPACE_STYLE_MODE_AXES",
-  LEGEND: "WORKSPACE_STYLE_MODE_LEGEND",
-  COLOR_BARS: "WORKSPACE_STYLE_MODE_COLOR_BARS",
-  SHAPES: "WORKSPACE_STYLE_MODE_SHAPES",
-  MAPBOX_LAYERS: "WORKSPACE_STYLE_MODE_MAPBOX_LAYERS",
-  IMAGES: "WORKSPACE_STYLE_MODE_IMAGES",
-  MOBILE: "WORKSPACE_STYLE_MODE_MOBILE",
-};
+export const SYMBOLS = [
+  {
+    value: 'circle',
+    alias: 0,
+    label: 'M5,0A5,5 0 1,1 0,-5A5,5 0 0,1 5,0Z',
+    threeD: true,
+    gl: true,
+  },
+  {
+    value: 'circle-open',
+    alias: 0,
+    label: 'M5,0A5,5 0 1,1 0,-5A5,5 0 0,1 5,0Z',
+    fill: 'none',
+    threeD: true,
+    gl: true,
+  },
+  {
+    value: 'circle-open-dot',
+    alias: 0,
+    label: 'M5,0A5,5 0 1,1 0,-5A5,5 0 0,1 5,0ZM0,0.5L0.5,0L0,-0.5L-0.5,0Z',
+    fill: 'none',
+  },
 
-export const GRAPH_MODE = {
-  CREATE: "WORKSPACE_GRAPH_MODE_CREATE",
-  FILTER: "WORKSPACE_GRAPH_MODE_FILTER",
-  GROUPBY: "WORKSPACE_GRAPH_MODE_GROUPBY",
-};
+  {value: 'square', alias: 1, label: 'M5,5H-5V-5H5Z', threeD: true, gl: true},
+  {
+    value: 'square-open',
+    alias: 1,
+    label: 'M5,5H-5V-5H5Z',
+    fill: 'none',
+    threeD: true,
+    gl: true,
+  },
+  {
+    value: 'square-open-dot',
+    alias: 1,
+    label: 'M5,5H-5V-5H5ZM0,0.5L0.5,0L0,-0.5L-0.5,0Z',
+    fill: 'none',
+  },
 
-export const ADD_PLOT_ID = "WORKSPACE_ADD_PLOT_ID";
-export const ADD_PLOT_SOURCE = "WORKSPACE_ADD_PLOT_SOURCE";
-export const ADD_PLOT_SOURCE_SHARE_KEY = "WORKSPACE_ADD_PLOT_SOURCE_SHARE_KEY";
-export const UPDATE_PLOT_DIRTY = "WORKSPACE_UPDATE_PLOT_DIRTY";
+  {
+    value: 'diamond',
+    alias: 2,
+    label: 'M6.5,0L0,6.5L-6.5,0L0,-6.5Z',
+    threeD: true,
+    gl: true,
+  },
+  {
+    value: 'diamond-open',
+    alias: 2,
+    label: 'M6.5,0L0,6.5L-6.5,0L0,-6.5Z',
+    fill: 'none',
+    threeD: true,
+    gl: true,
+  },
+  {
+    value: 'diamond-open-dot',
+    alias: 2,
+    label: 'M6.5,0L0,6.5L-6.5,0L0,-6.5ZM0,0.5L0.5,0L0,-0.5L-0.5,0Z',
+    fill: 'none',
+  },
 
-export const ADD_SHARE_FID = "WORKSPACE_ADD_SHARE_FID";
+  {
+    value: 'cross',
+    alias: 3,
+    label: 'M6,2H2V6H-2V2H-6V-2H-2V-6H2V-2H6Z',
+    threeD: true,
+    gl: true,
+  },
+  {
+    value: 'cross-open',
+    alias: 3,
+    label: 'M6,2H2V6H-2V2H-6V-2H-2V-6H2V-2H6Z',
+    fill: 'none',
+    gl: true,
+  },
 
-// Spec used to create the EditModeMenu Buttons
-export const EDIT_MODE_MENU_ITEMS = [
   {
-    mode: EDIT_MODE.GRAPH,
-    text: "Graph",
+    value: 'x',
+    alias: 4,
+    label:
+      'M0,2.83l2.83,2.83l2.83,-2.83l-2.83,-2.83l2.83,-2.83l-2.83,-2.83l-2.83,2.83l-2.83,-2.83l-2.83,2.83l2.83,2.83l-2.83,2.83l2.83,2.83Z',
+    threeD: true,
+    gl: true,
   },
   {
-    mode: EDIT_MODE.STYLE,
-    text: "Style",
+    value: 'x-open',
+    alias: 4,
+    label:
+      'M0,2.83l2.83,2.83l2.83,-2.83l-2.83,-2.83l2.83,-2.83l-2.83,-2.83l-2.83,2.83l-2.83,-2.83l-2.83,2.83l2.83,2.83l-2.83,2.83l2.83,2.83Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {value: 'triangle-up', alias: 5, label: 'M-5.77,2.5H5.77L0,-5Z', gl: true},
+  {
+    value: 'triangle-up-open',
+    alias: 5,
+    label: 'M-5.77,2.5H5.77L0,-5Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {value: 'triangle-down', alias: 6, label: 'M-5.77,-2.5H5.77L0,5Z', gl: true},
+  {
+    value: 'triangle-down-open',
+    alias: 6,
+    label: 'M-5.77,-2.5H5.77L0,5Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {value: 'triangle-left', alias: 7, label: 'M2.5,-5.77V5.77L-5,0Z', gl: true},
+  {
+    value: 'triangle-left-open',
+    alias: 7,
+    label: 'M2.5,-5.77V5.77L-5,0Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {value: 'triangle-right', alias: 8, label: 'M-2.5,-5.77V5.77L5,0Z', gl: true},
+  {
+    value: 'triangle-right-open',
+    alias: 8,
+    label: 'M-2.5,-5.77V5.77L5,0Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {value: 'triangle-ne', alias: 9, label: 'M-6,-3H3V6Z', gl: true},
+  {
+    value: 'triangle-ne-open',
+    alias: 9,
+    label: 'M-6,-3H3V6Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {value: 'triangle-se', alias: 10, label: 'M3,-6V3H-6Z', gl: true},
+  {
+    value: 'triangle-se-open',
+    alias: 10,
+    label: 'M3,-6V3H-6Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {value: 'triangle-sw', alias: 11, label: 'M6,3H-3V-6Z', gl: true},
+  {
+    value: 'triangle-sw-open',
+    alias: 11,
+    label: 'M6,3H-3V-6Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {value: 'triangle-nw', alias: 12, label: 'M-3,6V-3H6Z', gl: true},
+  {
+    value: 'triangle-nw-open',
+    alias: 12,
+    label: 'M-3,6V-3H6Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {
+    value: 'pentagon',
+    alias: 13,
+    label: 'M4.76,-1.54L2.94,4.05H-2.94L-4.76,-1.54L0,-5Z',
+    gl: true,
   },
   {
-    mode: EDIT_MODE.ANALYSIS,
-    text: "Analysis",
+    value: 'pentagon-open',
+    alias: 13,
+    label: 'M4.76,-1.54L2.94,4.05H-2.94L-4.76,-1.54L0,-5Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {
+    value: 'hexagon',
+    alias: 14,
+    label: 'M4.33,-2.5V2.5L0,5L-4.33,2.5V-2.5L0,-5Z',
+    gl: true,
   },
   {
-    mode: EDIT_MODE.JSON,
-    text: "JSON",
+    value: 'hexagon-open',
+    alias: 14,
+    label: 'M4.33,-2.5V2.5L0,5L-4.33,2.5V-2.5L0,-5Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {
+    value: 'hexagon2',
+    alias: 15,
+    label: 'M-2.5,4.33H2.5L5,0L2.5,-4.33H-2.5L-5,0Z',
+    gl: true,
   },
   {
-    mode: EDIT_MODE.EXPORT,
-    text: "Export",
+    value: 'hexagon2-open',
+    alias: 15,
+    label: 'M-2.5,4.33H2.5L5,0L2.5,-4.33H-2.5L-5,0Z',
+    fill: 'none',
+    gl: true,
   },
+
+  {
+    value: 'octagon',
+    alias: 16,
+    label:
+      'M-1.92,-4.62H1.92L4.62,-1.92V1.92L1.92,4.62H-1.92L-4.62,1.92V-1.92Z',
+  },
+  {
+    value: 'octagon-open',
+    alias: 16,
+    label:
+      'M-1.92,-4.62H1.92L4.62,-1.92V1.92L1.92,4.62H-1.92L-4.62,1.92V-1.92Z',
+    fill: 'none',
+  },
+
+  {
+    value: 'star',
+    alias: 17,
+    label:
+      'M1.58,-2.16H6.66L2.54,0.83L4.12,5.66L0,2.67L-4.12,5.66L-2.54,0.83L-6.66,-2.16H-1.58L0,-7Z',
+    gl: true,
+  },
+  {
+    value: 'star-open',
+    alias: 17,
+    label:
+      'M1.58,-2.16H6.66L2.54,0.83L4.12,5.66L0,2.67L-4.12,5.66L-2.54,0.83L-6.66,-2.16H-1.58L0,-7Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {
+    value: 'hexagram',
+    alias: 18,
+    label:
+      'M-3.8,0l-1.9,-3.3h3.8l1.9,-3.3l1.9,3.3h3.8l-1.9,3.3l1.9,3.3h-3.8l-1.9,3.3l-1.9,-3.3h-3.8Z',
+  },
+  {
+    value: 'hexagram-open',
+    alias: 18,
+    label:
+      'M-3.8,0l-1.9,-3.3h3.8l1.9,-3.3l1.9,3.3h3.8l-1.9,3.3l1.9,3.3h-3.8l-1.9,3.3l-1.9,-3.3h-3.8Z',
+    fill: 'none',
+  },
+
+  {
+    value: 'star-triangle-up',
+    alias: 19,
+    label:
+      'M-6.93,4A 20,20 0 0 1 6.93,4A 20,20 0 0 1 0,-8A 20,20 0 0 1 -6.93,4Z',
+  },
+  {
+    value: 'star-triangle-up-open',
+    alias: 19,
+    label:
+      'M-6.93,4A 20,20 0 0 1 6.93,4A 20,20 0 0 1 0,-8A 20,20 0 0 1 -6.93,4Z',
+    fill: 'none',
+  },
+
+  {
+    value: 'star-triangle-down',
+    alias: 20,
+    label:
+      'M6.93,-4A 20,20 0 0 1 -6.93,-4A 20,20 0 0 1 0,8A 20,20 0 0 1 6.93,-4Z',
+  },
+  {
+    value: 'star-triangle-down-open',
+    alias: 20,
+    label:
+      'M6.93,-4A 20,20 0 0 1 -6.93,-4A 20,20 0 0 1 0,8A 20,20 0 0 1 6.93,-4Z',
+    fill: 'none',
+  },
+
+  {
+    value: 'star-square',
+    alias: 21,
+    label:
+      'M-5.5,-5.5A 10,10 0 0 1 -5.5,5.5A 10,10 0 0 1 5.5,5.5A 10,10 0 0 1 5.5,-5.5A 10,10 0 0 1 -5.5,-5.5Z',
+  },
+  {
+    value: 'star-square-open',
+    alias: 21,
+    label:
+      'M-5.5,-5.5A 10,10 0 0 1 -5.5,5.5A 10,10 0 0 1 5.5,5.5A 10,10 0 0 1 5.5,-5.5A 10,10 0 0 1 -5.5,-5.5Z',
+    fill: 'none',
+  },
+
+  {
+    value: 'star-diamond',
+    alias: 22,
+    label:
+      'M-7,0A 9.5,9.5 0 0 1 0,7A 9.5,9.5 0 0 1 7,0A 9.5,9.5 0 0 1 0,-7A 9.5,9.5 0 0 1 -7,0Z',
+  },
+  {
+    value: 'star-diamond-open',
+    alias: 22,
+    label:
+      'M-7,0A 9.5,9.5 0 0 1 0,7A 9.5,9.5 0 0 1 7,0A 9.5,9.5 0 0 1 0,-7A 9.5,9.5 0 0 1 -7,0Z',
+    fill: 'none',
+  },
+
+  {
+    value: 'diamond-tall',
+    alias: 23,
+    label: 'M0,7L3.5,0L0,-7L-3.5,0Z',
+    gl: true,
+  },
+  {
+    value: 'diamond-tall-open',
+    alias: 23,
+    label: 'M0,7L3.5,0L0,-7L-3.5,0Z',
+    fill: 'none',
+    gl: true,
+  },
+
+  {value: 'diamond-wide', alias: 24, label: 'M0,3.5L7,0L0,-3.5L-7,0Z'},
+  {
+    value: 'diamond-wide-open',
+    alias: 24,
+    label: 'M0,3.5L7,0L0,-3.5L-7,0Z',
+    fill: 'none',
+  },
+
+  {value: 'hourglass', alias: 25, label: 'M5,5H-5L5,-5H-5Z'},
+  {value: 'bowtie', alias: 26, label: 'M5,5V-5L-5,5V-5Z', gl: true},
+  {
+    value: 'cross-thin-open',
+    alias: 33,
+    label: 'M0,7V-7M7,0H-7',
+    fill: 'none',
+    gl: true,
+  },
+  {
+    value: 'x-thin-open',
+    alias: 34,
+    label: 'M5,5L-5,-5M5,-5L-5,5',
+    fill: 'none',
+  },
+  {
+    value: 'asterisk-open',
+    alias: 35,
+    label: 'M0,6V-6M6,0H-6M4.25,4.25L-4.25,-4.25M4.25,-4.25L-4.25,4.25',
+    fill: 'none',
+    gl: true,
+  },
+
+  {
+    value: 'hash-open',
+    alias: 36,
+    label: 'M2.5,5V-5m-5,0V5M5,2.5H-5m0,-5H5',
+    fill: 'none',
+  },
+  {
+    value: 'hash-open-dot',
+    alias: 36,
+    label: 'M2.5,5V-5m-5,0V5M5,2.5H-5m0,-5H5M0,0.5L0.5,0L0,-0.5L-0.5,0Z',
+    fill: 'none',
+  },
+
+  {
+    value: 'y-up-open',
+    alias: 37,
+    label: 'M-6,4L0,0M6,4L0,0M0,-8L0,0',
+    fill: 'none',
+    gl: true,
+  },
+  {
+    value: 'y-down-open',
+    alias: 38,
+    label: 'M-6,-4L0,0M6,-4L0,0M0,8L0,0',
+    fill: 'none',
+    gl: true,
+  },
+  {
+    value: 'y-left-open',
+    alias: 39,
+    label: 'M4,6L0,0M4,-6L0,0M-8,0L0,0',
+    fill: 'none',
+  },
+  {
+    value: 'y-right-open',
+    alias: 40,
+    label: 'M-4,6L0,0M-4,-6L0,0M8,0L0,0',
+    fill: 'none',
+  },
+  {value: 'line-ew-open', alias: 41, label: 'M7,0H-7', fill: 'none', gl: true},
+  {value: 'line-ns-open', alias: 42, label: 'M0,7V-7', fill: 'none', gl: true},
+  {value: 'line-ne-open', alias: 43, label: 'M5,-5L-5,5', fill: 'none'},
+  {value: 'line-nw-open', alias: 44, label: 'M5,5L-5,-5', fill: 'none'},
 ];
-
-export const STYLE_MODE_MENU_ITEMS = [
-  {
-    mode: STYLE_MODE.TRACES,
-    text: "Traces",
-  },
-  {
-    mode: STYLE_MODE.LAYOUT,
-    text: "Layout",
-  },
-  {
-    mode: STYLE_MODE.NOTES,
-    text: "Notes",
-  },
-  {
-    mode: STYLE_MODE.AXES,
-    text: "Axes",
-  },
-  {
-    mode: STYLE_MODE.LEGEND,
-    text: "Legend",
-  },
-  {
-    mode: STYLE_MODE.COLOR_BARS,
-    text: "Color Bars",
-  },
-  {
-    mode: STYLE_MODE.SHAPES,
-    text: "Shapes",
-  },
-  {
-    mode: STYLE_MODE.MAPBOX_LAYERS,
-    text: "GeoJSON",
-  },
-  {
-    mode: STYLE_MODE.IMAGES,
-    text: "Images",
-  },
-  {
-    mode: STYLE_MODE.MOBILE,
-    text: "Mobile",
-  },
-];
-
-export const GRAPH_MODE_MENU_ITEMS = [
-  {
-    mode: GRAPH_MODE.CREATE,
-    text: "create",
-  },
-  {
-    mode: GRAPH_MODE.FILTER,
-    text: "filter",
-  },
-  {
-    mode: GRAPH_MODE.GROUPBY,
-    text: "group",
-  },
-];
-
-// temp / saved state of fids and column uids
-export const UPDATE_COLUMN_ID_MAP = "WORKSPACE_UPDATE_COLUMN_ID_MAP";
-export const UPDATE_FID_MAP = "WORKSPACE_UPDATE_FID_MAP";
-export const UPDATE_LAST_SAVED = "WORKSPACE_UPDATE_LAST_SAVED";
-export const MARK_FID_AS_UNSAVED = "WORKSPACE_MARK_FID_AS_UNSAVED";
-export const REMOVE_COLUMN_IDS_FROM_COLUMN_ID_MAP =
-  "WORKSPACE_REMOVE_COLUMN_IDS_FROM_COLUMN_ID_MAP";
-
-// panels
-export const EDIT_MODES = Object.keys(EDIT_MODE).map(k => EDIT_MODE[k]);
-export const STYLE_MODES = Object.keys(STYLE_MODE).map(k => STYLE_MODE[k]);
-export const GRAPH_MODES = Object.keys(GRAPH_MODE).map(k => GRAPH_MODE[k]);
-export const SELECT_EDIT_MODE = "WORKSPACE_SELECT_EDIT_MODE";
-export const SELECT_STYLE_MODE = "WORKSPACE_SELECT_STYLE_MODE";
-export const SELECT_GRAPH_MODE = "WORKSPACE_SELECT_GRAPH_MODE";
-
-// figure
-export const ADD_BREAKPOINT = "WORKSPACE_ADD_BREAKPOINT";
-export const DELETE_BREAKPOINT = "WORKSPACE_DELETE_BREAKPOINT";
-export const PLOTLY_RELAYOUT = "WORKSPACE_RELAYOUT";
-export const PLOTLY_RESTYLE = "WORKSPACE_RESTYLE";
-export const PLOTLY_NEW_PLOT = "WORKSPACE_NEW_PLOT";
-export const PLOTLY_ADD_FRAMES = "WORKSPACE_ADD_FRAMES";
-export const PLOTLY_DELETE_FRAMES = "WORKSPACE_DELETE_FRAMES";
-export const SELECT_FRAME = "WORKSPACE_SELECT_FRAME";
-export const SET_BASE_LAYOUT = "WORKSPACE_SET_BASE_LAYOUT";
-export const SET_BREAKPOINT = "WORKSPACE_SET_BREAKPOINT";
-
-// annotations
-export const INLINE_STYLE_LINK = "LINK";
-export const INLINE_STYLE_SUPER = "SUPERSCRIPT";
-export const INLINE_STYLE_SUB = "SUBSCRIPT";
-
-// columns and tables
-export const MERGE_COLUMNS_AND_TABLES = "WORKSPACE_MERGE_COLUMNS_AND_TABLES";
-export const UPDATE_TABLE = "UPDATE_TABLE";
-export const ADD_EMPTY_TABLE = "WORKSPACE_ADD_EMTPY_TABLE";
-export const SELECT_TABLE = "WORKSPACE_SELECT_TABLE";
-export const OVERWRITE_SOURCE = "WORKSPACE_OVERWRITE_SOURCE";
-export const REMOVE_TABLE = "WORKSPACE_REMOVE_TABLE";
-export const REMOVE_COLUMNS_FROM_TABLE = "WORKSPACE_REMOVE_COLUMNS_FROM_TABLE";
-
-// encoding
-export const ASSIGN_COLUMN = "WORKSPACE_ASSIGN_COLUMN";
-export const SWITCH_CHART_TYPE = "WORKSPACE_SWITCH_CHART_TYPE";
-export const NEW_ENCODING_LAYER = "WORKSPACE_NEW_ENCODING_LAYER";
-export const REMOVE_ENCODING_LAYER = "WORKSPACE_REMOVE_ENCODING_LAYER";
-export const SET_ENCODING = "WORKSPACE_SET_ENCODING";
-export const DEFAULT_ENCODING_TYPE = "scatter";
-
-// analyses
-export const UPDATE_ANALYSIS = "WORKSPACE_UPDATE_ANALYSIS";
-export const ADD_ANALYSIS = "WORKSPACE_ADD_ANALYSIS";
-export const REMOVE_ANALYSIS = "WORKSPACE_REMOVE_ANALYSIS";
-export const UPDATE_ANALYSIS_META = "WORKSPACE_UPDATE_ANALYSIS_META";
-
-// HOT
-export const MAX_HOT_ROWS = 5000;
-export const CONTEXT_MENU_SOURCE = "WORKSPACE_CONTEXT_MENU_SOURCE";
-export const SORT_SOURCE = "WORKSPACE_SORT_SOURCE";
-export const INSERT_HEADERS_ABOVE_SOURCE =
-  "WORKSPACE_INSERT_HEADERS_ABOVE_SOURCE";
-export const CONTEXT_MENU_KEYS = {
-  CLEAR_HEADERS: "WORKSPACE_CONTEXT_MENU_KEYS_CLEAR_HEADERS",
-  COL_LEFT: "WORKSPACE_CONTEXT_MENU_KEYS_COL_LEFT",
-  COL_RIGHT: "WORKSPACE_CONTEXT_MENU_KEYS_COL_RIGHT",
-  INSERT_HEADERS_ABOVE: "WORKSPACE_CONTEXT_MENU_KEYS_INSERT_HEADERS_ABOVE",
-  REMOVE_COL: "WORKSPACE_CONTEXT_MENU_KEYS_REMOVE_COL",
-  REMOVE_ROW: "WORKSPACE_CONTEXT_MENU_KEYS_REMOVE_ROW",
-  RENAME_HEADER: "WORKSPACE_CONTEXT_MENU_KEYS_RENAME_HEADER",
-  RESET_SORT: "WORKSPACE_CONTEXT_MENU_KEYS_RESET_SORT",
-  ROW_ABOVE: "WORKSPACE_CONTEXT_MENU_KEYS_ROW_ABOVE",
-  ROW_BELOW: "WORKSPACE_CONTEXT_MENU_KEYS_ROW_BELOW",
-  SET_HEADERS: "WORKSPACE_CONTEXT_MENU_KEYS_SET_HEADERS",
-  SORT_ASCENDING: "WORKSPACE_CONTEXT_MENU_KEYS_SORT_ASCENDING",
-  SORT_DESCENDING: "WORKSPACE_CONTEXT_MENU_KEYS_SORT_DESCENDING",
-  TRANSPOSE_TABLE: "WORKSPACE_CONTEXT_MENU_KEYS_TRANSPOSE_TABLE",
-};
-
-// style panels
-export const CONTROL_TYPES = {
-  FONT: "FONT",
-  COLOR: "COLOR",
-  ANCHOR_SELECTOR: "ANCHOR_SELECTOR",
-  DASH: "DASH",
-  SYMBOL: "SYMBOL",
-  RADIO: "RADIO",
-  TEXTAREA: "TEXTAREA",
-  ANNOTATION_EDITOR: "ANNOTATION_EDITOR",
-  MAPBOX_ACCESS_TOKEN: "MAPBOX_ACCESS_TOKEN",
-  NUMERIC_INPUT: "NUMERIC_INPUT",
-  FLAGLIST_CHECKBOX: "FLAGLIST_CHECKBOX",
-  COLUMN_INPUT: "COLUMN_INPUT",
-  COLOR_PALETTE: "COLOR_PALETTE",
-  DATETIME_INPUT: "DATETIME_INPUT",
-  DATETIME_DURATION: "DATETIME_DURATION",
-  DROPDOWN_SELECTOR: "DROPDOWN_SELECTOR",
-  DROPDOWN_WITH_TEXT_INPUT: "DROPDOWN_WITH_TEXT_INPUT",
-  RANGE: "RANGE",
-  SLIDER: "SLIDER",
-  INPUT_SLIDER: "INPUT_SLIDER",
-  BUTTON: "BUTTON",
-  RANGE_SELECTOR_BUTTONS: "RANGE_SELECTOR_BUTTONS",
-  TEXT_INPUT: "TEXT_INPUT",
-  UPLOAD_SHAPE_FILE: "UPLOAD_SHAPE_FILE",
-  UPLOAD_IMAGE_FILE: "UPLOAD_IMAGE_FILE",
-  REF_CONTROL: "REF_CONTROL",
-  ANCHOR: "ANCHOR",
-  MAPBOX_STYLE_URL: "MAPBOX_STYLE_URL",
-  ORIENTATION: "ORIENTATION",
-  NOTE: "NOTE",
-  ARROW: "ARROW",
-};
-
-// encoding panel
-export const ENCODING_ATTRIBUTE_TYPES = {
-  PLOTLYJS: "PLOTLYJS",
-  ENCODING: "ENCODING",
-};
-
-// import modal
-export const IMPORT_MODES = {
-  EXAMPLES: "EXAMPLES",
-  SQL: "SQL",
-  URL: "URL",
-  UPLOAD: "UPLOAD",
-};
-
-export const ORG_IMPORT_MODES = {
-  DATASET: "DATASET",
-  NOTEBOOK: "NOTEBOOK",
-  PRESENTATION: "PRESENTATION",
-};
-
-export const IMPORT_EXAMPLE_URL =
-  "https://raw.githubusercontent.com/plotly/datasets/master/iris.csv";
-
-export const CHART_TYPE_ICON = {
-  animation: "icon-animation",
-  area: "icon-plot-area",
-  bar: "icon-plot-bar",
-  box: "icon-plot-box",
-  candlestick: "icon-candlestick",
-  cartesianArea: "icon-plot-area",
-  choropleth: "icon-choropleth",
-  contour: "icon-contour",
-  errorbars: "icon-error-bars",
-  heatmap: "icon-plot-heatmap",
-  histogram2d: "icon-plot-2d-hist",
-  histogram2dcontour: "icon-plot-2d-hist",
-  histogram: "icon-plot-hist",
-  line: "icon-plot-line",
-  mesh3d: "icon-mesh3d",
-  ohlc: "icon-ohlc",
-  pie: "icon-pie-chart",
-  scatter3d: "icon-plot-3d-scatter",
-  line3d: "icon-plot-3d-line",
-  scatter: "icon-plot-scatter",
-  scattergeo: "icon-scatter-chart",
-  scattermapbox: "icon-scatter-chart",
-  scatterternary: "icon-ternary-scatter",
-  surface: "icon-plot-3d-surface",
-  timeseries: "icon-time-series",
-};
-
-export const ALL_AXES = [
-  {
-    axisTypeIdentifier: "AxesSpec",
-    typeQuery: "cartesian",
-    identifier: "xaxis",
-    defaultAxis: "xaxis",
-    options: [
-      { value: "allaxes", label: "All", title: "All Axes" },
-      { value: "xaxis", label: "X", title: "X Axes", singular: "X axis" },
-      { value: "yaxis", label: "Y", title: "Y Axes", singular: "Y axis" },
-    ],
-  },
-  {
-    axisTypeIdentifier: "AxesSpec",
-    typeQuery: "gl2d",
-    identifier: "xaxis",
-    defaultAxis: "xaxis",
-    options: [
-      { value: "allaxes", label: "All", title: "All Axes" },
-      { value: "xaxis", label: "X", title: "X Axes", singular: "X axis" },
-      { value: "yaxis", label: "Y", title: "Y Axes", singular: "Y axis" },
-    ],
-  },
-  {
-    axisTypeIdentifier: "GeoSpec",
-    typeQuery: "geo",
-    identifier: "geo",
-    defaultAxis: "lonaxis",
-    options: [
-      { value: "lataxis", label: "Latitude", title: "Latitude" },
-      { value: "lonaxis", label: "Longitude", title: "Longitude" },
-    ],
-  },
-  {
-    axisTypeIdentifier: "SceneSpec",
-    typeQuery: "gl3d",
-    identifier: "scene",
-    defaultAxis: "xaxis",
-    options: [
-      { value: "allaxes", label: "All", title: "All Axes" },
-      { value: "xaxis", label: "X", title: "X Axes", singular: "X axis" },
-      { value: "yaxis", label: "Y", title: "Y Axes", singular: "Y axis" },
-      { value: "zaxis", label: "Z", title: "Z Axes", singular: "Z axis" },
-    ],
-  },
-  {
-    axisTypeIdentifier: "TernarySpec",
-    typeQuery: "ternary",
-    identifier: "ternary",
-    defaultAxis: "aaxis",
-    options: [
-      { value: "aaxis", label: "A", title: "A Axes", singular: "A Axis" },
-      { value: "baxis", label: "B", title: "B Axes", singular: "B Axis" },
-      { value: "caxis", label: "C", title: "C Axes", singular: "C Axis" },
-    ],
-  },
-  {
-    typeQuery: "pie",
-    options: "NO_AXES",
-  },
-];
-
-// Layout specification for CategorizedSelectTrace
-export const CHART_CATEGORY = {
-  BUSINESS: "BUSINESS",
-  SCIENCE: "SCIENCE",
-  CHARTS_3D: "CHARTS_3D",
-  FINANCIAL: "FINANCIAL",
-  STATISTICS: "STATISTICS",
-  MAPS: "MAPS",
-};
-
-export const CATEGORY_LAYOUT = [
-  { category: CHART_CATEGORY.BUSINESS, label: "Business" },
-  { category: CHART_CATEGORY.SCIENCE, label: "Science" },
-  { category: CHART_CATEGORY.CHARTS_3D, label: "3d charts" },
-  { category: CHART_CATEGORY.FINANCIAL, label: "Finance" },
-  { category: CHART_CATEGORY.STATISTICS, label: "Statistics" },
-  { category: CHART_CATEGORY.MAPS, label: "Maps" },
-];
-
-// ShareModalTabs
-export const SHARE_MODAL_TAB_OPTIONS = {
-  LINK_AND_PRIVACY: "Link & Privacy",
-  COLLABORATORS: "Collaborate",
-  EMBED: "Embed",
-};
-
-export const SHARE_MODAL_TABS = Object.keys(SHARE_MODAL_TAB_OPTIONS).map(k => {
-  return SHARE_MODAL_TAB_OPTIONS[k];
-});
-
-// 1x1px transparent gif: https://css-tricks.com/snippets/html/base64-encode-of-1x1px-transparent-gif/
-export const IMAGE_PLACEHOLDER =
-  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
-
-export const MAPBOX_ERROR_TYPES = {
-  INVALID_JSON: "INVALID_JSON",
-  FAILED_REQUEST: "FAILED_REQUEST",
-  FAILED_PARSING: "FAILED_PARSING",
-  UNKNOWN: "UNKNOWN",
-};
-
-export const WORKSPACE_PLOT_ID = "js-main-plotly-workspace-plot";
-
-export const WORKSPACE_CONTAINER = document.getElementById("main");
-export const WORKSPACE_PLACEHOLDER = document.getElementById(
-  "placeholderworkspace"
-);
-
-const IS_TRANSFORM = true;
-
-// quadruplet containing [CONSTANT_NAME TYPE LABEL IS_TRANSFORM].
-export const ANALYSES = [
-  [
-    "DESCRIPTIVE",
-    "descriptive-statistics",
-    "Descriptive statistics",
-    !IS_TRANSFORM,
-  ],
-  ["ANOVA_TEST", "anova", "ANOVA", !IS_TRANSFORM],
-  ["CHI_SQUARED_TEST", "chi-squared-test", "Chi-squared test", !IS_TRANSFORM],
-  ["T_TEST", "t-test", "T-test (two-tailed, independent)", !IS_TRANSFORM],
-  ["CORRELATION", "column-correlation", "Column correlation", !IS_TRANSFORM],
-  ["FIT", "fit", "Curve fitting", IS_TRANSFORM],
-  ["AVERAGE", "average", "Average", IS_TRANSFORM],
-  ["MOVING_AVERAGE", "moving-average", "Moving average", IS_TRANSFORM],
-];
-
-export const ANALYSES_TYPES = ANALYSES.reduce((accum, [name, type]) => {
-  accum[name] = type;
-  return accum;
-}, {});
-
-export const ANALYSES_TYPES_TO_LABELS = ANALYSES.reduce(
-  (accum, [, type, label]) => {
-    accum[type] = label;
-    return accum;
-  },
-  {}
-);
-
-// used by WorkspaceActions to search for linked transforms inside traces
-export const TRANSFORM_TYPES = ANALYSES.filter(
-  ([, , , isTransform]) => isTransform
-).map(([, type]) => type);
-
-// Constants relating to the user interface
-
-export const RETURN_KEY = "Enter";
-export const ESCAPE_KEY = "Escape";
-export const COMMAND_KEY = "Meta";
-export const CONTROL_KEY = "Control";
-*/

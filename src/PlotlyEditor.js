@@ -1,16 +1,25 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-
-import constants from './lib/constants';
-import {bem} from './lib';
-import dictionaries from './locales';
-
 import DefaultEditor from './DefaultEditor';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+import dictionaries from './locales';
+import {bem} from './lib';
+import {noShame} from './shame';
 
 class PlotlyEditor extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    noShame({plotly: this.props.plotly});
+
+    // we only need to compute this once.
+    if (this.props.plotly) {
+      this.plotSchema = this.props.plotly.PlotSchema.get();
+    }
+  }
+
   getChildContext() {
-    var gd = this.props.graphDiv || {};
-    var dataSourceNames = Object.keys(this.props.dataSources || {});
+    const gd = this.props.graphDiv || {};
+    const dataSourceNames = Object.keys(this.props.dataSources || {});
     return {
       data: gd.data,
       dataSourceNames: dataSourceNames,
@@ -22,14 +31,14 @@ class PlotlyEditor extends Component {
       layout: gd.layout,
       locale: this.props.locale,
       onUpdate: this.updateProp.bind(this),
-      plotSchema: this.props.plotly.PlotSchema.get(),
+      plotSchema: this.plotSchema,
       plotly: this.props.plotly,
     };
   }
 
-  updateProp(updates, traces, type) {
-    this.props.onUpdate &&
-      this.props.onUpdate(this.props.graphDiv, updates, traces, type);
+  updateProp(event) {
+    const {graphDiv} = this.props;
+    this.props.onUpdate && this.props.onUpdate({graphDiv, ...event});
   }
 
   render() {
@@ -41,6 +50,14 @@ class PlotlyEditor extends Component {
     );
   }
 }
+
+PlotlyEditor.propTypes = {
+  onUpdate: PropTypes.func,
+  plotly: PropTypes.object,
+  graphDiv: PropTypes.object,
+  locale: PropTypes.string,
+  dataSources: PropTypes.object,
+};
 
 PlotlyEditor.defaultProps = {
   locale: 'en',
@@ -57,8 +74,8 @@ PlotlyEditor.childContextTypes = {
   layout: PropTypes.object,
   locale: PropTypes.string,
   onUpdate: PropTypes.func,
-  plotSchema: PropTypes.object.isRequired,
-  plotly: PropTypes.object.isRequired,
+  plotSchema: PropTypes.object,
+  plotly: PropTypes.object,
 };
 
 export default PlotlyEditor;

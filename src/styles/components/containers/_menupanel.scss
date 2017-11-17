@@ -1,0 +1,21 @@
+.menupanel {
+  padding-top: 0;
+}
+
+.menupanel--ownline {
+  padding-top: 6px;
+}
+
+.menupanel__icon-span {
+  font-size: $font-size-small;
+}
+
+.menupanel__icon-span--question {
+  color: $color-link-light;
+}
+
+.menupanel__icon {
+  padding-left: 6px;
+  padding-right: 6px;
+  vertical-align: middle;
+}
