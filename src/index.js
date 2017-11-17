@@ -2,6 +2,7 @@ import Hub from './hub';
 import PlotlyEditor from './PlotlyEditor';
 import {
   localize,
+  connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
@@ -9,7 +10,9 @@ import {
 import {EDITOR_ACTIONS} from './constants';
 
 import {
-  SubPanel,
+  AxesRange,
+  AxesSelector,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -22,12 +25,18 @@ import {
   PanelMenuWrapper,
   Radio,
   Section,
+  MenuPanel,
+  SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
 } from './components';
 
 export {
-  SubPanel,
+  AxesRange,
+  AxesSelector,
+  MenuPanel,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -42,8 +51,11 @@ export {
   PanelMenuWrapper,
   Radio,
   Section,
+  SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
+  connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,

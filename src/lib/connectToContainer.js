@@ -5,6 +5,12 @@ import {getDisplayName} from '../lib';
 
 export default function connectToContainer(WrappedComponent) {
   class ContainerConnectedComponent extends Component {
+    static modifyPlotProps(props, context, plotProps) {
+      if (WrappedComponent.modifyPlotProps) {
+        WrappedComponent.modifyPlotProps(props, context, plotProps);
+      }
+    }
+
     constructor(props, context) {
       super(props, context);
 
@@ -39,9 +45,9 @@ export default function connectToContainer(WrappedComponent) {
       );
       if (props.isVisible) {
         return <WrappedComponent {...props} plotProps={plotProps} />;
-      } else {
-        return null;
       }
+
+      return null;
     }
   }
 
@@ -51,6 +57,7 @@ export default function connectToContainer(WrappedComponent) {
 
   ContainerConnectedComponent.contextTypes = {
     container: PropTypes.object,
+    defaultContainer: PropTypes.object,
     fullContainer: PropTypes.object,
     getValObject: PropTypes.func,
     updateContainer: PropTypes.func,

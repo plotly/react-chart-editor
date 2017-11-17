@@ -1,42 +1,65 @@
-import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {bem} from '../../lib';
+import React, {Component} from 'react';
+import MenuPanel from '../containers/MenuPanel';
+import classnames from 'classnames';
+import {bem, localize} from '../../lib';
+import {multiValueText} from '../../lib/constants';
 
-export default class Field extends Component {
+class Field extends Component {
+  renderPostfix() {
+    if (!this.props.postfix) {
+      return null;
+    }
+    return (
+      <div className={bem('field', 'postfix')}>
+        <div className={bem('field', 'postfix-text')}>{this.props.postfix}</div>
+      </div>
+    );
+  }
+
   render() {
-    let postfix = null;
-    if (this.props.postfix) {
-      postfix = (
-        <div className={bem('field', 'postfix')}>
-          <div className={bem('field', 'postfix-text')}>
-            {this.props.postfix}
-          </div>
-        </div>
-      );
+    const {
+      center,
+      children,
+      label,
+      localize: _,
+      multiValued,
+      postfix,
+    } = this.props;
+
+    let fieldClass;
+    if (!label) {
+      fieldClass = classnames('field__no-title', {
+        'field__no-title--center': center,
+      });
+    } else {
+      fieldClass = classnames('field__widget', {
+        'field__widget--postfix': Boolean(postfix),
+      });
     }
 
-    if (!this.props.label) {
-      const noTitleModifier = this.props.center ? ['center'] : null;
-      return (
-        <div className={bem('field')}>
-          <div className={bem('field', 'no-title', noTitleModifier)}>
-            {this.props.children}
-          </div>
-          {postfix}
-        </div>
-      );
-    }
-
-    const widgetModifier = this.props.postfix ? ['postfix'] : null;
     return (
       <div className={bem('field')}>
-        <div className={bem('field', 'title')}>
-          <div className={bem('field', 'title-text')}>{this.props.label}</div>
+        {label ? (
+          <div className={bem('field', 'title')}>
+            <div className={bem('field', 'title-text')}>{label}</div>
+          </div>
+        ) : null}
+        <div className={fieldClass}>
+          {children}
+          {multiValued ? (
+            <MenuPanel label={_(multiValueText.title)} ownline question>
+              <div className="info__title">{_(multiValueText.title)}</div>
+              <div className="info__text">{_(multiValueText.text)}</div>
+              <div className="info__sub-text">{_(multiValueText.subText)}</div>
+            </MenuPanel>
+          ) : null}
         </div>
-        <div className={bem('field', 'widget', widgetModifier)}>
-          {this.props.children}
-        </div>
-        {postfix}
+        {postfix ? (
+          <div className={bem('field', 'postfix')}>
+            <div className={bem('field', 'postfix-text')}>{postfix}</div>
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -45,9 +68,15 @@ export default class Field extends Component {
 Field.propTypes = {
   center: PropTypes.bool,
   label: PropTypes.string,
+  localize: PropTypes.func,
   postfix: PropTypes.string,
+  multiValued: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 Field.defaultProps = {
   center: false,
+  multiValued: false,
 };
+
+export default localize(Field);

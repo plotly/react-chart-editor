@@ -5,7 +5,7 @@
 
 .numeric-input__number {
   display: inline-block;
-  border: 1px solid #bec8d9;
+  border: 1px solid $color-border;
   background: white;
   cursor: text;
   overflow: hidden;
@@ -14,7 +14,7 @@
   text-align: left;
   border-radius: 2px;
   padding: 6px 6px 6px 12px;
-  width: 80px;
+  width: 62px;
   vertical-align: middle;
   font-size: inherit;
   color: inherit;
@@ -39,8 +39,8 @@
   background-color: #f8f8f9;
   border: 1px solid #bec8d9;
   border-radius: 1px;
-  width: 13px;
-  height: 13px;
+  width: $font-size;
+  height: $font-size;
   line-height: 12px;
   text-align: center;
 }

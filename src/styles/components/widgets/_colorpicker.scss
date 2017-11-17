@@ -1,6 +1,5 @@
 $swatch-size: 20px;
 $colorpicker-width: 250px;
-$colorpicker-border-color: #bbb;
 $saturation-picker-height: 160px;
 $slider-picker-height: 10px;
 
@@ -43,7 +42,7 @@ $slider-picker-height: 10px;
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 1px solid $lightgrey;
+    border: 1px solid $color-border-secondary;
     vertical-align: middle;
     padding-top: $sixth-spacing-unit;
     padding-left: $sixth-spacing-unit;
@@ -52,7 +51,7 @@ $slider-picker-height: 10px;
 
 .colorpicker__selected-color {
     margin-left: $half-spacing-unit;
-    color: $color-muted-text;
+    color: $color-text;
     font-weight: $font-weight-light;
     font-size: $font-size-small;
     display: inline-block;
@@ -67,17 +66,11 @@ $slider-picker-height: 10px;
     vertical-align: middle;
 }
 
-.toolLabel {
-    color: $color-muted-text;
-    font-size: $font-size-small;
-    font-weight: $font-weight-light;
-}
-
 %colorpicker__component {
     position: relative;
     overflow: hidden;
     margin: 0 $half-spacing-unit;
-    border: 1px solid $colorpicker-border-color;
+    border: 1px solid $color-border;
     border-radius: $border-radius / 2;
     cursor: pointer;
 }

@@ -1,4 +1,7 @@
 import {
+  AxesRange,
+  AxesSelector,
+  CanvasSize,
   ColorPicker,
   Dropdown,
   Flaglist,
@@ -6,14 +9,25 @@ import {
   Radio,
   DataSelector,
   Numeric,
+  SymbolSelector,
   TraceSelector,
 } from './fields';
 
-import {SubPanel, Fold, Panel, Section, TraceAccordion} from './containers';
+import {
+  MenuPanel,
+  Fold,
+  Panel,
+  Section,
+  TraceAccordion,
+  TraceMarkerSection,
+} from './containers';
 import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
-  SubPanel,
+  AxesSelector,
+  AxesRange,
+  MenuPanel,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -25,6 +39,8 @@ export {
   PanelMenuWrapper,
   Radio,
   Section,
+  SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
 };

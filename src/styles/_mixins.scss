@@ -21,3 +21,15 @@
         @error "'#{$value}' is not a valid z-index value";
     }
 }
+
+@mixin clearfix() {
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}

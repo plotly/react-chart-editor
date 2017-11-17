@@ -1,0 +1,38 @@
+.symbol-selector__toggle {
+  border: 1px solid $color-border;
+  border-radius: 4px;
+  width: 80px;
+  cursor: pointer;
+  padding: $quarter-spacing-unit 10px;
+  @include clearfix();
+}
+
+.symbol-selector__toggle__option {
+  float: left;
+}
+
+.symbol-selector__toggle__caret {
+  float: right;
+  color: $color-secondary-text;
+}
+
+.symbol-selector__menu {
+  max-width: 225px;
+  position: absolute;
+  @include z-index("orbit");
+  border: 1px solid $color-border;
+  padding: $font-size;
+  box-shadow: 2px 2px $font-size $color-border-secondary;
+border-radius: $border-radius;
+left: $base-spacing-unit;
+}
+
+ .symbol-selector__item {
+   display: inline;
+ }
+
+ .symbol-selector__symbol {
+   &:hover {
+     background-color: $color-border;
+   }
+ }

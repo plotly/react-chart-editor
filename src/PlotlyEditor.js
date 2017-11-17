@@ -3,13 +3,18 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import dictionaries from './locales';
 import {bem} from './lib';
+import {noShame} from './shame';
 
 class PlotlyEditor extends Component {
   constructor(props, context) {
     super(props, context);
 
+    noShame({plotly: this.props.plotly});
+
     // we only need to compute this once.
-    this.plotSchema = this.props.plotly.PlotSchema.get();
+    if (this.props.plotly) {
+      this.plotSchema = this.props.plotly.PlotSchema.get();
+    }
   }
 
   getChildContext() {
@@ -48,7 +53,7 @@ class PlotlyEditor extends Component {
 
 PlotlyEditor.propTypes = {
   onUpdate: PropTypes.func,
-  plotly: PropTypes.object.isRequired,
+  plotly: PropTypes.object,
   graphDiv: PropTypes.object,
   locale: PropTypes.string,
   dataSources: PropTypes.object,
@@ -69,8 +74,8 @@ PlotlyEditor.childContextTypes = {
   layout: PropTypes.object,
   locale: PropTypes.string,
   onUpdate: PropTypes.func,
-  plotSchema: PropTypes.object.isRequired,
-  plotly: PropTypes.object.isRequired,
+  plotSchema: PropTypes.object,
+  plotly: PropTypes.object,
 };
 
 export default PlotlyEditor;

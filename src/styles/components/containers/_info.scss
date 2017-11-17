@@ -1,0 +1,23 @@
+.info__title {
+    color: $color-link-light;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-normal;
+    line-height: 18px;
+    padding: $half-spacing-unit $half-spacing-unit $quarter-spacing-unit $half-spacing-unit;
+}
+
+.info__text {
+    padding: $quarter-spacing-unit $half-spacing-unit;
+    color: $color-secondary-text;
+    font-size: $font-size-small;
+    font-weight: $font-weight-light;
+    line-height: 18px;
+}
+
+.info__sub-text {
+    color: $color-brand;
+    font-size: $font-size-small;
+    font-weight: $font-weight-light;
+    line-height: 14px;
+    padding: $quarter-spacing-unit $half-spacing-unit $half-spacing-unit $half-spacing-unit;
+}

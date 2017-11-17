@@ -3,13 +3,13 @@ import {Fold, Panel, Section} from '..';
 import NumericInput from '../../widgets/NumericInputStatefulWrapper';
 import React from 'react';
 import {EDITOR_ACTIONS} from '../../../constants';
-import {TestEditor, fixtures, plotly} from '../../../lib/test-utils';
+import {TestEditor, fixtures} from '../../../lib/test-utils';
 import {connectLayoutToPlot} from '../../../lib';
 import {mount} from 'enzyme';
 
 const Layouts = [Panel, Fold, Section].map(connectLayoutToPlot);
 const Editor = props => (
-  <TestEditor {...{plotly, onUpdate: jest.fn(), ...props}} />
+  <TestEditor {...{onUpdate: jest.fn(), ...props}} />
 );
 
 Layouts.forEach(Layout => {

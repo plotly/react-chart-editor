@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
-  SubPanel,
+  AxesSelector,
+  AxesRange,
+  CanvasSize,
   ColorPicker,
   DataSelector,
   Dropdown,
@@ -13,41 +15,19 @@ import {
   PanelMenuWrapper,
   Radio,
   Section,
+  MenuPanel,
+  SymbolSelector,
   TraceAccordion,
+  TraceMarkerSection,
   TraceSelector,
 } from './components';
 import {DEFAULT_FONTS} from './constants';
-import {localize, connectLayoutToPlot} from './lib';
+import {localize, connectAxesToLayout, connectLayoutToPlot} from './lib';
 
 const LayoutPanel = connectLayoutToPlot(Panel);
+const AxesFold = connectAxesToLayout(Fold);
 
 class DefaultEditor extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
-
-    // Filter out Polar "area" type (it is fairly broken and we want to present
-    // scatter with fill as an "area" chart type for convenience.
-    const traceTypes = Object.keys(context.plotSchema.traces).filter(
-      t => t !== 'area'
-    );
-
-    const labels = traceTypes.map(capitalize);
-    this.traceOptions = traceTypes.map((t, i) => ({
-      label: labels[i],
-      value: t,
-    }));
-
-    const i = this.traceOptions.findIndex(opt => opt.value === 'scatter');
-    this.traceOptions.splice(
-      i + 1,
-      0,
-      {label: 'Line', value: 'line'},
-      {label: 'Area', value: 'area'}
-    );
-  }
-
   render() {
     const _ = this.props.localize;
 
@@ -59,7 +39,6 @@ class DefaultEditor extends Component {
               label="Plot Type"
               attr="type"
               clearable={false}
-              options={this.traceOptions}
               show
             />
 
@@ -111,6 +90,18 @@ class DefaultEditor extends Component {
               <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
             </Section>
 
+            <Section name={_('Text Attributes')}>
+              <Flaglist
+                attr="textinfo"
+                options={[
+                  {label: 'Label', value: 'label'},
+                  {label: 'Text', value: 'text'},
+                  {label: 'Value', value: 'value'},
+                  {label: '%', value: 'percent'},
+                ]}
+              />
+            </Section>
+
             <Section name={_('Display')}>
               <Flaglist
                 attr="mode"
@@ -138,25 +129,25 @@ class DefaultEditor extends Component {
               <ColorPicker label={_('Color')} attr="fillcolor" />
             </Section>
 
-            <Section name={_('Points')}>
-              <Numeric
-                label={_('Marker Opacity')}
-                step={0.1}
-                attr="marker.opacity"
+            <TraceMarkerSection>
+              <Radio
+                attr="orientation"
+                options={[
+                  {label: _('Vertical'), value: 'v'},
+                  {label: _('Horizontal'), value: 'h'},
+                ]}
               />
-
-              <ColorPicker label={_('Marker Color')} attr="marker.color" />
-
+              <ColorPicker label={_('Color')} attr="marker.color" />
+              <Numeric label={_('Opacity')} step={0.1} attr="marker.opacity" />
               <Numeric label={_('Size')} attr="marker.size" />
-
-              <Numeric label={_('Line width')} attr="marker.line.width" />
-            </Section>
+              <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
+              <Numeric label={_('Border Width')} attr="marker.line.width" />
+              <ColorPicker label={_('Border Color')} attr="marker.line.color" />
+            </TraceMarkerSection>
 
             <Section name={_('Lines')}>
               <Numeric label={_('Width')} step={1.0} attr="line.width" />
-
-              <ColorPicker label={_('Line color')} attr="line.color" />
-
+              <ColorPicker label={_('Line Color')} attr="line.color" />
               <Radio
                 label={_('Connect Gaps')}
                 attr="connectgaps"
@@ -171,13 +162,96 @@ class DefaultEditor extends Component {
 
         <LayoutPanel group="Style" name={_('Layout')}>
           <Fold name={_('Canvas')}>
-            <Numeric
+            <Radio
+              attr="autosize"
+              options={[
+                {label: _('Auto'), value: true},
+                {label: _('Custom'), value: false},
+              ]}
+            />
+            <CanvasSize
               label={_('Fixed Width')}
               step={1}
               attr="width"
               postfix="px"
             />
+            <CanvasSize
+              label={_('Fixed Height')}
+              step={1}
+              attr="height"
+              postfix="px"
+            />
+            <ColorPicker label={_('Color')} attr="paper_bgcolor" />
           </Fold>
+          <Fold name={_('Margins and Padding')}>
+            <Numeric label={_('Top')} step={1} attr="margin.t" postfix="px" />
+            <Numeric
+              label={_('Bottom')}
+              step={1}
+              attr="margin.b"
+              postfix="px"
+            />
+            <Numeric label={_('Left')} step={1} attr="margin.l" postfix="px" />
+            <Numeric label={_('Right')} step={1} attr="margin.r" postfix="px" />
+            <Numeric
+              label={_('Padding')}
+              step={1}
+              attr="margin.pad"
+              postfix="px"
+            />
+          </Fold>
+        </LayoutPanel>
+
+        <LayoutPanel group="Style" name={_('Axes')}>
+          <AxesFold name={_('Titles')}>
+            <AxesSelector />
+            <Dropdown
+              label={_('Typeface')}
+              attr="font.family"
+              clearable={false}
+              options={[...DEFAULT_FONTS]}
+            />
+            <Numeric label={_('Size')} step={1} attr="font.size" postfix="px" />
+            <ColorPicker label={_('Color')} attr="font.color" />
+          </AxesFold>
+
+          <AxesFold name={_('Range')}>
+            <AxesSelector />
+            <Section name={_('Selection')}>
+              <Radio
+                attr="autorange"
+                options={[
+                  {label: _('Auto'), value: true},
+                  {label: _('Custom'), value: false},
+                ]}
+              />
+              <AxesRange label={_('Min')} attr="range[0]" />
+              <AxesRange label={_('Max')} attr="range[1]" />
+              <Radio
+                attr="type"
+                options={[
+                  {label: _('Linear'), value: 'linear'},
+                  {label: _('log'), value: 'log'},
+                ]}
+              />
+            </Section>
+          </AxesFold>
+
+          {/* <AxesFold name={_('Lines')}>
+              <AxesSelector />
+              </AxesFold>
+              <AxesFold name={_('Tick Labels')}>
+              <AxesSelector />
+              </AxesFold>
+              <AxesFold name={_('Tick Markers')}>
+              <AxesSelector />
+              </AxesFold>
+              <AxesFold name={_('Zoom Interactivity')}>
+              <AxesSelector />
+              </AxesFold>
+              <AxesFold name={_('Layout')}>
+              <AxesSelector />
+              </AxesFold> */}
         </LayoutPanel>
 
         <LayoutPanel group="Style" name={_('Legend')}>
@@ -223,7 +297,7 @@ class DefaultEditor extends Component {
               />
             </Section>
             <Section name={_('Positioning')}>
-              <SubPanel>
+              <MenuPanel>
                 <Section name={_('Anchor Point')}>
                   <Info>
                     {_(
@@ -248,7 +322,7 @@ class DefaultEditor extends Component {
                     ]}
                   />
                 </Section>
-              </SubPanel>
+              </MenuPanel>
               <Numeric
                 label={_('X Position')}
                 step={0.01}
@@ -289,7 +363,6 @@ class DefaultEditor extends Component {
 
 DefaultEditor.contextTypes = {
   dataSourceNames: PropTypes.array.isRequired,
-  plotSchema: PropTypes.object.isRequired,
 };
 
 export default localize(DefaultEditor);
