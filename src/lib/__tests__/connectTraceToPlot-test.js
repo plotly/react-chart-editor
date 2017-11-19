@@ -1,10 +1,10 @@
-import {Numeric} from '../components/fields';
-import {Fold, Panel, Section} from '../components/containers';
-import NumericInput from '../components/widgets/NumericInputStatefulWrapper';
+import NumericInput from '../../components/widgets/NumericInputStatefulWrapper';
 import React from 'react';
-import {EDITOR_ACTIONS} from '../constants';
-import {TestEditor, fixtures, plotly} from '../lib/test-utils';
-import {connectTraceToPlot} from '../lib';
+import connectTraceToPlot from '../connectTraceToPlot';
+import {EDITOR_ACTIONS} from '../../constants';
+import {Fold, Panel, Section} from '../../components/containers';
+import {Numeric} from '../../components/fields';
+import {TestEditor, fixtures, plotly} from '../test-utils';
 import {mount} from 'enzyme';
 
 const Traces = [Panel, Fold, Section].map(connectTraceToPlot);

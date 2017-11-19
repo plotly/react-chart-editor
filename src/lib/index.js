@@ -1,11 +1,12 @@
 import bem, {icon} from './bem';
 import connectAxesToLayout from './connectAxesToLayout';
-import connectLayoutToPlot from './connectLayoutToPlot';
+import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
 import connectToContainer from './connectToContainer';
 import connectTraceToPlot from './connectTraceToPlot';
 import dereference from './dereference';
 import findFullTraceIndex from './findFullTraceIndex';
 import localize, {localizeString} from './localize';
+import unpackPlotProps from './unpackPlotProps';
 import walkObject, {isPlainObject} from './walkObject';
 
 function clamp(value, min, max) {
@@ -25,10 +26,12 @@ export {
   connectTraceToPlot,
   dereference,
   getDisplayName,
+  getLayoutContext,
   findFullTraceIndex,
   icon,
   isPlainObject,
   localize,
   localizeString,
+  unpackPlotProps,
   walkObject,
 };
