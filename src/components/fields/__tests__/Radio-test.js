@@ -11,7 +11,7 @@ const Trace = connectTraceToPlot(Section);
 describe('<Radio>', () => {
   it('enables <Field> centering by default', () => {
     const wrapper = mount(
-      <TestEditor plotly={plotly} {...fixtures.area({deref: 'true'})}>
+      <TestEditor plotly={plotly} {...fixtures.area()}>
         <Trace traceIndex={0}>
           <Radio
             label="Connect Gaps"
@@ -30,7 +30,7 @@ describe('<Radio>', () => {
 
   it('permits <Field> centering to be disabled', () => {
     const wrapper = mount(
-      <TestEditor plotly={plotly} {...fixtures.area({deref: 'true'})}>
+      <TestEditor plotly={plotly} {...fixtures.area()}>
         <Trace traceIndex={0}>
           <Radio
             center={false}

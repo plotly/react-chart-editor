@@ -18,7 +18,7 @@ Traces.forEach(Trace => {
   describe(`<${Trace.displayName}>`, () => {
     it('wraps container with fullValue pointing to gd._fullData[i]', () => {
       const wrapper = mount(
-        <Editor {...fixtures.scatter({deref: true})}>
+        <Editor {...fixtures.scatter()}>
           <Trace traceIndex={0}>
             <Numeric label="Marker Size" attr="marker.size" />
           </Trace>
@@ -33,7 +33,7 @@ Traces.forEach(Trace => {
     it('sends updates to gd.data', () => {
       const onUpdate = jest.fn();
       const wrapper = mount(
-        <Editor onUpdate={onUpdate} {...fixtures.scatter({deref: true})}>
+        <Editor onUpdate={onUpdate} {...fixtures.scatter()}>
           <Trace traceIndex={0}>
             <Numeric label="Marker Size" attr="marker.size" />
           </Trace>
@@ -54,7 +54,7 @@ Traces.forEach(Trace => {
     it('automatically computes min and max defaults', () => {
       const onUpdate = jest.fn();
       const wrapper = mount(
-        <Editor onUpdate={onUpdate} {...fixtures.scatter({deref: true})}>
+        <Editor onUpdate={onUpdate} {...fixtures.scatter()}>
           <Trace traceIndex={0}>
             <Numeric label="marker size" attr="marker.size" />
           </Trace>
