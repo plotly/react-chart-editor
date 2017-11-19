@@ -1,29 +1,13 @@
 import Numeric from './Numeric';
-import React, {Component} from 'react';
-import {connectToContainer} from '../../lib';
+import {connectToContainer, unpackPlotProps} from '../../lib';
 
-class AxesRange extends Component {
-  static modifyPlotProps(props, context, plotProps) {
-    if (!plotProps.isVisible) {
-      return;
-    }
-    const {fullContainer} = plotProps;
-    if (fullContainer && fullContainer.autorange) {
-      plotProps.isVisible = false;
-    }
+function supplyPlotProps(props, context) {
+  const plotProps = unpackPlotProps(props, context);
+  const {fullContainer} = plotProps;
+  if (plotProps.isVisible && fullContainer && fullContainer.autorange) {
+    plotProps.isVisible = false;
   }
-
-  render() {
-    return <Numeric {...this.props} />;
-  }
+  return plotProps;
 }
 
-AxesRange.propTypes = {
-  ...Numeric.propTypes,
-};
-
-AxesRange.defaultProps = {
-  showArrows: false,
-};
-
-export default connectToContainer(AxesRange);
+export default connectToContainer(Numeric, {supplyPlotProps});

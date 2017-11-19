@@ -3,19 +3,13 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Field from './Field';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {connectToContainer} from '../../lib';
+import {connectToContainer, unpackPlotProps} from '../../lib';
 
 function attributeIsData(meta = {}) {
   return meta.valType === 'data_array' || meta.arrayOk;
 }
 
 class DataSelector extends Component {
-  static modifyPlotProps(props, context, plotProps) {
-    if (attributeIsData(plotProps.attrMeta)) {
-      plotProps.isVisible = true;
-    }
-  }
-
   constructor(props) {
     super(props);
 
@@ -72,4 +66,12 @@ DataSelector.propTypes = {
   ...Field.propTypes,
 };
 
-export default connectToContainer(DataSelector);
+function supplyPlotProps(props, context) {
+  const plotProps = unpackPlotProps(props, context);
+  if (attributeIsData(plotProps.attrMeta)) {
+    plotProps.isVisible = true;
+  }
+  return plotProps;
+}
+
+export default connectToContainer(DataSelector, {supplyPlotProps});

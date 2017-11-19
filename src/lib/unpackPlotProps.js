@@ -2,7 +2,7 @@ import nestedProperty from 'plotly.js/src/lib/nested_property';
 import isNumeric from 'fast-isnumeric';
 import {MULTI_VALUED, MULTI_VALUED_PLACEHOLDER} from './constants';
 
-export default function unpackPlotProps(props, context, ComponentClass) {
+export default function unpackPlotProps(props, context) {
   const {
     container,
     getValObject,
@@ -10,13 +10,6 @@ export default function unpackPlotProps(props, context, ComponentClass) {
     fullContainer,
     updateContainer,
   } = context;
-
-  if (!container || !fullContainer) {
-    throw new Error(
-      `${ComponentClass.name} must be nested within a component connected ` +
-        'to a plotly.js container.'
-    );
-  }
 
   // Property accessors and meta information:
   const fullProperty = nestedProperty(fullContainer, props.attr);
@@ -71,11 +64,6 @@ export default function unpackPlotProps(props, context, ComponentClass) {
     if (isNumeric(attrMeta.min)) {
       plotProps.min = attrMeta.min;
     }
-  }
-
-  // Give Component Classes the space to modify plotProps:
-  if (ComponentClass.modifyPlotProps) {
-    ComponentClass.modifyPlotProps(props, context, plotProps);
   }
 
   return plotProps;

@@ -2,12 +2,13 @@ import MenuPanel from './MenuPanel';
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import unpackPlotProps from '../../lib/unpackPlotProps';
+import {containerConnectedContextTypes} from '../../lib/connectToContainer';
 
 function childIsVisible(child) {
   return Boolean((child.props.plotProps || {}).isVisible);
 }
 
-class Section extends Component {
+export default class Section extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -49,7 +50,11 @@ class Section extends Component {
       if (child.plotProps) {
         plotProps = child.plotProps;
       } else if (isAttr) {
-        plotProps = unpackPlotProps(child.props, context, child.type);
+        if (child.type.supplyPlotProps) {
+          plotProps = child.type.supplyPlotProps(child.props, context);
+        } else {
+          plotProps = unpackPlotProps(child.props, context);
+        }
       } else {
         plotProps = {isVisible: true};
       }
@@ -84,12 +89,4 @@ Section.propTypes = {
   name: PropTypes.string,
 };
 
-Section.contextTypes = {
-  container: PropTypes.object,
-  defaultContainer: PropTypes.object,
-  fullContainer: PropTypes.object,
-  getValObject: PropTypes.func,
-  updateContainer: PropTypes.func,
-};
-
-export default Section;
+Section.contextTypes = containerConnectedContextTypes;
