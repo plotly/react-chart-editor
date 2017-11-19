@@ -65,7 +65,7 @@ function applyConfig(config = {}, {graphDiv: {data, layout}, dataSources}) {
   if (config.data) {
     extendDeep(data, config.data);
   }
-  if (config.deref) {
+  if (config.deref !== false) {
     dereference(data, dataSources);
   }
 
