@@ -150,16 +150,8 @@ class DefaultEditor extends Component {
             <Section name={_('Size and Spacing')}>
               <BoxGap label={_('Bar Width')} attr="bargap" />
               <BoxGap label={_('Box Width')} attr="boxgap" />
-              <BoxGap
-                label={_('Bar Padding')}
-                attr="bargroupgap"
-                showArrows={false}
-              />
-              <BoxGap
-                label={_('Box Padding')}
-                attr="boxgroupgap"
-                showArrows={false}
-              />
+              <BoxGap label={_('Bar Padding')} attr="bargroupgap" />
+              <BoxGap label={_('Box Padding')} attr="boxgroupgap" />
             </Section>
 
             <Section name={_('Lines')}>
