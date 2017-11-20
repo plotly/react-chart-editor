@@ -58,7 +58,11 @@ export default class Section extends Component {
       } else {
         plotProps = {isVisible: true};
       }
+
+      // assign plotProps as a prop of children. If they are connectedToContainer
+      // it will see plotProps and skip recomputing them.
       const childProps = Object.assign({plotProps}, child.props);
+
       childProps.key = i;
       attrChildren.push(cloneElement(child, childProps));
     }

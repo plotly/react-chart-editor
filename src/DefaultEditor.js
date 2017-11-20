@@ -24,6 +24,8 @@ import {
 import {DEFAULT_FONTS} from './constants';
 import {localize, connectAxesToLayout, connectLayoutToPlot} from './lib';
 
+import {BoxGap} from './shame';
+
 const LayoutPanel = connectLayoutToPlot(Panel);
 const AxesFold = connectAxesToLayout(Fold);
 
@@ -144,6 +146,21 @@ class DefaultEditor extends Component {
               <Numeric label={_('Border Width')} attr="marker.line.width" />
               <ColorPicker label={_('Border Color')} attr="marker.line.color" />
             </TraceMarkerSection>
+
+            <Section name={_('Size and Spacing')}>
+              <BoxGap label={_('Bar Width')} attr="bargap" />
+              <BoxGap label={_('Box Width')} attr="boxgap" />
+              <BoxGap
+                label={_('Bar Padding')}
+                attr="bargroupgap"
+                showArrows={false}
+              />
+              <BoxGap
+                label={_('Box Padding')}
+                attr="boxgroupgap"
+                showArrows={false}
+              />
+            </Section>
 
             <Section name={_('Lines')}>
               <Numeric label={_('Width')} step={1.0} attr="line.width" />
