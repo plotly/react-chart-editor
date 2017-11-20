@@ -66,12 +66,10 @@ DataSelector.propTypes = {
   ...Field.propTypes,
 };
 
-function supplyPlotProps(props, context) {
-  const plotProps = unpackPlotProps(props, context);
+function modifyPlotProps(props, context, plotProps) {
   if (attributeIsData(plotProps.attrMeta)) {
     plotProps.isVisible = true;
   }
-  return plotProps;
 }
 
-export default connectToContainer(DataSelector, {supplyPlotProps});
+export default connectToContainer(DataSelector, {modifyPlotProps});
