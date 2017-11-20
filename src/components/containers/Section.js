@@ -52,6 +52,9 @@ export default class Section extends Component {
       } else if (isAttr) {
         if (child.type.supplyPlotProps) {
           plotProps = child.type.supplyPlotProps(child.props, context);
+          if (child.type.modifyPlotProps) {
+            child.type.modifyPlotProps(child.props, context, plotProps);
+          }
         } else {
           plotProps = unpackPlotProps(child.props, context);
         }

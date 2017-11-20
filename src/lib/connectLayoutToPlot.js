@@ -45,6 +45,12 @@ export default function connectLayoutToPlot(WrappedComponent) {
       return unpackPlotProps(props, context);
     }
 
+    static modifyPlotProps(props, context, plotProps) {
+      if (WrappedComponent.modifyPlotProps) {
+        WrappedComponent.modifyPlotProps(props, context, plotProps);
+      }
+    }
+
     getChildContext() {
       return getLayoutContext(this.context);
     }

@@ -1,13 +1,11 @@
 import Numeric from './Numeric';
-import {connectToContainer, unpackPlotProps} from '../../lib';
+import {connectToContainer} from '../../lib';
 
-function supplyPlotProps(props, context) {
-  const plotProps = unpackPlotProps(props, context);
+function modifyPlotProps(props, context, plotProps) {
   const {fullContainer} = plotProps;
   if (plotProps.isVisible && fullContainer && fullContainer.autosize) {
     plotProps.isVisible = false;
   }
-  return plotProps;
 }
 
-export default connectToContainer(Numeric, {supplyPlotProps});
+export default connectToContainer(Numeric, {modifyPlotProps});

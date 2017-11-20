@@ -18,6 +18,8 @@ export const containerConnectedContextTypes = {
 
 export default function connectToContainer(WrappedComponent, config = {}) {
   class ContainerConnectedComponent extends Component {
+    // The most recent supplyPlotProps is used to supply the initial plotProps.
+    // This means any config routines are run before the inner components.
     static supplyPlotProps(props, context) {
       if (config.supplyPlotProps) {
         return config.supplyPlotProps(props, context);
@@ -26,6 +28,17 @@ export default function connectToContainer(WrappedComponent, config = {}) {
         return WrappedComponent.supplyPlotProps(props, context);
       }
       return unpackPlotProps(props, context);
+    }
+
+    // Run the inner modifications first and allow more recent modifyPlotProp
+    // config function to modify last.
+    static modifyPlotProps(props, context, plotProps) {
+      if (WrappedComponent.modifyPlotProps) {
+        WrappedComponent.modifyPlotProps(props, context, plotProps);
+      }
+      if (config.modifyPlotProps) {
+        config.modifyPlotProps(props, context, plotProps);
+      }
     }
 
     constructor(props, context) {
@@ -49,6 +62,11 @@ export default function connectToContainer(WrappedComponent, config = {}) {
         this.plotProps = ContainerConnectedComponent.supplyPlotProps(
           props,
           context
+        );
+        ContainerConnectedComponent.modifyPlotProps(
+          props,
+          context,
+          this.plotProps
         );
       }
     }
