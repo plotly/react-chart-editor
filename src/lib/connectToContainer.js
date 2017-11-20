@@ -17,12 +17,10 @@ export const containerConnectedContextTypes = {
 };
 
 export default function connectToContainer(WrappedComponent, config = {}) {
-  const {supplyPlotProps} = config;
-
   class ContainerConnectedComponent extends Component {
     static supplyPlotProps(props, context) {
-      if (supplyPlotProps) {
-        return supplyPlotProps(props, context);
+      if (config.supplyPlotProps) {
+        return config.supplyPlotProps(props, context);
       }
       if (WrappedComponent.supplyPlotProps) {
         return WrappedComponent.supplyPlotProps(props, context);
