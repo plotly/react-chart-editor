@@ -36,11 +36,11 @@ const supplyLayoutPlotProps = (props, context) => {
   });
 };
 
-export const BoxWidth = connectLayoutToPlot(
+export const LayoutNumericFractionInverse = connectLayoutToPlot(
   connectToContainer(NumericNoArrows, {
     supplyPlotProps: supplyLayoutPlotProps,
     modifyPlotProps: (props, context, plotProps) => {
-      const {fullValue, updatePlot} = plotProps;
+      const {attrMeta, fullValue, updatePlot} = plotProps;
       plotProps.fullValue = () => {
         let fv = fullValue();
         if (isNumeric(fv)) {
@@ -57,16 +57,25 @@ export const BoxWidth = connectLayoutToPlot(
         }
       };
 
-      plotProps.max = 100;
+      // Also take the inverse of max and min.
+      if (attrMeta) {
+        if (isNumeric(attrMeta.min)) {
+          plotProps.max = (1 - attrMeta.min) * 100;
+        }
+
+        if (isNumeric(attrMeta.max)) {
+          plotProps.min = (1 - attrMeta.max) * 100;
+        }
+      }
     },
   })
 );
 
-export const BoxPad = connectLayoutToPlot(
+export const LayoutNumericFraction = connectLayoutToPlot(
   connectToContainer(NumericNoArrows, {
     supplyPlotProps: supplyLayoutPlotProps,
     modifyPlotProps: (props, context, plotProps) => {
-      const {fullValue, updatePlot} = plotProps;
+      const {attrMeta, fullValue, updatePlot} = plotProps;
       plotProps.fullValue = () => {
         let fv = fullValue();
         if (isNumeric(fv)) {
@@ -83,7 +92,15 @@ export const BoxPad = connectLayoutToPlot(
         }
       };
 
-      plotProps.max = 100;
+      if (attrMeta) {
+        if (isNumeric(attrMeta.max)) {
+          plotProps.max = attrMeta.max * 100;
+        }
+
+        if (isNumeric(attrMeta.min)) {
+          plotProps.min = attrMeta.min * 100;
+        }
+      }
     },
   })
 );
