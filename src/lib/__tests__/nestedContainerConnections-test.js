@@ -67,7 +67,7 @@ describe('Plot Connection', () => {
     const DeeplyConnectedNumeric = connectTraceToPlot(
       connectLayoutToPlot(
         connectToContainer(Numeric, {
-          supplyPlotProps: (props, context, plotProps) => {
+          modifyPlotProps: (props, context, plotProps) => {
             plotProps.connectToContainerModifiedPlotProp = true;
           },
         })
