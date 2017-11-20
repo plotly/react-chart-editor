@@ -125,4 +125,39 @@ describe('Plot Connection', () => {
     expect(type).toBe(EDITOR_ACTIONS.UPDATE_LAYOUT);
     expect(payload).toEqual({update: {width: 11}});
   });
+
+  it('can supply and modify plotProps with <Trace><Section><LayoutComp>', () => {
+    const fixtureProps = fixtures.scatter({layout: {width: 10}});
+    const TracePanel = connectTraceToPlot(Panel);
+    const supplyLayoutPlotProps = (props, context) => {
+      return unpackPlotProps(props, {
+        ...context,
+        ...getLayoutContext(context),
+      });
+    };
+
+    const MAXWIDTH = 1000;
+    const LayoutWidth = connectLayoutToPlot(
+      connectToContainer(Numeric, {
+        supplyPlotProps: supplyLayoutPlotProps,
+        modifyPlotProps: (props, context, plotProps) => {
+          plotProps.max = MAXWIDTH;
+        },
+      })
+    );
+
+    const wrapper = mount(
+      <TestEditor {...{...fixtureProps}}>
+        <TracePanel traceIndex={0}>
+          <Section name="Canvas">
+            <LayoutWidth traceIndex={0} label="Width" attr="width" />
+          </Section>
+        </TracePanel>
+      </TestEditor>
+    )
+      .find('[attr="width"]')
+      .find(NumericInput);
+
+    expect(wrapper.prop('max')).toBe(MAXWIDTH);
+  });
 });
