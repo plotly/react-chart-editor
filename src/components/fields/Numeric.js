@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from '../../lib';
 
-class Numeric extends Component {
+export class UnconnectedNumeric extends Component {
   render() {
     return (
       <Field {...this.props}>
@@ -23,7 +23,7 @@ class Numeric extends Component {
   }
 }
 
-Numeric.propTypes = {
+UnconnectedNumeric.propTypes = {
   defaultValue: PropTypes.number,
   fullValue: PropTypes.func,
   min: PropTypes.number,
@@ -34,8 +34,8 @@ Numeric.propTypes = {
   ...Field.propTypes,
 };
 
-Numeric.defaultProps = {
+UnconnectedNumeric.defaultProps = {
   showArrows: true,
 };
 
-export default connectToContainer(Numeric);
+export default connectToContainer(UnconnectedNumeric);
