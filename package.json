@@ -18,8 +18,8 @@
     "make:dist": "mkdirp dist && browserify src/PlotlyEditor.js -o ./dist/PlotlyEditor.js -t [ babelify --presets [ es2015 react ] ] -t browserify-global-shim --standalone createPlotlyComponent && uglifyjs ./dist/PlotlyEditor.js --compress --mangle --output ./dist/PlotlyEditor.min.js --source-map filename=dist/PlotlyEditor.min.js.map && make:dist:css",
     "make:dist:css": "mkdirp dist && node-sass --output-style compressed src/styles/main.scss > dist/react-plotly.js-editor.css",
     "prepublishOnly": "npm run make:lib",
-    "lint": "prettier  --write \"{src}/**/*.{js,jsx}\"",
-    "test": "jest",
+    "lint": "prettier  --write \"src/**/*.js\"",
+    "test": "prettier -l \"src/**/*.js\" && jest",
     "watch": "nodemon --exec \"npm run make:lib\" -w src",
     "watch-test": "jest --watch",
     "eslint:check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
