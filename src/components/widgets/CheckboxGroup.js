@@ -1,16 +1,16 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 class CheckboxGroup extends Component {
   constructor(props) {
     super(props);
-    this.state = { options: this.props.options };
+    this.state = {options: this.props.options};
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ options: nextProps.options });
+    this.setState({options: nextProps.options});
   }
 
   handleChange(i) {
@@ -23,13 +23,13 @@ class CheckboxGroup extends Component {
 
   renderOptions() {
     return this.state.options.map((option, i) => {
-      const checkClass = classnames(["checkbox__check", "icon"], {
-        "icon-check-mark": option.checked,
+      const checkClass = classnames(['checkbox__check', 'icon'], {
+        'icon-check-mark': option.checked,
       });
 
-      const itemClass = classnames("checkbox__item", {
-        "checkbox__item--vertical": this.props.orientation === "vertical",
-        "checkbox__item--horizontal": this.props.orientation === "horizontal",
+      const itemClass = classnames('checkbox__item', {
+        'checkbox__item--vertical': this.props.orientation === 'vertical',
+        'checkbox__item--horizontal': this.props.orientation === 'horizontal',
       });
 
       return (
@@ -44,8 +44,8 @@ class CheckboxGroup extends Component {
   }
 
   render() {
-    const boxClass = classnames("checkbox__group", this.props.className, {
-      checkbox__group_horizontal: this.props.orientation === "horizontal",
+    const boxClass = classnames('checkbox__group', this.props.className, {
+      checkbox__group_horizontal: this.props.orientation === 'horizontal',
     });
 
     return <div className={boxClass}>{this.renderOptions()}</div>;
@@ -66,7 +66,7 @@ CheckboxGroup.propTypes = {
 };
 
 CheckboxGroup.defaultProps = {
-  className: "",
+  className: '',
 };
 
 export default CheckboxGroup;

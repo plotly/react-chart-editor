@@ -8,9 +8,7 @@ import {connectLayoutToPlot} from '../../../lib';
 import {mount} from 'enzyme';
 
 const Layouts = [Panel, Fold, Section].map(connectLayoutToPlot);
-const Editor = props => (
-  <TestEditor {...{onUpdate: jest.fn(), ...props}} />
-);
+const Editor = props => <TestEditor {...{onUpdate: jest.fn(), ...props}} />;
 
 Layouts.forEach(Layout => {
   describe(`<${Layout.displayName}>`, () => {

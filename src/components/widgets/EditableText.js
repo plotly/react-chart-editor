@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 // A generic component to handle text that can be edited when the user
 // clicks on it.
@@ -24,7 +24,7 @@ class EditableText extends Component {
   }
 
   handleChange(event) {
-    const { onChange } = this.props;
+    const {onChange} = this.props;
 
     if (onChange) {
       onChange(event.target.value);
@@ -32,7 +32,7 @@ class EditableText extends Component {
   }
 
   handleUpdate(event) {
-    const { onUpdate } = this.props;
+    const {onUpdate} = this.props;
 
     if (onUpdate) {
       onUpdate(event.target.value);
@@ -62,7 +62,7 @@ class EditableText extends Component {
       <input
         ref={this.getRef}
         type={type}
-        className={className || ""}
+        className={className || ''}
         value={text}
         onClick={this.handleClick}
         onChange={this.handleChange}
@@ -98,13 +98,13 @@ EditableText.propTypes = {
   disable: PropTypes.bool,
   autoFocus: PropTypes.bool,
   readOnly: PropTypes.bool,
-  type: PropTypes.oneOf(["text", "password"]),
+  type: PropTypes.oneOf(['text', 'password']),
   size: PropTypes.number,
 };
 
 EditableText.defaultProps = {
   readOnly: false,
-  type: "text",
+  type: 'text',
 };
 
 export default EditableText;

@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import CheckboxGroup from "./CheckboxGroup";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import CheckboxGroup from './CheckboxGroup';
 
 // Component handles activeOption with shape "x+y+z"
 // and ties it to the CheckboxGroup Component
@@ -12,7 +12,7 @@ class FlaglistCheckboxGroup extends Component {
     if (props.activeOption !== null) {
       currentActiveOption = props.activeOption;
     } else {
-      currentActiveOption = "";
+      currentActiveOption = '';
     }
 
     this.state = {
@@ -26,10 +26,10 @@ class FlaglistCheckboxGroup extends Component {
   // to a series of options separated by `+` that our component can handle
   parseFlags(option) {
     let activeOption;
-    if (option === "all") {
-      activeOption = this.props.options.map(o => o.value).join("+");
-    } else if (option === "none") {
-      activeOption = "";
+    if (option === 'all') {
+      activeOption = this.props.options.map(o => o.value).join('+');
+    } else if (option === 'none') {
+      activeOption = '';
     } else {
       activeOption = option;
     }
@@ -38,35 +38,35 @@ class FlaglistCheckboxGroup extends Component {
 
   // Sync local state to parent props.
   componentWillReceiveProps(nextProps) {
-    this.setState({ activeOption: this.parseFlags(nextProps.activeOption) });
+    this.setState({activeOption: this.parseFlags(nextProps.activeOption)});
   }
 
   // Called whenever a checkbox is changed, this updates the local
   // state to reflect the new activeOptions and then called props.onChange with
   // the new options.
   handleChange(newOptions) {
-    let newActiveOptions = "";
+    let newActiveOptions = '';
 
     newOptions.map(option => {
       if (option.checked === true) {
-        newActiveOptions += option.value + "+";
+        newActiveOptions += option.value + '+';
       }
     });
 
     newActiveOptions = newActiveOptions.slice(0, -1);
 
     if (newActiveOptions.length === 0) {
-      newActiveOptions = "none";
+      newActiveOptions = 'none';
     }
 
-    this.setState({ activeOption: newActiveOptions });
+    this.setState({activeOption: newActiveOptions});
     this.props.onChange(newActiveOptions);
   }
 
   // Turns the activeOptions "e.g "x+y+z" into an array that
   // the CheckboxGroup component can handle
   renderCheckedOption() {
-    const activeOptions = this.state.activeOption.split("+");
+    const activeOptions = this.state.activeOption.split('+');
     const allOptions = this.props.options;
     let newOptions = [];
 
