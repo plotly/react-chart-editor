@@ -1,9 +1,9 @@
 import React from 'react';
 import {connectLayoutToPlot} from '../../../lib';
-import {Panel, Fold, Numeric} from '../../';
+import {Panel, Fold} from '../../';
 import {TestEditor, fixtures} from '../../../lib/test-utils';
 import {mount} from 'enzyme';
-import CanvasSize from '../CanvasSize';
+import {CanvasSize} from '../';
 
 describe('CanvasSize', () => {
   const LayoutPanel = connectLayoutToPlot(Panel);
@@ -18,9 +18,9 @@ describe('CanvasSize', () => {
           </Fold>
         </LayoutPanel>
       </TestEditor>
-    ).find(Numeric);
+    ).find(CanvasSize);
 
-    expect(wrapper.length).toBe(0);
+    expect(wrapper.children().length).toBe(0);
   });
 
   it('is visible when autosize is false', () => {
@@ -33,8 +33,8 @@ describe('CanvasSize', () => {
           </Fold>
         </LayoutPanel>
       </TestEditor>
-    ).find(Numeric);
+    ).find(CanvasSize);
 
-    expect(wrapper.length).toBe(1);
+    expect(wrapper.children().length).toBe(1);
   });
 });
