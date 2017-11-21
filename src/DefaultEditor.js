@@ -258,21 +258,21 @@ class DefaultEditor extends Component {
             </Section>
           </AxesFold>
 
-          {/* <AxesFold name={_('Lines')}>
-              <AxesSelector />
-              </AxesFold>
-              <AxesFold name={_('Tick Labels')}>
-              <AxesSelector />
-              </AxesFold>
-              <AxesFold name={_('Tick Markers')}>
-              <AxesSelector />
-              </AxesFold>
-              <AxesFold name={_('Zoom Interactivity')}>
-              <AxesSelector />
-              </AxesFold>
-              <AxesFold name={_('Layout')}>
-              <AxesSelector />
-              </AxesFold> */}
+          <AxesFold name={_('Lines')}>
+            <AxesSelector />
+          </AxesFold>
+          <AxesFold name={_('Tick Labels')}>
+            <AxesSelector />
+          </AxesFold>
+          <AxesFold name={_('Tick Markers')}>
+            <AxesSelector />
+          </AxesFold>
+          <AxesFold name={_('Zoom Interactivity')}>
+            <AxesSelector />
+          </AxesFold>
+          <AxesFold name={_('Layout')}>
+            <AxesSelector />
+          </AxesFold>
         </LayoutPanel>
 
         <LayoutPanel group="Style" name={_('Legend')}>
@@ -381,6 +381,10 @@ class DefaultEditor extends Component {
     );
   }
 }
+
+DefaultEditor.propTypes = {
+  localize: PropTypes.func,
+};
 
 DefaultEditor.contextTypes = {
   dataSourceNames: PropTypes.array.isRequired,

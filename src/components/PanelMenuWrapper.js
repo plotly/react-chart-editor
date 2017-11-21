@@ -1,5 +1,6 @@
-import SidebarGroup from './sidebar/SidebarGroup';
+import PropTypes from 'prop-types';
 import React, {cloneElement, Component} from 'react';
+import SidebarGroup from './sidebar/SidebarGroup';
 import {bem} from '../lib';
 
 class PanelsWithSidebar extends Component {
@@ -86,5 +87,9 @@ class PanelsWithSidebar extends Component {
     );
   }
 }
+
+PanelsWithSidebar.propTypes = {
+  children: PropTypes.node,
+};
 
 export default PanelsWithSidebar;

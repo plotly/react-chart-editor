@@ -1,5 +1,8 @@
 import walkObject, {makeAttrSetterPath} from '../walkObject';
 
+const UNDEF = undefined; // eslint-disable-line
+
+/* eslint-disable no-magic-numbers */
 describe('objectUtils', () => {
   describe('walkObject', () => {
     let object;
@@ -11,7 +14,7 @@ describe('objectUtils', () => {
         foo: 'foo',
         bar: 0,
         [10]: {20: 'three'},
-        [undefined]: {really: {fugly: 'code'}},
+        [UNDEF]: {really: {fugly: 'code'}},
         _private: {gasp: 'o__o'},
         public: {_secret: {shock: '*__*'}},
         array: [{}, {}, {}],
@@ -264,7 +267,7 @@ describe('objectUtils', () => {
       callback.mockClear();
 
       walkObject(
-        {[void 0]: 1, b: [{c: [{a: 1, d: [{a: 1}]}]}, 2, 3]},
+        {[UNDEF]: 1, b: [{c: [{a: 1, d: [{a: 1}]}]}, 2, 3]},
         callback,
         {
           walkArraysMatchingKeys: ['b', 'c'],

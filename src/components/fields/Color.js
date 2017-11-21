@@ -2,7 +2,7 @@ import ColorPicker from '../widgets/ColorPicker';
 import Field from './Field';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem, connectToContainer} from '../../lib';
+import {connectToContainer} from '../../lib';
 
 class Color extends Component {
   render() {

@@ -33,13 +33,15 @@ describe('Section', () => {
     expect(
       wrapper
         .find(Flaglist)
-        .childAt(0) // unwrap higher-level component
+        // unwrap higher-level component
+        .childAt(0)
         .exists()
     ).toBe(true);
     expect(
       wrapper
         .find(Numeric)
-        .childAt(0) // unwrap higher-level component
+        // unwrap higher-level component
+        .childAt(0)
         .exists()
     ).toBe(false);
   });
