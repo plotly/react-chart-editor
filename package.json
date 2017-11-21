@@ -49,6 +49,7 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-react": "^7.4.0",
     "gl": "^4.0.4",
+    "glob": "^7.1.2",
     "jest": "^21.2.1",
     "mkdirp": "^0.5.1",
     "node-sass": "^4.7.1",
