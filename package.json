@@ -19,11 +19,12 @@
     "make:dist:css": "mkdirp dist && node-sass --output-style compressed src/styles/main.scss > dist/react-plotly.js-editor.css",
     "prepublishOnly": "npm run make:lib",
     "lint": "prettier  --write \"src/**/*.js\"",
-    "test": "eslint src && prettier -l \"src/**/*.js\" && jest",
-    "test-js": "jest",
+    "test:lint": "eslint src && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:js": "jest",
+    "test": "npm run test:lint && npm run test:pretty && npm run test:js",
     "watch": "nodemon --exec \"npm run make:lib\" -w src",
-    "watch-test": "jest --watch",
-    "eslint:check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
+    "watch-test": "jest --watch"
   },
   "keywords": [
     "graphing",
