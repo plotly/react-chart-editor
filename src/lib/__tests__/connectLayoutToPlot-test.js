@@ -43,10 +43,11 @@ Layouts.forEach(Layout => {
         .find('[attr="width"]')
         .find(NumericInput);
 
-      wrapper.prop('onChange')(200);
+      const widthUpdate = 200;
+      wrapper.prop('onChange')(widthUpdate);
       const event = onUpdate.mock.calls[0][0];
       expect(event.type).toBe(EDITOR_ACTIONS.UPDATE_LAYOUT);
-      expect(event.payload).toEqual({update: {width: 200}});
+      expect(event.payload).toEqual({update: {width: widthUpdate}});
     });
 
     it(`automatically computes min and max defaults`, () => {
@@ -64,8 +65,10 @@ Layouts.forEach(Layout => {
         .find('[attr="legend.x"]')
         .find(NumericInput);
 
-      expect(wrapper.prop('min')).toBe(-2);
-      expect(wrapper.prop('max')).toBe(3);
+      const expectedMin = -2;
+      const expectedMax = 3;
+      expect(wrapper.prop('min')).toBe(expectedMin);
+      expect(wrapper.prop('max')).toBe(expectedMax);
     });
   });
 });

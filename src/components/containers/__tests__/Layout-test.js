@@ -41,10 +41,11 @@ Layouts.forEach(Layout => {
         .find('[attr="width"]')
         .find(NumericInput);
 
-      wrapper.prop('onChange')(200);
+      const widthUpdate = 200;
+      wrapper.prop('onChange')(widthUpdate);
       const event = onUpdate.mock.calls[0][0];
       expect(event.type).toBe(EDITOR_ACTIONS.UPDATE_LAYOUT);
-      expect(event.payload).toEqual({update: {width: 200}});
+      expect(event.payload).toEqual({update: {width: widthUpdate}});
     });
   });
 });

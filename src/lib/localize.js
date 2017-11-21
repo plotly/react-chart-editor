@@ -6,8 +6,8 @@ export default function localize(Comp) {
     constructor(props, context) {
       super(props, context);
 
-      let dictionaries = context.dictionaries;
-      let locale = context.locale;
+      const dictionaries = context.dictionaries;
+      const locale = context.locale;
 
       this.localize = function localize(str) {
         return localizeString(dictionaries, locale, str);

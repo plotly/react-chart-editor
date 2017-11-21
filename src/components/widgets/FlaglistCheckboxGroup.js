@@ -68,7 +68,7 @@ class FlaglistCheckboxGroup extends Component {
   renderCheckedOption() {
     const activeOptions = this.state.activeOption.split('+');
     const allOptions = this.props.options;
-    let newOptions = [];
+    const newOptions = [];
 
     allOptions.map(option => {
       let currentChecked;

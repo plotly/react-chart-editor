@@ -42,11 +42,12 @@ Traces.forEach(Trace => {
         .find('[attr="marker.size"]')
         .find(NumericInput);
 
-      wrapper.prop('onChange')(200);
+      const sizeUpdate = 200;
+      wrapper.prop('onChange')(sizeUpdate);
       const event = onUpdate.mock.calls[0][0];
       expect(event.type).toBe(EDITOR_ACTIONS.UPDATE_TRACES);
       expect(event.payload).toEqual({
-        update: {'marker.size': 200},
+        update: {'marker.size': sizeUpdate},
         traceIndexes: [0],
       });
     });
@@ -64,7 +65,7 @@ Traces.forEach(Trace => {
         .find(NumericInput);
 
       expect(wrapper.prop('min')).toBe(0);
-      expect(wrapper.prop('max')).toBe(undefined);
+      expect(wrapper.prop('max')).toBe(void 0);
     });
   });
 });

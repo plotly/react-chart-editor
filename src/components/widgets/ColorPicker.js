@@ -12,6 +12,7 @@ import {
 import {CustomPicker as customPicker} from 'react-color';
 import {localize} from '../../lib';
 
+/* eslint-disable no-inline-comments */
 const defaultColors = [
   '#444444',
   '#ffffff',
@@ -26,6 +27,7 @@ const defaultColors = [
   '#bcbd22', // curry yellow-green
   '#17becf', // blue-teal
 ];
+/* eslint-enable no-inline-comments */
 
 // Utility functions for converting ColorPicker color objects or raw strings
 // into TinyColor objects.

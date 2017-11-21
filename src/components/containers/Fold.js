@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 import {bem} from '../../lib';
 
 export default class Fold extends Component {
   renderHeader() {
     const {deleteContainer} = this.context;
-    const {canDelete, name} = this.props;
+    const {canDelete} = this.props;
     const doDelete = canDelete && typeof deleteContainer === 'function';
     return (
       <div className={bem('fold', 'top', ['active'])}>
@@ -36,6 +36,7 @@ export default class Fold extends Component {
 
 Fold.propTypes = {
   canDelete: PropTypes.bool,
+  children: PropTypes.node,
   hideHeader: PropTypes.bool,
   name: PropTypes.string,
 };
