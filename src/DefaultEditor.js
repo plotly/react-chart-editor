@@ -10,6 +10,8 @@ import {
   Flaglist,
   Fold,
   Info,
+  LayoutNumericFraction,
+  LayoutNumericFractionInverse,
   Numeric,
   Panel,
   PanelMenuWrapper,
@@ -23,8 +25,6 @@ import {
 } from './components';
 import {DEFAULT_FONTS} from './constants';
 import {localize, connectAxesToLayout, connectLayoutToPlot} from './lib';
-
-import {LayoutNumericFractionInverse, LayoutNumericFraction} from './shame';
 
 const LayoutPanel = connectLayoutToPlot(Panel);
 const AxesFold = connectAxesToLayout(Fold);

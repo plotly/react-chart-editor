@@ -1,6 +1,4 @@
-import AxesRange from './AxesRange';
 import AxesSelector from './AxesSelector';
-import CanvasSize from './CanvasSize';
 import ColorPicker from './Color';
 import Dropdown from './Dropdown';
 import Flaglist from './Flaglist';
@@ -10,6 +8,12 @@ import DataSelector from './DataSelector';
 import Numeric from './Numeric';
 import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
+import {
+  AxesRange,
+  CanvasSize,
+  LayoutNumericFraction,
+  LayoutNumericFractionInverse,
+} from './derived';
 
 export {
   AxesRange,
@@ -19,6 +23,8 @@ export {
   Dropdown,
   Flaglist,
   Info,
+  LayoutNumericFraction,
+  LayoutNumericFractionInverse,
   Radio,
   DataSelector,
   Numeric,

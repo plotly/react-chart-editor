@@ -8,8 +8,8 @@ import Adapter from 'enzyme-adapter-react-15';
 configure({adapter: new Adapter()});
 
 const fixtures = {
-  scatter() {
-    return {
+  scatter(config) {
+    return applyConfig(config, {
       dataSources: {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
@@ -18,11 +18,11 @@ const fixtures = {
         data: [{type: 'scatter', mode: 'markers', xsrc: 'x1', ysrc: 'y1'}],
         layout: {},
       },
-    };
+    });
   },
 
-  area() {
-    return {
+  area(config) {
+    return applyConfig(config, {
       dataSources: {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
@@ -39,11 +39,11 @@ const fixtures = {
         ],
         layout: {},
       },
-    };
+    });
   },
 
-  pie() {
-    return {
+  pie(config) {
+    return applyConfig(config, {
       dataSources: {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
@@ -54,7 +54,7 @@ const fixtures = {
         ],
         layout: {},
       },
-    };
+    });
   },
 };
 
@@ -74,11 +74,6 @@ function applyConfig(config = {}, {graphDiv: {data, layout}, dataSources}) {
 
   return {dataSources, graphDiv};
 }
-
-Object.keys(fixtures).forEach(k => {
-  const fixtureFunc = fixtures[k];
-  fixtures[k] = config => applyConfig(config, fixtureFunc());
-});
 
 function newGraphDiv() {
   const graphDiv = window.document.createElement('div');
