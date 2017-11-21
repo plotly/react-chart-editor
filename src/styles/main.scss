@@ -2,7 +2,6 @@
 @import 'variables/main';
 @import 'mixins';
 @import 'helpers';
-@import 'icons/main';
 
 .plotly-editor {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -13,6 +12,7 @@
   overflow: hidden;
 
   @import 'components/main';
+  @import 'icons/main';
 }
 
 @import 'shame'
