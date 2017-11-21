@@ -30,7 +30,6 @@ export function localizeString(dictionaries, locale, key) {
   const dict = dictionaries[locale];
   if (dict && dict.hasOwnProperty(key)) {
     return dict[key];
-  } else {
-    return key;
   }
+  return key;
 }

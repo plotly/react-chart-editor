@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import classnames from "classnames";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 class RadioBlocks extends Component {
   constructor(props) {
     super(props);
-    this.state = { activeOption: this.props.activeOption };
+    this.state = {activeOption: this.props.activeOption};
     this.handleChange = this.handleChange.bind(this);
     this.renderOption = this.renderOption.bind(this);
   }
@@ -20,16 +20,16 @@ class RadioBlocks extends Component {
   }
 
   handleChange(newValue) {
-    this.setState({ activeOption: newValue });
+    this.setState({activeOption: newValue});
     this.props.onOptionChange(newValue);
   }
 
   renderOption(optionName) {
-    const { label, value, icon } = optionName;
+    const {label, value, icon} = optionName;
     const defaultActive = this.state.activeOption === value;
 
-    const optionClass = classnames("radio-block__option", {
-      "radio-block__option--active": defaultActive,
+    const optionClass = classnames('radio-block__option', {
+      'radio-block__option--active': defaultActive,
     });
 
     return (
@@ -52,8 +52,8 @@ class RadioBlocks extends Component {
   render() {
     const optionList = this.props.options.map(this.renderOption);
 
-    const groupClass = classnames("radio-block__group", {
-      "radio-block__group--center": this.props.alignment === "center",
+    const groupClass = classnames('radio-block__group', {
+      'radio-block__group--center': this.props.alignment === 'center',
     });
 
     return <div className={groupClass}>{optionList}</div>;

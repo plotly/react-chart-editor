@@ -1,16 +1,16 @@
-import Dropdown from "./Dropdown";
-import ProBadge from "./ProBadge";
-import R from "ramda";
-import React from "react";
-import PropTypes from "prop-types";
-import getFeatureValue from "@common/utils/features";
-import tieredDecorator from "@workspace/utils/tieredDecorator";
-import { MIXED_VALUES } from "@workspace/constants/workspace";
-import { currentUserOrNull } from "@workspace/utils/customPropTypes";
+import Dropdown from './Dropdown';
+import ProBadge from './ProBadge';
+import R from 'ramda';
+import React from 'react';
+import PropTypes from 'prop-types';
+import getFeatureValue from '@common/utils/features';
+import tieredDecorator from '@workspace/utils/tieredDecorator';
+import {MIXED_VALUES} from '@workspace/constants/workspace';
+import {currentUserOrNull} from '@workspace/utils/customPropTypes';
 import {
   tierFontFamilies,
   hasInaccessibleFeature,
-} from "@workspace/utils/checkFigureFeatureAccess";
+} from '@workspace/utils/checkFigureFeatureAccess';
 
 /*
  * TODO: expand to accept custom fonts #5718
@@ -31,11 +31,11 @@ const FontSelector = React.createClass({
   prettifyFontLabel(fontLabel) {
     // Take the first font-family and remove all the quotes
     if (fontLabel) {
-      return R.replace(/"/g, "", fontLabel.split(",")[0]);
+      return R.replace(/"/g, '', fontLabel.split(',')[0]);
     }
 
     // if there is no font label return empty
-    return "";
+    return '';
   },
 
   /**
@@ -46,7 +46,7 @@ const FontSelector = React.createClass({
   isAccessible(font) {
     const user = this.context.currentUser;
     const feature_set = user ? user.feature_set_id : null;
-    const { featureName, validations } = tierFontFamilies;
+    const {featureName, validations} = tierFontFamilies;
 
     const allowedFonts = getFeatureValue(feature_set, featureName);
 
@@ -55,88 +55,88 @@ const FontSelector = React.createClass({
 
   // Set the initial state
   getInitialState() {
-    const activeOption = this.props.activeOption || "Open Sans";
+    const activeOption = this.props.activeOption || 'Open Sans';
     const fontList = [
       {
-        label: "Arial",
-        value: "Arial",
-        key: "Arial",
+        label: 'Arial',
+        value: 'Arial',
+        key: 'Arial',
       },
       {
-        label: "Balto",
-        value: "Balto",
-        key: "Balto",
+        label: 'Balto',
+        value: 'Balto',
+        key: 'Balto',
       },
       {
-        label: "Courier New",
-        value: "Courier New",
-        key: "Courier New",
+        label: 'Courier New',
+        value: 'Courier New',
+        key: 'Courier New',
       },
       {
-        label: "Droid Sans",
-        value: "Droid Sans",
-        key: "Droid Sans",
+        label: 'Droid Sans',
+        value: 'Droid Sans',
+        key: 'Droid Sans',
       },
       {
-        label: "Droid Serif",
-        value: "Droid Serif",
-        key: "Droid Serif",
+        label: 'Droid Serif',
+        value: 'Droid Serif',
+        key: 'Droid Serif',
       },
       {
-        label: "Droid Sans Mono",
-        value: "Droid Sans Mono",
-        key: "Droid Sans Mono",
+        label: 'Droid Sans Mono',
+        value: 'Droid Sans Mono',
+        key: 'Droid Sans Mono',
       },
       {
-        label: "Gravitas One",
-        value: "Gravitas One",
-        key: "Gravitas One",
+        label: 'Gravitas One',
+        value: 'Gravitas One',
+        key: 'Gravitas One',
       },
       {
-        label: "Liberation Sans",
-        value: "Liberation Sans",
-        key: "Liberation Sans",
+        label: 'Liberation Sans',
+        value: 'Liberation Sans',
+        key: 'Liberation Sans',
       },
       {
-        label: "Old Standard TT",
-        value: "Old Standard TT",
-        key: "Old Standard TT",
+        label: 'Old Standard TT',
+        value: 'Old Standard TT',
+        key: 'Old Standard TT',
       },
       {
-        label: "Open Sans",
+        label: 'Open Sans',
         value: '"Open Sans", verdana, arial, sans-serif',
-        key: "Open Sans",
+        key: 'Open Sans',
       },
       {
-        label: "Overpass",
-        value: "Overpass",
-        key: "Overpass",
+        label: 'Overpass',
+        value: 'Overpass',
+        key: 'Overpass',
       },
       {
-        label: "PT Sans Narrow",
-        value: "PT Sans Narrow",
-        key: "PT Sans Narrow",
+        label: 'PT Sans Narrow',
+        value: 'PT Sans Narrow',
+        key: 'PT Sans Narrow',
       },
       {
-        label: "Raleway",
-        value: "Raleway",
-        key: "Raleway",
+        label: 'Raleway',
+        value: 'Raleway',
+        key: 'Raleway',
       },
       {
-        label: "Roboto",
-        value: "Roboto",
-        key: "Roboto",
+        label: 'Roboto',
+        value: 'Roboto',
+        key: 'Roboto',
       },
       {
-        label: "Times New Roman",
-        value: "Times New Roman",
-        key: "Times New Roman",
+        label: 'Times New Roman',
+        value: 'Times New Roman',
+        key: 'Times New Roman',
       },
     ];
 
     this.addFontOptionIfNotAvailable(activeOption, fontList);
 
-    return { activeOption, fontList };
+    return {activeOption, fontList};
   },
 
   // if the font-string isn't available then add it to our list of options.
@@ -155,7 +155,7 @@ const FontSelector = React.createClass({
     if (nextProps.activeOption === MIXED_VALUES) {
       // set the active option empty if it is MIXED_VALUES
       this.setState({
-        activeOption: "",
+        activeOption: '',
       });
 
       return;
@@ -175,7 +175,7 @@ const FontSelector = React.createClass({
 
   onSelect(chosenFont) {
     const newActiveFont = chosenFont;
-    const { onChange } = this.props;
+    const {onChange} = this.props;
 
     this.setState({
       activeOption: newActiveFont,
@@ -188,7 +188,7 @@ const FontSelector = React.createClass({
     return this.state.fontList;
   },
 
-  renderOption({ label }) {
+  renderOption({label}) {
     const fontStyle = {
       fontFamily: label,
     };
@@ -205,12 +205,12 @@ const FontSelector = React.createClass({
     );
   },
 
-  renderValue({ label }) {
+  renderValue({label}) {
     const hidePropBadge = this.isAccessible(label);
 
-    let labelClass = "";
+    let labelClass = '';
     if (!hidePropBadge) {
-      labelClass = "Select-font-with-pro-badge";
+      labelClass = 'Select-font-with-pro-badge';
     }
 
     const fontStyle = {
@@ -218,7 +218,7 @@ const FontSelector = React.createClass({
     };
 
     return (
-      <div className={"Select-value-with-arrow"}>
+      <div className={'Select-value-with-arrow'}>
         <span style={fontStyle} className={labelClass}>
           {label}
         </span>
@@ -228,8 +228,8 @@ const FontSelector = React.createClass({
   },
 
   render() {
-    const { dispatch } = this.props;
-    const { featureName } = tierFontFamilies;
+    const {dispatch} = this.props;
+    const {featureName} = tierFontFamilies;
 
     const tieredOnSelect = tieredDecorator(
       this.onSelect,
@@ -249,7 +249,7 @@ const FontSelector = React.createClass({
           optionRenderer={this.renderOption}
           valueRenderer={this.renderValue}
           placeholder={this.state.activeOption}
-          minWidth={"100%"}
+          minWidth={'100%'}
         />
       </span>
     );
