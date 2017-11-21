@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {bem} from '../../lib';
 
@@ -13,3 +14,9 @@ export default class SidebarItem extends Component {
     );
   }
 }
+
+SidebarItem.propTypes = {
+  active: PropTypes.bool,
+  label: PropTypes.string,
+  onClick: PropTypes.func,
+};

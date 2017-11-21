@@ -1,5 +1,5 @@
 import dereference from '../dereference';
-
+/* eslint-disable no-magic-numbers */
 describe('dereference', () => {
   it('does not search into data arrays', () => {
     const container = [{y: [{ysrc: 'x1'}], xsrc: 'x1'}];

@@ -6,13 +6,13 @@ class Panel extends Component {
   render() {
     if (this.props.visible) {
       return <div className={bem('panel')}>{this.props.children}</div>;
-    } else {
-      return <div />;
     }
+    return <div />;
   }
 }
 
 Panel.propTypes = {
+  children: PropTypes.node,
   visible: PropTypes.bool,
 };
 

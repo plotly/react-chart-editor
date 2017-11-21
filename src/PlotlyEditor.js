@@ -38,7 +38,9 @@ class PlotlyEditor extends Component {
 
   updateProp(event) {
     const {graphDiv} = this.props;
-    this.props.onUpdate && this.props.onUpdate({graphDiv, ...event});
+    if (this.props.onUpdate) {
+      this.props.onUpdate({graphDiv, ...event});
+    }
   }
 
   render() {
@@ -52,11 +54,12 @@ class PlotlyEditor extends Component {
 }
 
 PlotlyEditor.propTypes = {
-  onUpdate: PropTypes.func,
-  plotly: PropTypes.object,
+  children: PropTypes.node,
+  dataSources: PropTypes.object,
   graphDiv: PropTypes.object,
   locale: PropTypes.string,
-  dataSources: PropTypes.object,
+  onUpdate: PropTypes.func,
+  plotly: PropTypes.object,
 };
 
 PlotlyEditor.defaultProps = {

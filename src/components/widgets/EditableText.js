@@ -1,5 +1,7 @@
-import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+
+const ENTER_KEYCODE = 13;
 
 // A generic component to handle text that can be edited when the user
 // clicks on it.
@@ -41,7 +43,7 @@ class EditableText extends Component {
 
   handleKeyPress(event) {
     // This will force handleUpdate to be called via the input's onBlur
-    if ((event.keyCode || event.which) === 13) {
+    if ((event.keyCode || event.which) === ENTER_KEYCODE) {
       this._ref.blur();
     }
   }

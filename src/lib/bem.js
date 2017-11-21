@@ -7,8 +7,8 @@
 // bem('foo', ['mod'])         => 'foo foo--mod'
 // bem('foo', 'bar', ['mod'])  => 'foo__bar foo__bar--mod'
 // bem('foo', ['mod1', mod2']) => 'foo foo--mod1 foo--mod2'
-//
 
+/* eslint-disable no-param-reassign */
 import {baseClass} from './constants';
 
 export default function bem(block, element, modifiers) {

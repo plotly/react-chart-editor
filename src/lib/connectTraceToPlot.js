@@ -40,7 +40,7 @@ export default function connectTraceToPlot(WrappedComponent) {
     }
 
     updateTrace(update) {
-      this.context.onUpdate &&
+      if (this.context.onUpdate) {
         this.context.onUpdate({
           type: EDITOR_ACTIONS.UPDATE_TRACES,
           payload: {
@@ -48,20 +48,20 @@ export default function connectTraceToPlot(WrappedComponent) {
             traceIndexes: [this.props.traceIndex],
           },
         });
+      }
     }
 
     deleteTrace() {
-      this.context.onUpdate &&
+      if (this.context.onUpdate) {
         this.context.onUpdate({
           type: EDITOR_ACTIONS.DELETE_TRACE,
           payload: {traceIndexes: [this.props.traceIndex]},
         });
+      }
     }
 
     render() {
-      // Do not pass down traceIndex prop specific to wrapped component API.
-      const {traceIndex, ...props} = this.props;
-      return <WrappedComponent {...props} />;
+      return <WrappedComponent {...this.props} />;
     }
   }
 

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {bem} from '../../lib';
 
@@ -58,6 +59,10 @@ export default class SidebarGroup extends Component {
   }
 }
 
-SidebarGroup.defaultProps = {
-  expanded: false,
+SidebarGroup.propTypes = {
+  group: PropTypes.string,
+  onChangeGroup: PropTypes.func,
+  panels: PropTypes.array,
+  selectedGroup: PropTypes.string,
+  selectedPanel: PropTypes.string,
 };

@@ -1,6 +1,6 @@
+import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Select from 'react-select';
-import PropTypes from 'prop-types';
 
 class Dropdown extends Component {
   constructor(props) {
@@ -15,9 +15,8 @@ class Dropdown extends Component {
     if (!selection) {
       return onChange(null);
     } else if (multi) {
-      console.log(valueKey, selection);
       throw new Error('TODO: de-ramda');
-      //return onChange(map(prop(valueKey), selection));
+      // return onChange(map(prop(valueKey), selection));
     }
 
     return onChange(selection[valueKey]);

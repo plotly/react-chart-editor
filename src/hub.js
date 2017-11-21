@@ -2,6 +2,10 @@ import {dereference} from './lib';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {EDITOR_ACTIONS} from './constants';
 
+/* eslint-disable no-console */
+const log = console.log;
+/* eslint-enable no-console */
+
 export default function PlotlyHub(config = {}) {
   this.dataSources = config.dataSources || {};
   this.setState = config.setState;
@@ -19,14 +23,18 @@ export default function PlotlyHub(config = {}) {
   // @returns {object} dataSorces - the sanitized data references
   //
   this.setDataSources = data => {
-    if (config.debug) console.log('set data sources');
+    if (config.debug) {
+      log('set data sources');
+    }
 
     // Explicitly clear out and transfer object properties in order to sanitize
     // the input, at least up to its type, which plotly.js will handle sanitizing.
     this.dataSources = {};
-    let refs = Object.keys(data || {});
+    const refs = Object.keys(data || {});
     for (let i = 0; i < refs.length; i++) {
-      if (!data.hasOwnProperty(refs[i])) continue;
+      if (!data.hasOwnProperty(refs[i])) {
+        continue;
+      }
       this.dataSources[refs[i]] = data[refs[i]];
     }
 
@@ -55,8 +63,12 @@ export default function PlotlyHub(config = {}) {
   // @returns {object} output data with substitutions
   //
   this.dereference = data => {
-    if (config.debug) console.log('dereferencing', data);
-    if (!data) return;
+    if (config.debug) {
+      log('dereferencing', data);
+    }
+    if (!data) {
+      return void 0;
+    }
 
     dereference(data, this.dataSources);
 
@@ -72,7 +84,9 @@ export default function PlotlyHub(config = {}) {
   // @param {object} gd - graph div
   //
   this.handlePlotUpdate = gd => {
-    if (config.debug) console.log('handle plot update');
+    if (config.debug) {
+      log('handle plot update');
+    }
     this.graphDiv = gd;
 
     this.setState({__editorRevision: ++editorRevision});
@@ -87,7 +101,9 @@ export default function PlotlyHub(config = {}) {
   // @param {object} gd - graph div
   //
   this.handlePlotInitialized = gd => {
-    if (config.debug) console.log('plot was initialized');
+    if (config.debug) {
+      log('plot was initialized');
+    }
     this.graphDiv = gd;
 
     this.setState({
@@ -99,7 +115,9 @@ export default function PlotlyHub(config = {}) {
   // @method handleEditorUpdate
   //
   this.handleEditorUpdate = ({graphDiv, type, payload}) => {
-    if (config.debug) console.log(`Editor triggered an event of type ${type}`);
+    if (config.debug) {
+      log(`Editor triggered an event of type ${type}`);
+    }
 
     switch (type) {
       case EDITOR_ACTIONS.UPDATE_TRACES:
@@ -108,7 +126,7 @@ export default function PlotlyHub(config = {}) {
             const traceIndex = payload.traceIndexes[i];
             const prop = nestedProperty(graphDiv.data[traceIndex], attr);
             const value = payload.update[attr];
-            if (value !== undefined) {
+            if (value !== void 0) {
               prop.set(value);
             }
           }
@@ -132,7 +150,7 @@ export default function PlotlyHub(config = {}) {
         for (const attr in payload.update) {
           const prop = nestedProperty(graphDiv.layout, attr);
           const value = payload.update[attr];
-          if (value !== undefined) {
+          if (value !== void 0) {
             prop.set(value);
           }
         }

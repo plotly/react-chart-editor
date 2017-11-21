@@ -7,6 +7,7 @@ import Adapter from 'enzyme-adapter-react-15';
 
 configure({adapter: new Adapter()});
 
+/* eslint-disable no-magic-numbers */
 const fixtures = {
   scatter(config) {
     return applyConfig(config, {

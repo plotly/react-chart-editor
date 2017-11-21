@@ -1,32 +1,15 @@
 import Dropdown from './Dropdown';
 import ProBadge from './ProBadge';
-import R from 'ramda';
-import React from 'react';
 import PropTypes from 'prop-types';
-import getFeatureValue from '@common/utils/features';
+import R from 'ramda';
+import React, {Component} from 'react';
 import tieredDecorator from '@workspace/utils/tieredDecorator';
 import {MIXED_VALUES} from '@workspace/constants/workspace';
-import {currentUserOrNull} from '@workspace/utils/customPropTypes';
-import {
-  tierFontFamilies,
-  hasInaccessibleFeature,
-} from '@workspace/utils/checkFigureFeatureAccess';
 
 /*
  * TODO: expand to accept custom fonts #5718
  */
-
-const FontSelector = React.createClass({
-  propTypes: {
-    activeOption: PropTypes.string,
-    onChange: PropTypes.func,
-    dispatch: PropTypes.func.isRequired,
-  },
-
-  contextTypes: {
-    currentUser: currentUserOrNull.isDefined,
-  },
-
+export default class FontSelector extends Component {
   // Prettify the font labels
   prettifyFontLabel(fontLabel) {
     // Take the first font-family and remove all the quotes
@@ -36,22 +19,13 @@ const FontSelector = React.createClass({
 
     // if there is no font label return empty
     return '';
-  },
+  }
 
   /**
    * Determine if the font is accessible
    * @param {String} font label specifying the font family
    * @returns {bool} if the font is accessible or not
    */
-  isAccessible(font) {
-    const user = this.context.currentUser;
-    const feature_set = user ? user.feature_set_id : null;
-    const {featureName, validations} = tierFontFamilies;
-
-    const allowedFonts = getFeatureValue(feature_set, featureName);
-
-    return !hasInaccessibleFeature(font, allowedFonts, validations);
-  },
 
   // Set the initial state
   getInitialState() {
@@ -137,7 +111,7 @@ const FontSelector = React.createClass({
     this.addFontOptionIfNotAvailable(activeOption, fontList);
 
     return {activeOption, fontList};
-  },
+  }
 
   // if the font-string isn't available then add it to our list of options.
   addFontOptionIfNotAvailable(fontStringValue, fontList) {
@@ -148,7 +122,7 @@ const FontSelector = React.createClass({
         key: fontStringValue,
       });
     }
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     // Skip addFontOption operation if value passed in is MIXED_VALUE
@@ -171,7 +145,7 @@ const FontSelector = React.createClass({
         activeOption: nextProps.activeOption,
       });
     }
-  },
+  }
 
   onSelect(chosenFont) {
     const newActiveFont = chosenFont;
@@ -182,11 +156,11 @@ const FontSelector = React.createClass({
     });
 
     onChange(newActiveFont);
-  },
+  }
 
   getBasicFontOptions() {
     return this.state.fontList;
-  },
+  }
 
   renderOption({label}) {
     const fontStyle = {
@@ -203,7 +177,7 @@ const FontSelector = React.createClass({
         </div>
       </li>
     );
-  },
+  }
 
   renderValue({label}) {
     const hidePropBadge = this.isAccessible(label);
@@ -225,16 +199,14 @@ const FontSelector = React.createClass({
         <ProBadge hide={hidePropBadge} className="--font-dropdown" />
       </div>
     );
-  },
+  }
 
   render() {
     const {dispatch} = this.props;
-    const {featureName} = tierFontFamilies;
 
     const tieredOnSelect = tieredDecorator(
       this.onSelect,
       this.isAccessible,
-      featureName,
       dispatch,
       this.prettifyFontLabel
     );
@@ -253,7 +225,11 @@ const FontSelector = React.createClass({
         />
       </span>
     );
-  },
-});
+  }
+}
 
-export default FontSelector;
+FontSelector.propTypes = {
+  activeOption: PropTypes.string,
+  onChange: PropTypes.func,
+  dispatch: PropTypes.func.isRequired,
+};
