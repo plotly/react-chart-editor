@@ -6,65 +6,63 @@ import {EDITOR_ACTIONS} from './constants';
 const log = console.log;
 /* eslint-enable no-console */
 
+// Revisions: An optional system to prevent unnecessary rerenders.
+// There are two revision counters. One for the react-plotly.js
+// component and one for react-plotly.js-editor. They are uncoupled because
+// the plot can update the data internally (for example if a user updates the
+// title in the plot directly). This should trigger a plotUpdated counter but
+// not a dataUpdated counter since in this case the plot has already updated and
+// only the editor needs updating. Similarly there is the case where the data
+// may update but the Plotly.react component may determine that nothing needs to
+// update. In this case the Editor does not need to update.
+// If the revisions are not passed to react-plotly.js or react-plotly.js-editor
+// they will always update.
 export default function PlotlyHub(config = {}) {
   this.dataSources = config.dataSources || {};
-  this.setState = config.setState;
-  this.revision = config.revision || 0;
-  let editorRevision = 0;
+  this.onUpdate = config.onUpdate;
+
+  let editorRevision = config.editorRevision || 0;
+  let plotRevision = config.plotRevision || 0;
 
   //
-  // @method setDataSources
+  // @method dataUpdated
   //
-  // Sets available data references. For example, {foo: [1, 2, 3]} will be substituted
-  // into `data` wherever the key `*src: 'foo'` (e.g. for `x` when `{xsrc: 'foo'}`) is
-  // found.
-  //
-  // @param {object} data - object containing key-value pairs to be substituted
-  // @returns {object} dataSorces - the sanitized data references
-  //
-  this.setDataSources = data => {
+  // The underlying figure data has changed. Calling this function
+  // will alert the Plotly.js component that it must redraw.
+  this.dataUpdated = () => {
+    plotRevision++;
     if (config.debug) {
-      log('set data sources');
+      log('hub.onUpdate', {plotRevision, editorRevision});
     }
-
-    // Explicitly clear out and transfer object properties in order to sanitize
-    // the input, at least up to its type, which plotly.js will handle sanitizing.
-    this.dataSources = {};
-    const refs = Object.keys(data || {});
-    for (let i = 0; i < refs.length; i++) {
-      if (!data.hasOwnProperty(refs[i])) {
-        continue;
-      }
-      this.dataSources[refs[i]] = data[refs[i]];
-    }
-
-    this.refresh();
-
-    return this.dataSources;
+    this.onUpdate({plotRevision, editorRevision, graphDiv: this.graphDiv});
   };
 
   //
-  // @method refresh
+  // @method plotUpdated
   //
-  this.refresh = () => {
-    this.setState({
-      revision: ++this.revision,
-    });
+  // The plot has updated. Calling this function will alert the Editor
+  // that it must redraw.
+  this.plotUpdated = () => {
+    editorRevision++;
+    if (config.debug) {
+      log('hub.plotUpdated', {plotRevision, editorRevision});
+    }
+    this.onUpdate({plotRevision, editorRevision, graphDiv: this.graphDiv});
   };
 
   //
   // @method dereference
   //
-  // Applies available data references. For example, {foo: [1, 2, 3]} will be substituted
-  // into `data` wherever the key `*src: 'foo'` (e.g. for `x` when `{xsrc: 'foo'}`) is
-  // found.
+  // Applies available data references. For example,
+  // {foo: [1, 2, 3]} will be substituted into `data` wherever the key
+  // `*src: 'foo'` (e.g. for `x` when `{xsrc: 'foo'}`) is found.
   //
   // @param {object} data - input data
   // @returns {object} output data with substitutions
   //
   this.dereference = data => {
     if (config.debug) {
-      log('dereferencing', data);
+      log('hub.dereference', data);
     }
     if (!data) {
       return void 0;
@@ -78,37 +76,34 @@ export default function PlotlyHub(config = {}) {
   //
   // @method handlePlotUpdate
   //
-  // Triggers editor UI update when the plot has been modified, whether by a restyle, a
-  // redraw, or by some other interaction.
+  // Triggers editor UI update when the plot has been modified,
+  // whether by a restyle, a redraw, or by some other interaction.
   //
-  // @param {object} gd - graph div
+  // @param {object} graphDiv - graph div
   //
-  this.handlePlotUpdate = gd => {
+  this.handlePlotUpdate = graphDiv => {
     if (config.debug) {
-      log('handle plot update');
+      log('hub.handlePlotUpdate');
     }
-    this.graphDiv = gd;
-
-    this.setState({__editorRevision: ++editorRevision});
+    this.graphDiv = graphDiv;
+    this.plotUpdated();
   };
 
   //
   // @method handlePlotUpdate
   //
-  // Triggers editor UI update when the plot has been modified, whether by a restyle, a
+  // Triggers editor UI update when the plot has been modified,
+  // whether by a restyle, a
   // redraw, or by some other interaction.
   //
-  // @param {object} gd - graph div
+  // @param {object} graphDiv - graph div
   //
-  this.handlePlotInitialized = gd => {
+  this.handlePlotInitialized = graphDiv => {
     if (config.debug) {
-      log('plot was initialized');
+      log('hub.handlePlotInitialized');
     }
-    this.graphDiv = gd;
-
-    this.setState({
-      gd: gd,
-    });
+    this.graphDiv = graphDiv;
+    this.plotUpdated();
   };
 
   //
@@ -116,8 +111,10 @@ export default function PlotlyHub(config = {}) {
   //
   this.handleEditorUpdate = ({graphDiv, type, payload}) => {
     if (config.debug) {
-      log(`Editor triggered an event of type ${type}`);
+      log('hub.handleEditorUpdate', {type, payload});
     }
+
+    this.graphDiv = graphDiv;
 
     switch (type) {
       case EDITOR_ACTIONS.UPDATE_TRACES:
@@ -131,18 +128,18 @@ export default function PlotlyHub(config = {}) {
             }
           }
         }
-        this.refresh();
+        this.dataUpdated();
         break;
 
       case EDITOR_ACTIONS.ADD_TRACE:
         graphDiv.data.push({x: [], y: []});
-        this.refresh();
+        this.dataUpdated();
         break;
 
       case EDITOR_ACTIONS.DELETE_TRACE:
         if (payload.traceIndexes && payload.traceIndexes.length) {
           graphDiv.data = graphDiv.data.splice(payload[0], 1);
-          this.refresh();
+          this.dataUpdated();
         }
         break;
 
@@ -154,7 +151,7 @@ export default function PlotlyHub(config = {}) {
             prop.set(value);
           }
         }
-        this.refresh();
+        this.dataUpdated();
         break;
 
       default:
