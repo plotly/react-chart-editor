@@ -1,7 +1,7 @@
 import plotly from 'plotly.js';
 import {extendDeep} from 'plotly.js/src/lib/extend';
 import PlotlyEditor from '../PlotlyEditor';
-import {configure} from 'enzyme';
+import {configure, mount, shallow} from 'enzyme';
 import {dereference} from '../lib';
 import Adapter from 'enzyme-adapter-react-15';
 
@@ -88,4 +88,4 @@ function setupGraphDiv(figure) {
   return gd;
 }
 
-export {fixtures, plotly, PlotlyEditor as TestEditor};
+export {fixtures, plotly, PlotlyEditor as TestEditor, mount, shallow};
