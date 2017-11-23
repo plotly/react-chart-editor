@@ -47,7 +47,6 @@ class DefaultEditor extends Component {
             <DataSelector
               label="Labels"
               attr="labels"
-              options={this.context.dataSourceNames}
               clearable={false}
               hasBlank
             />
@@ -55,34 +54,15 @@ class DefaultEditor extends Component {
             <DataSelector
               label="Values"
               attr="values"
-              options={this.context.dataSourceNames}
               clearable={false}
               hasBlank
             />
 
-            <DataSelector
-              label="X"
-              attr="x"
-              options={this.context.dataSourceNames}
-              clearable={false}
-              hasBlank
-            />
+            <DataSelector label="X" attr="x" clearable={false} hasBlank />
 
-            <DataSelector
-              label="Y"
-              attr="y"
-              options={this.context.dataSourceNames}
-              clearable={false}
-              hasBlank
-            />
+            <DataSelector label="Y" attr="y" clearable={false} hasBlank />
 
-            <DataSelector
-              label="Z"
-              attr="z"
-              options={this.context.dataSourceNames}
-              clearable={false}
-              hasBlank
-            />
+            <DataSelector label="Z" attr="z" clearable={false} hasBlank />
           </TraceAccordion>
         </Panel>
 
@@ -384,10 +364,6 @@ class DefaultEditor extends Component {
 
 DefaultEditor.propTypes = {
   localize: PropTypes.func,
-};
-
-DefaultEditor.contextTypes = {
-  dataSourceNames: PropTypes.array.isRequired,
 };
 
 export default localize(DefaultEditor);
