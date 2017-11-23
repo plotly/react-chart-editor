@@ -81,21 +81,44 @@ describe('Section', () => {
     expect(wrapper.find(Numeric).exists()).toBe(false);
   });
 
-  it('will render first menuPanel even with no visible attrs', () => {
+  it('will render first menuPanel', () => {
+    const TraceSection = connectTraceToPlot(Section);
     const wrapper = mount(
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <Section name="test-section">
+        <TraceSection name="test-section" traceIndex={0}>
+          <Numeric attr="opacity" traceIndex={0} />
           <MenuPanel show>
             <Info>INFO</Info>
           </MenuPanel>
           <MenuPanel show>
             <Info>MISINFORMATION</Info>
           </MenuPanel>
-        </Section>
+        </TraceSection>
       </TestEditor>
     ).find('[name="test-section"]');
 
+    expect(wrapper.find(MenuPanel).length).toBe(1);
     expect(wrapper.find(Info).length).toBe(1);
     expect(wrapper.find(Info).text()).toBe('INFO');
+  });
+
+  it('will hides even with MenuPanel when attrs not defined', () => {
+    const TraceSection = connectTraceToPlot(Section);
+    const wrapper = mount(
+      <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
+        <TraceSection name="test-section" traceIndex={0}>
+          <Numeric attr="badattr" traceIndex={0} />
+          <MenuPanel show>
+            <Info>INFO</Info>
+          </MenuPanel>
+          <MenuPanel show>
+            <Info>MISINFORMATION</Info>
+          </MenuPanel>
+        </TraceSection>
+      </TestEditor>
+    ).find('[name="test-section"]');
+
+    expect(wrapper.find(MenuPanel).length).toBe(0);
+    expect(wrapper.find(Info).length).toBe(0);
   });
 });
