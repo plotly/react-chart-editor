@@ -5,19 +5,12 @@ import {bem} from '../../lib';
 export default class Fold extends Component {
   renderHeader() {
     const {deleteContainer} = this.context;
-    const {canDelete} = this.props;
-    const doDelete = canDelete && typeof deleteContainer === 'function';
+    const doDelete = typeof deleteContainer === 'function';
     return (
-      <div className={bem('fold', 'top', ['active'])}>
+      <div className="fold__top fold__top--active">
         {this.props.name}
         {doDelete ? (
-          <a
-            className={bem('fold', 'delete')}
-            href="#"
-            onClick={deleteContainer}
-          >
-            ×
-          </a>
+          <i className="fold__delete icon-cancel" onClick={deleteContainer} />
         ) : null}
       </div>
     );
@@ -35,7 +28,6 @@ export default class Fold extends Component {
 }
 
 Fold.propTypes = {
-  canDelete: PropTypes.bool,
   children: PropTypes.node,
   hideHeader: PropTypes.bool,
   name: PropTypes.string,
