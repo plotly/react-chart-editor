@@ -1,6 +1,6 @@
 import NumericInput from '../../components/widgets/NumericInputStatefulWrapper';
 import React from 'react';
-import {EDITOR_ACTIONS} from '../../constants';
+import {EDITOR_ACTIONS} from '../constants';
 import {Numeric, Section, Panel} from '../../components';
 import {TestEditor, fixtures} from '../test-utils';
 import {

@@ -1,7 +1,7 @@
 import NumericInput from '../../components/widgets/NumericInputStatefulWrapper';
 import React from 'react';
 import connectTraceToPlot from '../connectTraceToPlot';
-import {EDITOR_ACTIONS} from '../../constants';
+import {EDITOR_ACTIONS} from '../constants';
 import {Fold, Panel, Section} from '../../components/containers';
 import {Numeric} from '../../components/fields';
 import {TestEditor, fixtures, plotly} from '../test-utils';

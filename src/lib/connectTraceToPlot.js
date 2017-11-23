@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {findFullTraceIndex, getDisplayName} from '../lib';
-import {EDITOR_ACTIONS} from '../constants';
+import {EDITOR_ACTIONS} from './constants';
 
 export default function connectTraceToPlot(WrappedComponent) {
   class TraceConnectedComponent extends Component {
