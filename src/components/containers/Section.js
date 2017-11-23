@@ -76,8 +76,7 @@ export default class Section extends Component {
 
   render() {
     const hasVisibleChildren =
-      (this.children && this.children.some(childIsVisible)) ||
-      Boolean(this.menuPanel);
+      this.children && this.children.some(childIsVisible);
 
     return hasVisibleChildren ? (
       <div className="section">
