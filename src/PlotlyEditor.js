@@ -2,7 +2,6 @@ import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import dictionaries from './locales';
-import isNumeric from 'fast-isnumeric';
 import {bem} from './lib';
 import {noShame} from './shame';
 
@@ -19,11 +18,9 @@ class PlotlyEditor extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    if (isNumeric(nextProps.revision) && isNumeric(this.props.revision)) {
-      // If revision is numeric, then increment only if revision has increased:
-      return nextProps.revision > this.props.revision;
-    }
-    return true;
+    const nextRevision = nextProps.revision;
+    const currRevision = this.props.revision;
+    return nextRevision === void 0 || nextRevision !== currRevision;
   }
 
   getChildContext() {
@@ -67,7 +64,7 @@ PlotlyEditor.propTypes = {
   dataSourceOptions: PropTypes.array,
   graphDiv: PropTypes.object,
   locale: PropTypes.string,
-  revision: PropTypes.number,
+  revision: PropTypes.any,
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
 };
