@@ -1,4 +1,4 @@
-import NumericInput from '../../components/widgets/NumericInputStatefulWrapper';
+import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
 import {MULTI_VALUED_PLACEHOLDER} from '../constants';
 import {Numeric} from '../../components';

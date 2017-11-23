@@ -1,4 +1,4 @@
-import NumericInput from '../../components/widgets/NumericInputStatefulWrapper';
+import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
 import connectTraceToPlot from '../connectTraceToPlot';
 import {EDITOR_ACTIONS} from '../constants';
