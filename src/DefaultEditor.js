@@ -23,7 +23,7 @@ import {
   TraceMarkerSection,
   TraceSelector,
 } from './components';
-import {DEFAULT_FONTS} from './constants';
+import {DEFAULT_FONTS} from './lib/constants';
 import {localize, connectAxesToLayout, connectLayoutToPlot} from './lib';
 
 const LayoutPanel = connectLayoutToPlot(Panel);

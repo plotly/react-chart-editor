@@ -1,5 +1,5 @@
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {EDITOR_ACTIONS} from './constants';
+import {EDITOR_ACTIONS} from './lib/constants';
 
 /* eslint-disable no-console */
 const log = console.log;
