@@ -119,6 +119,7 @@ export default class NumericInputStatefulWrapper extends Component {
       <div className="numeric-input__wrapper">
         <EditableText
           className={`numeric-input__number ${this.props.editableClassName}`}
+          placeholder={this.props.placeholder}
           text={this.state.value}
           type="text"
           onChange={this.onChange}
@@ -138,6 +139,7 @@ NumericInputStatefulWrapper.propTypes = {
   max: PropTypes.number,
   min: PropTypes.number,
   onUpdate: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
   showArrows: PropTypes.bool,
   step: PropTypes.number,
   value: PropTypes.any,
