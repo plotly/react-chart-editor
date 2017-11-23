@@ -11,60 +11,57 @@ export default function unpackPlotProps(props, context) {
     updateContainer,
   } = context;
 
-  // Property accessors and meta information:
+  const updatePlot = v => updateContainer && updateContainer({[props.attr]: v});
+
+  let attrMeta;
+  if (getValObject) {
+    attrMeta = context.getValObject(props.attr) || {};
+  }
+
   const fullProperty = nestedProperty(fullContainer, props.attr);
-  const fullValue = () => {
-    const fv = fullProperty.get();
-    if (fv === MULTI_VALUED) {
-      return MULTI_VALUED_PLACEHOLDER;
-    }
-    return fv;
-  };
+  let fullValue = fullProperty.get();
+  let multiValued = false;
+
+  // MULTI_VALUED consists of a control sequence that cannot be confused with
+  // user data. We must transform it into something that can be displayed as
+  // the screen.
+  if (fullValue === MULTI_VALUED) {
+    fullValue = MULTI_VALUED_PLACEHOLDER;
+    multiValued = true;
+  }
+
+  let isVisible = false;
+  if (props.show || (fullValue !== void 0 && fullValue !== null)) {
+    isVisible = true;
+  }
 
   let defaultValue = props.defaultValue;
   if (defaultValue === void 0 && defaultContainer) {
     defaultValue = nestedProperty(defaultContainer, props.attr).get();
   }
 
-  // Property descriptions and meta:
-  let attrMeta;
-  if (getValObject) {
-    attrMeta = context.getValObject(props.attr) || {};
+  let min, max;
+  if (attrMeta) {
+    if (isNumeric(attrMeta.max)) {
+      max = attrMeta.max;
+    }
+    if (isNumeric(attrMeta.min)) {
+      min = attrMeta.min;
+    }
   }
 
-  // Update data functions:
-  const updatePlot = v => updateContainer && updateContainer({[props.attr]: v});
-
-  // Visibility and multiValues:
-  const fv = fullProperty.get();
-  const multiValued = fv === MULTI_VALUED;
-
-  let isVisible = false;
-  if (props.show || (fv !== void 0 && fv !== null)) {
-    isVisible = true;
-  }
-
-  const plotProps = {
+  return {
     attrMeta,
     container,
     defaultValue,
-    getValObject,
     fullContainer,
     fullValue,
+    getValObject,
     isVisible,
+    max,
+    min,
+    multiValued,
     updateContainer,
     updatePlot,
-    multiValued,
   };
-
-  if (attrMeta) {
-    if (isNumeric(attrMeta.max)) {
-      plotProps.max = attrMeta.max;
-    }
-    if (isNumeric(attrMeta.min)) {
-      plotProps.min = attrMeta.min;
-    }
-  }
-
-  return plotProps;
 }

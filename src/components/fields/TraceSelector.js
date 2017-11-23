@@ -32,7 +32,6 @@ class TraceSelector extends Component {
   constructor(props, context) {
     super(props, context);
     this.updatePlot = this.updatePlot.bind(this);
-    this.fullValue = this.fullValue.bind(this);
 
     let fillMeta;
     if (props.getValObject) {
@@ -62,6 +61,19 @@ class TraceSelector extends Component {
     } else {
       this.traceOptions = [{label: 'Scatter', value: 'scatter'}];
     }
+
+    // If we used fullData mode or fill it may be undefined if the fullTrace
+    // is not visible and therefore does not have these values computed.
+    const mode = nestedProperty(props.container, 'mode').get();
+    const fill = nestedProperty(props.container, 'fill').get();
+    const fullValue = props.fullValue;
+    if (fullValue === 'scatter' && this.fillTypes.includes(fill)) {
+      this.fullValue = 'area';
+    } else if (fullValue === 'scatter' && mode === 'lines') {
+      this.fullValue = 'line';
+    } else {
+      this.fullValue = fullValue;
+    }
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -85,26 +97,6 @@ class TraceSelector extends Component {
     }
   }
 
-  fullValue() {
-    const {container, fullValue} = this.props;
-    const type = fullValue();
-
-    // If we used fullData mode or fill it may be undefined if the fullTrace
-    // is not visible and therefore does not have these values computed.
-    const mode = nestedProperty(container, 'mode').get();
-    const fill = nestedProperty(container, 'fill').get();
-
-    if (type === 'scatter' && this.fillTypes.includes(fill)) {
-      return 'area';
-    }
-
-    if (type === 'scatter' && mode === 'lines') {
-      return 'line';
-    }
-
-    return type;
-  }
-
   render() {
     const props = Object.assign({}, this.props, {
       fullValue: this.fullValue,
@@ -123,7 +115,7 @@ TraceSelector.contextTypes = {
 TraceSelector.propTypes = {
   getValObject: PropTypes.func,
   container: PropTypes.object.isRequired,
-  fullValue: PropTypes.func.isRequired,
+  fullValue: PropTypes.any.isRequired,
   updateContainer: PropTypes.func,
 };
 

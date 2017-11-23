@@ -30,13 +30,12 @@ class DataSelector extends Component {
       this.srcAttr = props.attr + 'src';
       this.srcProperty = nestedProperty(props.container, this.srcAttr);
     }
-  }
 
-  fullValue() {
     if (this.dataSrcExists) {
-      return this.srcProperty.get();
+      this.fullValue = this.srcProperty.get();
+    } else {
+      this.fullValue = this.props.fullValue;
     }
-    return this.props.fullValue();
   }
 
   updatePlot(value) {
@@ -60,7 +59,7 @@ class DataSelector extends Component {
       <Field {...this.props}>
         <DropdownWidget
           options={this.dataSourceOptions}
-          value={this.fullValue()}
+          value={this.fullValue}
           onChange={this.updatePlot}
           clearable={this.props.clearable}
         />
@@ -70,7 +69,7 @@ class DataSelector extends Component {
 }
 
 DataSelector.propTypes = {
-  fullValue: PropTypes.func,
+  fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   clearable: PropTypes.bool,
   ...Field.propTypes,
