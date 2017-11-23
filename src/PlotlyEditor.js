@@ -28,11 +28,10 @@ class PlotlyEditor extends Component {
 
   getChildContext() {
     const gd = this.props.graphDiv || {};
-    const dataSourceNames = Object.keys(this.props.dataSources || {});
     return {
       data: gd.data,
-      dataSourceNames: dataSourceNames,
       dataSources: this.props.dataSources,
+      dataSourceOptions: this.props.dataSourceOptions,
       dictionaries: dictionaries,
       fullData: gd._fullData,
       fullLayout: gd._fullLayout,
@@ -65,6 +64,7 @@ class PlotlyEditor extends Component {
 PlotlyEditor.propTypes = {
   children: PropTypes.node,
   dataSources: PropTypes.object,
+  dataSourceOptions: PropTypes.array,
   graphDiv: PropTypes.object,
   locale: PropTypes.string,
   revision: PropTypes.number,
@@ -78,8 +78,8 @@ PlotlyEditor.defaultProps = {
 
 PlotlyEditor.childContextTypes = {
   data: PropTypes.array,
-  dataSourceNames: PropTypes.array,
   dataSources: PropTypes.object,
+  dataSourceOptions: PropTypes.array,
   dictionaries: PropTypes.object,
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,

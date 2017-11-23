@@ -15,6 +15,10 @@ const fixtures = {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
       },
+      dataSourceOptions: [
+        {label: 'xCol', value: 'x1'},
+        {label: 'yCol', value: 'y1'},
+      ],
       graphDiv: {
         data: [{type: 'scatter', mode: 'markers', xsrc: 'x1', ysrc: 'y1'}],
         layout: {},
@@ -28,6 +32,10 @@ const fixtures = {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
       },
+      dataSourceOptions: [
+        {label: 'xCol', value: 'x1'},
+        {label: 'yCol', value: 'y1'},
+      ],
       graphDiv: {
         data: [
           {
@@ -49,6 +57,10 @@ const fixtures = {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
       },
+      dataSourceOptions: [
+        {label: 'xCol', value: 'x1'},
+        {label: 'yCol', value: 'y1'},
+      ],
       graphDiv: {
         data: [
           {type: 'pie', mode: 'markers', labelssrc: 'x1', valuessrc: 'y1'},
@@ -59,7 +71,10 @@ const fixtures = {
   },
 };
 
-function applyConfig(config = {}, {graphDiv: {data, layout}, dataSources}) {
+function applyConfig(
+  config = {},
+  {graphDiv: {data, layout}, dataSourceOptions, dataSources}
+) {
   if (config.layout) {
     extendDeep(layout, config.layout);
   }
@@ -73,7 +88,7 @@ function applyConfig(config = {}, {graphDiv: {data, layout}, dataSources}) {
   // replace simple graphDiv with properly mocked GD including fullData/fullLayout
   const graphDiv = setupGraphDiv({data, layout});
 
-  return {dataSources, graphDiv};
+  return {dataSources, dataSourceOptions, graphDiv};
 }
 
 function newGraphDiv() {
