@@ -7,7 +7,7 @@ import {
   connectToContainer,
   connectTraceToPlot,
 } from './lib';
-import {EDITOR_ACTIONS} from './constants';
+import {EDITOR_ACTIONS} from './lib/constants';
 
 import {
   AxesRange,
