@@ -35,7 +35,7 @@ class SymbolSelector extends Component {
         <SymbolSelectorWidget
           markerColor={markerColor}
           borderColor={borderColor}
-          value={fullValue()}
+          value={fullValue}
           onChange={updatePlot}
           symbolOptions={symbolOptions}
         />
@@ -46,7 +46,7 @@ class SymbolSelector extends Component {
 
 SymbolSelector.propTypes = {
   defaultValue: PropTypes.number,
-  fullValue: PropTypes.func,
+  fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };

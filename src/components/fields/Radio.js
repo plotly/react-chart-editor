@@ -10,7 +10,7 @@ class Radio extends Component {
       <Field {...this.props}>
         <RadioBlocks
           options={this.props.options}
-          activeOption={this.props.fullValue()}
+          activeOption={this.props.fullValue}
           onOptionChange={this.props.updatePlot}
         />
       </Field>
@@ -20,7 +20,7 @@ class Radio extends Component {
 
 Radio.propTypes = {
   center: PropTypes.bool,
-  fullValue: PropTypes.func,
+  fullValue: PropTypes.any,
   options: PropTypes.array.isRequired,
   updatePlot: PropTypes.func,
   ...Field.propTypes,

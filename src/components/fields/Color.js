@@ -9,7 +9,7 @@ class Color extends Component {
     return (
       <Field {...this.props}>
         <ColorPicker
-          selectedColor={this.props.fullValue()}
+          selectedColor={this.props.fullValue}
           onColorChange={this.props.updatePlot}
         />
       </Field>
@@ -18,7 +18,7 @@ class Color extends Component {
 }
 
 Color.propTypes = {
-  fullValue: PropTypes.func,
+  fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };
