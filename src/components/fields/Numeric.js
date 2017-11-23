@@ -1,5 +1,5 @@
 import Field from './Field';
-import NumericInput from '../widgets/NumericInputStatefulWrapper';
+import NumericInput from '../widgets/NumericInput';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from '../../lib';

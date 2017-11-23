@@ -1,6 +1,6 @@
 import {Numeric} from '../../fields';
 import {Fold, Panel, Section} from '..';
-import NumericInput from '../../widgets/NumericInputStatefulWrapper';
+import NumericInput from '../../widgets/NumericInput';
 import React from 'react';
 import {EDITOR_ACTIONS} from '../../../lib/constants';
 import {TestEditor, fixtures} from '../../../lib/test-utils';

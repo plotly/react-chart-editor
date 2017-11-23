@@ -1,4 +1,4 @@
-import NumericInput from '../../components/widgets/NumericInputStatefulWrapper';
+import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
 import {EDITOR_ACTIONS} from '../constants';
 import {Numeric, Section, Panel} from '../../components';
