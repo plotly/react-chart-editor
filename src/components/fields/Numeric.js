@@ -9,7 +9,7 @@ export class UnconnectedNumeric extends Component {
     return (
       <Field {...this.props}>
         <NumericInput
-          value={this.props.fullValue()}
+          value={this.props.fullValue}
           defaultValue={this.props.defaultValue}
           step={this.props.step}
           min={this.props.min}
@@ -25,7 +25,7 @@ export class UnconnectedNumeric extends Component {
 
 UnconnectedNumeric.propTypes = {
   defaultValue: PropTypes.number,
-  fullValue: PropTypes.func,
+  fullValue: PropTypes.any,
   min: PropTypes.number,
   max: PropTypes.number,
   showArrows: PropTypes.bool,

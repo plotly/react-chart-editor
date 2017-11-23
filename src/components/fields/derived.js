@@ -48,13 +48,9 @@ export const LayoutNumericFractionInverse = connectLayoutToPlot(
     supplyPlotProps: supplyLayoutPlotProps,
     modifyPlotProps: (props, context, plotProps) => {
       const {attrMeta, fullValue, updatePlot} = plotProps;
-      plotProps.fullValue = () => {
-        let fv = fullValue();
-        if (isNumeric(fv)) {
-          fv = Math.round((1 - fv) * 100);
-        }
-        return fv;
-      };
+      if (isNumeric(fullValue)) {
+        plotProps.fullValue = Math.round((1 - fullValue) * 100);
+      }
 
       plotProps.updatePlot = v => {
         if (isNumeric(v)) {
@@ -83,13 +79,9 @@ export const LayoutNumericFraction = connectLayoutToPlot(
     supplyPlotProps: supplyLayoutPlotProps,
     modifyPlotProps: (props, context, plotProps) => {
       const {attrMeta, fullValue, updatePlot} = plotProps;
-      plotProps.fullValue = () => {
-        let fv = fullValue();
-        if (isNumeric(fv)) {
-          fv = fv * 100;
-        }
-        return fv;
-      };
+      if (isNumeric(fullValue)) {
+        plotProps.fullValue = fullValue * 100;
+      }
 
       plotProps.updatePlot = v => {
         if (isNumeric(v)) {
