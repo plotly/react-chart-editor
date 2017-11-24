@@ -1,6 +1,10 @@
 import Dropdown from './Dropdown';
+import ProBadge from './ProBadge';
 import PropTypes from 'prop-types';
+import R from 'ramda';
 import React, {Component} from 'react';
+import tieredDecorator from '@workspace/utils/tieredDecorator';
+import {MIXED_VALUES} from '@workspace/constants/workspace';
 
 /*
  * TODO: expand to accept custom fonts #5718
@@ -10,7 +14,7 @@ export default class FontSelector extends Component {
   prettifyFontLabel(fontLabel) {
     // Take the first font-family and remove all the quotes
     if (fontLabel) {
-      return fontLabel.split(',')[0].replace(/"/g, '');
+      return R.replace(/"/g, '', fontLabel.split(',')[0]);
     }
 
     // if there is no font label return empty
@@ -165,6 +169,9 @@ export default class FontSelector extends Component {
 
     return (
       <li className="block-group">
+        <div className="block grid-30">
+          <ProBadge hide={this.isAccessible(label)} className="--dropdown" />
+        </div>
         <div className="block grid-70 font-size-xs">
           <span style={fontStyle}>{label}</span>
         </div>
@@ -189,6 +196,7 @@ export default class FontSelector extends Component {
         <span style={fontStyle} className={labelClass}>
           {label}
         </span>
+        <ProBadge hide={hidePropBadge} className="--font-dropdown" />
       </div>
     );
   }
