@@ -9,9 +9,9 @@ export default function connectTraceToPlot(WrappedComponent) {
     constructor(props, context) {
       super(props, context);
 
-      this.setLocals(props, context);
       this.deleteTrace = this.deleteTrace.bind(this);
       this.updateTrace = this.updateTrace.bind(this);
+      this.setLocals(props, context);
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
