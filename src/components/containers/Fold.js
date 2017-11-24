@@ -29,8 +29,8 @@ export default class Fold extends Component {
     return (
       <div className="fold">
         {!this.props.hideHeader ? (
-          <div className={headerClass}>
-            <div className="fold__top__arrow-title" onClick={this.toggleFold}>
+          <div className={headerClass} onClick={this.toggleFold}>
+            <div className="fold__top__arrow-title">
               <i className={arrowClass} />
               <div className="fold__top__title">{this.props.name}</div>
             </div>
