@@ -30,7 +30,7 @@ class NumericFractionNoArrows extends UnconnectedNumeric {}
 NumericFractionNoArrows.propTypes = UnconnectedNumeric.propTypes;
 NumericFractionNoArrows.defaultProps = {
   showArrows: false,
-  postfix: '%',
+  units: '%',
 };
 
 // Workaround the issue with nested layouts inside trace component.
