@@ -8,6 +8,7 @@ import {
   DataSelector,
   Dropdown,
   Flaglist,
+  FontSelector,
   Fold,
   Info,
   LayoutNumericFraction,
@@ -23,7 +24,6 @@ import {
   TraceMarkerSection,
   TraceSelector,
 } from './components';
-import {DEFAULT_FONTS} from './lib/constants';
 import {localize, connectAxesToLayout, connectLayoutToPlot} from './lib';
 
 const LayoutPanel = connectLayoutToPlot(Panel);
@@ -186,11 +186,10 @@ class DefaultEditor extends Component {
           </Fold>
           <Fold name={_('Title and Fonts')}>
             <Section name={_('Title')}>
-              <Dropdown
+              <FontSelector
                 label={_('Typeface')}
                 attr="titlefont.family"
                 clearable={false}
-                options={[...DEFAULT_FONTS]}
               />
               <Numeric
                 label={_('Font Size')}
@@ -201,11 +200,10 @@ class DefaultEditor extends Component {
               <ColorPicker label={_('Font Color')} attr="titlefont.color" />
             </Section>
             <Section name={_('Global Font')}>
-              <Dropdown
+              <FontSelector
                 label={_('Typeface')}
                 attr="font.family"
                 clearable={false}
-                options={[...DEFAULT_FONTS]}
               />
               <Numeric
                 label={_('Font Size')}
@@ -238,11 +236,10 @@ class DefaultEditor extends Component {
         <LayoutPanel group="Style" name={_('Axes')}>
           <AxesFold name={_('Titles')}>
             <AxesSelector />
-            <Dropdown
+            <FontSelector
               label={_('Typeface')}
               attr="font.family"
               clearable={false}
-              options={[...DEFAULT_FONTS]}
             />
             <Numeric label={_('Size')} step={1} attr="font.size" postfix="px" />
             <ColorPicker label={_('Color')} attr="font.color" />
@@ -299,11 +296,10 @@ class DefaultEditor extends Component {
               />
             </Section>
             <Section name={_('Text')}>
-              <Dropdown
+              <FontSelector
                 label={_('Typeface')}
                 attr="legend.font.family"
                 clearable={false}
-                options={[...DEFAULT_FONTS]}
               />
               <Numeric
                 label={_('Size')}
