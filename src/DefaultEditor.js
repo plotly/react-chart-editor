@@ -240,12 +240,17 @@ class DefaultEditor extends Component {
             <AxesSelector />
             <Dropdown
               label={_('Typeface')}
-              attr="font.family"
+              attr="titlefont.family"
               clearable={false}
               options={[...DEFAULT_FONTS]}
             />
-            <Numeric label={_('Size')} step={1} attr="font.size" postfix="px" />
-            <ColorPicker label={_('Color')} attr="font.color" />
+            <Numeric
+              label={_('Size')}
+              step={1}
+              attr="titlefont.size"
+              postfix="px"
+            />
+            <ColorPicker label={_('Color')} attr="titlefont.color" />
           </AxesFold>
 
           <AxesFold name={_('Range')}>
