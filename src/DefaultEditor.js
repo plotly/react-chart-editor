@@ -185,13 +185,13 @@ class DefaultEditor extends Component {
             <ColorPicker label={_('Color')} attr="paper_bgcolor" />
           </Fold>
           <Fold name={_('Title and Fonts')}>
-            <Dropdown
-              label={_('Typeface')}
-              attr="titlefont.family"
-              clearable={false}
-              options={[...DEFAULT_FONTS]}
-            />
             <Section name={_('Title')}>
+              <Dropdown
+                label={_('Typeface')}
+                attr="titlefont.family"
+                clearable={false}
+                options={[...DEFAULT_FONTS]}
+              />
               <Numeric
                 label={_('Font Size')}
                 step={1}
