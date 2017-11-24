@@ -18,9 +18,9 @@ export default function connectTraceToPlot(WrappedComponent) {
       this.setLocals(nextProps, nextContext);
     }
 
-    setLocals() {
-      const {traceIndex} = this.props;
-      const {data, fullData, plotly} = this.context;
+    setLocals(props, context) {
+      const {traceIndex} = props;
+      const {data, fullData, plotly} = context;
 
       const trace = data[traceIndex] || {};
       const fullTraceIndex = findFullTraceIndex(fullData, traceIndex);
