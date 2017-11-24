@@ -1,6 +1,7 @@
 import AxesSelector from './AxesSelector';
 import ColorPicker from './Color';
 import Dropdown from './Dropdown';
+import FontSelector from './FontSelector';
 import Flaglist from './Flaglist';
 import Info from './Info';
 import Radio from './Radio';
@@ -22,6 +23,7 @@ export {
   ColorPicker,
   Dropdown,
   Flaglist,
+  FontSelector,
   Info,
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
