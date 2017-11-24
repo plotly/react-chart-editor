@@ -174,13 +174,13 @@ class DefaultEditor extends Component {
               label={_('Fixed Width')}
               step={1}
               attr="width"
-              postfix="px"
+              units="px"
             />
             <CanvasSize
               label={_('Fixed Height')}
               step={1}
               attr="height"
-              postfix="px"
+              units="px"
             />
             <ColorPicker label={_('Color')} attr="paper_bgcolor" />
           </Fold>
@@ -195,7 +195,7 @@ class DefaultEditor extends Component {
                 label={_('Font Size')}
                 step={1}
                 attr="titlefont.size"
-                postfix="px"
+                units="px"
               />
               <ColorPicker label={_('Font Color')} attr="titlefont.color" />
             </Section>
@@ -209,26 +209,21 @@ class DefaultEditor extends Component {
                 label={_('Font Size')}
                 step={1}
                 attr="font.size"
-                postfix="px"
+                units="px"
               />
               <ColorPicker label={_('Font Color')} attr="font.color" />
             </Section>
           </Fold>
           <Fold name={_('Margins and Padding')}>
-            <Numeric label={_('Top')} step={1} attr="margin.t" postfix="px" />
-            <Numeric
-              label={_('Bottom')}
-              step={1}
-              attr="margin.b"
-              postfix="px"
-            />
-            <Numeric label={_('Left')} step={1} attr="margin.l" postfix="px" />
-            <Numeric label={_('Right')} step={1} attr="margin.r" postfix="px" />
+            <Numeric label={_('Top')} step={1} attr="margin.t" units="px" />
+            <Numeric label={_('Bottom')} step={1} attr="margin.b" units="px" />
+            <Numeric label={_('Left')} step={1} attr="margin.l" units="px" />
+            <Numeric label={_('Right')} step={1} attr="margin.r" units="px" />
             <Numeric
               label={_('Padding')}
               step={1}
               attr="margin.pad"
-              postfix="px"
+              units="px"
             />
           </Fold>
         </LayoutPanel>
@@ -245,7 +240,7 @@ class DefaultEditor extends Component {
               label={_('Size')}
               step={1}
               attr="titlefont.size"
-              postfix="px"
+              units="px"
             />
             <ColorPicker label={_('Color')} attr="titlefont.color" />
           </AxesFold>
@@ -310,7 +305,7 @@ class DefaultEditor extends Component {
                 label={_('Size')}
                 step={1}
                 attr="legend.font.size"
-                postfix="px"
+                units="px"
               />
               <ColorPicker label={_('Color')} attr="legend.font.color" />
             </Section>
@@ -319,7 +314,7 @@ class DefaultEditor extends Component {
                 label={_('Border Width')}
                 step={1}
                 attr="legend.borderwidth"
-                postfix="px"
+                units="px"
               />
               <ColorPicker
                 label={_('Border Color')}
@@ -361,13 +356,13 @@ class DefaultEditor extends Component {
                 label={_('X Position')}
                 step={0.01}
                 attr="legend.x"
-                postfix="px"
+                units="px"
               />
               <Numeric
                 label={_('Y Position')}
                 step={0.01}
                 attr="legend.y"
-                postfix="px"
+                units="px"
               />
             </Section>
             <Section name={_('Orientation')}>
