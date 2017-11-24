@@ -18,7 +18,7 @@ export default class AxesSelector extends Component {
     const {axesTargetHandler, axesOptions, axesTarget} = this.context;
 
     return (
-      <Field {...this.props}>
+      <Field {...this.props} center>
         <RadioBlocks
           options={axesOptions}
           activeOption={axesTarget}

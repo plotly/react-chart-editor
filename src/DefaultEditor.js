@@ -237,12 +237,12 @@ class DefaultEditor extends Component {
               clearable={false}
             />
             <Numeric
-              label={_('Size')}
+              label={_('Font Size')}
               step={1}
               attr="titlefont.size"
               units="px"
             />
-            <ColorPicker label={_('Color')} attr="titlefont.color" />
+            <ColorPicker label={_('Font Color')} attr="titlefont.color" />
           </AxesFold>
 
           <AxesFold name={_('Range')}>
@@ -272,6 +272,20 @@ class DefaultEditor extends Component {
           </AxesFold>
           <AxesFold name={_('Tick Labels')}>
             <AxesSelector />
+            <Section name={_('Tick Labels')}>
+              <FontSelector
+                label={_('Typeface')}
+                attr="tickfont.family"
+                clearable={false}
+              />
+              <Numeric
+                label={_('Font Size')}
+                step={1}
+                attr="tickfont.size"
+                units="px"
+              />
+              <ColorPicker label={_('Font Color')} attr="tickfont.color" />
+            </Section>
           </AxesFold>
           <AxesFold name={_('Tick Markers')}>
             <AxesSelector />
