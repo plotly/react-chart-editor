@@ -185,6 +185,12 @@ class DefaultEditor extends Component {
             <ColorPicker label={_('Color')} attr="paper_bgcolor" />
           </Fold>
           <Fold name={_('Title and Fonts')}>
+            <Dropdown
+              label={_('Typeface')}
+              attr="titlefont.family"
+              clearable={false}
+              options={[...DEFAULT_FONTS]}
+            />
             <Section name={_('Title')}>
               <Numeric
                 label={_('Font Size')}
@@ -195,6 +201,12 @@ class DefaultEditor extends Component {
               <ColorPicker label={_('Font Color')} attr="titlefont.color" />
             </Section>
             <Section name={_('Global Font')}>
+              <Dropdown
+                label={_('Typeface')}
+                attr="font.family"
+                clearable={false}
+                options={[...DEFAULT_FONTS]}
+              />
               <Numeric
                 label={_('Font Size')}
                 step={1}
