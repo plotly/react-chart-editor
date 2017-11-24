@@ -31,7 +31,7 @@ export default class TraceAccordion extends Component {
           </a>
         ) : null}
         {data.map((d, i) => (
-          <TraceFold key={i} traceIndex={i} name={`Trace ${i}`}>
+          <TraceFold key={i} traceIndex={i}>
             {this.props.children}
           </TraceFold>
         ))}

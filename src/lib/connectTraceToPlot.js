@@ -6,16 +6,21 @@ import {EDITOR_ACTIONS} from './constants';
 
 export default function connectTraceToPlot(WrappedComponent) {
   class TraceConnectedComponent extends Component {
-    constructor(props) {
-      super(props);
+    constructor(props, context) {
+      super(props, context);
 
       this.deleteTrace = this.deleteTrace.bind(this);
       this.updateTrace = this.updateTrace.bind(this);
+      this.setLocals(props, context);
     }
 
-    getChildContext() {
-      const {traceIndex} = this.props;
-      const {data, fullData, plotly} = this.context;
+    componentWillReceiveProps(nextProps, nextContext) {
+      this.setLocals(nextProps, nextContext);
+    }
+
+    setLocals(props, context) {
+      const {traceIndex} = props;
+      const {data, fullData, plotly} = context;
 
       const trace = data[traceIndex] || {};
       const fullTraceIndex = findFullTraceIndex(fullData, traceIndex);
@@ -30,13 +35,18 @@ export default function connectTraceToPlot(WrappedComponent) {
           );
       }
 
-      return {
+      this.childContext = {
         getValObject,
         updateContainer: this.updateTrace,
         deleteContainer: this.deleteTrace,
         container: trace,
         fullContainer: fullTrace,
       };
+      this.name = fullTrace.name;
+    }
+
+    getChildContext() {
+      return this.childContext;
     }
 
     updateTrace(update) {
@@ -61,7 +71,7 @@ export default function connectTraceToPlot(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return <WrappedComponent name={this.name} {...this.props} />;
     }
   }
 
