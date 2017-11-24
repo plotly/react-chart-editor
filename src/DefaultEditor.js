@@ -184,6 +184,26 @@ class DefaultEditor extends Component {
             />
             <ColorPicker label={_('Color')} attr="paper_bgcolor" />
           </Fold>
+          <Fold name={_('Title and Fonts')}>
+            <Section name={_('Title')}>
+              <Numeric
+                label={_('Font Size')}
+                step={1}
+                attr="titlefont.size"
+                postfix="px"
+              />
+              <ColorPicker label={_('Font Color')} attr="titlefont.color" />
+            </Section>
+            <Section name={_('Global Font')}>
+              <Numeric
+                label={_('Font Size')}
+                step={1}
+                attr="font.size"
+                postfix="px"
+              />
+              <ColorPicker label={_('Font Color')} attr="font.color" />
+            </Section>
+          </Fold>
           <Fold name={_('Margins and Padding')}>
             <Numeric label={_('Top')} step={1} attr="margin.t" postfix="px" />
             <Numeric
