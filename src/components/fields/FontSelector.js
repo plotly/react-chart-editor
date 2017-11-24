@@ -12,6 +12,10 @@ export class UnconnectedFontSelector extends Component {
       placeholder = this.props.fullValue;
     }
 
+    const styledRenderer = ({value, label}) => (
+      <span style={{fontFamily: value}}>{label}</span>
+    );
+
     return (
       <Field {...this.props}>
         <DropdownWidget
@@ -19,6 +23,8 @@ export class UnconnectedFontSelector extends Component {
           value={this.props.fullValue}
           onChange={this.props.updatePlot}
           clearable={this.props.clearable}
+          optionRenderer={styledRenderer}
+          valueRenderer={styledRenderer}
           placeholder={placeholder}
         />
       </Field>
