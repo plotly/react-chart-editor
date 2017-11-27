@@ -1,42 +1,30 @@
-import DropdownWidget from '../widgets/Dropdown';
-import Field from './Field';
-import PropTypes from 'prop-types';
-import React, {Component} from 'react';
-import {connectToContainer} from '../../lib';
+import Dropdown from './Dropdown';
+import React from 'react';
 import {DEFAULT_FONTS} from '../../lib/constants';
 
-export class UnconnectedFontSelector extends Component {
-  render() {
-    let placeholder;
-    if (this.props.multiValued) {
-      placeholder = this.props.fullValue;
-    }
+/* eslint-disable react/prop-types */
+const styledRenderer = ({value, label}) => (
+  <span style={{fontFamily: value}}>{label}</span>
+);
+/* eslint-enable react/prop-types */
 
-    const styledRenderer = ({value, label}) => (
-      <span style={{fontFamily: value}}>{label}</span>
-    );
-
-    return (
-      <Field {...this.props}>
-        <DropdownWidget
-          options={[...DEFAULT_FONTS]}
-          value={this.props.fullValue}
-          onChange={this.props.updatePlot}
-          clearable={this.props.clearable}
-          optionRenderer={styledRenderer}
-          valueRenderer={styledRenderer}
-          placeholder={placeholder}
-        />
-      </Field>
-    );
-  }
-}
-
-UnconnectedFontSelector.propTypes = {
-  fullValue: PropTypes.any,
-  updatePlot: PropTypes.func,
-  clearable: PropTypes.bool,
-  ...Field.propTypes,
+const FontSelector = props => {
+  return (
+    <Dropdown
+      {...props}
+      options={[...DEFAULT_FONTS]}
+      valueRenderer={styledRenderer}
+      optionRenderer={styledRenderer}
+    />
+  );
 };
 
-export default connectToContainer(UnconnectedFontSelector);
+FontSelector.propTypes = {
+  ...Dropdown.propTypes,
+};
+
+FontSelector.defaultFonts = {
+  clearable: false,
+};
+
+export default FontSelector;
