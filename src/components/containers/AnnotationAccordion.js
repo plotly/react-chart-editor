@@ -22,7 +22,7 @@ export default class AnnotationAccordion extends Component {
     }
 
     const key = `annotations[${annotationIndex}]`;
-    const value = {text: 'blue nose'};
+    const value = {text: 'new text'};
     if (this.context.updateContainer) {
       this.context.updateContainer({[key]: value});
     }
