@@ -240,11 +240,7 @@ class DefaultEditor extends Component {
         <LayoutPanel group="Style" name={_('Axes')}>
           <AxesFold name={_('Titles')}>
             <AxesSelector />
-            <FontSelector
-              label={_('Typeface')}
-              attr="titlefont.family"
-              clearable={false}
-            />
+            <FontSelector label={_('Typeface')} attr="titlefont.family" />
             <Numeric
               label={_('Font Size')}
               step={1}
@@ -282,11 +278,7 @@ class DefaultEditor extends Component {
           <AxesFold name={_('Tick Labels')}>
             <AxesSelector />
             <Section name={_('Tick Labels')}>
-              <FontSelector
-                label={_('Typeface')}
-                attr="tickfont.family"
-                clearable={false}
-              />
+              <FontSelector label={_('Typeface')} attr="tickfont.family" />
               <Numeric
                 label={_('Font Size')}
                 step={1}
@@ -319,11 +311,7 @@ class DefaultEditor extends Component {
               />
             </Section>
             <Section name={_('Text')}>
-              <FontSelector
-                label={_('Typeface')}
-                attr="legend.font.family"
-                clearable={false}
-              />
+              <FontSelector label={_('Typeface')} attr="legend.font.family" />
               <Numeric
                 label={_('Size')}
                 step={1}
