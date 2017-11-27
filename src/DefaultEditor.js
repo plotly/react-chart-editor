@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
+  AnnotationAccordion,
   AxesSelector,
   AxesRange,
   CanvasSize,
@@ -226,6 +227,12 @@ class DefaultEditor extends Component {
               units="px"
             />
           </Fold>
+        </LayoutPanel>
+
+        <LayoutPanel group="Style" name={_('Notes')}>
+          <AnnotationAccordion canAdd>
+            <Numeric label={_('Angle')} step={1} attr="textangle" />
+          </AnnotationAccordion>
         </LayoutPanel>
 
         <LayoutPanel group="Style" name={_('Axes')}>
