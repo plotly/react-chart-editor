@@ -12,6 +12,7 @@ import {EDITOR_ACTIONS} from './lib/constants';
 
 import {
   AnnotationAccordion,
+  ArrowSelector,
   AxesRange,
   AxesSelector,
   CanvasSize,
@@ -39,6 +40,7 @@ import {
 
 export {
   AnnotationAccordion,
+  ArrowSelector,
   AxesRange,
   AxesSelector,
   MenuPanel,
