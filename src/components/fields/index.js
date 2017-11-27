@@ -1,3 +1,4 @@
+import ArrowSelector from './ArrowSelector';
 import AxesSelector from './AxesSelector';
 import ColorPicker from './Color';
 import Dropdown from './Dropdown';
@@ -18,6 +19,7 @@ import {
 } from './derived';
 
 export {
+  ArrowSelector,
   AxesRange,
   AxesSelector,
   CanvasSize,

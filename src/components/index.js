@@ -1,4 +1,5 @@
 import {
+  ArrowSelector,
   AxesRange,
   AxesSelector,
   CanvasSize,
@@ -31,6 +32,7 @@ import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
   AnnotationAccordion,
+  ArrowSelector,
   AxesSelector,
   AxesRange,
   MenuPanel,
