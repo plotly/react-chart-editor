@@ -233,7 +233,40 @@ class DefaultEditor extends Component {
 
         <LayoutPanel group="Style" name={_('Notes')}>
           <AnnotationAccordion canAdd>
-            <Numeric label={_('Angle')} step={1} attr="textangle" />
+            <Section name={_('Note Text')}>
+              <RichTextEditor attr="text" />
+              <FontSelector label={_('Typeface')} attr="font.family" />
+              <Numeric
+                label={_('Font Size')}
+                step={1}
+                attr="font.size"
+                units="px"
+              />
+              <ColorPicker label={_('Font Color')} attr="font.color" />
+              <Numeric label={_('Angle')} step={1} attr="textangle" units="°" />
+            </Section>
+            <Section name={_('Arrow')}>
+              <Radio
+                attr="showarrow"
+                options={[
+                  {label: _('Show'), value: true},
+                  {label: _('Hide'), value: false},
+                ]}
+              />
+              <Numeric
+                label={_('Line Width')}
+                step={1}
+                attr="arrowwidth"
+                units="px"
+              />
+              <Numeric
+                label={_('Scale')}
+                step={0.1}
+                attr="arrowsize"
+                units="px"
+              />
+              <ColorPicker label={_('Color')} attr="arrowcolor" />
+            </Section>
           </AnnotationAccordion>
         </LayoutPanel>
 
