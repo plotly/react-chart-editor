@@ -18,6 +18,8 @@ export class UnconnectedDropdown extends Component {
           value={this.props.fullValue}
           onChange={this.props.updatePlot}
           clearable={this.props.clearable}
+          optionRenderer={this.props.optionRenderer}
+          valueRenderer={this.props.valueRenderer}
           placeholder={placeholder}
         />
       </Field>
@@ -29,6 +31,8 @@ UnconnectedDropdown.propTypes = {
   fullValue: PropTypes.any,
   options: PropTypes.array.isRequired,
   updatePlot: PropTypes.func,
+  optionRenderer: PropTypes.func,
+  valueRenderer: PropTypes.func,
   clearable: PropTypes.bool,
   ...Field.propTypes,
 };
