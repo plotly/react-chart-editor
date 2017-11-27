@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
   AnnotationAccordion,
+  ArrowSelector,
   AxesSelector,
   AxesRange,
   CanvasSize,
@@ -259,6 +260,7 @@ class DefaultEditor extends Component {
                 attr="arrowwidth"
                 units="px"
               />
+              <ArrowSelector label={_('Arrowhead')} attr="arrowhead" />
               <Numeric
                 label={_('Scale')}
                 step={0.1}
