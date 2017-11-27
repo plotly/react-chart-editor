@@ -43,8 +43,10 @@ One or more nested Container Components with one and only one connected by a con
 
 ### Layer 3: Attribute Widgets
 Each connected by a `connectContainerToPlot` function
-    <Numeric>, <ColorPicker>, <Radio> and remaining UI Controls
 ```
+    <Numeric>, <ColorPicker>, <Radio> 
+```
+(and remaining UI Controls)
 
 Data flows via `context` downward and is augmented with additional information at each layer boundary.
 The Base Components aggregate references to the graphDiv objects (data, fullData, layout...), grid Data sources, locale, update functions etc. One of the Container Components uses its knowledge about which container to target (traces, layout, ...) to generate fewer but more specific containers and updaters which are passed down the hierarchy. The Attribute widgets are higher-order wrappers around dumb UI controls. The higher-order wrapper uses the container contexts and specific attributes information to provide specific plot update functions and other behaviours for the inner UI control.
