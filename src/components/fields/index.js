@@ -5,7 +5,7 @@ import FontSelector from './FontSelector';
 import Flaglist from './Flaglist';
 import Info from './Info';
 import Radio from './Radio';
-import RichTextEditor from './RichTextEditor';
+import MultiFormatTextEditor from './MultiFormatTextEditor';
 import DataSelector from './DataSelector';
 import Numeric from './Numeric';
 import SymbolSelector from './SymbolSelector';
@@ -29,7 +29,7 @@ export {
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
   Radio,
-  RichTextEditor,
+  MultiFormatTextEditor,
   DataSelector,
   Numeric,
   SymbolSelector,
