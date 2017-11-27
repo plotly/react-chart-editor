@@ -9,7 +9,7 @@ export class UnconnectedMultiFormatTextEditor extends Component {
       <Field {...this.props}>
         <MultiFormatTextEditor
           value={this.props.fullValue}
-          onKeyDown={this.props.updatePlot}
+          onChange={this.props.updatePlot}
         />
       </Field>
     );
