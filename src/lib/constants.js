@@ -28,6 +28,7 @@ export const EDITOR_ACTIONS = {
   ADD_TRACE: 'plotly-editor-add-trace',
   DELETE_TRACE: 'plotly-editor-delete-trace',
   UPDATE_LAYOUT: 'plotly-editor-update-layout',
+  DELETE_ANNOTATION: 'plotly-editor-delete-annotation',
 };
 
 export const DEFAULT_FONTS = [
