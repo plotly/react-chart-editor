@@ -2,6 +2,7 @@ import Hub from './hub';
 import PlotlyEditor from './PlotlyEditor';
 import {
   localize,
+  connectAnnotationToLayout,
   connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,
@@ -10,6 +11,7 @@ import {
 import {EDITOR_ACTIONS} from './lib/constants';
 
 import {
+  AnnotationAccordion,
   AxesRange,
   AxesSelector,
   CanvasSize,
@@ -36,6 +38,7 @@ import {
 } from './components';
 
 export {
+  AnnotationAccordion,
   AxesRange,
   AxesSelector,
   MenuPanel,
@@ -61,6 +64,7 @@ export {
   TraceAccordion,
   TraceMarkerSection,
   TraceSelector,
+  connectAnnotationToLayout,
   connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,

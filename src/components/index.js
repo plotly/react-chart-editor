@@ -17,16 +17,19 @@ import {
 } from './fields';
 
 import {
-  MenuPanel,
+  AnnotationAccordion,
   Fold,
+  MenuPanel,
   Panel,
   Section,
   TraceAccordion,
   TraceMarkerSection,
 } from './containers';
+
 import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
+  AnnotationAccordion,
   AxesSelector,
   AxesRange,
   MenuPanel,

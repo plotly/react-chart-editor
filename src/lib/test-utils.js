@@ -91,14 +91,35 @@ function applyConfig(
   return {dataSources, dataSourceOptions, graphDiv};
 }
 
+/*
+ * JSDOM does not implement full SVG spec. Mock out necessary methods here.
+ * https://github.com/tmpvar/jsdom/issues/1330
+ * Hardcoded return values have been "good enough" for now but feel free to
+ * extend the API if necessary.
+ */
+function mockMissingSvgApis() {
+  const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  const proto = Object.getPrototypeOf(p);
+  if (typeof proto.getTotalLength !== 'function') {
+    proto.getTotalLength = () => 100;
+  }
+  if (typeof proto.getPointAtLength !== 'function') {
+    proto.getPointAtLength = () => ({x: 0, y: 0});
+  }
+}
+
 function newGraphDiv() {
   const graphDiv = window.document.createElement('div');
   graphDiv.id = 'graphDiv';
+
   return graphDiv;
 }
 
 function setupGraphDiv(figure) {
   const gd = newGraphDiv();
+
+  mockMissingSvgApis();
+
   plotly.plot(gd, figure);
   return gd;
 }
