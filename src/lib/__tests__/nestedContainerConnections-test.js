@@ -2,7 +2,7 @@ import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
 import {EDITOR_ACTIONS} from '../constants';
 import {Numeric, Section, Panel} from '../../components';
-import {TestEditor, fixtures} from '../test-utils';
+import {TestEditor, fixtures, mount} from '../test-utils';
 import {
   connectAxesToLayout,
   connectLayoutToPlot,
@@ -11,7 +11,6 @@ import {
   getLayoutContext,
   unpackPlotProps,
 } from '..';
-import {mount} from 'enzyme';
 
 describe('Plot Connection', () => {
   it('can connect Field directly with full connection pipeline', () => {
