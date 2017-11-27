@@ -1,5 +1,6 @@
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {EDITOR_ACTIONS} from './lib/constants';
+import isNumeric from 'fast-isnumeric';
 
 /* eslint-disable no-console */
 const log = console.log;
@@ -106,18 +107,6 @@ export default function PlotlyHub(config = {}) {
         this.figureUpdated();
         break;
 
-      case EDITOR_ACTIONS.ADD_TRACE:
-        graphDiv.data.push({x: [], y: []});
-        this.figureUpdated();
-        break;
-
-      case EDITOR_ACTIONS.DELETE_TRACE:
-        if (payload.traceIndexes && payload.traceIndexes.length) {
-          graphDiv.data = graphDiv.data.splice(payload[0], 1);
-          this.figureUpdated();
-        }
-        break;
-
       case EDITOR_ACTIONS.UPDATE_LAYOUT:
         for (const attr in payload.update) {
           const prop = nestedProperty(graphDiv.layout, attr);
@@ -127,6 +116,25 @@ export default function PlotlyHub(config = {}) {
           }
         }
         this.figureUpdated();
+        break;
+
+      case EDITOR_ACTIONS.ADD_TRACE:
+        graphDiv.data.push({x: [], y: []});
+        this.figureUpdated();
+        break;
+
+      case EDITOR_ACTIONS.DELETE_TRACE:
+        if (payload.traceIndexes && payload.traceIndexes.length) {
+          graphDiv.data.splice(payload[0], 1);
+          this.figureUpdated();
+        }
+        break;
+
+      case EDITOR_ACTIONS.DELETE_ANNOTATION:
+        if (isNumeric(payload.annotationIndex)) {
+          graphDiv.layout.annotations.splice(payload.annotationIndex, 1);
+          this.figureUpdated();
+        }
         break;
 
       default:
