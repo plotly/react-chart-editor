@@ -9,17 +9,17 @@
 import {Entity} from 'draft-js';
 
 const characterIsLinkEntity = character => {
-    const entityKey = character.getEntity();
+  const entityKey = character.getEntity();
 
-    if (entityKey === null) {
-        return false;
-    }
+  if (entityKey === null) {
+    return false;
+  }
 
-    const entity = Entity.get(entityKey);
+  const entity = Entity.get(entityKey);
 
-    return entity.getType() === 'LINK';
+  return entity.getType() === 'LINK';
 };
 
 export const findLinkEntities = (contentBlock, callback) => {
-    contentBlock.findEntityRanges(characterIsLinkEntity, callback);
+  contentBlock.findEntityRanges(characterIsLinkEntity, callback);
 };
