@@ -77,7 +77,11 @@ export const INLINE_STYLES = [
     value: SUPERSCRIPT,
   },
   {
-    label: <span>link</span>,
+    label: (
+      <span>
+        <i className="icon-link" />
+      </span>
+    ),
     value: LINK,
   },
 ];
