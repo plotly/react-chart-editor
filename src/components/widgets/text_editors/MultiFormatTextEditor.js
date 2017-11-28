@@ -1,4 +1,5 @@
 import React, {PropTypes, Component} from 'react';
+import RichTextEditor from './RichText';
 
 export default class MultiFormatTextEditor extends Component {
   constructor(props) {
@@ -6,7 +7,9 @@ export default class MultiFormatTextEditor extends Component {
   }
 
   render() {
-    return <input value={this.props.value} />;
+    return (
+      <RichTextEditor value={this.props.value} onChange={this.props.onChange} />
+    );
   }
 }
 

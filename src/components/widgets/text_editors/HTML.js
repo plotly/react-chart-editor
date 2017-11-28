@@ -17,4 +17,8 @@ class HTML extends TextArea {
   }
 }
 
+HTML.defaultProps = {
+  placeholder: '',
+};
+
 export default HTML;
