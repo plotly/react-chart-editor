@@ -43,7 +43,7 @@ class MultiFormatTextEditor extends Component {
        * user before switching to the next tab.
        */
       nextTab: null,
-      mode: startTab,
+      currentTab: startTab,
       messages: [],
     };
 
@@ -59,16 +59,33 @@ class MultiFormatTextEditor extends Component {
    * @returns {String} The converted value
    */
   convertValue(value, editor) {
-    return editor === this.editors[1].key
-      ? htmlToLaTeX(value)
-      : laTeXToHTML(value);
+    const {currentTab} = this.state;
+
+    if (currentTab === 'RICH_TEXT' && editor === 'LATEX') {
+      return htmlToLaTeX(value);
+    }
+
+    if (currentTab === 'LATEX' && editor === 'RICH_TEXT') {
+      return laTeXToHTML(value);
+    }
+
+    if (currentTab === 'HTML' && editor === 'LATEX') {
+      return htmlToLaTeX(value);
+    }
+
+    /*
+     * Else we're switching from / to HTML / Rich Text Editor
+     * no conversion is needed
+     */
+    return value;
   }
 
-  onModeChange(nextMode) {
+  onModeChange(nextTab) {
     const {defaultValuePattern, value, onChange, localize: _} = this.props;
+    const {currentTab} = this.state;
     const trimmedValue = value.trim();
     const trimmedValueLength = trimmedValue.length;
-    const convertedValue = this.convertValue(trimmedValue, nextMode);
+    const convertedValue = this.convertValue(trimmedValue, nextTab);
 
     /*
      * Check against default value - we have to compare the plain
@@ -78,7 +95,15 @@ class MultiFormatTextEditor extends Component {
       ? defaultValuePattern.test(convertedValue)
       : defaultValuePattern.test(trimmedValue);
 
-    if (!isDefaultValue && trimmedValueLength > 0) {
+    const switchingBetweenRichAndHtml =
+      (currentTab === 'RICH_TEXT' && nextTab === 'HTML') ||
+      (currentTab === 'HTML' && nextTab === 'RICH_TEXT');
+
+    if (
+      !isDefaultValue &&
+      trimmedValueLength > 0 &&
+      !switchingBetweenRichAndHtml
+    ) {
       // Show confirmation dialogue and defer tab change.
       let messages;
 
@@ -102,7 +127,7 @@ class MultiFormatTextEditor extends Component {
       }
 
       this.setState({
-        nextTab: nextMode,
+        nextTab,
         messages,
       });
 
@@ -111,7 +136,7 @@ class MultiFormatTextEditor extends Component {
 
     // Show requested tab immediately.
     this.setState({
-      mode: nextMode,
+      currentTab: nextTab,
     });
 
     // Convert the annotation and dispatch onChange action
@@ -138,7 +163,7 @@ class MultiFormatTextEditor extends Component {
 
       // Set next tab as active
       this.setState({
-        mode: nextTab,
+        currentTab: nextTab,
         nextTab: null,
       });
 
@@ -178,33 +203,33 @@ class MultiFormatTextEditor extends Component {
     }
 
     const {onChange, placeholder, value, localize: _} = this.props;
-    const {mode} = this.state;
+    const {currentTab} = this.state;
 
     const richTextClassNames = classnames(
       'multi-format-editor__tab',
       'top-tab',
       'left',
-      {selected: mode === 'RICH_TEXT'}
+      {selected: currentTab === 'RICH_TEXT'}
     );
     const latexClassNames = classnames(
       'multi-format-editor__tab',
       'top-tab',
       'right',
-      {selected: mode === 'LATEX'}
+      {selected: currentTab === 'LATEX'}
     );
     const bottomTabClassNames = classnames(
       'multi-format-editor__tab',
       'bottom-tab'
     );
 
-    const Editor = this.editors.filter(editor => editor.key === mode)[0]
+    const Editor = this.editors.filter(editor => editor.key === currentTab)[0]
       .component;
 
     const ModeTabsText = this.editors.map(editor => editor.label);
 
-    const showBottomTab = mode === 'HTML' || mode === 'RICH_TEXT';
+    const showBottomTab = currentTab === 'HTML' || currentTab === 'RICH_TEXT';
     const BottomTab =
-      mode === 'HTML' ? (
+      currentTab === 'HTML' ? (
         <div
           className={bottomTabClassNames}
           onClick={() => this.onModeChange('RICH_TEXT')}
