@@ -10,6 +10,7 @@ export const containerConnectedContextTypes = {
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,
   getValObject: PropTypes.func,
+  graphDiv: PropTypes.object,
   layout: PropTypes.object,
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
