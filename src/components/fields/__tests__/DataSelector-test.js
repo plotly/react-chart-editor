@@ -10,6 +10,7 @@ function render(overrides = {}) {
 
   // return the inner-most plot connected dropdown (last)
   return mount(<TestEditor {...editorProps} plotly={plotly} />)
+    .find(`[traceIndex=0]`)
     .find(`[attr="${attr}"]`)
     .last();
 }
@@ -21,6 +22,7 @@ describe('DataSelector', () => {
     expect(wrapper.prop('options')).toEqual([
       {label: 'xCol', value: 'x1'},
       {label: 'yCol', value: 'y1'},
+      {label: 'yCol2', value: 'y2'},
     ]);
   });
 

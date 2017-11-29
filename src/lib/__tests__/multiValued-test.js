@@ -57,6 +57,7 @@ describe('multiValued Numeric', () => {
     expect(payload.update).toEqual({
       'xaxis.range[0]': xaxisLowerRange,
       'yaxis.range[0]': xaxisLowerRange,
+      'yaxis2.range[0]': xaxisLowerRange,
     });
   });
 });
