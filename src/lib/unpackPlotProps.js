@@ -15,7 +15,11 @@ export default function unpackPlotProps(props, context) {
     throw new Error('connectedToContainer components require an `attr` prop');
   }
 
-  const updatePlot = v => updateContainer && updateContainer({[props.attr]: v});
+  const updatePlot = v => {
+    if (updateContainer) {
+      updateContainer({[props.attr]: v});
+    }
+  };
 
   let attrMeta;
   if (getValObject) {
