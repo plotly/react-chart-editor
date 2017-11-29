@@ -18,7 +18,6 @@ import {
   STYLES_TO_HTML_TAGS,
   STYLE_MAP,
   INLINE_STYLES,
-  LINK_EDITOR_VERTICAL_OFFSET,
   LINK_EDITOR_HORIZONTAL_OFFSET,
 } from './configuration';
 
@@ -322,7 +321,7 @@ class RichText extends Component {
     );
     const coordinates = {
       x: LINK_EDITOR_HORIZONTAL_OFFSET,
-      y: selectionCoordinates.y + LINK_EDITOR_VERTICAL_OFFSET,
+      y: selectionCoordinates.y,
     };
 
     return (
