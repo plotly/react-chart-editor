@@ -1,12 +1,13 @@
 import Hub from './hub';
 import PlotlyEditor from './PlotlyEditor';
 import {
-  localize,
   connectAnnotationToLayout,
   connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
+  dereference,
+  localize,
 } from './lib';
 import {EDITOR_ACTIONS} from './lib/constants';
 
@@ -71,6 +72,7 @@ export {
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
+  dereference,
   localize,
 };
 

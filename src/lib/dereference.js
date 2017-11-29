@@ -21,5 +21,7 @@ export default function dereference(container, dataSources) {
     parent[dataKey] = data;
   };
 
-  walkObject(container, replacer, {walkArraysMatchingKeys: ['transforms']});
+  walkObject(container, replacer, {
+    walkArraysMatchingKeys: ['data', 'transforms'],
+  });
 }
