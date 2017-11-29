@@ -14,6 +14,7 @@ export class UnconnectedDropdown extends Component {
     return (
       <Field {...this.props}>
         <DropdownWidget
+          backgroundDark={this.props.backgroundDark}
           options={this.props.options}
           value={this.props.fullValue}
           onChange={this.props.updatePlot}
@@ -28,12 +29,13 @@ export class UnconnectedDropdown extends Component {
 }
 
 UnconnectedDropdown.propTypes = {
+  backgroundDark: PropTypes.bool,
+  clearable: PropTypes.bool,
   fullValue: PropTypes.any,
+  optionRenderer: PropTypes.func,
   options: PropTypes.array.isRequired,
   updatePlot: PropTypes.func,
-  optionRenderer: PropTypes.func,
   valueRenderer: PropTypes.func,
-  clearable: PropTypes.bool,
   ...Field.propTypes,
 };
 
