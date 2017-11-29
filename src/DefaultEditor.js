@@ -17,6 +17,8 @@ import {
   Info,
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
+  LineDashSelector,
+  LineShapeSelector,
   Numeric,
   Panel,
   PanelMenuWrapper,
@@ -154,6 +156,8 @@ class DefaultEditor extends Component {
             <Section name={_('Lines')}>
               <Numeric label={_('Width')} attr="line.width" />
               <ColorPicker label={_('Line Color')} attr="line.color" />
+              <LineDashSelector label={_('Type')} attr="line.dash" />
+              <LineShapeSelector label={_('Shape')} attr="line.shape" />
               <Radio
                 label={_('Connect Gaps')}
                 attr="connectgaps"
