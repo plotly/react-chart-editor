@@ -23,7 +23,7 @@ FontSelector.propTypes = {
   ...Dropdown.propTypes,
 };
 
-FontSelector.defaultFonts = {
+FontSelector.defaultProps = {
   clearable: false,
 };
 
