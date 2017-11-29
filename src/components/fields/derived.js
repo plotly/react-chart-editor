@@ -27,10 +27,9 @@ export const AxesRange = connectToContainer(UnconnectedNumeric, {
   },
 });
 
-class NumericFractionNoArrows extends UnconnectedNumeric {}
-NumericFractionNoArrows.propTypes = UnconnectedNumeric.propTypes;
-NumericFractionNoArrows.defaultProps = {
-  showArrows: false,
+class NumericFraction extends UnconnectedNumeric {}
+NumericFraction.propTypes = UnconnectedNumeric.propTypes;
+NumericFraction.defaultProps = {
   units: '%',
 };
 
@@ -45,7 +44,7 @@ const supplyLayoutPlotProps = (props, context) => {
 };
 
 export const LayoutNumericFractionInverse = connectLayoutToPlot(
-  connectToContainer(NumericFractionNoArrows, {
+  connectToContainer(NumericFraction, {
     supplyPlotProps: supplyLayoutPlotProps,
     modifyPlotProps: (props, context, plotProps) => {
       const {attrMeta, fullValue, updatePlot} = plotProps;
@@ -76,7 +75,7 @@ export const LayoutNumericFractionInverse = connectLayoutToPlot(
 );
 
 export const LayoutNumericFraction = connectLayoutToPlot(
-  connectToContainer(NumericFractionNoArrows, {
+  connectToContainer(NumericFraction, {
     supplyPlotProps: supplyLayoutPlotProps,
     modifyPlotProps: (props, context, plotProps) => {
       const {attrMeta, fullValue, updatePlot} = plotProps;
