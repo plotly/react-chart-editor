@@ -183,11 +183,14 @@ class MultiFormatTextEditor extends Component {
             </p>
           </div>
 
-          <button className="btn--default" onClick={onCancel}>
+          <button
+            className="confirmation-panel__cancel-button"
+            onClick={onCancel}
+          >
             {_('Go back')}
           </button>
           <button
-            className="btn--primary confirmation-panel__continue-button"
+            className="confirmation-panel__continue-button"
             onClick={onContinue}
           >
             {_('Continue')}
@@ -234,7 +237,7 @@ class MultiFormatTextEditor extends Component {
           className={bottomTabClassNames}
           onClick={() => this.onModeChange('RICH_TEXT')}
         >
-          {_('Edit in RichText')}
+          {_('Edit in Rich Text')}
         </div>
       ) : (
         <div

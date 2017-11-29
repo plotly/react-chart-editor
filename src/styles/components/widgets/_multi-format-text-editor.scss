@@ -1,8 +1,11 @@
 // MULTI FORMAT EDITOR STYLES
+
+$multi-format-editor-background: #fafbfd;
+
 .multi-format-editor__root {
   height: 215px;
   width: 100%;
-  border: 1px solid $default-color-rhino-medium-2;
+  border: 1px solid $color-border;
   border-radius: 5px;
   box-sizing: border-box;
 }
@@ -18,23 +21,23 @@
   &.top-tab {
     width: 50%;
     &.left {
-      border-right: 1px solid $default-color-rhino-medium-2;
+      border-right: 1px solid $color-border;
     }
   }
 
   &.bottom-tab {
-    border-top: 1px solid $default-color-rhino-medium-2;
+    border-top: 1px solid $color-border;
     width: 100%;
     display: block;
   }
 
   &.selected {
-    background: $default-color-rhino-light-4;
+    background: $multi-format-editor-background;
   }
 
   &:hover:not(.selected) {
-    color: $default-color-rhino-core;
-    background-color: $default-color-rhino-light-2;
+    color: $color-active-text;
+    background-color: $color-button-secondary;
   }
 }
 
@@ -62,11 +65,41 @@
 
 .confirmation-panel__message-secondary {
   font-weight: 300 !important;
-  color: $default-color-gray-blue;
+  color: #69738a;
+}
+
+.confirmation-panel__cancel-button {
+  background-color: $multi-format-editor-background;
+  border: 1px solid $color-border;
+  color: $color-text;
+  font-weight: 600;
+  letter-spacing: 0px;
+  &:hover {
+    background-color: rgba(163, 178, 198, 0.2);
+    border-color: $color-secondary-border;
+    color: $color-text;
+  }
+  &:active {
+    background-color: rgba(163, 178, 198, 0.35);
+  }
 }
 
 .confirmation-panel__continue-button {
   margin-left: 10px;
+  background-color: $color-accent;
+  border: 1px solid $color-accent;
+  color: #ffffff;
+  text-shadow: 0px 1px 2px rgba(42, 63, 95, 0.7);
+  &:hover {
+    background-color: $color-button-hover;
+    border: 1px solid $color-button-hover;
+    color: #ffffff; // Repeating in case the button is made with an anchor tag
+  }
+  &:active {
+    background-color: $color-accent-shade;
+    border: 1px solid $color-accent-shade;
+    color: #ffffff; // Repeating in case the button is made with an anchor tag
+  }
 }
 
 // LATEX & HTML EDITOR STYLES
@@ -80,7 +113,7 @@
   box-shadow: none;
 
   // add our styles
-  border-top: 1px solid $default-color-rhino-medium-2;
+  border-top: 1px solid $color-border;
   padding: 6px;
   resize: none;
   height: 100%;
@@ -138,8 +171,8 @@
   padding-top: 10px;
   padding-bottom: 5px;
   user-select: none;
-  background: $default-color-rhino-light-4;
-  border-bottom: 1px solid $default-color-rhino-medium-2;
+  background: $multi-format-editor-background;
+  border-bottom: 1px solid $color-border;
 }
 
 .rich-text-editor__styleButton__wrapper {
@@ -147,7 +180,7 @@
 }
 
 .rich-text-editor__styleButton {
-  color: $default-color-rhino-dark;
+  color: $color-text;
   cursor: pointer;
   display: inline-block;
   margin: 0;
@@ -155,25 +188,25 @@
   min-width: $base-spacing-unit;
   text-align: center;
   background-color: #ffffff;
-  border: 1px solid $default-color-rhino-medium-2;
+  border: 1px solid $color-border;
   border-radius: 2px;
   line-height: 20px;
 
   &:hover {
-    color: $default-color-rhino-core;
-    background-color: $default-color-rhino-light-2;
+    color: $color-active-text;
+    background-color: $color-button-secondary;
   }
 }
 
 .rich-text-editor__styleButton--active {
-  background-color: $default-color-dodger;
-  border: 1px solid $default-color-dodger-shade;
+  background-color: $color-accent;
+  border: 1px solid $color-accent-shade;
   color: #ffffff;
 
   // Repeating the same styles to override the natural hover
   &:hover {
-    background-color: $default-color-dodger;
-    border: 1px solid $default-color-dodger-shade;
+    background-color: $color-accent;
+    border: 1px solid $color-accent-shade;
     color: #ffffff;
   }
 }
