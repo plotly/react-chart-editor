@@ -92,7 +92,7 @@ function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
   }
 }
 
-function computeAxesOptions(fullContainer, axes) {
+function computeAxesOptions(axes) {
   const options = [{label: 'All', value: 'allaxes'}];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
@@ -133,7 +133,7 @@ export default function connectAxesToLayout(WrappedComponent) {
       } else {
         this.axes = [];
       }
-      this.axesOptions = computeAxesOptions(fullContainer, this.axes);
+      this.axesOptions = computeAxesOptions(this.axes);
 
       if (axesTarget === 'allaxes') {
         const multiValuedContainer = deepCopyPublic(this.axes[0]);
