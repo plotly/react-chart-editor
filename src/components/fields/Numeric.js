@@ -12,6 +12,15 @@ export class UnconnectedNumeric extends Component {
       placeholder = fullValue;
       fullValue = '';
     }
+
+    let showArrows;
+    if (typeof this.props.hideArrows === 'boolean') {
+      // enable <Numeric attr="ax" noArrows /> API
+      showArrows = !this.props.hideArrows;
+    } else {
+      showArrows = this.props.showArrows;
+    }
+
     return (
       <Field {...this.props}>
         <NumericInput
@@ -23,7 +32,7 @@ export class UnconnectedNumeric extends Component {
           max={this.props.max}
           onChange={this.props.updatePlot}
           onUpdate={this.props.updatePlot}
-          showArrows={this.props.showArrows}
+          showArrows={showArrows}
         />
       </Field>
     );
@@ -37,13 +46,10 @@ UnconnectedNumeric.propTypes = {
   max: PropTypes.number,
   multiValued: PropTypes.bool,
   showArrows: PropTypes.bool,
+  hideArrows: PropTypes.bool,
   step: PropTypes.number,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
-};
-
-UnconnectedNumeric.defaultProps = {
-  showArrows: true,
 };
 
 export default connectToContainer(UnconnectedNumeric);
