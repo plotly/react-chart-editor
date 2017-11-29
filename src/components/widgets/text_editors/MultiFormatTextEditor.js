@@ -9,6 +9,7 @@ import {
   laTeXToHTML,
   hasTextExpression,
 } from './convertFormats';
+import classnames from 'classnames';
 
 class MultiFormatTextEditor extends Component {
   constructor(props) {
@@ -148,24 +149,25 @@ class MultiFormatTextEditor extends Component {
 
     return (
       <div className="confirmation-panel">
-        <h5 className="confirmation-panel__header">{_('Heads up!')}</h5>
+        <div className="confirmation-panel__content">
+          <h3 className="confirmation-panel__header">{_('Heads up!')}</h3>
+          <div className="confirmation-panel__message">
+            <p className="confirmation-panel__message-primary">{messages[0]}</p>
+            <p className="confirmation-panel__message-secondary">
+              {messages[1]}
+            </p>
+          </div>
 
-        <p className="+weight-normal">{messages[0]}</p>
-
-        <p className="+weight-light">{messages[1]}</p>
-
-        <button
-          className="btnbase btn--default confirmation-panel__btn-cancel"
-          onClick={onCancel}
-        >
-          {_('Go back')}
-        </button>
-        <button
-          className="btnbase btn--primary confirmation-panel__btn-continue"
-          onClick={onContinue}
-        >
-          {_('Continue')}
-        </button>
+          <button className="btn--default" onClick={onCancel}>
+            {_('Go back')}
+          </button>
+          <button
+            className="btn--primary confirmation-panel__continue-button"
+            onClick={onContinue}
+          >
+            {_('Continue')}
+          </button>
+        </div>
       </div>
     );
   }
@@ -178,45 +180,84 @@ class MultiFormatTextEditor extends Component {
     const {onChange, placeholder, value, localize: _} = this.props;
     const {mode} = this.state;
 
+    const richTextClassNames = classnames(
+      'multi-format-editor__tab',
+      'top-tab',
+      'left',
+      {selected: mode === 'RICH_TEXT'}
+    );
+    const latexClassNames = classnames(
+      'multi-format-editor__tab',
+      'top-tab',
+      'right',
+      {selected: mode === 'LATEX'}
+    );
+    const bottomTabClassNames = classnames(
+      'multi-format-editor__tab',
+      'bottom-tab'
+    );
+
     const Editor = this.editors.filter(editor => editor.key === mode)[0]
       .component;
 
     const ModeTabsText = this.editors.map(editor => editor.label);
 
-    const showHTMLButton = mode === 'HTML' || mode === 'RICH_TEXT';
+    const showBottomTab = mode === 'HTML' || mode === 'RICH_TEXT';
+    const BottomTab =
+      mode === 'HTML' ? (
+        <div
+          className={bottomTabClassNames}
+          onClick={() => this.onModeChange('RICH_TEXT')}
+        >
+          {_('Edit in RichText')}
+        </div>
+      ) : (
+        <div
+          className={bottomTabClassNames}
+          onClick={() => this.onModeChange('HTML')}
+        >
+          {_('Edit in HTML')}
+        </div>
+      );
 
     return (
       <div>
-        <div className="multi-format-editor__top-tabs">
-          <span onClick={() => this.onModeChange('RICH_TEXT')}>
-            {ModeTabsText[0]}
-          </span>
-          <span onClick={() => this.onModeChange('LATEX')}>
-            {ModeTabsText[1]}
-          </span>
+        <div
+          className={richTextClassNames}
+          onClick={() => this.onModeChange('RICH_TEXT')}
+        >
+          {ModeTabsText[0]}
         </div>
-        <div>
-          <Editor onChange={onChange} placeholder={placeholder} value={value} />
-          {showHTMLButton ? (
-            <div onClick={() => this.onModeChange('HTML')}>
-              {ModeTabsText[2]}
-            </div>
-          ) : null}
+        <div
+          className={latexClassNames}
+          onClick={() => this.onModeChange('LATEX')}
+        >
+          {ModeTabsText[1]}
         </div>
+
+        <Editor
+          className="editor-content"
+          onChange={onChange}
+          placeholder={placeholder}
+          value={value}
+        />
+
+        {showBottomTab ? BottomTab : null}
       </div>
     );
   }
 
   render() {
-    const renderConfirmationPanel = this.state.nextTab !== null;
     /*
-     * `renderConfirmationPanel` and `renderTabPanel` are mutually
+     * `renderConfirmationPanel` and `renderEditor` are mutually
      * exclusive; only one will return a component.
      */
-    return (
-      this.renderConfirmationPanel(renderConfirmationPanel) ||
-      this.renderEditor(!renderConfirmationPanel)
-    );
+    const {nextTab} = this.state;
+    const content =
+      this.renderConfirmationPanel(nextTab !== null) ||
+      this.renderEditor(nextTab === null);
+
+    return <div className="multi-format-editor__root">{content}</div>;
   }
 }
 

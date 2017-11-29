@@ -10,7 +10,7 @@ class HTML extends TextArea {
           value={this.state.value}
           placeholder={this.props.placeholder}
           onChange={this.onChange}
-          className="html-editor__textarea"
+          className="editor__textarea html"
         />
       </div>
     );

@@ -1,81 +1,104 @@
-.tab_panel {
-  background: $default-color-rhino-light-4;
+// MULTI FORMAT EDITOR STYLES
+.multi-format-editor__root {
+  height: 215px;
+  width: 100%;
   border: 1px solid $default-color-rhino-medium-2;
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 18px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-
-.react-tabs__tab-list {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: hidden;
-  background-color: $default-color-rhino-light-2;
-}
-
-.react-tabs__tab {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-weight: bold;
-}
-
-.mode-switch-panel__toggle {
-  button {
-    background-color: none;
-    border-radius: 0px !important;
-    padding-top: 6px !important;
-    padding-bottom: 6px !important;
-    margin: 0px;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.mode-switch-panel__button {
-  // Base button structure
-  display: inline-block;
   border-radius: 5px;
-  border-color: transparent;
-  border: 1px solid $default-color-rhino-medium-2;
-  background-color: #ffffff;
-  padding: 9px 18px;
+  box-sizing: border-box;
+}
 
-  // Base button text
-  font-family: 'Open Sans', Helvetica, sans-serif;
-  font-weight: 400;
-  color: $default-color-rhino-dark;
-  font-size: 22px;
-  line-height: 28px;
-  letter-spacing: 0.5px;
-  text-transform: capitalize;
+.multi-format-editor__tab {
+  display: inline-block;
+  height: 100%;
   text-align: center;
+  height: 30px;
+  line-height: 28px;
+  box-sizing: border-box;
 
-  // Fixes
-  cursor: pointer; // Adding this in case a button is made with a div instead of <button>
-  outline: none; // Turns off a webkit default button style
-
-  @include vendor(transition, all 0.1s ease-in-out); // Just to make the transitions softer
-  @include vendor(user-select, none); // Makes button text unselectable
-
-  &:hover {
-    color: $default-color-rhino-core;
-    border-color: $default-color-rhino-medium-1;
+  &.top-tab {
+    width: 50%;
+    &.left {
+      border-right: 1px solid $default-color-rhino-medium-2;
+    }
   }
-  &:active {
-    border-color: $default-color-rhino-dark;
+
+  &.bottom-tab {
+    border-top: 1px solid $default-color-rhino-medium-2;
+    width: 100%;
+    display: block;
+  }
+
+  &.selected {
+    background: $default-color-rhino-light-4;
+  }
+
+  &:hover:not(.selected) {
+    color: $default-color-rhino-core;
+    background-color: $default-color-rhino-light-2;
   }
 }
 
+.confirmation-panel {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.confirmation-panel__content {
+  padding: 0 15px;
+}
+
+.confirmation-panel__message {
+  line-height: 20px;
+}
+
+.confirmation-panel__header {
+  color: #447bdc;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.confirmation-panel__message-secondary {
+  font-weight: 300 !important;
+  color: $default-color-gray-blue;
+}
+
+.confirmation-panel__continue-button {
+  margin-left: 10px;
+}
+
+// LATEX & HTML EDITOR STYLES
+.editor__textarea {
+  // remove default textarea styles
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  // add our styles
+  border-top: 1px solid $default-color-rhino-medium-2;
+  padding: 6px;
+  resize: none;
+  height: 100%;
+  width: 100%;
+  max-width: 262px;
+  line-height: 24px;
+  font-size: 13px; // same as rich text editor
+
+  &.latex {
+    min-height: 165px;
+  }
+  &.html {
+    min-height: 138px;
+  }
+}
+
+// RICH TEXT EDITOR STYLES
 .rich-text-editor__root {
-  border-right: 1px solid $default-color-rhino-medium-2;
-  border-left: 1px solid $default-color-rhino-medium-2;
   border-top: none;
 }
 
@@ -112,6 +135,7 @@
 
 .rich-text-editor__controls {
   font-size: 14px;
+  padding-top: 10px;
   padding-bottom: 5px;
   user-select: none;
   background: $default-color-rhino-light-4;
@@ -174,35 +198,6 @@
   padding: 0px 10px;
   width: 90%;
   margin-top: 10px;
-}
-
-.html-editor {
-  line-height: 0px;
-}
-
-.html-editor__textarea {
-  min-height: 131px;
-  border: 1px solid $default-color-rhino-medium-2;
-  border-bottom: none;
-  padding: 6px;
-  resize: none;
-  height: 100%;
-  width: 100%;
-  line-height: 24px;
-}
-
-.latex-editor {
-  border-top: 1px solid $default-color-rhino-medium-2;
-}
-
-.latex-editor__textarea {
-  min-height: 162px;
-  border: 1px solid $default-color-rhino-medium-2;
-  border-top: none;
-  padding: 6px;
-  resize: none;
-  height: 100%;
-  width: 100%;
 }
 
 /* TODO: Don't inline Draft.css; load it with `systemjs`. */

@@ -66,7 +66,7 @@ export default class LaTeX extends TextArea {
           placeholder={this.props.placeholder}
           onChange={this.onChange}
           onBlur={this.onBlur}
-          className="latex-editor__textarea"
+          className="editor__textarea latex"
         />
       </div>
     );
