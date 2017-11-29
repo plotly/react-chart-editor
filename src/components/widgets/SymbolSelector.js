@@ -1,14 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import tinyColor from 'tinycolor2';
+import classnames from 'classnames';
 import ModalBox from '../containers/ModalBox';
-
-const tooLightFactor = 0.8;
-
-function tooLight(color) {
-  const hslColor = tinyColor(color).toHsl();
-  return hslColor.l > tooLightFactor;
-}
 
 export default class SymbolSelector extends Component {
   constructor(props) {
@@ -87,7 +80,10 @@ export default class SymbolSelector extends Component {
         <div
           className="symbol-selector__item"
           key={value}
-          onClick={this.props.onChange}
+          onClick={ev => {
+            ev.stopPropagation();
+            this.props.onChange(value);
+          }}
         >
           <svg
             width="28"
@@ -106,14 +102,13 @@ export default class SymbolSelector extends Component {
 
   render() {
     const {isOpen} = this.state;
-    const {markerColor} = this.props;
-
-    // TODO link these colors into theme
-    const backgroundColor = tooLight(markerColor) ? '#bec8d9' : 'white';
+    const toggleClass = classnames('symbol-selector__toggle', {
+      'symbol-selector__toggle--dark': this.props.backgroundDark,
+    });
 
     return (
       <div>
-        <div className="symbol-selector__toggle" onClick={this.togglePanel}>
+        <div className={toggleClass} onClick={this.togglePanel}>
           <span className="symbol-selector__toggle_option">
             {this.renderActiveOption()}
           </span>
@@ -124,7 +119,7 @@ export default class SymbolSelector extends Component {
         {isOpen ? (
           <ModalBox
             onClose={this.togglePanel}
-            backgroundColor={backgroundColor}
+            backgroundDark={this.props.backgroundDark}
           >
             {this.renderOptions()}
           </ModalBox>
@@ -135,6 +130,7 @@ export default class SymbolSelector extends Component {
 }
 
 SymbolSelector.propTypes = {
+  backgroundDark: PropTypes.bool,
   markerColor: PropTypes.string,
   borderColor: PropTypes.string,
   value: PropTypes.string,
