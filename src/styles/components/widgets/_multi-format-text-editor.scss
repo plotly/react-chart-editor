@@ -1,3 +1,78 @@
+.tab_panel {
+  background: $default-color-rhino-light-4;
+  border: 1px solid $default-color-rhino-medium-2;
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 18px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.react-tabs__tab-list {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  background-color: $default-color-rhino-light-2;
+}
+
+.react-tabs__tab {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.mode-switch-panel__toggle {
+  button {
+    background-color: none;
+    border-radius: 0px !important;
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.mode-switch-panel__button {
+  // Base button structure
+  display: inline-block;
+  border-radius: 5px;
+  border-color: transparent;
+  border: 1px solid $default-color-rhino-medium-2;
+  background-color: #ffffff;
+  padding: 9px 18px;
+
+  // Base button text
+  font-family: 'Open Sans', Helvetica, sans-serif;
+  font-weight: 400;
+  color: $default-color-rhino-dark;
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  text-align: center;
+
+  // Fixes
+  cursor: pointer; // Adding this in case a button is made with a div instead of <button>
+  outline: none; // Turns off a webkit default button style
+
+  @include vendor(transition, all 0.1s ease-in-out); // Just to make the transitions softer
+  @include vendor(user-select, none); // Makes button text unselectable
+
+  &:hover {
+    color: $default-color-rhino-core;
+    border-color: $default-color-rhino-medium-1;
+  }
+  &:active {
+    border-color: $default-color-rhino-dark;
+  }
+}
+
 .rich-text-editor__root {
   border-right: 1px solid $default-color-rhino-medium-2;
   border-left: 1px solid $default-color-rhino-medium-2;
