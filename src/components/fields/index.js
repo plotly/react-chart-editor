@@ -12,6 +12,8 @@ import Numeric from './Numeric';
 import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 import {
+  AnnotationArrowRef,
+  AnnotationRef,
   AxesRange,
   CanvasSize,
   LayoutNumericFraction,
@@ -19,6 +21,8 @@ import {
 } from './derived';
 
 export {
+  AnnotationArrowRef,
+  AnnotationRef,
   ArrowSelector,
   AxesRange,
   AxesSelector,

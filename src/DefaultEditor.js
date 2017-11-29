@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
+  AnnotationArrowRef,
+  AnnotationRef,
   AnnotationAccordion,
   ArrowSelector,
   AxesSelector,
@@ -150,7 +152,7 @@ class DefaultEditor extends Component {
             </Section>
 
             <Section name={_('Lines')}>
-              <Numeric label={_('Width')} step={1.0} attr="line.width" />
+              <Numeric label={_('Width')} attr="line.width" />
               <ColorPicker label={_('Line Color')} attr="line.color" />
               <Radio
                 label={_('Connect Gaps')}
@@ -173,18 +175,8 @@ class DefaultEditor extends Component {
                 {label: _('Custom'), value: false},
               ]}
             />
-            <CanvasSize
-              label={_('Fixed Width')}
-              step={1}
-              attr="width"
-              units="px"
-            />
-            <CanvasSize
-              label={_('Fixed Height')}
-              step={1}
-              attr="height"
-              units="px"
-            />
+            <CanvasSize label={_('Fixed Width')} attr="width" units="px" />
+            <CanvasSize label={_('Fixed Height')} attr="height" units="px" />
             <ColorPicker label={_('Color')} attr="paper_bgcolor" />
           </Fold>
           <Fold name={_('Title and Fonts')}>
@@ -197,7 +189,6 @@ class DefaultEditor extends Component {
               />
               <Numeric
                 label={_('Font Size')}
-                step={1}
                 attr="titlefont.size"
                 units="px"
               />
@@ -209,26 +200,16 @@ class DefaultEditor extends Component {
                 attr="font.family"
                 clearable={false}
               />
-              <Numeric
-                label={_('Font Size')}
-                step={1}
-                attr="font.size"
-                units="px"
-              />
+              <Numeric label={_('Font Size')} attr="font.size" units="px" />
               <ColorPicker label={_('Font Color')} attr="font.color" />
             </Section>
           </Fold>
           <Fold name={_('Margins and Padding')}>
-            <Numeric label={_('Top')} step={1} attr="margin.t" units="px" />
-            <Numeric label={_('Bottom')} step={1} attr="margin.b" units="px" />
-            <Numeric label={_('Left')} step={1} attr="margin.l" units="px" />
-            <Numeric label={_('Right')} step={1} attr="margin.r" units="px" />
-            <Numeric
-              label={_('Padding')}
-              step={1}
-              attr="margin.pad"
-              units="px"
-            />
+            <Numeric label={_('Top')} attr="margin.t" units="px" />
+            <Numeric label={_('Bottom')} attr="margin.b" units="px" />
+            <Numeric label={_('Left')} attr="margin.l" units="px" />
+            <Numeric label={_('Right')} attr="margin.r" units="px" />
+            <Numeric label={_('Padding')} attr="margin.pad" units="px" />
           </Fold>
         </LayoutPanel>
 
@@ -237,14 +218,9 @@ class DefaultEditor extends Component {
             <Section name={_('Note Text')}>
               <RichTextEditor attr="text" />
               <FontSelector label={_('Typeface')} attr="font.family" />
-              <Numeric
-                label={_('Font Size')}
-                step={1}
-                attr="font.size"
-                units="px"
-              />
+              <Numeric label={_('Font Size')} attr="font.size" units="px" />
               <ColorPicker label={_('Font Color')} attr="font.color" />
-              <Numeric label={_('Angle')} step={1} attr="textangle" units="°" />
+              <Numeric label={_('Angle')} attr="textangle" units="°" />
             </Section>
             <Section name={_('Arrow')}>
               <Radio
@@ -254,12 +230,8 @@ class DefaultEditor extends Component {
                   {label: _('Hide'), value: false},
                 ]}
               />
-              <Numeric
-                label={_('Line Width')}
-                step={1}
-                attr="arrowwidth"
-                units="px"
-              />
+              <Numeric label={_('Line Width')} attr="arrowwidth" units="px" />
+              <ColorPicker label={_('Color')} attr="arrowcolor" />
               <ArrowSelector label={_('Arrowhead')} attr="arrowhead" />
               <Numeric
                 label={_('Scale')}
@@ -267,7 +239,18 @@ class DefaultEditor extends Component {
                 attr="arrowsize"
                 units="px"
               />
-              <ColorPicker label={_('Color')} attr="arrowcolor" />
+              <AnnotationArrowRef label="X Offset" attr="axref" />
+              <AnnotationArrowRef label="Y Offset" attr="ayref" />
+              <Numeric label={_('X Vector')} attr="ax" hideArrows />
+              <Numeric label={_('Y Vector')} attr="ay" hideArrows />
+            </Section>
+            <Section name={_('Horizontal Postitioning')}>
+              <AnnotationRef label={_('Relative To')} attr="xref" />
+              <Numeric label={_('Position')} attr="x" hideArrows />
+            </Section>
+            <Section name={_('Vertical Postitioning')}>
+              <AnnotationRef label={_('Relative To')} attr="yref" />
+              <Numeric label={_('Position')} attr="y" hideArrows />
             </Section>
           </AnnotationAccordion>
         </LayoutPanel>
@@ -276,12 +259,7 @@ class DefaultEditor extends Component {
           <AxesFold name={_('Titles')}>
             <AxesSelector />
             <FontSelector label={_('Typeface')} attr="titlefont.family" />
-            <Numeric
-              label={_('Font Size')}
-              step={1}
-              attr="titlefont.size"
-              units="px"
-            />
+            <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
             <ColorPicker label={_('Font Color')} attr="titlefont.color" />
           </AxesFold>
 
@@ -314,12 +292,7 @@ class DefaultEditor extends Component {
             <AxesSelector />
             <Section name={_('Tick Labels')}>
               <FontSelector label={_('Typeface')} attr="tickfont.family" />
-              <Numeric
-                label={_('Font Size')}
-                step={1}
-                attr="tickfont.size"
-                units="px"
-              />
+              <Numeric label={_('Font Size')} attr="tickfont.size" units="px" />
               <ColorPicker label={_('Font Color')} attr="tickfont.color" />
             </Section>
           </AxesFold>
@@ -347,18 +320,12 @@ class DefaultEditor extends Component {
             </Section>
             <Section name={_('Text')}>
               <FontSelector label={_('Typeface')} attr="legend.font.family" />
-              <Numeric
-                label={_('Size')}
-                step={1}
-                attr="legend.font.size"
-                units="px"
-              />
+              <Numeric label={_('Size')} attr="legend.font.size" units="px" />
               <ColorPicker label={_('Color')} attr="legend.font.color" />
             </Section>
             <Section name={_('Legend Box')}>
               <Numeric
                 label={_('Border Width')}
-                step={1}
                 attr="legend.borderwidth"
                 units="px"
               />
