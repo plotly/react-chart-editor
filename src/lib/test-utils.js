@@ -8,20 +8,47 @@ import Adapter from 'enzyme-adapter-react-15';
 configure({adapter: new Adapter()});
 
 /* eslint-disable no-magic-numbers */
+
 const fixtures = {
   scatter(config) {
     return applyConfig(config, {
       dataSources: {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
+        y2: [20, 30, 40],
       },
       dataSourceOptions: [
         {label: 'xCol', value: 'x1'},
         {label: 'yCol', value: 'y1'},
+        {label: 'yCol2', value: 'y2'},
       ],
       graphDiv: {
-        data: [{type: 'scatter', mode: 'markers', xsrc: 'x1', ysrc: 'y1'}],
-        layout: {},
+        data: [
+          {
+            xsrc: 'x1',
+            ysrc: 'y1',
+            name: 'yaxis data',
+            type: 'scatter',
+          },
+          {
+            xsrc: 'x1',
+            ysrc: 'y2',
+            name: 'yaxis2 data',
+            yaxis: 'y2',
+            type: 'scatter',
+          },
+        ],
+        layout: {
+          title: 'Double Y Axis Example',
+          yaxis: {},
+          yaxis2: {
+            title: 'yaxis2 title',
+            titlefont: {color: 'rgb(148, 103, 189)'},
+            tickfont: {color: 'rgb(148, 103, 189)'},
+            overlaying: 'y',
+            side: 'right',
+          },
+        },
       },
     });
   },
