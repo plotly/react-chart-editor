@@ -17,6 +17,10 @@
   @include z-index("cloud");
 }
 
+.modalbox--dark {
+  background-color: $color-background-color-inverse;
+}
+
 .modalbox__cover {
   position: fixed;
   top: 0;

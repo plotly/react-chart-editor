@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 export default class ModalBox extends Component {
   render() {
-    let style;
-    if (this.props.backgroundColor) {
-      style = {backgroundColor: this.props.backgroundColor};
-    }
-
+    const modalboxClass = classnames('modalbox', {
+      'modalbox--dark': this.props.backgroundDark,
+    });
     return (
-      <div className="modalbox" style={style}>
+      <div className={modalboxClass}>
         <div className="modalbox__cover" onClick={this.props.onClose} />
         <div>{this.props.children}</div>
       </div>
@@ -18,7 +17,7 @@ export default class ModalBox extends Component {
 }
 
 ModalBox.propTypes = {
-  backgroundColor: PropTypes.string,
+  backgroundDark: PropTypes.bool,
   children: PropTypes.node,
   onClose: PropTypes.func,
 };

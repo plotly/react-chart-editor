@@ -7,6 +7,10 @@
   @include clearfix();
 }
 
+.symbol-selector__toggle--dark {
+  background-color: $color-background-color-inverse;
+}
+
 .symbol-selector__toggle__option {
   float: left;
 }
@@ -23,16 +27,16 @@
   border: 1px solid $color-border;
   padding: $font-size;
   box-shadow: 2px 2px $font-size $color-border-secondary;
-border-radius: $border-radius;
-left: $base-spacing-unit;
+  border-radius: $border-radius;
+  left: $base-spacing-unit;
 }
 
- .symbol-selector__item {
-   display: inline;
- }
+.symbol-selector__item {
+  display: inline;
+}
 
- .symbol-selector__symbol {
-   &:hover {
-     background-color: $color-border;
-   }
- }
+.symbol-selector__symbol {
+  &:hover {
+    background-color: $color-border;
+  }
+}
