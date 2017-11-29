@@ -1,0 +1,15 @@
+.dropdown--dark .Select-control {
+  background-color: $color-background-color-inverse;
+}
+
+.dropdown--dark .Select-option {
+  background-color: $color-background-color-inverse;
+}
+
+.dropdown--dark .Select-option.is-selected {
+  background-color: $color-border;
+}
+
+.dropdown--dark .Select-option.is-focused {
+  background-color: $color-secondary-border;
+}
