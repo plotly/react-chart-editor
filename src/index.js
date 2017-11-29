@@ -12,6 +12,8 @@ import {
 import {EDITOR_ACTIONS} from './lib/constants';
 
 import {
+  AnnotationArrowRef,
+  AnnotationRef,
   AnnotationAccordion,
   ArrowSelector,
   AxesRange,
@@ -40,6 +42,8 @@ import {
 } from './components';
 
 export {
+  AnnotationArrowRef,
+  AnnotationRef,
   AnnotationAccordion,
   ArrowSelector,
   AxesRange,

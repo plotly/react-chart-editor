@@ -1,4 +1,6 @@
 import {
+  AnnotationArrowRef,
+  AnnotationRef,
   ArrowSelector,
   AxesRange,
   AxesSelector,
@@ -31,6 +33,8 @@ import {
 import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
+  AnnotationArrowRef,
+  AnnotationRef,
   AnnotationAccordion,
   ArrowSelector,
   AxesSelector,
