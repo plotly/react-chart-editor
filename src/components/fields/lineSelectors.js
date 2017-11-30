@@ -7,9 +7,11 @@ import {tooLight} from '../../lib';
 /* eslint-disable react/prop-types */
 const styledRenderer = ({label}) => {
   return (
-    <svg width="100" height="4">
-      <g>{label}</g>
-    </svg>
+    <div>
+      <svg width="100" height="16">
+        <g>{label}</g>
+      </svg>
+    </div>
   );
 };
 /* eslint-enable react/prop-types */
@@ -23,25 +25,48 @@ const strokeDashes = [
   {value: 'longdashdot', strokeDasharray: '15px, 6px, 3px, 6px'},
 ];
 
-const strokeStyle = {fill: 'none', strokeOpacity: 1, strokeWidth: '4px'};
+const strokeShapes = [
+  {d: 'M2,14L14,2', value: 'linear'},
+  {d: 'M2,14C4,4 16,16 18,2', value: 'spline'},
+  {d: 'M2,14H14V2', value: 'hv'},
+  {d: 'M2,14V2H14', value: 'vh'},
+  {d: 'M2,14H8V2H14', value: 'hvh'},
+  {d: 'M2,14V8H14V2', value: 'vhv'},
+];
 
-const computeOptions = stroke => {
-  return strokeDashes
-    .map(({value, strokeDasharray}) => ({
-      label: (
-        <path d="M5,0h100" style={{...strokeStyle, stroke, strokeDasharray}} />
-      ),
-      value,
-    }))
-    .concat([
-      {
-        label: '',
-        value: null,
-      },
-    ]);
+const strokeStyle = {fill: 'none', strokeWidth: '4px'};
+const computeOptions = (strokeData, stroke) =>
+  strokeData.map(({value, strokeDasharray, d = 'M0,8h100'}) => ({
+    label: <path d={d} style={{...strokeStyle, stroke, strokeDasharray}} />,
+    value,
+  }));
+
+export const LineShapeSelector = props => {
+  return (
+    <LineSelector
+      {...props}
+      computeOptions={computeOptions.bind(null, strokeShapes)}
+    />
+  );
 };
 
-class LineDashSelector extends Component {
+export const LineDashSelector = props => {
+  return (
+    <LineSelector
+      {...props}
+      computeOptions={lineColor =>
+        computeOptions(strokeDashes, lineColor).concat([
+          {
+            label: '',
+            value: null,
+          },
+        ])
+      }
+    />
+  );
+};
+
+class LineSelector extends Component {
   constructor(props, context) {
     super(props, context);
     this.setLocals(props, context);
@@ -55,7 +80,7 @@ class LineDashSelector extends Component {
     const {fullContainer} = nextContext;
     const lineColor = nestedProperty(fullContainer, 'line.color').get();
     if (!this.options || this.lineColor !== lineColor) {
-      this.options = computeOptions(lineColor);
+      this.options = this.props.computeOptions(lineColor);
       this.lineColor = lineColor;
     }
   }
@@ -73,16 +98,15 @@ class LineDashSelector extends Component {
   }
 }
 
-LineDashSelector.propTypes = {
+LineSelector.propTypes = {
+  computeOptions: PropTypes.func,
   ...Dropdown.propTypes,
 };
 
-LineDashSelector.defaultProps = {
+LineSelector.defaultProps = {
   clearable: false,
 };
 
-LineDashSelector.contextTypes = {
+LineSelector.contextTypes = {
   fullContainer: PropTypes.object,
 };
-
-export default LineDashSelector;
