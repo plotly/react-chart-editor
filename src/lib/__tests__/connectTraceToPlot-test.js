@@ -67,5 +67,17 @@ Traces.forEach(Trace => {
       expect(wrapper.prop('min')).toBe(0);
       expect(wrapper.prop('max')).toBe(void 0);
     });
+
+    it('has the correct name', () => {
+      const name = 'Voldemort';
+      const wrapper = mount(
+        <Editor {...fixtures.scatter({data: [{name}]})}>
+          <Trace traceIndex={0} />
+        </Editor>
+      )
+        .find(Trace)
+        .childAt(0);
+      expect(wrapper.props().name).toBe(name);
+    });
   });
 });
