@@ -200,18 +200,3 @@ function computeAxesRefOptions(axes) {
 
   return options;
 }
-
-export const LineShapeSelector = connectToContainer(UnconnectedDropdown, {
-  modifyPlotProps: (props, context, plotProps) => {
-    plotProps.options = [
-      {label: '╱', value: 'linear'},
-      {label: '╭╯', value: 'spline'},
-      {label: '⏌', value: 'hv'},
-      {label: '⎾', value: 'vh'},
-      {label: '┗┓', value: 'hvh'},
-      {label: '┏┛', value: 'vhv'},
-    ];
-
-    plotProps.clearable = false;
-  },
-});

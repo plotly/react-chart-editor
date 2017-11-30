@@ -5,7 +5,6 @@ import Dropdown from './Dropdown';
 import FontSelector from './FontSelector';
 import Flaglist from './Flaglist';
 import Info from './Info';
-import LineDashSelector from './LineDashSelector';
 import Radio from './Radio';
 import MultiFormatTextEditor from './MultiFormatTextEditor';
 import DataSelector from './DataSelector';
@@ -17,10 +16,10 @@ import {
   AnnotationRef,
   AxesRange,
   CanvasSize,
-  LineShapeSelector,
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
 } from './derived';
+import {LineDashSelector, LineShapeSelector} from './lineSelectors';
 
 export {
   AnnotationArrowRef,
