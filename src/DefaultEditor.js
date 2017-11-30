@@ -300,6 +300,7 @@ class DefaultEditor extends Component {
         <LayoutPanel group="Style" name={_('Axes')}>
           <AxesFold name={_('Titles')}>
             <AxesSelector />
+            <MultiFormatTextEditor attr="title" />
             <FontSelector label={_('Typeface')} attr="titlefont.family" />
             <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
             <ColorPicker label={_('Font Color')} attr="titlefont.color" />
