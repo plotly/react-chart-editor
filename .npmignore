@@ -1,12 +1,15 @@
 test
 src
+build
 
 circle.yml
-bower.json
 
 .ackrc
 .agignore
+.babelrc
+.eslintrc
+.gitattributes
+.prettierrc
+.git
 
 npm-debug.log
-
-example
