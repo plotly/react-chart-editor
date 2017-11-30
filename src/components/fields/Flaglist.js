@@ -10,7 +10,7 @@ class Flaglist extends Component {
       <Field {...this.props}>
         <FlaglistCheckboxGroup
           options={this.props.options}
-          activeOption={this.props.fullValue()}
+          activeOption={this.props.fullValue}
           onChange={this.props.updatePlot}
         />
       </Field>
@@ -19,7 +19,7 @@ class Flaglist extends Component {
 }
 
 Flaglist.propTypes = {
-  fullValue: PropTypes.func,
+  fullValue: PropTypes.any,
   options: PropTypes.array.isRequired,
   updatePlot: PropTypes.func,
   ...Field.propTypes,

@@ -1,7 +1,7 @@
 import Fold from './Fold';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {EDITOR_ACTIONS} from '../../constants';
+import {EDITOR_ACTIONS} from '../../lib/constants';
 import {connectTraceToPlot} from '../../lib';
 
 const TraceFold = connectTraceToPlot(Fold);
@@ -31,7 +31,7 @@ export default class TraceAccordion extends Component {
           </a>
         ) : null}
         {data.map((d, i) => (
-          <TraceFold key={i} traceIndex={i} name={`Trace ${i}`}>
+          <TraceFold key={i} traceIndex={i}>
             {this.props.children}
           </TraceFold>
         ))}

@@ -1,44 +1,81 @@
 .fold {
+  margin-bottom: 6px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+}
+
+.fold__content {
   background: #ffffff;
   border: 1px solid #bec8d9;
   border-width: 0 1px 1px 1px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  margin-bottom: 6px;
 }
 
-.fold--noheader {
+.fold__content--noheader {
   border-width: 1px 1px 1px 1px;
 }
 
 .fold__top {
+  justify-content: space-between;
+  display: flex;
   clear: both;
   padding: 6px 12px;
-  color: #ffffff;
+  color: $color-white;
+  cursor: pointer;
   font-size: $font-size;
   line-height: $font-size;
-  border: 1px solid #a2b1c6;
-  background-color: #a2b1c6;
+  border: 1px solid $color-secondary-border;
+  background-color: $color-secondary-border;
   height: 15px;
   border-radius: 5px;
-  text-shadow: 0px 1px 2px rgba(42,63,95,0.7);
-  -moz-transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out,border 0.1s ease-in-out;
-  -o-transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out,border 0.1s ease-in-out;
-  -webkit-transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out,border 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out,color 0.1s ease-in-out,border 0.1s ease-in-out;
+  text-shadow: 0px 1px 2px rgba(42, 63, 95, 0.7);
+  -moz-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
+    border 0.1s ease-in-out;
+  -o-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
+    border 0.1s ease-in-out;
+  -webkit-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
+    border 0.1s ease-in-out;
+  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
+    border 0.1s ease-in-out;
 }
 
 .fold__top--active {
-  color: #fff;
-  background-color: #506784;
-  border: 1px solid #506784;
+  color: $color-white;
+  background-color: $color-fold-header-background;
+  border: 1px solid $color-fold-header-background;
   border-radius: 5px 5px 0 0;
 }
 
-.fold__delete {
-  float: right;
+.fold__top__arrow-title {
+  display: flex;
+}
+
+.fold__top__arrow {
   display: inline-block;
-  color: white;
+  font-size: 18px;
+  transform: rotate(270deg);
+}
+
+.fold__top__arrow--active {
+  transform: none;
+}
+
+.fold__top__title {
+  margin-left: 12px;
+  padding-top: 2px;
+  font-size: $font-size-medium;
+  white-space: nowrap;
+  max-width: 150px;
+  letter-spacing: 0.2px;
+}
+
+.fold__delete {
+  display: inline-block;
+  color: $color-white;
   text-decoration: none;
   font-size: 1.5em;
 }

@@ -1,41 +1,56 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem} from '../../lib';
+import classnames from 'classnames';
 
 export default class Fold extends Component {
-  renderHeader() {
-    const {deleteContainer} = this.context;
-    const {canDelete} = this.props;
-    const doDelete = canDelete && typeof deleteContainer === 'function';
-    return (
-      <div className={bem('fold', 'top', ['active'])}>
-        {this.props.name}
-        {doDelete ? (
-          <a
-            className={bem('fold', 'delete')}
-            href="#"
-            onClick={deleteContainer}
-          >
-            ×
-          </a>
-        ) : null}
-      </div>
-    );
+  constructor() {
+    super();
+    this.state = {folded: false};
+    this.toggleFold = this.toggleFold.bind(this);
+  }
+
+  toggleFold() {
+    this.setState({folded: !this.state.folded});
   }
 
   render() {
-    const modifiers = this.props.hideHeader ? ['noheader'] : null;
+    const {deleteContainer} = this.context;
+    const doDelete = typeof deleteContainer === 'function';
+    const headerClass = classnames('fold__top', {
+      'fold__top--active': !this.state.folded,
+    });
+    const arrowClass = classnames('icon-angle-down', 'fold__top__arrow', {
+      'fold__top__arrow--active': !this.state.folded,
+    });
+    const contentClass = classnames('fold__content', {
+      'fold__content--noheader': this.props.hideHeader,
+    });
+
     return (
-      <div>
-        {this.props.hideHeader ? null : this.renderHeader()}
-        <div className={bem('fold', modifiers)}>{this.props.children}</div>
+      <div className="fold">
+        {!this.props.hideHeader ? (
+          <div className={headerClass} onClick={this.toggleFold}>
+            <div className="fold__top__arrow-title">
+              <i className={arrowClass} />
+              <div className="fold__top__title">{this.props.name}</div>
+            </div>
+            {doDelete ? (
+              <i
+                className="fold__delete icon-cancel"
+                onClick={deleteContainer}
+              />
+            ) : null}
+          </div>
+        ) : null}
+        {!this.state.folded ? (
+          <div className={contentClass}>{this.props.children}</div>
+        ) : null}
       </div>
     );
   }
 }
 
 Fold.propTypes = {
-  canDelete: PropTypes.bool,
   children: PropTypes.node,
   hideHeader: PropTypes.bool,
   name: PropTypes.string,

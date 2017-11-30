@@ -10,46 +10,56 @@ function attributeIsData(meta = {}) {
 }
 
 class DataSelector extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
     this.updatePlot = this.updatePlot.bind(this);
-    this.setLocals(props);
+    this.setLocals(props, context);
   }
 
-  componentWillUpdate(nextProps) {
-    this.setLocals(nextProps);
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.setLocals(nextProps, nextContext);
   }
 
-  setLocals(props) {
+  setLocals(props, context) {
+    this.dataSources = context.dataSources || {};
+    this.dataSourceOptions = context.dataSourceOptions || [];
     this.dataSrcExists = false;
     if (attributeIsData(props.attrMeta)) {
       this.dataSrcExists = true;
       this.srcAttr = props.attr + 'src';
       this.srcProperty = nestedProperty(props.container, this.srcAttr);
     }
-  }
 
-  fullValue() {
     if (this.dataSrcExists) {
-      return this.srcProperty.get();
+      this.fullValue = this.srcProperty.get();
+    } else {
+      this.fullValue = this.props.fullValue;
     }
-    return this.props.fullValue();
   }
 
   updatePlot(value) {
-    const attr = this.dataSrcExists ? this.srcAttr : this.props.attr;
-    if (this.props.updateContainer) {
-      this.props.updateContainer({[attr]: value});
+    if (!this.props.updateContainer) {
+      return;
     }
+    const update = {};
+    if (this.dataSrcExists) {
+      update[this.srcAttr] = value;
+    }
+
+    if (Array.isArray(this.dataSources[value])) {
+      update[this.props.attr] = this.dataSources[value];
+    }
+
+    this.props.updateContainer(update);
   }
 
   render() {
     return (
       <Field {...this.props}>
         <DropdownWidget
-          options={this.props.options}
-          value={this.fullValue()}
+          options={this.dataSourceOptions}
+          value={this.fullValue}
           onChange={this.updatePlot}
           clearable={this.props.clearable}
         />
@@ -59,11 +69,15 @@ class DataSelector extends Component {
 }
 
 DataSelector.propTypes = {
-  fullValue: PropTypes.func,
-  options: PropTypes.array.isRequired,
+  fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   clearable: PropTypes.bool,
   ...Field.propTypes,
+};
+
+DataSelector.contextTypes = {
+  dataSources: PropTypes.object,
+  dataSourceOptions: PropTypes.array,
 };
 
 function modifyPlotProps(props, context, plotProps) {

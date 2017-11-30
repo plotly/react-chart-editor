@@ -1,15 +1,21 @@
 import Hub from './hub';
 import PlotlyEditor from './PlotlyEditor';
 import {
-  localize,
+  connectAnnotationToLayout,
   connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
+  dereference,
+  localize,
 } from './lib';
-import {EDITOR_ACTIONS} from './constants';
+import {EDITOR_ACTIONS} from './lib/constants';
 
 import {
+  AnnotationAccordion,
+  AnnotationArrowRef,
+  AnnotationRef,
+  ArrowSelector,
   AxesRange,
   AxesSelector,
   CanvasSize,
@@ -18,16 +24,19 @@ import {
   Dropdown,
   Flaglist,
   Fold,
+  FontSelector,
   Info,
   Layout,
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
+  LineDashSelector,
+  LineShapeSelector,
+  MenuPanel,
   Numeric,
   Panel,
   PanelMenuWrapper,
   Radio,
   Section,
-  MenuPanel,
   SymbolSelector,
   TraceAccordion,
   TraceMarkerSection,
@@ -35,9 +44,12 @@ import {
 } from './components';
 
 export {
+  AnnotationAccordion,
+  AnnotationArrowRef,
+  AnnotationRef,
+  ArrowSelector,
   AxesRange,
   AxesSelector,
-  MenuPanel,
   CanvasSize,
   ColorPicker,
   DataSelector,
@@ -45,11 +57,15 @@ export {
   EDITOR_ACTIONS,
   Flaglist,
   Fold,
-  Info,
+  FontSelector,
   Hub,
+  Info,
   Layout,
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
+  LineDashSelector,
+  LineShapeSelector,
+  MenuPanel,
   Numeric,
   Panel,
   PanelMenuWrapper,
@@ -59,10 +75,12 @@ export {
   TraceAccordion,
   TraceMarkerSection,
   TraceSelector,
+  connectAnnotationToLayout,
   connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
+  dereference,
   localize,
 };
 

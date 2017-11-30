@@ -26,4 +26,16 @@ describe('connectToContainer', () => {
 
     expect(numeric.prop('connectToContainerModifiedPlotProp')).toBe(true);
   });
+
+  it('throws an error when connected component has no attr prop', () => {
+    const ConnectedNumeric = connectToContainer(Numeric);
+
+    expect(() =>
+      mount(
+        <TestEditor {...{...fixtures.scatter(), onUpdate: jest.fn()}}>
+          <ConnectedNumeric />
+        </TestEditor>
+      )
+    ).toThrow('connectedToContainer components require an `attr` prop');
+  });
 });

@@ -19,12 +19,12 @@ export default class MenuPanel extends Component {
       };
     } else if (this.props.question) {
       return {
-        iconClass: 'menupanel__icon plotlyjs_editor__icon-question-circle',
+        iconClass: 'menupanel__icon icon-question-circle',
         spanClass: `menupanel__icon-span menupanel__icon-span--question`,
       };
     }
     return {
-      iconClass: 'menupanel__icon plotlyjs_editor__icon-cog',
+      iconClass: 'menupanel__icon icon-cog',
       spanClass: 'menupanel__icon-span menupanel__icon-span--cog',
     };
   }

@@ -8,16 +8,19 @@ export class UnconnectedDropdown extends Component {
   render() {
     let placeholder;
     if (this.props.multiValued) {
-      placeholder = this.props.fullValue();
+      placeholder = this.props.fullValue;
     }
 
     return (
       <Field {...this.props}>
         <DropdownWidget
+          backgroundDark={this.props.backgroundDark}
           options={this.props.options}
-          value={this.props.fullValue()}
+          value={this.props.fullValue}
           onChange={this.props.updatePlot}
           clearable={this.props.clearable}
+          optionRenderer={this.props.optionRenderer}
+          valueRenderer={this.props.valueRenderer}
           placeholder={placeholder}
         />
       </Field>
@@ -26,10 +29,13 @@ export class UnconnectedDropdown extends Component {
 }
 
 UnconnectedDropdown.propTypes = {
-  fullValue: PropTypes.func,
+  backgroundDark: PropTypes.bool,
+  clearable: PropTypes.bool,
+  fullValue: PropTypes.any,
+  optionRenderer: PropTypes.func,
   options: PropTypes.array.isRequired,
   updatePlot: PropTypes.func,
-  clearable: PropTypes.bool,
+  valueRenderer: PropTypes.func,
   ...Field.propTypes,
 };
 

@@ -41,11 +41,18 @@ $color-header-text: $default-color-rhino-core;
 $color-link-light: $default-color-blue-pale;
 
 // backgrounds
+$color-background-color-inverse: $default-color-rhino-dark;
 $color-panel-background: $default-color-white;
 $color-section-header-background: $default-color-white-blue;
+$color-fold-header-background: $default-color-rhino-dark;
+$color-accent: $default-color-dodger;
+$color-accent-shade: $default-color-dodger-shade;
+$color-button-hover: $default-color-button-hover;
 
 // themes
 $color-border: $default-color-rhino-medium-2;
+$color-secondary-border: $default-color-rhino-medium-1;
+
 $color-border-secondary: $default-color-rhino-light-1;
 $color-button-secondary: $default-color-rhino-light-2;
 $color-page-background: $default-color-rhino-light-3;

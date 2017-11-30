@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Select from 'react-select';
+import classnames from 'classnames';
 
 class Dropdown extends Component {
   constructor(props) {
@@ -53,8 +54,12 @@ class Dropdown extends Component {
       }
     }
 
+    const dropdownContainerClass = classnames('dropdown-container', {
+      'dropdown--dark': this.props.backgroundDark,
+    });
+
     return (
-      <div className="dropdown-container" style={dropdownStyle}>
+      <div className={dropdownContainerClass} style={dropdownStyle}>
         <Select
           backspaceToRemoveMessage={backspaceToRemoveMessage}
           placeholder={placeholder}
@@ -89,6 +94,7 @@ Dropdown.defaultProps = {
 
 Dropdown.propTypes = {
   backspaceToRemoveMessage: PropTypes.string,
+  backgroundDark: PropTypes.bool,
   clearable: PropTypes.bool,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired,

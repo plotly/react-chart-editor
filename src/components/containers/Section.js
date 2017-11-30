@@ -1,3 +1,4 @@
+import Info from '../fields/Info';
 import MenuPanel from './MenuPanel';
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
@@ -5,7 +6,9 @@ import unpackPlotProps from '../../lib/unpackPlotProps';
 import {containerConnectedContextTypes} from '../../lib/connectToContainer';
 
 function childIsVisible(child) {
-  return Boolean((child.props.plotProps || {}).isVisible);
+  const attrVisible = Boolean((child.props.plotProps || {}).isVisible);
+  const sectionVisible = Boolean(child.props['data-section-child-visible']);
+  return attrVisible || sectionVisible;
 }
 
 export default class Section extends Component {
@@ -47,6 +50,7 @@ export default class Section extends Component {
 
       const isAttr = Boolean(child.props.attr);
       let plotProps;
+      let newProps = {};
       if (child.plotProps) {
         plotProps = child.plotProps;
       } else if (isAttr) {
@@ -58,15 +62,19 @@ export default class Section extends Component {
         } else {
           plotProps = unpackPlotProps(child.props, context);
         }
+
+        // assign plotProps as a prop of children. If they are connectedToContainer
+        // it will see plotProps and skip recomputing them.
+        newProps = {plotProps, key: i};
+      } else if (child.type === Info) {
+        // Info panels do not change section visibility.
+        newProps = {key: i, 'data-section-child-visible': false};
       } else {
-        plotProps = {isVisible: true};
+        // custom UI currently forces section visibility.
+        newProps = {key: i, 'data-section-child-visible': true};
       }
 
-      // assign plotProps as a prop of children. If they are connectedToContainer
-      // it will see plotProps and skip recomputing them.
-      const childProps = Object.assign({plotProps}, child.props);
-
-      childProps.key = i;
+      const childProps = Object.assign(newProps, child.props);
       attrChildren.push(cloneElement(child, childProps));
     }
 
@@ -76,8 +84,7 @@ export default class Section extends Component {
 
   render() {
     const hasVisibleChildren =
-      (this.children && this.children.some(childIsVisible)) ||
-      Boolean(this.menuPanel);
+      this.children && this.children.some(childIsVisible);
 
     return hasVisibleChildren ? (
       <div className="section">

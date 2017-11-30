@@ -6,7 +6,7 @@ import isNumeric from 'fast-isnumeric';
 export const UP_ARROW = 38;
 export const DOWN_ARROW = 40;
 
-export default class NumericInputStatefulWrapper extends Component {
+export default class NumericInput extends Component {
   constructor(props) {
     super(props);
 
@@ -119,6 +119,7 @@ export default class NumericInputStatefulWrapper extends Component {
       <div className="numeric-input__wrapper">
         <EditableText
           className={`numeric-input__number ${this.props.editableClassName}`}
+          placeholder={this.props.placeholder}
           text={this.state.value}
           type="text"
           onChange={this.onChange}
@@ -131,18 +132,19 @@ export default class NumericInputStatefulWrapper extends Component {
   }
 }
 
-NumericInputStatefulWrapper.propTypes = {
+NumericInput.propTypes = {
   defaultValue: PropTypes.number,
   editableClassName: PropTypes.string,
   integerOnly: PropTypes.bool,
   max: PropTypes.number,
   min: PropTypes.number,
   onUpdate: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
   showArrows: PropTypes.bool,
   step: PropTypes.number,
   value: PropTypes.any,
 };
 
-NumericInputStatefulWrapper.defaultProps = {
+NumericInput.defaultProps = {
   showArrows: true,
 };

@@ -92,12 +92,12 @@ function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
   }
 }
 
-function computeAxesOptions(fullContainer, axes) {
-  const options = [{label: 'All Axes', value: 'allaxes'}];
+function computeAxesOptions(axes) {
+  const options = [{label: 'All', value: 'allaxes'}];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
     const axesPrefix = ax._id.length > 1 ? ' ' + ax._id.substr(1) : '';
-    const label = `${ax._id.charAt(0).toUpperCase()}  Axis${axesPrefix}`;
+    const label = `${ax._id.charAt(0).toUpperCase()}${axesPrefix}`;
     options[i + 1] = {label, value: ax._name};
   }
 
@@ -133,7 +133,7 @@ export default function connectAxesToLayout(WrappedComponent) {
       } else {
         this.axes = [];
       }
-      this.axesOptions = computeAxesOptions(fullContainer, this.axes);
+      this.axesOptions = computeAxesOptions(this.axes);
 
       if (axesTarget === 'allaxes') {
         const multiValuedContainer = deepCopyPublic(this.axes[0]);

@@ -7,12 +7,12 @@ import {multiValueText} from '../../lib/constants';
 
 class Field extends Component {
   renderPostfix() {
-    if (!this.props.postfix) {
+    if (!this.props.units) {
       return null;
     }
     return (
-      <div className={bem('field', 'postfix')}>
-        <div className={bem('field', 'postfix-text')}>{this.props.postfix}</div>
+      <div className={bem('field', 'units')}>
+        <div className={bem('field', 'units-text')}>{this.props.units}</div>
       </div>
     );
   }
@@ -24,7 +24,7 @@ class Field extends Component {
       label,
       localize: _,
       multiValued,
-      postfix,
+      units,
     } = this.props;
 
     let fieldClass;
@@ -34,7 +34,7 @@ class Field extends Component {
       });
     } else {
       fieldClass = classnames('field__widget', {
-        'field__widget--postfix': Boolean(postfix),
+        'field__widget--units': Boolean(units),
       });
     }
 
@@ -55,9 +55,9 @@ class Field extends Component {
             </MenuPanel>
           ) : null}
         </div>
-        {postfix ? (
-          <div className={bem('field', 'postfix')}>
-            <div className={bem('field', 'postfix-text')}>{postfix}</div>
+        {units ? (
+          <div className={bem('field', 'units')}>
+            <div className={bem('field', 'units-text')}>{units}</div>
           </div>
         ) : null}
       </div>
@@ -69,7 +69,7 @@ Field.propTypes = {
   center: PropTypes.bool,
   label: PropTypes.string,
   localize: PropTypes.func,
-  postfix: PropTypes.string,
+  units: PropTypes.string,
   multiValued: PropTypes.bool,
   children: PropTypes.node,
 };

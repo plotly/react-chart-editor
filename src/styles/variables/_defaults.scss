@@ -32,7 +32,7 @@ $default-color-black-paleish: #333;
 $default-color-black-pale: #666;
 $default-color-black: #111;
 $default-color-navyblue: #284576;
-$default-color-blue: #119DFF;
+$default-color-blue: #119dff;
 $default-color-blue-dark: darken($default-color-blue, 20%);
 $default-color-blue-pale: #45a9ff;
 $default-color-blue-paleish: #2391fe;
@@ -56,35 +56,59 @@ $default-color-white: #ffffff;
 // ---
 // Text and Backgrounds
 // ---
-$default-color-rhino-core:                    #2a3f5f; // Active state text, emphasized text
-$default-color-rhino-dark:                    #506784; // Default text color
-$default-color-rhino-medium-1:                #a2b1c6;
-$default-color-rhino-medium-2:                #c8d4e3; // Border Default
-$default-color-rhino-light-1:                 #dfe8f3; // Border Secondary
-$default-color-rhino-light-2:                 #ebf0f8; // Button Secondary
-$default-color-rhino-light-3:                 #f3f6fa; // Page Background
-$default-color-rhino-light-4:                 #fafbfd; // Modal Tabbed Content Background
+$default-color-rhino-core: #2a3f5f; // Active state text, emphasized text
+$default-color-rhino-dark: #506784; // Default text color
+$default-color-rhino-medium-1: #a2b1c6;
+$default-color-rhino-medium-2: #c8d4e3; // Border Default
+$default-color-rhino-light-1: #dfe8f3; // Border Secondary
+$default-color-rhino-light-2: #ebf0f8; // Button Secondary
+$default-color-rhino-light-3: #f3f6fa; // Page Background
+$default-color-rhino-light-4: #fafbfd; // Modal Tabbed Content Background
 
 // ---
 // Primary
 // --
-$default-color-dodger:                        #119DFF; // Accent
-$default-color-dodger-shade:                  #0D76BF; // Link Hover
+$default-color-dodger: #119dff; // Accent
+$default-color-dodger-shade: #0d76bf; // Link Hover
 
 // ---
 // Accent
 // ---
-$default-color-aqua:                          #09ffff;
-$default-color-aqua-shade:                    #19d3f3; // Body Text
-$default-color-lavender:                      #e763fa;
-$default-color-lavender-shade:                #ab63fa;
-$default-color-cornflower:                    #636efa;
-$default-color-emerald:                       #00cc96; // CTA's on blue backgrounds
-$default-color-sienna:                        #ef553b; // CTA's on blue backgrounds
+$default-color-aqua: #09ffff;
+$default-color-aqua-shade: #19d3f3; // Body Text
+$default-color-lavender: #e763fa;
+$default-color-lavender-shade: #ab63fa;
+$default-color-cornflower: #636efa;
+$default-color-emerald: #00cc96; // CTA's on blue backgrounds
+$default-color-sienna: #ef553b; // CTA's on blue backgrounds
 
 // ---
 // Buttons
 // ---
-$default-color-button-default:                #119dff;
-$default-color-button-hover:                  #0f89df;
-$default-color-button-active:                 #0d76bf;
+$default-color-button-default: #119dff;
+$default-color-button-hover: #0f89df;
+$default-color-button-active: #0d76bf;
+
+// button default styles
+button {
+  display: inline-block;
+  border-radius: 5px;
+  border-color: transparent;
+  padding: 9px 18px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  -webkit-transition: all 0.1s ease-in-out;
+  -moz-transition: all 0.1s ease-in-out;
+  -ms-transition: all 0.1s ease-in-out;
+  -o-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}

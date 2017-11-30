@@ -1,7 +1,7 @@
 .field {
   align-items: center;
   border-top: 1px solid #f8f8f9;
-  color: #6D6D6D;
+  color: #6d6d6d;
   display: flex;
   font-size: $font-size;
   font-weight: $font-weight-light;
@@ -40,8 +40,8 @@
   padding-right: 12px;
 }
 
-.field__widget--postfix {
-  width: 50%;
+.field__widget--units {
+  width: 41%;
   padding-right: 0px;
 }
 

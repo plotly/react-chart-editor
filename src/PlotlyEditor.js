@@ -17,13 +17,18 @@ class PlotlyEditor extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps) {
+    const nextRevision = nextProps.revision;
+    const currRevision = this.props.revision;
+    return nextRevision === void 0 || nextRevision !== currRevision;
+  }
+
   getChildContext() {
     const gd = this.props.graphDiv || {};
-    const dataSourceNames = Object.keys(this.props.dataSources || {});
     return {
       data: gd.data,
-      dataSourceNames: dataSourceNames,
       dataSources: this.props.dataSources,
+      dataSourceOptions: this.props.dataSourceOptions,
       dictionaries: dictionaries,
       fullData: gd._fullData,
       fullLayout: gd._fullLayout,
@@ -56,8 +61,10 @@ class PlotlyEditor extends Component {
 PlotlyEditor.propTypes = {
   children: PropTypes.node,
   dataSources: PropTypes.object,
+  dataSourceOptions: PropTypes.array,
   graphDiv: PropTypes.object,
   locale: PropTypes.string,
+  revision: PropTypes.any,
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
 };
@@ -68,8 +75,8 @@ PlotlyEditor.defaultProps = {
 
 PlotlyEditor.childContextTypes = {
   data: PropTypes.array,
-  dataSourceNames: PropTypes.array,
   dataSources: PropTypes.object,
+  dataSourceOptions: PropTypes.array,
   dictionaries: PropTypes.object,
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,

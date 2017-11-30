@@ -1,22 +1,30 @@
 import Field from './Field';
-import NumericInput from '../widgets/NumericInputStatefulWrapper';
+import NumericInput from '../widgets/NumericInput';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from '../../lib';
 
 export class UnconnectedNumeric extends Component {
   render() {
+    let fullValue = this.props.fullValue;
+    let placeholder;
+    if (this.props.multiValued) {
+      placeholder = fullValue;
+      fullValue = '';
+    }
+
     return (
       <Field {...this.props}>
         <NumericInput
-          value={this.props.fullValue()}
+          value={fullValue}
           defaultValue={this.props.defaultValue}
+          placeholder={placeholder}
           step={this.props.step}
           min={this.props.min}
           max={this.props.max}
           onChange={this.props.updatePlot}
           onUpdate={this.props.updatePlot}
-          showArrows={this.props.showArrows}
+          showArrows={!this.props.hideArrows}
         />
       </Field>
     );
@@ -25,17 +33,14 @@ export class UnconnectedNumeric extends Component {
 
 UnconnectedNumeric.propTypes = {
   defaultValue: PropTypes.number,
-  fullValue: PropTypes.func,
+  fullValue: PropTypes.any,
   min: PropTypes.number,
   max: PropTypes.number,
-  showArrows: PropTypes.bool,
+  multiValued: PropTypes.bool,
+  hideArrows: PropTypes.bool,
   step: PropTypes.number,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
-};
-
-UnconnectedNumeric.defaultProps = {
-  showArrows: true,
 };
 
 export default connectToContainer(UnconnectedNumeric);
