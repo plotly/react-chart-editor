@@ -14,102 +14,31 @@ const styledRenderer = ({label}) => {
 };
 /* eslint-enable react/prop-types */
 
-const computeOptions = lineColor => {
-  return [
-    {
+const strokeDashes = [
+  {value: 'solid', strokeDasharray: ''},
+  {value: 'dot', strokeDasharray: '3px, 3px'},
+  {value: 'dash', strokeDasharray: '9px, 9px'},
+  {value: 'longdash', strokeDasharray: '15px, 15px'},
+  {value: 'dashdot', strokeDasharray: '9px, 3px, 3px, 3px'},
+  {value: 'longdashdot', strokeDasharray: '15px, 6px, 3px, 6px'},
+];
+
+const strokeStyle = {fill: 'none', strokeOpacity: 1, strokeWidth: '4px'};
+
+const computeOptions = stroke => {
+  return strokeDashes
+    .map(({value, strokeDasharray}) => ({
       label: (
-        <path
-          d="M5,0h100"
-          style={{
-            fill: 'none',
-            stroke: lineColor,
-            strokeOpacity: 1,
-            strokeWidth: '4px',
-          }}
-        />
+        <path d="M5,0h100" style={{...strokeStyle, stroke, strokeDasharray}} />
       ),
-      value: 'solid',
-    },
-    {
-      label: (
-        <path
-          d="M5,0h100"
-          style={{
-            fill: 'none',
-            stroke: lineColor,
-            strokeOpacity: 1,
-            strokeDasharray: '3px, 3px',
-            strokeWidth: '4px',
-          }}
-        />
-      ),
-      value: 'dot',
-    },
-    {
-      label: (
-        <path
-          d="M5,0h100"
-          style={{
-            fill: 'none',
-            stroke: lineColor,
-            strokeOpacity: 1,
-            strokeDasharray: '9px, 9px',
-            strokeWidth: '4px',
-          }}
-        />
-      ),
-      value: 'dash',
-    },
-    {
-      label: (
-        <path
-          d="M5,0h100"
-          style={{
-            fill: 'none',
-            stroke: lineColor,
-            strokeOpacity: 1,
-            strokeDasharray: '15px, 15px',
-            strokeWidth: '4px',
-          }}
-        />
-      ),
-      value: 'longdash',
-    },
-    {
-      label: (
-        <path
-          d="M5,0h100"
-          style={{
-            fill: 'none',
-            stroke: lineColor,
-            strokeOpacity: 1,
-            strokeDasharray: '9px, 3px, 3px, 3px',
-            strokeWidth: '4px',
-          }}
-        />
-      ),
-      value: 'dashdot',
-    },
-    {
-      label: (
-        <path
-          d="M5,0h100"
-          style={{
-            fill: 'none',
-            stroke: lineColor,
-            strokeOpacity: 1,
-            strokeDasharray: '15px, 6px, 3px, 6px',
-            strokeWidth: '4px',
-          }}
-        />
-      ),
-      value: 'longdashdot',
-    },
-    {
-      label: '',
-      value: null,
-    },
-  ];
+      value,
+    }))
+    .concat([
+      {
+        label: '',
+        value: null,
+      },
+    ]);
 };
 
 class LineDashSelector extends Component {
