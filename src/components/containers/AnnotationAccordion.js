@@ -33,7 +33,7 @@ export default class AnnotationAccordion extends Component {
     return (
       <div>
         {this.props.canAdd ? (
-          <button className="addButton" onClick={this.addAnnotation}>
+          <button className="panel__add-button" onClick={this.addAnnotation}>
             + Annotation
           </button>
         ) : null}

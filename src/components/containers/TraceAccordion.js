@@ -26,7 +26,7 @@ export default class TraceAccordion extends Component {
     return (
       <div>
         {this.props.canAdd ? (
-          <button className="addButton" onClick={this.addTrace}>
+          <button className="panel__add-button" onClick={this.addTrace}>
             + Trace
           </button>
         ) : null}
