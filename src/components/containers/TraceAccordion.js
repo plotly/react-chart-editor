@@ -26,9 +26,9 @@ export default class TraceAccordion extends Component {
     return (
       <div>
         {this.props.canAdd ? (
-          <a href="#" onClick={this.addTrace}>
-            Add
-          </a>
+          <button className="addButton" onClick={this.addTrace}>
+            + Trace
+          </button>
         ) : null}
         {data.map((d, i) => (
           <TraceFold key={i} traceIndex={i}>

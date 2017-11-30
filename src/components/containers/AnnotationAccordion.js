@@ -33,9 +33,9 @@ export default class AnnotationAccordion extends Component {
     return (
       <div>
         {this.props.canAdd ? (
-          <a href="#" onClick={this.addAnnotation}>
-            Add
-          </a>
+          <button className="addButton" onClick={this.addAnnotation}>
+            + Annotation
+          </button>
         ) : null}
         {annotations.map((ann, i) => (
           <AnnotationFold key={i} annotationIndex={i} name={ann.text}>
