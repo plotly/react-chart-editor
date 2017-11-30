@@ -220,7 +220,7 @@ class DefaultEditor extends Component {
         <LayoutPanel group="Style" name={_('Notes')}>
           <AnnotationAccordion canAdd>
             <Section name={_('Note Text')}>
-              <RichTextEditor attr="text" />
+              <MultiFormatTextEditor attr="text" />
               <FontSelector label={_('Typeface')} attr="font.family" />
               <Numeric label={_('Font Size')} attr="font.size" units="px" />
               <ColorPicker label={_('Font Color')} attr="font.color" />
