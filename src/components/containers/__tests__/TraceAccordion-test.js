@@ -1,9 +1,8 @@
 import React from 'react';
-import {TraceAccordion, Panel, Fold} from '..';
+import {TraceAccordion, Fold} from '..';
 import {Numeric} from '../../fields';
 import {EDITOR_ACTIONS} from '../../../lib/constants';
 import {TestEditor, fixtures, mount} from '../../../lib/test-utils';
-import {connectTraceToPlot} from '../../../lib';
 
 describe('<TraceAccordion>', () => {
   it('generates trace Folds with name == text', () => {
