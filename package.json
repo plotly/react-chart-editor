@@ -2,7 +2,7 @@
   "name": "react-plotly.js-editor",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "A React component for plotly.js charts",
+  "description": "plotly.js chart editor react component UI",
   "author": "Plotly, Inc.",
   "main": "lib/index.js",
   "repository": {
@@ -23,7 +23,6 @@
     "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:js": "jest",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
-    "watch": "nodemon --exec \"npm run make:lib\" -w src",
     "watch-test": "jest --watch"
   },
   "keywords": [
@@ -32,7 +31,10 @@
     "data",
     "visualization",
     "plotly",
-    "react"
+    "react",
+    "editor",
+    "chart",
+    "widgets"
   ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -45,7 +47,7 @@
     "classnames": "^2.2.5",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-15": "^1.0.4",
-    "eslint": "4.11.0",
+    "eslint": "^4.12.1",
     "eslint-config-prettier": "^2.7.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-react": "^7.4.0",
@@ -54,15 +56,16 @@
     "jest": "^21.2.1",
     "mkdirp": "^0.5.1",
     "node-sass": "^4.7.1",
-    "nodemon": "^1.11.0",
+    "plotly.js": "^1.31.0",
     "prettier": "1.8.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-test-renderer": "^15.6.1",
     "uglify-js": "^3.0.26"
   },
-  "browserify-global-shim": {
-    "react": "React"
+  "peerDependencies": {
+    "react": "^15.3.0 || ^16.0.0-rc || ^16.0",
+    "react-dom": "^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0"
   },
   "dependencies": {
     "draft-js": "^0.10.4",
@@ -71,11 +74,13 @@
     "draft-js-utils": "^1.2.0",
     "fast-isnumeric": "^1.1.1",
     "immutable": "^3.8.2",
-    "plotly.js": "^1.31.0",
     "prop-types": "^15.5.10",
     "react-color": "^2.13.8",
     "react-immutable-proptypes": "^2.1.0",
     "react-select": "^1.0.0-rc.10",
     "tinycolor2": "^1.4.1"
+  },
+  "browserify-global-shim": {
+    "react": "React"
   }
 }
