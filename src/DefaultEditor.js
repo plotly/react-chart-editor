@@ -21,7 +21,7 @@ import {
   Panel,
   PanelMenuWrapper,
   Radio,
-  RichTextEditor,
+  MultiFormatTextEditor,
   Section,
   MenuPanel,
   SymbolSelector,
@@ -181,7 +181,7 @@ class DefaultEditor extends Component {
           </Fold>
           <Fold name={_('Title and Fonts')}>
             <Section name={_('Title')}>
-              <RichTextEditor />
+              <MultiFormatTextEditor attr="title" />
               <FontSelector
                 label={_('Typeface')}
                 attr="titlefont.family"

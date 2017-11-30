@@ -439,3 +439,8 @@ export const SYMBOLS = [
   {value: 'line-ne-open', alias: 43, label: 'M5,-5L-5,5', fill: 'none'},
   {value: 'line-nw-open', alias: 44, label: 'M5,5L-5,-5', fill: 'none'},
 ];
+
+export const RETURN_KEY = 'Enter';
+export const ESCAPE_KEY = 'Escape';
+export const COMMAND_KEY = 'Meta';
+export const CONTROL_KEY = 'Control';

@@ -1,0 +1,412 @@
+// MULTI FORMAT EDITOR STYLES
+
+$multi-format-editor-background: #fafbfd;
+
+.multi-format-editor__root {
+  height: 215px;
+  width: 100%;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.multi-format-editor__tab {
+  display: inline-block;
+  height: 100%;
+  text-align: center;
+  height: 30px;
+  line-height: 28px;
+  box-sizing: border-box;
+
+  &.top-tab {
+    width: 50%;
+    &.left {
+      border-right: 1px solid $color-border;
+    }
+  }
+
+  &.bottom-tab {
+    border-top: 1px solid $color-border;
+    width: 100%;
+    display: block;
+  }
+
+  &.selected {
+    background: $multi-format-editor-background;
+  }
+
+  &:hover:not(.selected) {
+    color: $color-active-text;
+    background-color: $color-button-secondary;
+  }
+}
+
+.confirmation-panel {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.confirmation-panel__content {
+  padding: 0 15px;
+}
+
+.confirmation-panel__message {
+  line-height: 20px;
+}
+
+.confirmation-panel__header {
+  color: #447bdc;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.confirmation-panel__message-secondary {
+  font-weight: 300 !important;
+  color: #69738a;
+}
+
+.confirmation-panel__cancel-button {
+  background-color: $multi-format-editor-background;
+  border: 1px solid $color-border;
+  color: $color-text;
+  font-weight: 600;
+  letter-spacing: 0px;
+  &:hover {
+    background-color: rgba(163, 178, 198, 0.2);
+    border-color: $color-secondary-border;
+    color: $color-text;
+  }
+  &:active {
+    background-color: rgba(163, 178, 198, 0.35);
+  }
+}
+
+.confirmation-panel__continue-button {
+  margin-left: 10px;
+  background-color: $color-accent;
+  border: 1px solid $color-accent;
+  color: #ffffff;
+  text-shadow: 0px 1px 2px rgba(42, 63, 95, 0.7);
+  &:hover {
+    background-color: $color-button-hover;
+    border: 1px solid $color-button-hover;
+    color: #ffffff; // Repeating in case the button is made with an anchor tag
+  }
+  &:active {
+    background-color: $color-accent-shade;
+    border: 1px solid $color-accent-shade;
+    color: #ffffff; // Repeating in case the button is made with an anchor tag
+  }
+}
+
+// LATEX & HTML EDITOR STYLES
+.editor__textarea {
+  // remove default textarea styles
+  border: none;
+  overflow: auto;
+  outline: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+
+  // add our styles
+  border-top: 1px solid $color-border;
+  padding: 6px;
+  resize: none;
+  height: 100%;
+  width: 100%;
+  max-width: 262px;
+  line-height: 24px;
+  font-size: 13px; // same as rich text editor
+
+  &.latex {
+    min-height: 165px;
+  }
+  &.html {
+    min-height: 138px;
+  }
+}
+
+// RICH TEXT EDITOR STYLES
+.rich-text-editor__root {
+  border-top: none;
+}
+
+.rich-text-editor__editor {
+  cursor: text;
+}
+
+.rich-text-editor__editor .public-DraftEditorPlaceholder-root,
+.rich-text-editor__editor .public-DraftEditor-content {
+  padding: $quarter-spacing-unit;
+}
+
+.rich-text-editor__editor .public-DraftEditor-content {
+  min-height: 100px;
+}
+
+.RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
+  display: none;
+}
+
+.rich-text-editor__editor .RichEditor-blockquote {
+  border-left: 5px solid #eee;
+  color: #666;
+  font-style: italic;
+  margin: 16px 0;
+  padding: 10px 20px;
+}
+
+.rich-text-editor__editor .public-DraftStyleDefault-pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  font-size: 16px;
+  padding: 20px;
+}
+
+.rich-text-editor__controls {
+  font-size: 14px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  user-select: none;
+  background: $multi-format-editor-background;
+  border-bottom: 1px solid $color-border;
+}
+
+.rich-text-editor__styleButton__wrapper {
+  padding: 0 $quarter-spacing-unit;
+}
+
+.rich-text-editor__styleButton {
+  color: $color-text;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  min-height: $base-spacing-unit;
+  min-width: $base-spacing-unit;
+  text-align: center;
+  background-color: #ffffff;
+  border: 1px solid $color-border;
+  border-radius: 2px;
+  line-height: 20px;
+
+  &:hover {
+    color: $color-active-text;
+    background-color: $color-button-secondary;
+  }
+}
+
+.rich-text-editor__styleButton--active {
+  background-color: $color-accent;
+  border: 1px solid $color-accent-shade;
+  color: #ffffff;
+
+  // Repeating the same styles to override the natural hover
+  &:hover {
+    background-color: $color-accent;
+    border: 1px solid $color-accent-shade;
+    color: #ffffff;
+  }
+}
+
+.link-editor {
+  background-color: #dcdddd;
+  border: 1px solid #ccc;
+  padding: 10px 5px;
+  position: absolute;
+  width: 235px;
+  z-index: 1;
+}
+
+.link-editor__label {
+  display: block;
+  margin-left: 5px;
+}
+
+.link-editor__input {
+  border: 1px solid #e7e8e9;
+  overflow: scroll;
+  padding: 0px 10px;
+  width: 90%;
+  margin-top: 10px;
+}
+
+/* TODO: Don't inline Draft.css; load it with `systemjs`. */
+
+/**
+ * Draft v0.3.0
+ *
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ */
+.DraftEditor-editorContainer,
+.DraftEditor-root,
+.public-DraftEditor-content {
+  height: inherit;
+  text-align: initial;
+}
+.DraftEditor-root {
+  position: relative;
+}
+.DraftEditor-editorContainer {
+  background-color: rgba(255, 255, 255, 0);
+  border-left: 0.1px solid transparent;
+  position: relative;
+  z-index: 1;
+}
+.public-DraftEditor-block {
+  position: relative;
+}
+.DraftEditor-alignLeft .public-DraftStyleDefault-block {
+  text-align: left;
+}
+.DraftEditor-alignLeft .public-DraftEditorPlaceholder-root {
+  left: 0;
+  text-align: left;
+}
+.DraftEditor-alignCenter .public-DraftStyleDefault-block {
+  text-align: center;
+}
+.DraftEditor-alignCenter .public-DraftEditorPlaceholder-root {
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+.DraftEditor-alignRight .public-DraftStyleDefault-block {
+  text-align: right;
+}
+.DraftEditor-alignRight .public-DraftEditorPlaceholder-root {
+  right: 0;
+  text-align: right;
+}
+.public-DraftEditorPlaceholder-root {
+  color: #9197a3;
+  position: absolute;
+  z-index: 0;
+}
+.public-DraftEditorPlaceholder-hasFocus {
+  color: #bdc1c9;
+}
+.DraftEditorPlaceholder-hidden {
+  display: none;
+}
+.public-DraftStyleDefault-block {
+  position: relative;
+  white-space: pre-wrap;
+}
+.public-DraftStyleDefault-ltr {
+  direction: ltr;
+  text-align: left;
+}
+.public-DraftStyleDefault-rtl {
+  direction: rtl;
+  text-align: right;
+}
+.public-DraftStyleDefault-listLTR {
+  direction: ltr;
+}
+.public-DraftStyleDefault-listRTL {
+  direction: rtl;
+}
+.public-DraftStyleDefault-ol,
+.public-DraftStyleDefault-ul {
+  margin: 16px 0;
+  padding: 0;
+}
+.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR {
+  margin-left: 1.5em;
+}
+.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listRTL {
+  margin-right: 1.5em;
+}
+.public-DraftStyleDefault-depth1.public-DraftStyleDefault-listLTR {
+  margin-left: 3em;
+}
+.public-DraftStyleDefault-depth1.public-DraftStyleDefault-listRTL {
+  margin-right: 3em;
+}
+.public-DraftStyleDefault-depth2.public-DraftStyleDefault-listLTR {
+  margin-left: 4.5em;
+}
+.public-DraftStyleDefault-depth2.public-DraftStyleDefault-listRTL {
+  margin-right: 4.5em;
+}
+.public-DraftStyleDefault-depth3.public-DraftStyleDefault-listLTR {
+  margin-left: 6em;
+}
+.public-DraftStyleDefault-depth3.public-DraftStyleDefault-listRTL {
+  margin-right: 6em;
+}
+.public-DraftStyleDefault-depth4.public-DraftStyleDefault-listLTR {
+  margin-left: 7.5em;
+}
+.public-DraftStyleDefault-depth4.public-DraftStyleDefault-listRTL {
+  margin-right: 7.5em;
+}
+.public-DraftStyleDefault-unorderedListItem {
+  list-style-type: square;
+  position: relative;
+}
+.public-DraftStyleDefault-unorderedListItem.public-DraftStyleDefault-depth0 {
+  list-style-type: disc;
+}
+.public-DraftStyleDefault-unorderedListItem.public-DraftStyleDefault-depth1 {
+  list-style-type: circle;
+}
+.public-DraftStyleDefault-orderedListItem {
+  list-style-type: none;
+  position: relative;
+}
+.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listLTR:before {
+  left: -36px;
+  position: absolute;
+  text-align: right;
+  width: 30px;
+}
+.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listRTL:before {
+  position: absolute;
+  right: -36px;
+  text-align: left;
+  width: 30px;
+}
+.public-DraftStyleDefault-orderedListItem:before {
+  content: counter(ol0) '. ';
+  counter-increment: ol0;
+}
+.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth1:before {
+  content: counter(ol1) '. ';
+  counter-increment: ol1;
+}
+.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth2:before {
+  content: counter(ol2) '. ';
+  counter-increment: ol2;
+}
+.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth3:before {
+  content: counter(ol3) '. ';
+  counter-increment: ol3;
+}
+.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth4:before {
+  content: counter(ol4) '. ';
+  counter-increment: ol4;
+}
+.public-DraftStyleDefault-depth0.public-DraftStyleDefault-reset {
+  counter-reset: ol0;
+}
+.public-DraftStyleDefault-depth1.public-DraftStyleDefault-reset {
+  counter-reset: ol1;
+}
+.public-DraftStyleDefault-depth2.public-DraftStyleDefault-reset {
+  counter-reset: ol2;
+}
+.public-DraftStyleDefault-depth3.public-DraftStyleDefault-reset {
+  counter-reset: ol3;
+}
+.public-DraftStyleDefault-depth4.public-DraftStyleDefault-reset {
+  counter-reset: ol4;
+}
