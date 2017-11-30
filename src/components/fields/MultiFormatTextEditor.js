@@ -5,10 +5,17 @@ import {connectToContainer} from '../../lib';
 
 export class UnconnectedMultiFormatTextEditor extends Component {
   render() {
+    let fullValue = this.props.fullValue;
+    let placeholder;
+    if (this.props.multiValued) {
+      placeholder = fullValue;
+      fullValue = '';
+    }
     return (
       <Field {...this.props}>
         <MultiFormatTextEditor
-          value={this.props.fullValue}
+          value={fullValue}
+          placeholder={placeholder}
           onChange={this.props.updatePlot}
         />
       </Field>
