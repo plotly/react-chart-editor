@@ -9,10 +9,16 @@ const styledRenderer = ({value, label}) => (
 /* eslint-enable react/prop-types */
 
 const FontSelector = props => {
+  let options;
+  if (Array.isArray(props.options)) {
+    options = props.options;
+  } else {
+    options = [...DEFAULT_FONTS];
+  }
   return (
     <Dropdown
       {...props}
-      options={[...DEFAULT_FONTS]}
+      options={options}
       valueRenderer={styledRenderer}
       optionRenderer={styledRenderer}
     />
