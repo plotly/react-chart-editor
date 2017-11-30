@@ -1,5 +1,3 @@
-import Immutable from 'immutable';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import React, {Component, PropTypes} from 'react';
 import StyleButton from './StyleButton';
 import {LINK} from './configuration';
@@ -13,7 +11,11 @@ class StyleButtonGroup extends Component {
         return linkIsSelected;
       }
 
-      return currentStyle.has(value);
+      if (typeof currentStyle.has === 'function') {
+        return currentStyle.has(value);
+      }
+
+      return Boolean(currentStyle.value);
     };
 
     return (
@@ -44,12 +46,8 @@ StyleButtonGroup.propTypes = {
 
   // A draft-js DraftInlineStyle instance
   // https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#getcurrentinlinestyle
-  currentStyle: ImmutablePropTypes.orderedSet,
+  currentStyle: PropTypes.object,
   linkIsSelected: PropTypes.bool,
-};
-
-StyleButtonGroup.defaultProps = {
-  currentStyle: new Immutable.OrderedSet(),
 };
 
 export default StyleButtonGroup;

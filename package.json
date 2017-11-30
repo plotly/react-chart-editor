@@ -73,10 +73,8 @@
     "draft-js-import-html": "^1.2.1",
     "draft-js-utils": "^1.2.0",
     "fast-isnumeric": "^1.1.1",
-    "immutable": "^3.8.2",
     "prop-types": "^15.5.10",
     "react-color": "^2.13.8",
-    "react-immutable-proptypes": "^2.1.0",
     "react-select": "^1.0.0-rc.10",
     "tinycolor2": "^1.4.1"
   },
