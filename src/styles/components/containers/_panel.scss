@@ -10,4 +10,25 @@
   padding-left: $half-spacing-unit;
   padding-right: $half-spacing-unit;
   padding-top: $half-spacing-unit;
+
+  &__add-button {
+    font-size: 14px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    float: right;
+    background-color: $color-accent;
+    border: 1px solid $color-accent;
+    color: #ffffff;
+    text-shadow: 0px 1px 2px rgba(42, 63, 95, 0.7);
+    &:hover {
+      background-color: $color-button-hover;
+      border: 1px solid $color-button-hover;
+      color: #ffffff; // Repeating in case the button is made with an anchor tag
+    }
+    &:active {
+      background-color: $color-accent-shade;
+      border: 1px solid $color-accent-shade;
+      color: #ffffff; // Repeating in case the button is made with an anchor tag
+    }
+  }
 }
