@@ -32,15 +32,9 @@ export const EDITOR_ACTIONS = {
 };
 
 export const DEFAULT_FONTS = [
-  {label: 'Arial', value: 'Arial, Roboto, sans-serif'},
-  {
-    label: 'Courier New',
-    value: '"Courier New", Courier, "Droid Sans Mono", monospace',
-  },
-  {label: 'Times', value: '"Times New Roman", Times, "Droid Serif", serif'},
-  {label: 'Futura', value: '"Century Gothic", Futura, Roboto, sans-serif'},
-  {label: 'Georgia', value: 'Georgia, "Droid Serif", serif'},
-  {label: 'Open Sans', value: '"Open Sans", verdana, arial, sans-serif'},
+  {label: 'Sans Serif', value: 'sans-serif'},
+  {label: 'Serif', value: 'serif'},
+  {label: 'Monospaced', value: 'monospace'},
 ];
 
 export const RETURN_KEY = 'Enter';
