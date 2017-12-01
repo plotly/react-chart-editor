@@ -1,6 +1,7 @@
 import HTMLEditor from './HTML';
 import LaTeXEditor from './LaTeX';
-import React, {PropTypes, Component} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import RichTextEditor from './RichText';
 import localize from '../../../lib/localize';
 import {

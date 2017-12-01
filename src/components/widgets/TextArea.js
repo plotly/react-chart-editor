@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 export default class TextArea extends Component {
   constructor(props) {
@@ -44,12 +45,12 @@ export default class TextArea extends Component {
 }
 
 TextArea.propTypes = {
-  value: React.PropTypes.string.isRequired,
-  onChange: React.PropTypes.func.isRequired,
-  placeholder: React.PropTypes.string.isRequired,
-  visibleRows: React.PropTypes.number,
-  areaWidth: React.PropTypes.number,
-  textareaClass: React.PropTypes.string,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  visibleRows: PropTypes.number,
+  areaWidth: PropTypes.number,
+  textareaClass: PropTypes.string,
 };
 
 TextArea.defaultProps = {
