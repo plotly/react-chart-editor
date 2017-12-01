@@ -1,7 +1,8 @@
-import React, {PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-class StyleButton extends React.Component {
+class StyleButton extends Component {
   constructor(props) {
     super(props);
 

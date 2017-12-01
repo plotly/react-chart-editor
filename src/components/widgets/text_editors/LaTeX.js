@@ -1,5 +1,6 @@
 import React from 'react';
 import TextArea from '../TextArea';
+import PropTypes from 'prop-types';
 
 import {isLaTeXExpr as isWrapped} from './convertFormats';
 
@@ -74,9 +75,9 @@ export default class LaTeX extends TextArea {
 }
 
 LaTeX.propTypes = {
-  onChange: React.PropTypes.func.isRequired,
-  value: React.PropTypes.string,
-  placeholder: React.PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
+  placeholder: PropTypes.string,
 };
 
 LaTeX.defaultProps = {
