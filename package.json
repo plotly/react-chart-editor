@@ -75,6 +75,7 @@
     "fast-isnumeric": "^1.1.1",
     "prop-types": "^15.5.10",
     "react-color": "^2.13.8",
+    "react-plotly.js": "^1.0.4",
     "react-select": "^1.0.0-rc.10",
     "tinycolor2": "^1.4.1"
   },
