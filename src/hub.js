@@ -3,7 +3,7 @@ import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
 
 /* eslint-disable no-console */
-const log = console.log;
+const log = console.log.bind(console);
 /* eslint-enable no-console */
 
 // Revisions: An optional system to prevent unnecessary rerenders.
@@ -17,37 +17,58 @@ const log = console.log;
 // be rerendered. In this case the Editor may not need to update.
 // If the revisions are not passed to react-plotly.js or react-plotly.js-editor
 // they will always update.
-export default function PlotlyHub(config = {}) {
-  this.onUpdate = config.onUpdate;
+export default class PlotlyHub {
+  constructor(config = {}) {
+    this.config = config;
+    this.editorRevision = config.editorRevision || 0;
+    this.plotRevision = config.plotRevision || 0;
 
-  let editorRevision = config.editorRevision || 0;
-  let plotRevision = config.plotRevision || 0;
+    this.figureUpdated = this.figureUpdated.bind(this);
+    this.editorSourcesUpdated = this.editorSourcesUpdated.bind(this);
+    this.handlePlotUpdate = this.handlePlotUpdate.bind(this);
+    this.handlePlotInitialized = this.handlePlotInitialized.bind(this);
+    this.handleEditorUpdate = this.handleEditorUpdate.bind(this);
+  }
 
   //
   // @method figureUpdates
   //
   // The underlying figure has changed. Calling this function
   // will alert the Plotly.js component that it must redraw.
-  this.figureUpdated = () => {
-    plotRevision++;
-    if (config.debug) {
+  figureUpdated() {
+    this.plotRevision++;
+    const {plotRevision, editorRevision} = this;
+    if (this.config.debug) {
       log('hub.figureUpdated', {plotRevision, editorRevision});
     }
-    this.onUpdate({plotRevision, editorRevision, graphDiv: this.graphDiv});
-  };
+    if (this.config.onUpdate) {
+      this.config.onUpdate({
+        plotRevision,
+        editorRevision,
+        graphDiv: this.graphDiv,
+      });
+    }
+  }
 
   //
   // @method editorSourcesUpdated
   //
   // The plot has rendered or other editor data such as dataSourceOptions
   // has changed. Calling this function will alert the Editor that it must redraw.
-  this.editorSourcesUpdated = () => {
-    editorRevision++;
-    if (config.debug) {
+  editorSourcesUpdated() {
+    this.editorRevision++;
+    const {plotRevision, editorRevision} = this;
+    if (this.config.debug) {
       log('hub.editorSourcesUpdated', {plotRevision, editorRevision});
     }
-    this.onUpdate({plotRevision, editorRevision, graphDiv: this.graphDiv});
-  };
+    if (this.config.onUpdate) {
+      this.config.onUpdate({
+        plotRevision,
+        editorRevision,
+        graphDiv: this.graphDiv,
+      });
+    }
+  }
 
   //
   // @method handlePlotUpdate
@@ -57,13 +78,13 @@ export default function PlotlyHub(config = {}) {
   //
   // @param {object} graphDiv - graph div
   //
-  this.handlePlotUpdate = graphDiv => {
-    if (config.debug) {
+  handlePlotUpdate(graphDiv) {
+    if (this.config.debug) {
       log('hub.handlePlotUpdate');
     }
     this.graphDiv = graphDiv;
     this.editorSourcesUpdated();
-  };
+  }
 
   //
   // @method handlePlotUpdate
@@ -74,19 +95,19 @@ export default function PlotlyHub(config = {}) {
   //
   // @param {object} graphDiv - graph div
   //
-  this.handlePlotInitialized = graphDiv => {
-    if (config.debug) {
+  handlePlotInitialized(graphDiv) {
+    if (this.config.debug) {
       log('hub.handlePlotInitialized');
     }
     this.graphDiv = graphDiv;
     this.editorSourcesUpdated();
-  };
+  }
 
   //
   // @method handleEditorUpdate
   //
-  this.handleEditorUpdate = ({graphDiv, type, payload}) => {
-    if (config.debug) {
+  handleEditorUpdate({graphDiv, type, payload}) {
+    if (this.config.debug) {
       log('hub.handleEditorUpdate', {type, payload});
     }
 
@@ -140,5 +161,5 @@ export default function PlotlyHub(config = {}) {
       default:
         throw new Error('must specify an action type to handleEditorUpdate');
     }
-  };
+  }
 }
