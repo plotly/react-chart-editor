@@ -1,6 +1,7 @@
 test
 src
 build
+examples
 
 circle.yml
 
