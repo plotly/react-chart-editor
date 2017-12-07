@@ -74,7 +74,7 @@ class DefaultEditor extends Component {
         </Panel>
 
         <Panel group="Style" name="Traces">
-          <TraceAccordion>
+          <TraceAccordion canGroup>
             <Section name={_('Trace')}>
               <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
             </Section>
