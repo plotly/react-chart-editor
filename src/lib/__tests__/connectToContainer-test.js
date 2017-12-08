@@ -30,12 +30,20 @@ describe('connectToContainer', () => {
   it('throws an error when connected component has no attr prop', () => {
     const ConnectedNumeric = connectToContainer(Numeric);
 
-    expect(() =>
-      mount(
-        <TestEditor {...{...fixtures.scatter(), onUpdate: jest.fn()}}>
-          <ConnectedNumeric />
-        </TestEditor>
-      )
-    ).toThrow('connectedToContainer components require an `attr` prop');
+    // suppressReactErrorLogging trick from https://github.com/facebook/react/pull/11636
+    // eslint-disable-next-line no-extend-native
+    Error.prototype.suppressReactErrorLogging = true;
+    try {
+      expect(() =>
+        mount(
+          <TestEditor {...{...fixtures.scatter(), onUpdate: jest.fn()}}>
+            <ConnectedNumeric />
+          </TestEditor>
+        )
+      ).toThrow('connectedToContainer components require an `attr` prop');
+    } finally {
+      // eslint-disable-next-line no-extend-native
+      Error.prototype.suppressReactErrorLogging = false;
+    }
   });
 });
