@@ -46,7 +46,7 @@
     "browserify": "^14.5.0",
     "classnames": "^2.2.5",
     "enzyme": "^3.1.0",
-    "enzyme-adapter-react-15": "^1.0.4",
+    "enzyme-adapter-react-16": "^1.0.4",
     "eslint": "^4.12.1",
     "eslint-config-prettier": "^2.7.0",
     "eslint-plugin-import": "^2.8.0",
@@ -58,9 +58,9 @@
     "node-sass": "^4.7.1",
     "plotly.js": "^1.31.0",
     "prettier": "1.8.2",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-test-renderer": "^15.6.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0",
     "uglify-js": "^3.0.26"
   },
   "peerDependencies": {
