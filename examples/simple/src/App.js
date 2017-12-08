@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import plotly from 'plotly.js/dist/plotly-basic';
 import createPlotComponent from 'react-plotly.js/factory';
@@ -56,33 +55,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <div style={{display: 'flex'}}>
-          <div style={{width: '30%'}}>
-            <PlotlyEditor
-              locale="en"
-              dataSources={this.state.dataSources}
-              dataSourceOptions={this.state.dataSourceOptions}
-              graphDiv={this.hub.graphDiv}
-              onUpdate={this.hub.handleEditorUpdate}
-              plotly={plotly}
-              revision={this.state.editorRevision}
-            />
-          </div>
-          <div style={{width: '70%'}}>
-            <Plot
-              debug
-              data={this.state.figure.data}
-              layout={this.state.figure.layout}
-              onUpdate={this.hub.handlePlotUpdate}
-              onInitialized={this.hub.handlePlotInitialized}
-              revision={this.state.plotRevision}
-            />
-          </div>
-        </div>
+        <PlotlyEditor
+          locale="en"
+          dataSources={this.state.dataSources}
+          dataSourceOptions={this.state.dataSourceOptions}
+          graphDiv={this.hub.graphDiv}
+          onUpdate={this.hub.handleEditorUpdate}
+          plotly={plotly}
+          revision={this.state.editorRevision}
+        />
+        <Plot
+          debug
+          data={this.state.figure.data}
+          layout={this.state.figure.layout}
+          onUpdate={this.hub.handlePlotUpdate}
+          onInitialized={this.hub.handlePlotInitialized}
+          revision={this.state.plotRevision}
+        />
       </div>
     );
   }
