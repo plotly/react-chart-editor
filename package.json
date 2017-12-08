@@ -83,6 +83,8 @@
     "react": "React"
   },
   "jest": {
-    "roots": ["<rootDir>/src/"]
+    "roots": [
+      "<rootDir>/src/"
+    ]
   }
 }

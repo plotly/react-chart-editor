@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import './App.css';
 import plotly from 'plotly.js/dist/plotly-basic';
 import createPlotComponent from 'react-plotly.js/factory';
-import PlotlyEditor, {Hub} from 'react-plotly.js-editor';
+import PlotlyEditor, {Hub, dereference} from 'react-plotly.js-editor';
 import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
+import 'react-select/dist/react-select.css';
 
 const Plot = createPlotComponent(plotly);
 
@@ -21,9 +22,11 @@ class App extends Component {
 
     // A basic starting plotly.js figure object. Instead of assigning
     const figure = {
-      data: [{type: 'scatter', x: dataSources.col1, ysrc: dataSources.col2}],
+      data: [{type: 'scatter', xsrc: 'col1', ysrc: 'col2'}],
       layout: {title: 'Room readings'},
     };
+
+    dereference(figure.data, dataSources);
 
     // Store the figure, dataSource and dataSourceOptions in state.
     this.state = {
