@@ -7,31 +7,56 @@ master
 
 ## Usage
 
-Install the module:
+Install the module with `npm install` or `yarn install`. See some examples
+[here](https://github.com/plotly/react-plotly.js-editor/tree/master/examples).
 
-```
-npm install
-```
+## Overview
 
-or
+The Editor is composed of 3 layers:
 
-```
-yarn install
-```
-
-Import the main component into your project:
+### Layer 1: Base Component
 
 ```
 import PlotlyEditor from `react-plotly.js-editor`
+
+<PlotlyEditor>
 ```
 
-The Editor expects you to host the plotly.js figure and data sources somewhere
-in your application state. For this tour we will presume the Application uses a
-top-level react component to hold state. The same principles will apply if you
-are using Redux or other data flow patterns.
+The PlotlyEditor Component expects you to host the plotly.js figure and data
+sources somewhere in your application state. This can be done in a top-level
+react component, Redux or any other data flow pattern.
 
-You can see some examples
-[here](https://github.com/plotly/react-plotly.js-editor/tree/master/examples).
+### Layer 2: Container Components
+
+One or more nested Container Components with one and only one connected by a
+connect<Container>ToPlot function (connectLayoutToPlot, connectTraceToPlot).
+
+```
+   <Panel>, <Section>, <Fold>
+```
+
+### Layer 3: Attribute Widgets
+
+Each connected by a `connectContainerToPlot` function
+
+```
+   <Numeric>, <ColorPicker>, <Radio>
+```
+
+Data flows via `context` downward and is augmented with additional information
+at each layer boundary.
+
+The Base Components aggregate references to the graphDiv objects (data,
+fullData, layout...), grid Data sources, locale, update functions etc.
+
+One of the Container Components uses its knowledge about which container to
+target (traces, layout, ...) to generate fewer but more specific containers and
+updaters which are passed down the hierarchy.
+
+The Attribute widgets are higher-order wrappers around dumb UI controls. The
+higher-order wrapper uses the container contexts and specific attributes
+information to provide specific plot update functions and other behaviours for
+the inner UI control.
 
 ## Development
 
@@ -52,13 +77,10 @@ With `npm link` you can get some errors related to
 [multiple copies of react being loaded](https://github.com/facebookincubator/create-react-app/issues/1107).
 To get around this, you can create an
 [alias](https://github.com/facebookincubator/create-react-app/issues/393) that
-points your project to the copy of react that it should be using
-
-OR
-
-you can simply do `rm -rf node_modules/react` and `rm -rf
-node_modules/react-dom` inside of the `react-plotly.js-editor` repository so
-that your project relies on the react and react-dom copy of your main project.
+points your project to the copy of react that it should be using or you can
+simply do `rm -rf node_modules/react` and `rm -rf node_modules/react-dom` inside
+of the `react-plotly.js-editor` repository so that your project relies on the
+react and react-dom copy of your main project.
 
 ## See also
 
