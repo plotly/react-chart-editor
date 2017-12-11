@@ -4,7 +4,9 @@
 @import 'helpers';
 
 .plotly-editor {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: relative;
+  border-radius: 5px;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   border: 1px solid #aaa;
   display: inline-block;
   width: 425px;
@@ -15,4 +17,4 @@
   @import 'icons/main';
 }
 
-@import 'shame'
+@import 'shame';
