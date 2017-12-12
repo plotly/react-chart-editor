@@ -16,7 +16,7 @@ class App extends Component {
     const dataSourceOptions = [
       {value: 'col1', label: 'CO2'},
       {value: 'col2', label: 'NO2'},
-      {value: 'col2', label: 'SiO2'},
+      {value: 'col3', label: 'SiO2'},
     ];
 
     // A basic starting plotly.js figure object. Instead of assigning
@@ -66,14 +66,16 @@ class App extends Component {
           plotly={plotly}
           revision={this.state.editorRevision}
         />
-        <Plot
-          debug
-          data={this.state.figure.data}
-          layout={this.state.figure.layout}
-          onUpdate={this.hub.handlePlotUpdate}
-          onInitialized={this.hub.handlePlotInitialized}
-          revision={this.state.plotRevision}
-        />
+        <div className="plotlyPlot">
+          <Plot
+            debug
+            data={this.state.figure.data}
+            layout={this.state.figure.layout}
+            onUpdate={this.hub.handlePlotUpdate}
+            onInitialized={this.hub.handlePlotInitialized}
+            revision={this.state.plotRevision}
+          />
+        </div>
       </div>
     );
   }
