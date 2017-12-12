@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './App.css';
 import plotly from 'plotly.js/dist/plotly-basic';
 import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor, {Hub, dereference} from 'react-plotly.js-editor';
