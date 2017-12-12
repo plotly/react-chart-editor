@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "plotly.js": "^1.31.2",
-    "react": "^15.6.2",
-    "react-dom": "^15.6.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-plotly.js": "^1.0.4",
+    "react-plotly.js-editor": "^0.1.0",
     "react-scripts": "1.0.17"
   },
   "scripts": {
