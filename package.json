@@ -13,8 +13,8 @@
     "url": "https://github.com/plotly/react-plotly.js-editor/issues"
   },
   "scripts": {
-    "combine-translation-strings": "babel-node utils/combineTranslationKeys.js",
-    "find-strings": "babel-node utils/findLocaleStrings.js",
+    "make:combined-locales": "babel-node utils/combinedLocales.js",
+    "make:translations": "babel-node utils/translations.js",
     "make:lib":
       "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps && npm run make:lib:css",
     "make:lib:css":
@@ -24,7 +24,7 @@
     "make:dist:css":
       "mkdirp dist && node-sass --output-style compressed src/styles/main.scss > dist/react-plotly.js-editor.css",
     "prepublishOnly":
-      "npm run make:lib && npm run find-strings && npm run combine-translation-strings",
+      "npm run make:lib && npm run make:translations && npm run make:combined-locales",
     "lint": "prettier  --write \"src/**/*.js\"",
     "test:lint": "eslint src && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:pretty":
