@@ -7,7 +7,6 @@ import path from 'path';
 const pathToSrc = path.join(__dirname, '../src');
 const srcGlob = path.join(pathToSrc, '**/*.js');
 
-let EXIT_CODE = 0;
 const localizeRE = /(^|[\.])(_|localize)$/;
 
 findLocaleStrings();
@@ -15,9 +14,7 @@ findLocaleStrings();
 function findLocaleStrings() {
   glob(srcGlob, (err, files) => {
     if (err) {
-      EXIT_CODE = 1;
-      console.log(err);
-      return;
+      throw new Error(err);
     }
 
     const dict = {};
@@ -79,25 +76,23 @@ function findLocaleStrings() {
     });
 
     if (!hasTranslation) {
-      console.error('Found no translations.');
-      EXIT_CODE = 1;
+      throw new Error('Found no translations.');
     }
 
-    if (!EXIT_CODE) {
-      const strings = Object.keys(dict)
-        .sort()
-        .map(k => k + spaces(maxLen - k.length) + '  // ' + dict[k])
-        .join('\n');
-      const pathToTranslationKeys = path.join(__dirname, 'translationKeys.txt');
-      fs.writeFile(pathToTranslationKeys, strings);
-      console.log('ok find_locale_strings');
-    }
+    const strings = Object.keys(dict)
+      .sort()
+      .map(k => k + spaces(maxLen - k.length) + '  // ' + dict[k])
+      .join('\n');
+    const pathToTranslationKeys = path.join(__dirname, 'translationKeys.txt');
+    fs.writeFile(pathToTranslationKeys, strings);
+    console.log(`translation keys were written to: ${pathToTranslationKeys}`);
   });
 }
 
 function logError(file, node, msg) {
-  console.error(file + ' [line ' + node.loc.start.line + '] ' + msg + '\n   ');
-  EXIT_CODE = 1;
+  throw new Error(
+    file + ' [line ' + node.loc.start.line + '] ' + msg + '\n   '
+  );
 }
 
 function spaces(len) {
@@ -108,8 +103,8 @@ function spaces(len) {
   return out;
 }
 
-process.on('exit', function() {
-  if (EXIT_CODE) {
-    throw new Error('find_locale_strings failed.');
+process.on('exit', function(code) {
+  if (code === 1) {
+    throw new Error('findLocaleStrings failed.');
   }
 });

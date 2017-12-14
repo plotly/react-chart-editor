@@ -387,7 +387,7 @@ class DefaultEditor extends Component {
                   <Info>
                     {_(
                       'The positioning inputs are relative to the ' +
-                        'anchor points on the text box'
+                        'anchor points on the text box.'
                     )}
                   </Info>
                   <Radio

@@ -25,12 +25,12 @@ Continuing will convert your LaTeX expression into raw text.                    
 Continuing will convert your note to LaTeX-style text.                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:116
 Continuing will remove your expression.                                                                      // /components/widgets/text_editors/MultiFormatTextEditor.js:126
 Custom                                                                                                       // /DefaultEditor.js:179
-Custom colors                                                                                                // /components/widgets/ColorPicker.js:52
-Default colors                                                                                               // /components/widgets/ColorPicker.js:75
+Custom Colors                                                                                                // /components/widgets/ColorPicker.js:52
+Default Colors                                                                                               // /components/widgets/ColorPicker.js:75
 Display                                                                                                      // /DefaultEditor.js:94
 Edit in HTML                                                                                                 // /components/widgets/text_editors/MultiFormatTextEditor.js:34
 Edit in Rich Text                                                                                            // /components/widgets/text_editors/MultiFormatTextEditor.js:241
-Enter link URL                                                                                               // /components/widgets/text_editors/RichText/LinkEditor.js:92
+Enter Link URL                                                                                               // /components/widgets/text_editors/RichText/LinkEditor.js:92
 Filled Area                                                                                                  // /DefaultEditor.js:104
 Fixed Height                                                                                                 // /DefaultEditor.js:183
 Fixed Width                                                                                                  // /DefaultEditor.js:182
@@ -82,7 +82,7 @@ Symbol                                                                          
 Text                                                                                                         // /DefaultEditor.js:364
 Text Attributes                                                                                              // /DefaultEditor.js:82
 The anchor point determines which side of the annotation's positioning coordinates refer to.                 // /DefaultEditor.js:256
-The positioning inputs are relative to the anchor points on the text box                                     // /DefaultEditor.js:389
+The positioning inputs are relative to the anchor points on the text box.                                    // /DefaultEditor.js:389
 This input has multiple values associated with it. Changing this setting will override these custom inputs.  // /lib/constants.js:20
 Tick Labels                                                                                                  // /DefaultEditor.js:334
 Tick Markers                                                                                                 // /DefaultEditor.js:342

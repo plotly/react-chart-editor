@@ -89,7 +89,7 @@ class LinkEditor extends Component {
   render() {
     const {position} = this.state;
     const {onBlur, onFocus, linkURL, localize: _} = this.props;
-    const placeholderText = _('Enter link URL');
+    const placeholderText = _('Enter Link URL');
     const urlText = _('URL');
 
     return (
