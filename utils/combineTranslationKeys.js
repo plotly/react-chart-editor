@@ -3,7 +3,7 @@ import fs from 'fs';
 
 const pathToCombinedTranslationKeys = path.join(
   __dirname,
-  'combinedLocales.txt'
+  'combined-translation-keys.txt'
 );
 
 const plotlyJS = {
@@ -16,7 +16,7 @@ const plotlyJS = {
 
 const editor = {
   repository: 'react-plotly.js-editor',
-  path: path.join(__dirname, './translations.txt'),
+  path: path.join(__dirname, './translation-keys.txt'),
 };
 
 combineTranslationKeys();
