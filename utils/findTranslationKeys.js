@@ -83,7 +83,7 @@ function findLocaleStrings() {
       .sort()
       .map(k => k + spaces(maxLen - k.length) + '  // ' + dict[k])
       .join('\n');
-    const pathToTranslationKeys = path.join(__dirname, 'translationKeys.txt');
+    const pathToTranslationKeys = path.join(__dirname, 'translation-keys.txt');
     fs.writeFile(pathToTranslationKeys, strings);
     console.log(`translation keys were written to: ${pathToTranslationKeys}`);
   });
