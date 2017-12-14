@@ -13,14 +13,19 @@ export const MULTI_VALUED = '\x1bMIXED_VALUES';
 // how mixed values are represented in text inputs
 export const MULTI_VALUED_PLACEHOLDER = '---';
 
-export const multiValueText = {
-  title: 'Multiple Values',
-  text:
-    'This input has multiple values associated with it. ' +
-    'Changing this setting will override these custom inputs.',
-  subText:
-    "Common Case: An 'All' tab might display this message " +
-    'because the X and Y tabs contain different settings.',
+export const getMultiValueText = (key, _) => {
+  const multiValueText = {
+    title: _('Multiple Values'),
+    text: _(
+      'This input has multiple values associated with it. ' +
+        'Changing this setting will override these custom inputs.'
+    ),
+    subText: _(
+      "Common Case: An 'All' tab might display this message " +
+        'because the X and Y tabs contain different settings.'
+    ),
+  };
+  return multiValueText[key];
 };
 
 export const EDITOR_ACTIONS = {
