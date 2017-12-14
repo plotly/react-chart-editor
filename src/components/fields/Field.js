@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import MenuPanel from '../containers/MenuPanel';
 import classnames from 'classnames';
 import {bem, localize} from '../../lib';
-import {multiValueText} from '../../lib/constants';
+import {getMultiValueText} from '../../lib/constants';
 
 class Field extends Component {
   renderPostfix() {
@@ -48,10 +48,12 @@ class Field extends Component {
         <div className={fieldClass}>
           {children}
           {multiValued ? (
-            <MenuPanel label={_(multiValueText.title)} ownline question>
-              <div className="info__title">{_(multiValueText.title)}</div>
-              <div className="info__text">{_(multiValueText.text)}</div>
-              <div className="info__sub-text">{_(multiValueText.subText)}</div>
+            <MenuPanel label={getMultiValueText('title', _)} ownline question>
+              <div className="info__title">{getMultiValueText('title', _)}</div>
+              <div className="info__text">{getMultiValueText('text', _)}</div>
+              <div className="info__sub-text">
+                {getMultiValueText('subText', _)}
+              </div>
             </MenuPanel>
           ) : null}
         </div>

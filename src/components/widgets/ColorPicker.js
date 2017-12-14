@@ -49,7 +49,7 @@ const CustomColorPicker = localize(
     return (
       <div>
         <div>
-          <p className="colorpicker__title">{_('Custom colors')}</p>
+          <p className="colorpicker__title">{_('Custom Colors')}</p>
           <div className="colorpicker__saturation">
             <Saturation {...props} />
           </div>
@@ -72,7 +72,7 @@ const CustomColorPicker = localize(
           </div>
         </div>
         <div>
-          <p className="colorpicker__title">{_('Default colors')}</p>
+          <p className="colorpicker__title">{_('Default Colors')}</p>
           <div className="colorpicker__preset-colors">
             <PresetColors colors={defaultColors} onClick={onChangeComplete} />
           </div>
