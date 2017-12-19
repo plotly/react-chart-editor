@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from '../../lib';
 
-export class UnconnectedDropdown extends Component {
+export class DropdownField extends Component {
   render() {
     let placeholder;
     if (this.props.multiValued) {
@@ -28,7 +28,7 @@ export class UnconnectedDropdown extends Component {
   }
 }
 
-UnconnectedDropdown.propTypes = {
+DropdownField.propTypes = {
   backgroundDark: PropTypes.bool,
   clearable: PropTypes.bool,
   fullValue: PropTypes.any,
@@ -39,4 +39,4 @@ UnconnectedDropdown.propTypes = {
   ...Field.propTypes,
 };
 
-export default connectToContainer(UnconnectedDropdown);
+export default connectToContainer(DropdownField);

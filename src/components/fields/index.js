@@ -1,14 +1,14 @@
 import ArrowSelector from './ArrowSelector';
 import AxesSelector from './AxesSelector';
 import ColorPicker from './Color';
-import Dropdown from './Dropdown';
+import Dropdown, {DropdownField} from './Dropdown';
 import FontSelector from './FontSelector';
 import Flaglist from './Flaglist';
 import Info from './Info';
 import Radio from './Radio';
 import MultiFormatTextEditor from './MultiFormatTextEditor';
 import DataSelector from './DataSelector';
-import Numeric from './Numeric';
+import Numeric, {NumericField} from './Numeric';
 import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 import {
@@ -30,6 +30,7 @@ export {
   CanvasSize,
   ColorPicker,
   Dropdown,
+  DropdownField,
   Flaglist,
   FontSelector,
   Info,
@@ -41,6 +42,7 @@ export {
   MultiFormatTextEditor,
   DataSelector,
   Numeric,
+  NumericField,
   SymbolSelector,
   TraceSelector,
 };
