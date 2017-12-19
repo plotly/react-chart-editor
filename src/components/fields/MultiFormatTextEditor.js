@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from '../../lib';
 
-export class UnconnectedMultiFormatTextEditor extends Component {
+export class MultiFormatTextEditorField extends Component {
   render() {
     let fullValue = this.props.fullValue;
     let placeholder;
@@ -24,10 +24,10 @@ export class UnconnectedMultiFormatTextEditor extends Component {
   }
 }
 
-UnconnectedMultiFormatTextEditor.propTypes = {
+MultiFormatTextEditorField.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };
 
-export default connectToContainer(UnconnectedMultiFormatTextEditor);
+export default connectToContainer(MultiFormatTextEditorField);
