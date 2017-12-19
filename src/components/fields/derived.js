@@ -1,6 +1,6 @@
 import isNumeric from 'fast-isnumeric';
 import {UnconnectedNumeric} from './Numeric';
-import {UnconnectedDropdown} from './Dropdown';
+import {DropdownField} from './Dropdown';
 import {
   connectLayoutToPlot,
   connectToContainer,
@@ -104,7 +104,7 @@ export const LayoutNumericFraction = connectLayoutToPlot(
   })
 );
 
-export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
+export const AnnotationArrowRef = connectToContainer(DropdownField, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer: {xref, yref}, plotly, graphDiv} = context;
 
@@ -141,7 +141,7 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
   },
 });
 
-export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
+export const AnnotationRef = connectToContainer(DropdownField, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer: {axref, ayref}, graphDiv, plotly} = context;
 

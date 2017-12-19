@@ -1,4 +1,4 @@
-import {UnconnectedDropdown} from './Dropdown';
+import {DropdownField} from './Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
@@ -104,7 +104,7 @@ class TraceSelector extends Component {
       options: this.traceOptions,
     });
 
-    return <UnconnectedDropdown {...props} />;
+    return <DropdownField {...props} />;
   }
 }
 
