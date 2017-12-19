@@ -12,6 +12,7 @@ class App extends Component {
     super();
 
     // DataSources are a mapping of column or data source ids to data arrays.
+    // eslint-disable-next-line no-magic-numbers
     const dataSources = {col1: [1, 2, 3], col2: [4, 3, 2], col3: [17, 13, 9]};
     const dataSourceOptions = [
       {value: 'col1', label: 'CO2'},
@@ -19,7 +20,9 @@ class App extends Component {
       {value: 'col3', label: 'SiO2'},
     ];
 
-    // A basic starting plotly.js figure object. Instead of assigning
+    // This object is passed to Plotly.js, which then causes it to be
+    // overwritten with a full DOM node that contains data, layout, _fullData,
+    // _fullLayout etc in handlePlotUpdate()
     const graphDiv = {
       data: [{type: 'scatter', xsrc: 'col1', ysrc: 'col2'}],
       layout: {title: 'Room readings'},

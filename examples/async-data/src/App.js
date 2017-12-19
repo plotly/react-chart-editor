@@ -45,6 +45,7 @@ class Backend {
 ee(Backend.prototype);
 
 const backend = new Backend({
+  // eslint-disable-next-line no-magic-numbers
   dataSources: {col1: [1, 2, 3], col2: [4, 3, 2], col3: [17, 13, 9]},
   delay: 10,
 });
@@ -53,7 +54,9 @@ class App extends Component {
   constructor() {
     super();
 
-    // A basic starting plotly.js figure object. Instead of assigning
+    // This object is passed to Plotly.js, which then causes it to be
+    // overwritten with a full DOM node that contains data, layout, _fullData,
+    // _fullLayout etc in handlePlotUpdate()
     const graphDiv = {
       data: [{type: 'scatter'}],
       layout: {title: 'Room readings'},
