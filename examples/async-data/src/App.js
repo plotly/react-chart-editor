@@ -111,7 +111,7 @@ class App extends Component {
       this.setState(({dataSources, graphDiv}) => {
         const newDataSources = {...dataSources, [columnName]: data};
         dereference(graphDiv.data, newDataSources);
-        return {dataSources, graphDiv};
+        return {dataSources: newDataSources, graphDiv};
       });
     }
   }
