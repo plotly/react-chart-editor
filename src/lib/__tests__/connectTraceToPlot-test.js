@@ -1,7 +1,6 @@
 import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
 import connectTraceToPlot from '../connectTraceToPlot';
-import {EDITOR_ACTIONS} from '../constants';
 import {Fold, Panel, Section} from '../../components/containers';
 import {Numeric} from '../../components/fields';
 import {TestEditor, fixtures, plotly} from '../test-utils';
@@ -31,9 +30,9 @@ Traces.forEach(Trace => {
     });
 
     it('sends updates to gd.data', () => {
-      const onUpdate = jest.fn();
+      const onUpdateTraces = jest.fn();
       const wrapper = mount(
-        <Editor onUpdate={onUpdate} {...fixtures.scatter()}>
+        <Editor onUpdateTraces={onUpdateTraces} {...fixtures.scatter()}>
           <Trace traceIndex={0}>
             <Numeric label="Marker Size" attr="marker.size" />
           </Trace>
@@ -44,18 +43,16 @@ Traces.forEach(Trace => {
 
       const sizeUpdate = 200;
       wrapper.prop('onChange')(sizeUpdate);
-      const event = onUpdate.mock.calls[0][0];
-      expect(event.type).toBe(EDITOR_ACTIONS.UPDATE_TRACES);
-      expect(event.payload).toEqual({
+      const payload = onUpdateTraces.mock.calls[0][0];
+      expect(payload).toEqual({
         update: {'marker.size': sizeUpdate},
         traceIndexes: [0],
       });
     });
 
     it('automatically computes min and max defaults', () => {
-      const onUpdate = jest.fn();
       const wrapper = mount(
-        <Editor onUpdate={onUpdate} {...fixtures.scatter()}>
+        <Editor {...fixtures.scatter()}>
           <Trace traceIndex={0}>
             <Numeric label="marker size" attr="marker.size" />
           </Trace>

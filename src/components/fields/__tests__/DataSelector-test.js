@@ -35,10 +35,10 @@ describe('DataSelector', () => {
   it('uses gd.data dataSrc value not fullValue when arrayOk', () => {});
 
   it('calls updatePlot with srcAttr and data when present', () => {
-    const onUpdate = jest.fn();
-    const wrapper = render({onUpdate}).find(DropdownWidget);
+    const onUpdateTraces = jest.fn();
+    const wrapper = render({onUpdateTraces}).find(DropdownWidget);
     wrapper.prop('onChange')('y1');
-    expect(onUpdate.mock.calls[0][0].payload).toEqual({
+    expect(onUpdateTraces.mock.calls[0][0]).toEqual({
       update: {xsrc: 'y1', x: [2, 3, 4]},
       traceIndexes: [0],
     });
