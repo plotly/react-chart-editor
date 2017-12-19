@@ -1,5 +1,5 @@
 import isNumeric from 'fast-isnumeric';
-import {UnconnectedNumeric} from './Numeric';
+import {NumericField} from './Numeric';
 import {DropdownField} from './Dropdown';
 import {
   connectLayoutToPlot,
@@ -8,7 +8,7 @@ import {
   unpackPlotProps,
 } from '../../lib';
 
-export const CanvasSize = connectToContainer(UnconnectedNumeric, {
+export const CanvasSize = connectToContainer(NumericField, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;
     if (plotProps.isVisible && fullContainer && fullContainer.autosize) {
@@ -17,7 +17,7 @@ export const CanvasSize = connectToContainer(UnconnectedNumeric, {
   },
 });
 
-export const AxesRange = connectToContainer(UnconnectedNumeric, {
+export const AxesRange = connectToContainer(NumericField, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;
     if (plotProps.isVisible && fullContainer && fullContainer.autorange) {
@@ -27,8 +27,8 @@ export const AxesRange = connectToContainer(UnconnectedNumeric, {
   },
 });
 
-class NumericFraction extends UnconnectedNumeric {}
-NumericFraction.propTypes = UnconnectedNumeric.propTypes;
+class NumericFraction extends NumericField {}
+NumericFraction.propTypes = NumericField.propTypes;
 NumericFraction.defaultProps = {
   units: '%',
 };
