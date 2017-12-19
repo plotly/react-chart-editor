@@ -56,7 +56,7 @@ class PlotlyEditor extends Component {
     switch (type) {
       case EDITOR_ACTIONS.UPDATE_TRACES:
         if (this.props.onUpdateTraces) {
-          this.props.onUpdateTraces({type, payload});
+          this.props.onUpdateTraces(payload);
         }
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {
@@ -109,7 +109,8 @@ class PlotlyEditor extends Component {
   render() {
     return (
       <div className={bem()}>
-        {this.props.graphDiv._fullLayout &&
+        {this.props.graphDiv &&
+          this.props.graphDiv._fullLayout &&
           (this.props.children ? this.props.children : <DefaultEditor />)}
       </div>
     );

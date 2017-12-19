@@ -1,10 +1,7 @@
 import './App.css';
 import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
 import 'react-select/dist/react-select.css';
-import PlotlyEditor, {
-  EDITOR_ACTIONS,
-  dereference,
-} from 'react-plotly.js-editor';
+import PlotlyEditor, {dereference} from 'react-plotly.js-editor';
 import React, {Component} from 'react';
 import createPlotComponent from 'react-plotly.js/factory';
 import ee from 'event-emitter';
@@ -119,18 +116,14 @@ class App extends Component {
     }
   }
 
-  handleEditorUpdateTraces(event) {
-    const {type, payload} = event;
-    if (type === EDITOR_ACTIONS.UPDATE_TRACES) {
-      const {update} = payload;
-      if (update) {
-        for (const key in update) {
-          if (key.substr(key.length - 3) === 'src') {
-            const columnId = update[key];
-            const data = this.state.dataSources[columnId];
-            if (!Array.isArray(data).length || !data.length) {
-              this.getChartingData(columnId);
-            }
+  handleEditorUpdateTraces({update}) {
+    if (update) {
+      for (const key in update) {
+        if (key.substr(key.length - 3) === 'src') {
+          const columnId = update[key];
+          const data = this.state.dataSources[columnId];
+          if (!Array.isArray(data).length || !data.length) {
+            this.getChartingData(columnId);
           }
         }
       }
