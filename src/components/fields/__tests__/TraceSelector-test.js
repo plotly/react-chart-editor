@@ -46,10 +46,10 @@ describe('TraceSelector', () => {
   });
 
   it('updates type=scatter mode=lines when type=line', () => {
-    const onUpdate = jest.fn();
+    const onUpdateTraces = jest.fn();
     const editorProps = {
       ...fixtures.scatter({data: [{type: 'scatter', mode: 'markers'}]}),
-      onUpdate,
+      onUpdateTraces,
       plotly,
     };
     const wrapper = mount(
@@ -63,7 +63,7 @@ describe('TraceSelector', () => {
     const innerDropdown = wrapper.find(Dropdown);
     innerDropdown.prop('onChange')('line');
 
-    const {payload} = onUpdate.mock.calls[0][0];
+    const payload = onUpdateTraces.mock.calls[0][0];
     expect(payload.update).toEqual({
       fill: 'none',
       mode: 'lines',
@@ -72,10 +72,10 @@ describe('TraceSelector', () => {
   });
 
   it('updates type=scatter fill=tozeroy when type=area', () => {
-    const onUpdate = jest.fn();
+    const onUpdateTraces = jest.fn();
     const editorProps = {
       ...fixtures.scatter({data: [{type: 'scatter', mode: 'markers'}]}),
-      onUpdate,
+      onUpdateTraces,
       plotly,
     };
     const wrapper = mount(
@@ -89,7 +89,7 @@ describe('TraceSelector', () => {
     const innerDropdown = wrapper.find(Dropdown);
     innerDropdown.prop('onChange')('area');
 
-    const {payload} = onUpdate.mock.calls[0][0];
+    const payload = onUpdateTraces.mock.calls[0][0];
     expect(payload.update).toEqual({fill: 'tozeroy', type: 'scatter'});
   });
 });

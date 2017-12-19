@@ -1,13 +1,12 @@
 import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
-import {EDITOR_ACTIONS} from '../constants';
 import {Numeric} from '../../components/fields';
 import {TestEditor, fixtures, mount} from '../test-utils';
 import {connectLayoutToPlot, connectAnnotationToLayout} from '..';
 
 describe('connectAnnotationToLayout', () => {
   it('sends update to layout.annotation[index]', () => {
-    const onUpdate = jest.fn();
+    const onUpdateLayout = jest.fn();
     const fixture = fixtures.scatter({
       layout: {annotations: [{text: 'hodor'}]},
     });
@@ -16,7 +15,7 @@ describe('connectAnnotationToLayout', () => {
     );
 
     mount(
-      <TestEditor {...{...fixture, onUpdate}}>
+      <TestEditor {...{...fixture, onUpdateLayout}}>
         <ConnectedNumeric annotationIndex={0} label="Angle" attr="textangle" />
       </TestEditor>
     )
@@ -24,9 +23,7 @@ describe('connectAnnotationToLayout', () => {
       .find('.js-numeric-increase')
       .simulate('click');
 
-    const update = onUpdate.mock.calls[0][0];
-    const {type, payload} = update;
-    expect(type).toBe(EDITOR_ACTIONS.UPDATE_LAYOUT);
+    const payload = onUpdateLayout.mock.calls[0][0];
     expect(payload.update).toEqual({'annotations[0].textangle': 1});
   });
 });

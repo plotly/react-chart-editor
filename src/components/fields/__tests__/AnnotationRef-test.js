@@ -32,15 +32,15 @@ describe('<AnnotationRef>', () => {
   });
 
   it('sends update for a[x|y]ref attr on [x|y]ref change', () => {
-    const onUpdate = jest.fn();
+    const onUpdateLayout = jest.fn();
     const fixtureProps = fixtures.scatter({
       layout: {annotations: [{text: 'thor', ayref: 'y'}]},
     });
-    const drop = render({onUpdate, ...fixtureProps}).find(DropdownWidget);
+    const drop = render({onUpdateLayout, ...fixtureProps}).find(DropdownWidget);
 
     drop.prop('onChange')('y2');
 
-    const {payload: {update}} = onUpdate.mock.calls[0][0];
+    const {update} = onUpdateLayout.mock.calls[0][0];
     expect(update).toEqual({
       'annotations[0].ayref': 'y2',
       'annotations[0].yref': 'y2',
@@ -48,28 +48,28 @@ describe('<AnnotationRef>', () => {
   });
 
   it('does not send update for a[x|y]ref attr on "paper" change', () => {
-    const onUpdate = jest.fn();
+    const onUpdateLayout = jest.fn();
     const fixtureProps = fixtures.scatter({
       layout: {annotations: [{text: 'thor', ayref: 'y'}]},
     });
-    const drop = render({onUpdate, ...fixtureProps}).find(DropdownWidget);
+    const drop = render({onUpdateLayout, ...fixtureProps}).find(DropdownWidget);
 
     drop.prop('onChange')('paper');
-    const {payload: {update}} = onUpdate.mock.calls[0][0];
+    const {update} = onUpdateLayout.mock.calls[0][0];
     expect(update).toEqual({
       'annotations[0].yref': 'paper',
     });
   });
 
   it('does not send update for a[x|y]ref when a[x|y]ref is pixel', () => {
-    const onUpdate = jest.fn();
+    const onUpdateLayout = jest.fn();
     const fixtureProps = fixtures.scatter({
       layout: {annotations: [{text: 'thor', yref: 'y', ayref: 'pixel'}]},
     });
-    const drop = render({onUpdate, ...fixtureProps}).find(DropdownWidget);
+    const drop = render({onUpdateLayout, ...fixtureProps}).find(DropdownWidget);
 
     drop.prop('onChange')('y2');
-    const {payload: {update}} = onUpdate.mock.calls[0][0];
+    const {update} = onUpdateLayout.mock.calls[0][0];
     expect(update).toEqual({
       'annotations[0].yref': 'y2',
     });

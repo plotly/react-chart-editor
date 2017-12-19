@@ -1,7 +1,6 @@
 import React from 'react';
 import {TraceAccordion, Fold} from '..';
 import {Numeric} from '../../fields';
-import {EDITOR_ACTIONS} from '../../../lib/constants';
 import {TestEditor, fixtures, mount} from '../../../lib/test-utils';
 
 describe('<TraceAccordion>', () => {
@@ -21,9 +20,9 @@ describe('<TraceAccordion>', () => {
 
   it('can add traces', () => {
     const fixture = fixtures.scatter();
-    const onUpdate = jest.fn();
+    const onAddTrace = jest.fn();
     const editor = mount(
-      <TestEditor {...{...fixture, onUpdate}}>
+      <TestEditor {...{...fixture, onAddTrace}}>
         <TraceAccordion canAdd>
           <Numeric attr="textangle" />
         </TraceAccordion>
@@ -32,15 +31,14 @@ describe('<TraceAccordion>', () => {
 
     editor.find('.panel__add-button').simulate('click');
 
-    const update = onUpdate.mock.calls[0][0];
-    expect(update.type).toBe(EDITOR_ACTIONS.ADD_TRACE);
+    expect(onAddTrace).toBeCalled();
   });
 
   it('can delete traces', () => {
     const fixture = fixtures.scatter({data: [{name: 'hodor'}]});
-    const onUpdate = jest.fn();
+    const onDeleteTrace = jest.fn();
     const editor = mount(
-      <TestEditor {...{...fixture, onUpdate}}>
+      <TestEditor {...{...fixture, onDeleteTrace}}>
         <TraceAccordion>
           <Numeric attr="textangle" />
         </TraceAccordion>
@@ -52,7 +50,8 @@ describe('<TraceAccordion>', () => {
       .at(0)
       .simulate('click');
 
-    const update = onUpdate.mock.calls[0][0];
-    expect(update.type).toBe(EDITOR_ACTIONS.DELETE_TRACE);
+    expect(onDeleteTrace).toBeCalled();
+    const update = onDeleteTrace.mock.calls[0][0];
+    expect(update.traceIndexes[0]).toBe(0);
   });
 });

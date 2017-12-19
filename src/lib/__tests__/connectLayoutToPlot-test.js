@@ -1,7 +1,6 @@
 import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
 import connectLayoutToPlot from '../connectLayoutToPlot';
-import {EDITOR_ACTIONS} from '../constants';
 import {Fold, Panel, Section} from '../../components/containers';
 import {Numeric} from '../../components/fields';
 import {TestEditor, fixtures, plotly} from '../test-utils';
@@ -29,10 +28,10 @@ Layouts.forEach(Layout => {
     });
 
     it(`sends updates to gd._layout`, () => {
-      const onUpdate = jest.fn();
+      const onUpdateLayout = jest.fn();
       const wrapper = mount(
         <Editor
-          onUpdate={onUpdate}
+          onUpdateLayout={onUpdateLayout}
           {...fixtures.scatter({layout: {width: 100}})}
         >
           <Layout>
@@ -45,9 +44,8 @@ Layouts.forEach(Layout => {
 
       const widthUpdate = 200;
       wrapper.prop('onChange')(widthUpdate);
-      const event = onUpdate.mock.calls[0][0];
-      expect(event.type).toBe(EDITOR_ACTIONS.UPDATE_LAYOUT);
-      expect(event.payload).toEqual({update: {width: widthUpdate}});
+      const payload = onUpdateLayout.mock.calls[0][0];
+      expect(payload).toEqual({update: {width: widthUpdate}});
     });
 
     it(`automatically computes min and max defaults`, () => {

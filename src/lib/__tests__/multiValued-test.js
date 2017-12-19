@@ -36,7 +36,7 @@ describe('multiValued Numeric', () => {
   });
 
   it('uses multiValued defaultContainer as default increment value', () => {
-    const onUpdate = jest.fn();
+    const onUpdateLayout = jest.fn();
     const xaxisLowerRange = -30;
     const fixtureProps = fixtures.scatter({
       layout: {xaxis: {range: [xaxisLowerRange, 3]}, yaxis: {range: [0, 3]}},
@@ -44,16 +44,15 @@ describe('multiValued Numeric', () => {
     const AxesNumeric = connectLayoutToPlot(connectAxesToLayout(Numeric));
 
     mount(
-      <TestEditor {...{...fixtureProps, onUpdate, plotly}}>
+      <TestEditor {...{...fixtureProps, onUpdateLayout, plotly}}>
         <AxesNumeric attr="range[0]" defaultAxesTarget="allaxes" />
       </TestEditor>
     )
       .find('.js-numeric-increase')
       .simulate('click');
 
-    expect(onUpdate).toBeCalled();
-    const update = onUpdate.mock.calls[0][0];
-    const {payload} = update;
+    expect(onUpdateLayout).toBeCalled();
+    const payload = onUpdateLayout.mock.calls[0][0];
     expect(payload.update).toEqual({
       'xaxis.range[0]': xaxisLowerRange,
       'yaxis.range[0]': xaxisLowerRange,

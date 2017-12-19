@@ -68,10 +68,15 @@ class PlotlyEditor extends Component {
             }
           }
         }
-        this.props.onUpdate();
+        if (this.props.onUpdate) {
+          this.props.onUpdate();
+        }
         break;
 
       case EDITOR_ACTIONS.UPDATE_LAYOUT:
+        if (this.props.onUpdateLayout) {
+          this.props.onUpdateLayout(payload);
+        }
         for (const attr in payload.update) {
           const prop = nestedProperty(graphDiv.layout, attr);
           const value = payload.update[attr];
@@ -79,25 +84,42 @@ class PlotlyEditor extends Component {
             prop.set(value);
           }
         }
-        this.props.onUpdate();
-        break;
-
-      case EDITOR_ACTIONS.ADD_TRACE:
-        graphDiv.data.push({x: [], y: []});
-        this.props.onUpdate();
-        break;
-
-      case EDITOR_ACTIONS.DELETE_TRACE:
-        if (payload.traceIndexes && payload.traceIndexes.length) {
-          graphDiv.data.splice(payload[0], 1);
+        if (this.props.onUpdate) {
           this.props.onUpdate();
         }
         break;
 
+      case EDITOR_ACTIONS.ADD_TRACE:
+        if (this.props.onAddTrace) {
+          this.props.onAddTrace(payload);
+        }
+        graphDiv.data.push({x: [], y: []});
+        if (this.props.onUpdate) {
+          this.props.onUpdate();
+        }
+        break;
+
+      case EDITOR_ACTIONS.DELETE_TRACE:
+        if (this.props.onDeleteTrace) {
+          this.props.onDeleteTrace(payload);
+        }
+        if (payload.traceIndexes && payload.traceIndexes.length) {
+          graphDiv.data.splice(payload[0], 1);
+          if (this.props.onUpdate) {
+            this.props.onUpdate();
+          }
+        }
+        break;
+
       case EDITOR_ACTIONS.DELETE_ANNOTATION:
+        if (this.props.onDeleteAnnotation) {
+          this.props.onDeleteAnnotation(payload);
+        }
         if (isNumeric(payload.annotationIndex)) {
           graphDiv.layout.annotations.splice(payload.annotationIndex, 1);
-          this.props.onUpdate();
+          if (this.props.onUpdate) {
+            this.props.onUpdate();
+          }
         }
         break;
 
@@ -126,6 +148,10 @@ PlotlyEditor.propTypes = {
   revision: PropTypes.any,
   onUpdate: PropTypes.func,
   onUpdateTraces: PropTypes.func,
+  onUpdateLayout: PropTypes.func,
+  onAddTrace: PropTypes.func,
+  onDeleteTrace: PropTypes.func,
+  onDeleteAnnotation: PropTypes.func,
   plotly: PropTypes.object,
 };
 
