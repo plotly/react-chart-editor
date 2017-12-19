@@ -63,6 +63,8 @@
     "mkdirp": "^0.5.1",
     "node-sass": "^4.7.1",
     "prettier": "1.8.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "uglify-js": "^3.0.26"
   },
