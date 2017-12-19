@@ -3,7 +3,6 @@ import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
 import 'react-select/dist/react-select.css';
 import PlotlyEditor, {
   EDITOR_ACTIONS,
-  Hub,
   dereference,
 } from 'react-plotly.js-editor';
 import React, {Component} from 'react';
@@ -58,37 +57,22 @@ class App extends Component {
     super();
 
     // A basic starting plotly.js figure object. Instead of assigning
-    const figure = {
+    const graphDiv = {
       data: [{type: 'scatter'}],
       layout: {title: 'Room readings'},
     };
 
     // Store the figure, dataSource and dataSourceOptions in state.
-    this.state = {figure, dataSources: {}};
-
-    // Instantiate a Hub object. The hub is a convenience module that updates
-    // the applies Editor updates to the figure object. After an update it
-    // will call the onUpdate function with the editor and plot revision numbers.
-    // We set these in our state and pass them to react-plotly.js-editor and
-    // react-plotly.js plot component respectively. This is necessary because
-    // the plotly.js library will mutate the figure object with user interactions.
-    // The hub listens for events from plotly.js and alerts us to the mutation here.
-    // The Editor follows the same mutation pattern (for good or ill) and the Hub
-    // will pick up editor results in the same way.
-    this.hub = new Hub({
-      debug: true,
-      onUpdate: ({editorRevision, plotRevision}) =>
-        this.setState(prevState => ({
-          ...prevState,
-          editorRevision,
-          plotRevision,
-        })),
-    });
+    this.state = {
+      graphDiv,
+      editorRevision: 0,
+      plotRevision: 0,
+      dataSources: {},
+    };
 
     this.getChartingData = this.getChartingData.bind(this);
     this.setChartingData = this.setChartingData.bind(this);
     this.setChartingDataOptions = this.setChartingDataOptions.bind(this);
-    this.onEditorUpdate = this.onEditorUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -98,18 +82,18 @@ class App extends Component {
     this.getChartingDataColumnsNames();
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     backend.off('ChartingDataColumnNames', this.setChartingDataOptions);
     backend.off('ChartingData', this.setChartingData);
   }
 
   setChartingDataOptions(columnNames) {
-    const dataSourceOptions = columnNames.map(name => ({
-      value: name,
-      label: name,
-    }));
-    this.setState(prevState => ({...prevState, dataSourceOptions}));
-    this.hub.editorSourcesUpdated();
+    this.setState({
+      dataSourceOptions: columnNames.map(name => ({
+        value: name,
+        label: name,
+      })),
+    });
   }
 
   getChartingDataColumnsNames() {
@@ -127,18 +111,15 @@ class App extends Component {
 
   setChartingData({columnName, data}) {
     if (Array.isArray(data) && data.length) {
-      const {dataSources, ...otherState} = this.state;
-      dataSources[columnName] = data;
-      dereference(this.state.figure.data, dataSources);
-      this.setState({
-        dataSources,
-        ...otherState,
+      this.setState(({dataSources, graphDiv}) => {
+        const newDataSources = {...dataSources, [columnName]: data};
+        dereference(graphDiv.data, newDataSources);
+        return {dataSources, graphDiv};
       });
-      this.hub.figureUpdated();
     }
   }
 
-  onEditorUpdate(event) {
+  handleEditorUpdateTraces(event) {
     const {type, payload} = event;
     if (type === EDITOR_ACTIONS.UPDATE_TRACES) {
       const {update} = payload;
@@ -154,8 +135,14 @@ class App extends Component {
         }
       }
     }
+  }
 
-    this.hub.handleEditorUpdate(event);
+  handlePlotUpdate(graphDiv) {
+    this.setState(({editorRevision: x}) => ({editorRevision: x + 1, graphDiv}));
+  }
+
+  handleEditorUpdate() {
+    this.setState(({plotRevision: x}) => ({plotRevision: x + 1}));
   }
 
   render() {
@@ -165,17 +152,18 @@ class App extends Component {
           locale="en"
           dataSources={this.state.dataSources}
           dataSourceOptions={this.state.dataSourceOptions}
-          graphDiv={this.hub.graphDiv}
-          onUpdate={this.onEditorUpdate}
-          plotly={plotly}
+          graphDiv={this.state.graphDiv}
+          onUpdate={this.handleEditorUpdate.bind(this)}
+          onUpdateTraces={this.handleEditorUpdateTraces.bind(this)}
           revision={this.state.editorRevision}
+          plotly={plotly}
         />
         <Plot
           debug
-          data={this.state.figure.data}
-          layout={this.state.figure.layout}
-          onUpdate={this.hub.handlePlotUpdate}
-          onInitialized={this.hub.handlePlotInitialized}
+          data={this.state.graphDiv.data}
+          layout={this.state.graphDiv.layout}
+          onUpdate={this.handlePlotUpdate.bind(this)}
+          onInitialized={this.handlePlotUpdate.bind(this)}
           revision={this.state.plotRevision}
         />
       </div>

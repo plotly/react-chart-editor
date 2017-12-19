@@ -7,6 +7,7 @@
     "plotly.js": "^1.31.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-plotly.js": "^1.0.4",
     "react-scripts": "1.0.17"
   },
   "scripts": {
