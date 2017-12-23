@@ -12,9 +12,7 @@ export default function dereference(container, dataSources) {
     const data = dataSources[srcRef];
 
     if (!Array.isArray(data)) {
-      throw new Error(
-        `Attempted to dereference ${key} but no array data found for ${srcRef}.`
-      );
+      return;
     }
 
     const dataKey = key.replace(SRC_ATTR_PATTERN, '');
