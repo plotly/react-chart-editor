@@ -1,4 +1,3 @@
-import Hub from './hub';
 import PlotlyEditor from './PlotlyEditor';
 import {
   connectAnnotationToLayout,
@@ -59,7 +58,6 @@ export {
   Flaglist,
   Fold,
   FontSelector,
-  Hub,
   Info,
   Layout,
   LayoutNumericFraction,

@@ -1,7 +1,6 @@
 import {Numeric} from '../../fields';
 import {Fold} from '..';
 import React from 'react';
-import {EDITOR_ACTIONS} from '../../../lib/constants';
 import {TestEditor, fixtures, mount} from '../../../lib/test-utils';
 import {connectTraceToPlot} from '../../../lib';
 
@@ -29,9 +28,9 @@ describe('<Fold>', () => {
   });
 
   it('calls deleteContainer when function present', () => {
-    const onUpdate = jest.fn();
+    const onDeleteTrace = jest.fn();
     mount(
-      <TestEditor {...fixtures.scatter()} onUpdate={onUpdate}>
+      <TestEditor {...fixtures.scatter()} onDeleteTrace={onDeleteTrace}>
         <TraceFold traceIndex={0}>
           <Numeric attr="opacity" />
         </TraceFold>
@@ -40,8 +39,7 @@ describe('<Fold>', () => {
       .find('.fold__delete')
       .simulate('click');
 
-    const {type, payload} = onUpdate.mock.calls[0][0];
-    expect(type).toBe(EDITOR_ACTIONS.DELETE_TRACE);
+    const payload = onDeleteTrace.mock.calls[0][0];
     expect(payload).toEqual({traceIndexes: [0]});
   });
 });
