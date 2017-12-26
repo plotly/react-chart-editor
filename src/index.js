@@ -7,6 +7,7 @@ import {
   connectTraceToPlot,
   dereference,
   localize,
+  walkObject,
 } from './lib';
 import {EDITOR_ACTIONS} from './lib/constants';
 
@@ -82,6 +83,7 @@ export {
   connectTraceToPlot,
   dereference,
   localize,
+  walkObject,
 };
 
 export default PlotlyEditor;
