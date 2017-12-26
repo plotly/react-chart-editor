@@ -33,3 +33,18 @@
         clear: both;
     }
 }
+
+@mixin scrollbar($width: 10px, $trackbg: $color-page-background, $thumb-color: $color-accent) {
+    &::-webkit-scrollbar {
+        background: white;
+        width: $width;
+    }
+    &::-webkit-scrollbar-track {
+        box-shadow: none;
+        background: $trackbg;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: $thumb-color;
+        border-radius: 10px;
+    }
+}

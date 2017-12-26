@@ -3,6 +3,8 @@ import React, {cloneElement, Component} from 'react';
 import SidebarGroup from './sidebar/SidebarGroup';
 import {bem} from '../lib';
 
+const Fragment = React.Fragment;
+
 class PanelsWithSidebar extends Component {
   constructor(props) {
     super(props);
@@ -72,7 +74,7 @@ class PanelsWithSidebar extends Component {
       : [this.props.children];
 
     return (
-      <div>
+      <Fragment>
         <div className={bem('sidebar')}>{menuOpts.map(this.renderGroup)}</div>
 
         {children.map((child, i) =>
@@ -83,7 +85,7 @@ class PanelsWithSidebar extends Component {
               this.state.panel === child.props.name,
           })
         )}
-      </div>
+      </Fragment>
     );
   }
 }

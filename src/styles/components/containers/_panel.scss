@@ -1,15 +1,11 @@
 .panel {
-  position: absolute;
-  top: 21px;
-  left: 0px;
-  bottom: 5px;
-  right: 1px;
-  margin-left: 100px;
+  flex-grow: 1;
   background-color: $color-panel-background;
-  overflow-y: scroll;
-  padding-left: $half-spacing-unit;
-  padding-right: $half-spacing-unit;
-  padding-top: $half-spacing-unit;
+  overflow-y: auto;
+  padding: $half-spacing-unit;
+  border-right: $border;
+  box-sizing: border-box;
+  @include scrollbar();
 
   &__add-button {
     font-size: 14px;
