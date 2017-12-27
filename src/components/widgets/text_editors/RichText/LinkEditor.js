@@ -91,11 +91,10 @@ class LinkEditor extends Component {
     const {onBlur, onFocus, linkURL, localize: _} = this.props;
     const placeholderText = _('Enter Link URL');
     const urlText = _('URL');
-
+    // TODO: add close button
     return (
       <div className="link-editor" style={{left: position.x, top: position.y}}>
         <span className="link-editor__label">{urlText}</span>
-
         <input
           className="link-editor__input"
           onBlur={onBlur}
