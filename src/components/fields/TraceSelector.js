@@ -61,7 +61,7 @@ class TraceSelector extends Component {
       this.traceOptions = [{label: 'Scatter', value: 'scatter'}];
     }
 
-    this.fullValue = plotlyToCustom(props.container);
+    this.fullValue = plotlyToCustom(props.fullContainer);
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -94,6 +94,7 @@ TraceSelector.contextTypes = {
 TraceSelector.propTypes = {
   getValObject: PropTypes.func,
   container: PropTypes.object.isRequired,
+  fullContainer: PropTypes.object.isRequired,
   fullValue: PropTypes.any.isRequired,
   updateContainer: PropTypes.func,
 };

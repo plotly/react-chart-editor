@@ -23,6 +23,7 @@ export default class TraceAccordion extends Component {
 
   render() {
     const data = this.context.data || [];
+    const fullData = this.context.fullData || [];
     const {canGroup, canAdd} = this.props;
     const individualPanel = data.map((d, i) => (
       <TraceFold key={i} traceIndex={i}>
@@ -33,7 +34,9 @@ export default class TraceAccordion extends Component {
 
     if (canGroup && data.length > 1) {
       const groupedTraces = data.reduce((allTraces, next, index) => {
-        const traceType = plotlyToCustom(next);
+        const traceType = plotlyToCustom(
+          fullData.filter(trace => trace.index === index)[0]
+        );
         if (allTraces[traceType]) {
           allTraces[traceType].push(index);
         } else {
@@ -82,6 +85,7 @@ export default class TraceAccordion extends Component {
 }
 
 TraceAccordion.contextTypes = {
+  fullData: PropTypes.array,
   data: PropTypes.array,
   onUpdate: PropTypes.func,
 };
