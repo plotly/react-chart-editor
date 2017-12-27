@@ -1,28 +1,35 @@
-.radio-block__option {
-  padding: 6px 12px;
-  background-color: #fff;
-  border-top: 1px solid #c8d4e3;
-  border-bottom: 1px solid #c8d4e3;
-  border-right: 1px solid #c8d4e3;
-  display: inline-block;
-  cursor: pointer;
-}
-
-.radio-block__option--active {
-  background-color: #119DFF;
-  color: #fff;
-  border: 1px solid #0D76BF;
-  margin-left: -1px;
-  cursor: default;
-}
-
-.radio-block__option:last-child {
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-.radio-block__option:first-child {
-  border-top-left-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-left: 1px solid #c8d4e3;
+.radio-block {
+  width: 100%;
+  &__option {
+    padding: 6px 12px;
+    background-color: #fff;
+    border: $border;
+    display: inline-block;
+    cursor: pointer;
+    min-width: 60px;
+    text-align: center;
+    &:not(.radio-block__option--active) {
+      &:hover {
+        background-color: $color-background-light;
+      }
+    }
+    &--active {
+      background-color: $color-accent;
+      color: #fff;
+      border: $border-accent-shade;
+      margin-left: -1px;
+      cursor: default;
+    }
+    &:last-child {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+    &:first-child {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      &:not(.radio-block__option--active) {
+        border-left: $border;
+      }
+    }
+  }
 }

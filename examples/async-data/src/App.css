@@ -2,6 +2,7 @@
 .app{
     display: flex;
     min-height: 100vh;
+    max-height: 100vh;
 }
 .app__main{
     flex-grow: 1;

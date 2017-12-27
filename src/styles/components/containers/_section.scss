@@ -1,11 +1,14 @@
-.section__heading {
-  display: flex;
-  font-size: $font-size;
-  color: $color-header-text;
-  font-weight: 400;
-  cursor: default;
-  background-color: $color-section-header-background;
-  padding: 6px 12px;
-  clear: both;
-  text-transform: capitalize;
+.section{
+  &__heading {
+    display: flex;
+    font-size: $font-size;
+    color: $color-header-text;
+    font-weight: $font-weight-semibold;
+    cursor: default;
+    background-color: $color-background-light;
+    padding: $half-spacing-unit/2 $half-spacing-unit;
+    clear: both;
+    text-transform: capitalize;
+    border-top:$border-light;
+  }
 }

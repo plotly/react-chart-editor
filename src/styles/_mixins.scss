@@ -48,3 +48,10 @@
         border-radius: 10px;
     }
 }
+@mixin font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+@mixin trans(){
+  transition: all 0.15s ease-in-out;
+}

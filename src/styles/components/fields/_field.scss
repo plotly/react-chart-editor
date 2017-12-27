@@ -1,10 +1,10 @@
 .field {
   align-items: center;
-  border-top: 1px solid #f8f8f9;
+  border-top:$border-light;
   color: #6d6d6d;
   display: flex;
   font-size: $font-size;
-  font-weight: $font-weight-light;
+  font-weight: $font-weight-normal;
   justify-content: flex-start;
   line-height: $font-size;
   min-height: 32px;
@@ -13,7 +13,7 @@
 }
 
 .field:not(:last-child) {
-  border-bottom: 1px solid #f8f8f9;
+  //border-bottom: 1px solid #f8f8f9;
 }
 
 .field__no-title {

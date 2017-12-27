@@ -7,7 +7,7 @@ class Panel extends Component {
     if (this.props.visible) {
       return <div className={bem('panel')}>{this.props.children}</div>;
     }
-    return <div />;
+    return null;
   }
 }
 

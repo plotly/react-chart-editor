@@ -29,10 +29,11 @@
 .sidebar-group__title {
   color: #506784;
   font-size: 14px;
-  font-weight: 400;
-  padding: 12px 0;
+  font-weight: $font-weight-normal;
+  padding: $half-spacing-unit 0;
   text-transform: capitalize;
   text-align: left;
+  border-bottom: $border-light;
 }
 
 .sidebar-group__title:before {
@@ -45,7 +46,7 @@
   border-bottom: 5px solid transparent;
   border-left: 5px solid #506784;
   content: '';
-  transition: all 0.15s ease-in-out;
+  @include trans;
 }
 
 .sidebar-group--is-expanded .sidebar-group__title:before {
@@ -61,19 +62,50 @@
   color: #69738a;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: $font-weight-normal;
   line-height: 14px;
   text-transform: capitalize;
   background-color: #f3f6fa;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 25%;
+  padding: $half-spacing-unit;
+  padding-left: $base-spacing-unit;
+  padding-right: 0;
   text-align: left;
+  border-bottom: $border-light;
+  position: relative;
+  overflow: hidden;
+  &::before{
+    content: '';
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 8px;
+    background-color: $color-accent;
+    transform: scaleX(0);
+    transform-origin: left center;
+    will-change: transform;
+    @include trans;
+  }
+  span{
+    display: block;
+    will-change: transform;
+    @include trans;
+  }
+  &:not(.sidebar-item--is-active){
+    &:hover{
+      background-color: darken(#f3f6fa, 2%);
+    }
+  }
 }
 
 .sidebar-item--is-active {
-  border-left: 3px solid #119dff;
+  &::before{
+    transform: none;
+  }
   color: #2a3f5f;
-  font-weight: 600;
+  font-weight: $font-weight-semibold;
   cursor: default;
+  span{
+    transform: translateX(5px);
+  }
 }

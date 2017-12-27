@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem} from '../../lib';
+import {bem} from 'lib';
 
 export default class SidebarItem extends Component {
   render() {
+    const {onClick, label, active} = this.props;
     return (
       <div
-        onClick={this.props.onClick}
-        className={bem('sidebar-item', [this.props.active ? 'is-active' : ''])}
+        onClick={onClick}
+        className={bem('sidebar-item', [active ? 'is-active' : ''])}
       >
-        {this.props.label}
+        <span>{label}</span>
       </div>
     );
   }
