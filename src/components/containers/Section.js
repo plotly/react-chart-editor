@@ -5,33 +5,26 @@ import PropTypes from 'prop-types';
 import unpackPlotProps from '../../lib/unpackPlotProps';
 import {containerConnectedContextTypes} from '../../lib/connectToContainer';
 
-function childIsVisible(child) {
-  const attrVisible = Boolean((child.props.plotProps || {}).isVisible);
-  const sectionVisible = Boolean(child.props['data-section-child-visible']);
-  return attrVisible || sectionVisible;
-}
-
 export default class Section extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.children = null;
     this.menuPanel = null;
+    this.sectionVisible = false;
 
-    this.processAndSetChildren(context);
+    this.processAndSetChildren(props, context);
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    this.processAndSetChildren(nextContext);
+    this.processAndSetChildren(nextProps, nextContext);
   }
 
-  processAndSetChildren(context) {
-    let children = this.props.children;
-    if (!Array.isArray(children)) {
-      children = [children];
-    }
+  processAndSetChildren(nextProps, nextContext) {
+    this.sectionVisible = false;
 
-    const attrChildren = [];
+    const children = React.Children.toArray(nextProps.children);
+    this.children = [];
     let menuPanel = null;
 
     for (let i = 0; i < children.length; i++) {
@@ -40,7 +33,8 @@ export default class Section extends Component {
         continue;
       }
       if (child.type === MenuPanel) {
-        // Process the first menuPanel. Ignore the rest.
+        // Process the first menuPanel. Ignore the rest. MenuPanel does
+        // not affect visibility.
         if (menuPanel) {
           continue;
         }
@@ -55,38 +49,34 @@ export default class Section extends Component {
         plotProps = child.plotProps;
       } else if (isAttr) {
         if (child.type.supplyPlotProps) {
-          plotProps = child.type.supplyPlotProps(child.props, context);
+          plotProps = child.type.supplyPlotProps(child.props, nextContext);
           if (child.type.modifyPlotProps) {
-            child.type.modifyPlotProps(child.props, context, plotProps);
+            child.type.modifyPlotProps(child.props, nextContext, plotProps);
           }
         } else {
-          plotProps = unpackPlotProps(child.props, context);
+          plotProps = unpackPlotProps(child.props, nextContext);
         }
 
         // assign plotProps as a prop of children. If they are connectedToContainer
         // it will see plotProps and skip recomputing them.
-        newProps = {plotProps, key: i};
+        newProps = {plotProps};
+        this.sectionVisible = this.sectionVisible || plotProps.isVisible;
+        this.children.push(cloneElement(child, newProps));
       } else if (child.type === Info) {
         // Info panels do not change section visibility.
-        newProps = {key: i, 'data-section-child-visible': false};
+        this.children.push(child);
       } else {
         // custom UI currently forces section visibility.
-        newProps = {key: i, 'data-section-child-visible': true};
+        this.sectionVisible = true;
+        this.children.push(child);
       }
-
-      const childProps = Object.assign(newProps, child.props);
-      attrChildren.push(cloneElement(child, childProps));
     }
 
-    this.children = attrChildren.length ? attrChildren : null;
     this.menuPanel = menuPanel;
   }
 
   render() {
-    const hasVisibleChildren =
-      this.children && this.children.some(childIsVisible);
-
-    return hasVisibleChildren ? (
+    return this.sectionVisible ? (
       <div className="section">
         <div className="section__heading">
           {this.props.name}
