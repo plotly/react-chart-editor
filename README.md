@@ -53,7 +53,8 @@ Install the module with `npm install` or `yarn install`.
        state
      * onUpdate: the handleEditorUpdate callback above
      * plotly: the plotly.js library
-     * locale: more on this later
+     * locale: if using the default locale 'en', it is not necessary to pass in
+       this prop, more on locales later
 
 See examples
 [here](https://github.com/plotly/react-plotly.js-editor/tree/master/examples).
