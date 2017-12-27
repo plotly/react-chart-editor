@@ -50,7 +50,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <PlotlyEditor
           locale="en"
           dataSources={this.state.dataSources}
@@ -60,7 +60,7 @@ class App extends Component {
           revision={this.state.editorRevision}
           plotly={plotly}
         />
-        <div className="plotlyPlot">
+        <div className="app__main">
           <Plot
             debug
             data={this.state.graphDiv.data}

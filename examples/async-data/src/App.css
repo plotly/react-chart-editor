@@ -1,1 +1,12 @@
 
+.app{
+    display: flex;
+    min-height: 100vh;
+}
+.app__main{
+    flex-grow: 1;
+    max-height: 100vh;
+    max-width: 100%;
+    width:100%;
+    overflow: auto;
+}

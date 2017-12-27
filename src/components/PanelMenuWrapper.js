@@ -74,7 +74,7 @@ class PanelsWithSidebar extends Component {
       : [this.props.children];
 
     return (
-      <Fragment>
+      <div className={bem('plotly-editor', 'wrapper')}>
         <div className={bem('sidebar')}>{menuOpts.map(this.renderGroup)}</div>
 
         {children.map((child, i) =>
@@ -85,7 +85,7 @@ class PanelsWithSidebar extends Component {
               this.state.panel === child.props.name,
           })
         )}
-      </Fragment>
+      </div>
     );
   }
 }

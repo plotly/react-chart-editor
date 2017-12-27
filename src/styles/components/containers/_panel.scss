@@ -1,5 +1,6 @@
 .panel {
   flex-grow: 1;
+  flex-shrink:0;
   background-color: $color-panel-background;
   overflow-y: auto;
   padding: $half-spacing-unit;

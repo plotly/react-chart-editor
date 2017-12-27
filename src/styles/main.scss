@@ -6,11 +6,17 @@
 .plotly-editor {
   position: relative;
   width: $layout-panel-width;
+  flex-shrink:0;
   overflow: hidden;
   display: flex;
   font-family: $ff-default;
   @import 'components/main';
   @import 'icons/main';
+
+  &__wrapper{
+    display: flex;
+    flex-grow: 1;
+  }
 }
 
 @import 'shame';
