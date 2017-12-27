@@ -10,7 +10,6 @@
   overflow: hidden;
   display: flex;
   font-family: $ff-default;
-  max-height: 100%;
   @import 'components/main';
   @import 'icons/main';
   @include font-smoothing;
