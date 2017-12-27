@@ -24,7 +24,7 @@
     "lint": "prettier --write \"src/**/*.js\"",
     "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:js": "jest  --setupTestFrameworkScriptFile=raf/polyfill",
+    "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
     "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-plotly.js-editor.css",
     "watch-test": "jest --watch"

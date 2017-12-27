@@ -46,7 +46,7 @@ describe('<TraceAccordion>', () => {
     );
 
     editor
-      .find('.fold__top__delete')
+      .find('.js-fold__delete')
       .at(0)
       .simulate('click');
 

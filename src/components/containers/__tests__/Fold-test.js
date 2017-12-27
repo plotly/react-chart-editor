@@ -14,7 +14,7 @@ describe('<Fold>', () => {
           <Numeric attr="opacity" />
         </Fold>
       </TestEditor>
-    ).find('.fold__top__delete');
+    ).find('.js-fold__delete');
     expect(withoutDelete.exists()).toBe(false);
 
     const withDelete = mount(
@@ -23,7 +23,7 @@ describe('<Fold>', () => {
           <Numeric attr="opacity" />
         </TraceFold>
       </TestEditor>
-    ).find('.fold__top__delete');
+    ).find('.js-fold__delete');
     expect(withDelete.exists()).toBe(true);
   });
 
@@ -36,7 +36,7 @@ describe('<Fold>', () => {
         </TraceFold>
       </TestEditor>
     )
-      .find('.fold__top__delete')
+      .find('.js-fold__delete')
       .simulate('click');
 
     const payload = onDeleteTrace.mock.calls[0][0];

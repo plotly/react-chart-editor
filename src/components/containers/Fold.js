@@ -33,7 +33,10 @@ export default class Fold extends Component {
     });
     const deleteButton = handleClick =>
       doDelete && (
-        <div className="fold__top__delete" onClick={handleClick}>
+        <div
+          className="fold__top__delete js-fold__delete"
+          onClick={handleClick}
+        >
           <CloseIcon />
         </div>
       );
