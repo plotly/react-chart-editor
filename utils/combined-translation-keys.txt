@@ -18,13 +18,13 @@ Box Select                                                                      
 Box Width                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:143
 Canvas                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:174
 Center                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:265
-Click to enter Colorscale title                                                                             // plotly.js: plots/plots.js:437
+Click to enter Colorscale title                                                                             // plotly.js: plots/plots.js:440
 Click to enter Component A title                                                                            // plotly.js: plots/ternary/ternary.js:386
 Click to enter Component B title                                                                            // plotly.js: plots/ternary/ternary.js:400
 Click to enter Component C title                                                                            // plotly.js: plots/ternary/ternary.js:411
 Click to enter Plot title                                                                                   // plotly.js: plot_api/plot_api.js:579
-Click to enter X axis title                                                                                 // plotly.js: plots/plots.js:435
-Click to enter Y axis title                                                                                 // plotly.js: plots/plots.js:436
+Click to enter X axis title                                                                                 // plotly.js: plots/plots.js:438
+Click to enter Y axis title                                                                                 // plotly.js: plots/plots.js:439
 Color                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:118
 Common Case: An 'All' tab might display this message because the X and Y tabs contain different settings.   // react-plotly.js-editor: /lib/constants.js:24
 Compare data on hover                                                                                       // plotly.js: components/modebar/buttons.js:167
@@ -158,5 +158,5 @@ q1:                                                                             
 q3:                                                                                                         // plotly.js: traces/box/calc.js:131
 source:                                                                                                     // plotly.js: traces/sankey/plot.js:140
 target:                                                                                                     // plotly.js: traces/sankey/plot.js:141
-trace                                                                                                       // plotly.js: plots/plots.js:439
+trace                                                                                                       // plotly.js: plots/plots.js:442
 upper fence:                                                                                                // plotly.js: traces/box/calc.js:135
