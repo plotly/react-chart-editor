@@ -61,7 +61,7 @@ describe('<AnnotationAccordion>', () => {
       </TestEditor>
     );
     editor
-      .find('.fold__delete')
+      .find('.fold__top__delete')
       .at(0)
       .simulate('click');
 
