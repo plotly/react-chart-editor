@@ -8,6 +8,8 @@
 $color-brand: $default-color-navyblue;
 $color-white: $default-color-white;
 $color-highlight-darker: $default-color-gray-blue-pale;
+$color-accent: $default-color-dodger;
+$color-accent-shade: $default-color-dodger-shade;
 
 // Theme related variables
 $color-border: $default-color-rhino-medium-2;
@@ -15,10 +17,12 @@ $color-border-dark: darken($default-color-rhino-medium-1, 5%);
 $color-border-secondary: $default-color-rhino-light-1;
 $color-secondary-border: $color-border-secondary;
 $color-button-primary: $default-color-button-default;
-$color-button-primary--hover: $default-color-button-hover;
+$color-button-primary--hover: $default-color-button-default;
 $color-button-primary--active: $default-color-button-active;
 $color-button-secondary: $default-color-rhino-light-2;
+$color-button-hover: $default-color-button-hover;
 $color-page-background: $default-color-rhino-light-3;
+
 
 // Text Colors
 $color-active-text: $default-color-rhino-core;
@@ -34,9 +38,7 @@ $color-panel-background: $default-color-rhino-light-4;
 $color-section-header-background: $default-color-white-blue;
 $color-fold-header-background: $default-color-rhino-dark;
 $color-fold-header-background--closed: $default-color-rhino-medium-1;
-$color-accent: $default-color-dodger;
-$color-accent-shade: $default-color-dodger-shade;
-$color-button-hover: $default-color-button-hover;
+
 
 /*
  * Typography
