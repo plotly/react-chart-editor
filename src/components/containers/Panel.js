@@ -8,7 +8,7 @@ class PanelHeader extends Component {
 
     return (
       <div className={bem('panel', 'header')}>
-          <div className={bem('panel', 'header__content')}>{children}</div>
+        <div className={bem('panel', 'header__content')}>{children}</div>
         {action && (
           <div className={bem('panel', 'header__actions')}>{action}</div>
         )}
@@ -22,7 +22,7 @@ class Panel extends Component {
     const {visible, children} = this.props;
 
     if (visible) {
-        return <div className={bem('panel')}>{children}</div>;
+      return <div className={bem('panel')}>{children}</div>;
     }
     return null;
   }
@@ -37,7 +37,7 @@ Panel.propTypes = {
 
 PanelHeader.propTypes = {
   children: PropTypes.node,
-  action: PropTypes.any
+  action: PropTypes.any,
 };
 
 Panel.defaultProps = {

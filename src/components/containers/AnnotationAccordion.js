@@ -40,9 +40,7 @@ export default class AnnotationAccordion extends Component {
       </button>
     );
 
-    const PanelHeader = canAdd && (
-      <Panel.Header action={AddButton} />
-    );
+    const PanelHeader = canAdd && <Panel.Header action={AddButton} />;
 
     const Content = annotations.map((ann, i) => (
       <AnnotationFold key={i} annotationIndex={i} name={ann.text}>

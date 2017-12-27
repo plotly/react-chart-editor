@@ -21,8 +21,8 @@
     "make:dist:css": "mkdirp dist && node-sass --output-style compressed src/styles/main.scss > dist/react-plotly.js-editor.css",
     "prepublishOnly": "npm run make:lib && npm run make:combined-translation-keys",
     "prepublishOnly:scss": "npm run make:lib:css && npm run make:combined-translation-keys",
-    "lint": "prettier  --write \"src/**/*.js\"",
-    "test:lint": "eslint src && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "lint": "prettier --write \"src/**/*.js\"",
+    "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:js": "jest  --setupTestFrameworkScriptFile=raf/polyfill",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
@@ -63,7 +63,7 @@
     "jest": "^21.2.1",
     "mkdirp": "^0.5.1",
     "node-sass": "^4.7.1",
-    "prettier": "1.8.2",
+    "prettier": "^1.9.2",
     "react-test-renderer": "^16.2.0",
     "uglify-js": "^3.0.26"
   },
@@ -94,6 +94,9 @@
   "jest": {
     "roots": [
       "<rootDir>/src/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^.+\\.css$": "<rootDir>/config/CSSStub.js"
+    }
   }
 }
