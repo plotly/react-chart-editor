@@ -1,15 +1,17 @@
 {
-  "name": "simple",
+  "name": "redux-example",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "event-emitter": "^0.3.5",
     "plotly.js": "^1.31.2",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-plotly.js": "^1.0.4",
     "react-plotly.js-editor": "0.2.0-alpha.1",
-    "react-scripts": "1.0.17"
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.0.17",
+    "redux": "^3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
