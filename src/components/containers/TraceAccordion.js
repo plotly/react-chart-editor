@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import {connectTraceToPlot, bem} from 'lib';
+import Panel from './Panel';
 
 const TraceFold = connectTraceToPlot(Fold);
 
@@ -31,11 +32,7 @@ export default class TraceAccordion extends Component {
       </button>
     );
 
-    const PanelHeader = canAdd && (
-      <div className={bem('panel', 'content__header', ['align-right'])}>
-        {AddButton}
-      </div>
-    );
+    const PanelHeader = canAdd && <Panel.Header action={AddButton} />;
 
     const TraceContent = data.map((d, i) => (
       <TraceFold key={i} traceIndex={i}>

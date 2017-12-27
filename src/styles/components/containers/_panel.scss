@@ -10,19 +10,23 @@
   @include scrollbar();
 
   &__content {
-    &__header {
-      margin-bottom: $half-spacing-unit;
-      display: flex;
-      &--align-right{
-        justify-content: flex-end;
-      }
+  }
+
+  &__header {
+    margin-bottom: $half-spacing-unit;
+    display: flex;
+    &__content {
+      flex-grow: 1;
+    }
+    &--align-right {
+      justify-content: flex-end;
     }
   }
 
   &__add-button {
     font-size: 14px;
-    margin-left: 10px;
-    margin-bottom: 5px;
+    //margin-left: 10px;
+    //margin-bottom: 5px;
     background-color: $color-accent;
     border: 1px solid $color-accent;
     color: #ffffff;

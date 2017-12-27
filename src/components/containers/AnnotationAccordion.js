@@ -2,6 +2,7 @@ import Fold from './Fold';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectAnnotationToLayout, bem} from 'lib';
+import Panel from 'components/containers/Panel';
 
 const AnnotationFold = connectAnnotationToLayout(Fold);
 
@@ -40,9 +41,7 @@ export default class AnnotationAccordion extends Component {
     );
 
     const PanelHeader = canAdd && (
-      <div className={bem('panel', 'content__header', ['align-right'])}>
-        {AddButton}
-      </div>
+      <Panel.Header action={AddButton} />
     );
 
     const Content = annotations.map((ann, i) => (
