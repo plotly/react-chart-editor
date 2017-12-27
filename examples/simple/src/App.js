@@ -3,7 +3,7 @@ import plotly from 'plotly.js/dist/plotly-basic';
 import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor, {dereference} from 'react-plotly.js-editor';
 import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
-import 'react-select/dist/react-select.css';
+
 
 const Plot = createPlotComponent(plotly);
 

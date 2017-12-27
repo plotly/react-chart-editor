@@ -1,57 +1,78 @@
 @mixin vendor($property, $value) {
-    -webkit-#{$property}: $value;
-    -moz-#{$property}: $value;
-    -ms-#{$property}: $value;
-    -o-#{$property}: $value;
-    #{$property}: $value;
+  -webkit-#{$property}: $value;
+  -moz-#{$property}: $value;
+  -ms-#{$property}: $value;
+  -o-#{$property}: $value;
+  #{$property}: $value;
 }
 
-@mixin z-index($value){
-    @if $value == "underground" {
-        z-index: -1;
-    } @else if $value == "floor" {
-        z-index: 1;
-    } @else if $value == "cloud" {
-        z-index: 9;
-    } @else if $value == "sky" {
-        z-index: 1001;
-    } @else if $value == 'orbit' {
-        z-index: 1003;
-    } @else {
-        @error "'#{$value}' is not a valid z-index value";
-    }
+@mixin z-index($value) {
+  @if $value == 'underground' {
+    z-index: -1;
+  } @else if $value == 'floor' {
+    z-index: 1;
+  } @else if $value == 'cloud' {
+    z-index: 9;
+  } @else if $value == 'sky' {
+    z-index: 1001;
+  } @else if $value == 'orbit' {
+    z-index: 1003;
+  } @else {
+    @error "'#{$value}' is not a valid z-index value";
+  }
 }
 
 @mixin clearfix() {
-    &:before,
-    &:after {
-        content: " ";
-        display: table;
-    }
+  &:before,
+  &:after {
+    content: ' ';
+    display: table;
+  }
 
-    &:after {
-        clear: both;
-    }
+  &:after {
+    clear: both;
+  }
 }
 
 @mixin scrollbar($width: 5px, $trackbg: $color-page-background, $thumb-color: $color-accent) {
-    &::-webkit-scrollbar {
-        background: white;
-        width: $width;
-    }
-    &::-webkit-scrollbar-track {
-        box-shadow: none;
-        background: $trackbg;
-    }
-    &::-webkit-scrollbar-thumb {
-        background-color: $thumb-color;
-        border-radius: 10px;
-    }
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    background: white;
+    width: $width;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: none;
+    background: $trackbg;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb-color;
+    border-radius: 10px;
+  }
 }
 @mixin font-smoothing {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-@mixin trans(){
+@mixin trans() {
   transition: all 0.15s ease-in-out;
+}
+
+@mixin button-primary() {
+  font-size: $default-font-size-medium;
+  background-color: $color-button-primary;
+  border: $border-accent-shade;
+  color: $color-white;
+  font-weight: $font-weight-semibold;
+  text-shadow: $text-shadow--dark-ui;
+
+  &:hover {
+    background-color: $color-button-primary--hover;
+    border-color: $color-button-primary--hover;
+    color: $color-white; // Repeating in case the button is made with an anchor tag
+  }
+  &:active {
+    background-color: $color-button-primary--active;
+    border-color: $color-button-primary--active;
+    color: $color-white; // Repeating in case the button is made with an anchor tag
+  }
 }

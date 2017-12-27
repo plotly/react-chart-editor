@@ -1,15 +1,13 @@
 import PropTypes from 'prop-types';
 import React, {cloneElement, Component} from 'react';
 import SidebarGroup from './sidebar/SidebarGroup';
-import {bem} from '../lib';
-
-const Fragment = React.Fragment;
+import {bem} from 'lib';
 
 class PanelsWithSidebar extends Component {
   constructor(props) {
     super(props);
 
-    var opts = this.computeMenuOptions(props);
+    const opts = this.computeMenuOptions(props);
 
     this.state = {
       group: opts[0].name,
@@ -38,15 +36,19 @@ class PanelsWithSidebar extends Component {
   }
 
   computeMenuOptions(props) {
-    var obj, child, group, name;
-    var children = props.children;
+    let obj, child, group, name;
+
+    let {children} = props;
+
     if (!Array.isArray(children)) {
       children = [children];
     }
-    var groupLookup = {};
-    var groupIndex;
-    var groups = [];
-    for (var i = 0; i < children.length; i++) {
+
+    const groupLookup = {};
+    let groupIndex;
+    const groups = [];
+
+    for (let i = 0; i < children.length; i++) {
       child = children[i];
       group = child.props.group;
       name = child.props.name;
@@ -67,9 +69,9 @@ class PanelsWithSidebar extends Component {
   }
 
   render() {
-    var menuOpts = this.computeMenuOptions(this.props);
+    const menuOpts = this.computeMenuOptions(this.props);
 
-    var children = Array.isArray(this.props.children)
+    const children = Array.isArray(this.props.children)
       ? this.props.children
       : [this.props.children];
 

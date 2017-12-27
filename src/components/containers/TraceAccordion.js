@@ -34,7 +34,7 @@ export default class TraceAccordion extends Component {
 
     const PanelHeader = canAdd && <Panel.Header action={AddButton} />;
 
-    const TraceContent = data.map((d, i) => (
+    const Content = data.map((d, i) => (
       <TraceFold key={i} traceIndex={i}>
         {children}
       </TraceFold>
@@ -43,7 +43,7 @@ export default class TraceAccordion extends Component {
     return (
       <div className={bem('panel', 'content')}>
         {PanelHeader}
-        {TraceContent}
+        {Content}
       </div>
     );
   }

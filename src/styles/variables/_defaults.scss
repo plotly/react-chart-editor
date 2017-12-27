@@ -86,9 +86,9 @@ $default-color-sienna: #ef553b; // CTA's on blue backgrounds
 // ---
 // Buttons
 // ---
-$default-color-button-default: #119dff;
-$default-color-button-hover: #0f89df;
-$default-color-button-active: #0d76bf;
+$default-color-button-default: $default-color-dodger;
+$default-color-button-hover: $default-color-dodger-shade;
+$default-color-button-active: darken($default-color-dodger-shade, 5%);
 
 // button default styles
 button {

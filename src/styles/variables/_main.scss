@@ -4,18 +4,21 @@
  * COLORS
  */
 
+// Base Colors
+$color-brand: $default-color-navyblue;
+$color-white: $default-color-white;
+$color-highlight-darker: $default-color-gray-blue-pale;
+
 // Theme related variables
 $color-border: $default-color-rhino-medium-2;
 $color-border-dark: darken($default-color-rhino-medium-1, 5%);
 $color-border-secondary: $default-color-rhino-light-1;
 $color-secondary-border: $color-border-secondary;
+$color-button-primary: $default-color-button-default;
+$color-button-primary--hover: $default-color-button-hover;
+$color-button-primary--active: $default-color-button-active;
 $color-button-secondary: $default-color-rhino-light-2;
 $color-page-background: $default-color-rhino-light-3;
-
-// Base Colors
-$color-brand: $default-color-navyblue;
-$color-white: $default-color-white;
-$color-highlight-darker: $default-color-gray-blue-pale;
 
 // Text Colors
 $color-active-text: $default-color-rhino-core;
