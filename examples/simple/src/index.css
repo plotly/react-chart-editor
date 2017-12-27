@@ -6,6 +6,10 @@ body {
 
 .app{
   display: flex;
+  /*
+     We are defining the max height of the app so that the editor knows how big to be
+     currently the editor will take up whatever space it can if it is not constrained in its parent
+   */
   min-height: 100vh;
   max-height: 100vh;
   width: 100%;
