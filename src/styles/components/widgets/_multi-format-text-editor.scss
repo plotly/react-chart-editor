@@ -2,17 +2,73 @@
 
 $multi-format-editor-background: #fafbfd;
 
+.multi-format-editor {
+
+  * {
+    box-sizing: border-box;
+  }
+  &__root {
+    display: flex;
+    overflow: hidden;
+    &__wrapper {
+      flex-grow: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+      flex-direction: column;
+    }
+  }
+  &__tabs {
+    display: flex;
+    width: 100%;
+    flex-grow: 0;
+    height: 30px;
+  }
+  &__content {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    &.LATEX {
+      background-color: $multi-format-editor-background;
+      .latex-editor {
+        display: flex;
+        flex-grow: 1;
+        textarea {
+          flex-grow: 1;
+          min-height: 0;
+          border: $border;
+          box-sizing: border-box;
+          color: $color-text;
+        }
+      }
+      padding: $half-spacing-unit;
+    }
+
+    .rich-text-editor__root {
+      width: 100%;
+      color: $color-text;
+      .rich-text-editor__controls {
+        display: flex;
+        justify-content: space-evenly;
+        .icon-link {
+          transform: translateY(3px);
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
 .multi-format-editor__root {
   height: 215px;
   width: 100%;
-  border: 1px solid $color-border;
+  border: $border;
   border-radius: 5px;
   box-sizing: border-box;
 }
 
 .multi-format-editor__tab {
-  display: inline-block;
-  height: 100%;
+  display: block;
   text-align: center;
   height: 30px;
   line-height: 28px;
@@ -20,8 +76,18 @@ $multi-format-editor-background: #fafbfd;
 
   &.top-tab {
     width: 50%;
+    overflow: hidden;
+    color: $color-text;
+
     &.left {
-      border-right: 1px solid $color-border;
+      border-top-left-radius: 5px;
+      border-right: $border;
+    }
+    &.right {
+      border-top-right-radius: 5px;
+    }
+    &:not(.selected) {
+      border-bottom: $border;
     }
   }
 
@@ -29,13 +95,16 @@ $multi-format-editor-background: #fafbfd;
     border-top: 1px solid $color-border;
     width: 100%;
     display: block;
+    color:$color-text;
   }
 
   &.selected {
     background: $multi-format-editor-background;
+    font-weight: $font-weight-semibold;
   }
 
   &:hover:not(.selected) {
+    cursor: pointer;
     color: $color-active-text;
     background-color: $color-button-secondary;
   }
@@ -55,17 +124,21 @@ $multi-format-editor-background: #fafbfd;
 
 .confirmation-panel__message {
   line-height: 20px;
+  &-primary{
+    font-weight: $font-weight-semibold;
+    color: $color-text;
+  }
 }
 
 .confirmation-panel__header {
-  color: #447bdc;
+  color: $color-header-text;
+  margin-top: 0;
   margin-bottom: 5px;
   font-weight: 600;
 }
 
 .confirmation-panel__message-secondary {
-  font-weight: 300 !important;
-  color: #69738a;
+  color: $color-text;
 }
 
 .confirmation-panel__cancel-button {
@@ -113,7 +186,6 @@ $multi-format-editor-background: #fafbfd;
   box-shadow: none;
 
   // add our styles
-  border-top: 1px solid $color-border;
   padding: 6px;
   resize: none;
   height: 100%;
@@ -212,12 +284,15 @@ $multi-format-editor-background: #fafbfd;
 }
 
 .link-editor {
-  background-color: #dcdddd;
-  border: 1px solid #ccc;
-  padding: 10px 5px;
+  background-color: $multi-format-editor-background;
+  border: $border;
+  padding: $half-spacing-unit;
   position: absolute;
-  width: 235px;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .link-editor__label {
@@ -226,10 +301,11 @@ $multi-format-editor-background: #fafbfd;
 }
 
 .link-editor__input {
-  border: 1px solid #e7e8e9;
+  border: $border;
+  color: $color-text;
   overflow: scroll;
   padding: 0px 10px;
-  width: 90%;
+  width: 100%;
   margin-top: 10px;
 }
 

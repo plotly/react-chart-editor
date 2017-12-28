@@ -1,78 +1,107 @@
 .fold {
-  margin-bottom: 6px;
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
   -ms-user-select: none;
+  width: 100%;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    clear: both;
+    padding: $half-spacing-unit/2 $half-spacing-unit;
+    color: $color-white;
+    cursor: pointer;
+    font-size: $font-size;
+    line-height: 11px;
+    border: $border-dark;
+    background-color: $color-fold-header-background--closed;
+    height: 15px;
+    border-radius: 5px;
+    text-shadow: $text-shadow--dark-ui;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
+      border 0.1s ease-in-out;
+
+    &:hover {
+      background-color: darken($color-fold-header-background--closed, 6%);
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      @include drop-shadow--dark-ui();
+      path {
+        fill: currentColor;
+      }
+    }
+
+    &--active {
+      color: $color-white;
+      background-color: $color-fold-header-background;
+      border: 1px solid $color-fold-header-background;
+      border-radius: 5px 5px 0 0;
+      text-shadow: $text-shadow--dark-ui--inactive;
+
+      svg {
+        @include drop-shadow--dark-ui--lighter();
+      }
+
+      &:hover {
+        background-color: darken($color-fold-header-background, 6%);
+      }
+    }
+
+    &__title {
+      margin-left: $half-spacing-unit/3;
+      padding-top: 2px;
+      font-size: $font-size-medium;
+      font-weight: $font-weight-semibold;
+      white-space: nowrap;
+      max-width: 150px;
+      letter-spacing: 0.2px;
+    }
+
+    &__arrow {
+      will-change: transform;
+      transition: transform 0.1s ease-in-out;
+      transform: rotate(-180deg);
+      font-weight: bold;
+      transform-origin: center center;
+      &--active {
+        transform: rotate(-90deg);
+      }
+    }
+
+    &__delete {
+      font-size: 18px;
+      opacity: 0.75;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__content {
+    background: #ffffff;
+    border: $border;
+    border-width: 0 1px 1px 1px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    &--noheader {
+      border-width: 1px 1px 1px 1px;
+    }
+  }
 }
 
-.fold__content {
-  background: #ffffff;
-  border: 1px solid #bec8d9;
-  border-width: 0 1px 1px 1px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.fold__content--noheader {
-  border-width: 1px 1px 1px 1px;
-}
-
-.fold__top {
-  justify-content: space-between;
-  display: flex;
-  clear: both;
-  padding: 6px 12px;
-  color: $color-white;
-  cursor: pointer;
-  font-size: $font-size;
-  line-height: $font-size;
-  border: 1px solid $color-secondary-border;
-  background-color: $color-secondary-border;
-  height: 15px;
-  border-radius: 5px;
-  text-shadow: 0px 1px 2px rgba(42, 63, 95, 0.7);
-  -moz-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
-    border 0.1s ease-in-out;
-  -o-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
-    border 0.1s ease-in-out;
-  -webkit-transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
-    border 0.1s ease-in-out;
-  transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
-    border 0.1s ease-in-out;
-}
-
-.fold__top--active {
-  color: $color-white;
-  background-color: $color-fold-header-background;
-  border: 1px solid $color-fold-header-background;
-  border-radius: 5px 5px 0 0;
+.fold + .fold {
+  margin-top: $half-spacing-unit;
 }
 
 .fold__top__arrow-title {
   display: flex;
 }
-
-.fold__top__arrow {
-  display: inline-block;
-  font-size: 18px;
-  transform: rotate(270deg);
-}
-
-.fold__top__arrow--active {
-  transform: none;
-}
-
-.fold__top__title {
-  margin-left: 12px;
-  padding-top: 2px;
-  font-size: $font-size-medium;
-  white-space: nowrap;
-  max-width: 150px;
-  letter-spacing: 0.2px;
-}
-
 .fold__delete {
   display: inline-block;
   color: $color-white;

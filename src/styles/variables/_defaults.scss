@@ -64,6 +64,7 @@ $default-color-rhino-light-1: #dfe8f3; // Border Secondary
 $default-color-rhino-light-2: #ebf0f8; // Button Secondary
 $default-color-rhino-light-3: #f3f6fa; // Page Background
 $default-color-rhino-light-4: #fafbfd; // Modal Tabbed Content Background
+$default-color-rhino-light-5: #f8f8f9; // Modal Tabbed Content Background
 
 // ---
 // Primary
@@ -85,9 +86,9 @@ $default-color-sienna: #ef553b; // CTA's on blue backgrounds
 // ---
 // Buttons
 // ---
-$default-color-button-default: #119dff;
-$default-color-button-hover: #0f89df;
-$default-color-button-active: #0d76bf;
+$default-color-button-default: $default-color-dodger;
+$default-color-button-hover: $default-color-dodger-shade;
+$default-color-button-active: darken($default-color-dodger-shade, 5%);
 
 // button default styles
 button {

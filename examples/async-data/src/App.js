@@ -1,6 +1,5 @@
 import './App.css';
 import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
-import 'react-select/dist/react-select.css';
 import PlotlyEditor, {dereference} from 'react-plotly.js-editor';
 import React, {Component} from 'react';
 import createPlotComponent from 'react-plotly.js/factory';
@@ -143,7 +142,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="app">
         <PlotlyEditor
           locale="en"
           dataSources={this.state.dataSources}
@@ -154,14 +153,16 @@ class App extends Component {
           revision={this.state.editorRevision}
           plotly={plotly}
         />
-        <Plot
-          debug
-          data={this.state.graphDiv.data}
-          layout={this.state.graphDiv.layout}
-          onUpdate={this.handlePlotUpdate.bind(this)}
-          onInitialized={this.handlePlotUpdate.bind(this)}
-          revision={this.state.plotRevision}
-        />
+        <div className="app__main">
+            <Plot
+                debug
+                data={this.state.graphDiv.data}
+                layout={this.state.graphDiv.layout}
+                onUpdate={this.handlePlotUpdate.bind(this)}
+                onInitialized={this.handlePlotUpdate.bind(this)}
+                revision={this.state.plotRevision}
+            />
+        </div>
       </div>
     );
   }

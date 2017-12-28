@@ -13,3 +13,41 @@
 .dropdown--dark .Select-option.is-focused {
   background-color: $color-secondary-border;
 }
+.dropdown-container {
+  width: 100%;
+}
+.Select {
+  &:not(.is-open){
+    .Select-control {
+      &:hover {
+        border-color: $color-border-dark;
+        .Select-arrow{
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &-control {
+    border: $border;
+    box-shadow: none !important;
+  }
+  &-option {
+    color: $color-text;
+  }
+  &-menu-outer {
+    border: $border;
+  }
+}
+.Select.is-focused:not(.is-open) > .Select-control{
+  border-color: $color-accent;
+}
+.Select.has-value.Select--single > .Select-control .Select-value .Select-value-label, .Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label{
+  color: $color-text;
+}
+.Select-arrow{
+  border-color: $color-text transparent transparent;
+  opacity: 0.5;
+}
+.Select-placeholder{
+  color: $color-text-placeholder;
+}

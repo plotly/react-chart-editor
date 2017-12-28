@@ -52,7 +52,7 @@ class RadioBlocks extends Component {
   render() {
     const optionList = this.props.options.map(this.renderOption);
 
-    const groupClass = classnames('radio-block__group', {
+    const groupClass = classnames('radio-block', 'radio-block__group', {
       'radio-block__group--center': this.props.alignment === 'center',
     });
 

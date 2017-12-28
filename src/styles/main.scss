@@ -5,16 +5,18 @@
 
 .plotly-editor {
   position: relative;
-  border-radius: 5px;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  border: 1px solid #aaa;
-  display: inline-block;
-  width: 425px;
-  min-height: 600px;
+  width: $layout-panel-width;
+  flex-shrink:0;
   overflow: hidden;
-
+  display: flex;
+  font-family: $ff-default;
   @import 'components/main';
   @import 'icons/main';
+  @include font-smoothing;
+  &__wrapper{
+    display: flex;
+    flex-grow: 1;
+  }
 }
 
 @import 'shame';

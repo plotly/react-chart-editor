@@ -1,5 +1,49 @@
 @import 'defaults';
 
+/*
+ * COLORS
+ */
+
+// Base Colors
+$color-brand: $default-color-navyblue;
+$color-white: $default-color-white;
+$color-highlight-darker: $default-color-gray-blue-pale;
+$color-accent: $default-color-dodger;
+$color-accent-shade: $default-color-dodger-shade;
+
+// Theme related variables
+$color-border: $default-color-rhino-medium-2;
+$color-border-dark: darken($default-color-rhino-medium-1, 5%);
+$color-border-secondary: $default-color-rhino-light-1;
+$color-secondary-border: $color-border-secondary;
+$color-button-primary: $default-color-button-default;
+$color-button-primary--hover: $default-color-button-hover;
+$color-button-primary--active: $default-color-button-active;
+$color-button-secondary: $default-color-rhino-light-2;
+$color-button-hover: $default-color-button-hover;
+$color-page-background: $default-color-rhino-light-3;
+
+
+// Text Colors
+$color-active-text: $default-color-rhino-core;
+$color-text: $default-color-rhino-dark;
+$color-secondary-text: $default-color-rhino-medium-1;
+$color-text-placeholder: $default-color-rhino-medium-1;
+$color-header-text: $default-color-rhino-core;
+$color-link-light: $default-color-blue-pale;
+
+// Background Colors
+$color-background-color-inverse: $default-color-rhino-dark;
+$color-background-light: $default-color-rhino-light-3;
+$color-panel-background: $default-color-rhino-light-4;
+$color-section-header-background: $default-color-white-blue;
+$color-fold-header-background: $default-color-rhino-dark;
+$color-fold-header-background--closed: $default-color-rhino-medium-1;
+
+
+/*
+ * Typography
+ */
 
 $font-weight-light: $default-font-weight-light;
 $font-weight-normal: $default-font-weight-normal;
@@ -12,6 +56,7 @@ $h5-size: $default-h5-size;
 /*
  * SPACING
  */
+
 $base-spacing-unit: $default-base-spacing-unit;
 $half-spacing-unit: $default-half-spacing-unit;
 $quarter-spacing-unit: $default-quarter-spacing-unit;
@@ -21,38 +66,37 @@ $eighth-spacing-unit: $default-eighth-spacing-unit;
 /*
  * BORDERS
  */
+
+$border: 1px solid $color-border;
+$border-dark: 1px solid $color-border-dark;
+$border-secondary: 1px solid $color-border-secondary;
+$border-light: 1px solid $default-color-rhino-light-2;
+$border-accent: 1px solid $color-accent;
+$border-accent-shade: 1px solid $color-accent-shade;
 $border-radius: $default-border-radius;
 $border-radius-5: $default-border-radius-5;
 
 /*
- * COLORS
+ * Layout
  */
+$layout-panel-width: 425px;
+$layout-sidebar-width: 100px;
 
-// base
-$color-brand: $default-color-navyblue;
-$color-white: $default-color-white;
-$color-highlight-darker: $default-color-gray-blue-pale;
+/*
+ * Typography
+ */
+$ff-default: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
-// text
-$color-active-text: $default-color-rhino-core;
-$color-text: $default-color-rhino-dark;
-$color-secondary-text: $default-color-rhino-medium-1;
-$color-header-text: $default-color-rhino-core;
-$color-link-light: $default-color-blue-pale;
+/*
+ * Effects
+ */
+$base-box-shadow: 0px 2px 9px rgba(80, 103, 132, 0.2);
+$text-shadow--dark-ui: 0 1px 2px rgba(42, 63, 95, 0.7);
+$text-shadow--dark-ui--inactive: 0 1px 1px rgba(42, 63, 95, 0.4);
 
-// backgrounds
-$color-background-color-inverse: $default-color-rhino-dark;
-$color-panel-background: $default-color-white;
-$color-section-header-background: $default-color-white-blue;
-$color-fold-header-background: $default-color-rhino-dark;
-$color-accent: $default-color-dodger;
-$color-accent-shade: $default-color-dodger-shade;
-$color-button-hover: $default-color-button-hover;
-
-// themes
-$color-border: $default-color-rhino-medium-2;
-$color-secondary-border: $default-color-rhino-medium-1;
-
-$color-border-secondary: $default-color-rhino-light-1;
-$color-button-secondary: $default-color-rhino-light-2;
-$color-page-background: $default-color-rhino-light-3;
+@mixin drop-shadow--dark-ui {
+ filter: drop-shadow($text-shadow--dark-ui);
+}
+@mixin drop-shadow--dark-ui--lighter {
+ filter: drop-shadow($text-shadow--dark-ui--inactive);
+}

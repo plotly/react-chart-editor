@@ -250,27 +250,29 @@ class MultiFormatTextEditor extends Component {
       );
 
     return (
-      <div>
-        <div
-          className={richTextClassNames}
-          onClick={() => this.onModeChange('RICH_TEXT')}
-        >
-          {ModeTabsText[0]}
+      <div className="multi-format-editor__root__wrapper">
+        <div className="multi-format-editor__tabs">
+          <div
+            className={richTextClassNames}
+            onClick={() => this.onModeChange('RICH_TEXT')}
+          >
+            {ModeTabsText[0]}
+          </div>
+          <div
+            className={latexClassNames}
+            onClick={() => this.onModeChange('LATEX')}
+          >
+            {ModeTabsText[1]}
+          </div>
         </div>
-        <div
-          className={latexClassNames}
-          onClick={() => this.onModeChange('LATEX')}
-        >
-          {ModeTabsText[1]}
+        <div className={`multi-format-editor__content ${currentTab}`}>
+          <Editor
+            className="editor-content"
+            onChange={onChange}
+            placeholder={placeholder}
+            value={value}
+          />
         </div>
-
-        <Editor
-          className="editor-content"
-          onChange={onChange}
-          placeholder={placeholder}
-          value={value}
-        />
-
         {showBottomTab ? BottomTab : null}
       </div>
     );
@@ -286,7 +288,11 @@ class MultiFormatTextEditor extends Component {
       this.renderConfirmationPanel(nextTab !== null) ||
       this.renderEditor(nextTab === null);
 
-    return <div className="multi-format-editor__root">{content}</div>;
+    return (
+      <div className="multi-format-editor__root multi-format-editor">
+        {content}
+      </div>
+    );
   }
 }
 
