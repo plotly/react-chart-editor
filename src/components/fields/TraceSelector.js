@@ -1,7 +1,7 @@
 import {UnconnectedDropdown} from './Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectToContainer, customToPlotly, plotlyToCustom} from '../../lib';
+import {connectToContainer, customTraceToPlotlyTrace, plotlyTraceToCustomTrace} from '../../lib';
 
 function computeTraceOptionsFromSchema(schema) {
   const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
@@ -61,7 +61,7 @@ class TraceSelector extends Component {
       this.traceOptions = [{label: 'Scatter', value: 'scatter'}];
     }
 
-    this.fullValue = plotlyToCustom(props.fullContainer);
+    this.fullValue = plotlyTraceToCustomTrace(props.fullContainer);
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -69,7 +69,7 @@ class TraceSelector extends Component {
   }
 
   updatePlot(value) {
-    const update = customToPlotly(value);
+    const update = customTraceToPlotlyTrace(value);
 
     if (this.props.updateContainer) {
       this.props.updateContainer(update);

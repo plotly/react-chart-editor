@@ -45,6 +45,24 @@ describe('TraceSelector', () => {
     expect(innerDropdown.prop('value')).toEqual('line');
   });
 
+  it('interprets scatter + mode=lines+markers as type=line', () => {
+    const editorProps = {
+      ...fixtures.scatter({data: [{mode: 'lines+markers'}]}),
+      onUpdate: jest.fn(),
+    };
+    const wrapper = mount(
+      <TestEditor {...editorProps} plotly={plotly}>
+        <TraceSection traceIndex={0}>
+          <TraceSelector attr="type" />
+        </TraceSection>
+      </TestEditor>
+    ).find(TraceSelector);
+
+    const innerDropdown = wrapper.find(Dropdown);
+
+    expect(innerDropdown.prop('value')).toEqual('line');
+  });
+
   it('updates type=scatter mode=lines when type=line', () => {
     const onUpdateTraces = jest.fn();
     const editorProps = {

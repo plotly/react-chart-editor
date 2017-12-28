@@ -1,4 +1,4 @@
-export function plotlyToCustom(trace) {
+export function plotlyTraceToCustomTrace(trace) {
   if (
     trace.type === 'scatter' &&
     ['tozeroy', 'tozerox', 'tonexty', 'tonextx', 'toself', 'tonext'].includes(
@@ -15,7 +15,7 @@ export function plotlyToCustom(trace) {
   return trace.type;
 }
 
-export function customToPlotly(customTraceType) {
+export function customTraceToPlotlyTrace(customTraceType) {
   if (customTraceType === 'line') {
     return {type: 'scatter', mode: 'lines', fill: 'none'};
   }
