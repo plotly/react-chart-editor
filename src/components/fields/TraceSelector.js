@@ -1,7 +1,11 @@
 import {UnconnectedDropdown} from './Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectToContainer, customTraceToPlotlyTrace, plotlyTraceToCustomTrace} from '../../lib';
+import {
+  connectToContainer,
+  customTraceToPlotlyTrace,
+  plotlyTraceToCustomTrace,
+} from '../../lib';
 
 function computeTraceOptionsFromSchema(schema) {
   const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);

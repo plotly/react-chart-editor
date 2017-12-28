@@ -10,7 +10,10 @@ import localize, {localizeString} from './localize';
 import tinyColor from 'tinycolor2';
 import unpackPlotProps from './unpackPlotProps';
 import walkObject, {isPlainObject} from './walkObject';
-import {customTraceToPlotlyTrace, plotlyTraceToCustomTrace} from './customTraceType';
+import {
+  customTraceToPlotlyTrace,
+  plotlyTraceToCustomTrace,
+} from './customTraceType';
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
