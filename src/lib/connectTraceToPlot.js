@@ -19,11 +19,14 @@ export default function connectTraceToPlot(WrappedComponent) {
     }
 
     setLocals(props, context) {
-      const {traceIndex} = props;
+      const {traceIndexes} = props;
       const {data, fullData, plotly} = context;
 
-      const trace = data[traceIndex] || {};
-      const fullTraceIndex = findFullTraceIndex(fullData, traceIndex);
+      const trace = traceIndexes.length === 1 ? data[traceIndexes[0]] : {};
+      const fullTraceIndex =
+        traceIndexes.length === 1
+          ? findFullTraceIndex(fullData, traceIndexes[0])
+          : findFullTraceIndex(fullData, 0);
       const fullTrace = fullData[fullTraceIndex] || {};
 
       let getValObject;
@@ -55,7 +58,7 @@ export default function connectTraceToPlot(WrappedComponent) {
           type: EDITOR_ACTIONS.UPDATE_TRACES,
           payload: {
             update,
-            traceIndexes: [this.props.traceIndex],
+            traceIndexes: this.props.traceIndexes,
           },
         });
       }
@@ -65,7 +68,7 @@ export default function connectTraceToPlot(WrappedComponent) {
       if (this.context.onUpdate) {
         this.context.onUpdate({
           type: EDITOR_ACTIONS.DELETE_TRACE,
-          payload: {traceIndexes: [this.props.traceIndex]},
+          payload: {traceIndexes: this.props.traceIndexes},
         });
       }
     }
@@ -80,7 +83,7 @@ export default function connectTraceToPlot(WrappedComponent) {
   )}`;
 
   TraceConnectedComponent.propTypes = {
-    traceIndex: PropTypes.number.isRequired,
+    traceIndexes: PropTypes.array,
   };
 
   TraceConnectedComponent.contextTypes = {

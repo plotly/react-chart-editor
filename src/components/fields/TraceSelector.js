@@ -93,7 +93,6 @@ TraceSelector.contextTypes = {
 
 TraceSelector.propTypes = {
   getValObject: PropTypes.func,
-  container: PropTypes.object.isRequired,
   fullContainer: PropTypes.object.isRequired,
   fullValue: PropTypes.any.isRequired,
   updateContainer: PropTypes.func,

@@ -26,7 +26,7 @@ export default class TraceAccordion extends Component {
     const fullData = this.context.fullData || [];
     const {canGroup, canAdd} = this.props;
     const individualPanel = data.map((d, i) => (
-      <TraceFold key={i} traceIndex={i}>
+      <TraceFold key={i} traceIndexes={[i]}>
         {this.props.children}
       </TraceFold>
     ));
@@ -50,7 +50,7 @@ export default class TraceAccordion extends Component {
           return (
             <TraceFold
               key={index}
-              traceIndex={groupedTraces[traceType]}
+              traceIndexes={groupedTraces[traceType]}
               name={traceType}
             >
               {this.props.children}
