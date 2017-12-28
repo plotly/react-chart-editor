@@ -3,6 +3,7 @@
 $multi-format-editor-background: #fafbfd;
 
 .multi-format-editor {
+
   * {
     box-sizing: border-box;
   }
@@ -185,7 +186,6 @@ $multi-format-editor-background: #fafbfd;
   box-shadow: none;
 
   // add our styles
-  //border-top: 1px solid $color-border;
   padding: 6px;
   resize: none;
   height: 100%;
@@ -288,11 +288,6 @@ $multi-format-editor-background: #fafbfd;
   border: $border;
   padding: $half-spacing-unit;
   position: absolute;
-  //width: 268px;
-  //height: 115px;
-  //left: auto !important;
-  //top: 195px !important;
-  //transform: translateX(-1px);
   z-index: 1;
   display: flex;
   align-items: center;

@@ -36,7 +36,6 @@
       }
     }
 
-
     &--active {
       color: $color-white;
       background-color: $color-fold-header-background;
@@ -53,7 +52,6 @@
       }
     }
 
-
     &__title {
       margin-left: $half-spacing-unit/3;
       padding-top: 2px;
@@ -65,21 +63,18 @@
     }
 
     &__arrow {
-      transform: translateY(-1px);
-      svg {
-        will-change: transform;
-        transition: transform 0.1s ease-in-out;
-        transform: rotate(-180deg);
-      }
+      will-change: transform;
+      transition: transform 0.1s ease-in-out;
+      transform: rotate(-180deg);
+      font-weight: bold;
+      transform-origin: center center;
       &--active {
-        svg {
-          transform: rotate(-90deg);
-        }
+        transform: rotate(-90deg);
       }
     }
 
     &__delete {
-      transform: translateY(-1px);
+      font-size: 18px;
       opacity: 0.75;
       &:hover {
         opacity: 1;

@@ -2,7 +2,7 @@ import Fold from './Fold';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectAnnotationToLayout, bem} from 'lib';
-import Panel from 'components/containers/Panel';
+import {PanelHeader} from './Panel';
 
 const AnnotationFold = connectAnnotationToLayout(Fold);
 
@@ -34,23 +34,23 @@ export default class AnnotationAccordion extends Component {
 
     const {canAdd, children} = this.props;
 
-    const AddButton = canAdd && (
+    const addButton = canAdd && (
       <button className="panel__add-button" onClick={this.addAnnotation}>
         + Annotation
       </button>
     );
 
-    const PanelHeader = canAdd && <Panel.Header action={AddButton} />;
+    const panelHeader = canAdd && <PanelHeader action={addButton} />;
 
-    const Content = annotations.map((ann, i) => (
+    const content = annotations.map((ann, i) => (
       <AnnotationFold key={i} annotationIndex={i} name={ann.text}>
         {children}
       </AnnotationFold>
     ));
     return (
       <div className={bem('panel', 'content')}>
-        {PanelHeader}
-        {Content}
+        {panelHeader}
+        {content}
       </div>
     );
   }

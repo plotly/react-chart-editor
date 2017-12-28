@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import classnames from 'classnames';
-import CloseIcon from 'mdi-react/CloseIcon';
-import ChevronDownIcon from 'mdi-react/ChevronDownIcon';
 
 export default class Fold extends Component {
   constructor() {
@@ -28,43 +26,39 @@ export default class Fold extends Component {
     const headerClass = classnames('fold__top', {
       'fold__top--active': !folded,
     });
-    const arrowClass = classnames('fold__top__arrow', {
+
+    const arrowClass = classnames('icon-angle-down', 'fold__top__arrow', {
       'fold__top__arrow--active': !folded,
     });
+
+    const arrowIcon = <i className={arrowClass} />;
+
     const deleteButton = handleClick =>
       doDelete && (
-        <div
-          className="fold__top__delete js-fold__delete"
+        <i
+          className="icon-cancel fold__top__delete js-fold__delete"
           onClick={handleClick}
-        >
-          <CloseIcon />
-        </div>
+        />
       );
 
-    const ArrowIcon = (
-      <div className={arrowClass}>
-        <ChevronDownIcon />
-      </div>
-    );
-
-    const FoldHeader = !hideHeader && (
+    const foldHeader = !hideHeader && (
       <div className={headerClass} onClick={this.toggleFold}>
         <div className="fold__top__arrow-title">
-          {ArrowIcon}
+          {arrowIcon}
           <div className="fold__top__title">{name}</div>
         </div>
         {deleteButton(deleteContainer)}
       </div>
     );
 
-    const FoldContent = !folded && (
+    const foldContent = !folded && (
       <div className={contentClass}>{children}</div>
     );
 
     return (
       <div className="fold">
-        {FoldHeader}
-        {FoldContent}
+        {foldHeader}
+        {foldContent}
       </div>
     );
   }
