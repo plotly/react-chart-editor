@@ -24,7 +24,7 @@ class App extends Component {
     // overwritten with a full DOM node that contains data, layout, _fullData,
     // _fullLayout etc in handlePlotUpdate()
     const graphDiv = {
-      data: [{type: 'scatter', xsrc: 'col1', ysrc: 'col2'}],
+      data: [{type: 'scatter', xsrc: 'col1', ysrc: 'col2', mode: 'markers'}],
       layout: {title: 'Room readings'},
     };
 
