@@ -3,10 +3,9 @@
   border-radius: 2px;
   text-transform: none;
   text-align: left;
-  border: 1px solid $color-border;
-
+  border: $border;
   align-content: center;
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: $base-box-shadow;
   left: 0;
   right: 0;
 
