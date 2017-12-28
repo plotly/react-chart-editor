@@ -2,17 +2,18 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import MenuPanel from '../containers/MenuPanel';
 import classnames from 'classnames';
-import {bem, localize} from '../../lib';
-import {getMultiValueText} from '../../lib/constants';
+import {bem, localize} from 'lib';
+import {getMultiValueText} from 'lib/constants';
 
 class Field extends Component {
   renderPostfix() {
-    if (!this.props.units) {
+    const {units} = this.props;
+    if (!units) {
       return null;
     }
     return (
       <div className={bem('field', 'units')}>
-        <div className={bem('field', 'units-text')}>{this.props.units}</div>
+        <div className={bem('field', 'units-text')}>{units}</div>
       </div>
     );
   }
