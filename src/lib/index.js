@@ -10,6 +10,7 @@ import localize, {localizeString} from './localize';
 import tinyColor from 'tinycolor2';
 import unpackPlotProps from './unpackPlotProps';
 import walkObject, {isPlainObject} from './walkObject';
+import {customToPlotly, plotlyToCustom} from './customTraceType';
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -33,14 +34,16 @@ export {
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
+  customToPlotly,
   dereference,
+  findFullTraceIndex,
   getDisplayName,
   getLayoutContext,
-  findFullTraceIndex,
   icon,
   isPlainObject,
   localize,
   localizeString,
+  plotlyToCustom,
   unpackPlotProps,
   walkObject,
 };

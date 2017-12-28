@@ -93,7 +93,7 @@ class PlotlyEditor extends Component {
         if (this.props.onAddTrace) {
           this.props.onAddTrace(payload);
         }
-        graphDiv.data.push({x: [], y: []});
+        graphDiv.data.push({x: [], y: [], type: 'scatter', mode: 'markers'});
         if (this.props.onUpdate) {
           this.props.onUpdate();
         }
