@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem} from '../../lib';
-
+import {bem} from 'lib';
+import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
 import SidebarItem from './SidebarItem';
 
 export default class SidebarGroup extends Component {
@@ -41,19 +41,25 @@ export default class SidebarGroup extends Component {
   }
 
   render() {
+    const {group, panels, selectedGroup} = this.props;
+    const {expanded} = this.state;
     return (
       <div
         className={bem('sidebar-group', [
-          this.state.expanded ? 'is-expanded' : '',
+          expanded ? 'is-expanded' : '',
+          selectedGroup === group ? 'is-active' : '',
         ])}
       >
         <div
           onClick={this.toggleExpanded}
           className={bem('sidebar-group', 'title')}
         >
-          {this.props.group}
+          <div className={bem('sidebar-group', 'title__icon')}>
+            <ChevronRightIcon />
+          </div>
+          <div className={bem('sidebar-group', 'title__label')}>{group}</div>
         </div>
-        {this.state.expanded && this.props.panels.map(this.renderSubItem)}
+        {expanded && panels.map(this.renderSubItem)}
       </div>
     );
   }
