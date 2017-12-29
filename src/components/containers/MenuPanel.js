@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import ModalBox from './ModalBox';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+import classnames from 'classnames';
+import {QuestionIcon, CogIcon} from 'plotly-icons';
 
 export default class MenuPanel extends Component {
   constructor() {
@@ -11,20 +12,15 @@ export default class MenuPanel extends Component {
     this.togglePanel = this.togglePanel.bind(this);
   }
 
-  menupanelClasses() {
-    if (this.props.iconClass) {
+  getIcon() {
+    if (this.props.question) {
       return {
-        iconClass: `menupanel__icon ${this.props.iconClass}`,
-        spanClass: 'menupanel__icon-span',
-      };
-    } else if (this.props.question) {
-      return {
-        iconClass: 'menupanel__icon icon-question-circle',
+        iconType: <QuestionIcon className="menupanel__icon" />,
         spanClass: `menupanel__icon-span menupanel__icon-span--question`,
       };
     }
     return {
-      iconClass: 'menupanel__icon icon-cog',
+      iconType: <CogIcon className="menupanel__icon" />,
       spanClass: 'menupanel__icon-span menupanel__icon-span--cog',
     };
   }
@@ -39,13 +35,13 @@ export default class MenuPanel extends Component {
       'menupanel--ownline': this.props.ownline,
     });
 
-    const {iconClass, spanClass} = this.menupanelClasses();
+    const {iconType, spanClass} = this.getIcon();
 
     return (
       <div className={containerClass}>
         <span className={spanClass}>
           <span>{this.props.label}</span>
-          <i className={iconClass} onClick={this.togglePanel} />
+          <span onClick={this.togglePanel}>{iconType}</span>
         </span>
         {isOpen ? (
           <ModalBox onClose={this.togglePanel}>{this.props.children}</ModalBox>

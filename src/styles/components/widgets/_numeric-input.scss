@@ -40,8 +40,20 @@
   background-color: #f8f8f9;
   border: 1px solid #bec8d9;
   border-radius: 1px;
-  width: $font-size;
-  height: $font-size;
   line-height: 12px;
   text-align: center;
+}
+
+.numeric-top-caret-modifier {
+  // to prevent user agent override
+  width: 13px !important;
+  height: 13px !important;
+  fill: $color-text !important;
+}
+
+.numeric-bottom-caret-modifier {
+  // to prevent user agent override
+  width: 13px !important;
+  height: 13px !important;
+  fill: $color-text !important;
 }

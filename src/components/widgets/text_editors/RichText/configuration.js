@@ -1,5 +1,6 @@
 import React from 'react';
 import {INLINE_STYLE} from 'draft-js-utils';
+import {LinkIcon} from 'plotly-icons';
 
 export const SUPERSCRIPT = 'SUPERSCRIPT';
 export const SUBSCRIPT = 'SUBSCRIPT';
@@ -79,7 +80,7 @@ export const INLINE_STYLES = [
   {
     label: (
       <span>
-        <i className="icon-link" />
+        <LinkIcon className="icon-link" />
       </span>
     ),
     value: LINK,

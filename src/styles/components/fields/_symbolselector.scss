@@ -3,7 +3,7 @@
   border-radius: 4px;
   width: 80px;
   cursor: pointer;
-  padding: $quarter-spacing-unit 10px;
+  padding: 6px 6px 3px 6px;
   @include clearfix();
 }
 
@@ -17,13 +17,17 @@
 
 .symbol-selector__toggle__caret {
   float: right;
-  color: $color-secondary-text;
+  fill: $color-secondary-text;
+  padding-top: 3px;
+  // prevent user agent override
+  width: 13px !important;
+  height: 13px !important;
 }
 
 .symbol-selector__menu {
   max-width: 225px;
   position: absolute;
-  @include z-index("orbit");
+  @include z-index('orbit');
   border: 1px solid $color-border;
   padding: $font-size;
   box-shadow: 2px 2px $font-size $color-border-secondary;

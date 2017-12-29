@@ -2,6 +2,7 @@ import EditableText from './EditableText';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import isNumeric from 'fast-isnumeric';
+import {CarretDownIcon, CarretUpIcon} from 'plotly-icons';
 
 export const UP_ARROW = 38;
 export const DOWN_ARROW = 40;
@@ -102,13 +103,13 @@ export default class NumericInput extends Component {
           className="numeric-input__caret js-numeric-increase"
           onClick={this.incrementValue.bind(this, 'increase')}
         >
-          <i className="icon-caret-up numeric-top-caret-modifier" />
+          <CarretUpIcon className="numeric-top-caret-modifier" />
         </div>
         <div
           className="numeric-input__caret js-numeric-decrease"
           onClick={this.incrementValue.bind(this, 'decrease')}
         >
-          <i className="icon-caret-down numeric-bottom-caret-modifier" />
+          <CarretDownIcon className="numeric-bottom-caret-modifier" />
         </div>
       </div>
     );
