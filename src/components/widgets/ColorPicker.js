@@ -49,7 +49,7 @@ const CustomColorPicker = localize(
     return (
       <div>
         <div>
-          <p className="colorpicker__title">{_('Custom Colors')}</p>
+          <p className="colorpicker__title">{_('Custom Color')}</p>
           <div className="colorpicker__saturation">
             <Saturation {...props} />
           </div>

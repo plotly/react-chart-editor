@@ -1,0 +1,30 @@
+$default-font-weight-light: 400;
+$default-font-weight-normal: 400;
+$default-font-weight-semibold: 600;
+$default-font-weight-bold: 700;
+$default-font-size: 13px;
+$default-font-size-small: 12px;
+$default-font-size-medium: 14px;
+$default-h5-size: 16px;
+
+$font-weight-light: 400;
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-size: 13px;
+$font-size-small: 12px;
+$font-size-medium: 14px;
+$h5-size: 16px;
+
+$font: (
+  size: (body: 13px, small: 11px, medium:14px, large:16px, h5: 16px),
+  weight:
+    (
+      light: $font-weight-light,
+      normal: $font-weight-normal,
+      semibold: $font-weight-semibold,
+      bold: $font-weight-bold
+    ),
+  leading: (body: 1.6, head: 1.2),
+  family: (body: ('Open Sans', --apple-default, sans-serif))
+);

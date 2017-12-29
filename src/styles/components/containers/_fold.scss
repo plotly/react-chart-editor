@@ -11,7 +11,7 @@
     display: flex;
     justify-content: space-between;
     clear: both;
-    padding: $half-spacing-unit/2 $half-spacing-unit;
+    padding: $quarter-spacing-unit $half-spacing-unit;
     color: $color-white;
     cursor: pointer;
     font-size: $font-size;
@@ -25,7 +25,7 @@
       border 0.1s ease-in-out;
 
     &:hover {
-      background-color: darken($color-fold-header-background--closed, 6%);
+      background-color: $color-fold-header-background--closed; // darken 6%
     }
 
     svg {
@@ -49,7 +49,8 @@
       }
 
       &:hover {
-        background-color: darken($color-fold-header-background, 6%);
+        background-color: $color-fold-header-background; // darken 6%
+        background-color: $color-fold-header-background; // darken 6%
       }
     }
 

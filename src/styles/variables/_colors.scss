@@ -1,0 +1,214 @@
+$color-black-dark: #000;
+$color-black-paleish: #333;
+$color-black-pale: #666;
+$color-black: #111;
+$color-navyblue: #284576;
+$color-blue: #119dff;
+$color-blue-dark: $color-blue; // darken
+$color-blue-pale: #45a9ff;
+$color-blue-paleish: #2391fe;
+$color-cyan-pale: #9bd1ff;
+$color-gold: #f7bd0c;
+$color-gray-blue: #69738a;
+$color-gray-blue-pale: #bec8d9;
+$color-gray-dark: #888;
+$color-gray-light: #ddd;
+$color-gray: #ccc;
+
+$color-green-cyan: #53cf9d;
+$color-green-pale: #dff0d8;
+$color-green: #3c763d;
+$color-red-pale: #f2dede;
+$color-red: #a94442;
+$color-white-blue: #f4faff;
+$color-white-dark: #eee;
+$color-white-darkish: #f8f8f8;
+$color-white: #ffffff;
+
+// --
+// Text and Backgrounds
+// --
+$color-rhino-core: #2a3f5f; // Active state text, emphasized text
+$color-rhino-dark: #506784; // Default text color
+$color-rhino-medium-1: #a2b1c6;
+$color-rhino-medium-2: #c8d4e3; // Border Default
+$color-rhino-light-1: #dfe8f3; // Border Secondary
+$color-rhino-light-2: #ebf0f8; // Button Secondary
+$color-rhino-light-3: #f3f6fa; // Page Background
+$color-rhino-light-4: #fafbfd; // Modal Tabbed Content Background
+$color-rhino-light-5: #f8f8f9; // Modal Tabbed Content Background
+
+// --
+// Primary
+// $
+$color-dodger: #119dff; // Accent
+$color-dodger-shade: #0d76bf; // Link Hover
+$color-dodger-shade-mid: #0f89df; // Primary button hover
+
+// --
+// Accent
+// --
+$color-aqua: #09ffff;
+$color-aqua-shade: #19d3f3; // Body Text
+$color-lavender: #e763fa;
+$color-lavender-shade: #ab63fa;
+$color-lavender-shade-mid: #934bde;
+$color-lavender-shade-dark: #7b35c3;
+$color-cornflower: #636efa;
+$color-emerald: #00cc96; // CTA's on blue backgrounds
+$color-sienna: #ef553b; // CTA's on blue backgrounds
+
+// Color Map
+$colors: (
+  black-dark: $color-black-dark,
+  black-paleish: $color-black-paleish,
+  black-pale: $color-black-pale,
+  black: $color-black,
+  navyblue: $color-navyblue,
+  blue: $color-blue,
+  blue-pale: $color-blue-pale,
+  blue-paleish: $color-blue-paleish,
+  cyan-pale: $color-cyan-pale,
+  gold: $color-gold,
+  gray-blue: $color-gray-blue,
+  gray-blue-pale: $color-gray-blue-pale,
+  gray-dark: $color-gray-dark,
+  gray-light: $color-gray-light,
+  gray: $color-gray,
+  green-cyan: $color-green-cyan,
+  green-pale: $color-green-pale,
+  green: $color-green,
+  red-pale: $color-red-pale,
+  red: $color-red,
+  white-blue: $color-white-blue,
+  white-dark: $color-white-dark,
+  white-darkish: $color-white-darkish,
+  white: $color-white,
+  rhino-core: $color-rhino-core,
+  rhino-dark: $color-rhino-dark,
+  rhino-medium-1: $color-rhino-medium-1,
+  rhino-medium-2: $color-rhino-medium-2,
+  rhino-light-1: $color-rhino-light-1,
+  rhino-light-2: $color-rhino-light-2,
+  rhino-light-3: $color-rhino-light-3,
+  rhino-light-4: $color-rhino-light-4,
+  rhino-light-5: $color-rhino-light-5,
+  dodger: $color-dodger,
+  dodger-shade: $color-dodger-shade,
+  aqua: $color-aqua,
+  aqua-shade: $color-aqua-shade,
+  lavender: $color-lavender,
+  lavender-shade: $color-lavender-shade,
+  cornflower: $color-cornflower,
+  emerald: $color-emerald,
+  sienna: $color-sienna
+);
+
+/*
+ * COLORS
+ */
+
+// Base Colors
+$color-brand: var(--color-navyblue);
+$color-highlight-darker: var(--color-gray-blue-pale);
+$color-accent: var(--color-dodger);
+$color-accent-shade: var(--color-dodger-shade);
+
+// Theme related variables
+$color-border: var(--color-rhino-medium-2);
+$color-border-dark: var(--color-rhino-medium-1);
+$color-border-secondary: var(--color-rhino-light-1);
+$color-secondary-border: $color-border-secondary;
+$color-button-primary: $color-accent;
+$color-button-primary--hover: var(--color-button-hover);
+$color-button-primary--active: var(--color-button-active);
+$color-button-secondary: var(--color-rhino-light-2);
+$color-button-hover: var(--color-button-hover);
+$color-page-background: var(--color-rhino-light-3);
+
+// Text Colors
+$color-active-text: var(--color-rhino-core);
+$color-text-base: var(--color-rhino-dark);
+$color-text: $color-text-base;
+$color-text-light: var(--color-rhino-medium-1);
+$color-text-dark: var(--color-rhino-core);
+
+$color-secondary-text: var(--color-rhino-medium-1);
+$color-text-placeholder: var(--color-rhino-medium-1);
+$color-header-text: var(--color-rhino-core);
+$color-link-light: var(--color-blue-pale);
+
+// Background Colors
+$color-background-color-inverse: var(--color-rhino-dark);
+$color-background-light: var(--color-rhino-light-3);
+$color-panel-background: var(--color-rhino-light-2);
+$color-section-header-background: var(--color-white-blue);
+$color-fold-header-background: var(--color-rhino-dark);
+$color-fold-header-background--closed: var(--color-rhino-medium-1);
+
+// --
+// Buttons
+// --
+$color-button-default: $color-dodger;
+$color-button-hover: $color-dodger-shade;
+$color-button-active: $color-dodger-shade;
+
+$color-button-primary--base-fill: $color-dodger;
+$color-button-primary--base-border: $color-dodger-shade;
+$color-button-primary--base-text: $color-white;
+$color-button-primary--hover-fill: $color-dodger-shade-mid;
+$color-button-primary--hover-border: $color-dodger-shade;
+$color-button-primary--hover-text: $color-white;
+$color-button-primary--active-fill: $color-dodger-shade;
+$color-button-primary--active-border: $color-dodger-shade;
+$color-button-primary--active-text: $color-white;
+
+$color-button-secondary--base-fill: transparent;
+$color-button-secondary--base-border: $color-rhino-medium-2;
+$color-button-secondary--base-text: $color-text;
+$color-button-secondary--hover-fill: transparent;
+$color-button-secondary--hover-border: $color-rhino-medium-1;
+$color-button-secondary--hover-text: $color-text-dark;
+$color-button-secondary--active-fill: transparent;
+$color-button-secondary--active-border: $color-rhino-medium-1;
+$color-button-secondary--active-text: $color-text-dark;
+
+$color-button-tertiary--base-fill: transparent;
+$color-button-tertiary--base-border: transparent;
+$color-button-tertiary--base-text: $color-text;
+$color-button-tertiary--hover-fill: transparent;
+$color-button-tertiary--hover-border: transparent;
+$color-button-tertiary--hover-text: $color-text-dark;
+$color-button-tertiary--active-fill: transparent;
+$color-button-tertiary--active-border: transparent;
+$color-button-tertiary--active-text: $color-text-dark;
+
+$color-button-default--base-fill: $color-rhino-light-3;
+$color-button-default--base-border: $color-rhino-medium-2;
+$color-button-default--base-text: $color-text;
+$color-button-default--hover-fill: $color-rhino-medium-2;
+$color-button-default--hover-border: $color-rhino-medium-1;
+$color-button-default--hover-text: $color-text-dark;
+$color-button-default--active-fill: $color-rhino-medium-1;
+$color-button-default--active-border: $color-rhino-medium-1;
+$color-button-default--active-text: $color-text-dark;
+
+$color-button-upgrade--base-fill: $color-lavender-shade;
+$color-button-upgrade--base-border: $color-lavender-shade-dark;
+$color-button-upgrade--base-text: $color-white;
+$color-button-upgrade--hover-fill: $color-lavender-shade-mid;
+$color-button-upgrade--hover-border: $color-lavender-shade-dark;
+$color-button-upgrade--hover-text: $color-white;
+$color-button-upgrade--active-fill: $color-lavender-shade-dark;
+$color-button-upgrade--active-border: $color-lavender-shade-dark;
+$color-button-upgrade--active-text: $color-white;
+
+$color-button-header--base-fill: transparent;
+$color-button-header--base-border: $color-dodger;
+$color-button-header--base-text: $color-dodger;
+$color-button-header--hover-fill: transparent;
+$color-button-header--hover-border: $color-dodger-shade-mid;
+$color-button-header--hover-text: $color-dodger-shade;
+$color-button-header--active-fill: transparent;
+$color-button-header--active-border: $color-dodger-shade;
+$color-button-header--active-text: $color-dodger-shade;

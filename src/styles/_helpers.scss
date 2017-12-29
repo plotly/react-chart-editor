@@ -1,3 +1,33 @@
-.\+flex { display: flex; }
-.\+cursor-clickable { cursor: pointer; }
-.\+hover-grey:hover{ color: $color-active-text; }
+.\+flex {
+  display: flex;
+}
+.\+cursor-clickable {
+  cursor: pointer;
+}
+.\+hover-grey:hover {
+  color: $color-active-text;
+}
+
+@function spacing($name, $true-val:false) {
+  @if $true-val == true {
+    @return map-get($spacings,$name);
+  } @else {
+    @return var(--spacing-#{$name});
+  }
+}
+
+@function font($name, $true-val:false) {
+  @if $true-val == true {
+    @return map-get($fonts,$name);
+  } @else {
+    @return var(--font-#{$name});
+  }
+}
+
+@function color($name, $true-val:false) {
+  @if $true-val == true {
+    @return map-get($colors,$name);
+  } @else {
+    @return var(--color-#{$name});
+  }
+}

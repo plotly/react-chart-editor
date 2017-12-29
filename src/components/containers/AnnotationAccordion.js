@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectAnnotationToLayout, bem} from 'lib';
 import {PanelHeader} from './Panel';
-
+import Button from 'components/Button';
+import PlusIcon from 'mdi-react/PlusIcon';
 const AnnotationFold = connectAnnotationToLayout(Fold);
 
 export default class AnnotationAccordion extends Component {
@@ -30,14 +31,18 @@ export default class AnnotationAccordion extends Component {
   }
 
   render() {
-    const annotations = this.context.layout.annotations || [];
+    const {layout: {annotations = []}} = this.context;
 
     const {canAdd, children} = this.props;
 
     const addButton = canAdd && (
-      <button className="panel__add-button" onClick={this.addAnnotation}>
-        + Annotation
-      </button>
+      <Button
+        variant="primary"
+        className="panel__add-button"
+        onClick={this.addAnnotation}
+        icon={<PlusIcon />}
+        label="Annotation"
+      />
     );
 
     const panelHeader = canAdd && <PanelHeader action={addButton} />;

@@ -1,4 +1,4 @@
-.section{
+.section {
   &__heading {
     display: flex;
     font-size: $font-size;
@@ -6,9 +6,9 @@
     font-weight: $font-weight-semibold;
     cursor: default;
     background-color: $color-background-light;
-    padding: $half-spacing-unit/2 $half-spacing-unit;
+    padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
     clear: both;
     text-transform: capitalize;
-    border-top:$border-light;
+    border-top: $border-light;
   }
 }

@@ -57,22 +57,26 @@
   transition: all 0.15s ease-in-out;
 }
 
-@mixin button-primary() {
-  font-size: $default-font-size-medium;
-  background-color: $color-button-primary;
-  border: $border-accent-shade;
-  color: $color-white;
-  font-weight: $font-weight-semibold;
-  text-shadow: $text-shadow--dark-ui;
+@mixin button($variant: default) {
+  background-color: var(--color-button-#{$variant}-base-fill);
+  border-color:var(--color-button-#{$variant}-base-border);
+  color: var(--color-button-#{$variant}-base-text);
+
+  @if($variant == primary or $variant == upgrade){
+    text-shadow: $text-shadow--dark-ui;
+    svg{
+      @include drop-shadow--dark-ui;
+    }
+  }
 
   &:hover {
-    background-color: $color-button-primary--hover;
-    border-color: $color-button-primary--hover;
-    color: $color-white; // Repeating in case the button is made with an anchor tag
+    background-color: var(--color-button-#{$variant}-hover-fill);
+    border:1px solid var(--color-button-#{$variant}-hover-border);
+    color: var(--color-button-#{$variant}-hover-text);
   }
   &:active {
-    background-color: $color-button-primary--active;
-    border-color: $color-button-primary--active;
-    color: $color-white; // Repeating in case the button is made with an anchor tag
+    background-color: var(--color-button-#{$variant}-active-fill);
+    border:1px solid var(--color-button-#{$variant}-active-border);
+    color: var(--color-button-#{$variant}-active-text);
   }
 }

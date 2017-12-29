@@ -1,115 +1,63 @@
-/*
- * SIZING AND WEIGHTS
- */
-$default-font-weight-light: 400;
-$default-font-weight-normal: 400;
-$default-font-weight-semibold: 600;
-$default-font-size: 13px;
-$default-font-size-small: 12px;
-$default-font-size-medium: 14px;
-$default-h5-size: 16px !default;
+@import "./colors";
+@import "./typography";
+@import "./units";
+@import './theme';
+@import "./layout";
 
-/*
- * SPACING
- */
-$default-base-spacing-unit: 24px !default;
-$default-half-spacing-unit: 12px;
-$default-quarter-spacing-unit: 6px;
-$default-sixth-spacing-unit: 4px;
-$default-eighth-spacing-unit: 3px;
 
-/*
- * BORDERS
- */
-$default-border-radius: 2px;
-$default-border-radius-5: 5px;
+$var-maps: (
+  spacing: $spacing,
+  border: $borders,
+  color: $colors,
+  font: $font
+);
 
-/*
- * COLORS
- */
-$default-color-black-dark: #000;
-$default-color-black-paleish: #333;
-$default-color-black-pale: #666;
-$default-color-black: #111;
-$default-color-navyblue: #284576;
-$default-color-blue: #119dff;
-$default-color-blue-dark: darken($default-color-blue, 20%);
-$default-color-blue-pale: #45a9ff;
-$default-color-blue-paleish: #2391fe;
-$default-color-cyan-pale: #9bd1ff;
-$default-color-gold: #f7bd0c;
-$default-color-gray-blue: #69738a;
-$default-color-gray-blue-pale: #bec8d9;
-$default-color-gray-dark: #888;
-$default-color-gray-light: #ddd;
-$default-color-gray: #ccc;
-$default-color-green-cyan: #53cf9d;
-$default-color-green-pale: #dff0d8;
-$default-color-green: #3c763d;
-$default-color-red-pale: #f2dede;
-$default-color-red: #a94442;
-$default-color-white-blue: #f4faff;
-$default-color-white-dark: #eee;
-$default-color-white-darkish: #f8f8f8;
-$default-color-white: #ffffff;
+// which property uses which var map
+// you would edit this for each property you want to use variables for
+$props: (
+  background-color: color,
+  border-radius: border,
+  color: color,
+  font-family: (font, family),
+  font-size: (font, size),
+  font-weight: (font, weight),
+  line-height: (font, leading)
+);
 
-// ---
-// Text and Backgrounds
-// ---
-$default-color-rhino-core: #2a3f5f; // Active state text, emphasized text
-$default-color-rhino-dark: #506784; // Default text color
-$default-color-rhino-medium-1: #a2b1c6;
-$default-color-rhino-medium-2: #c8d4e3; // Border Default
-$default-color-rhino-light-1: #dfe8f3; // Border Secondary
-$default-color-rhino-light-2: #ebf0f8; // Button Secondary
-$default-color-rhino-light-3: #f3f6fa; // Page Background
-$default-color-rhino-light-4: #fafbfd; // Modal Tabbed Content Background
-$default-color-rhino-light-5: #f8f8f9; // Modal Tabbed Content Background
-
-// ---
-// Primary
-// --
-$default-color-dodger: #119dff; // Accent
-$default-color-dodger-shade: #0d76bf; // Link Hover
-
-// ---
-// Accent
-// ---
-$default-color-aqua: #09ffff;
-$default-color-aqua-shade: #19d3f3; // Body Text
-$default-color-lavender: #e763fa;
-$default-color-lavender-shade: #ab63fa;
-$default-color-cornflower: #636efa;
-$default-color-emerald: #00cc96; // CTA's on blue backgrounds
-$default-color-sienna: #ef553b; // CTA's on blue backgrounds
-
-// ---
-// Buttons
-// ---
-$default-color-button-default: $default-color-dodger;
-$default-color-button-hover: $default-color-dodger-shade;
-$default-color-button-active: darken($default-color-dodger-shade, 5%);
-
-// button default styles
-button {
-  display: inline-block;
-  border-radius: 5px;
-  border-color: transparent;
-  padding: 9px 18px;
-  line-height: 1;
-  letter-spacing: 0.5px;
-  text-transform: capitalize;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  -webkit-transition: all 0.1s ease-in-out;
-  -moz-transition: all 0.1s ease-in-out;
-  -ms-transition: all 0.1s ease-in-out;
-  -o-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
+// the variable mixin takes a property and variable name
+@mixin v($prop, $var, $show-fall: true) {
+  // get the property's map name(s)
+  $map-name: map-get($props, $prop);
+  $nest-name: null;
+  $nest-map-name: null;
+  $map: null;
+  $var-fall: null;
+  $var-output: null;
+  // if a list, we need to go deeper
+  @if type-of($map-name) == list {
+    $nest-name: nth($map-name, 1);
+    $nest-map-name: nth($map-name, 2);
+  }
+  // if it is a nested map
+  @if $nest-name {
+    // get the map from nested map-name
+    $map: map-get($var-maps, $nest-name);
+    // get the nested map
+    $nest-map: map-get($map, $nest-map-name);
+    // get the var value fro mthe nested map
+    $var-fall: map-get($nest-map, $var);
+    $var-output: var(--#{$nest-name}-#{$nest-map-name}-#{$var});
+  } @else {
+    // get the map from map name
+    $map: map-get($var-maps, $map-name);
+    // fallback, grab the variable's value from the map
+    $var-fall: map-get($map, $var);
+    $var-output: var(--#{$map-name}-#{$var});
+  }
+  // if show standard is not overridden to be null
+  @if $show-fall {
+    #{$prop}: $var-fall;
+  }
+  // css4 variable output
+  #{$prop}: $var-output;
 }

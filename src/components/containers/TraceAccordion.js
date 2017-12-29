@@ -4,6 +4,8 @@ import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import {connectTraceToPlot, bem} from 'lib';
 import {PanelHeader} from 'components/containers/Panel';
+import Button from 'components/Button';
+import PlusIcon from 'mdi-react/PlusIcon';
 
 const TraceFold = connectTraceToPlot(Fold);
 
@@ -27,9 +29,13 @@ export default class TraceAccordion extends Component {
     const {canAdd, children} = this.props;
 
     const addButton = canAdd && (
-      <button className="panel__add-button" onClick={this.addTrace}>
-        + Trace
-      </button>
+      <Button
+        className="panel__add-button"
+        variant="primary"
+        onClick={this.addTrace}
+        icon={<PlusIcon />}
+        label="Trace"
+      />
     );
 
     const panelHeader = canAdd && <PanelHeader action={addButton} />;
