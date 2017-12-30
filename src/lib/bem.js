@@ -43,7 +43,3 @@ export default function bem(block, element, modifiers) {
 
   return out.join(' ');
 }
-
-export function icon(iconName) {
-  return `icon-${iconName}`;
-}

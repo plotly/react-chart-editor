@@ -3,7 +3,6 @@
 $multi-format-editor-background: #fafbfd;
 
 .multi-format-editor {
-
   * {
     box-sizing: border-box;
   }
@@ -53,6 +52,10 @@ $multi-format-editor-background: #fafbfd;
         .icon-link {
           transform: translateY(3px);
           display: inline-block;
+          fill: $color-text;
+          // prevent user agent override
+          width: 15px !important;
+          height: 15px !important;
         }
       }
     }
@@ -95,7 +98,7 @@ $multi-format-editor-background: #fafbfd;
     border-top: 1px solid $color-border;
     width: 100%;
     display: block;
-    color:$color-text;
+    color: $color-text;
   }
 
   &.selected {
@@ -124,7 +127,7 @@ $multi-format-editor-background: #fafbfd;
 
 .confirmation-panel__message {
   line-height: 20px;
-  &-primary{
+  &-primary {
     font-weight: $font-weight-semibold;
     color: $color-text;
   }

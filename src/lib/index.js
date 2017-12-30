@@ -1,4 +1,4 @@
-import bem, {icon} from './bem';
+import bem from './bem';
 import connectAnnotationToLayout from './connectAnnotationToLayout';
 import connectAxesToLayout from './connectAxesToLayout';
 import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
@@ -42,7 +42,6 @@ export {
   findFullTraceIndex,
   getDisplayName,
   getLayoutContext,
-  icon,
   isPlainObject,
   localize,
   localizeString,

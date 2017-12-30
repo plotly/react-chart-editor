@@ -18,4 +18,8 @@
   padding-left: 6px;
   padding-right: 6px;
   vertical-align: middle;
+  // gets overridden by user agent stylesheet otherwise
+  width: 15px !important;
+  height: 15px !important;
+  fill: $color-link-light !important;
 }

@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import classnames from 'classnames';
+import {CloseIcon, AngleDownIcon} from 'plotly-icons';
 
 export default class Fold extends Component {
   constructor() {
@@ -27,18 +28,24 @@ export default class Fold extends Component {
       'fold__top--active': !folded,
     });
 
-    const arrowClass = classnames('icon-angle-down', 'fold__top__arrow', {
+    const arrowClass = classnames('fold__top__arrow', {
       'fold__top__arrow--active': !folded,
     });
 
-    const arrowIcon = <i className={arrowClass} />;
+    const arrowIcon = (
+      <div className={arrowClass}>
+        <AngleDownIcon />
+      </div>
+    );
 
     const deleteButton = handleClick =>
       doDelete && (
-        <i
-          className="icon-cancel fold__top__delete js-fold__delete"
+        <div
+          className="fold__top__delete js-fold__delete"
           onClick={handleClick}
-        />
+        >
+          <CloseIcon />
+        </div>
       );
 
     const foldHeader = !hideHeader && (
