@@ -6,18 +6,6 @@ import {bem, localize} from 'lib';
 import {getMultiValueText} from 'lib/constants';
 
 class Field extends Component {
-  renderPostfix() {
-    const {units} = this.props;
-    if (!units) {
-      return null;
-    }
-    return (
-      <div className={bem('field', 'units')}>
-        <div className={bem('field', 'units-text')}>{units}</div>
-      </div>
-    );
-  }
-
   render() {
     const {
       center,

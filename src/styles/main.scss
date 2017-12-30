@@ -12,19 +12,10 @@
   @include v(font-family, body);
 
   @import 'components/main';
-  @import 'icons/main';
   @include font-smoothing;
 
-  &--theme {
-    &-default {
-    }
-  }
   &__wrapper {
     display: flex;
     flex-grow: 1;
   }
 }
-
-// Theme variables
-
-@import 'shame';

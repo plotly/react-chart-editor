@@ -1,6 +1,6 @@
 {
   "name": "react-plotly.js-editor",
-  "version": "0.2.0-alpha.1",
+  "version": "0.2.1-alpha.1",
   "license": "MIT",
   "description": "plotly.js chart editor react component UI",
   "author": "Plotly, Inc.",
@@ -13,13 +13,18 @@
     "url": "https://github.com/plotly/react-plotly.js-editor/issues"
   },
   "scripts": {
-    "make:combined-translation-keys": "babel-node utils/findTranslationKeys.js && babel-node utils/combineTranslationKeys.js",
+    "make:combined-translation-keys":
+      "babel-node utils/findTranslationKeys.js && babel-node utils/combineTranslationKeys.js",
     "make:translation-keys": "babel-node utils/findTranslationKeys.js",
-    "make:lib": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps && npm run make:lib:css",
-    "make:lib:css": "mkdirp lib && node-sass src/styles/main.scss > lib/react-plotly.js-editor.css",
-    "make:dist": "mkdirp dist && browserify src/PlotlyEditor.js -o ./dist/PlotlyEditor.js -t [ babelify --presets [ es2015 react ] ] -t browserify-global-shim --standalone createPlotlyComponent && uglifyjs ./dist/PlotlyEditor.js --compress --mangle --output ./dist/PlotlyEditor.min.js --source-map filename=dist/PlotlyEditor.min.js.map && make:dist:css",
-    "make:dist:css": "mkdirp dist && node-sass --output-style compressed src/styles/main.scss > dist/react-plotly.js-editor.css",
-    "prepublishOnly": "npm run make:lib && npm run make:combined-translation-keys",
+    "make:lib":
+      "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps && npm run make:lib:css",
+    "make:lib:css":
+      "mkdirp lib && node-sass src/styles/main.scss > lib/react-plotly.js-editor.css",
+    "make:dist":
+      "mkdirp dist && browserify src/PlotlyEditor.js -o ./dist/PlotlyEditor.js -t [ babelify --presets [ es2015 react ] ] -t browserify-global-shim --standalone createPlotlyComponent && uglifyjs ./dist/PlotlyEditor.js --compress --mangle --output ./dist/PlotlyEditor.min.js --source-map filename=dist/PlotlyEditor.min.js.map && make:dist:css",
+    "make:dist:css":
+      "mkdirp dist && node-sass --output-style compressed src/styles/main.scss > dist/react-plotly.js-editor.css",
+    "prepublishOnly": "npm run make:lib",
     "lint": "prettier --write \"src/**/*.js\"",
     "postcss": "babel-node src/postcss.js",
     "postcss:ie11": "NODE_ENV=ie babel-node src/postcss.js",
@@ -27,7 +32,8 @@
     "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
-    "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-plotly.js-editor.css",
+    "watch":
+      "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-plotly.js-editor.css",
     "watch-test": "jest --watch"
   },
   "keywords": [
@@ -85,6 +91,7 @@
     "fast-isnumeric": "^1.1.1",
     "fs": "^0.0.1-security",
     "mdi-react": "^2.1.19",
+    "plotly-icons": "^1.0.1",
     "plotly.js": "^1.31.2",
     "postcss": "^6.0.14",
     "postcss-custom-properties": "^6.2.0",
@@ -100,9 +107,7 @@
     "react": "React"
   },
   "jest": {
-    "roots": [
-      "<rootDir>/src/"
-    ],
+    "roots": ["<rootDir>/src/"],
     "moduleNameMapper": {
       "^.+\\.css$": "<rootDir>/config/CSSStub.js"
     }

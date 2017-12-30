@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ModalBox from '../containers/ModalBox';
+import {CarretDownIcon} from 'plotly-icons';
 
 export default class SymbolSelector extends Component {
   constructor(props) {
@@ -109,8 +110,8 @@ export default class SymbolSelector extends Component {
           <span className="symbol-selector__toggle_option">
             {this.renderActiveOption()}
           </span>
-          <span className="symbol-selector__toggle__caret">
-            <i className="icon-caret-down" />
+          <span>
+            <CarretDownIcon className="symbol-selector__toggle__caret" />
           </span>
         </div>
         {isOpen ? (

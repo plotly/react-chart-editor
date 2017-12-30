@@ -1,8 +1,11 @@
 import {UnconnectedDropdown} from './Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {connectToContainer} from '../../lib';
+import {
+  connectToContainer,
+  customTraceToPlotlyTrace,
+  plotlyTraceToCustomTrace,
+} from '../../lib';
 
 function computeTraceOptionsFromSchema(schema) {
   const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
@@ -62,18 +65,7 @@ class TraceSelector extends Component {
       this.traceOptions = [{label: 'Scatter', value: 'scatter'}];
     }
 
-    // If we used fullData mode or fill it may be undefined if the fullTrace
-    // is not visible and therefore does not have these values computed.
-    const mode = nestedProperty(props.container, 'mode').get();
-    const fill = nestedProperty(props.container, 'fill').get();
-    const fullValue = props.fullValue;
-    if (fullValue === 'scatter' && this.fillTypes.includes(fill)) {
-      this.fullValue = 'area';
-    } else if (fullValue === 'scatter' && mode === 'lines') {
-      this.fullValue = 'line';
-    } else {
-      this.fullValue = fullValue;
-    }
+    this.fullValue = plotlyTraceToCustomTrace(props.fullContainer);
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -81,16 +73,7 @@ class TraceSelector extends Component {
   }
 
   updatePlot(value) {
-    let update;
-    if (value === 'line') {
-      update = {type: 'scatter', mode: 'lines', fill: 'none'};
-    } else if (value === 'scatter') {
-      update = {type: 'scatter', mode: 'markers', fill: 'none'};
-    } else if (value === 'area') {
-      update = {type: 'scatter', fill: 'tozeroy'};
-    } else {
-      update = {type: value};
-    }
+    const update = customTraceToPlotlyTrace(value);
 
     if (this.props.updateContainer) {
       this.props.updateContainer(update);
@@ -114,7 +97,7 @@ TraceSelector.contextTypes = {
 
 TraceSelector.propTypes = {
   getValObject: PropTypes.func,
-  container: PropTypes.object.isRequired,
+  fullContainer: PropTypes.object.isRequired,
   fullValue: PropTypes.any.isRequired,
   updateContainer: PropTypes.func,
 };

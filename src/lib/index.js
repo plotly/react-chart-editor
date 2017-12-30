@@ -1,4 +1,4 @@
-import bem, {icon} from './bem';
+import bem from './bem';
 import connectAnnotationToLayout from './connectAnnotationToLayout';
 import connectAxesToLayout from './connectAxesToLayout';
 import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
@@ -10,6 +10,10 @@ import localize, {localizeString} from './localize';
 import tinyColor from 'tinycolor2';
 import unpackPlotProps from './unpackPlotProps';
 import walkObject, {isPlainObject} from './walkObject';
+import {
+  customTraceToPlotlyTrace,
+  plotlyTraceToCustomTrace,
+} from './customTraceType';
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -33,14 +37,15 @@ export {
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
+  customTraceToPlotlyTrace,
   dereference,
+  findFullTraceIndex,
   getDisplayName,
   getLayoutContext,
-  findFullTraceIndex,
-  icon,
   isPlainObject,
   localize,
   localizeString,
+  plotlyTraceToCustomTrace,
   unpackPlotProps,
   walkObject,
 };
