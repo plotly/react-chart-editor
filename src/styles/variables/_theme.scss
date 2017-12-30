@@ -5,74 +5,74 @@ $buttons: (
       text: $color-button-primary--base-text
     ),
   primary-hover:(
-          fill: $color-button-primary--hover-fill,
-          border: $color-button-primary--hover-border,
-          text: $color-button-primary--hover-text
+      fill: $color-button-primary--hover-fill,
+      border: $color-button-primary--hover-border,
+      text: $color-button-primary--hover-text
     ),
   primary-active:(
-          fill: $color-button-primary--active-fill,
-          border: $color-button-primary--active-border,
-          text: $color-button-primary--active-text
+      fill: $color-button-primary--active-fill,
+      border: $color-button-primary--active-border,
+      text: $color-button-primary--active-text
     ),
   secondary-base:(
-          fill: $color-button-secondary--base-fill,
-          border: $color-button-secondary--base-border,
-          text: $color-button-secondary--base-text
+      fill: $color-button-secondary--base-fill,
+      border: $color-button-secondary--base-border,
+      text: $color-button-secondary--base-text
     ),
   secondary-hover:(
-          fill: $color-button-secondary--hover-fill,
-          border: $color-button-secondary--hover-border,
-          text: $color-button-secondary--hover-text
+      fill: $color-button-secondary--hover-fill,
+      border: $color-button-secondary--hover-border,
+      text: $color-button-secondary--hover-text
     ),
   secondary-active:(
-          fill: $color-button-secondary--active-fill,
-          border: $color-button-secondary--active-border,
-          text: $color-button-secondary--active-text
+      fill: $color-button-secondary--active-fill,
+      border: $color-button-secondary--active-border,
+      text: $color-button-secondary--active-text
     ),
   default-base:(
-          fill: $color-button-default--base-fill,
-          border: $color-button-default--base-border,
-          text: $color-button-default--base-text
+      fill: $color-button-default--base-fill,
+      border: $color-button-default--base-border,
+      text: $color-button-default--base-text
     ),
   default-hover:(
-          fill: $color-button-default--hover-fill,
-          border: $color-button-default--hover-border,
-          text: $color-button-default--hover-text
+      fill: $color-button-default--hover-fill,
+      border: $color-button-default--hover-border,
+      text: $color-button-default--hover-text
     ),
   default-active:(
-          fill: $color-button-default--active-fill,
-          border: $color-button-default--active-border,
-          text: $color-button-default--active-text
+      fill: $color-button-default--active-fill,
+      border: $color-button-default--active-border,
+      text: $color-button-default--active-text
     ),
   upgrade-base:(
-          fill: $color-button-upgrade--base-fill,
-          border: $color-button-upgrade--base-border,
-          text: $color-button-upgrade--base-text
+      fill: $color-button-upgrade--base-fill,
+      border: $color-button-upgrade--base-border,
+      text: $color-button-upgrade--base-text
     ),
   upgrade-hover:(
-          fill: $color-button-upgrade--hover-fill,
-          border: $color-button-upgrade--hover-border,
-          text: $color-button-upgrade--hover-text
+      fill: $color-button-upgrade--hover-fill,
+      border: $color-button-upgrade--hover-border,
+      text: $color-button-upgrade--hover-text
     ),
   upgrade-active:(
-          fill: $color-button-upgrade--active-fill,
-          border: $color-button-upgrade--active-border,
-          text: $color-button-upgrade--active-text
+      fill: $color-button-upgrade--active-fill,
+      border: $color-button-upgrade--active-border,
+      text: $color-button-upgrade--active-text
     ),
   header-base:(
-          fill: $color-button-header--base-fill,
-          border: $color-button-header--base-border,
-          text: $color-button-header--base-text
+      fill: $color-button-header--base-fill,
+      border: $color-button-header--base-border,
+      text: $color-button-header--base-text
     ),
   header-hover:(
-          fill: $color-button-header--hover-fill,
-          border: $color-button-header--hover-border,
-          text: $color-button-header--hover-text
+      fill: $color-button-header--hover-fill,
+      border: $color-button-header--hover-border,
+      text: $color-button-header--hover-text
     ),
   header-active:(
-          fill: $color-button-header--active-fill,
-          border: $color-button-header--active-border,
-          text: $color-button-header--active-text
+      fill: $color-button-header--active-fill,
+      border: $color-button-header--active-border,
+      text: $color-button-header--active-text
     )
 );
 
@@ -80,7 +80,12 @@ $panel: (background: #fafbfd);
 
 $sidebar: (background: white);
 
-$border: (default:$color-rhino-medium-2);
+$border: (
+  default: $color-border,
+  light: $color-border-secondary,
+  dark: $color-border-dark,
+  accent: $color-accent
+);
 
 $theme: (
   buttons: $buttons,

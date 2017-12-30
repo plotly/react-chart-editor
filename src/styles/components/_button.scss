@@ -2,7 +2,6 @@
 button {
   display: inline-block;
   padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
-  padding-left: 0;
   line-height: 1;
   letter-spacing: 0.5px;
   text-transform: capitalize;
@@ -18,10 +17,12 @@ button {
   border-color: transparent;
   border-radius: $border-radius-5;
   @include trans;
+  &.button {
+    padding-left: 0;
+  }
 }
 
 .button {
-  $c: &;
   &__wrapper {
     display: flex;
     align-items: center;
@@ -31,11 +32,11 @@ button {
   }
 
   &__label {
-    padding-left:var(--spacing-half-unit);
+    padding-left: var(--spacing-half-unit);
   }
   &__icon {
     display: flex;
-    padding-left:var(--spacing-quarter-unit);
+    padding-left: var(--spacing-quarter-unit);
     will-change: transform;
     svg {
       transform: scale(0.8);
