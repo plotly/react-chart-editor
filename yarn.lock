@@ -5583,9 +5583,9 @@ planar-graph-to-polyline@^1.0.0:
     two-product "^1.0.0"
     uniq "^1.0.0"
 
-plotly-icons@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/plotly-icons/-/plotly-icons-1.0.0.tgz#161ca8354f8b32fe97235b1cb63ed71a81f42378"
+plotly-icons@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/plotly-icons/-/plotly-icons-1.0.1.tgz#c6af80cefd925491f7286211dade5499f5581245"
   dependencies:
     mdi-react "^2.1.19"
 

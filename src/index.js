@@ -1,4 +1,3 @@
-import 'es6-shim';
 import PlotlyEditor from './PlotlyEditor';
 import {
   connectAnnotationToLayout,

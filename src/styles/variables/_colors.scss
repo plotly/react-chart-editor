@@ -95,14 +95,19 @@ $colors: (
   rhino-light-5: $color-rhino-light-5,
   dodger: $color-dodger,
   dodger-shade: $color-dodger-shade,
+  dodger-shade-mid: $color-dodger-shade-mid,
   aqua: $color-aqua,
   aqua-shade: $color-aqua-shade,
   lavender: $color-lavender,
   lavender-shade: $color-lavender-shade,
+  lavender-shade-mid: $color-lavender-shade-mid,
   cornflower: $color-cornflower,
   emerald: $color-emerald,
   sienna: $color-sienna
 );
+
+
+
 
 /*
  * COLORS
@@ -119,6 +124,7 @@ $color-border: var(--color-rhino-medium-2);
 $color-border-dark: var(--color-rhino-medium-1);
 $color-border-secondary: var(--color-rhino-light-1);
 $color-secondary-border: $color-border-secondary;
+
 $color-button-primary: $color-accent;
 $color-button-primary--hover: var(--color-button-hover);
 $color-button-primary--active: var(--color-button-active);
@@ -127,11 +133,11 @@ $color-button-hover: var(--color-button-hover);
 $color-page-background: var(--color-rhino-light-3);
 
 // Text Colors
-$color-active-text: var(--color-rhino-core);
-$color-text-base: var(--color-rhino-dark);
-$color-text: $color-text-base;
-$color-text-light: var(--color-rhino-medium-1);
-$color-text-dark: var(--color-rhino-core);
+$color-active-text: var(--color-active-text);
+$color-text-base: var(--color-text-base);
+$color-text: var(--color-text);
+$color-text-light: var(--color-text-light);
+$color-text-dark: var(--color-text-dark);
 
 $color-secondary-text: var(--color-rhino-medium-1);
 $color-text-placeholder: var(--color-rhino-medium-1);
@@ -152,63 +158,3 @@ $color-fold-header-background--closed: var(--color-rhino-medium-1);
 $color-button-default: $color-dodger;
 $color-button-hover: $color-dodger-shade;
 $color-button-active: $color-dodger-shade;
-
-$color-button-primary--base-fill: $color-dodger;
-$color-button-primary--base-border: $color-dodger-shade;
-$color-button-primary--base-text: $color-white;
-$color-button-primary--hover-fill: $color-dodger-shade-mid;
-$color-button-primary--hover-border: $color-dodger-shade;
-$color-button-primary--hover-text: $color-white;
-$color-button-primary--active-fill: $color-dodger-shade;
-$color-button-primary--active-border: $color-dodger-shade;
-$color-button-primary--active-text: $color-white;
-
-$color-button-secondary--base-fill: transparent;
-$color-button-secondary--base-border: $color-rhino-medium-2;
-$color-button-secondary--base-text: $color-text;
-$color-button-secondary--hover-fill: transparent;
-$color-button-secondary--hover-border: $color-rhino-medium-1;
-$color-button-secondary--hover-text: $color-text-dark;
-$color-button-secondary--active-fill: transparent;
-$color-button-secondary--active-border: $color-rhino-medium-1;
-$color-button-secondary--active-text: $color-text-dark;
-
-$color-button-tertiary--base-fill: transparent;
-$color-button-tertiary--base-border: transparent;
-$color-button-tertiary--base-text: $color-text;
-$color-button-tertiary--hover-fill: transparent;
-$color-button-tertiary--hover-border: transparent;
-$color-button-tertiary--hover-text: $color-text-dark;
-$color-button-tertiary--active-fill: transparent;
-$color-button-tertiary--active-border: transparent;
-$color-button-tertiary--active-text: $color-text-dark;
-
-$color-button-default--base-fill: $color-rhino-light-3;
-$color-button-default--base-border: $color-rhino-medium-2;
-$color-button-default--base-text: $color-text;
-$color-button-default--hover-fill: $color-rhino-medium-2;
-$color-button-default--hover-border: $color-rhino-medium-1;
-$color-button-default--hover-text: $color-text-dark;
-$color-button-default--active-fill: $color-rhino-medium-1;
-$color-button-default--active-border: $color-rhino-medium-1;
-$color-button-default--active-text: $color-text-dark;
-
-$color-button-upgrade--base-fill: $color-lavender-shade;
-$color-button-upgrade--base-border: $color-lavender-shade-dark;
-$color-button-upgrade--base-text: $color-white;
-$color-button-upgrade--hover-fill: $color-lavender-shade-mid;
-$color-button-upgrade--hover-border: $color-lavender-shade-dark;
-$color-button-upgrade--hover-text: $color-white;
-$color-button-upgrade--active-fill: $color-lavender-shade-dark;
-$color-button-upgrade--active-border: $color-lavender-shade-dark;
-$color-button-upgrade--active-text: $color-white;
-
-$color-button-header--base-fill: transparent;
-$color-button-header--base-border: $color-dodger;
-$color-button-header--base-text: $color-dodger;
-$color-button-header--hover-fill: transparent;
-$color-button-header--hover-border: $color-dodger-shade-mid;
-$color-button-header--hover-text: $color-dodger-shade;
-$color-button-header--active-fill: transparent;
-$color-button-header--active-border: $color-dodger-shade;
-$color-button-header--active-text: $color-dodger-shade;

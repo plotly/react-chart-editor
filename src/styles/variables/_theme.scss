@@ -1,90 +1,133 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// _theme.scss
+// This file maps out any variables that we use for theming the editor. These SCSS maps are parsed and result in
+// custom css properties / css4 variables.
+// ---------------------------------------------------------------------------------------------------------------------
+
+// Brand Colors
+$brand: (
+  accent:var(--color-dodger),
+  accent-shade:var(--color-dodger-shade),
+  brand: var(--color-navyblue),
+  hightlight-darker: var(--color-gray-blue-pale)
+);
+// Text Colors
+$text: (
+  text-base: var(--color-rhino-dark),
+  text-light: var(--color-rhino-medium-1),
+  text-dark: var(--color-rhino-core),
+  active-text: var(--color-rhino-core)
+);
+// Border Colors
+$border-colors: (
+  default: var(--color-rhino-medium-2),
+  light: var(--color-rhino-light-1),
+  dark: var(--color-rhino-medium-1),
+  accent: var(--color-accent)
+);
+// Border styles
+$borders: (
+  default:1px solid var(--color-border-default),
+  light:1px solid var(--color-border-light),
+  dark:1px solid var(--color-border-dark),
+  accent:1px solid var(--color-border-accentt)
+);
+// Panel Styles + Colors
+$panel: (background: #fafbfd);
+// Sidebar
+$sidebar: (background: white);
+// Buttons
 $buttons: (
   primary-base:(
-      fill: $color-button-primary--base-fill,
-      border: $color-button-primary--base-border,
-      text: $color-button-primary--base-text
+      fill: var(--color-dodger),
+      border: var(--color-dodger-shade),
+      text: var(--color-white)
     ),
   primary-hover:(
-      fill: $color-button-primary--hover-fill,
-      border: $color-button-primary--hover-border,
-      text: $color-button-primary--hover-text
+      fill: var(--color-dodger-shade-mid),
+      border: var(--color-dodger-shade),
+      text: var(--color-white)
     ),
   primary-active:(
-      fill: $color-button-primary--active-fill,
-      border: $color-button-primary--active-border,
-      text: $color-button-primary--active-text
+      fill: var(--color-dodger-shade),
+      border: var(--color-dodger-shade),
+      text: var(--color-white)
     ),
   secondary-base:(
-      fill: $color-button-secondary--base-fill,
-      border: $color-button-secondary--base-border,
-      text: $color-button-secondary--base-text
+      fill: transparent,
+      border: var(--color-rhino-medium-2),
+      text: var(--color-text)
     ),
   secondary-hover:(
-      fill: $color-button-secondary--hover-fill,
-      border: $color-button-secondary--hover-border,
-      text: $color-button-secondary--hover-text
+      fill: transparent,
+      border: var(--color-rhino-medium-1),
+      text: var(--color-text-dark)
     ),
   secondary-active:(
-      fill: $color-button-secondary--active-fill,
-      border: $color-button-secondary--active-border,
-      text: $color-button-secondary--active-text
+      fill: transparent,
+      border: var(--color-rhino-medium-1),
+      text: var(--color-text-dark)
+    ),
+  tertiary-base:(
+      fill: transparent,
+      border: transparent,
+      text: var(--color-text)
+    ),
+  tertiary-hover:(
+      fill: transparent,
+      border: transparent,
+      text: var(--color-text-dark)
+    ),
+  tertiary-active:(
+      fill: transparent,
+      border: transparent,
+      text: var(--color-text-dark)
     ),
   default-base:(
-      fill: $color-button-default--base-fill,
-      border: $color-button-default--base-border,
-      text: $color-button-default--base-text
+      fill: transparent,
+      border: var(--color-rhino-medium-2),
+      text: var(--color-text)
     ),
   default-hover:(
-      fill: $color-button-default--hover-fill,
-      border: $color-button-default--hover-border,
-      text: $color-button-default--hover-text
+      fill: transparent,
+      border: var(--color-rhino-medium-1),
+      text: var(--color-text-dark)
     ),
   default-active:(
-      fill: $color-button-default--active-fill,
-      border: $color-button-default--active-border,
-      text: $color-button-default--active-text
+      fill: transparent,
+      border: var(--color-rhino-medium-1),
+      text: var(--color-text-dark)
     ),
   upgrade-base:(
-      fill: $color-button-upgrade--base-fill,
-      border: $color-button-upgrade--base-border,
-      text: $color-button-upgrade--base-text
+      fill: var(--color-lavender-shade),
+      border: var(--color-lavender-shade-dark),
+      text: var(--color-white)
     ),
   upgrade-hover:(
-      fill: $color-button-upgrade--hover-fill,
-      border: $color-button-upgrade--hover-border,
-      text: $color-button-upgrade--hover-text
+      fill: var(--color-lavender-shade-mid),
+      border: var(--color-lavender-shade-dark),
+      text: var(--color-white)
     ),
   upgrade-active:(
-      fill: $color-button-upgrade--active-fill,
-      border: $color-button-upgrade--active-border,
-      text: $color-button-upgrade--active-text
+      fill: var(--color-lavender-shade-dark),
+      border: var(--color-lavender-shade-dark),
+      text: var(--color-white)
     ),
   header-base:(
-      fill: $color-button-header--base-fill,
-      border: $color-button-header--base-border,
-      text: $color-button-header--base-text
+      fill: transparent,
+      border: var(--color-dodger),
+      text: var(--color-dodger)
     ),
   header-hover:(
-      fill: $color-button-header--hover-fill,
-      border: $color-button-header--hover-border,
-      text: $color-button-header--hover-text
+      fill: transparent,
+      border: var(--color-dodger-shade-mid),
+      text: var(--color-dodger-shade)
     ),
   header-active:(
-      fill: $color-button-header--active-fill,
-      border: $color-button-header--active-border,
-      text: $color-button-header--active-text
+      fill: transparent,
+      border: var(--color-dodger-shade),
+      text: var(--color-dodger-shade)
     )
-);
-
-$panel: (background: #fafbfd);
-
-$sidebar: (background: white);
-
-$border: (
-  default: $color-border,
-  light: $color-border-secondary,
-  dark: $color-border-dark,
-  accent: $color-accent
 );
 
 $theme: (
