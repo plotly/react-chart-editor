@@ -15,12 +15,12 @@ export default class MenuPanel extends Component {
   getIcon() {
     if (this.props.question) {
       return {
-        iconType: <QuestionIcon className="menupanel__icon" />,
+        icon: <QuestionIcon className="menupanel__icon" />,
         spanClass: `menupanel__icon-span menupanel__icon-span--question`,
       };
     }
     return {
-      iconType: <CogIcon className="menupanel__icon" />,
+      icon: <CogIcon className="menupanel__icon" />,
       spanClass: 'menupanel__icon-span menupanel__icon-span--cog',
     };
   }
@@ -35,13 +35,13 @@ export default class MenuPanel extends Component {
       'menupanel--ownline': this.props.ownline,
     });
 
-    const {iconType, spanClass} = this.getIcon();
+    const {icon, spanClass} = this.getIcon();
 
     return (
       <div className={containerClass}>
         <span className={spanClass}>
           <span>{this.props.label}</span>
-          <span onClick={this.togglePanel}>{iconType}</span>
+          <span onClick={this.togglePanel}>{icon}</span>
         </span>
         {isOpen ? (
           <ModalBox onClose={this.togglePanel}>{this.props.children}</ModalBox>
