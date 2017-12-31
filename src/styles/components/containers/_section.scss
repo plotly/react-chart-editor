@@ -11,9 +11,14 @@
     clear: both;
     text-transform: capitalize;
   }
-  &:not(:first-child) {
+  &:not(:first-child){
     .section__heading {
       border-top: var(--border-light);
+    }
+  }
+  &:first-child{
+    .section__heading{
+      border-top: 0;
     }
   }
 }

@@ -50,14 +50,18 @@ $fills: (
   background-inputs: var(--color-background-top)
 );
 
-$box-shadows: (base: 0px 2px 9px rgba(80, 103, 132, 0.2));
+$box-shadows: (
+  base-color: rgba(80, 103, 132, 0.2),
+  base: 0px 2px 9px var(--box-shadow-base-color)
+);
 $text-shadows: (
-  dark-ui: 0 1px 2px rgba(42, 63, 95, 0.7),
+  dark-color:rgba(42, 63, 95, 0.7),
+  dark-ui: 0 1px 2px var(--text-shadow-dark-color),
   dark-ui-inactive: 0 1px 1px rgba(42, 63, 95, 0.4)
 );
 $scrollbar: (
-        track-background: var(--color-background-base),
-        thumb-color: var(--color-accent)
+  track-background: var(--color-background-base),
+  thumb-color: var(--color-accent)
 );
 // Panel Styles + Colors
 $panel: (

@@ -17,8 +17,8 @@
     "make:translation-keys": "babel-node utils/findTranslationKeys.js",
     "make:lib": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps && npm run make:lib:css",
     "make:lib:css": "mkdirp lib && node-sass src/styles/main.scss > lib/react-plotly.js-editor.css",
-    "make:dist": "mkdirp dist && browserify src/PlotlyEditor.js -o ./dist/PlotlyEditor.js -t [ babelify --presets [ es2015 react ] ] -t browserify-global-shim --standalone createPlotlyComponent && uglifyjs ./dist/PlotlyEditor.js --compress --mangle --output ./dist/PlotlyEditor.min.js --source-map filename=dist/PlotlyEditor.min.js.map && make:dist:css",
-    "make:dist:css": "mkdirp dist && node-sass src/styles/main.scss > dist/react-plotly.js-editor.css",
+    "make:dist": "mkdirp dist && browserify src/PlotlyEditor.js -o ./dist/PlotlyEditor.js -t [ babelify --presets [ es2015 react ] ] -t browserify-global-shim --standalone createPlotlyComponent && uglifyjs ./dist/PlotlyEditor.js --compress --mangle --output ./dist/PlotlyEditor.min.js --source-map filename=dist/PlotlyEditor.min.js.map && yarn make:dist:css",
+    "make:dist:css": "mkdirp dist && node-sass src/styles/main.scss > dist/react-plotly.js-editor.css && yarn postcss",
     "prepublishOnly": "npm run make:lib",
     "lint": "prettier --write \"src/**/*.js\"",
     "postcss": "babel-node src/postcss.js",
@@ -79,6 +79,7 @@
     "react-dom": "^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0"
   },
   "dependencies": {
+    "browserify-global-shim": "^1.0.3",
     "cssnano": "^3.10.0",
     "draft-js": "^0.10.4",
     "draft-js-export-html": "github:plotly/draft-js-export-html",

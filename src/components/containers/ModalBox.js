@@ -11,7 +11,7 @@ export default class ModalBox extends Component {
     return (
       <div className={modalboxClass}>
         <div className="modalbox__cover" onClick={onClose} />
-        <div>{children}</div>
+        <div className="modalbox__content">{children}</div>
       </div>
     );
   }

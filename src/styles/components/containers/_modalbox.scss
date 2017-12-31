@@ -8,10 +8,9 @@
   align-content: center;
   box-shadow: var(--box-shadow-base);
   left: var(--spacing-half-unit);
-  //margin: 0 var(--spacing-base-unit);
   width: calc(100% - var(--spacing-base-unit));
   top:calc(100% + var(--spacing-quarter-unit));
-  background-color: var(--color-white);
+  background-color: var(--color-background-top);
   @include z-index('cloud');
 
   &__cover {

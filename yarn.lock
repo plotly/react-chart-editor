@@ -1323,6 +1323,12 @@ browserify-des@^1.0.0:
     des.js "^1.0.0"
     inherits "^2.0.1"
 
+browserify-global-shim@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/browserify-global-shim/-/browserify-global-shim-1.0.3.tgz#b2f0de3d7220e2309ba0a8c4b5638ec1d97868a8"
+  dependencies:
+    browserify-transform-tools "^1.5.0"
+
 browserify-rsa@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/browserify-rsa/-/browserify-rsa-4.0.1.tgz#21e0abfaf6f2029cf2fafb133567a701d4135524"
@@ -1341,6 +1347,13 @@ browserify-sign@^4.0.0:
     elliptic "^6.0.0"
     inherits "^2.0.1"
     parse-asn1 "^5.0.0"
+
+browserify-transform-tools@^1.5.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/browserify-transform-tools/-/browserify-transform-tools-1.7.0.tgz#83e277221f63259bed2e7eb2a283a970a501f4c4"
+  dependencies:
+    falafel "^2.0.0"
+    through "^2.3.7"
 
 browserify-zlib@~0.2.0:
   version "0.2.0"
