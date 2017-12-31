@@ -26,9 +26,4 @@
   &--dark {
     background-color: var(--color-background-inverse);
   }
-  .section:first-child{
-    .section__heading{
-      border-top: 0;
-    }
-  }
 }

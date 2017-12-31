@@ -3,34 +3,13 @@ $colorpicker-width: 250px;
 $saturation-picker-height: 160px;
 $slider-picker-height: 10px;
 
-.colorpicker__popover {
-  left: -90px;
-  position: absolute;
-  top: 100%;
-  margin: var(--spacing-quarter-unit) 0 var(--spacing-base-unit);
-  width: $colorpicker-width;
-  background-color: var(--color-white);
-  border-radius: var(--border-radius);
-  $shadow-color: rgba(0, 0, 0, 0.15);
-  @include vendor(
-        box-shadow, ($shadow-color 0 0 0 1px, $shadow-color 0 8px 16px)
-    );
-  @include z-index('cloud');
-}
-.colorpicker__cover {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  @include z-index('underground');
-}
-
-.colorpicker__container {
-  display: flex;
-  align-items: center;
-  line-height: 2;
+%colorpicker__component {
   position: relative;
+  overflow: hidden;
+  margin: 0 var(--spacing-half-unit);
+  border: var(--border-default);
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
 }
 
 .colorpicker {
@@ -41,84 +20,112 @@ $slider-picker-height: 10px;
   border-radius: 100%;
   border: var(--border-default);
   padding: var(--spacing-eighth-unit);
-}
 
-.colorpicker__selected-color {
-  margin-left: var(--spacing-half-unit);
-  color: var(--color-text-base);
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--font-size-small);
-  display: inline-block;
-  vertical-align: middle;
-  text-transform: uppercase;
-}
-
-.colorpicker__swatch {
-  border-radius: 50%;
-  flex-grow: 1;
-  width: 100%;
-  height: 100%;
-}
-
-%colorpicker__component {
-  position: relative;
-  overflow: hidden;
-  margin: 0 var(--spacing-half-unit);
-  border: var(--border-default);
-  border-radius: var(--border-radius-small);
-  cursor: pointer;
-}
-
-/* Saturation wrapper style */
-.colorpicker__saturation {
-  @extend %colorpicker__component;
-  height: $saturation-picker-height;
-}
-
-.colorpicker__custom-input {
-  padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
-}
-
-/* Wrapper style for Hue and Alpha sliders and swatch */
-.colorpicker__controls {
-  margin: 0 var(--spacing-half-unit);
-
-  .colorpicker__sliders {
-    width: 200px;
-
-    .colorpicker__slider {
-      @extend %colorpicker__component;
-      margin: auto 0;
-      height: $slider-picker-height;
-      margin-top: var(--spacing-eighth-unit);
-    }
+  &__popover {
+    left: -90px;
+    position: absolute;
+    top: 100%;
+    margin: var(--spacing-quarter-unit) 0 var(--spacing-base-unit);
+    width: $colorpicker-width;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-base);
+    border: var(--border-default);
+    @include z-index('cloud');
+  }
+  &__cover {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    @include z-index('underground');
   }
 
-  .colorpicker__active {
+  &__container {
+    display: flex;
+    align-items: center;
+    line-height: 2;
+    position: relative;
+  }
+  &__selected-color {
+    margin-left: var(--spacing-half-unit);
+    color: var(--color-text-base);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-small);
+    display: inline-block;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  &__swatch {
+    border-radius: 50%;
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Saturation wrapper style */
+  &__saturation {
     @extend %colorpicker__component;
-    height: var(--spacing-base-unit);
-    width: var(--spacing-base-unit);
-    margin: var(--spacing-eighth-unit) 0 0 var(--spacing-half-unit);
-
-    .colorpicker__active-swatch {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      border-radius: var(--border-radius-small);
-      border: 1px solid #eee;
+    height: $saturation-picker-height;
+  }
+  &__custom-input {
+    padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
+    input{
+      border: var(--border-default) !important;
+      box-shadow: none !important;
+      color: var(--color-text-dark);
+    }
+    input + span{
+      color: var(--color-text) !important;
     }
   }
-}
 
-.colorpicker__preset-colors {
-  margin: 0 var(--spacing-half-unit);
-}
+  /* Wrapper style for Hue and Alpha sliders and swatch */
+  &__controls {
+    margin: 0 var(--spacing-half-unit);
 
-.colorpicker__title {
-  margin: var(--spacing-eighth-unit) var(--spacing-quarter-unit);
-  font-size: var(--font-size-h5);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-header);
+    .colorpicker__sliders {
+      width: 200px;
+
+      .colorpicker__slider {
+        @extend %colorpicker__component;
+        margin: auto 0;
+        height: $slider-picker-height;
+        margin-top: var(--spacing-eighth-unit);
+      }
+    }
+
+    .colorpicker__active {
+      @extend %colorpicker__component;
+      height: var(--spacing-base-unit);
+      width: var(--spacing-base-unit);
+      margin: var(--spacing-eighth-unit) 0 0 var(--spacing-half-unit);
+
+      .colorpicker__active-swatch {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: var(--border-radius-small);
+        border: 1px solid #eee;
+      }
+    }
+  }
+
+  &__preset-colors {
+    margin: 0 var(--spacing-half-unit);
+    & > div{
+      border-top: var(--border-light) !important; // inline style override
+      padding:var(--spacing-half-unit) !important;
+      padding-bottom: var(--spacing-quarter-unit) !important;
+    }
+  }
+  &__title {
+    margin: var(--spacing-eighth-unit) var(--spacing-half-unit);
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-header);
+  }
 }

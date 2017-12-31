@@ -17,8 +17,8 @@
 
 .symbol-selector__toggle__caret {
   float: right;
-  fill: $color-secondary-text;
-  padding-top: 3px;
+  fill: var(--color-text-light);
+  padding-top: var(--spacing-eighth-unit);
   // prevent user agent override
   width: 13px !important;
   height: 13px !important;

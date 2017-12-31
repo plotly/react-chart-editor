@@ -10,6 +10,10 @@
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
     clear: both;
     text-transform: capitalize;
-    border-top: var(--border-light);
+  }
+  &:not(:first-child) {
+    .section__heading {
+      border-top: var(--border-light);
+    }
   }
 }
