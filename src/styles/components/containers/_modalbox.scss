@@ -1,30 +1,34 @@
 .modalbox {
   position: absolute;
-  border-radius: var(--border-radius-small);
+  border-radius: var(--border-radius);
+  overflow: hidden;
   text-transform: none;
   text-align: left;
   border: var(--border-default);
   align-content: center;
-  box-shadow: $base-box-shadow;
-  left: 0;
-  right: 0;
-
-  margin: 0 24px;
-  min-width: 200px;
+  box-shadow: var(--box-shadow-base);
+  left: var(--spacing-half-unit);
+  //margin: 0 var(--spacing-base-unit);
+  width: calc(100% - var(--spacing-base-unit));
+  top:calc(100% + var(--spacing-quarter-unit));
   background-color: var(--color-white);
+  @include z-index('cloud');
 
-  @include z-index("cloud");
-}
+  &__cover {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    @include z-index('underground');
+  }
 
-.modalbox--dark {
-  background-color: var(--color-background-inverse);
-}
-
-.modalbox__cover {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  @include z-index("underground");
+  &--dark {
+    background-color: var(--color-background-inverse);
+  }
+  .section:first-child{
+    .section__heading{
+      border-top: 0;
+    }
+  }
 }

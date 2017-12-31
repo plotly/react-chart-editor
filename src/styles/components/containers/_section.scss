@@ -1,5 +1,6 @@
 .section {
   &__heading {
+    position: relative;
     display: flex;
     font-size: var(--font-size-base);
     color: var(--color-text-header);
@@ -10,8 +11,5 @@
     clear: both;
     text-transform: capitalize;
     border-top: var(--border-light);
-    &__menu{
-
-    }
   }
 }

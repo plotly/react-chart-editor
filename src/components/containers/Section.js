@@ -79,7 +79,7 @@ export default class Section extends Component {
     return this.sectionVisible ? (
       <div className="section">
         <div className="section__heading">
-          {this.props.name}
+          <div className="section__heading__text">{this.props.name}</div>
           {this.menuPanel}
         </div>
         {this.children}

@@ -6,31 +6,37 @@
     border: var(--border-default);
     display: inline-block;
     cursor: pointer;
-    min-width: 60px;
+    min-width: 0px;
     text-align: center;
     &:not(.radio-block__option--active) {
       &:hover {
         background-color: var(--color-background-light);
+        color: var(--color-text-active);
       }
     }
     &--active {
       background-color: var(--color-accent);
       color: var(--color-white);
-      border: $border-accent-shade;
+      border: var(--border-accent-shade);
       margin-left: -1px;
       cursor: default;
+      text-shadow: var(--text-shadow-dark-ui);
+      font-weight: var(--font-weight-semibold);
+      &:not(:first-child), &:last-child {
+        border-left: var(--border-accent-shade) !important;
+      }
     }
-    &:not(:first-child):not(:last-child){
+    &:not(:first-child):not(:last-child) {
       border-left: 0;
     }
     &:last-child {
-      border-top-right-radius: 3px;
-      border-bottom-right-radius: 3px;
+      border-top-right-radius: var(--border-radius-small);
+      border-bottom-right-radius: var(--border-radius-small);
       border-left: 0;
     }
     &:first-child {
-      border-top-left-radius: 3px;
-      border-bottom-left-radius: 3px;
+      border-top-left-radius: var(--border-radius-small);
+      border-bottom-left-radius: var(--border-radius-small);
       &:not(.radio-block__option--active) {
         border-left: var(--border-default);
       }
