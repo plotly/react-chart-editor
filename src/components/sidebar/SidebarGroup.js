@@ -45,19 +45,19 @@ export default class SidebarGroup extends Component {
     const {expanded} = this.state;
     return (
       <div
-        className={bem('sidebar-group', [
+        className={bem('sidebar__group', [
           expanded ? 'is-expanded' : '',
           selectedGroup === group ? 'is-active' : '',
         ])}
       >
         <div
           onClick={this.toggleExpanded}
-          className={bem('sidebar-group', 'title')}
+          className={bem('sidebar__group', 'title')}
         >
-          <div className={bem('sidebar-group', 'title__icon')}>
+          <div className={bem('sidebar__group', 'title__icon')}>
             <ChevronRightIcon />
           </div>
-          <div className={bem('sidebar-group', 'title__label')}>{group}</div>
+          <div className={bem('sidebar__group', 'title__label')}>{group}</div>
         </div>
         {expanded && panels.map(this.renderSubItem)}
       </div>

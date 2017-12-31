@@ -38,8 +38,18 @@
     .Select-value-label {
     color: var(--color-text-base);
   }
+  .Select.is-open .Select-arrow, .plotly-editor .dropdown-container .Select .Select-arrow-zone:hover > .Select-arrow{
+    border-color:transparent transparent var(--color-border-accent) !important;
+  }
+
+  .Select-arrow-zone:hover{
+    .Select-arrow {
+      border-top-color: var(--color-border-accent) !important;
+    }
+  }
   .Select-arrow {
-    opacity: 0.5;
+    border-color: var(--color-border-default) transparent transparent;
+
   }
 
   .Select-option {
