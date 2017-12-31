@@ -1,34 +1,38 @@
 .radio-block {
   width: 100%;
   &__option {
-    padding: 6px 12px;
-    background-color: #fff;
-    border: $border;
+    padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
+    background-color: var(--color-white);
+    border: var(--border-default);
     display: inline-block;
     cursor: pointer;
     min-width: 60px;
     text-align: center;
     &:not(.radio-block__option--active) {
       &:hover {
-        background-color: $color-background-light;
+        background-color: var(--color-background-light);
       }
     }
     &--active {
-      background-color: $color-accent;
-      color: #fff;
+      background-color: var(--color-accent);
+      color: var(--color-white);
       border: $border-accent-shade;
       margin-left: -1px;
       cursor: default;
     }
+    &:not(:first-child):not(:last-child){
+      border-left: 0;
+    }
     &:last-child {
       border-top-right-radius: 3px;
       border-bottom-right-radius: 3px;
+      border-left: 0;
     }
     &:first-child {
       border-top-left-radius: 3px;
       border-bottom-left-radius: 3px;
       &:not(.radio-block__option--active) {
-        border-left: $border;
+        border-left: var(--border-default);
       }
     }
   }

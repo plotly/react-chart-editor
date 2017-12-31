@@ -1,14 +1,14 @@
 .field {
-  align-items: center;
-  border-top:$border-light;
-  color: #6d6d6d;
+  align-items: flex-start;
+  border-top: var(--border-light);
+  color: var(--color-text-base);
   display: flex;
-  font-size: $font-size;
-  font-weight: $font-weight-normal;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
   justify-content: flex-start;
-  line-height: $font-size;
+  line-height: var(--font-size-base);
   min-height: 32px;
-  padding: 6px 0;
+  padding: var(--spacing-quarter-unit) 0;
   width: 100%;
 }
 
@@ -18,39 +18,40 @@
 
 .field__no-title {
   width: 100%;
-  padding: 0 12px;
+  padding: 0 var(--spacing-half-unit);
+  align-self: center;
 }
 
 .field__no-title--center {
   text-align: center;
 }
 
-.field__title {
-  padding-left: 0.5em;
-  color: #69738a;
-  font-size: 14px;
-  width: 36%;
-  display: inline-block;
-}
-
 .field__widget {
-  width: 64%;
-  padding-left: 12px;
   display: flex;
-  padding-right: 12px;
+  &:not(.field__widget--units) {
+    flex-grow: 1;
+  }
+  flex-wrap: wrap;
+  padding-right: var(--spacing-half-unit);
+  padding-left: var(--spacing-half-unit);
+}
+.field__units {
+  align-self: center;
 }
 
 .field__widget--units {
-  width: 41%;
-  padding-right: 0px;
+  padding-right: 0;
 }
 
 .field__title {
   width: 30%;
-  padding-left: 12px;
+  padding-left: var(--spacing-half-unit);
   display: inline-block;
-  line-height: 18px;
+  font-size: var(--font-size-base);
+  line-height: var(--font-leading-body);
   text-transform: capitalize;
+  color: var(--color-text-base);
+  padding-top: var(--spacing-quarter-unit);
 }
 
 .field__title-text {

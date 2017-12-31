@@ -1,6 +1,6 @@
 @import 'defaults';
 
-:root {
+.plotly-editor {
   // Base Color Variables
   @each $var, $val in $colors {
     @if type-of($val) == map {
@@ -31,6 +31,10 @@
   @each $var, $val in $border-colors {
     #{--color-border}-#{$var}: $val;
   }
+  // Background Colors
+  @each $var, $val in $fills {
+    #{--color}-#{$var}: $val;
+  }
   // Button Color Variables
   @each $var, $val in $buttons {
     @if type-of($val) == map {
@@ -56,6 +60,20 @@
 
   @each $var, $val in $borders {
     #{--border}-#{$var}: $val;
+  }
+
+  @each $var, $val in $text-shadows {
+    #{--text-shadow}-#{$var}: $val;
+  }
+  @each $var, $val in $box-shadows {
+    #{--box-shadow}-#{$var}: $val;
+  }
+
+  @each $var, $val in $panel {
+    #{--panel}-#{$var}: $val;
+  }
+  @each $var, $val in $sidebar {
+    #{--sidebar}-#{$var}: $val;
   }
 }
 
@@ -94,11 +112,6 @@ $border-accent-shade: 1px solid $color-accent-shade;
 $border-radius: $default-border-radius;
 $border-radius-5: $default-border-radius-5;
 
-/*
- * Layout
- */
-$layout-panel-width: 425px;
-$layout-sidebar-width: 100px;
 
 /*
  * Typography

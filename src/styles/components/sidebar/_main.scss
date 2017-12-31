@@ -1,36 +1,36 @@
 .sidebar {
   user-select: none;
   height: 100%;
-  min-width: $layout-sidebar-width;
-  width: $layout-sidebar-width;
-  max-width: $layout-sidebar-width;
+  min-width: var(--sidebar-width);
+  width: var(--sidebar-width);
+  max-width: var(--sidebar-width);
   text-align: center;
-  background: #fff;
+  background: var(--color-white);
   overflow-y: auto;
   float: left;
-  border-right: 1px solid $color-border;
+  border-right: var(--border-default);
   flex-grow: 1;
   @include scrollbar();
 }
 
 .sidebar-group {
-  background-color: #fff;
+  background-color: var(--color-white);
   cursor: pointer;
   width: 100%;
 
   &__title {
-    color: #506784;
+    color: var(--color-text-base);
     font-size: 14px;
-    font-weight: $font-weight-normal;
-    padding: $half-spacing-unit 0;
+    font-weight: var(--font-weight-normal);
+    padding: var(--spacing-half-unit) 0;
     text-transform: capitalize;
     text-align: left;
-    border-bottom: $border-light;
+    border-bottom: var(--border-light);
     display: flex;
     position: relative;
 
     &__label {
-      padding-left: $base-spacing-unit;
+      padding-left: var(--spacing-base-unit);
     }
 
     &__icon {
@@ -61,17 +61,17 @@
 
   //  has active child
   &--is-active {
-    color: #2a3f5f;
+    color: var(--color-text-active);
     cursor: default;
     .sidebar-group__title {
       &__label {
-        font-weight: $font-weight-semibold;
+        font-weight: var(--font-weight-semibold);
       }
       &__icon {
         opacity: 1;
         svg {
           path {
-            fill: $color-accent;
+            fill: var(--color-accent);
           }
         }
       }
@@ -97,15 +97,15 @@
   color: #69738a;
   cursor: pointer;
   font-size: 14px;
-  font-weight: $font-weight-normal;
+  font-weight: var(--font-weight-normal);
   line-height: 14px;
   text-transform: capitalize;
   background-color: #f3f6fa;
-  padding: $half-spacing-unit;
-  padding-left: $base-spacing-unit;
+  padding: var(--spacing-half-unit);
+  padding-left: var(--spacing-base-unit);
   padding-right: 0;
   text-align: left;
-  border-bottom: $border-light;
+  border-bottom: var(--border-light);
   position: relative;
   overflow: hidden;
   &::before {
@@ -115,7 +115,7 @@
     top: 0;
     left: 0;
     width: 5px;
-    background-color: $color-accent;
+    background-color: var(--color-accent);
     transform: scaleX(0);
     transform-origin: left center;
     will-change: transform;
@@ -138,7 +138,7 @@
     transform: none;
   }
   color: #2a3f5f;
-  font-weight: $font-weight-semibold;
+  font-weight: var(--font-weight-semibold);
   cursor: default;
   span {
     transform: translateX(5px);

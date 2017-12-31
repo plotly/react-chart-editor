@@ -1,19 +1,16 @@
 .panel {
   flex-grow: 1;
   flex-shrink: 0;
-  background-color: $color-panel-background;
+  background-color: var(--panel-background);
   overflow-y: auto;
-  padding: $half-spacing-unit;
-  border-right: $border;
+  padding: var(--spacing-half-unit);
+  border-right: var(--border-default);
   box-sizing: border-box;
-  width: calc(#{$layout-panel-width} - #{$layout-sidebar-width} - 1px);
+  width: calc(var(--panel-width) - var(--sidebar-width) - 1px);
   @include scrollbar();
 
-  &__content {
-  }
-
   &__header {
-    margin-bottom: $half-spacing-unit;
+    margin-bottom: var(--spacing-half-unit);
     display: flex;
     &__content {
       flex-grow: 1;
@@ -21,9 +18,5 @@
     &--align-right {
       justify-content: flex-end;
     }
-  }
-
-  &__add-button {
-    //@include button(primary);
   }
 }

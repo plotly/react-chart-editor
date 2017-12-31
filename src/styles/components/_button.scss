@@ -15,7 +15,7 @@ button {
   border-width: 1px;
   border-style: solid;
   border-color: transparent;
-  border-radius: $border-radius-5;
+  border-radius: var(--border-radius);
   @include trans;
   &.button {
     padding-left: 0;

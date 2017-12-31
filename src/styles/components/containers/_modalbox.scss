@@ -1,9 +1,9 @@
 .modalbox {
   position: absolute;
-  border-radius: 2px;
+  border-radius: var(--border-radius-small);
   text-transform: none;
   text-align: left;
-  border: $border;
+  border: var(--border-default);
   align-content: center;
   box-shadow: $base-box-shadow;
   left: 0;
@@ -11,13 +11,13 @@
 
   margin: 0 24px;
   min-width: 200px;
-  background-color: $color-white;
+  background-color: var(--color-white);
 
   @include z-index("cloud");
 }
 
 .modalbox--dark {
-  background-color: $color-background-color-inverse;
+  background-color: var(--color-background-inverse);
 }
 
 .modalbox__cover {

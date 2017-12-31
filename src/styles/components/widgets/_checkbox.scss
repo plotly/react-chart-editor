@@ -1,5 +1,5 @@
 .checkbox__group {
-  padding-left: 12px;
+  padding-left: var(--spacing-half-unit);
   text-align: left;
 }
 
@@ -22,26 +22,26 @@
 .checkbox__box {
   height: 18px;
   width: 18px;
-  border: 1px solid #a9b3c7;
-  border-radius: 3px;
+  border: var(--border-default);
+  border-radius: var(--border-radius-small);
   cursor: pointer;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
 }
-
+// TODO: replace with svg icon
 .checkbox__check {
-  color: #6D6D6D;
-  font-size: 12px;
+  color: var(--color-text-base);
+  font-size: var(--spacing-half-unit);
 }
 
 .icon-check-mark:before {
-  content: "\2714";
+  content: '\2714';
 }
 
 .checkbox__label {
-  padding-left: 6px;
-  font-size: 12px;
+  padding-left: var(--spacing-quarter-unit);
+  font-size: var(--spacing-half-unit);
   display: inline-block;
   line-height: 20px;
   text-align: left;

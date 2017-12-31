@@ -1,14 +1,17 @@
 .section {
   &__heading {
     display: flex;
-    font-size: $font-size;
-    color: $color-header-text;
-    font-weight: $font-weight-semibold;
+    font-size: var(--font-size-base);
+    color: var(--color-text-header);
+    font-weight: var(--font-weight-semibold);
     cursor: default;
-    background-color: $color-background-light;
+    background-color: var(--color-background-light);
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
     clear: both;
     text-transform: capitalize;
-    border-top: $border-light;
+    border-top: var(--border-light);
+    &__menu{
+
+    }
   }
 }

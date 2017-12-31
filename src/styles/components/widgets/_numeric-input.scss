@@ -1,20 +1,20 @@
 .numeric-input__wrapper {
   line-height: 20px;
   max-width: 100%;
-  color: $color-text;
+  color: var(--color-text-base);
 }
 
 .numeric-input__number {
   display: inline-block;
-  border: 1px solid $color-border;
+  border: var(--border-default);
   background: white;
   cursor: text;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: left;
-  border-radius: 2px;
-  padding: 6px 6px 6px 12px;
+  border-radius: var(--border-radius-small);
+  padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit) var(--spacing-quarter-unit) var(--spacing-half-unit);
   width: 62px;
   vertical-align: middle;
   font-size: inherit;
@@ -25,8 +25,8 @@
 .numeric-input__caret-box {
   display: inline-block;
   max-height: 32px;
-  margin-left: 6px;
-  margin-right: 12px;
+  margin-left: var(--spacing-quarter-unit);
+  margin-right: var(--spacing-half-unit);
   vertical-align: middle;
   box-sizing: border-box;
 }
@@ -37,10 +37,10 @@
 
 .numeric-input__caret {
   cursor: pointer;
-  background-color: #f8f8f9;
-  border: 1px solid #bec8d9;
+  background-color: var(--color-rhino-light-5);
+  border: var(--border-light);
   border-radius: 1px;
-  line-height: 12px;
+  line-height: var(--spacing-half-unit);
   text-align: center;
 }
 
@@ -48,12 +48,12 @@
   // to prevent user agent override
   width: 13px !important;
   height: 13px !important;
-  fill: $color-text !important;
+  fill: var(--color-text-base) !important;
 }
 
 .numeric-bottom-caret-modifier {
   // to prevent user agent override
   width: 13px !important;
   height: 13px !important;
-  fill: $color-text !important;
+  fill: var(--color-text-base) !important;
 }

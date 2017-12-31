@@ -16,26 +16,49 @@ $text: (
   text-base: var(--color-rhino-dark),
   text-light: var(--color-rhino-medium-1),
   text-dark: var(--color-rhino-core),
-  active-text: var(--color-rhino-core)
+  text-header: var(--color-text-dark),
+  text-active: var(--color-rhino-core),
+  text-placeholder: var(--color-rhino-medium-1)
 );
 // Border Colors
 $border-colors: (
   default: var(--color-rhino-medium-2),
   light: var(--color-rhino-light-1),
   dark: var(--color-rhino-medium-1),
-  accent: var(--color-accent)
+  accent: var(--color-accent),
+  accent-shade: var(--color-accent-shade)
 );
 // Border styles
 $borders: (
   default:1px solid var(--color-border-default),
   light:1px solid var(--color-border-light),
   dark:1px solid var(--color-border-dark),
-  accent:1px solid var(--color-border-accentt)
+  accent:1px solid var(--color-border-accent),
+  accent-shade:1px solid var(--color-border-accent-shade),
+  radius: 5px,
+  radius-small: 2px
+);
+$fills: (
+  background: var(--color-rhino-light-2),
+  background-light: var(--color-rhino-light-3),
+  background-inverse: var(--color-rhino-dark)
+);
+
+$box-shadows: (base: 0px 2px 9px rgba(80, 103, 132, 0.2));
+$text-shadows: (
+  dark-ui: 0 1px 2px rgba(42, 63, 95, 0.7),
+  dark-ui-inactive: 0 1px 1px rgba(42, 63, 95, 0.4)
 );
 // Panel Styles + Colors
-$panel: (background: #fafbfd);
+$panel: (
+  background: var(--color-background),
+  width: $layout-panel-width
+);
 // Sidebar
-$sidebar: (background: white);
+$sidebar: (
+  background: var(--color-white),
+  width: $layout-sidebar-width
+);
 // Buttons
 $buttons: (
   primary-base:(
@@ -56,7 +79,7 @@ $buttons: (
   secondary-base:(
       fill: transparent,
       border: var(--color-rhino-medium-2),
-      text: var(--color-text)
+      text: var(--color-text-base)
     ),
   secondary-hover:(
       fill: transparent,
@@ -71,7 +94,7 @@ $buttons: (
   tertiary-base:(
       fill: transparent,
       border: transparent,
-      text: var(--color-text)
+      text: var(--color-text-base)
     ),
   tertiary-hover:(
       fill: transparent,
@@ -84,17 +107,17 @@ $buttons: (
       text: var(--color-text-dark)
     ),
   default-base:(
-      fill: transparent,
+      fill: var(--color-rhino-light-3),
       border: var(--color-rhino-medium-2),
-      text: var(--color-text)
+      text: var(--color-text-base)
     ),
   default-hover:(
-      fill: transparent,
+      fill: var(--color-rhino-medium-2),
       border: var(--color-rhino-medium-1),
       text: var(--color-text-dark)
     ),
   default-active:(
-      fill: transparent,
+      fill: var(--color-rhino-medium-1),
       border: var(--color-rhino-medium-1),
       text: var(--color-text-dark)
     ),

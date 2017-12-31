@@ -1,52 +1,87 @@
-.dropdown--dark .Select-control {
-  background-color: $color-background-color-inverse;
-}
-
-.dropdown--dark .Select-option {
-  background-color: $color-background-color-inverse;
-}
-
-.dropdown--dark .Select-option.is-selected {
-  background-color: $color-border;
-}
-
-.dropdown--dark .Select-option.is-focused {
-  background-color: $color-secondary-border;
-}
 .dropdown-container {
+  @import 'node_modules/react-select/scss/default';
   width: 100%;
-}
-.Select {
-  &:not(.is-open){
-    .Select-control {
-      &:hover {
-        border-color: $color-border-dark;
-        .Select-arrow{
-          opacity: 1;
+
+  .Select {
+    &:not(.is-open) {
+      .Select-control {
+        &:hover {
+          border-color: var(--color-border-dark);
+          .Select-arrow {
+            opacity: 1;
+          }
         }
       }
     }
+    &-control {
+      border: var(--border-default);
+      box-shadow: none !important;
+      color: var(--color-text-base);
+    }
+    &-option {
+      color: var(--color-text-base);
+    }
+    &-menu-outer {
+      border: var(--border-default);
+    }
   }
-  &-control {
-    border: $border;
-    box-shadow: none !important;
+  .Select.is-focused:not(.is-open) > .Select-control {
+    border-color: var(--color-border-accent);
   }
-  &-option {
-    color: $color-text;
+  .Select.has-value.Select--single
+    > .Select-control
+    .Select-value
+    .Select-value-label,
+  .Select.has-value.is-pseudo-focused.Select--single
+    > .Select-control
+    .Select-value
+    .Select-value-label {
+    color: var(--color-text-base);
   }
-  &-menu-outer {
-    border: $border;
+  .Select-arrow {
+    opacity: 0.5;
   }
-}
-.Select.is-focused:not(.is-open) > .Select-control{
-  border-color: $color-accent;
-}
-.Select.has-value.Select--single > .Select-control .Select-value .Select-value-label, .Select.has-value.is-pseudo-focused.Select--single > .Select-control .Select-value .Select-value-label{
-  color: $color-text;
-}
-.Select-arrow{
-  opacity: 0.5;
-}
-.Select-placeholder{
-  color: $color-text-placeholder;
+
+  .Select-option {
+    &.is-selected {
+      color: var(--color-text-active);
+      font-weight: var(--font-weight-semibold);
+      background: var(--color-background-light);
+    }
+    &.is-focused {
+      background: var(--color-background-light);
+      color: var(--color-text-active);
+    }
+  }
+  .Select-option:hover {
+    color: var(--color-text-active);
+    background: var(--color-background-light);
+  }
+
+  .Select-placeholder,
+  .Select--single > .Select-control .Select-value {
+    color: var(--color-text-base);
+  }
+  .Select-value-label {
+    color: var(--color-text-base) !important;
+  }
+  .Select-placeholder {
+    color: var(--color-text-placeholder);
+  }
+  .dropdown--dark {
+    .Select {
+      &-control {
+        background-color: var(--color-background-inverse);
+      }
+      &-option {
+        background-color: var(--color-background-inverse);
+        &.is-selected {
+          background-color: var(--color-border-default);
+        }
+      }
+      &.is-focused {
+        background-color: var(--color-border-light);
+      }
+    }
+  }
 }

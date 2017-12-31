@@ -11,16 +11,16 @@
     display: flex;
     justify-content: space-between;
     clear: both;
-    padding: $quarter-spacing-unit $half-spacing-unit;
-    color: $color-white;
+    padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
+    color: var(--color-white);
     cursor: pointer;
-    font-size: $font-size;
+    font-size: var(--font-size-base);
     line-height: 11px;
-    border: $border-dark;
+    border: var(--border-dark);
     background-color: $color-fold-header-background--closed;
     height: 15px;
-    border-radius: 5px;
-    text-shadow: $text-shadow--dark-ui;
+    border-radius: var(--border-radius);
+    text-shadow: var(--text-shadow-dark-ui);
     transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
       border 0.1s ease-in-out;
 
@@ -38,11 +38,11 @@
     }
 
     &--active {
-      color: $color-white;
+      color: var(--color-white);
       background-color: $color-fold-header-background;
       border: 1px solid $color-fold-header-background;
-      border-radius: 5px 5px 0 0;
-      text-shadow: $text-shadow--dark-ui--inactive;
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      text-shadow: var(--text-shadow-dark-ui-inactive);
 
       svg {
         @include drop-shadow--dark-ui--lighter();
@@ -50,15 +50,14 @@
 
       &:hover {
         background-color: $color-fold-header-background; // darken 6%
-        background-color: $color-fold-header-background; // darken 6%
       }
     }
 
     &__title {
-      margin-left: $half-spacing-unit/3;
+      margin-left: var(--spacing-half-unit)/3;
       padding-top: 2px;
-      font-size: $font-size-medium;
-      font-weight: $font-weight-semibold;
+      font-size: var(--font-size-medium);
+      font-weight: var(--font-weight-semibold);
       white-space: nowrap;
       max-width: 150px;
       letter-spacing: 0.2px;
@@ -85,8 +84,8 @@
   }
 
   &__content {
-    background: #ffffff;
-    border: $border;
+    background: var(--color-white);
+    border: var(--border-default);
     border-width: 0 1px 1px 1px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -98,7 +97,7 @@
 }
 
 .fold + .fold {
-  margin-top: $half-spacing-unit;
+  margin-top: var(--spacing-half-unit);
 }
 
 .fold__top__arrow-title {
@@ -106,7 +105,7 @@
 }
 .fold__delete {
   display: inline-block;
-  color: $color-white;
+  color: var(--color-white);
   text-decoration: none;
   font-size: 1.5em;
 }
