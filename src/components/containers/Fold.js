@@ -34,7 +34,9 @@ export default class Fold extends Component {
 
     const arrowIcon = (
       <div className={arrowClass}>
-        <AngleDownIcon />
+        <div className="fold__top__arrow__wrapper">
+          <AngleDownIcon />
+        </div>
       </div>
     );
 

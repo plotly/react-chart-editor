@@ -1,23 +1,15 @@
 .fold {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -ms-user-select: none;
   width: 100%;
-
-
+  user-select: none;
   &__top {
     display: flex;
     justify-content: space-between;
     clear: both;
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
     color: var(--color-white);
-    cursor: pointer;
     font-size: var(--font-size-base);
-    line-height: 11px;
     border: var(--border-dark);
-    background-color: $color-fold-header-background--closed;
+    background-color: var(--fold-header-background-closed);
     height: 15px;
     border-radius: var(--border-radius);
     text-shadow: var(--text-shadow-dark-ui);
@@ -25,12 +17,14 @@
       border 0.1s ease-in-out;
 
     &:hover {
-      background-color: $color-fold-header-background--closed; // darken 6%
+      cursor: pointer;
+      background-color: var(--fold-header-background-closed); // darken 6%
     }
 
     svg {
       width: 18px;
       height: 18px;
+      display: block;
       @include drop-shadow--dark-ui();
       path {
         fill: currentColor;
@@ -39,8 +33,8 @@
 
     &--active {
       color: var(--color-white);
-      background-color: $color-fold-header-background;
-      border: 1px solid $color-fold-header-background;
+      background-color: var(--fold-header-background);
+      border: 1px solid var(--fold-header-background);
       border-radius: var(--border-radius) var(--border-radius) 0 0;
       text-shadow: var(--text-shadow-dark-ui-inactive);
 
@@ -49,34 +43,45 @@
       }
 
       &:hover {
-        background-color: $color-fold-header-background; // darken 6%
+        background-color: var(--fold-header-background); // darken 6%
       }
     }
 
     &__title {
       margin-left: var(--spacing-half-unit)/3;
-      padding-top: 2px;
       font-size: var(--font-size-medium);
+      line-height: var(--font-size-medium);
       font-weight: var(--font-weight-semibold);
+      transform: translateY(1px);
       white-space: nowrap;
       max-width: 150px;
       letter-spacing: 0.2px;
     }
 
     &__arrow {
-      will-change: transform;
-      transition: transform 0.1s ease-in-out;
-      transform: rotate(-180deg);
-      font-weight: bold;
-      transform-origin: center center;
+      transform: translateX(-3px) translateY(-1px);
+      svg{
+        will-change: transform;
+        transition: transform 0.1s ease-in-out;
+        transform: rotate(-180deg);
+        font-weight: bold;
+        transform-origin: center center;
+      }
+
+      &-title {
+        display: flex;
+      }
       &--active {
-        transform: rotate(-90deg);
+        svg{
+          transform: rotate(-90deg);
+        }
       }
     }
 
     &__delete {
       font-size: 18px;
       opacity: 0.75;
+      transform: translateY(-2px);
       &:hover {
         opacity: 1;
       }
@@ -98,14 +103,4 @@
 
 .fold + .fold {
   margin-top: var(--spacing-half-unit);
-}
-
-.fold__top__arrow-title {
-  display: flex;
-}
-.fold__delete {
-  display: inline-block;
-  color: var(--color-white);
-  text-decoration: none;
-  font-size: 1.5em;
 }

@@ -59,6 +59,10 @@ $sidebar: (
   background: var(--color-white),
   width: $layout-sidebar-width
 );
+$fold: (
+  header-background:var(--color-rhino-dark),
+  header-background-closed:var(--color-rhino-medium-1)
+);
 // Buttons
 $buttons: (
   primary-base:(

@@ -72,6 +72,9 @@
   @each $var, $val in $panel {
     #{--panel}-#{$var}: $val;
   }
+  @each $var, $val in $fold {
+    #{--fold}-#{$var}: $val;
+  }
   @each $var, $val in $sidebar {
     #{--sidebar}-#{$var}: $val;
   }
