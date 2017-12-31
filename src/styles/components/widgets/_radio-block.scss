@@ -1,5 +1,6 @@
 .radio-block {
   width: 100%;
+  line-height: var(--font-leading-head);
   &__option {
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
     background-color: var(--color-white);

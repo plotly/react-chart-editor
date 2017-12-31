@@ -24,6 +24,7 @@
     flex-wrap: wrap;
     padding-right: var(--spacing-half-unit);
     padding-left: var(--spacing-half-unit);
+    align-self: center;
     // if it has units, don't allow it to grow,
     // otherwise it should take up the available space
     &:not(.field__widget--units) {

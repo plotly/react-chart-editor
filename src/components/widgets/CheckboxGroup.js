@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import CheckIcon from 'mdi-react/CheckIcon';
 
 class CheckboxGroup extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class CheckboxGroup extends Component {
   renderOptions() {
     return this.state.options.map((option, i) => {
       const checkClass = classnames(['checkbox__check', 'icon'], {
-        'icon-check-mark': option.checked,
+        'checkbox__check--checked': option.checked,
       });
 
       const itemClass = classnames('checkbox__item', {
@@ -34,8 +35,17 @@ class CheckboxGroup extends Component {
 
       return (
         <div key={i} className={itemClass}>
-          <div className="checkbox__box" onClick={() => this.handleChange(i)}>
-            {option.checked && <i className={checkClass} />}
+          <div
+            className={`checkbox__box${
+              option.checked ? ' checkbox__box--checked' : ''
+            }`}
+            onClick={() => this.handleChange(i)}
+          >
+            {option.checked && (
+              <div className={checkClass}>
+                <CheckIcon />
+              </div>
+            )}
           </div>
           <div className="checkbox__label">{option.label}</div>
         </div>
