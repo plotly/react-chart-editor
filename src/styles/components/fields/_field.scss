@@ -10,52 +10,67 @@
   min-height: 32px;
   padding: var(--spacing-quarter-unit) 0;
   width: 100%;
-}
-
-.field:not(:last-child) {
-  //border-bottom: 1px solid #f8f8f9;
-}
-
-.field__no-title {
-  width: 100%;
-  padding: 0 var(--spacing-half-unit);
-  align-self: center;
-  line-height: var(--font-leading-body);
-}
-
-.field__no-title--center {
-  text-align: center;
-}
-
-.field__widget {
-  display: flex;
-  &:not(.field__widget--units) {
-    flex-grow: 1;
+  &__no-title {
+    width: 100%;
+    padding: 0 var(--spacing-half-unit);
+    align-self: center;
+    line-height: var(--font-leading-body);
+    &--center {
+      text-align: center;
+    }
   }
-  flex-wrap: wrap;
-  padding-right: var(--spacing-half-unit);
-  padding-left: var(--spacing-half-unit);
-}
-.field__units {
-  align-self: center;
-}
+  &__widget {
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: var(--spacing-half-unit);
+    padding-left: var(--spacing-half-unit);
+    // if it has units, don't allow it to grow,
+    // otherwise it should take up the available space
+    &:not(.field__widget--units) {
+      flex-grow: 1;
+    }
+    &--units {
+      padding-right: 0;
+    }
+  }
+  &__units {
+    align-self: center;
+  }
+  &__title {
+    width: 30%;
+    padding-left: var(--spacing-half-unit);
+    display: block;
+    font-size: var(--font-size-base);
+    line-height: var(--font-leading-body);
+    color: var(--color-text-base);
+    padding-top: var(--spacing-quarter-unit);
+    user-select: none;
+    &-text {
+      text-transform: capitalize;
+      cursor: default;
+    }
+  }
 
-.field__widget--units {
-  padding-right: 0;
-}
-
-.field__title {
-  width: 30%;
-  padding-left: var(--spacing-half-unit);
-  display: inline-block;
-  font-size: var(--font-size-base);
-  line-height: var(--font-leading-body);
-  text-transform: capitalize;
-  color: var(--color-text-base);
-  padding-top: var(--spacing-quarter-unit);
-}
-
-.field__title-text {
-  text-transform: capitalize;
-  cursor: default;
+  &__delete{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: var(--spacing-quarter-unit);
+    opacity: 0.5;
+    svg{
+      display: block;
+      path{
+        fill: var(--color-text-base)
+      }
+    }
+    &:hover{
+      cursor: pointer;
+      opacity: 1;
+      svg{
+        path{
+          fill: var(--color-sienna)
+        }
+      }
+    }
+  }
 }

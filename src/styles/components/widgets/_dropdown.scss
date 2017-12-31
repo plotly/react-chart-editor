@@ -1,6 +1,6 @@
 .dropdown-container {
   @import 'node_modules/react-select/scss/default';
-  width: 100%;
+  flex-grow: 1;
 
   .Select {
     &:not(.is-open) {

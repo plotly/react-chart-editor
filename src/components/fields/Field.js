@@ -4,6 +4,18 @@ import MenuPanel from '../containers/MenuPanel';
 import classnames from 'classnames';
 import {bem, localize} from 'lib';
 import {getMultiValueText} from 'lib/constants';
+import {CloseIcon} from 'plotly-icons';
+
+export class FieldDelete extends Component {
+  render() {
+    const {onClick} = this.props;
+    return (
+      <div className="field__delete" onClick={onClick}>
+        <CloseIcon />
+      </div>
+    );
+  }
+}
 
 class Field extends Component {
   render() {
@@ -70,4 +82,7 @@ Field.defaultProps = {
   multiValued: false,
 };
 
+FieldDelete.propTypes = {
+  onClick: PropTypes.func,
+};
 export default localize(Field);

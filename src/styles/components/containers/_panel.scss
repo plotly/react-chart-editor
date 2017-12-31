@@ -8,7 +8,6 @@
   box-sizing: border-box;
   width: calc(var(--panel-width) - var(--sidebar-width) - 1px);
   @include scrollbar();
-
   &__header {
     margin-bottom: var(--spacing-half-unit);
     display: flex;

@@ -87,7 +87,7 @@ Dropdown.defaultProps = {
   noResultsText: 'no results...',
   placeholder: 'select an option...',
   searchable: false,
-  minWidth: '150px',
+  minWidth: '120px',
   valueKey: 'value',
   disabled: false,
 };
