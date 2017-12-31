@@ -8,6 +8,7 @@
 $brand: (
   accent:var(--color-dodger),
   accent-shade:var(--color-dodger-shade),
+  accent-shade-mid:var(--color-dodger-shade-mid),
   brand: var(--color-navyblue),
   hightlight-darker: var(--color-gray-blue-pale)
 );
@@ -40,9 +41,13 @@ $borders: (
 );
 $fills: (
   background: var(--color-rhino-light-2),
+  background-base: var(--color-rhino-light-2),
   background-light: var(--color-rhino-light-3),
   background-medium: var(--color-rhino-light-1),
-  background-inverse: var(--color-rhino-dark)
+  background-dark: var(--color-rhino-medium-1),
+  background-top: var(--color-white),
+  background-inverse: var(--color-rhino-dark),
+  background-inputs: var(--color-background-top)
 );
 
 $box-shadows: (base: 0px 2px 9px rgba(80, 103, 132, 0.2));
@@ -50,35 +55,45 @@ $text-shadows: (
   dark-ui: 0 1px 2px rgba(42, 63, 95, 0.7),
   dark-ui-inactive: 0 1px 1px rgba(42, 63, 95, 0.4)
 );
+$scrollbar: (
+        track-background: var(--color-background-base),
+        thumb-color: var(--color-accent)
+);
 // Panel Styles + Colors
 $panel: (
-  background: var(--color-background),
+  background: var(--color-background-base),
   width: $layout-panel-width
 );
 // Sidebar
 $sidebar: (
-  background: var(--color-white),
-  width: $layout-sidebar-width
+  background: var(--color-background-top),
+  width: $layout-sidebar-width,
+  group-background-base: var(--sidebar-background),
+  item-background-base:var(--color-background-light),
+  item-background-hover: var(--color-background-base),
+  item-background-active: var(--color-background-medium)
 );
 $fold: (
-  header-background:var(--color-rhino-dark),
-  header-background-closed:var(--color-rhino-medium-1)
+  header-background-base:var(--color-rhino-dark),
+  header-background-closed:var(--color-rhino-medium-1),
+  header-border-color-closed:var(--color-rhino-medium-1),
+  header-border-color-base:var(--color-rhino-dark)
 );
 // Buttons
 $buttons: (
   primary-base:(
-      fill: var(--color-dodger),
-      border: var(--color-dodger-shade),
+      fill: var(--color-accent),
+      border: var(--color-accent-shade),
       text: var(--color-white)
     ),
   primary-hover:(
-      fill: var(--color-dodger-shade-mid),
-      border: var(--color-dodger-shade),
+      fill: var(--color-accent-shade-mid),
+      border: var(--color-accent-shade),
       text: var(--color-white)
     ),
   primary-active:(
-      fill: var(--color-dodger-shade),
-      border: var(--color-dodger-shade),
+      fill: var(--color-accent-shade),
+      border: var(--color-accent-shade),
       text: var(--color-white)
     ),
   secondary-base:(
@@ -112,18 +127,18 @@ $buttons: (
       text: var(--color-text-dark)
     ),
   default-base:(
-      fill: var(--color-rhino-light-3),
-      border: var(--color-rhino-medium-2),
+      fill: var(--color-background-light),
+      border: var(--color-border-default),
       text: var(--color-text-base)
     ),
   default-hover:(
-      fill: var(--color-rhino-medium-2),
-      border: var(--color-rhino-medium-1),
+      fill: var(--color-background-base),
+      border: var(--color-border-dark),
       text: var(--color-text-dark)
     ),
   default-active:(
-      fill: var(--color-rhino-medium-1),
-      border: var(--color-rhino-medium-1),
+      fill: var(--color-background-dark),
+      border: var(--color-border-dark),
       text: var(--color-text-dark)
     ),
   upgrade-base:(

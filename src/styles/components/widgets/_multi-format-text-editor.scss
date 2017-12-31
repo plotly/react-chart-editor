@@ -58,6 +58,9 @@
       }
     }
   }
+  textarea{
+    background-color: var(--color-background-inputs);
+  }
 }
 
 .multi-format-editor__root {
@@ -260,7 +263,7 @@
 
   &:hover {
     color: var(--color-text-active);
-    background-color: var(--color-white);
+    background-color: var(--color-background-top);
     &::before {
       transform: none;
     }

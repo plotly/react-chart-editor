@@ -3,7 +3,7 @@
   line-height: var(--font-leading-head);
   &__option {
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
-    background-color: var(--color-white);
+    background-color: var(--color-background-top);
     border: var(--border-default);
     display: inline-block;
     cursor: pointer;
@@ -16,9 +16,9 @@
       }
     }
     &--active {
-      background-color: var(--color-accent);
-      color: var(--color-white);
-      border: var(--border-accent-shade);
+      background-color: var(--color-button-primary-base-fill);
+      color: var(--color-button-primary-base-text);
+      border: var(--color-button-primary-base-border);
       margin-left: -1px;
       cursor: default;
       text-shadow: var(--text-shadow-dark-ui);

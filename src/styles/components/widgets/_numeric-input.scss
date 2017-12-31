@@ -7,7 +7,7 @@
 .numeric-input__number {
   display: inline-block;
   border: var(--border-default);
-  background: white;
+  background: var(--color-background-inputs);
   cursor: text;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -37,8 +37,8 @@
 
 .numeric-input__caret {
   cursor: pointer;
-  background-color: var(--color-rhino-light-5);
-  border: var(--border-light);
+  background-color: var(--color-background-light);
+  border: var(--border-default);
   border-radius: 1px;
   line-height: var(--spacing-half-unit);
   text-align: center;

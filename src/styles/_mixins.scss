@@ -34,7 +34,7 @@
   }
 }
 
-@mixin scrollbar($width: 5px, $trackbg: $color-page-background, $thumb-color: $color-accent) {
+@mixin scrollbar($width: 5px, $trackbg: var(--scrollbar-track-background), $thumb-color: var(--scrollbar-thumb-color)) {
   -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
     background: white;

@@ -3,8 +3,25 @@
   flex-grow: 1;
 
   .Select {
+    &.is-focused {
+      & > .Select-control {
+        background-color: var(--color-background-inputs);
+        .Select-input{
+          background-color: var(--color-background-inputs) !important;
+        }
+      }
+    }
+    &.is-open {
+      & > .Select-control {
+        border-color: var(--color-border-dark) ;
+        .Select-input{
+          background-color: var(--color-background-inputs) !important;
+        }
+      }
+    }
     &:not(.is-open) {
       .Select-control {
+        background-color: var(--color-background-inputs) !important;
         &:hover {
           border-color: var(--color-border-dark);
           .Select-arrow {
@@ -14,6 +31,7 @@
       }
     }
     &-control {
+      background-color: var(--color-background-inputs);
       border: var(--border-default);
       box-shadow: none !important;
       color: var(--color-text-base);
@@ -23,6 +41,9 @@
     }
     &-menu-outer {
       border: var(--border-default);
+      border-top-color: var(--color-border-default);
+      background-color: transparent;
+      box-shadow: var(--box-shadow-base);
     }
   }
   .Select.is-focused:not(.is-open) > .Select-control {
@@ -38,34 +59,39 @@
     .Select-value-label {
     color: var(--color-text-base);
   }
-  .Select.is-open .Select-arrow, .plotly-editor .dropdown-container .Select .Select-arrow-zone:hover > .Select-arrow{
-    border-color:transparent transparent var(--color-border-accent) !important;
+  .Select.is-open .Select-arrow,
+  .plotly-editor
+    .dropdown-container
+    .Select
+    .Select-arrow-zone:hover
+    > .Select-arrow {
+    border-color: transparent transparent var(--color-border-accent) !important;
   }
 
-  .Select-arrow-zone:hover{
+  .Select-arrow-zone:hover {
     .Select-arrow {
       border-top-color: var(--color-border-accent) !important;
     }
   }
   .Select-arrow {
     border-color: var(--color-border-default) transparent transparent;
-
   }
 
   .Select-option {
+    background-color: var(--color-background-inputs);
     &.is-selected {
       color: var(--color-text-active);
       font-weight: var(--font-weight-semibold);
-      background: var(--color-background-light);
+      background-color: var(--color-background-light);
     }
     &.is-focused {
-      background: var(--color-background-light);
+      background-color: var(--color-background-light);
       color: var(--color-text-active);
     }
   }
   .Select-option:hover {
     color: var(--color-text-active);
-    background: var(--color-background-light);
+    background-color: var(--color-background-light);
   }
 
   .Select-placeholder,

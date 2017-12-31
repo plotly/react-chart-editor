@@ -27,7 +27,7 @@ $slider-picker-height: 10px;
     top: 100%;
     margin: var(--spacing-quarter-unit) 0 var(--spacing-base-unit);
     width: $colorpicker-width;
-    background-color: var(--color-white);
+    background-color: var(--color-background-top);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow-base);
     border: var(--border-default);
@@ -74,6 +74,7 @@ $slider-picker-height: 10px;
     input{
       border: var(--border-default) !important;
       box-shadow: none !important;
+      background-color: var(--color-background-inputs);
       color: var(--color-text-dark);
     }
     input + span{
