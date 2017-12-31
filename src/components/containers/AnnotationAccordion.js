@@ -38,7 +38,7 @@ export default class AnnotationAccordion extends Component {
     const addButton = canAdd && (
       <Button
         variant="primary"
-        className="panel__add-button"
+        className="js-add-annotation-button"
         onClick={this.addAnnotation}
         icon={<PlusIcon />}
         label="Annotation"

@@ -3,6 +3,8 @@ const fs = require('fs');
 const postcss = require('postcss');
 const customProperties = require('postcss-custom-properties');
 const autoprefixer = require('autoprefixer');
+
+/* eslint-disable no-process-env */
 const ie = process.env.NODE_ENV === 'ie';
 
 if (ie) {

@@ -30,7 +30,7 @@ export default class TraceAccordion extends Component {
 
     const addButton = canAdd && (
       <Button
-        className="panel__add-button"
+        className="js-add-trace-button"
         variant="primary"
         onClick={this.addTrace}
         icon={<PlusIcon />}

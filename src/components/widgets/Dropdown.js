@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import Select from 'react-select';
 import classnames from 'classnames';
 
-
 class Dropdown extends Component {
   constructor(props) {
     super(props);

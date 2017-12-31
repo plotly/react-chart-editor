@@ -29,7 +29,7 @@ describe('<TraceAccordion>', () => {
       </TestEditor>
     );
 
-    editor.find('.panel__add-button').simulate('click');
+    editor.find('button.js-add-trace-button').simulate('click');
 
     expect(onAddTrace).toBeCalled();
   });
