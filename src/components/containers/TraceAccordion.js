@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import {connectTraceToPlot, bem} from 'lib';
-import {PanelHeader} from 'components/containers/Panel';
+import {PanelHeader, PanelEmpty} from 'components/containers/Panel';
 import Button from 'components/Button';
 import PlusIcon from 'mdi-react/PlusIcon';
 
@@ -46,8 +46,23 @@ export default class TraceAccordion extends Component {
       </TraceFold>
     ));
 
+    const emptyState = data.length &&
+      !data[0].x &&
+      !canAdd && (
+        <PanelEmpty
+          heading="There aren't any traces."
+          message={
+            <p>
+              Looks like there are no traces selected yet, head back to the
+              Create section to adjust the data.
+            </p>
+          }
+        />
+      );
+
     return (
       <div className={bem('panel', 'content')}>
+        {emptyState}
         {panelHeader}
         {content}
       </div>
