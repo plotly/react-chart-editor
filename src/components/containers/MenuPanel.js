@@ -13,7 +13,8 @@ export default class MenuPanel extends Component {
   }
 
   getIcon() {
-    if (this.props.question) {
+    const {question} = this.props;
+    if (question) {
       return {
         icon: <QuestionIcon className="menupanel__icon" />,
         spanClass: `menupanel__icon-span menupanel__icon-span--question`,
@@ -30,22 +31,23 @@ export default class MenuPanel extends Component {
   }
 
   render() {
-    const isOpen = this.props.show || this.state.isOpen;
+    const {show, ownline, label, children} = this.props;
+    const isOpen = show || this.state.isOpen;
     const containerClass = classnames('menupanel', {
-      'menupanel--ownline': this.props.ownline,
+      'menupanel--ownline': ownline,
     });
 
     const {icon, spanClass} = this.getIcon();
 
     return (
       <div className={containerClass}>
-        <span className={spanClass}>
-          <span>{this.props.label}</span>
-          <span onClick={this.togglePanel}>{icon}</span>
-        </span>
-        {isOpen ? (
-          <ModalBox onClose={this.togglePanel}>{this.props.children}</ModalBox>
-        ) : null}
+        <div className={spanClass}>
+          <div className="menupanel__label">{label}</div>
+          <div className="menupanel__icon__wrapper" onClick={this.togglePanel}>
+            {icon}
+          </div>
+        </div>
+        {isOpen && <ModalBox onClose={this.togglePanel}>{children}</ModalBox>}
       </div>
     );
   }
