@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem} from 'lib/index';
+import {bem} from 'lib';
 
 class Button extends Component {
   constructor(props) {
