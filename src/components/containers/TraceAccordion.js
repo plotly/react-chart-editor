@@ -53,8 +53,8 @@ export default class TraceAccordion extends Component {
           heading="There aren't any traces."
           message={
             <p>
-              Looks like there are no traces selected yet, head back to the
-              Create section to adjust the data.
+              Looks like there aren't any traces defined yet. Go to the 'Create'
+              tab to define some traces.
             </p>
           }
         />

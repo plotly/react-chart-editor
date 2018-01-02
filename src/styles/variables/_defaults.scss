@@ -1,63 +1,6 @@
-@import "./colors";
-@import "./typography";
-@import "./units";
-@import "./layout";
+@import './colors';
+@import './typography';
+@import './units';
+@import './layout';
 @import './theme';
-
-
-$var-maps: (
-  spacing: $spacing,
-  border: $borders,
-  color: $colors,
-  font: $font
-);
-
-// which property uses which var map
-// you would edit this for each property you want to use variables for
-$props: (
-  background-color: color,
-  border-radius: border,
-  color: color,
-  font-family: (font, family),
-  font-size: (font, size),
-  font-weight: (font, weight),
-  line-height: (font, leading)
-);
-
-// the variable mixin takes a property and variable name
-@mixin v($prop, $var, $show-fall: true) {
-  // get the property's map name(s)
-  $map-name: map-get($props, $prop);
-  $nest-name: null;
-  $nest-map-name: null;
-  $map: null;
-  $var-fall: null;
-  $var-output: null;
-  // if a list, we need to go deeper
-  @if type-of($map-name) == list {
-    $nest-name: nth($map-name, 1);
-    $nest-map-name: nth($map-name, 2);
-  }
-  // if it is a nested map
-  @if $nest-name {
-    // get the map from nested map-name
-    $map: map-get($var-maps, $nest-name);
-    // get the nested map
-    $nest-map: map-get($map, $nest-map-name);
-    // get the var value fro mthe nested map
-    $var-fall: map-get($nest-map, $var);
-    $var-output: var(--#{$nest-name}-#{$nest-map-name}-#{$var});
-  } @else {
-    // get the map from map name
-    $map: map-get($var-maps, $map-name);
-    // fallback, grab the variable's value from the map
-    $var-fall: map-get($map, $var);
-    $var-output: var(--#{$map-name}-#{$var});
-  }
-  // if show standard is not overridden to be null
-  @if $show-fall {
-    #{$prop}: $var-fall;
-  }
-  // css4 variable output
-  #{$prop}: $var-output;
-}
+$ENV: 'default' !default;

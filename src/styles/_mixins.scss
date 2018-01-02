@@ -80,3 +80,88 @@
     color: var(--color-button-#{$variant}-active-text);
   }
 }
+
+
+@mixin generateVars() {
+  // Base Color Variables
+  @each $var, $val in $colors {
+    @if type-of($val) == map {
+      @each $var-n, $val-n in $val {
+        @if type-of($val-n) == map {
+          @each $var-i, $val-i in $val-n {
+            #{--color}-#{$var}-#{$var-n}-#{$var-i}: $val-i;
+          }
+        } @else {
+          #{--color}-#{$var}-#{$var-n}: $val-n;
+        }
+      }
+    } @else {
+      #{--color}-#{$var}: $val;
+    }
+  }
+
+  // Brand Colors
+  @each $var, $val in $brand {
+    #{--color}-#{$var}: $val;
+  }
+
+  // Text Color
+  @each $var, $val in $text {
+    #{--color}-#{$var}: $val;
+  }
+  // Border Colors
+  @each $var, $val in $border-colors {
+    #{--color-border}-#{$var}: $val;
+  }
+  // Background Colors
+  @each $var, $val in $fills {
+    #{--color}-#{$var}: $val;
+  }
+  // Button Color Variables
+  @each $var, $val in $buttons {
+    @if type-of($val) == map {
+      @each $var-n, $val-n in $val {
+        #{--color-button}-#{$var}-#{$var-n}: $val-n;
+      }
+    } @else {
+      #{--color}-#{$var}: $val;
+    }
+  }
+
+  // Spacing Units
+  @each $var, $val in $spacing {
+    #{--spacing}-#{$var}: $val;
+  }
+
+  // Font Variables (font-size, weight, etc)
+  @each $var, $val in $font {
+    @each $var-n, $val-n in $val {
+      #{--font}-#{$var}-#{$var-n}: $val-n;
+    }
+  }
+
+  @each $var, $val in $borders {
+    #{--border}-#{$var}: $val;
+  }
+
+  @each $var, $val in $text-shadows {
+    #{--text-shadow}-#{$var}: $val;
+  }
+  @each $var, $val in $box-shadows {
+    #{--box-shadow}-#{$var}: $val;
+  }
+
+  @each $var, $val in $scrollbar {
+    #{--scrollbar}-#{$var}: $val;
+  }
+
+  @each $var, $val in $panel {
+    #{--panel}-#{$var}: $val;
+  }
+  @each $var, $val in $fold {
+    #{--fold}-#{$var}: $val;
+  }
+  @each $var, $val in $sidebar {
+    #{--sidebar}-#{$var}: $val;
+  }
+}

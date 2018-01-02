@@ -3,6 +3,20 @@
 @import 'mixins';
 @import 'helpers';
 
+:root {
+  --env: $ENV;
+}
+
+@if $ENV == 'ie' {
+  :root {
+    @include generateVars;
+  }
+} @else {
+  .plotly-editor {
+    @include generateVars;
+  }
+}
+
 .plotly-editor {
   position: relative;
   width: $layout-panel-width;
