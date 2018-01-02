@@ -23,11 +23,8 @@
   flex-shrink: 0;
   overflow: hidden;
   display: flex;
-  @include v(font-family, body);
-
   @import 'components/main';
   @include font-smoothing;
-
   &__wrapper {
     display: flex;
     flex-grow: 1;

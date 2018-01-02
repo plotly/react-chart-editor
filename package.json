@@ -13,32 +13,30 @@
     "url": "https://github.com/plotly/react-plotly.js-editor/issues"
   },
   "scripts": {
+    "lint": "prettier --write \"src/**/*.js\"",
     "make:combined-translation-keys":
       "babel-node utils/findTranslationKeys.js && babel-node utils/combineTranslationKeys.js",
     "make:translation-keys": "babel-node utils/findTranslationKeys.js",
     "make:lib":
       "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps && npm run make:lib:css",
     "make:lib:css": "mkdirp lib && yarn styles:lib && yarn postcss:lib",
-    "make:lib:css:ie": "mkdirp lib && yarn styles:lib:ie && yarn postcss:lib:ie",
+    "make:lib:css:ie":
+      "mkdirp lib && yarn styles:lib:ie && yarn postcss:lib:ie",
     "make:dist":
       "mkdirp dist && browserify src/PlotlyEditor.js -o ./dist/PlotlyEditor.js -t [ babelify --presets [ es2015 react ] ] -t browserify-global-shim --standalone createPlotlyComponent && uglifyjs ./dist/PlotlyEditor.js --compress --mangle --output ./dist/PlotlyEditor.min.js --source-map filename=dist/PlotlyEditor.min.js.map && yarn make:dist:css",
     "make:dist:css": "mkdirp dist && yarn styles:dist && yarn postcss:dist",
     "make:dist:css:ie":
       "mkdirp dist && yarn styles:dist:ie && yarn postcss:dist:ie",
     "prepublishOnly": "npm run make:lib",
-    "lint": "prettier --write \"src/**/*.js\"",
-    "styles:lib": "BUILD_ENV=lib babel-node src/scripts/styles.js",
-    "postcss:lib": "BUILD_ENV=lib babel-node src/scripts/postcss.js",
-    "styles:lib:ie":
-      "BUILD_ENV=lib SASS_ENV=ie babel-node src/scripts/styles.js",
-    "postcss:lib:ie":
-      "BUILD_ENV=lib SASS_ENV=ie babel-node src/scripts/postcss.js",
-    "styles:dist": "BUILD_ENV=dist babel-node src/scripts/styles.js",
-    "postcss:dist": "BUILD_ENV=dist babel-node src/scripts/postcss.js",
-    "styles:dist:ie":
-      "BUILD_ENV=dist SASS_ENV=ie babel-node src/scripts/styles.js",
+    "styles:dist": "BUILD_ENV=dist babel-node scripts/styles.js",
+    "styles:dist:ie": "BUILD_ENV=dist SASS_ENV=ie babel-node scripts/styles.js",
+    "styles:lib": "BUILD_ENV=lib babel-node scripts/styles.js",
+    "styles:lib:ie": "BUILD_ENV=lib SASS_ENV=ie babel-node scripts/styles.js",
+    "postcss:dist": "BUILD_ENV=dist babel-node scripts/postcss.js",
     "postcss:dist:ie":
-      "BUILD_ENV=dist SASS_ENV=ie babel-node src/scripts/postcss.js",
+      "BUILD_ENV=dist SASS_ENV=ie babel-node scripts/postcss.js",
+    "postcss:lib": "BUILD_ENV=lib babel-node scripts/postcss.js",
+    "postcss:lib:ie": "BUILD_ENV=lib SASS_ENV=ie babel-node scripts/postcss.js",
     "test:lint":
       "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:pretty":
