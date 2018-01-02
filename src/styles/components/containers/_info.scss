@@ -1,9 +1,6 @@
 .info {
   &__title {
-    color: var(--color-text-header);
-    font-size: var(--font-size-medium);
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--font-leading-head);
+    @include heading('small');
     padding: var(--spacing-half-unit) var(--spacing-half-unit)
       var(--spacing-quarter-unit) var(--spacing-half-unit);
   }

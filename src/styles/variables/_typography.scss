@@ -1,11 +1,4 @@
-$default-font-weight-light: 400;
-$default-font-weight-normal: 400;
-$default-font-weight-semibold: 600;
-$default-font-weight-bold: 700;
-$default-font-size: 13px;
-$default-font-size-small: 12px;
-$default-font-size-medium: 14px;
-$default-h5-size: 16px;
+@import url('https://fonts.googleapis.com/css?family=Dosis:500,700|Open+Sans:400,400i,600,700');
 
 $font-weight-light: 400;
 $font-weight-normal: 400;
@@ -17,7 +10,17 @@ $font-size-medium: 14px;
 $h5-size: 16px;
 
 $font: (
-  size: (base: 13px, small: 11px, medium:14px, large:16px, h5: 16px),
+  size:
+    (
+      base: 13px,
+      small: 11px,
+      medium:14px,
+      large:16px,
+      heading-base: 24px,
+      heading-small: 18px,
+      heading-large: 28px,
+      h5: 16px
+    ),
   weight:
     (
       light: $font-weight-light,
@@ -26,5 +29,9 @@ $font: (
       bold: $font-weight-bold
     ),
   leading: (body: 1.6, head: 1.2),
-  family: (body: ('Open Sans', --apple-default, sans-serif))
+  family:
+    (
+      body: ('Open Sans', --apple-default, sans-serif),
+      headings: ('Dosis', sans-serif)
+    )
 );

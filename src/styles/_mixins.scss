@@ -59,28 +59,27 @@
 
 @mixin button($variant: default) {
   background-color: var(--color-button-#{$variant}-base-fill);
-  border-color:var(--color-button-#{$variant}-base-border);
+  border-color: var(--color-button-#{$variant}-base-border);
   color: var(--color-button-#{$variant}-base-text);
 
-  @if($variant == primary or $variant == upgrade){
+  @if ($variant == primary or $variant == upgrade) {
     text-shadow: $text-shadow--dark-ui;
-    svg{
+    svg {
       @include drop-shadow--dark-ui;
     }
   }
 
   &:hover {
     background-color: var(--color-button-#{$variant}-hover-fill);
-    border:1px solid var(--color-button-#{$variant}-hover-border);
+    border: 1px solid var(--color-button-#{$variant}-hover-border);
     color: var(--color-button-#{$variant}-hover-text);
   }
   &:active {
     background-color: var(--color-button-#{$variant}-active-fill);
-    border:1px solid var(--color-button-#{$variant}-active-border);
+    border: 1px solid var(--color-button-#{$variant}-active-border);
     color: var(--color-button-#{$variant}-active-text);
   }
 }
-
 
 @mixin generateVars() {
   // Base Color Variables
@@ -163,5 +162,30 @@
   }
   @each $var, $val in $sidebar {
     #{--sidebar}-#{$var}: $val;
+  }
+}
+
+@mixin heading($type: 'base') {
+  @if ($type == 'small') {
+    color: var(--color-text-header);
+    font-size: var(--font-size-heading-small);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--font-leading-head);
+    font-family: var(--font-family-headings);
+    letter-spacing: 0.5px;
+  } @else if ($type == 'medium') {
+    color: var(--color-text-header);
+    font-size: var(--font-size-heading-medium);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--font-leading-head);
+    font-family: var(--font-family-headings);
+    letter-spacing: 0.5px;
+  } @else {
+    color: var(--color-text-header);
+    font-size: var(--font-size-heading-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--font-leading-head);
+    font-family: var(--font-family-headings);
+    letter-spacing: 0.5px;
   }
 }

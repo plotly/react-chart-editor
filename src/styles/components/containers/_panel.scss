@@ -47,9 +47,7 @@
         }
       }
       &__heading {
-        color: var(--color-text-header);
-        font-size: var(--font-size-large);
-        font-weight: var(--font-weight-semibold);
+        @include heading();
       }
       &__content {
         font-size: var(--font-size-base);
