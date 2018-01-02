@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import {connectTraceToPlot, bem} from 'lib';
 import {PanelHeader, PanelEmpty} from 'components/containers/Panel';
-import Button from 'components/Button';
+import Button from 'components/widgets/Button';
 import PlusIcon from 'mdi-react/PlusIcon';
 
 const TraceFold = connectTraceToPlot(Fold);

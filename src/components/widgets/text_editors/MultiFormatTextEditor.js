@@ -11,7 +11,7 @@ import {
   hasTextExpression,
 } from './convertFormats';
 import classnames from 'classnames';
-import Button from 'components/Button';
+import Button from 'components/widgets/Button';
 
 class MultiFormatTextEditor extends Component {
   constructor(props) {

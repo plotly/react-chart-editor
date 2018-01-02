@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectAnnotationToLayout, bem} from 'lib';
 import {PanelHeader} from './Panel';
-import Button from 'components/Button';
+import Button from 'components/widgets/Button';
 import PlusIcon from 'mdi-react/PlusIcon';
 const AnnotationFold = connectAnnotationToLayout(Fold);
 
