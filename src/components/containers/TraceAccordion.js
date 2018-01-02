@@ -2,14 +2,15 @@ import Fold from './Fold';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
-import {connectTraceToPlot, bem} from 'lib';
+import {connectTraceToPlot, bem, localize} from 'lib';
 import {PanelHeader, PanelEmpty} from 'components/containers/Panel';
 import Button from 'components/widgets/Button';
+
 import PlusIcon from 'mdi-react/PlusIcon';
 
 const TraceFold = connectTraceToPlot(Fold);
 
-export default class TraceAccordion extends Component {
+class TraceAccordion extends Component {
   constructor(props) {
     super(props);
 
@@ -26,7 +27,7 @@ export default class TraceAccordion extends Component {
 
   render() {
     const data = this.context.data || [];
-    const {canAdd, children} = this.props;
+    const {canAdd, children, localize: _} = this.props;
 
     const addButton = canAdd && (
       <Button
@@ -34,7 +35,7 @@ export default class TraceAccordion extends Component {
         variant="primary"
         onClick={this.addTrace}
         icon={<PlusIcon />}
-        label="Trace"
+        label={_('Trace')}
       />
     );
 
@@ -53,8 +54,10 @@ export default class TraceAccordion extends Component {
           heading="There aren't any traces."
           message={
             <p>
-              Looks like there aren't any traces defined yet. Go to the 'Create'
-              tab to define some traces.
+              {_(
+                "Looks like there aren't any traces defined yet. Go to the 'Create'\n" +
+                  '              tab to define some traces.'
+              )}
             </p>
           }
         />
@@ -76,6 +79,9 @@ TraceAccordion.contextTypes = {
 };
 
 TraceAccordion.propTypes = {
+  localize: PropTypes.func,
   children: PropTypes.node,
   canAdd: PropTypes.bool,
 };
+
+export default localize(TraceAccordion);
