@@ -10,7 +10,7 @@ import {
   Checkboard,
 } from 'react-color/lib/components/common';
 import {CustomPicker as customPicker} from 'react-color';
-import {localize} from '../../lib';
+import {localize} from 'lib';
 
 /* eslint-disable no-inline-comments */
 const defaultColors = [

@@ -1,6 +1,6 @@
 import Dropdown from './Dropdown';
 import React from 'react';
-import {DEFAULT_FONTS} from '../../lib/constants';
+import {DEFAULT_FONTS} from 'lib/constants';
 
 /* eslint-disable react/prop-types */
 const styledRenderer = ({value, label}) => (

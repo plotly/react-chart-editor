@@ -1,7 +1,7 @@
 import React from 'react';
 import {TraceAccordion, Fold} from '..';
 import {Numeric} from '../../fields';
-import {TestEditor, fixtures, mount} from '../../../lib/test-utils';
+import {TestEditor, fixtures, mount} from 'lib/test-utils';
 
 describe('<TraceAccordion>', () => {
   it('generates trace Folds with name == text', () => {

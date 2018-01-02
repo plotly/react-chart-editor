@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import SymbolSelectorWidget from '../widgets/SymbolSelector';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {connectToContainer, tooLight} from '../../lib';
+import {connectToContainer, tooLight} from 'lib';
 
 // TODO compute these from plotly.js
 const SYMBOLS = [

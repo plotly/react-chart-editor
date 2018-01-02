@@ -2,8 +2,8 @@ import React from 'react';
 import Section from '../Section';
 import MenuPanel from '../MenuPanel';
 import {Flaglist, Info, Numeric} from '../../fields';
-import {TestEditor, fixtures} from '../../../lib/test-utils';
-import {connectTraceToPlot} from '../../../lib';
+import {TestEditor, fixtures} from 'lib/test-utils';
+import {connectTraceToPlot} from 'lib';
 import {mount} from 'enzyme';
 
 const TraceSection = connectTraceToPlot(Section);

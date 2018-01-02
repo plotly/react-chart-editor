@@ -1,7 +1,7 @@
 /* eslint-disable no-magic-numbers */
 import DropdownWidget from '../../widgets/Dropdown';
 import React from 'react';
-import {TestEditor, fixtures, plotly} from '../../../lib/test-utils';
+import {TestEditor, fixtures, plotly} from 'lib/test-utils';
 import {mount} from 'enzyme';
 
 function render(overrides = {}) {

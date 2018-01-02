@@ -1,7 +1,7 @@
 import React from 'react';
-import {connectLayoutToPlot} from '../../../lib';
+import {connectLayoutToPlot} from 'lib';
 import {Panel, Fold} from '../../';
-import {TestEditor, fixtures} from '../../../lib/test-utils';
+import {TestEditor, fixtures} from 'lib/test-utils';
 import {mount} from 'enzyme';
 import {CanvasSize} from '../';
 

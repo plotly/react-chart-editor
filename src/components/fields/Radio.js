@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Field from './Field';
-import {connectToContainer} from '../../lib';
+import {connectToContainer} from 'lib';
 
 class Radio extends Component {
   render() {

@@ -1,7 +1,7 @@
 import Section from './Section';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import localize from '../../lib/localize';
+import localize from 'lib/localize';
 
 class TraceMarkerSection extends Component {
   constructor(props, context) {

@@ -2,8 +2,8 @@ import React from 'react';
 import Field from '../Field';
 import Radio from '../Radio';
 import {Section} from '../../containers';
-import {TestEditor, fixtures, plotly} from '../../../lib/test-utils';
-import {connectTraceToPlot} from '../../../lib';
+import {TestEditor, fixtures, plotly} from 'lib/test-utils';
+import {connectTraceToPlot} from 'lib';
 import {mount} from 'enzyme';
 
 const Trace = connectTraceToPlot(Section);

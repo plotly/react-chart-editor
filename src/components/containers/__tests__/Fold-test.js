@@ -1,8 +1,8 @@
 import {Numeric} from '../../fields';
 import {Fold} from '..';
 import React from 'react';
-import {TestEditor, fixtures, mount} from '../../../lib/test-utils';
-import {connectTraceToPlot} from '../../../lib';
+import {TestEditor, fixtures, mount} from 'lib/test-utils';
+import {connectTraceToPlot} from 'lib';
 
 const TraceFold = connectTraceToPlot(Fold);
 

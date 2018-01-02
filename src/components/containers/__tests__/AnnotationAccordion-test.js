@@ -1,8 +1,8 @@
 import React from 'react';
 import {AnnotationAccordion, Panel, Fold} from '..';
 import {Numeric} from '../../fields';
-import {TestEditor, fixtures, mount} from '../../../lib/test-utils';
-import {connectLayoutToPlot} from '../../../lib';
+import {TestEditor, fixtures, mount} from 'lib/test-utils';
+import {connectLayoutToPlot} from 'lib';
 
 const LayoutPanel = connectLayoutToPlot(Panel);
 

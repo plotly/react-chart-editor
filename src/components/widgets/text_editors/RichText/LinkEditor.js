@@ -5,8 +5,8 @@
 
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {RETURN_KEY, ESCAPE_KEY} from '../../../../lib/constants';
-import localize from '../../../../lib/localize';
+import {RETURN_KEY, ESCAPE_KEY} from 'lib/constants';
+import localize from 'lib/localize';
 import {findDOMNode} from 'react-dom';
 
 class LinkEditor extends Component {
