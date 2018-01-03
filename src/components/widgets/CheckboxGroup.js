@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import CheckIcon from 'mdi-react/CheckIcon';
+import {CheckIcon} from 'plotly-icons';
 
 class CheckboxGroup extends Component {
   constructor(props) {

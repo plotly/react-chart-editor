@@ -14,37 +14,28 @@
   },
   "scripts": {
     "lint": "prettier --write \"src/**/*.js\"",
-    "make:combined-translation-keys":
-      "babel-node utils/findTranslationKeys.js && babel-node utils/combineTranslationKeys.js",
+    "make:combined-translation-keys": "babel-node utils/findTranslationKeys.js && babel-node utils/combineTranslationKeys.js",
     "make:translation-keys": "babel-node utils/findTranslationKeys.js",
-    "make:lib":
-      "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps && npm run make:lib:css",
+    "make:lib": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps && npm run make:lib:css",
     "make:lib:css": "mkdirp lib && yarn styles:lib && yarn postcss:lib",
-    "make:lib:css:ie":
-      "mkdirp lib && yarn styles:lib:ie && yarn postcss:lib:ie",
-    "make:dist":
-      "mkdirp dist && browserify src/PlotlyEditor.js -o ./dist/PlotlyEditor.js -t [ babelify --presets [ es2015 react ] ] -t browserify-global-shim --standalone createPlotlyComponent && uglifyjs ./dist/PlotlyEditor.js --compress --mangle --output ./dist/PlotlyEditor.min.js --source-map filename=dist/PlotlyEditor.min.js.map && yarn make:dist:css",
+    "make:lib:css:ie": "mkdirp lib && yarn styles:lib:ie && yarn postcss:lib:ie",
+    "make:dist": "mkdirp dist && browserify src/PlotlyEditor.js -o ./dist/PlotlyEditor.js -t [ babelify --presets [ es2015 react ] ] -t browserify-global-shim --standalone createPlotlyComponent && uglifyjs ./dist/PlotlyEditor.js --compress --mangle --output ./dist/PlotlyEditor.min.js --source-map filename=dist/PlotlyEditor.min.js.map && yarn make:dist:css",
     "make:dist:css": "mkdirp dist && yarn styles:dist && yarn postcss:dist",
-    "make:dist:css:ie":
-      "mkdirp dist && yarn styles:dist:ie && yarn postcss:dist:ie",
+    "make:dist:css:ie": "mkdirp dist && yarn styles:dist:ie && yarn postcss:dist:ie",
     "prepublishOnly": "npm run make:lib",
     "styles:dist": "BUILD_ENV=dist babel-node scripts/styles.js",
     "styles:dist:ie": "BUILD_ENV=dist SASS_ENV=ie babel-node scripts/styles.js",
     "styles:lib": "BUILD_ENV=lib babel-node scripts/styles.js",
     "styles:lib:ie": "BUILD_ENV=lib SASS_ENV=ie babel-node scripts/styles.js",
     "postcss:dist": "BUILD_ENV=dist babel-node scripts/postcss.js",
-    "postcss:dist:ie":
-      "BUILD_ENV=dist SASS_ENV=ie babel-node scripts/postcss.js",
+    "postcss:dist:ie": "BUILD_ENV=dist SASS_ENV=ie babel-node scripts/postcss.js",
     "postcss:lib": "BUILD_ENV=lib babel-node scripts/postcss.js",
     "postcss:lib:ie": "BUILD_ENV=lib SASS_ENV=ie babel-node scripts/postcss.js",
-    "test:lint":
-      "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:pretty":
-      "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
-    "watch":
-      "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-plotly.js-editor.css",
+    "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-plotly.js-editor.css",
     "watch-test": "jest --watch"
   },
   "keywords": [
@@ -73,6 +64,7 @@
     "babelify": "^7.3.0",
     "browserify": "^14.5.0",
     "classnames": "^2.2.5",
+    "cssnano": "^3.10.0",
     "enzyme": "^3.1.0",
     "enzyme-adapter-react-16": "^1.0.4",
     "eslint": "^4.12.1",
@@ -86,7 +78,9 @@
     "mkdirp": "^0.5.1",
     "node-sass": "^4.7.2",
     "postcss": "^6.0.14",
+    "postcss-combine-duplicated-selectors": "^3.1.4",
     "postcss-custom-properties": "^6.2.0",
+    "postcss-remove-root": "^0.0.2",
     "prettier": "^1.9.2",
     "react-test-renderer": "^16.2.0",
     "uglify-js": "^3.0.26"
@@ -97,19 +91,13 @@
   },
   "dependencies": {
     "browserify-global-shim": "^1.0.3",
-    "cssnano": "^3.10.0",
     "draft-js": "^0.10.4",
     "draft-js-export-html": "github:plotly/draft-js-export-html",
     "draft-js-import-html": "^1.2.1",
     "draft-js-utils": "^1.2.0",
-    "es6-shim": "^0.35.3",
     "fast-isnumeric": "^1.1.1",
-    "mdi-react": "^2.1.19",
-    "plotly-icons": "^1.0.1",
+    "plotly-icons": "^1.0.2",
     "plotly.js": "^1.31.2",
-    "postcss-combine-duplicated-selectors": "^3.1.4",
-    "postcss-cssnext": "^3.0.2",
-    "postcss-remove-root": "^0.0.2",
     "prop-types": "^15.5.10",
     "raf": "^3.4.0",
     "react": "^16.2.0",
@@ -122,7 +110,9 @@
     "react": "React"
   },
   "jest": {
-    "roots": ["<rootDir>/src/"],
+    "roots": [
+      "<rootDir>/src/"
+    ],
     "moduleNameMapper": {
       "^.+\\.css$": "<rootDir>/config/CSSStub.js"
     }

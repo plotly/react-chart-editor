@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {bem} from 'lib';
-import ChevronRightIcon from 'mdi-react/ChevronRightIcon';
+import {AngleRightIcon} from 'plotly-icons';
 import SidebarItem from './SidebarItem';
 
 export default class SidebarGroup extends Component {
@@ -55,7 +55,7 @@ export default class SidebarGroup extends Component {
           className={bem('sidebar__group', 'title')}
         >
           <div className={bem('sidebar__group', 'title__icon')}>
-            <ChevronRightIcon />
+            <AngleRightIcon />
           </div>
           <div className={bem('sidebar__group', 'title__label')}>{group}</div>
         </div>

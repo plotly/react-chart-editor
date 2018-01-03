@@ -6,7 +6,7 @@ import {connectTraceToPlot, bem, localize} from 'lib';
 import {PanelHeader, PanelEmpty} from 'components/containers/Panel';
 import Button from 'components/widgets/Button';
 
-import PlusIcon from 'mdi-react/PlusIcon';
+import {PlusIcon} from 'plotly-icons';
 
 const TraceFold = connectTraceToPlot(Fold);
 

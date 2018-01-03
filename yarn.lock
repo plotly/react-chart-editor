@@ -5891,9 +5891,9 @@ pleeease-filters@^4.0.0:
     onecolor "^3.0.4"
     postcss "^6.0.1"
 
-plotly-icons@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/plotly-icons/-/plotly-icons-1.0.1.tgz#c6af80cefd925491f7286211dade5499f5581245"
+plotly-icons@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/plotly-icons/-/plotly-icons-1.0.2.tgz#0db46ceeda5f16cb56012f2201b1f3fd318156b9"
   dependencies:
     mdi-react "^2.1.19"
 

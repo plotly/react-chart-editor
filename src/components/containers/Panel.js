@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bem} from 'lib';
-import ChartLineIcon from 'mdi-react/ChartLineIcon';
+import {ChartLineIcon} from 'plotly-icons';
 class Panel extends Component {
   render() {
     const {visible, children} = this.props;

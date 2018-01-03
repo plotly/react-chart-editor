@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import {connectAnnotationToLayout, bem, localize} from 'lib';
 import {PanelHeader} from './Panel';
 import Button from 'components/widgets/Button';
-import PlusIcon from 'mdi-react/PlusIcon';
+import {PlusIcon} from 'plotly-icons';
 const AnnotationFold = connectAnnotationToLayout(Fold);
 
 class AnnotationAccordion extends Component {
