@@ -65,6 +65,7 @@
       .sidebar__group__title {
         &__label {
           font-weight: var(--font-weight-semibold);
+          color: var(--color-text-active);
         }
         &__icon {
           opacity: 1;

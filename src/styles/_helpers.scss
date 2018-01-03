@@ -5,7 +5,7 @@
   cursor: pointer;
 }
 .\+hover-grey:hover {
-  color: $color-active-text;
+  color: var(--color-text-active);
 }
 
 @function spacing($name, $true-val:false) {

@@ -1,28 +1,3 @@
-$color-black-dark: #000;
-$color-black-paleish: #333;
-$color-black-pale: #666;
-$color-black: #111;
-$color-navyblue: #284576;
-$color-blue: #119dff;
-$color-blue-dark: $color-blue; // darken
-$color-blue-pale: #45a9ff;
-$color-blue-paleish: #2391fe;
-$color-cyan-pale: #9bd1ff;
-$color-gold: #f7bd0c;
-$color-gray-blue: #69738a;
-$color-gray-blue-pale: #bec8d9;
-$color-gray-dark: #888;
-$color-gray-light: #ddd;
-$color-gray: #ccc;
-
-$color-green-cyan: #53cf9d;
-$color-green-pale: #dff0d8;
-$color-green: #3c763d;
-$color-red-pale: #f2dede;
-$color-red: #a94442;
-$color-white-blue: #f4faff;
-$color-white-dark: #eee;
-$color-white-darkish: #f8f8f8;
 $color-white: #ffffff;
 
 // --
@@ -60,29 +35,6 @@ $color-sienna: #ef553b; // CTA's on blue backgrounds
 
 // Color Map
 $colors: (
-  black-dark: $color-black-dark,
-  black-paleish: $color-black-paleish,
-  black-pale: $color-black-pale,
-  black: $color-black,
-  navyblue: $color-navyblue,
-  blue: $color-blue,
-  blue-pale: $color-blue-pale,
-  blue-paleish: $color-blue-paleish,
-  cyan-pale: $color-cyan-pale,
-  gold: $color-gold,
-  gray-blue: $color-gray-blue,
-  gray-blue-pale: $color-gray-blue-pale,
-  gray-dark: $color-gray-dark,
-  gray-light: $color-gray-light,
-  gray: $color-gray,
-  green-cyan: $color-green-cyan,
-  green-pale: $color-green-pale,
-  green: $color-green,
-  red-pale: $color-red-pale,
-  red: $color-red,
-  white-blue: $color-white-blue,
-  white-dark: $color-white-dark,
-  white-darkish: $color-white-darkish,
   white: $color-white,
   rhino-core: $color-rhino-core,
   rhino-dark: $color-rhino-dark,
@@ -105,53 +57,3 @@ $colors: (
   emerald: $color-emerald,
   sienna: $color-sienna
 );
-
-/*
- * COLORS
- */
-
-// Base Colors
-$color-brand: var(--color-navyblue);
-$color-highlight-darker: var(--color-gray-blue-pale);
-$color-accent: var(--color-dodger);
-$color-accent-shade: var(--color-dodger-shade);
-
-// Theme related variables
-$color-border: var(--color-rhino-medium-2);
-$color-border-dark: var(--color-rhino-medium-1);
-$color-border-secondary: var(--color-rhino-light-1);
-$color-secondary-border: $color-border-secondary;
-
-$color-button-primary: $color-accent;
-$color-button-primary--hover: var(--color-button-hover);
-$color-button-primary--active: var(--color-button-active);
-$color-button-secondary: var(--color-rhino-light-2);
-$color-button-hover: var(--color-button-hover);
-$color-page-background: var(--color-rhino-light-3);
-
-// Text Colors
-$color-active-text: var(--color-active-text);
-$color-text-base: var(--color-text-base);
-$color-text: var(--color-text);
-$color-text-light: var(--color-text-light);
-$color-text-dark: var(--color-text-dark);
-
-$color-secondary-text: var(--color-rhino-medium-1);
-$color-text-placeholder: var(--color-rhino-medium-1);
-$color-header-text: var(--color-rhino-core);
-$color-link-light: var(--color-blue-pale);
-
-// Background Colors
-$color-background-color-inverse: var(--color-rhino-dark);
-$color-background-light: var(--color-rhino-light-3);
-$color-panel-background: var(--color-rhino-light-2);
-$color-section-header-background: var(--color-white-blue);
-$color-fold-header-background: var(--color-rhino-dark);
-$color-fold-header-background--closed: var(--color-rhino-medium-1);
-
-// --
-// Buttons
-// --
-$color-button-default: $color-dodger;
-$color-button-hover: $color-dodger-shade;
-$color-button-active: $color-dodger-shade;

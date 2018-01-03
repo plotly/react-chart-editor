@@ -9,7 +9,7 @@ $brand: (
   accent:var(--color-dodger),
   accent-shade:var(--color-dodger-shade),
   accent-shade-mid:var(--color-dodger-shade-mid),
-  brand: var(--color-navyblue),
+  brand: var(--color-dodger),
   hightlight-darker: var(--color-gray-blue-pale)
 );
 // Text Colors
@@ -17,7 +17,8 @@ $text: (
   text-base: var(--color-rhino-dark),
   text-light: var(--color-rhino-medium-1),
   text-dark: var(--color-rhino-core),
-  text-header: var(--color-text-dark),
+  text-headings: var(--color-text-dark),
+  text-section-header: var(--color-text-dark),
   text-active: var(--color-rhino-core),
   text-placeholder: var(--color-rhino-medium-1)
 );
@@ -78,9 +79,11 @@ $sidebar: (
   item-background-active: var(--color-background-medium)
 );
 $fold: (
+  header-text-color-base: var(--color-white),
+  header-text-color-closed: var(--color-white),
   header-background-base:var(--color-rhino-dark),
-  header-background-closed:var(--color-rhino-medium-1),
-  header-border-color-closed:var(--color-rhino-medium-1),
+  header-background-closed:var(--color-rhino-core),
+  header-border-color-closed:var(--color-rhino-core),
   header-border-color-base:var(--color-rhino-dark)
 );
 // Buttons

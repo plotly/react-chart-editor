@@ -25,11 +25,11 @@ export default class Fold extends Component {
     });
 
     const headerClass = classnames('fold__top', {
-      'fold__top--active': !folded,
+      'fold__top--open': !folded,
     });
 
     const arrowClass = classnames('fold__top__arrow', {
-      'fold__top__arrow--active': !folded,
+      'fold__top__arrow--open': !folded,
     });
 
     const arrowIcon = (

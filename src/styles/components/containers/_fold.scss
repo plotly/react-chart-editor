@@ -6,7 +6,7 @@
     justify-content: space-between;
     clear: both;
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
-    color: var(--color-white);
+    color: var(--fold-header-text-color-closed);
     font-size: var(--font-size-base);
     border: 1px solid var(--fold-header-border-color-closed);
     background-color: var(--fold-header-background-closed);
@@ -31,8 +31,8 @@
       }
     }
 
-    &--active {
-      color: var(--color-white);
+    &--open {
+      color: var(--fold-header-text-color-base);
       background-color: var(--fold-header-background-base);
       border: 1px solid var(--fold-header-border-color-base);
       border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -71,7 +71,7 @@
       &-title {
         display: flex;
       }
-      &--active {
+      &--open {
         svg{
           transform: rotate(-90deg);
         }

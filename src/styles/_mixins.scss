@@ -63,7 +63,7 @@
   color: var(--color-button-#{$variant}-base-text);
 
   @if ($variant == primary or $variant == upgrade) {
-    text-shadow: $text-shadow--dark-ui;
+    text-shadow: var(--text-shadow-dark-ui);
     svg {
       @include drop-shadow--dark-ui;
     }
@@ -167,25 +167,25 @@
 
 @mixin heading($type: 'base') {
   @if ($type == 'small') {
-    color: var(--color-text-header);
+    color: var(--color-text-headings);
     font-size: var(--font-size-heading-small);
     font-weight: var(--font-weight-normal);
     line-height: var(--font-leading-head);
     font-family: var(--font-family-headings);
-    letter-spacing: 0.5px;
+    letter-spacing: var(--font-letter-spacing-headings);
   } @else if ($type == 'medium') {
-    color: var(--color-text-header);
+    color: var(--color-text-headings);
     font-size: var(--font-size-heading-medium);
     font-weight: var(--font-weight-normal);
     line-height: var(--font-leading-head);
     font-family: var(--font-family-headings);
-    letter-spacing: 0.5px;
+    letter-spacing: var(--font-letter-spacing-headings);
   } @else {
-    color: var(--color-text-header);
+    color: var(--color-text-headings);
     font-size: var(--font-size-heading-base);
     font-weight: var(--font-weight-normal);
     line-height: var(--font-leading-head);
     font-family: var(--font-family-headings);
-    letter-spacing: 0.5px;
+    letter-spacing: var(--font-letter-spacing-headings);
   }
 }
