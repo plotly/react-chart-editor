@@ -53,24 +53,24 @@
     }
   }
 
-  &__delete{
+  &__delete {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-left: var(--spacing-quarter-unit);
     opacity: 0.5;
-    svg{
+    svg {
       display: block;
-      path{
-        fill: var(--color-text-base)
+      path {
+        fill: var(--color-text-base);
       }
     }
-    &:hover{
+    &:hover {
       cursor: pointer;
       opacity: 1;
-      svg{
-        path{
-          fill: var(--color-sienna)
+      svg {
+        path {
+          fill: var(--color-sienna);
         }
       }
     }
