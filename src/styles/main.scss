@@ -12,7 +12,7 @@
     @include generateVars;
   }
 } @else {
-  .plotly-editor {
+  .plotly-editor--theme-provider{
     @include generateVars;
   }
 }
