@@ -181,7 +181,8 @@ class DefaultEditor extends Component {
             />
             <CanvasSize label={_('Fixed Width')} attr="width" units="px" />
             <CanvasSize label={_('Fixed Height')} attr="height" units="px" />
-            <ColorPicker label={_('Color')} attr="paper_bgcolor" />
+            <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
+            <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
           </Fold>
           <Fold name={_('Title and Fonts')}>
             <Section name={_('Title')}>
