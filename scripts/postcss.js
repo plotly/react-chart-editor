@@ -37,7 +37,16 @@ const internetExplorerPostCSS = () => {
         to: `${BUILD_ENV}/${fileName}.ie.min.css`,
       })
       .then(result => {
-        fs.writeFile(`${BUILD_ENV}/${fileName}.ie.min.css`, result.css);
+        fs.writeFile(
+          `${BUILD_ENV}/${fileName}.ie.min.css`,
+          result.css,
+          error => {
+            if (error) {
+              /* eslint-disable no-console */
+              console.log(error);
+            }
+          }
+        );
       });
   });
 };
@@ -60,7 +69,12 @@ const defaultPostCSS = () => {
         to: `${BUILD_ENV}/${fileName}.min.css`,
       })
       .then(result => {
-        fs.writeFile(`${BUILD_ENV}/${fileName}.min.css`, result.css);
+        fs.writeFile(`${BUILD_ENV}/${fileName}.min.css`, result.css, error => {
+          if (error) {
+            /* eslint-disable no-console */
+            console.log(error);
+          }
+        });
       });
   });
 };

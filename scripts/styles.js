@@ -34,7 +34,12 @@ fs.readFile(src, function(err, data) {
         console.log(error.message);
         console.log(error.line);
       } else {
-        fs.writeFile(dist, result.css);
+        fs.writeFile(dist, result.css, error => {
+          if (error) {
+            /* eslint-disable no-console */
+            console.log(error);
+          }
+        });
       }
     }
   );

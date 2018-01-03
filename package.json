@@ -16,7 +16,7 @@
     "lint": "prettier --write \"src/**/*.js\"",
     "make:combined-translation-keys": "babel-node utils/findTranslationKeys.js && babel-node utils/combineTranslationKeys.js",
     "make:translation-keys": "babel-node utils/findTranslationKeys.js",
-    "make:lib": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps && npm run make:lib:css",
+    "make:lib": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps && npm run make:lib:css && npm run make:lib:css:ie",
     "make:lib:css": "mkdirp lib && yarn styles:lib && yarn postcss:lib",
     "make:lib:css:ie": "mkdirp lib && yarn styles:lib:ie && yarn postcss:lib:ie",
     "make:dist": "mkdirp dist && browserify src/PlotlyEditor.js -o ./dist/PlotlyEditor.js -t [ babelify --presets [ es2015 react ] ] -t browserify-global-shim --standalone createPlotlyComponent && uglifyjs ./dist/PlotlyEditor.js --compress --mangle --output ./dist/PlotlyEditor.min.js --source-map filename=dist/PlotlyEditor.min.js.map && yarn make:dist:css",
