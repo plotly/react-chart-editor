@@ -30,7 +30,7 @@ const internetExplorerPostCSS = () => {
     autoprefixer({browsers: ['ie 11']}),
     cssnano,
   ];
-  fs.readFile(`${BUILD_ENV}/react-plotly.js-editor.css`, (err, css) => {
+  fs.readFile(`${BUILD_ENV}/${fileName}.ie.css`, (err, css) => {
     postcss([...ie11_plugins])
       .process(css, {
         from: dist,

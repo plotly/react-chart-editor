@@ -8,7 +8,10 @@ const BUILD_ENV = process.env.BUILD_ENV || 'lib';
 
 const src = 'src/styles/main.scss';
 const fileName = `react-plotly.js-editor`;
-const dist = `${BUILD_ENV}/${fileName}.css`;
+const dist =
+  SASS_ENV === 'ie'
+    ? `${BUILD_ENV}/${fileName}.ie.css`
+    : `${BUILD_ENV}/${fileName}.css`;
 
 /**
  * Compile our scss to css!
