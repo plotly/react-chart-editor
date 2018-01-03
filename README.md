@@ -11,14 +11,11 @@ Install the module with `npm install` or `yarn install`.
 
 ## Quick Start
 
-1. Create a quick project using `create-react-app`: `npm install -g
-   create-react-app` | `create-react-app quick-start` | `cd quick-start` | `npm
-   start`
-2. Install the needed modules: `npm install plotly.js react-plotly.js
-   react-plotly.js-editor --save`
-3. Import css stylesheets: `import
-   react-plotly.js-editor/lib/react-plotly.js-editor.css` and
-   `react-select/dist/react-select.css`
+1. Create a quick project using `create-react-app`: `npm install -g create-react-app` | `create-react-app quick-start` | `cd quick-start` | `npm start`
+2. Install the needed modules: `npm install plotly.js react-plotly.js react-plotly.js-editor --save`
+3. Import css stylesheets: `import react-plotly.js-editor/lib/react-plotly.js-editor.min.css`.
+   * Interested in [theming](https://github.com/plotly/react-plotly.js-editor/tree/master/THEMING.md)?
+   * Need to support IE11? import the IE css instead: `import react-plotly.js-editor/lib/react-plotly.js-editor.ie.min.css`
 4. Decide how your application is going to manage state: higher level component
    (see
    [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple))
@@ -29,10 +26,8 @@ Install the module with `npm install` or `yarn install`.
      and layout information,
    * the editorRevision number and plotRevision numbers, to prevent unneeded app
      rerenders
-   * an object containing all dataSources (ex: `{col1: [1, 2, 3], col2: [4, 3,
-     2], col3: [17, 13, 9]}`),
-   * an array of all dataSourceOptions (ex: `[ {value: 'col1', label: 'CO2'},
-     {value: 'col2', label: 'NO2'}, {value: 'col3', label: 'SiO2'} ]`)
+   * an object containing all dataSources (ex: `{col1: [1, 2, 3], col2: [4, 3, 2], col3: [17, 13, 9]}`),
+   * an array of all dataSourceOptions (ex: `[ {value: 'col1', label: 'CO2'}, {value: 'col2', label: 'NO2'}, {value: 'col3', label: 'SiO2'} ]`)
 6. Initialize your application's state with the elements above. For the
    `graphDiv`, we can pass in an initial object containing data and layout,
    plotly.js (via a callback), will then update our state with the `graphDiv`

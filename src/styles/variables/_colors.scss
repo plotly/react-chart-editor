@@ -1,0 +1,59 @@
+$color-white: #ffffff;
+
+// --
+// Text and Backgrounds
+// --
+$color-rhino-core: #2a3f5f; // Active state text, emphasized text
+$color-rhino-dark: #506784; // Default text color
+$color-rhino-medium-1: #a2b1c6;
+$color-rhino-medium-2: #c8d4e3; // Border Default
+$color-rhino-light-1: #dfe8f3; // Border Secondary
+$color-rhino-light-2: #ebf0f8; // Button Secondary
+$color-rhino-light-3: #f3f6fa; // Page Background
+$color-rhino-light-4: #fafbfd; // Modal Tabbed Content Background
+$color-rhino-light-5: #f8f8f9; // Modal Tabbed Content Background
+
+// --
+// Primary
+// $
+$color-dodger: #119dff; // Accent
+$color-dodger-shade: #0d76bf; // Link Hover
+$color-dodger-shade-mid: #0f89df; // Primary button hover
+
+// --
+// Accent
+// --
+$color-aqua: #09ffff;
+$color-aqua-shade: #19d3f3; // Body Text
+$color-lavender: #e763fa;
+$color-lavender-shade: #ab63fa;
+$color-lavender-shade-mid: #934bde;
+$color-lavender-shade-dark: #7b35c3;
+$color-cornflower: #636efa;
+$color-emerald: #00cc96; // CTA's on blue backgrounds
+$color-sienna: #ef553b; // CTA's on blue backgrounds
+
+// Color Map
+$colors: (
+  white: $color-white,
+  rhino-core: $color-rhino-core,
+  rhino-dark: $color-rhino-dark,
+  rhino-medium-1: $color-rhino-medium-1,
+  rhino-medium-2: $color-rhino-medium-2,
+  rhino-light-1: $color-rhino-light-1,
+  rhino-light-2: $color-rhino-light-2,
+  rhino-light-3: $color-rhino-light-3,
+  rhino-light-4: $color-rhino-light-4,
+  rhino-light-5: $color-rhino-light-5,
+  dodger: $color-dodger,
+  dodger-shade: $color-dodger-shade,
+  dodger-shade-mid: $color-dodger-shade,
+  aqua: $color-aqua,
+  aqua-shade: $color-aqua-shade,
+  lavender: $color-lavender,
+  lavender-shade: $color-lavender-shade,
+  lavender-shade-mid: $color-lavender-shade-mid,
+  cornflower: $color-cornflower,
+  emerald: $color-emerald,
+  sienna: $color-sienna
+);

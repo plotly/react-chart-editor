@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:500,700|Open+Sans:400,400i,600,700');
+
+$font-weight-light: 400;
+$font-weight-normal: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-size: 13px;
+$font-size-small: 11px;
+$font-size-medium: 14px;
+$font-size-large: 14px;
+$h5-size: 16px;
+
+$font: (
+  size:
+    (
+      base: $font-size,
+      small: $font-size-small,
+      medium:$font-size-medium,
+      large:$font-size-large,
+      heading-base: 24px,
+      heading-small: 18px,
+      heading-large: 28px,
+      h5: 16px
+    ),
+  weight:
+    (
+      light: $font-weight-light,
+      normal: $font-weight-normal,
+      semibold: $font-weight-semibold,
+      bold: $font-weight-bold
+    ),
+  leading: (body: 1.6, head: 1.2),
+  letter-spacing: (headings: 0.5px),
+  family:
+    (
+      body: ('Open Sans', --apple-default, sans-serif),
+      headings: ('Dosis', sans-serif)
+    )
+);

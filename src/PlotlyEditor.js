@@ -130,7 +130,12 @@ class PlotlyEditor extends Component {
 
   render() {
     return (
-      <div className={bem()}>
+      <div
+        className={
+          bem('plotly-editor') +
+          `${this.props.className ? ` ${this.props.className}` : ''}`
+        }
+      >
         {this.props.graphDiv &&
           this.props.graphDiv._fullLayout &&
           (this.props.children ? this.props.children : <DefaultEditor />)}
@@ -141,6 +146,7 @@ class PlotlyEditor extends Component {
 
 PlotlyEditor.propTypes = {
   children: PropTypes.node,
+  className: PropTypes.string,
   dataSources: PropTypes.object,
   dataSourceOptions: PropTypes.array,
   graphDiv: PropTypes.object,

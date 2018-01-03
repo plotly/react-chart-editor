@@ -2,8 +2,8 @@ import Info from '../fields/Info';
 import MenuPanel from './MenuPanel';
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
-import unpackPlotProps from '../../lib/unpackPlotProps';
-import {containerConnectedContextTypes} from '../../lib/connectToContainer';
+import unpackPlotProps from 'lib/unpackPlotProps';
+import {containerConnectedContextTypes} from 'lib/connectToContainer';
 
 export default class Section extends Component {
   constructor(props, context) {
@@ -79,7 +79,7 @@ export default class Section extends Component {
     return this.sectionVisible ? (
       <div className="section">
         <div className="section__heading">
-          {this.props.name}
+          <div className="section__heading__text">{this.props.name}</div>
           {this.menuPanel}
         </div>
         {this.children}

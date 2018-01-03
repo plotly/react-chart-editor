@@ -35,7 +35,7 @@ Continuing will convert your LaTeX expression into raw text.                    
 Continuing will convert your note to LaTeX-style text.                                                      // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:116
 Continuing will remove your expression.                                                                     // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:126
 Custom                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:179
-Custom Colors                                                                                               // react-plotly.js-editor: /components/widgets/ColorPicker.js:52
+Custom Color                                                                                                // react-plotly.js-editor: /components/widgets/ColorPicker.js:52
 Default Colors                                                                                              // react-plotly.js-editor: /components/widgets/ColorPicker.js:75
 Display                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:94
 Double-click on legend to isolate one trace                                                                 // plotly.js: components/legend/handle_click.js:90

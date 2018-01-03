@@ -2,8 +2,8 @@ import {AnnotationRef, AnnotationArrowRef} from '../derived';
 import DropdownWidget from '../../widgets/Dropdown';
 import React from 'react';
 import {Panel} from '../../';
-import {TestEditor, fixtures, plotly, mount} from '../../../lib/test-utils';
-import {connectAnnotationToLayout, connectLayoutToPlot} from '../../../lib';
+import {TestEditor, fixtures, plotly, mount} from 'lib/test-utils';
+import {connectAnnotationToLayout, connectLayoutToPlot} from 'lib';
 
 const LayoutAnnoPanel = connectLayoutToPlot(connectAnnotationToLayout(Panel));
 

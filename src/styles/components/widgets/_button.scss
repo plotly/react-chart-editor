@@ -1,0 +1,73 @@
+// button default styles
+button {
+  display: inline-block;
+  padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
+  line-height: 1;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  text-align: center;
+  cursor: pointer;
+  height: 36px;
+  outline: none;
+  user-select: none;
+  font-size: var(--font-size-medium);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-body);
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  border-radius: var(--border-radius);
+  @include trans;
+  &.button {
+    padding-left: 0;
+  }
+}
+
+.button {
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__label {
+    padding-left: var(--spacing-half-unit);
+  }
+  &__icon {
+    display: flex;
+    padding-left: var(--spacing-quarter-unit);
+    will-change: transform;
+    svg {
+      transform: scale(0.8);
+      transform-origin: center center;
+      display: block;
+      path {
+        fill: currentColor;
+      }
+    }
+    & + .button__label {
+      padding-left: 0;
+    }
+  }
+
+  &--default {
+    @include button();
+  }
+  &--primary {
+    @include button(primary);
+  }
+  &--secondary {
+    @include button(secondary);
+  }
+  &--tertiary {
+    @include button(tertiary);
+  }
+  &--upgrade {
+    @include button(upgrade);
+  }
+  &--header {
+    @include button(header);
+  }
+}

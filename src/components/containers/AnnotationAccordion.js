@@ -1,12 +1,13 @@
 import Fold from './Fold';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectAnnotationToLayout, bem} from 'lib';
+import {connectAnnotationToLayout, bem, localize} from 'lib';
 import {PanelHeader} from './Panel';
-
+import Button from 'components/widgets/Button';
+import {PlusIcon} from 'plotly-icons';
 const AnnotationFold = connectAnnotationToLayout(Fold);
 
-export default class AnnotationAccordion extends Component {
+class AnnotationAccordion extends Component {
   constructor(props) {
     super(props);
 
@@ -30,14 +31,18 @@ export default class AnnotationAccordion extends Component {
   }
 
   render() {
-    const annotations = this.context.layout.annotations || [];
+    const {layout: {annotations = []}} = this.context;
 
-    const {canAdd, children} = this.props;
+    const {canAdd, children, localize: _} = this.props;
 
     const addButton = canAdd && (
-      <button className="panel__add-button" onClick={this.addAnnotation}>
-        + Annotation
-      </button>
+      <Button
+        variant="primary"
+        className="js-add-annotation-button"
+        onClick={this.addAnnotation}
+        icon={<PlusIcon />}
+        label={_('Annotation')}
+      />
     );
 
     const panelHeader = canAdd && <PanelHeader action={addButton} />;
@@ -62,6 +67,9 @@ AnnotationAccordion.contextTypes = {
 };
 
 AnnotationAccordion.propTypes = {
+  localize: PropTypes.func,
   children: PropTypes.node,
   canAdd: PropTypes.bool,
 };
+
+export default localize(AnnotationAccordion);

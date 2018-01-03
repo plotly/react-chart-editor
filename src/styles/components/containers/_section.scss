@@ -1,14 +1,24 @@
-.section{
+.section {
   &__heading {
+    position: relative;
     display: flex;
-    font-size: $font-size;
-    color: $color-header-text;
-    font-weight: $font-weight-semibold;
+    font-size: var(--font-size-base);
+    color: var(--color-text-section-header);
+    font-weight: var(--font-weight-semibold);
     cursor: default;
-    background-color: $color-background-light;
-    padding: $half-spacing-unit/2 $half-spacing-unit;
+    background-color: var(--color-background-light);
+    padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
     clear: both;
     text-transform: capitalize;
-    border-top:$border-light;
+  }
+  &:not(:first-child){
+    .section__heading {
+      border-top: var(--border-light);
+    }
+  }
+  &:first-child{
+    .section__heading{
+      border-top: 0;
+    }
   }
 }

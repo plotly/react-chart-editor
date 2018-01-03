@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem} from '../../lib';
-
+import {bem} from 'lib';
+import {AngleRightIcon} from 'plotly-icons';
 import SidebarItem from './SidebarItem';
 
 export default class SidebarGroup extends Component {
@@ -41,19 +41,25 @@ export default class SidebarGroup extends Component {
   }
 
   render() {
+    const {group, panels, selectedGroup} = this.props;
+    const {expanded} = this.state;
     return (
       <div
-        className={bem('sidebar-group', [
-          this.state.expanded ? 'is-expanded' : '',
+        className={bem('sidebar__group', [
+          expanded ? 'is-expanded' : '',
+          selectedGroup === group ? 'is-active' : '',
         ])}
       >
         <div
           onClick={this.toggleExpanded}
-          className={bem('sidebar-group', 'title')}
+          className={bem('sidebar__group', 'title')}
         >
-          {this.props.group}
+          <div className={bem('sidebar__group', 'title__icon')}>
+            <AngleRightIcon />
+          </div>
+          <div className={bem('sidebar__group', 'title__label')}>{group}</div>
         </div>
-        {this.state.expanded && this.props.panels.map(this.renderSubItem)}
+        {expanded && panels.map(this.renderSubItem)}
       </div>
     );
   }

@@ -34,7 +34,7 @@
   }
 }
 
-@mixin scrollbar($width: 5px, $trackbg: $color-page-background, $thumb-color: $color-accent) {
+@mixin scrollbar($width: 5px, $trackbg: var(--scrollbar-track-background), $thumb-color: var(--scrollbar-thumb-color)) {
   -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
     background: white;
@@ -57,22 +57,135 @@
   transition: all 0.15s ease-in-out;
 }
 
-@mixin button-primary() {
-  font-size: $default-font-size-medium;
-  background-color: $color-button-primary;
-  border: $border-accent-shade;
-  color: $color-white;
-  font-weight: $font-weight-semibold;
-  text-shadow: $text-shadow--dark-ui;
+@mixin button($variant: default) {
+  background-color: var(--color-button-#{$variant}-base-fill);
+  border-color: var(--color-button-#{$variant}-base-border);
+  color: var(--color-button-#{$variant}-base-text);
+
+  @if ($variant == primary or $variant == upgrade) {
+    text-shadow: var(--text-shadow-dark-ui);
+    svg {
+      @include drop-shadow--dark-ui;
+    }
+  }
 
   &:hover {
-    background-color: $color-button-primary--hover;
-    border-color: $color-button-primary--hover;
-    color: $color-white; // Repeating in case the button is made with an anchor tag
+    background-color: var(--color-button-#{$variant}-hover-fill);
+    border: 1px solid var(--color-button-#{$variant}-hover-border);
+    color: var(--color-button-#{$variant}-hover-text);
   }
   &:active {
-    background-color: $color-button-primary--active;
-    border-color: $color-button-primary--active;
-    color: $color-white; // Repeating in case the button is made with an anchor tag
+    background-color: var(--color-button-#{$variant}-active-fill);
+    border: 1px solid var(--color-button-#{$variant}-active-border);
+    color: var(--color-button-#{$variant}-active-text);
+  }
+}
+
+@mixin generateVars() {
+  // Base Color Variables
+  @each $var, $val in $colors {
+    @if type-of($val) == map {
+      @each $var-n, $val-n in $val {
+        @if type-of($val-n) == map {
+          @each $var-i, $val-i in $val-n {
+            #{--color}-#{$var}-#{$var-n}-#{$var-i}: $val-i;
+          }
+        } @else {
+          #{--color}-#{$var}-#{$var-n}: $val-n;
+        }
+      }
+    } @else {
+      #{--color}-#{$var}: $val;
+    }
+  }
+
+  // Brand Colors
+  @each $var, $val in $brand {
+    #{--color}-#{$var}: $val;
+  }
+
+  // Text Color
+  @each $var, $val in $text {
+    #{--color}-#{$var}: $val;
+  }
+  // Border Colors
+  @each $var, $val in $border-colors {
+    #{--color-border}-#{$var}: $val;
+  }
+  // Background Colors
+  @each $var, $val in $fills {
+    #{--color}-#{$var}: $val;
+  }
+  // Button Color Variables
+  @each $var, $val in $buttons {
+    @if type-of($val) == map {
+      @each $var-n, $val-n in $val {
+        #{--color-button}-#{$var}-#{$var-n}: $val-n;
+      }
+    } @else {
+      #{--color}-#{$var}: $val;
+    }
+  }
+
+  // Spacing Units
+  @each $var, $val in $spacing {
+    #{--spacing}-#{$var}: $val;
+  }
+
+  // Font Variables (font-size, weight, etc)
+  @each $var, $val in $font {
+    @each $var-n, $val-n in $val {
+      #{--font}-#{$var}-#{$var-n}: $val-n;
+    }
+  }
+
+  @each $var, $val in $borders {
+    #{--border}-#{$var}: $val;
+  }
+
+  @each $var, $val in $text-shadows {
+    #{--text-shadow}-#{$var}: $val;
+  }
+  @each $var, $val in $box-shadows {
+    #{--box-shadow}-#{$var}: $val;
+  }
+
+  @each $var, $val in $scrollbar {
+    #{--scrollbar}-#{$var}: $val;
+  }
+
+  @each $var, $val in $panel {
+    #{--panel}-#{$var}: $val;
+  }
+  @each $var, $val in $fold {
+    #{--fold}-#{$var}: $val;
+  }
+  @each $var, $val in $sidebar {
+    #{--sidebar}-#{$var}: $val;
+  }
+}
+
+@mixin heading($type: 'base') {
+  @if ($type == 'small') {
+    color: var(--color-text-headings);
+    font-size: var(--font-size-heading-small);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--font-leading-head);
+    font-family: var(--font-family-headings);
+    letter-spacing: var(--font-letter-spacing-headings);
+  } @else if ($type == 'medium') {
+    color: var(--color-text-headings);
+    font-size: var(--font-size-heading-medium);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--font-leading-head);
+    font-family: var(--font-family-headings);
+    letter-spacing: var(--font-letter-spacing-headings);
+  } @else {
+    color: var(--color-text-headings);
+    font-size: var(--font-size-heading-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--font-leading-head);
+    font-family: var(--font-family-headings);
+    letter-spacing: var(--font-letter-spacing-headings);
   }
 }

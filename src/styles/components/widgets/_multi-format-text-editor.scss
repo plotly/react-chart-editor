@@ -1,7 +1,5 @@
 // MULTI FORMAT EDITOR STYLES
 
-$multi-format-editor-background: #fafbfd;
-
 .multi-format-editor {
   * {
     box-sizing: border-box;
@@ -28,31 +26,31 @@ $multi-format-editor-background: #fafbfd;
     flex-grow: 1;
     display: flex;
     &.LATEX {
-      background-color: $multi-format-editor-background;
+      background-color: var(--color-background-light);
       .latex-editor {
         display: flex;
         flex-grow: 1;
         textarea {
           flex-grow: 1;
           min-height: 0;
-          border: $border;
+          border: var(--border-default);
           box-sizing: border-box;
-          color: $color-text;
+          color: var(--color-text-base);
         }
       }
-      padding: $half-spacing-unit;
+      padding: var(--spacing-half-unit);
     }
 
     .rich-text-editor__root {
       width: 100%;
-      color: $color-text;
+      color: var(--color-text-base);
       .rich-text-editor__controls {
         display: flex;
         justify-content: space-evenly;
         .icon-link {
           transform: translateY(3px);
           display: inline-block;
-          fill: $color-text;
+          fill: var(--color-text-base);
           // prevent user agent override
           width: 15px !important;
           height: 15px !important;
@@ -60,13 +58,16 @@ $multi-format-editor-background: #fafbfd;
       }
     }
   }
+  textarea{
+    background-color: var(--color-background-inputs);
+  }
 }
 
 .multi-format-editor__root {
   height: 215px;
   width: 100%;
-  border: $border;
-  border-radius: 5px;
+  border: var(--border-default);
+  border-radius: var(--border-radius);
   box-sizing: border-box;
 }
 
@@ -80,36 +81,36 @@ $multi-format-editor-background: #fafbfd;
   &.top-tab {
     width: 50%;
     overflow: hidden;
-    color: $color-text;
+    color: var(--color-text-base);
 
     &.left {
       border-top-left-radius: 5px;
-      border-right: $border;
+      border-right: var(--border-default);
     }
     &.right {
       border-top-right-radius: 5px;
     }
     &:not(.selected) {
-      border-bottom: $border;
+      border-bottom: var(--border-default);
     }
   }
 
   &.bottom-tab {
-    border-top: 1px solid $color-border;
+    border-top: var(--border-default);
     width: 100%;
     display: block;
-    color: $color-text;
+    color: var(--color-text-base);
   }
 
   &.selected {
-    background: $multi-format-editor-background;
-    font-weight: $font-weight-semibold;
+    background: var(--color-background-light);
+    font-weight: var(--font-weight-semibold);
   }
 
   &:hover:not(.selected) {
     cursor: pointer;
-    color: $color-active-text;
-    background-color: $color-button-secondary;
+    color: var(--color-text-active);
+    background-color: var(--color-background-light);
   }
 }
 
@@ -128,54 +129,24 @@ $multi-format-editor-background: #fafbfd;
 .confirmation-panel__message {
   line-height: 20px;
   &-primary {
-    font-weight: $font-weight-semibold;
-    color: $color-text;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-base);
   }
 }
 
 .confirmation-panel__header {
-  color: $color-header-text;
+  color: var(--color-text-section-header);
   margin-top: 0;
   margin-bottom: 5px;
   font-weight: 600;
 }
 
 .confirmation-panel__message-secondary {
-  color: $color-text;
-}
-
-.confirmation-panel__cancel-button {
-  background-color: $multi-format-editor-background;
-  border: 1px solid $color-border;
-  color: $color-text;
-  font-weight: 600;
-  letter-spacing: 0px;
-  &:hover {
-    background-color: rgba(163, 178, 198, 0.2);
-    border-color: $color-secondary-border;
-    color: $color-text;
-  }
-  &:active {
-    background-color: rgba(163, 178, 198, 0.35);
-  }
+  color: var(--color-text-base);
 }
 
 .confirmation-panel__continue-button {
   margin-left: 10px;
-  background-color: $color-accent;
-  border: 1px solid $color-accent;
-  color: #ffffff;
-  text-shadow: 0px 1px 2px rgba(42, 63, 95, 0.7);
-  &:hover {
-    background-color: $color-button-hover;
-    border: 1px solid $color-button-hover;
-    color: #ffffff; // Repeating in case the button is made with an anchor tag
-  }
-  &:active {
-    background-color: $color-accent-shade;
-    border: 1px solid $color-accent-shade;
-    color: #ffffff; // Repeating in case the button is made with an anchor tag
-  }
 }
 
 // LATEX & HTML EDITOR STYLES
@@ -189,7 +160,7 @@ $multi-format-editor-background: #fafbfd;
   box-shadow: none;
 
   // add our styles
-  padding: 6px;
+  padding: var(--spacing-quarter-unit);
   resize: none;
   height: 100%;
   width: 100%;
@@ -202,6 +173,14 @@ $multi-format-editor-background: #fafbfd;
   }
   &.html {
     min-height: 138px;
+    width: 100%;
+  }
+}
+.html-editor {
+  width: 100%;
+  textarea {
+    width: 100%;
+    color: var(--color-text-base);
   }
 }
 
@@ -216,7 +195,7 @@ $multi-format-editor-background: #fafbfd;
 
 .rich-text-editor__editor .public-DraftEditorPlaceholder-root,
 .rich-text-editor__editor .public-DraftEditor-content {
-  padding: $quarter-spacing-unit;
+  padding: var(--spacing-quarter-unit);
 }
 
 .rich-text-editor__editor .public-DraftEditor-content {
@@ -246,50 +225,70 @@ $multi-format-editor-background: #fafbfd;
   padding-top: 10px;
   padding-bottom: 5px;
   user-select: none;
-  background: $multi-format-editor-background;
-  border-bottom: 1px solid $color-border;
+  background: var(--color-background-light);
+  border-bottom: var(--border-default);
 }
 
 .rich-text-editor__styleButton__wrapper {
-  padding: 0 $quarter-spacing-unit;
+  padding: 0 var(--spacing-quarter-unit);
 }
 
 .rich-text-editor__styleButton {
-  color: $color-text;
+  color: var(--color-text-base);
   cursor: pointer;
   display: inline-block;
   margin: 0;
-  min-height: $base-spacing-unit;
-  min-width: $base-spacing-unit;
+  min-height: var(--spacing-base-unit);
+  min-width: var(--spacing-base-unit);
   text-align: center;
-  background-color: #ffffff;
-  border: 1px solid $color-border;
-  border-radius: 2px;
+  background-color: transparent;
+  border: var(--border-default);
+  border-radius: var(--border-radius-small);
   line-height: 20px;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    height: 1px;
+    width: calc(100% + 2px);
+    left: -1px;
+    background: var(--color-accent);
+    will-change: transform;
+    transform-origin: center center;
+    transform: scaleX(0);
+    @include trans;
+  }
 
   &:hover {
-    color: $color-active-text;
-    background-color: $color-button-secondary;
+    color: var(--color-text-active);
+    background-color: var(--color-background-top);
+    &::before {
+      transform: none;
+    }
   }
 }
 
 .rich-text-editor__styleButton--active {
-  background-color: $color-accent;
-  border: 1px solid $color-accent-shade;
-  color: #ffffff;
-
+  background-color: var(--color-accent);
+  border: var(--border-accent-shade);
+  color: var(--color-white);
   // Repeating the same styles to override the natural hover
   &:hover {
-    background-color: $color-accent;
-    border: 1px solid $color-accent-shade;
-    color: #ffffff;
+    background-color: var(--color-accent);
+    border: var(--border-accent-shade);
+    color: var(--color-white);
+    &::before {
+      transform: scaleX(0);
+    }
   }
 }
 
 .link-editor {
-  background-color: $multi-format-editor-background;
-  border: $border;
-  padding: $half-spacing-unit;
+  background-color: var(--color-background-light);
+  border: var(--border-default);
+  padding: var(--spacing-half-unit);
   position: absolute;
   z-index: 1;
   display: flex;
@@ -304,10 +303,10 @@ $multi-format-editor-background: #fafbfd;
 }
 
 .link-editor__input {
-  border: $border;
-  color: $color-text;
+  border: var(--border-default);
+  color: var(--color-text-base);
   overflow: scroll;
-  padding: 0px 10px;
+  padding: 0 10px;
   width: 100%;
   margin-top: 10px;
 }

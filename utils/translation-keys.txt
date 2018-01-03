@@ -25,7 +25,7 @@ Continuing will convert your LaTeX expression into raw text.                    
 Continuing will convert your note to LaTeX-style text.                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:116
 Continuing will remove your expression.                                                                      // /components/widgets/text_editors/MultiFormatTextEditor.js:126
 Custom                                                                                                       // /DefaultEditor.js:179
-Custom Colors                                                                                                // /components/widgets/ColorPicker.js:52
+Custom Color                                                                                                 // /components/widgets/ColorPicker.js:52
 Default Colors                                                                                               // /components/widgets/ColorPicker.js:75
 Display                                                                                                      // /DefaultEditor.js:94
 Edit in HTML                                                                                                 // /components/widgets/text_editors/MultiFormatTextEditor.js:34

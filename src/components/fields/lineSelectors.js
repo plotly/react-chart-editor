@@ -2,7 +2,7 @@ import Dropdown from './Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {tooLight} from '../../lib';
+import {tooLight} from 'lib';
 
 /* eslint-disable react/prop-types */
 const styledRenderer = ({label}) => {

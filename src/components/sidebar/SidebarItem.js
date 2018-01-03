@@ -8,9 +8,11 @@ export default class SidebarItem extends Component {
     return (
       <div
         onClick={onClick}
-        className={bem('sidebar-item', [active ? 'is-active' : ''])}
+        className={bem('sidebar__item', [active ? 'is-active' : ''])}
       >
-        <span>{label}</span>
+        <div className={bem('sidebar__item', 'wrapper')}>
+          <div className={bem('sidebar__item', 'label')}>{label}</div>
+        </div>
       </div>
     );
   }

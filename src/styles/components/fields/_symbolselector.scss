@@ -1,14 +1,14 @@
 .symbol-selector__toggle {
-  border: 1px solid $color-border;
-  border-radius: 4px;
+  border: var(--border-default);
+  border-radius: var(--border-radius);
   width: 80px;
   cursor: pointer;
-  padding: 6px 6px 3px 6px;
+  padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit) 3px var(--spacing-quarter-unit);
   @include clearfix();
 }
 
 .symbol-selector__toggle--dark {
-  background-color: $color-background-color-inverse;
+  background-color: var(--color-background-inverse);
 }
 
 .symbol-selector__toggle__option {
@@ -17,8 +17,8 @@
 
 .symbol-selector__toggle__caret {
   float: right;
-  fill: $color-secondary-text;
-  padding-top: 3px;
+  fill: var(--color-text-light);
+  padding-top: var(--spacing-eighth-unit);
   // prevent user agent override
   width: 13px !important;
   height: 13px !important;
@@ -28,11 +28,11 @@
   max-width: 225px;
   position: absolute;
   @include z-index('orbit');
-  border: 1px solid $color-border;
-  padding: $font-size;
-  box-shadow: 2px 2px $font-size $color-border-secondary;
-  border-radius: $border-radius;
-  left: $base-spacing-unit;
+  border: var(--border-default);
+  padding: var(--spacing-half-unit);
+  box-shadow: 2px 2px var(--spacing-half-unit) var(--color-border-light);
+  border-radius: var(--border-radius-small);
+  left: var(--spacing-base-unit);
 }
 
 .symbol-selector__item {
@@ -41,6 +41,6 @@
 
 .symbol-selector__symbol {
   &:hover {
-    background-color: $color-border;
+    background-color: var(--color-border-default);
   }
 }

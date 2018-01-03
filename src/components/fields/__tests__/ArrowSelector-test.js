@@ -1,7 +1,7 @@
 import ArrowSelector from '../ArrowSelector';
 import Dropdown from '../Dropdown';
 import React from 'react';
-import {shallow} from '../../../lib/test-utils';
+import {shallow} from 'lib/test-utils';
 
 describe('<ArrowSelector>', () => {
   // test mostly an insurance policy against plotly.js changing arrow_paths on us.

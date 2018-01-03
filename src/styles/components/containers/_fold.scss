@@ -1,81 +1,87 @@
 .fold {
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -ms-user-select: none;
   width: 100%;
-
+  user-select: none;
   &__top {
     display: flex;
     justify-content: space-between;
     clear: both;
-    padding: $half-spacing-unit/2 $half-spacing-unit;
-    color: $color-white;
-    cursor: pointer;
-    font-size: $font-size;
-    line-height: 11px;
-    border: $border-dark;
-    background-color: $color-fold-header-background--closed;
+    padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
+    color: var(--fold-header-text-color-closed);
+    font-size: var(--font-size-base);
+    border: 1px solid var(--fold-header-border-color-closed);
+    background-color: var(--fold-header-background-closed);
     height: 15px;
-    border-radius: 5px;
-    text-shadow: $text-shadow--dark-ui;
+    border-radius: var(--border-radius);
+    text-shadow: var(--text-shadow-dark-ui);
     transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
       border 0.1s ease-in-out;
 
     &:hover {
-      background-color: darken($color-fold-header-background--closed, 6%);
+      cursor: pointer;
+      background-color: var(--fold-header-background-closed); // darken 6%
     }
 
     svg {
       width: 18px;
       height: 18px;
+      display: block;
       @include drop-shadow--dark-ui();
       path {
         fill: currentColor;
       }
     }
 
-    &--active {
-      color: $color-white;
-      background-color: $color-fold-header-background;
-      border: 1px solid $color-fold-header-background;
-      border-radius: 5px 5px 0 0;
-      text-shadow: $text-shadow--dark-ui--inactive;
+    &--open {
+      color: var(--fold-header-text-color-base);
+      background-color: var(--fold-header-background-base);
+      border: 1px solid var(--fold-header-border-color-base);
+      border-radius: var(--border-radius) var(--border-radius) 0 0;
+      text-shadow: var(--text-shadow-dark-ui-inactive);
 
       svg {
         @include drop-shadow--dark-ui--lighter();
       }
 
       &:hover {
-        background-color: darken($color-fold-header-background, 6%);
+        background-color: var(--fold-header-background-base); // darken 6%
       }
     }
 
     &__title {
-      margin-left: $half-spacing-unit/3;
-      padding-top: 2px;
-      font-size: $font-size-medium;
-      font-weight: $font-weight-semibold;
+      margin-left: var(--spacing-half-unit)/3;
+      font-size: var(--font-size-medium);
+      line-height: var(--font-size-medium);
+      font-weight: var(--font-weight-semibold);
+      transform: translateY(1px);
       white-space: nowrap;
       max-width: 150px;
       letter-spacing: 0.2px;
     }
 
     &__arrow {
-      will-change: transform;
-      transition: transform 0.1s ease-in-out;
-      transform: rotate(-180deg);
-      font-weight: bold;
-      transform-origin: center center;
-      &--active {
-        transform: rotate(-90deg);
+      transform: translateX(-3px) translateY(-1px);
+      svg{
+        will-change: transform;
+        transition: transform 0.1s ease-in-out;
+        transform: rotate(-180deg);
+        font-weight: bold;
+        transform-origin: center center;
+      }
+
+      &-title {
+        display: flex;
+      }
+      &--open {
+        svg{
+          transform: rotate(-90deg);
+        }
       }
     }
 
     &__delete {
       font-size: 18px;
       opacity: 0.75;
+      transform: translateY(-2px);
       &:hover {
         opacity: 1;
       }
@@ -83,11 +89,14 @@
   }
 
   &__content {
-    background: #ffffff;
-    border: $border;
+    background: var(--color-background-top);
+    border: var(--border-default);
     border-width: 0 1px 1px 1px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    & > *:first-child{
+      border-top: 0;
+    }
 
     &--noheader {
       border-width: 1px 1px 1px 1px;
@@ -96,15 +105,5 @@
 }
 
 .fold + .fold {
-  margin-top: $half-spacing-unit;
-}
-
-.fold__top__arrow-title {
-  display: flex;
-}
-.fold__delete {
-  display: inline-block;
-  color: $color-white;
-  text-decoration: none;
-  font-size: 1.5em;
+  margin-top: var(--spacing-half-unit);
 }

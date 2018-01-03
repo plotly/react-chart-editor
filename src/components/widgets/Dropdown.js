@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Select from 'react-select';
 import classnames from 'classnames';
-import 'react-select/dist/react-select.css';
 
 class Dropdown extends Component {
   constructor(props) {
@@ -88,7 +87,7 @@ Dropdown.defaultProps = {
   noResultsText: 'no results...',
   placeholder: 'select an option...',
   searchable: false,
-  minWidth: '150px',
+  minWidth: '120px',
   valueKey: 'value',
   disabled: false,
 };

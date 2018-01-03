@@ -5,7 +5,7 @@ import {
   connectToContainer,
   customTraceToPlotlyTrace,
   plotlyTraceToCustomTrace,
-} from '../../lib';
+} from 'lib';
 
 function computeTraceOptionsFromSchema(schema) {
   const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);

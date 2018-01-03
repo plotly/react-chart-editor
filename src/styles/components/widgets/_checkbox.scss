@@ -1,49 +1,73 @@
-.checkbox__group {
-  padding-left: 12px;
-  text-align: left;
-}
+.checkbox {
+  &__group {
+    padding-left: var(--spacing-half-unit);
+    text-align: left;
+  }
 
-.checkbox__item {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  cursor: default;
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
+  &__item {
+    user-select: none;
+    cursor: default;
+    padding-top: var(--spacing-eighth-unit);
+    padding-bottom: var(--spacing-eighth-unit);
+    &--vertical {
+      display: block;
+      clear: both;
+    }
+  }
+  &__box {
+    $size: 18px;
+    height: $size;
+    width: $size;
+    border: var(--border-default);
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    position: relative;
+    &:hover {
+      background: var(--color-background-light);
+    }
+    &--checked{
+      border: var(--border-accent-shade);
+      background: var(--color-accent);
+      &:hover {
+        background: var(--color-accent-shade);
+      }
 
-.checkbox__item--vertical {
-  display: block;
-  clear: both;
-}
-
-.checkbox__box {
-  height: 18px;
-  width: 18px;
-  border: 1px solid #a9b3c7;
-  border-radius: 3px;
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
-  text-align: center;
-}
-
-.checkbox__check {
-  color: #6D6D6D;
-  font-size: 12px;
+      & + .checkbox__label{
+        color: var(--color-text-active);
+      }
+    }
+  }
+  &__check {
+    color: var(--color-text-base);
+    font-size: var(--spacing-half-unit);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      @include drop-shadow--dark-ui;
+      path {
+        fill: var(--color-white);
+      }
+    }
+  }
+  &__label {
+    padding-left: var(--spacing-quarter-unit);
+    font-size: var(--font-size-base);
+    color:var(--color-text-base);
+    display: inline-block;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: middle;
+  }
 }
 
 .icon-check-mark:before {
-  content: "\2714";
-}
-
-.checkbox__label {
-  padding-left: 6px;
-  font-size: 12px;
-  display: inline-block;
-  line-height: 20px;
-  text-align: left;
-  vertical-align: middle;
 }

@@ -3,7 +3,7 @@ import LaTeXEditor from './LaTeX';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import RichTextEditor from './RichText';
-import localize from '../../../lib/localize';
+import localize from 'lib/localize';
 import {
   isLaTeXExpr,
   htmlToLaTeX,
@@ -11,6 +11,7 @@ import {
   hasTextExpression,
 } from './convertFormats';
 import classnames from 'classnames';
+import Button from 'components/widgets/Button';
 
 class MultiFormatTextEditor extends Component {
   constructor(props) {
@@ -184,18 +185,20 @@ class MultiFormatTextEditor extends Component {
             </p>
           </div>
 
-          <button
+          <Button
+            variant="default"
             className="confirmation-panel__cancel-button"
             onClick={onCancel}
           >
             {_('Go back')}
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="primary"
             className="confirmation-panel__continue-button"
             onClick={onContinue}
           >
             {_('Continue')}
-          </button>
+          </Button>
         </div>
       </div>
     );

@@ -10,7 +10,7 @@ import {
   Checkboard,
 } from 'react-color/lib/components/common';
 import {CustomPicker as customPicker} from 'react-color';
-import {localize} from '../../lib';
+import {localize} from 'lib';
 
 /* eslint-disable no-inline-comments */
 const defaultColors = [
@@ -49,7 +49,7 @@ const CustomColorPicker = localize(
     return (
       <div>
         <div>
-          <p className="colorpicker__title">{_('Custom Colors')}</p>
+          <p className="colorpicker__title">{_('Custom Color')}</p>
           <div className="colorpicker__saturation">
             <Saturation {...props} />
           </div>

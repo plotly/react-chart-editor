@@ -1,59 +1,78 @@
 .field {
-  align-items: center;
-  border-top:$border-light;
-  color: #6d6d6d;
+  align-items: flex-start;
+  border-top: var(--border-light);
+  color: var(--color-text-base);
   display: flex;
-  font-size: $font-size;
-  font-weight: $font-weight-normal;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
   justify-content: flex-start;
-  line-height: $font-size;
+  line-height: var(--font-size-base);
   min-height: 32px;
-  padding: 6px 0;
+  padding: var(--spacing-quarter-unit) 0;
   width: 100%;
-}
+  position: relative;
+  &__no-title {
+    width: 100%;
+    padding: 0 var(--spacing-half-unit);
+    align-self: center;
+    line-height: var(--font-leading-body);
+    &--center {
+      text-align: center;
+    }
+  }
+  &__widget {
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: var(--spacing-half-unit);
+    padding-left: var(--spacing-half-unit);
+    align-self: center;
+    // if it has units, don't allow it to grow,
+    // otherwise it should take up the available space
+    &:not(.field__widget--units) {
+      flex-grow: 1;
+    }
+    &--units {
+      padding-right: 0;
+    }
+  }
+  &__units {
+    align-self: center;
+  }
+  &__title {
+    width: 30%;
+    padding-left: var(--spacing-half-unit);
+    display: block;
+    font-size: var(--font-size-base);
+    line-height: var(--font-leading-body);
+    color: var(--color-text-base);
+    padding-top: var(--spacing-quarter-unit);
+    user-select: none;
+    &-text {
+      text-transform: capitalize;
+      cursor: default;
+    }
+  }
 
-.field:not(:last-child) {
-  //border-bottom: 1px solid #f8f8f9;
-}
-
-.field__no-title {
-  width: 100%;
-  padding: 0 12px;
-}
-
-.field__no-title--center {
-  text-align: center;
-}
-
-.field__title {
-  padding-left: 0.5em;
-  color: #69738a;
-  font-size: 14px;
-  width: 36%;
-  display: inline-block;
-}
-
-.field__widget {
-  width: 64%;
-  padding-left: 12px;
-  display: flex;
-  padding-right: 12px;
-}
-
-.field__widget--units {
-  width: 41%;
-  padding-right: 0px;
-}
-
-.field__title {
-  width: 30%;
-  padding-left: 12px;
-  display: inline-block;
-  line-height: 18px;
-  text-transform: capitalize;
-}
-
-.field__title-text {
-  text-transform: capitalize;
-  cursor: default;
+  &__delete{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: var(--spacing-quarter-unit);
+    opacity: 0.5;
+    svg{
+      display: block;
+      path{
+        fill: var(--color-text-base)
+      }
+    }
+    &:hover{
+      cursor: pointer;
+      opacity: 1;
+      svg{
+        path{
+          fill: var(--color-sienna)
+        }
+      }
+    }
+  }
 }

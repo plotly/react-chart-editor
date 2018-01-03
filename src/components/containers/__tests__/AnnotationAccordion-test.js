@@ -1,8 +1,8 @@
 import React from 'react';
 import {AnnotationAccordion, Panel, Fold} from '..';
 import {Numeric} from '../../fields';
-import {TestEditor, fixtures, mount} from '../../../lib/test-utils';
-import {connectLayoutToPlot} from '../../../lib';
+import {TestEditor, fixtures, mount} from 'lib/test-utils';
+import {connectLayoutToPlot} from 'lib';
 
 const LayoutPanel = connectLayoutToPlot(Panel);
 
@@ -40,7 +40,7 @@ describe('<AnnotationAccordion>', () => {
       </TestEditor>
     );
 
-    editor.find('.panel__add-button').simulate('click');
+    editor.find('button.js-add-annotation-button').simulate('click');
 
     const payload = onUpdateLayout.mock.calls[0][0];
     expect(payload.update).toEqual({'annotations[0]': {text: 'new text'}});

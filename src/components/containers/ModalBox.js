@@ -4,13 +4,14 @@ import classnames from 'classnames';
 
 export default class ModalBox extends Component {
   render() {
+    const {backgroundDark, children, onClose} = this.props;
     const modalboxClass = classnames('modalbox', {
-      'modalbox--dark': this.props.backgroundDark,
+      'modalbox--dark': backgroundDark,
     });
     return (
       <div className={modalboxClass}>
-        <div className="modalbox__cover" onClick={this.props.onClose} />
-        <div>{this.props.children}</div>
+        <div className="modalbox__cover" onClick={onClose} />
+        <div className="modalbox__content">{children}</div>
       </div>
     );
   }

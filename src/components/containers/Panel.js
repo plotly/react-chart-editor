@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {bem} from 'lib';
-
+import {ChartLineIcon} from 'plotly-icons';
 class Panel extends Component {
   render() {
     const {visible, children} = this.props;
@@ -28,6 +28,27 @@ export class PanelHeader extends Component {
   }
 }
 
+export class PanelEmpty extends Component {
+  render() {
+    const {children, message, heading, icon} = this.props;
+
+    return (
+      <div className={bem('panel', 'empty')}>
+        <div className="panel__empty__message">
+          <div className="panel__empty__message__icon">
+            {icon ? icon : <ChartLineIcon />}
+          </div>
+          <div className="panel__empty__message__heading">{heading}</div>
+          <div className="panel__empty__message__content">
+            {message}
+            {children}
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
 Panel.propTypes = {
   children: PropTypes.node,
   visible: PropTypes.bool,
@@ -36,6 +57,13 @@ Panel.propTypes = {
 PanelHeader.propTypes = {
   children: PropTypes.node,
   action: PropTypes.any,
+};
+
+PanelEmpty.propTypes = {
+  heading: PropTypes.string,
+  message: PropTypes.any,
+  children: PropTypes.node,
+  icon: PropTypes.node,
 };
 
 Panel.defaultProps = {

@@ -6,7 +6,7 @@ import {
   connectToContainer,
   getLayoutContext,
   unpackPlotProps,
-} from '../../lib';
+} from 'lib';
 
 export const CanvasSize = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {

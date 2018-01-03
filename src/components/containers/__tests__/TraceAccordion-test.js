@@ -1,7 +1,7 @@
 import React from 'react';
 import {TraceAccordion, Fold} from '..';
 import {Numeric} from '../../fields';
-import {TestEditor, fixtures, mount} from '../../../lib/test-utils';
+import {TestEditor, fixtures, mount} from 'lib/test-utils';
 
 describe('<TraceAccordion>', () => {
   it('generates trace Folds with name == text', () => {
@@ -29,7 +29,7 @@ describe('<TraceAccordion>', () => {
       </TestEditor>
     );
 
-    editor.find('.panel__add-button').simulate('click');
+    editor.find('button.js-add-trace-button').simulate('click');
 
     expect(onAddTrace).toBeCalled();
   });

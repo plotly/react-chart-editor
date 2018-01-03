@@ -3,122 +3,130 @@ $colorpicker-width: 250px;
 $saturation-picker-height: 160px;
 $slider-picker-height: 10px;
 
+%colorpicker__component {
+  position: relative;
+  overflow: hidden;
+  margin: 0 var(--spacing-half-unit);
+  border: var(--border-default);
+  border-radius: var(--border-radius-small);
+  cursor: pointer;
+}
 
-.colorpicker__popover {
+.colorpicker {
+  $size: 26px;
+  display: flex;
+  width: $size;
+  height: $size;
+  border-radius: 100%;
+  border: var(--border-default);
+  padding: var(--spacing-eighth-unit);
+
+  &__popover {
     left: -90px;
     position: absolute;
     top: 100%;
-
-    margin: 0.5 * $half-spacing-unit 0 $base-spacing-unit;
+    margin: var(--spacing-quarter-unit) 0 var(--spacing-base-unit);
     width: $colorpicker-width;
-    background-color: $color-white;
-
-    border-radius: $border-radius;
-
-    $shadow-color: rgba(0, 0, 0, 0.15);
-    @include vendor(
-        box-shadow, ($shadow-color 0px 0px 0px 1px, $shadow-color 0px 8px 16px)
-    );
-    @include z-index("cloud");
-}
-
-.colorpicker__cover {
+    background-color: var(--color-background-top);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-base);
+    border: var(--border-default);
+    @include z-index('cloud');
+  }
+  &__cover {
     position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    @include z-index("underground");
-}
+    @include z-index('underground');
+  }
 
-.colorpicker__container {
-    display: inline-block;
+  &__container {
+    display: flex;
+    align-items: center;
     line-height: 2;
     position: relative;
-}
-
-.colorpicker {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 1px solid $color-border-secondary;
-    vertical-align: middle;
-    padding-top: $sixth-spacing-unit;
-    padding-left: $sixth-spacing-unit;
-
-}
-
-.colorpicker__selected-color {
-    margin-left: $half-spacing-unit;
-    color: $color-text;
-    font-weight: $font-weight-light;
-    font-size: $font-size-small;
+  }
+  &__selected-color {
+    margin-left: var(--spacing-half-unit);
+    color: var(--color-text-base);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-small);
     display: inline-block;
     vertical-align: middle;
     text-transform: uppercase;
-}
-
-.colorpicker__swatch {
+  }
+  &__swatch {
     border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    vertical-align: middle;
-}
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+  }
 
-%colorpicker__component {
-    position: relative;
-    overflow: hidden;
-    margin: 0 $half-spacing-unit;
-    border: 1px solid $color-border;
-    border-radius: $border-radius / 2;
-    cursor: pointer;
-}
-
-
-/* Saturation wrapper style */
-.colorpicker__saturation {
+  /* Saturation wrapper style */
+  &__saturation {
     @extend %colorpicker__component;
     height: $saturation-picker-height;
-}
+  }
+  &__custom-input {
+    padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
+    input{
+      border: var(--border-default) !important;
+      box-shadow: none !important;
+      background-color: var(--color-background-inputs);
+      color: var(--color-text-dark);
+    }
+    input + span{
+      color: var(--color-text) !important;
+    }
+  }
 
-/* Wrapper style for Hue and Alpha sliders and swatch */
-.colorpicker__controls {
-    margin: 0 $half-spacing-unit;
+  /* Wrapper style for Hue and Alpha sliders and swatch */
+  &__controls {
+    margin: 0 var(--spacing-half-unit);
 
     .colorpicker__sliders {
-        width: 200px;
+      width: 200px;
 
-        .colorpicker__slider {
-            @extend %colorpicker__component;
-            margin: auto 0;
-            height: $slider-picker-height;
-            margin-top: 0.25 * $half-spacing-unit;
-        }
+      .colorpicker__slider {
+        @extend %colorpicker__component;
+        margin: auto 0;
+        height: $slider-picker-height;
+        margin-top: var(--spacing-eighth-unit);
+      }
     }
 
     .colorpicker__active {
-        @extend %colorpicker__component;
-        height: $base-spacing-unit;
-        width: $base-spacing-unit;
-        margin: 0.25 * $half-spacing-unit 0px 0px 0.5 * $half-spacing-unit;
+      @extend %colorpicker__component;
+      height: var(--spacing-base-unit);
+      width: var(--spacing-base-unit);
+      margin: var(--spacing-eighth-unit) 0 0 var(--spacing-half-unit);
 
-        .colorpicker__active-swatch {
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-            border-radius: $border-radius / 2;
-            border: 1px solid #eee;
-        }
+      .colorpicker__active-swatch {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: var(--border-radius-small);
+        border: 1px solid #eee;
+      }
     }
-}
+  }
 
-.colorpicker__preset-colors {
-    margin: 0 $half-spacing-unit;
-}
-
-.colorpicker__title {
-    $title-margin: 0.25 * $half-spacing-unit;
-    margin: $title-margin $title-margin * 2;
-    font-size: $h5-size;
-    font-weight: $font-weight-semibold;
+  &__preset-colors {
+    margin: 0 var(--spacing-half-unit);
+    & > div{
+      border-top: var(--border-light) !important; // inline style override
+      padding:var(--spacing-half-unit) !important;
+      padding-bottom: var(--spacing-quarter-unit) !important;
+    }
+  }
+  &__title {
+    margin: var(--spacing-eighth-unit) var(--spacing-half-unit);
+    font-size: var(--font-size-medium);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-section-header);
+  }
 }

@@ -2,7 +2,7 @@ import Field from './Field';
 import MultiFormatTextEditor from '../widgets/text_editors/MultiFormatTextEditor';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {connectToContainer} from '../../lib';
+import {connectToContainer} from 'lib';
 
 export class UnconnectedMultiFormatTextEditor extends Component {
   render() {
