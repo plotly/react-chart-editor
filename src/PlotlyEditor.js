@@ -38,6 +38,8 @@ class PlotlyEditor extends Component {
       data: gd.data,
       dataSources: this.props.dataSources,
       dataSourceOptions: this.props.dataSourceOptions,
+      dataSourceValueRenderer: this.props.dataSourceValueRenderer,
+      dataSourceOptionRenderer: this.props.dataSourceOptionRenderer,
       dictionaries: dictionaries,
       fullData: gd._fullData,
       fullLayout: gd._fullLayout,
@@ -104,7 +106,7 @@ class PlotlyEditor extends Component {
           this.props.onDeleteTrace(payload);
         }
         if (payload.traceIndexes && payload.traceIndexes.length) {
-          graphDiv.data.splice(payload[0], 1);
+          graphDiv.data.splice(payload.traceIndexes[0], 1);
           if (this.props.onUpdate) {
             this.props.onUpdate();
           }
@@ -150,6 +152,8 @@ PlotlyEditor.propTypes = {
   className: PropTypes.string,
   dataSources: PropTypes.object,
   dataSourceOptions: PropTypes.array,
+  dataSourceValueRenderer: PropTypes.func,
+  dataSourceOptionRenderer: PropTypes.func,
   graphDiv: PropTypes.object,
   locale: PropTypes.string,
   revision: PropTypes.any,
@@ -170,6 +174,8 @@ PlotlyEditor.childContextTypes = {
   data: PropTypes.array,
   dataSources: PropTypes.object,
   dataSourceOptions: PropTypes.array,
+  dataSourceValueRenderer: PropTypes.func,
+  dataSourceOptionRenderer: PropTypes.func,
   dictionaries: PropTypes.object,
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,

@@ -37,6 +37,7 @@ describe('DataSelector', () => {
   it('calls updatePlot with srcAttr and data when present', () => {
     const onUpdateTraces = jest.fn();
     const wrapper = render({onUpdateTraces}).find(DropdownWidget);
+    onUpdateTraces.mockClear();
     wrapper.prop('onChange')('y1');
     expect(onUpdateTraces.mock.calls[0][0]).toEqual({
       update: {xsrc: 'y1', x: [2, 3, 4]},

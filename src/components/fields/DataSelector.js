@@ -61,6 +61,8 @@ class DataSelector extends Component {
           options={this.dataSourceOptions}
           value={this.fullValue}
           onChange={this.updatePlot}
+          optionRenderer={this.context.dataSourceOptionRenderer}
+          valueRenderer={this.context.dataSourceValueRenderer}
           clearable={this.props.clearable}
         />
       </Field>
@@ -78,6 +80,8 @@ DataSelector.propTypes = {
 DataSelector.contextTypes = {
   dataSources: PropTypes.object,
   dataSourceOptions: PropTypes.array,
+  dataSourceValueRenderer: PropTypes.func,
+  dataSourceOptionRenderer: PropTypes.func,
 };
 
 function modifyPlotProps(props, context, plotProps) {

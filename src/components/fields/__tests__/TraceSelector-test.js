@@ -9,6 +9,67 @@ import {connectTraceToPlot} from 'lib';
 describe('TraceSelector', () => {
   const TraceSection = connectTraceToPlot(Section);
 
+  it('sets mode to markers if trace scatter, no data or mode provided', () => {
+    const editorProps = {
+      ...fixtures.scatter({data: [{mode: null, xsrc: null, ysrc: null}]}),
+      onUpdate: jest.fn(),
+    };
+    const wrapper = mount(
+      <TestEditor {...editorProps} plotly={plotly}>
+        <TraceSection traceIndex={0}>
+          <TraceSelector attr="type" />
+        </TraceSection>
+      </TestEditor>
+    ).find(TraceSelector);
+
+    const innerDropdown = wrapper.find(Dropdown);
+
+    expect(wrapper.props().plotProps.container.mode).toBe('markers');
+    expect(innerDropdown.prop('value')).toEqual('scatter');
+  });
+
+  it('if no data provided, but mode is provided, displays correct trace type', () => {
+    const editorProps = {
+      ...fixtures.scatter({
+        data: [{mode: 'lines+markers', xsrc: null, ysrc: null}],
+      }),
+      onUpdate: jest.fn(),
+    };
+    const wrapper = mount(
+      <TestEditor {...editorProps} plotly={plotly}>
+        <TraceSection traceIndex={0}>
+          <TraceSelector attr="type" />
+        </TraceSection>
+      </TestEditor>
+    ).find(TraceSelector);
+
+    const innerDropdown = wrapper.find(Dropdown);
+
+    expect(innerDropdown.prop('value')).toEqual('line');
+  });
+
+  it('if data provided, but no mode is provided, chooses mode according to fullData', () => {
+    const editorProps = {
+      ...fixtures.scatter(),
+      onUpdate: jest.fn(),
+    };
+
+    expect(!editorProps.graphDiv.data[0].mode).toBe(true);
+    expect(editorProps.graphDiv._fullData[0].mode).toBe('lines+markers');
+
+    const wrapper = mount(
+      <TestEditor {...editorProps} plotly={plotly}>
+        <TraceSection traceIndex={0}>
+          <TraceSelector attr="type" />
+        </TraceSection>
+      </TestEditor>
+    ).find(TraceSelector);
+
+    const innerDropdown = wrapper.find(Dropdown);
+    expect(wrapper.props().plotProps.container.mode).toBe('lines+markers');
+    expect(innerDropdown.prop('value')).toEqual('line');
+  });
+
   it('interprets scatter + fill as type=area', () => {
     const editorProps = {
       ...fixtures.scatter({data: [{fill: 'tonexty'}]}),
