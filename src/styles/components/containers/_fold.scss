@@ -54,8 +54,10 @@
       font-weight: var(--font-weight-semibold);
       transform: translateY(1px);
       white-space: nowrap;
-      max-width: 150px;
+      max-width: 230px;
       letter-spacing: 0.2px;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     &__arrow {
@@ -70,6 +72,7 @@
 
       &-title {
         display: flex;
+        flex-grow: 1;
       }
       &--open {
         svg{
