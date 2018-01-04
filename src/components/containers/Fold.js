@@ -16,7 +16,7 @@ export default class Fold extends Component {
 
   render() {
     const {deleteContainer} = this.context;
-    const {hideHeader, name, children} = this.props;
+    const {hideHeader, name, children, className} = this.props;
     const {folded} = this.state;
     const doDelete = typeof deleteContainer === 'function';
 
@@ -64,8 +64,10 @@ export default class Fold extends Component {
       <div className={contentClass}>{children}</div>
     );
 
+    const classes = className ? ' ' + className : '';
+
     return (
-      <div className="fold">
+      <div className={`fold${classes}`}>
         {foldHeader}
         {foldContent}
       </div>
@@ -77,6 +79,7 @@ Fold.propTypes = {
   children: PropTypes.node,
   hideHeader: PropTypes.bool,
   name: PropTypes.string,
+  className: PropTypes.string,
 };
 
 Fold.contextTypes = {

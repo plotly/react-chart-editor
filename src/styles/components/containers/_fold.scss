@@ -62,7 +62,7 @@
 
     &__arrow {
       transform: translateX(-3px) translateY(-1px);
-      svg{
+      svg {
         will-change: transform;
         transition: transform 0.1s ease-in-out;
         transform: rotate(-180deg);
@@ -75,7 +75,7 @@
         flex-grow: 1;
       }
       &--open {
-        svg{
+        svg {
           transform: rotate(-90deg);
         }
       }
@@ -97,7 +97,13 @@
     border-width: 0 1px 1px 1px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    & > *:first-child{
+
+    &__plot {
+      overflow: hidden;
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+    & > *:first-child {
       border-top: 0;
     }
 
