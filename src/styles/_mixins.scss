@@ -163,6 +163,7 @@
   @each $var, $val in $sidebar {
     #{--sidebar}-#{$var}: $val;
   }
+  --editor-width: calc(var(--sidebar-width) + var(--panel-width) + 1px); // +1px for border
 }
 
 @mixin heading($type: 'base') {
