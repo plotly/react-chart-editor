@@ -106,7 +106,7 @@ class PlotlyEditor extends Component {
           this.props.onDeleteTrace(payload);
         }
         if (payload.traceIndexes && payload.traceIndexes.length) {
-          graphDiv.data.splice(payload[0], 1);
+          graphDiv.data.splice(payload.traceIndexes[0], 1);
           if (this.props.onUpdate) {
             this.props.onUpdate();
           }
