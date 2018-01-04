@@ -52,7 +52,11 @@ class TraceSelector extends Component {
         'tonext',
       ];
     }
-
+    this.setTraceDefaults(
+      props.container,
+      props.fullContainer,
+      props.updateContainer
+    );
     this.setLocals(props, context);
   }
 
@@ -64,17 +68,30 @@ class TraceSelector extends Component {
     } else {
       this.traceOptions = [{label: 'Scatter', value: 'scatter'}];
     }
+    this.fullValue = plotlyTraceToCustomTrace(props.container);
+  }
 
-    this.fullValue = plotlyTraceToCustomTrace(props.fullContainer);
+  setTraceDefaults(container, fullContainer, updateContainer) {
+    if (
+      (container.type === 'scatter' && !container.mode) ||
+      (!container.type && fullContainer.type === 'scatter')
+    ) {
+      updateContainer({
+        type: 'scatter',
+        mode: fullContainer.mode || 'markers',
+        fill: fullContainer.fill || container.fill,
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
+    const {container, fullContainer, updateContainer} = nextProps;
+    this.setTraceDefaults(container, fullContainer, updateContainer);
     this.setLocals(nextProps, nextContext);
   }
 
   updatePlot(value) {
     const update = customTraceToPlotlyTrace(value);
-
     if (this.props.updateContainer) {
       this.props.updateContainer(update);
     }
@@ -97,6 +114,7 @@ TraceSelector.contextTypes = {
 
 TraceSelector.propTypes = {
   getValObject: PropTypes.func,
+  container: PropTypes.object.isRequired,
   fullContainer: PropTypes.object.isRequired,
   fullValue: PropTypes.any.isRequired,
   updateContainer: PropTypes.func,
