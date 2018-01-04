@@ -54,13 +54,15 @@
       font-weight: var(--font-weight-semibold);
       transform: translateY(1px);
       white-space: nowrap;
-      max-width: 150px;
+      max-width: 230px;
       letter-spacing: 0.2px;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     &__arrow {
       transform: translateX(-3px) translateY(-1px);
-      svg{
+      svg {
         will-change: transform;
         transition: transform 0.1s ease-in-out;
         transform: rotate(-180deg);
@@ -70,9 +72,10 @@
 
       &-title {
         display: flex;
+        flex-grow: 1;
       }
       &--open {
-        svg{
+        svg {
           transform: rotate(-90deg);
         }
       }
@@ -94,7 +97,13 @@
     border-width: 0 1px 1px 1px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    & > *:first-child{
+
+    &__plot {
+      overflow: hidden;
+      border-bottom-left-radius: var(--border-radius);
+      border-bottom-right-radius: var(--border-radius);
+    }
+    & > *:first-child {
       border-top: 0;
     }
 
