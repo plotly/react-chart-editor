@@ -12,14 +12,14 @@ See if [you can use them](https://caniuse.com/#feat=css-variables).
 
 ### Sample
 
-Here is a sample theme to change the UI from light to Dark.
+Here is a sample theme to change the UI from light to dark. We attach all of our custom properties to a `.plotly-editor--theme-provider` class name. If you want to have access to the variables in other sections of your application, you can add this class above your elements to put them in the same scope.
 
 ![editor-theme-example](https://user-images.githubusercontent.com/11803153/34530258-2dc6fcc0-f074-11e7-969b-b54327416b30.png)
 
 ```
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700|Roboto+Mono:400,500,700');
 
-.theme--dark .plotly-editor {
+.theme--dark .plotly-editor--theme-provider {
   /* Global Colors */
   --color-accent: hsl(205, 100%, 53%);
   --color-accent-shade-mid: hsl(205, 87%, 47%);
@@ -85,8 +85,8 @@ CSS custom properties are not supported in IE11. However, you can use a [PostCSS
 The PostCSS plugin we are using only applies to variables that are in the `:root{}` scope. If you'd like to both theme and use your styles to support IE11, you would need to import the unminified IE styles we ship with the editor:
  `import react-plotly.js-editor/lib/react-plotly.js-editor.ie.css` (this stylesheet has the variables attached to the `:root{}` scope).
 
- Then, rather than applying your custom properties to `.theme--dark .plotly-editor`, you would apply your overrides to `:root`.
+ Then, rather than applying your custom properties to `.theme--dark .plotly-editor--theme-provider`, you would apply your overrides to `:root{}`.
 
- Finally, you would pipe in the PostCSS plugin(s) to your project and produce a css file with the properties applied as their true value. It's reccomended to use the [PostCSS Remove Root](https://github.com/cbracco/postcss-remove-root) plugin after you have converted all of the properties.
+ Finally, you would pipe in the PostCSS plugin(s) to your project and produce a css file with the properties applied as their true value. It's recommended to use the [PostCSS Remove Root](https://github.com/cbracco/postcss-remove-root) plugin after you have converted all of the properties.
 
  You can see our PostCSS scripts [here](https://github.com/plotly/react-plotly.js-editor/tree/master/scripts/postcss.js).

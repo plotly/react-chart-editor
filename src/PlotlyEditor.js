@@ -133,6 +133,7 @@ class PlotlyEditor extends Component {
       <div
         className={
           bem('plotly-editor') +
+          ' plotly-editor--theme-provider' +
           `${this.props.className ? ` ${this.props.className}` : ''}`
         }
       >
