@@ -1,7 +1,6 @@
 export function plotlyTraceToCustomTrace(trace) {
   if (
     trace.type === 'scatter' &&
-    trace.fill &&
     ['tozeroy', 'tozerox', 'tonexty', 'tonextx', 'toself', 'tonext'].includes(
       trace.fill
     )
@@ -9,7 +8,6 @@ export function plotlyTraceToCustomTrace(trace) {
     return 'area';
   } else if (
     trace.type === 'scatter' &&
-    trace.mode &&
     (trace.mode === 'lines' || trace.mode === 'lines+markers')
   ) {
     return 'line';
