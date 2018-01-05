@@ -2,7 +2,9 @@ import bem from './bem';
 import connectAnnotationToLayout from './connectAnnotationToLayout';
 import connectAxesToLayout from './connectAxesToLayout';
 import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
-import connectToContainer from './connectToContainer';
+import connectToContainer, {
+  containerConnectedContextTypes,
+} from './connectToContainer';
 import connectTraceToPlot from './connectTraceToPlot';
 import dereference from './dereference';
 import findFullTraceIndex from './findFullTraceIndex';
@@ -37,6 +39,7 @@ export {
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
+  containerConnectedContextTypes,
   customTraceToPlotlyTrace,
   dereference,
   findFullTraceIndex,
