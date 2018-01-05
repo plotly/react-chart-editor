@@ -55,7 +55,7 @@ describe('Section', () => {
       </TestEditor>
     ).find('[name="test-section"]');
 
-    expect(wrapper.children().length).toBe(1);
+    expect(wrapper.children().length).toBe(2);
     expect(wrapper.find('.extra').text()).toBe('special extra');
   });
 

@@ -53,6 +53,7 @@ class Section extends Component {
       if (child.plotProps) {
         plotProps = child.plotProps;
       } else if (
+        fullContainer &&
         fullContainer.type === 'scatter' &&
         !fullContainer.opacity &&
         child.props.attr === 'opacity'
