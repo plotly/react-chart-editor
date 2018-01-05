@@ -13,10 +13,8 @@ const TraceFold = connectTraceToPlot(Fold);
 class TraceAccordion extends Component {
   constructor(props) {
     super(props);
-
     this.addTrace = this.addTrace.bind(this);
   }
-
   addTrace() {
     if (this.context.onUpdate) {
       this.context.onUpdate({
@@ -26,7 +24,7 @@ class TraceAccordion extends Component {
   }
 
   render() {
-    const data = this.context.data || [];
+    const {data = []} = this.context;
     const {canAdd, children, localize: _} = this.props;
 
     const addButton = canAdd && (

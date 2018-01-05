@@ -1,7 +1,15 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import classnames from 'classnames';
-import {CloseIcon, AngleDownIcon} from 'plotly-icons';
+import {
+  CloseIcon,
+  AngleDownIcon,
+  PlotScatterIcon,
+  PlotLineIcon,
+  PlotPieIcon,
+  PlotAreaIcon,
+  PlotBarIcon,
+} from 'plotly-icons';
 
 export default class Fold extends Component {
   constructor() {
@@ -16,7 +24,7 @@ export default class Fold extends Component {
 
   render() {
     const {deleteContainer} = this.context;
-    const {hideHeader, name, children, className} = this.props;
+    const {hideHeader, name, type, children, className} = this.props;
     const {folded} = this.state;
     const doDelete = typeof deleteContainer === 'function';
 
@@ -50,10 +58,32 @@ export default class Fold extends Component {
         </div>
       );
 
+    const renderTypeIcon = type => {
+      switch (type) {
+        case 'scatter':
+          return <PlotScatterIcon />;
+        case 'line':
+          return <PlotLineIcon />;
+        case 'bar':
+          return <PlotBarIcon />;
+        case 'pie':
+          return <PlotPieIcon />;
+        case 'area':
+          return <PlotAreaIcon />;
+        default:
+          return <PlotScatterIcon />;
+      }
+    };
+
+    const plotTypeIcon = type && (
+      <div className="fold__top__plot-icon">{renderTypeIcon(type)}</div>
+    );
+
     const foldHeader = !hideHeader && (
       <div className={headerClass} onClick={this.toggleFold}>
         <div className="fold__top__arrow-title">
           {arrowIcon}
+          {plotTypeIcon}
           <div className="fold__top__title">{name}</div>
         </div>
         {deleteButton(deleteContainer)}
@@ -79,6 +109,7 @@ Fold.propTypes = {
   children: PropTypes.node,
   hideHeader: PropTypes.bool,
   name: PropTypes.string,
+  type: PropTypes.string,
   className: PropTypes.string,
 };
 
