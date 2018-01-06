@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {
+  capitalize,
   findFullTraceIndex,
   getDisplayName,
   plotlyTraceToCustomTrace,
 } from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import * as PlotlyIcons from 'plotly-icons';
 
 export default function connectTraceToPlot(WrappedComponent) {
   class TraceConnectedComponent extends Component {
@@ -37,6 +39,24 @@ export default function connectTraceToPlot(WrappedComponent) {
             fullTrace,
             nestedProperty({}, attr).parts
           );
+
+        this.plotIcons = Object.keys(plotly.PlotSchema.get().traces).reduce(
+          (allTraces, trace) => {
+            const componentName = `Plot${capitalize(trace)}Icon`;
+            const iconComponent = PlotlyIcons[componentName];
+            if (componentName) {
+              allTraces[trace] = iconComponent;
+            } else {
+              allTraces[trace] = PlotlyIcons.PlotLineIcon;
+            }
+            return allTraces;
+          },
+          {}
+        );
+
+        // We have to add some of the editor specific trace types as they're not
+        // in plotly.PlotSchema.get()
+        this.plotIcons.line = PlotlyIcons.PlotLineIcon;
       }
 
       this.childContext = {
@@ -77,7 +97,12 @@ export default function connectTraceToPlot(WrappedComponent) {
 
     render() {
       return (
-        <WrappedComponent name={this.name} type={this.type} {...this.props} />
+        <WrappedComponent
+          name={this.name}
+          type={this.type}
+          plotIcons={this.plotIcons}
+          {...this.props}
+        />
       );
     }
   }

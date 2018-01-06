@@ -2,14 +2,13 @@ import {UnconnectedDropdown} from './Dropdown';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {
+  capitalize,
   connectToContainer,
   customTraceToPlotlyTrace,
   plotlyTraceToCustomTrace,
 } from 'lib';
 
 function computeTraceOptionsFromSchema(schema) {
-  const capitalize = s => s.charAt(0).toUpperCase() + s.substring(1);
-
   // Filter out Polar "area" type as it is fairly broken and we want to present
   // scatter with fill as an "area" chart type for convenience.
   const traceTypes = Object.keys(schema.traces).filter(t => t !== 'area');

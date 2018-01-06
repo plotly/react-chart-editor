@@ -25,6 +25,10 @@ function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
+function capitalize(s) {
+  return s.charAt(0).toUpperCase() + s.substring(1);
+}
+
 const TOO_LIGHT_FACTOR = 0.8;
 export function tooLight(color) {
   const hslColor = tinyColor(color).toHsl();
@@ -33,6 +37,7 @@ export function tooLight(color) {
 
 export {
   bem,
+  capitalize,
   clamp,
   connectAnnotationToLayout,
   connectAxesToLayout,
