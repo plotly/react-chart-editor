@@ -5,7 +5,7 @@ import {
   findFullTraceIndex,
   getDisplayName,
   plotlyTraceToCustomTrace,
-  getPlotIcons,
+  renderTraceIcon,
 } from '../lib';
 import {EDITOR_ACTIONS} from './constants';
 
@@ -38,8 +38,6 @@ export default function connectTraceToPlot(WrappedComponent) {
             fullTrace,
             nestedProperty({}, attr).parts
           );
-
-        this.plotIcons = getPlotIcons(plotly);
       }
 
       this.childContext = {
@@ -49,7 +47,7 @@ export default function connectTraceToPlot(WrappedComponent) {
         container: trace,
         fullContainer: fullTrace,
       };
-      this.type = plotlyTraceToCustomTrace(trace);
+      this.icon = renderTraceIcon(plotlyTraceToCustomTrace(trace));
       this.name = fullTrace.name;
     }
 
@@ -80,12 +78,7 @@ export default function connectTraceToPlot(WrappedComponent) {
 
     render() {
       return (
-        <WrappedComponent
-          name={this.name}
-          type={this.type}
-          plotIcons={this.plotIcons}
-          {...this.props}
-        />
+        <WrappedComponent name={this.name} icon={this.icon} {...this.props} />
       );
     }
   }

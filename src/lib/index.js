@@ -36,25 +36,11 @@ export function tooLight(color) {
   return hslColor.l > TOO_LIGHT_FACTOR;
 }
 
-function getPlotIcons(plotly) {
-  const icons = Object.keys(plotly.PlotSchema.get().traces).reduce(
-    (allTraces, trace) => {
-      const componentName = `Plot${capitalize(trace)}Icon`;
-      const iconComponent = PlotlyIcons[componentName];
-      if (componentName) {
-        allTraces[trace] = iconComponent;
-      } else {
-        allTraces[trace] = PlotlyIcons.PlotLineIcon;
-      }
-      return allTraces;
-    },
-    {}
-  );
-
-  // We have to add some of the editor specific trace types as they're not
-  // in plotly.PlotSchema.get()
-  icons.line = PlotlyIcons.PlotLineIcon;
-  return icons;
+function renderTraceIcon(trace) {
+  const componentName = `Plot${capitalize(trace)}Icon`;
+  return PlotlyIcons[componentName]
+    ? PlotlyIcons[componentName]
+    : PlotlyIcons.PlotLineIcon;
 }
 
 export {
@@ -71,12 +57,12 @@ export {
   dereference,
   findFullTraceIndex,
   getDisplayName,
-  getPlotIcons,
   getLayoutContext,
   isPlainObject,
   localize,
   localizeString,
   plotlyTraceToCustomTrace,
+  renderTraceIcon,
   unpackPlotProps,
   walkObject,
 };
