@@ -65,7 +65,7 @@ RadioBlocks.propTypes = {
         PropTypes.number,
       ]).isRequired,
       label: PropTypes.string,
-      icon: PropTypes.node,
+      icon: PropTypes.element,
       disabled: PropTypes.bool,
     })
   ),
