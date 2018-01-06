@@ -49,8 +49,9 @@ export default class Fold extends Component {
           <CloseIcon />
         </div>
       );
-    const PlotIcon = plotIcons[type];
-    const plotTypeIcon = type && <PlotIcon className="fold__top__plot-icon" />;
+    const PlotIcon = plotIcons && plotIcons[type];
+    const plotTypeIcon = type &&
+      plotIcons && <PlotIcon className="fold__top__plot-icon" />;
 
     const foldHeader = !hideHeader && (
       <div className={headerClass} onClick={this.toggleFold}>

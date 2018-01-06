@@ -2,7 +2,7 @@ import plotly from 'plotly.js';
 import {extendDeep} from 'plotly.js/src/lib/extend';
 import PlotlyEditor from '../PlotlyEditor';
 import {configure, mount, shallow} from 'enzyme';
-import {dereference} from '../lib';
+import {dereference, getPlotIcons} from '../lib';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({adapter: new Adapter()});
@@ -151,4 +151,13 @@ function setupGraphDiv(figure) {
   return gd;
 }
 
-export {fixtures, plotly, PlotlyEditor as TestEditor, mount, shallow};
+const plotIcons = getPlotIcons(plotly);
+
+export {
+  fixtures,
+  plotly,
+  PlotlyEditor as TestEditor,
+  plotIcons,
+  mount,
+  shallow,
+};
