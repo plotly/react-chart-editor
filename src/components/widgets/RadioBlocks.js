@@ -25,7 +25,7 @@ class RadioBlocks extends Component {
   }
 
   renderOption(optionName) {
-    const {label, value, icon} = optionName;
+    const {label, value, icon: Icon} = optionName;
     const defaultActive = this.state.activeOption === value;
 
     const optionClass = classnames('radio-block__option', {
@@ -39,12 +39,8 @@ class RadioBlocks extends Component {
         checked={defaultActive}
         onClick={() => this.handleChange(value)}
       >
-        {icon ? (
-          <span className="radio-block__icon">
-            <i className={icon} />
-          </span>
-        ) : null}
-        {label ? <span>{label}</span> : null}
+        {Icon && <Icon className="radio-block__icon" />}
+        {label && <span>{label}</span>}
       </div>
     );
   }
@@ -69,7 +65,7 @@ RadioBlocks.propTypes = {
         PropTypes.number,
       ]).isRequired,
       label: PropTypes.string,
-      icon: PropTypes.string,
+      icon: PropTypes.node,
       disabled: PropTypes.bool,
     })
   ),
