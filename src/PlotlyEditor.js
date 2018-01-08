@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import dictionaries from './locales';
 import {bem} from './lib';
-import {noShame} from './shame';
+import {noShame, maybeClearAxisTypes} from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
@@ -60,6 +60,11 @@ class PlotlyEditor extends Component {
         if (this.props.onUpdateTraces) {
           this.props.onUpdateTraces(payload);
         }
+
+        // until we start utilizing Plotly.react in `react-plotly.js`
+        // force clear axes types when a `src` has changed.
+        maybeClearAxisTypes(graphDiv, payload.traceIndexes, payload.update);
+
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {
             const traceIndex = payload.traceIndexes[i];
