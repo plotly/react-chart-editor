@@ -38,7 +38,8 @@ export default class MenuPanel extends Component {
 
   render() {
     const {show, ownline, label, children} = this.props;
-    const {isOpen = show} = this.state;
+    const isOpen = show || this.state.isOpen;
+
     const containerClass = classnames('menupanel', {
       'menupanel--ownline': ownline,
     });
