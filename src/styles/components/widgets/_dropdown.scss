@@ -14,6 +14,7 @@
     &.is-open {
       & > .Select-control {
         border-color: var(--color-border-dark) ;
+        background-color: var(--color-background-inputs) !important;
         .Select-input{
           background-color: var(--color-background-inputs) !important;
         }
@@ -30,6 +31,7 @@
         }
       }
     }
+
     &-control {
       background-color: var(--color-background-inputs);
       border: var(--border-default);
