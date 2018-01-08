@@ -38,7 +38,7 @@ Button.propTypes = {
   label: PropTypes.any,
   className: PropTypes.any,
   children: PropTypes.node,
-  icon: PropTypes.element,
+  icon: PropTypes.any,
 };
 
 export default Button;

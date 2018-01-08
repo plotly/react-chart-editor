@@ -1,0 +1,63 @@
+.mentions {
+  textarea,
+  input,
+  button {
+    outline: none;
+    &:focus {
+      outline-color: transparent;
+      outline-style: none;
+    }
+  }
+
+  &--singleLine {
+    height: 34px;
+  }
+
+  &__control {
+    display: block;
+    height: 34px;
+  }
+
+  &__suggestions {
+    width: calc(100% - 2px) !important;
+    background-color: var(--color-background-inputs);
+    border: var(--border-default);
+    margin-top: 31px !important;
+    &__list {
+      background: var(--color-background-inputs);
+      width: 100%;
+      li {
+        padding: var(--spacing-quarter-unit);
+
+        &:hover {
+          background-color: var(--color-background-light);
+        }
+      }
+    }
+  }
+
+  &__input {
+    display: inline-block;
+    border: var(--border-default);
+    background: var(--color-background-inputs) !important;
+    cursor: text;
+    overflow: hidden;
+    white-space: nowrap;
+    min-height: 34px;
+    text-align: left;
+    margin-bottom: var(--spacing-quarter-unit);
+    border-radius: var(--border-radius-small);
+    padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit)
+      var(--spacing-quarter-unit) var(--spacing-half-unit);
+    width: 100% !important;
+    vertical-align: middle;
+    font-size: inherit;
+    color: var(--color-text-base);
+    font-family: inherit;
+  }
+
+  &__highlighter {
+    &--singleLine {
+    }
+  }
+}

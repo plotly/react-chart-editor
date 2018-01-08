@@ -84,7 +84,7 @@ Fold.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   className: PropTypes.string,
-  icon: PropTypes.element,
+  icon: PropTypes.any,
 };
 
 Fold.contextTypes = {
