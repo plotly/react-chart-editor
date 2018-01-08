@@ -63,7 +63,7 @@ PanelEmpty.propTypes = {
   heading: PropTypes.string,
   message: PropTypes.any,
   children: PropTypes.node,
-  icon: PropTypes.any,
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
 
 Panel.defaultProps = {

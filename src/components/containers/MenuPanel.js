@@ -62,7 +62,7 @@ export default class MenuPanel extends Component {
 
 MenuPanel.propTypes = {
   children: PropTypes.node,
-  icon: PropTypes.any,
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   label: PropTypes.string,
   ownline: PropTypes.bool,
   question: PropTypes.bool,
