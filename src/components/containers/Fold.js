@@ -41,16 +41,16 @@ export default class Fold extends Component {
     );
 
     const deleteButton = handleClick =>
-      doDelete && (
+      doDelete ? (
         <div
           className="fold__top__delete js-fold__delete"
           onClick={handleClick}
         >
           <CloseIcon />
         </div>
-      );
+      ) : null;
 
-    const icon = Icon && <Icon className="fold__top__icon" />;
+    const icon = Icon ? <Icon className="fold__top__icon" /> : null;
 
     const foldHeader = !hideHeader && (
       <div className={headerClass} onClick={this.toggleFold}>
@@ -63,9 +63,9 @@ export default class Fold extends Component {
       </div>
     );
 
-    const foldContent = !folded && (
+    const foldContent = !folded ? (
       <div className={contentClass}>{children}</div>
-    );
+    ) : null;
 
     const classes = className ? ' ' + className : '';
 
@@ -84,7 +84,7 @@ Fold.propTypes = {
   name: PropTypes.string,
   type: PropTypes.string,
   className: PropTypes.string,
-  icon: PropTypes.any,
+  icon: PropTypes.element,
 };
 
 Fold.contextTypes = {

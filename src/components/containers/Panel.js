@@ -20,9 +20,9 @@ export class PanelHeader extends Component {
     return (
       <div className={bem('panel', 'header')}>
         <div className={bem('panel', 'header__content')}>{children}</div>
-        {action && (
+        {action ? (
           <div className={bem('panel', 'header__actions')}>{action}</div>
-        )}
+        ) : null}
       </div>
     );
   }

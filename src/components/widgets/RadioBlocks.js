@@ -39,8 +39,8 @@ class RadioBlocks extends Component {
         checked={defaultActive}
         onClick={() => this.handleChange(value)}
       >
-        {Icon && <Icon className="radio-block__icon" />}
-        {label && <span>{label}</span>}
+        {Icon ? <Icon className="radio-block__icon" /> : null}
+        {label ? <span>{label}</span> : null}
       </div>
     );
   }

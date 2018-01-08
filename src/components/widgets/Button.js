@@ -20,7 +20,9 @@ class Button extends Component {
 
     classes += ` ${className}`;
 
-    const Icon = icon && <div className={bem('button', 'icon')}>{icon}</div>;
+    const Icon = icon ? (
+      <div className={bem('button', 'icon')}>{icon}</div>
+    ) : null;
 
     return (
       <button className={classes} {...rest}>
