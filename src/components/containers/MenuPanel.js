@@ -13,11 +13,17 @@ export default class MenuPanel extends Component {
   }
 
   getIcon() {
-    const {question} = this.props;
+    const {question, icon: Icon} = this.props;
     if (question) {
       return {
         icon: <QuestionIcon className="menupanel__icon" />,
         spanClass: `menupanel__icon-span menupanel__icon-span--question`,
+      };
+    }
+    if (Icon) {
+      return {
+        icon: <Icon className="menupanel__icon" />,
+        spanClass: `menupanel__icon-span`,
       };
     }
     return {
@@ -33,6 +39,7 @@ export default class MenuPanel extends Component {
   render() {
     const {show, ownline, label, children} = this.props;
     const isOpen = show || this.state.isOpen;
+
     const containerClass = classnames('menupanel', {
       'menupanel--ownline': ownline,
     });
@@ -55,9 +62,9 @@ export default class MenuPanel extends Component {
 
 MenuPanel.propTypes = {
   children: PropTypes.node,
-  iconClass: PropTypes.string,
-  show: PropTypes.bool,
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  label: PropTypes.string,
   ownline: PropTypes.bool,
   question: PropTypes.bool,
-  label: PropTypes.string,
+  show: PropTypes.bool,
 };

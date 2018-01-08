@@ -12,14 +12,14 @@
     @include generateVars;
   }
 } @else {
-  .plotly-editor--theme-provider{
+  .plotly-editor--theme-provider {
     @include generateVars;
   }
 }
 
 .plotly-editor {
   position: relative;
-  width: $layout-panel-width;
+  width: var(--editor-width);
   flex-shrink: 0;
   overflow: hidden;
   display: flex;

@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {findFullTraceIndex, getDisplayName} from '../lib';
+import {
+  findFullTraceIndex,
+  getDisplayName,
+  plotlyTraceToCustomTrace,
+  renderTraceIcon,
+} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
 
 export default function connectTraceToPlot(WrappedComponent) {
@@ -42,6 +47,7 @@ export default function connectTraceToPlot(WrappedComponent) {
         container: trace,
         fullContainer: fullTrace,
       };
+      this.icon = renderTraceIcon(plotlyTraceToCustomTrace(trace));
       this.name = fullTrace.name;
     }
 
@@ -71,7 +77,9 @@ export default function connectTraceToPlot(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent name={this.name} {...this.props} />;
+      return (
+        <WrappedComponent name={this.name} icon={this.icon} {...this.props} />
+      );
     }
   }
 
