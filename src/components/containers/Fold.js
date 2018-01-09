@@ -4,21 +4,21 @@ import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
 
 export default class Fold extends Component {
-  constructor() {
-    super();
-    this.state = {folded: false};
-    this.toggleFold = this.toggleFold.bind(this);
-  }
-
-  toggleFold() {
-    this.setState({folded: !this.state.folded});
-  }
-
   render() {
-    const {deleteContainer} = this.context;
-    const {hideHeader, name, children, className, icon: Icon} = this.props;
-    const {folded} = this.state;
-    const doDelete = typeof deleteContainer === 'function';
+    const {deleteContainer, toggleFold, individualFoldStates} = this.context;
+    const {
+      hideHeader,
+      name,
+      children,
+      className,
+      foldIndex,
+      canDelete,
+      icon: Icon,
+    } = this.props;
+
+    const folded = individualFoldStates[foldIndex];
+
+    const doDelete = typeof deleteContainer === 'function' && canDelete;
 
     const contentClass = classnames('fold__content', {
       'fold__content--noheader': hideHeader,
@@ -53,7 +53,7 @@ export default class Fold extends Component {
     const icon = Icon ? <Icon className="fold__top__icon" /> : null;
 
     const foldHeader = !hideHeader && (
-      <div className={headerClass} onClick={this.toggleFold}>
+      <div className={headerClass} onClick={() => toggleFold(foldIndex)}>
         <div className="fold__top__arrow-title">
           {arrowIcon}
           {icon}
@@ -79,14 +79,17 @@ export default class Fold extends Component {
 }
 
 Fold.propTypes = {
+  canDelete: PropTypes.bool,
   children: PropTypes.node,
-  hideHeader: PropTypes.bool,
-  name: PropTypes.string,
-  type: PropTypes.string,
   className: PropTypes.string,
+  foldIndex: PropTypes.number.isRequired,
+  hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  name: PropTypes.string,
 };
 
 Fold.contextTypes = {
   deleteContainer: PropTypes.func,
+  individualFoldStates: PropTypes.array,
+  toggleFold: PropTypes.func,
 };
