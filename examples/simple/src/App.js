@@ -4,7 +4,6 @@ import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor, {dereference} from 'react-plotly.js-editor';
 import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
 
-
 const Plot = createPlotComponent(plotly);
 
 class App extends Component {
@@ -24,7 +23,7 @@ class App extends Component {
     // overwritten with a full DOM node that contains data, layout, _fullData,
     // _fullLayout etc in handlePlotUpdate()
     const graphDiv = {
-      data: [{type: 'scatter', xsrc: 'col1', ysrc: 'col2', mode: 'markers'}],
+      data: [{type: 'scatter', mode: 'markers'}],
       layout: {title: 'Room readings'},
     };
 

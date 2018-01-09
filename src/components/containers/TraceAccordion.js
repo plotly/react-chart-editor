@@ -17,7 +17,7 @@ class TraceAccordion extends Component {
   }
 
   render() {
-    const {data = []} = this.context;
+    const {fullData, data = []} = this.context;
     const {canAdd, children, localize: _} = this.props;
 
     const content =
@@ -28,9 +28,8 @@ class TraceAccordion extends Component {
         </TraceFold>
       ));
 
-    const emptyState = data.length &&
-      !data[0].x &&
-      !canAdd && (
+    const emptyState = !canAdd &&
+      (!data.length || (data.length === 1 && !fullData[0].visible)) && (
         <PanelEmpty
           heading="There aren't any traces."
           message={
@@ -55,6 +54,7 @@ class TraceAccordion extends Component {
 
 TraceAccordion.contextTypes = {
   data: PropTypes.array,
+  fullData: PropTypes.array,
 };
 
 TraceAccordion.propTypes = {
