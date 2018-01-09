@@ -74,9 +74,15 @@ class Fold extends Component {
     if (!folded && isEmpty) {
       foldContent = (
         <div className={contentClass}>
-          {icon}
-          <div>{_('This trace does not yet have any data.')}</div>
-          <div>{_('Return to the Graph > Create menu above to add data.')}</div>
+          <div className="fold__content__empty">
+            <div className="fold__content__empty__item">{icon}</div>
+            <div className="fold__content__empty__item">
+              {_('This trace does not yet have any data.')}
+            </div>
+            <div className="fold__content__empty__item">
+              {_('Return to the Graph > Create menu above to add data.')}
+            </div>
+          </div>
         </div>
       );
     }
