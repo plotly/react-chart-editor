@@ -23,7 +23,9 @@ export default class Panel extends Component {
 
   toggleFolds() {
     const {individualFoldStates} = this.state;
-    const hasOpen = individualFoldStates.some(s => s !== true);
+    const hasOpen =
+      individualFoldStates.length > 0 &&
+      individualFoldStates.some(s => s !== true);
     this.setState({
       individualFoldStates: individualFoldStates.map(() => {
         if (hasOpen) {
@@ -68,7 +70,7 @@ export default class Panel extends Component {
     const {visible, children} = this.props;
     const {individualFoldStates, nbOfFolds} = this.state;
     const hasOpen =
-      individualFoldStates.length &&
+      individualFoldStates.length > 0 &&
       individualFoldStates.some(s => s === false);
     const {onUpdate, layout, updateContainer} = this.context;
 
