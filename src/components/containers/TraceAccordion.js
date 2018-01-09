@@ -1,53 +1,35 @@
 import Fold from './Fold';
+import PanelEmpty from 'components/containers/PanelEmpty';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
-import {connectTraceToPlot, bem, localize} from 'lib';
-import {PanelHeader, PanelEmpty} from 'components/containers/Panel';
-import Button from 'components/widgets/Button';
-
-import {PlusIcon} from 'plotly-icons';
+import {connectTraceToPlot, localize} from 'lib';
 
 const TraceFold = connectTraceToPlot(Fold);
 
 class TraceAccordion extends Component {
-  constructor(props) {
-    super(props);
-    this.addTrace = this.addTrace.bind(this);
-  }
-  addTrace() {
-    if (this.context.onUpdate) {
-      this.context.onUpdate({
+  addTrace(onUpdate) {
+    if (onUpdate) {
+      onUpdate({
         type: EDITOR_ACTIONS.ADD_TRACE,
       });
     }
   }
 
   render() {
-    const {data = []} = this.context;
+    const {fullData, data = []} = this.context;
     const {canAdd, children, localize: _} = this.props;
 
-    const addButton = canAdd && (
-      <Button
-        className="js-add-trace-button"
-        variant="primary"
-        onClick={this.addTrace}
-        icon={<PlusIcon />}
-        label={_('Trace')}
-      />
-    );
+    const content =
+      data.length &&
+      data.map((d, i) => (
+        <TraceFold key={i} traceIndex={i} foldIndex={i} canDelete={canAdd}>
+          {children}
+        </TraceFold>
+      ));
 
-    const panelHeader = canAdd && <PanelHeader action={addButton} />;
-
-    const content = data.map((d, i) => (
-      <TraceFold key={i} traceIndex={i}>
-        {children}
-      </TraceFold>
-    ));
-
-    const emptyState = data.length &&
-      !data[0].x &&
-      !canAdd && (
+    const emptyState = !canAdd &&
+      (!data.length || (data.length === 1 && !fullData[0].visible)) && (
         <PanelEmpty
           heading="There aren't any traces."
           message={
@@ -62,10 +44,9 @@ class TraceAccordion extends Component {
       );
 
     return (
-      <div className={bem('panel', 'content')}>
-        {emptyState}
-        {panelHeader}
-        {content}
+      <div className="panel__content">
+        {emptyState ? emptyState : null}
+        {content ? content : null}
       </div>
     );
   }
@@ -73,7 +54,7 @@ class TraceAccordion extends Component {
 
 TraceAccordion.contextTypes = {
   data: PropTypes.array,
-  onUpdate: PropTypes.func,
+  fullData: PropTypes.array,
 };
 
 TraceAccordion.propTypes = {

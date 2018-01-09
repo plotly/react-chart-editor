@@ -14,9 +14,11 @@ Layouts.forEach(Layout => {
     it(`wraps container with fullValue pointing to gd._fullLayout`, () => {
       const wrapper = mount(
         <Editor {...fixtures.scatter({layout: {width: 100}})}>
-          <Layout>
-            <Numeric label="Width" min={100} step={10} attr="width" />
-          </Layout>
+          <Panel>
+            <Layout foldIndex={0}>
+              <Numeric label="Width" min={100} step={10} attr="width" />
+            </Layout>
+          </Panel>
         </Editor>
       )
         .find('[attr="width"]')
@@ -32,9 +34,11 @@ Layouts.forEach(Layout => {
           onUpdateLayout={onUpdateLayout}
           {...fixtures.scatter({layout: {width: 100}})}
         >
-          <Layout>
-            <Numeric label="Width" min={100} step={10} attr="width" />
-          </Layout>
+          <Panel>
+            <Layout foldIndex={0}>
+              <Numeric label="Width" min={100} step={10} attr="width" />
+            </Layout>
+          </Panel>
         </Editor>
       )
         .find('[attr="width"]')

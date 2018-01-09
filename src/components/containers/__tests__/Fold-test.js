@@ -1,39 +1,45 @@
 import {Numeric} from '../../fields';
-import {Fold} from '..';
+import {Fold, Panel} from '..';
 import React from 'react';
-import {TestEditor, fixtures, mount, plotIcons} from 'lib/test-utils';
+import {TestEditor, fixtures, mount} from 'lib/test-utils';
 import {connectTraceToPlot} from 'lib';
 
 const TraceFold = connectTraceToPlot(Fold);
 
 describe('<Fold>', () => {
-  it('shows deleteContainer button when deleteContainer function present', () => {
+  it('shows deleteContainer button when deleteContainer function present and canDelete is true', () => {
     const withoutDelete = mount(
       <TestEditor {...fixtures.scatter()}>
-        <Fold plotIcons={plotIcons}>
-          <Numeric attr="opacity" />
-        </Fold>
+        <Panel>
+          <Fold foldIndex={0}>
+            <Numeric attr="opacity" />
+          </Fold>
+        </Panel>
       </TestEditor>
     ).find('.js-fold__delete');
     expect(withoutDelete.exists()).toBe(false);
 
     const withDelete = mount(
       <TestEditor {...fixtures.scatter()}>
-        <TraceFold traceIndex={0} plotIcons={plotIcons}>
-          <Numeric attr="opacity" />
-        </TraceFold>
+        <Panel>
+          <TraceFold traceIndex={0} canDelete={true} foldIndex={0}>
+            <Numeric attr="opacity" />
+          </TraceFold>
+        </Panel>
       </TestEditor>
     ).find('.js-fold__delete');
     expect(withDelete.exists()).toBe(true);
   });
 
-  it('calls deleteContainer when function present', () => {
+  it('calls deleteContainer when function present and canDelete is true', () => {
     const onDeleteTrace = jest.fn();
     mount(
       <TestEditor {...fixtures.scatter()} onDeleteTrace={onDeleteTrace}>
-        <TraceFold traceIndex={0} plotIcons={plotIcons}>
-          <Numeric attr="opacity" />
-        </TraceFold>
+        <Panel>
+          <TraceFold traceIndex={0} canDelete={true} foldIndex={0}>
+            <Numeric attr="opacity" />
+          </TraceFold>
+        </Panel>
       </TestEditor>
     )
       .find('.js-fold__delete')

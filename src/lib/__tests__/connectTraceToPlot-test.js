@@ -18,9 +18,11 @@ Traces.forEach(Trace => {
     it('wraps container with fullValue pointing to gd._fullData[i]', () => {
       const wrapper = mount(
         <Editor {...fixtures.scatter()}>
-          <Trace traceIndex={0}>
-            <Numeric label="Marker Size" attr="marker.size" />
-          </Trace>
+          <Panel>
+            <Trace traceIndex={0} foldIndex={0}>
+              <Numeric label="Marker Size" attr="marker.size" />
+            </Trace>
+          </Panel>
         </Editor>
       )
         .find('[attr="marker.size"]')
@@ -33,9 +35,11 @@ Traces.forEach(Trace => {
       const onUpdateTraces = jest.fn();
       const wrapper = mount(
         <Editor onUpdateTraces={onUpdateTraces} {...fixtures.scatter()}>
-          <Trace traceIndex={0}>
-            <Numeric label="Marker Size" attr="marker.size" />
-          </Trace>
+          <Panel>
+            <Trace traceIndex={0} foldIndex={0}>
+              <Numeric label="Marker Size" attr="marker.size" />
+            </Trace>
+          </Panel>
         </Editor>
       )
         .find('[attr="marker.size"]')
@@ -53,9 +57,11 @@ Traces.forEach(Trace => {
     it('automatically computes min and max defaults', () => {
       const wrapper = mount(
         <Editor {...fixtures.scatter()}>
-          <Trace traceIndex={0}>
-            <Numeric label="marker size" attr="marker.size" />
-          </Trace>
+          <Panel>
+            <Trace traceIndex={0} foldIndex={0}>
+              <Numeric label="marker size" attr="marker.size" />
+            </Trace>
+          </Panel>
         </Editor>
       )
         .find('[attr="marker.size"]')
@@ -69,7 +75,9 @@ Traces.forEach(Trace => {
       const name = 'Voldemort';
       const wrapper = mount(
         <Editor {...fixtures.scatter({data: [{name}]})}>
-          <Trace traceIndex={0} />
+          <Panel>
+            <Trace traceIndex={0} foldIndex={0} />
+          </Panel>
         </Editor>
       )
         .find(Trace)

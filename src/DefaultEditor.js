@@ -167,7 +167,7 @@ class DefaultEditor extends Component {
           </TraceAccordion>
         </Panel>
         <LayoutPanel group="Style" name={_('Layout')}>
-          <Fold name={_('Canvas')}>
+          <Fold name={_('Canvas')} foldIndex={0} key={0}>
             <Radio
               attr="autosize"
               options={[
@@ -180,7 +180,7 @@ class DefaultEditor extends Component {
             <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
             <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
           </Fold>
-          <Fold name={_('Title and Fonts')}>
+          <Fold name={_('Title and Fonts')} foldIndex={1} key={1}>
             <Section name={_('Title')}>
               <MultiFormatTextEditor attr="title" />
               <FontSelector
@@ -205,7 +205,7 @@ class DefaultEditor extends Component {
               <ColorPicker label={_('Font Color')} attr="font.color" />
             </Section>
           </Fold>
-          <Fold name={_('Margins and Padding')}>
+          <Fold name={_('Margins and Padding')} foldIndex={2} key={2}>
             <Numeric label={_('Top')} attr="margin.t" units="px" />
             <Numeric label={_('Bottom')} attr="margin.b" units="px" />
             <Numeric label={_('Left')} attr="margin.l" units="px" />
@@ -293,7 +293,7 @@ class DefaultEditor extends Component {
           </AnnotationAccordion>
         </LayoutPanel>
         <LayoutPanel group="Style" name={_('Axes')}>
-          <AxesFold name={_('Titles')}>
+          <AxesFold name={_('Titles')} foldIndex={0} key={0}>
             <AxesSelector />
             <MultiFormatTextEditor attr="title" />
             <FontSelector label={_('Typeface')} attr="titlefont.family" />
@@ -301,7 +301,7 @@ class DefaultEditor extends Component {
             <ColorPicker label={_('Font Color')} attr="titlefont.color" />
           </AxesFold>
 
-          <AxesFold name={_('Range')}>
+          <AxesFold name={_('Range')} foldIndex={1} key={1}>
             <AxesSelector />
             <Section name={_('Selection')}>
               <Radio
@@ -323,10 +323,10 @@ class DefaultEditor extends Component {
             </Section>
           </AxesFold>
 
-          <AxesFold name={_('Lines')}>
+          <AxesFold name={_('Lines')} foldIndex={2} key={2}>
             <AxesSelector />
           </AxesFold>
-          <AxesFold name={_('Tick Labels')}>
+          <AxesFold name={_('Tick Labels')} foldIndex={3} key={3}>
             <AxesSelector />
             <Section name={_('Tick Labels')}>
               <FontSelector label={_('Typeface')} attr="tickfont.family" />
@@ -334,18 +334,18 @@ class DefaultEditor extends Component {
               <ColorPicker label={_('Font Color')} attr="tickfont.color" />
             </Section>
           </AxesFold>
-          <AxesFold name={_('Tick Markers')}>
+          <AxesFold name={_('Tick Markers')} foldIndex={4} key={4}>
             <AxesSelector />
           </AxesFold>
-          <AxesFold name={_('Zoom Interactivity')}>
+          <AxesFold name={_('Zoom Interactivity')} foldIndex={5} key={5}>
             <AxesSelector />
           </AxesFold>
-          <AxesFold name={_('Layout')}>
+          <AxesFold name={_('Layout')} foldIndex={6} key={6}>
             <AxesSelector />
           </AxesFold>
         </LayoutPanel>
         <LayoutPanel group="Style" name={_('Legend')}>
-          <Fold hideHeader>
+          <Fold hideHeader foldIndex={0} key={0}>
             <Section name={_('Legend')}>
               <Radio
                 attr="showlegend"

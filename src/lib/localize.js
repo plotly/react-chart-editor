@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
+import {getDisplayName} from 'lib';
 
 export default function localize(Comp) {
   class LocalizedComponent extends Component {
@@ -18,7 +19,7 @@ export default function localize(Comp) {
       return <Comp localize={this.localize} {...this.props} />;
     }
   }
-
+  LocalizedComponent.displayName = `Localized${getDisplayName(Comp)}`;
   LocalizedComponent.contextTypes = LocalizedComponent.contextTypes || {};
   LocalizedComponent.contextTypes.dictionaries = PropTypes.object;
   LocalizedComponent.contextTypes.locale = PropTypes.string;
