@@ -9,9 +9,11 @@ describe('<TraceAccordion>', () => {
 
     const folds = mount(
       <TestEditor {...{...fixture, onUpdate: jest.fn()}}>
-        <TraceAccordion>
-          <Numeric attr="textangle" />
-        </TraceAccordion>
+        <Panel>
+          <TraceAccordion>
+            <Numeric attr="textangle" />
+          </TraceAccordion>
+        </Panel>
       </TestEditor>
     ).find(Fold);
 
@@ -41,9 +43,11 @@ describe('<TraceAccordion>', () => {
     const onDeleteTrace = jest.fn();
     const editor = mount(
       <TestEditor {...{...fixture, onDeleteTrace}}>
-        <TraceAccordion canAdd>
-          <Numeric attr="textangle" />
-        </TraceAccordion>
+        <Panel>
+          <TraceAccordion canAdd>
+            <Numeric attr="textangle" />
+          </TraceAccordion>
+        </Panel>
       </TestEditor>
     );
 

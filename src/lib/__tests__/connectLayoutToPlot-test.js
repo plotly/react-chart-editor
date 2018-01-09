@@ -16,9 +16,11 @@ Layouts.forEach(Layout => {
     it(`wraps container with fullValue pointing to gd._fullLayout`, () => {
       const wrapper = mount(
         <Editor {...fixtures.scatter({layout: {width: 100}})}>
-          <Layout>
-            <Numeric label="Width" step={10} attr="width" />
-          </Layout>
+          <Panel>
+            <Layout foldIndex={0}>
+              <Numeric label="Width" step={10} attr="width" />
+            </Layout>
+          </Panel>
         </Editor>
       )
         .find('[attr="width"]')
@@ -34,9 +36,11 @@ Layouts.forEach(Layout => {
           onUpdateLayout={onUpdateLayout}
           {...fixtures.scatter({layout: {width: 100}})}
         >
-          <Layout>
-            <Numeric label="Width" step={10} attr="width" />
-          </Layout>
+          <Panel>
+            <Layout foldIndex={0}>
+              <Numeric label="Width" step={10} attr="width" />
+            </Layout>
+          </Panel>
         </Editor>
       )
         .find('[attr="width"]')
@@ -55,9 +59,11 @@ Layouts.forEach(Layout => {
           onUpdate={onUpdate}
           {...fixtures.scatter({layout: {showlegend: true}})}
         >
-          <Layout>
-            <Numeric label="Position x" step={0.01} attr="legend.x" />
-          </Layout>
+          <Panel>
+            <Layout foldIndex={0}>
+              <Numeric label="Position x" step={0.01} attr="legend.x" />
+            </Layout>
+          </Panel>
         </Editor>
       )
         .find('[attr="legend.x"]')

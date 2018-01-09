@@ -13,7 +13,7 @@ describe('CanvasSize', () => {
     const wrapper = mount(
       <TestEditor {...{...fixtureProps}}>
         <LayoutPanel name="Layout">
-          <Fold name="Canvas">
+          <Fold name="Canvas" foldIndex={0}>
             <CanvasSize attr="width" />
           </Fold>
         </LayoutPanel>
@@ -28,7 +28,7 @@ describe('CanvasSize', () => {
     const wrapper = mount(
       <TestEditor {...{...fixtureProps}}>
         <LayoutPanel name="Layout">
-          <Fold name="Canvas">
+          <Fold name="Canvas" foldIndex={0}>
             <CanvasSize attr="width" />
           </Fold>
         </LayoutPanel>
