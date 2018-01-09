@@ -1,23 +1,16 @@
 import Fold from './Fold';
+import PanelEmpty from 'components/containers/PanelEmpty';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
-import {connectTraceToPlot, bem, localize} from 'lib';
-import {PanelHeader, PanelEmpty} from 'components/containers/Panel';
-import Button from 'components/widgets/Button';
-
-import {PlusIcon} from 'plotly-icons';
+import {connectTraceToPlot, localize} from 'lib';
 
 const TraceFold = connectTraceToPlot(Fold);
 
 class TraceAccordion extends Component {
-  constructor(props) {
-    super(props);
-    this.addTrace = this.addTrace.bind(this);
-  }
-  addTrace() {
-    if (this.context.onUpdate) {
-      this.context.onUpdate({
+  addTrace(onUpdate) {
+    if (onUpdate) {
+      onUpdate({
         type: EDITOR_ACTIONS.ADD_TRACE,
       });
     }
@@ -27,23 +20,13 @@ class TraceAccordion extends Component {
     const {data = []} = this.context;
     const {canAdd, children, localize: _} = this.props;
 
-    const addButton = canAdd && (
-      <Button
-        className="js-add-trace-button"
-        variant="primary"
-        onClick={this.addTrace}
-        icon={<PlusIcon />}
-        label={_('Trace')}
-      />
-    );
-
-    const panelHeader = canAdd && <PanelHeader action={addButton} />;
-
-    const content = data.map((d, i) => (
-      <TraceFold key={i} traceIndex={i}>
-        {children}
-      </TraceFold>
-    ));
+    const content =
+      data.length &&
+      data.map((d, i) => (
+        <TraceFold key={i} traceIndex={i} foldIndex={i} canDelete={canAdd}>
+          {children}
+        </TraceFold>
+      ));
 
     const emptyState = data.length &&
       !data[0].x &&
@@ -62,10 +45,9 @@ class TraceAccordion extends Component {
       );
 
     return (
-      <div className={bem('panel', 'content')}>
-        {emptyState}
-        {panelHeader}
-        {content}
+      <div className="panel__content">
+        {emptyState ? emptyState : null}
+        {content ? content : null}
       </div>
     );
   }
@@ -73,7 +55,6 @@ class TraceAccordion extends Component {
 
 TraceAccordion.contextTypes = {
   data: PropTypes.array,
-  onUpdate: PropTypes.func,
 };
 
 TraceAccordion.propTypes = {
