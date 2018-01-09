@@ -1,16 +1,16 @@
 import {Numeric} from '../../fields';
 import {Fold} from '..';
 import React from 'react';
-import {TestEditor, fixtures, mount, plotIcons} from 'lib/test-utils';
+import {TestEditor, fixtures, mount} from 'lib/test-utils';
 import {connectTraceToPlot} from 'lib';
 
 const TraceFold = connectTraceToPlot(Fold);
 
 describe('<Fold>', () => {
-  it('shows deleteContainer button when deleteContainer function present', () => {
+  it('shows deleteContainer button when deleteContainer function present and canDelete is true', () => {
     const withoutDelete = mount(
       <TestEditor {...fixtures.scatter()}>
-        <Fold plotIcons={plotIcons}>
+        <Fold>
           <Numeric attr="opacity" />
         </Fold>
       </TestEditor>
@@ -19,7 +19,7 @@ describe('<Fold>', () => {
 
     const withDelete = mount(
       <TestEditor {...fixtures.scatter()}>
-        <TraceFold traceIndex={0} plotIcons={plotIcons}>
+        <TraceFold traceIndex={0} canDelete={true}>
           <Numeric attr="opacity" />
         </TraceFold>
       </TestEditor>
@@ -27,11 +27,11 @@ describe('<Fold>', () => {
     expect(withDelete.exists()).toBe(true);
   });
 
-  it('calls deleteContainer when function present', () => {
+  it('calls deleteContainer when function present and canDelete is true', () => {
     const onDeleteTrace = jest.fn();
     mount(
       <TestEditor {...fixtures.scatter()} onDeleteTrace={onDeleteTrace}>
-        <TraceFold traceIndex={0} plotIcons={plotIcons}>
+        <TraceFold traceIndex={0} canDelete={true}>
           <Numeric attr="opacity" />
         </TraceFold>
       </TestEditor>

@@ -54,7 +54,7 @@ describe('<AnnotationAccordion>', () => {
     const editor = mount(
       <TestEditor {...{...fixture, onDeleteAnnotation}}>
         <LayoutPanel name="Annotations">
-          <AnnotationAccordion>
+          <AnnotationAccordion canAdd>
             <Numeric attr="textangle" />
           </AnnotationAccordion>
         </LayoutPanel>

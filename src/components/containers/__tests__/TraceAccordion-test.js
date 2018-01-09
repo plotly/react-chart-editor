@@ -39,7 +39,7 @@ describe('<TraceAccordion>', () => {
     const onDeleteTrace = jest.fn();
     const editor = mount(
       <TestEditor {...{...fixture, onDeleteTrace}}>
-        <TraceAccordion>
+        <TraceAccordion canAdd>
           <Numeric attr="textangle" />
         </TraceAccordion>
       </TestEditor>
