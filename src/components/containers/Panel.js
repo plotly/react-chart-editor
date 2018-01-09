@@ -48,6 +48,7 @@ export default class Panel extends Component {
   isTraceAccordion() {
     const {children} = this.props;
     return (
+      children &&
       !Array.isArray(children) &&
       children.type.displayName &&
       children.type.displayName.indexOf('TraceAccordion') >= 0
@@ -57,7 +58,9 @@ export default class Panel extends Component {
   isAnnotationAccordion() {
     const {children} = this.props;
     return (
-      !Array.isArray(children) && children.type.name === 'AnnotationAccordion'
+      children &&
+      !Array.isArray(children) &&
+      children.type.name === 'AnnotationAccordion'
     );
   }
 
