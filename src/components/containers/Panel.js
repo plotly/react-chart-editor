@@ -1,6 +1,7 @@
+import PanelHeader from './PanelHeader';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import PanelHeader from './PanelHeader';
+import update from 'immutability-helper';
 import {bem} from 'lib';
 
 export default class Panel extends Component {
@@ -37,12 +38,13 @@ export default class Panel extends Component {
   }
 
   toggleFold(index) {
-    const copy = [...this.state.individualFoldStates];
-    copy[index] = !copy[index];
-
-    this.setState({
-      individualFoldStates: copy,
-    });
+    this.setState(
+      update(this.state, {
+        individualFoldStates: {
+          [index]: {$set: !this.state.individualFoldStates[index]},
+        },
+      })
+    );
   }
 
   isTraceAccordion() {
