@@ -15,8 +15,25 @@
     &__content {
       flex-grow: 1;
     }
-    &--align-right {
-      justify-content: flex-end;
+    &__actions__container {
+      width: 100%;
+    }
+    &__collapse {
+      font-size: var(--font-size-medium);
+      float: left;
+      color: var(--color-rhino-core);
+      display: flex;
+      align-items: center;
+      height: 100%;
+      svg {
+        width: 16px !important;
+        height: 16px !important;
+        fill: var(--color-rhino-core);
+        padding-right: 3px;
+      }
+    }
+    &__action {
+      float: right;
     }
   }
 
