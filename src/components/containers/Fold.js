@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
+import {localize} from 'lib';
 
-export default class Fold extends Component {
+class Fold extends Component {
   render() {
     const {deleteContainer, individualFoldStates, toggleFold} = this.context;
     const {
@@ -14,6 +15,8 @@ export default class Fold extends Component {
       foldIndex,
       canDelete,
       icon: Icon,
+      isEmpty,
+      localize: _,
     } = this.props;
 
     const folded = individualFoldStates[foldIndex];
@@ -63,9 +66,20 @@ export default class Fold extends Component {
       </div>
     );
 
-    const foldContent = !folded ? (
-      <div className={contentClass}>{children}</div>
-    ) : null;
+    let foldContent = null;
+    if (!folded && !isEmpty) {
+      foldContent = <div className={contentClass}>{children}</div>;
+    }
+
+    if (!folded && isEmpty) {
+      foldContent = (
+        <div className={contentClass}>
+          {icon}
+          <div>{_('This trace does not yet have any data.')}</div>
+          <div>{_('Return to the Graph > Create menu above to add data.')}</div>
+        </div>
+      );
+    }
 
     const classes = className ? ' ' + className : '';
 
@@ -85,6 +99,8 @@ Fold.propTypes = {
   foldIndex: PropTypes.number.isRequired,
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  isEmpty: PropTypes.bool,
+  localize: PropTypes.func,
   name: PropTypes.string,
 };
 
@@ -93,3 +109,5 @@ Fold.contextTypes = {
   individualFoldStates: PropTypes.array.isRequired,
   toggleFold: PropTypes.func.isRequired,
 };
+
+export default localize(Fold);
