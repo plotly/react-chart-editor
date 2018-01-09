@@ -16,7 +16,7 @@ export default class Fold extends Component {
 
   render() {
     const {deleteContainer} = this.context;
-    const {hideHeader, name, children, className} = this.props;
+    const {hideHeader, name, children, className, icon: Icon} = this.props;
     const {folded} = this.state;
     const doDelete = typeof deleteContainer === 'function';
 
@@ -41,28 +41,31 @@ export default class Fold extends Component {
     );
 
     const deleteButton = handleClick =>
-      doDelete && (
+      doDelete ? (
         <div
           className="fold__top__delete js-fold__delete"
           onClick={handleClick}
         >
           <CloseIcon />
         </div>
-      );
+      ) : null;
+
+    const icon = Icon ? <Icon className="fold__top__icon" /> : null;
 
     const foldHeader = !hideHeader && (
       <div className={headerClass} onClick={this.toggleFold}>
         <div className="fold__top__arrow-title">
           {arrowIcon}
+          {icon}
           <div className="fold__top__title">{name}</div>
         </div>
         {deleteButton(deleteContainer)}
       </div>
     );
 
-    const foldContent = !folded && (
+    const foldContent = !folded ? (
       <div className={contentClass}>{children}</div>
-    );
+    ) : null;
 
     const classes = className ? ' ' + className : '';
 
@@ -79,7 +82,9 @@ Fold.propTypes = {
   children: PropTypes.node,
   hideHeader: PropTypes.bool,
   name: PropTypes.string,
+  type: PropTypes.string,
   className: PropTypes.string,
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
 
 Fold.contextTypes = {

@@ -47,6 +47,12 @@
       }
     }
 
+    &__icon{
+      display: block;
+      margin-right: var(--spacing-quarter-unit);
+      transform: translateY(-1px);
+    }
+
     &__title {
       margin-left: var(--spacing-half-unit)/3;
       font-size: var(--font-size-medium);

@@ -20,9 +20,9 @@ export class PanelHeader extends Component {
     return (
       <div className={bem('panel', 'header')}>
         <div className={bem('panel', 'header__content')}>{children}</div>
-        {action && (
+        {action ? (
           <div className={bem('panel', 'header__actions')}>{action}</div>
-        )}
+        ) : null}
       </div>
     );
   }
@@ -63,7 +63,7 @@ PanelEmpty.propTypes = {
   heading: PropTypes.string,
   message: PropTypes.any,
   children: PropTypes.node,
-  icon: PropTypes.node,
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
 
 Panel.defaultProps = {

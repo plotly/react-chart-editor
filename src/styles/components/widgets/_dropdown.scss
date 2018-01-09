@@ -6,15 +6,16 @@
     &.is-focused {
       & > .Select-control {
         background-color: var(--color-background-inputs);
-        .Select-input{
+        .Select-input {
           background-color: var(--color-background-inputs) !important;
         }
       }
     }
     &.is-open {
       & > .Select-control {
-        border-color: var(--color-border-dark) ;
-        .Select-input{
+        border-color: var(--color-border-dark);
+        background-color: var(--color-background-inputs) !important;
+        .Select-input {
           background-color: var(--color-background-inputs) !important;
         }
       }
@@ -30,6 +31,7 @@
         }
       }
     }
+
     &-control {
       background-color: var(--color-background-inputs);
       border: var(--border-default);

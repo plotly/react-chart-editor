@@ -16,6 +16,7 @@ import {
   customTraceToPlotlyTrace,
   plotlyTraceToCustomTrace,
 } from './customTraceType';
+import * as PlotlyIcons from 'plotly-icons';
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -25,14 +26,26 @@ function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
+function capitalize(s) {
+  return s.charAt(0).toUpperCase() + s.substring(1);
+}
+
 const TOO_LIGHT_FACTOR = 0.8;
 export function tooLight(color) {
   const hslColor = tinyColor(color).toHsl();
   return hslColor.l > TOO_LIGHT_FACTOR;
 }
 
+function renderTraceIcon(trace) {
+  const componentName = `Plot${capitalize(trace)}Icon`;
+  return PlotlyIcons[componentName]
+    ? PlotlyIcons[componentName]
+    : PlotlyIcons.PlotLineIcon;
+}
+
 export {
   bem,
+  capitalize,
   clamp,
   connectAnnotationToLayout,
   connectAxesToLayout,
@@ -49,6 +62,7 @@ export {
   localize,
   localizeString,
   plotlyTraceToCustomTrace,
+  renderTraceIcon,
   unpackPlotProps,
   walkObject,
 };

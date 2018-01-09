@@ -20,7 +20,9 @@ class Button extends Component {
 
     classes += ` ${className}`;
 
-    const Icon = icon && <div className={bem('button', 'icon')}>{icon}</div>;
+    const Icon = icon ? (
+      <div className={bem('button', 'icon')}>{icon}</div>
+    ) : null;
 
     return (
       <button className={classes} {...rest}>
@@ -38,7 +40,7 @@ Button.propTypes = {
   label: PropTypes.any,
   className: PropTypes.any,
   children: PropTypes.node,
-  icon: PropTypes.any,
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
 
 export default Button;

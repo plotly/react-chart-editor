@@ -38,8 +38,7 @@ const AxesFold = connectAxesToLayout(Fold);
 
 class DefaultEditor extends Component {
   render() {
-    const _ = this.props.localize;
-
+    const {localize: _} = this.props;
     return (
       <PanelMenuWrapper>
         <Panel group="Graph" name="Create">
@@ -50,7 +49,6 @@ class DefaultEditor extends Component {
               clearable={false}
               show
             />
-
             <DataSelector
               label="Labels"
               attr="labels"
@@ -72,7 +70,6 @@ class DefaultEditor extends Component {
             <DataSelector label="Z" attr="z" clearable={false} hasBlank />
           </TraceAccordion>
         </Panel>
-
         <Panel group="Style" name="Traces">
           <TraceAccordion>
             <Section name={_('Trace')}>
@@ -169,7 +166,6 @@ class DefaultEditor extends Component {
             </Section>
           </TraceAccordion>
         </Panel>
-
         <LayoutPanel group="Style" name={_('Layout')}>
           <Fold name={_('Canvas')}>
             <Radio
@@ -217,7 +213,6 @@ class DefaultEditor extends Component {
             <Numeric label={_('Padding')} attr="margin.pad" units="px" />
           </Fold>
         </LayoutPanel>
-
         <LayoutPanel group="Style" name={_('Notes')}>
           <AnnotationAccordion canAdd>
             <Section name={_('Note Text')}>
@@ -297,7 +292,6 @@ class DefaultEditor extends Component {
             </Section>
           </AnnotationAccordion>
         </LayoutPanel>
-
         <LayoutPanel group="Style" name={_('Axes')}>
           <AxesFold name={_('Titles')}>
             <AxesSelector />
@@ -350,7 +344,6 @@ class DefaultEditor extends Component {
             <AxesSelector />
           </AxesFold>
         </LayoutPanel>
-
         <LayoutPanel group="Style" name={_('Legend')}>
           <Fold hideHeader>
             <Section name={_('Legend')}>
