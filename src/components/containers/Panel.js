@@ -28,22 +28,13 @@ export default class Panel extends Component {
       individualFoldStates.length > 0 &&
       individualFoldStates.some(s => s !== true);
     this.setState({
-      individualFoldStates: individualFoldStates.map(() => {
-        if (hasOpen) {
-          return true;
-        }
-        return false;
-      }),
+      individualFoldStates: individualFoldStates.map(() => hasOpen),
     });
   }
 
   toggleFold(index) {
     this.setState(
-      update(this.state, {
-        individualFoldStates: {
-          [index]: {$set: !this.state.individualFoldStates[index]},
-        },
-      })
+      update(this.state, {individualFoldStates: {$toggle: [index]}})
     );
   }
 
