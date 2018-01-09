@@ -4,29 +4,8 @@ import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
 
 export default class Fold extends Component {
-  constructor(props, context) {
-    super(props, context);
-    const {individualFoldStates} = context;
-    if (!individualFoldStates) {
-      this.state = {
-        folded: false,
-      };
-    }
-    this.toggleFold = this.toggleFold.bind(this);
-  }
-
-  toggleFold() {
-    if (this.context.toggleFold) {
-      this.context.toggleFold(this.props.foldIndex);
-    } else {
-      this.setState({
-        folded: !this.state.folded,
-      });
-    }
-  }
-
   render() {
-    const {deleteContainer, individualFoldStates} = this.context;
+    const {deleteContainer, individualFoldStates, toggleFold} = this.context;
     const {
       hideHeader,
       name,
@@ -37,9 +16,7 @@ export default class Fold extends Component {
       icon: Icon,
     } = this.props;
 
-    const folded = individualFoldStates
-      ? individualFoldStates[foldIndex]
-      : this.state.folded;
+    const folded = individualFoldStates[foldIndex];
 
     const doDelete = typeof deleteContainer === 'function' && canDelete;
 
@@ -76,7 +53,7 @@ export default class Fold extends Component {
     const icon = Icon ? <Icon className="fold__top__icon" /> : null;
 
     const foldHeader = !hideHeader && (
-      <div className={headerClass} onClick={this.toggleFold}>
+      <div className={headerClass} onClick={() => toggleFold(foldIndex)}>
         <div className="fold__top__arrow-title">
           {arrowIcon}
           {icon}
@@ -105,7 +82,7 @@ Fold.propTypes = {
   canDelete: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  foldIndex: PropTypes.number,
+  foldIndex: PropTypes.number.isRequired,
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   name: PropTypes.string,
@@ -113,6 +90,6 @@ Fold.propTypes = {
 
 Fold.contextTypes = {
   deleteContainer: PropTypes.func,
-  individualFoldStates: PropTypes.array,
-  toggleFold: PropTypes.func,
+  individualFoldStates: PropTypes.array.isRequired,
+  toggleFold: PropTypes.func.isRequired,
 };
