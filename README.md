@@ -10,7 +10,8 @@ master
 ```
 git clone [this repo]
 cd react-plotly.js-editor
-npm run setup # one-time only
+cd examples/simple
+npm install
 npm start
 ```
 See examples
