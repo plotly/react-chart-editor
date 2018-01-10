@@ -6,12 +6,15 @@ import {connectToContainer} from 'lib';
 
 export class UnconnectedMultiFormatTextEditor extends Component {
   render() {
+    const {multiValued, container} = this.props;
     let fullValue = this.props.fullValue;
+
     let placeholder;
-    if (this.props.multiValued) {
+    if (multiValued || !container.title) {
       placeholder = fullValue;
       fullValue = '';
     }
+
     return (
       <Field {...this.props}>
         <MultiFormatTextEditor

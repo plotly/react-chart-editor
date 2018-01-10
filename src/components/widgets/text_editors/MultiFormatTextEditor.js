@@ -209,13 +209,7 @@ class MultiFormatTextEditor extends Component {
       return null;
     }
 
-    const {onChange, localize: _} = this.props;
-    let {placeholder, value} = this.props;
-
-    if (value.startsWith('Click to enter') && value.endsWith('title')) {
-      placeholder = `${value.replace('Click to enter', 'Enter')}`;
-      value = '';
-    }
+    const {onChange, localize: _, placeholder, value} = this.props;
 
     const {currentTab} = this.state;
 
