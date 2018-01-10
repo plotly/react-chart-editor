@@ -39,7 +39,7 @@ Font Color                                                                      
 Font Size                                                                                                                       // /DefaultEditor.js:192
 Global Font                                                                                                                     // /DefaultEditor.js:198
 Go back                                                                                                                         // /components/widgets/text_editors/MultiFormatTextEditor.js:193
-Go to the 'Create' tab to define traces.                                                                                        // /components/containers/TraceAccordion.js:35
+Go to the 'Create' tab to define traces.                                                                                        // /components/containers/TraceAccordion.js:54
 Heads up!                                                                                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:180
 Hide                                                                                                                            // /DefaultEditor.js:230
 Horizontal                                                                                                                      // /DefaultEditor.js:123
@@ -54,7 +54,7 @@ Line Color                                                                      
 Line Width                                                                                                                      // /DefaultEditor.js:233
 Linear                                                                                                                          // /DefaultEditor.js:319
 Lines                                                                                                                           // /DefaultEditor.js:153
-Looks like there aren't any traces defined yet.                                                                                 // /components/containers/TraceAccordion.js:34
+Looks like there aren't any traces defined yet.                                                                                 // /components/containers/TraceAccordion.js:53
 Margin Color                                                                                                                    // /DefaultEditor.js:181
 Margins and Padding                                                                                                             // /DefaultEditor.js:208
 Max                                                                                                                             // /DefaultEditor.js:315
@@ -73,6 +73,7 @@ Position                                                                        
 Positioning                                                                                                                     // /DefaultEditor.js:378
 Range                                                                                                                           // /DefaultEditor.js:304
 Relative To                                                                                                                     // /DefaultEditor.js:267
+Return to the Graph > Create menu above to add data.                                                                            // /components/containers/TraceAccordion.js:32
 Reversed                                                                                                                        // /DefaultEditor.js:434
 Rich Text                                                                                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:25
 Rich text is incompatible with LaTeX.                                                                                           // /components/widgets/text_editors/MultiFormatTextEditor.js:121
@@ -89,6 +90,7 @@ Text Attributes                                                                 
 The anchor point determines which side of the annotation's positioning coordinates refer to.                                    // /DefaultEditor.js:252
 The positioning inputs are relative to the anchor points on the text box.                                                       // /DefaultEditor.js:383
 This input has multiple values associated with it. Changing this setting will override these custom inputs.                     // /lib/constants.js:20
+This trace does not yet have any data.                                                                                          // /components/containers/TraceAccordion.js:30
 Tick Labels                                                                                                                     // /DefaultEditor.js:329
 Tick Markers                                                                                                                    // /DefaultEditor.js:337
 Title                                                                                                                           // /DefaultEditor.js:184

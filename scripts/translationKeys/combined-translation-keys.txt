@@ -53,7 +53,7 @@ Font Color                                                                      
 Font Size                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:192
 Global Font                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:198
 Go back                                                                                                                        // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:193
-Go to the 'Create' tab to define traces.                                                                                       // react-plotly.js-editor: /components/containers/TraceAccordion.js:35
+Go to the 'Create' tab to define traces.                                                                                       // react-plotly.js-editor: /components/containers/TraceAccordion.js:54
 Heads up!                                                                                                                      // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:180
 Hide                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:230
 Horizontal                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:123
@@ -70,7 +70,7 @@ Line Color                                                                      
 Line Width                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:233
 Linear                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:319
 Lines                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:153
-Looks like there aren't any traces defined yet.                                                                                // react-plotly.js-editor: /components/containers/TraceAccordion.js:34
+Looks like there aren't any traces defined yet.                                                                                // react-plotly.js-editor: /components/containers/TraceAccordion.js:53
 Margin Color                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:181
 Margins and Padding                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:208
 Max                                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:315
@@ -98,6 +98,7 @@ Reset camera to default                                                         
 Reset camera to last save                                                                                                      // plotly.js: components/modebar/buttons.js:321
 Reset view                                                                                                                     // plotly.js: components/modebar/buttons.js:582
 Reset views                                                                                                                    // plotly.js: components/modebar/buttons.js:528
+Return to the Graph > Create menu above to add data.                                                                           // react-plotly.js-editor: /components/containers/TraceAccordion.js:32
 Reversed                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:434
 Rich Text                                                                                                                      // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:25
 Rich text is incompatible with LaTeX.                                                                                          // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:121
@@ -118,6 +119,7 @@ Text Attributes                                                                 
 The anchor point determines which side of the annotation's positioning coordinates refer to.                                   // react-plotly.js-editor: /DefaultEditor.js:252
 The positioning inputs are relative to the anchor points on the text box.                                                      // react-plotly.js-editor: /DefaultEditor.js:383
 This input has multiple values associated with it. Changing this setting will override these custom inputs.                    // react-plotly.js-editor: /lib/constants.js:20
+This trace does not yet have any data.                                                                                         // react-plotly.js-editor: /components/containers/TraceAccordion.js:30
 Tick Labels                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:329
 Tick Markers                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:337
 Title                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:184
