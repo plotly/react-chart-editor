@@ -114,20 +114,13 @@
     }
 
     &__empty {
-      height: 170px;
+      font-family: var(--font-family-headings);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 20px;
+      padding: 30px 25px;
 
-      &__item {
-        text-align: center;
-        margin-bottom: 15px;
-        font-size: var(--font-size-medium);
-        color: var(--color-text-base);
-      }
-
-      & > *:first-child {
+      &__icon {
         margin: 0 auto;
         margin-bottom: 15px;
         width: 40px;
@@ -144,6 +137,21 @@
           width: 23px;
           height: 23px;
         }
+      }
+
+      &__message__primary {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 17px;
+        color: var(--color-text-base);
+      }
+
+      &__message__secondary {
+        font-family: var(--font-family-body);
+        font-size: var(--font-size-small);
+        text-align: center;
+        font-size: 13px;
+        color: var(--color-text-base);
       }
     }
 

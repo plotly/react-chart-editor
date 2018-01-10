@@ -1,3 +1,4 @@
+import FoldEmpty from './FoldEmpty';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import classnames from 'classnames';
@@ -8,15 +9,14 @@ class Fold extends Component {
   render() {
     const {deleteContainer, individualFoldStates, toggleFold} = this.context;
     const {
-      hideHeader,
-      name,
+      canDelete,
       children,
       className,
       foldIndex,
-      canDelete,
+      hideHeader,
       icon: Icon,
       isEmpty,
-      localize: _,
+      name,
     } = this.props;
 
     const folded = individualFoldStates[foldIndex];
@@ -74,15 +74,11 @@ class Fold extends Component {
     if (!folded && isEmpty) {
       foldContent = (
         <div className={contentClass}>
-          <div className="fold__content__empty">
-            <div className="fold__content__empty__item">{icon}</div>
-            <div className="fold__content__empty__item">
-              {_('This trace does not yet have any data.')}
-            </div>
-            <div className="fold__content__empty__item">
-              {_('Return to the Graph > Create menu above to add data.')}
-            </div>
-          </div>
+          <FoldEmpty
+            icon={Icon}
+            messagePrimary={isEmpty.messagePrimary}
+            messageSecondary={isEmpty.messageSecondary}
+          />
         </div>
       );
     }
@@ -105,7 +101,7 @@ Fold.propTypes = {
   foldIndex: PropTypes.number.isRequired,
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  isEmpty: PropTypes.bool,
+  isEmpty: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
   localize: PropTypes.func,
   name: PropTypes.string,
 };

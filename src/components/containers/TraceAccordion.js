@@ -24,7 +24,15 @@ class TraceAccordion extends Component {
       data.length &&
       data.map((d, i) => {
         const fullDataTrace = fullData.filter(t => t.index === i)[0];
-        const isEmpty = !canAdd && !fullDataTrace.visible;
+        const isEmpty =
+          !canAdd && !fullDataTrace.visible
+            ? {
+                messagePrimary: _('This trace does not yet have any data.'),
+                messageSecondary: _(
+                  'Return to the Graph > Create menu above to add data.'
+                ),
+              }
+            : false;
 
         return (
           <TraceFold
