@@ -3,7 +3,7 @@ import fs from 'fs';
 
 const pathToCombinedTranslationKeys = path.join(
   __dirname,
-  'combined-translation-keys.txt'
+  './translationKeys/combined-translation-keys.txt'
 );
 
 const plotlyJS = {
@@ -16,7 +16,7 @@ const plotlyJS = {
 
 const editor = {
   repository: 'react-plotly.js-editor',
-  path: path.join(__dirname, './translation-keys.txt'),
+  path: path.join(__dirname, './translationKeys/translation-keys.txt'),
 };
 
 combineTranslationKeys();
@@ -49,9 +49,7 @@ function combineTranslationKeys() {
 
   fs.writeFile(pathToCombinedTranslationKeys, strings);
   console.log(
-    `combined translation keys were written to: ${
-      pathToCombinedTranslationKeys
-    }`
+    `combined translation keys were written to: ${pathToCombinedTranslationKeys}`
   );
 }
 

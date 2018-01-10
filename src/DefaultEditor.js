@@ -244,7 +244,7 @@ class DefaultEditor extends Component {
               <Numeric label={_('X Vector')} attr="ax" hideArrows />
               <Numeric label={_('Y Vector')} attr="ay" hideArrows />
             </Section>
-            <Section name={_('Horizontal Postitioning')}>
+            <Section name={_('Horizontal Positioning')}>
               <MenuPanel>
                 <Section name={_('Anchor Point')}>
                   <Info>
@@ -267,7 +267,7 @@ class DefaultEditor extends Component {
               <AnnotationRef label={_('Relative To')} attr="xref" />
               <Numeric label={_('Position')} attr="x" hideArrows />
             </Section>
-            <Section name={_('Vertical Postitioning')}>
+            <Section name={_('Vertical Positioning')}>
               <MenuPanel>
                 <Section name={_('Anchor Point')}>
                   <Info>

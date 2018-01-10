@@ -1,0 +1,114 @@
+Anchor Point                                                                                                                    // /DefaultEditor.js:249
+Angle                                                                                                                           // /DefaultEditor.js:223
+Annotation                                                                                                                      // /components/containers/PanelHeader.js:19
+Arrow                                                                                                                           // /DefaultEditor.js:225
+Arrowhead                                                                                                                       // /DefaultEditor.js:235
+Auto                                                                                                                            // /DefaultEditor.js:174
+Axes                                                                                                                            // /DefaultEditor.js:295
+Background Color                                                                                                                // /DefaultEditor.js:374
+Bar Padding                                                                                                                     // /DefaultEditor.js:144
+Bar Width                                                                                                                       // /DefaultEditor.js:136
+Bars                                                                                                                            // /components/containers/TraceMarkerSection.js:20
+Blank                                                                                                                           // /DefaultEditor.js:163
+Border Color                                                                                                                    // /DefaultEditor.js:131
+Border Width                                                                                                                    // /DefaultEditor.js:130
+Bottom                                                                                                                          // /DefaultEditor.js:210
+Box Padding                                                                                                                     // /DefaultEditor.js:148
+Box Width                                                                                                                       // /DefaultEditor.js:140
+Canvas                                                                                                                          // /DefaultEditor.js:170
+Center                                                                                                                          // /DefaultEditor.js:261
+Color                                                                                                                           // /DefaultEditor.js:115
+Common Case: An 'All' tab might display this message because the X and Y tabs contain different settings.                       // /lib/constants.js:24
+Connect                                                                                                                         // /DefaultEditor.js:162
+Connect Gaps                                                                                                                    // /DefaultEditor.js:159
+Continue                                                                                                                        // /components/widgets/text_editors/MultiFormatTextEditor.js:200
+Continuing will convert your LaTeX expression into raw text.                                                                    // /components/widgets/text_editors/MultiFormatTextEditor.js:122
+Continuing will convert your note to LaTeX-style text.                                                                          // /components/widgets/text_editors/MultiFormatTextEditor.js:117
+Continuing will remove your expression.                                                                                         // /components/widgets/text_editors/MultiFormatTextEditor.js:127
+Custom                                                                                                                          // /DefaultEditor.js:175
+Custom Color                                                                                                                    // /components/widgets/ColorPicker.js:52
+Default Colors                                                                                                                  // /components/widgets/ColorPicker.js:75
+Display                                                                                                                         // /DefaultEditor.js:91
+Edit in HTML                                                                                                                    // /components/widgets/text_editors/MultiFormatTextEditor.js:35
+Edit in Rich Text                                                                                                               // /components/widgets/text_editors/MultiFormatTextEditor.js:244
+Enter Link URL                                                                                                                  // /components/widgets/text_editors/RichText/LinkEditor.js:92
+Filled Area                                                                                                                     // /DefaultEditor.js:101
+Fixed Height                                                                                                                    // /DefaultEditor.js:179
+Fixed Width                                                                                                                     // /DefaultEditor.js:178
+Font Color                                                                                                                      // /DefaultEditor.js:196
+Font Size                                                                                                                       // /DefaultEditor.js:192
+Global Font                                                                                                                     // /DefaultEditor.js:198
+Go back                                                                                                                         // /components/widgets/text_editors/MultiFormatTextEditor.js:193
+Go to the 'Create' tab to define traces.                                                                                        // /components/containers/TraceAccordion.js:54
+Heads up!                                                                                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:180
+Hide                                                                                                                            // /DefaultEditor.js:230
+Horizontal                                                                                                                      // /DefaultEditor.js:123
+Horizontal Positioning                                                                                                          // /DefaultEditor.js:247
+LaTeX                                                                                                                           // /components/widgets/text_editors/MultiFormatTextEditor.js:30
+LaTeX is a math typesetting language that doesn't work with rich text.                                                          // /components/widgets/text_editors/MultiFormatTextEditor.js:115
+Layout                                                                                                                          // /DefaultEditor.js:169
+Left                                                                                                                            // /DefaultEditor.js:211
+Legend                                                                                                                          // /DefaultEditor.js:347
+Legend Box                                                                                                                      // /DefaultEditor.js:363
+Line Color                                                                                                                      // /DefaultEditor.js:155
+Line Width                                                                                                                      // /DefaultEditor.js:233
+Linear                                                                                                                          // /DefaultEditor.js:319
+Lines                                                                                                                           // /DefaultEditor.js:153
+Looks like there aren't any traces defined yet.                                                                                 // /components/containers/TraceAccordion.js:53
+Margin Color                                                                                                                    // /DefaultEditor.js:181
+Margins and Padding                                                                                                             // /DefaultEditor.js:208
+Max                                                                                                                             // /DefaultEditor.js:315
+Middle                                                                                                                          // /DefaultEditor.js:284
+Min                                                                                                                             // /DefaultEditor.js:314
+Multiple Values                                                                                                                 // /lib/constants.js:18
+Normal                                                                                                                          // /DefaultEditor.js:433
+Note Text                                                                                                                       // /DefaultEditor.js:218
+Notes                                                                                                                           // /DefaultEditor.js:216
+Opacity                                                                                                                         // /DefaultEditor.js:76
+Orientation                                                                                                                     // /DefaultEditor.js:420
+Padding                                                                                                                         // /DefaultEditor.js:213
+Plot Background                                                                                                                 // /DefaultEditor.js:180
+Points                                                                                                                          // /components/containers/TraceMarkerSection.js:22
+Position                                                                                                                        // /DefaultEditor.js:268
+Positioning                                                                                                                     // /DefaultEditor.js:378
+Range                                                                                                                           // /DefaultEditor.js:304
+Relative To                                                                                                                     // /DefaultEditor.js:267
+Return to the Graph > Create menu above to add data.                                                                            // /components/containers/TraceAccordion.js:32
+Reversed                                                                                                                        // /DefaultEditor.js:434
+Rich Text                                                                                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:25
+Rich text is incompatible with LaTeX.                                                                                           // /components/widgets/text_editors/MultiFormatTextEditor.js:121
+Right                                                                                                                           // /DefaultEditor.js:212
+Scale                                                                                                                           // /DefaultEditor.js:237
+Selection                                                                                                                       // /DefaultEditor.js:306
+Shape                                                                                                                           // /DefaultEditor.js:157
+Show                                                                                                                            // /DefaultEditor.js:229
+Size                                                                                                                            // /DefaultEditor.js:128
+Size and Spacing                                                                                                                // /DefaultEditor.js:134
+Symbol                                                                                                                          // /DefaultEditor.js:129
+Text                                                                                                                            // /DefaultEditor.js:358
+Text Attributes                                                                                                                 // /DefaultEditor.js:79
+The anchor point determines which side of the annotation's positioning coordinates refer to.                                    // /DefaultEditor.js:252
+The positioning inputs are relative to the anchor points on the text box.                                                       // /DefaultEditor.js:383
+This input has multiple values associated with it. Changing this setting will override these custom inputs.                     // /lib/constants.js:20
+This trace does not yet have any data.                                                                                          // /components/containers/TraceAccordion.js:30
+Tick Labels                                                                                                                     // /DefaultEditor.js:329
+Tick Markers                                                                                                                    // /DefaultEditor.js:337
+Title                                                                                                                           // /DefaultEditor.js:184
+Title and Fonts                                                                                                                 // /DefaultEditor.js:183
+Titles                                                                                                                          // /DefaultEditor.js:296
+Top                                                                                                                             // /DefaultEditor.js:209
+Trace                                                                                                                           // /components/containers/PanelHeader.js:14
+Trace Order                                                                                                                     // /DefaultEditor.js:429
+Trace opacity is not supported for a scatter trace with fill or for a scatter trace that gets filled by another scatter trace.  // /components/containers/Section.js:65
+Type                                                                                                                            // /DefaultEditor.js:156
+Typeface                                                                                                                        // /DefaultEditor.js:187
+URL                                                                                                                             // /components/widgets/text_editors/RichText/LinkEditor.js:93
+Vertical                                                                                                                        // /DefaultEditor.js:122
+Vertical Positioning                                                                                                            // /DefaultEditor.js:270
+Width                                                                                                                           // /DefaultEditor.js:154
+X Position                                                                                                                      // /DefaultEditor.js:408
+X Vector                                                                                                                        // /DefaultEditor.js:244
+Y Position                                                                                                                      // /DefaultEditor.js:414
+Y Vector                                                                                                                        // /DefaultEditor.js:245
+Zoom Interactivity                                                                                                              // /DefaultEditor.js:340
+log                                                                                                                             // /DefaultEditor.js:320

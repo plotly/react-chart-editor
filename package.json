@@ -14,8 +14,8 @@
   },
   "scripts": {
     "lint": "prettier --write \"src/**/*.js\"",
-    "make:combined-translation-keys": "babel-node utils/findTranslationKeys.js && babel-node utils/combineTranslationKeys.js",
-    "make:translation-keys": "babel-node utils/findTranslationKeys.js",
+    "make:combined-translation-keys": "babel-node scripts/findTranslationKeys.js && babel-node scripts/combineTranslationKeys.js",
+    "make:translation-keys": "babel-node scripts/findTranslationKeys.js",
     "make:lib": "mkdirp lib && npm run make:lib:js && npm run make:lib:css",
     "make:lib:js": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps",
     "make:lib:css": "mkdirp lib && babel-node scripts/styles.js && SASS_ENV=ie babel-node scripts/styles.js && babel-node scripts/postcss.js && SASS_ENV=ie babel-node scripts/postcss.js",
