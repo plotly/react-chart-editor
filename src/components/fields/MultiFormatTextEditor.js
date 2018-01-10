@@ -10,7 +10,7 @@ export class UnconnectedMultiFormatTextEditor extends Component {
     let fullValue = this.props.fullValue;
 
     let placeholder;
-    if (multiValued || (!container.title && attr === 'title')) {
+    if (multiValued || (!container[attr] && fullValue)) {
       placeholder = fullValue;
       fullValue = '';
     }
