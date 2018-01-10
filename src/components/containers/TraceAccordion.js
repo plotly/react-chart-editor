@@ -50,15 +50,8 @@ class TraceAccordion extends Component {
     const emptyState = !canAdd &&
       (!data.length || (data.length === 1 && !fullData[0].visible)) && (
         <PanelEmpty
-          heading="There aren't any traces."
-          message={
-            <p>
-              {_(
-                "Looks like there aren't any traces defined yet. Go to the 'Create'\n" +
-                  '              tab to define some traces.'
-              )}
-            </p>
-          }
+          heading={_("Looks like there aren't any traces defined yet.")}
+          message={<p>{_("Go to the 'Create' tab to define traces.")}</p>}
         />
       );
 
