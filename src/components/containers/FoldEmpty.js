@@ -7,15 +7,19 @@ export default class FoldEmpty extends Component {
 
     return (
       <div className="fold__content__empty">
-        <div className="fold__content__empty__icon">
-          {Icon ? <Icon /> : null}
-        </div>
-        <div className="fold__content__empty__message__primary">
-          {messagePrimary ? messagePrimary : null}
-        </div>
-        <div className="fold__content__empty__message__secondary">
-          {messageSecondary ? messageSecondary : null}
-        </div>
+        {Icon ? (
+          <div className="fold__content__empty__icon"><Icon /></div>
+        ) : null}
+        {messagePrimary ? (
+          <div className="fold__content__empty__message__primary">
+            {messagePrimary}
+          </div>
+        ) : null}
+        {messageSecondary ? (
+          <div className="fold__content__empty__message__secondary">
+            {messageSecondary}
+          </div>
+        ) : null}
         {children ? children : null}
       </div>
     );
