@@ -8,7 +8,9 @@ export default class FoldEmpty extends Component {
     return (
       <div className="fold__content__empty">
         {Icon ? (
-          <div className="fold__content__empty__icon"><Icon /></div>
+          <div className="fold__content__empty__icon">
+            <Icon />
+          </div>
         ) : null}
         {messagePrimary ? (
           <div className="fold__content__empty__message__primary">
