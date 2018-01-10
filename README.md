@@ -14,16 +14,17 @@ cd examples/simple
 npm install
 npm start
 ```
-See examples
+
+See more examples
 [here](https://github.com/plotly/react-plotly.js-editor/tree/master/examples).
 
 ## To consider
-1. Decide how your application is going to manage state: higher level component
-   (see
-   [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple))
-   or with the help of a state management library like Redux (see
-   [redux example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/redux))
-2. Your application will hold in its state:
+
+1. Decide how your application is going to manage state:
+   * via a higher level component (see [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple))
+   * with a state management library like Redux (see
+     [redux example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/redux))
+2. Your application will need to hold in its state:
    * the `graphDiv`, which is the dom element on which plotly.js attaches data
      and layout information,
    * the editorRevision number and plotRevision numbers, to prevent unneeded app
@@ -34,33 +35,34 @@ See examples
    `graphDiv`, we can pass in an initial object containing data and layout,
    plotly.js (via a callback), will then update our state with the `graphDiv`
    dom element
-4. Write the callbacks that are going to update our application state:
-   * handlePlotUpdate: should change the app state with the updated `graphDiv`
+4. Provide onUpdate callbacks to update the application's state:
+   * Plot component's onUpdate prop: should change the app state with the updated `graphDiv`
      and increase the editorRevision number
-   * handleEditorUpdate: should increase the plotRevision number
+   * Editor component's onUpdate prop: should increase the plotRevision number
 5. Render the Plot and Editor Components:
    * Plot component: is created with react-plotly.js with the
      createPlotComponent function and plotly.js as argument. It requires a few
      props:
      * data, layout, revision: from application state
-     * onUpdate: the handlePlotUpdate callback created above
+     * onUpdate: callback that updates state with new graphDiv and editorRevision number
    * Editor component: is imported from `react-plotly.js-editor`, it requires
      these props:
      * dataSources, dataSourceOptions, graphDiv, revision: from application
        state
-     * onUpdate: the handleEditorUpdate callback above
+     * onUpdate: callback that updates state new plotRevision number
      * plotly: the plotly.js library
      * locale: if using the default locale 'en', it is not necessary to pass in
        this prop, more on locales later
 
 ## Styling
-Import editor styles with `import react-plotly.js-editor/lib/react-plotly.js-editor.min.css`
-Interested in [theming](https://github.com/plotly/react-plotly.js-editor/tree/master/THEMING.md)?
-Need to support IE11? import the IE css instead: `import react-plotly.js-editor/lib/react-plotly.js-editor.ie.min.css`
+
+* Import editor styles with `import react-plotly.js-editor/lib/react-plotly.js-editor.min.css`
+* Interested in [theming](https://github.com/plotly/react-plotly.js-editor/tree/master/THEMING.md)?
+* Need to support IE11? import the IE css instead: `import react-plotly.js-editor/lib/react-plotly.js-editor.ie.min.css`
 
 ## Development Setup
-You can use `npm link` to link your local copy of the `react-plotly.js-editor`
-to your test repo.
+
+You can use `npm link` to link your local copy of the `react-plotly.js-editor` to your test repo.
 
 With `npm link` you can get some errors related to
 [multiple copies of react being loaded](https://github.com/facebookincubator/create-react-app/issues/1107).
@@ -70,6 +72,7 @@ points your project to the copy of react that it should be using or you can
 simply remove `react` and `react-dom` from `react-plotly.js-editor`.
 
 ## See also
+
 * [plotly.js](https://github.com/plotly/plotly.js)
 * [react-plotlyjs](https://github.com/plotly/react-plotly.js)
 
