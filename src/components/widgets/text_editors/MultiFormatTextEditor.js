@@ -209,7 +209,8 @@ class MultiFormatTextEditor extends Component {
       return null;
     }
 
-    const {onChange, placeholder, value, localize: _} = this.props;
+    const {onChange, localize: _, placeholder, value} = this.props;
+
     const {currentTab} = this.state;
 
     const richTextClassNames = classnames(
