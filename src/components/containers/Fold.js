@@ -1,19 +1,22 @@
+import FoldEmpty from './FoldEmpty';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
+import {localize} from 'lib';
 
-export default class Fold extends Component {
+class Fold extends Component {
   render() {
     const {deleteContainer, individualFoldStates, toggleFold} = this.context;
     const {
-      hideHeader,
-      name,
+      canDelete,
       children,
       className,
       foldIndex,
-      canDelete,
+      hideHeader,
       icon: Icon,
+      isEmpty,
+      name,
     } = this.props;
 
     const folded = individualFoldStates[foldIndex];
@@ -63,9 +66,22 @@ export default class Fold extends Component {
       </div>
     );
 
-    const foldContent = !folded ? (
-      <div className={contentClass}>{children}</div>
-    ) : null;
+    let foldContent = null;
+    if (!folded && !isEmpty) {
+      foldContent = <div className={contentClass}>{children}</div>;
+    }
+
+    if (!folded && isEmpty) {
+      foldContent = (
+        <div className={contentClass}>
+          <FoldEmpty
+            icon={Icon}
+            messagePrimary={isEmpty.messagePrimary}
+            messageSecondary={isEmpty.messageSecondary}
+          />
+        </div>
+      );
+    }
 
     const classes = className ? ' ' + className : '';
 
@@ -85,6 +101,8 @@ Fold.propTypes = {
   foldIndex: PropTypes.number.isRequired,
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  isEmpty: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  localize: PropTypes.func,
   name: PropTypes.string,
 };
 
@@ -93,3 +111,5 @@ Fold.contextTypes = {
   individualFoldStates: PropTypes.array.isRequired,
   toggleFold: PropTypes.func.isRequired,
 };
+
+export default localize(Fold);

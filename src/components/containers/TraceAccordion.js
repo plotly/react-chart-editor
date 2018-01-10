@@ -22,11 +22,30 @@ class TraceAccordion extends Component {
 
     const content =
       data.length &&
-      data.map((d, i) => (
-        <TraceFold key={i} traceIndex={i} foldIndex={i} canDelete={canAdd}>
-          {children}
-        </TraceFold>
-      ));
+      data.map((d, i) => {
+        const fullDataTrace = fullData.filter(t => t.index === i)[0];
+        const isEmpty =
+          !canAdd && !fullDataTrace.visible
+            ? {
+                messagePrimary: _('This trace does not yet have any data.'),
+                messageSecondary: _(
+                  'Return to the Graph > Create menu above to add data.'
+                ),
+              }
+            : false;
+
+        return (
+          <TraceFold
+            key={i}
+            traceIndex={i}
+            foldIndex={i}
+            canDelete={canAdd}
+            isEmpty={isEmpty}
+          >
+            {children}
+          </TraceFold>
+        );
+      });
 
     const emptyState = !canAdd &&
       (!data.length || (data.length === 1 && !fullData[0].visible)) && (
