@@ -7,6 +7,8 @@ master
 
 ## Quick start
 
+Check out the demo of the `DefaultEditor` at https://plotly.github.io/react-plotly.js-editor/ or run it locally with:
+
 ```
 git clone [this repo]
 cd react-plotly.js-editor
