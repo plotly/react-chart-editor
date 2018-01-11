@@ -30,7 +30,7 @@ Custom Color                                                                    
 Default Colors                                                                                                                  // /components/widgets/ColorPicker.js:75
 Display                                                                                                                         // /DefaultEditor.js:91
 Edit in HTML                                                                                                                    // /components/widgets/text_editors/MultiFormatTextEditor.js:35
-Edit in Rich Text                                                                                                               // /components/widgets/text_editors/MultiFormatTextEditor.js:244
+Edit in Rich Text                                                                                                               // /components/widgets/text_editors/MultiFormatTextEditor.js:245
 Enter Link URL                                                                                                                  // /components/widgets/text_editors/RichText/LinkEditor.js:92
 Filled Area                                                                                                                     // /DefaultEditor.js:101
 Fixed Height                                                                                                                    // /DefaultEditor.js:179
