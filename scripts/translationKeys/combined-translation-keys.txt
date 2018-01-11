@@ -40,11 +40,11 @@ Custom Color                                                                    
 Default Colors                                                                                                                 // react-plotly.js-editor: /components/widgets/ColorPicker.js:75
 Display                                                                                                                        // react-plotly.js-editor: /DefaultEditor.js:91
 Double-click on legend to isolate one trace                                                                                    // plotly.js: components/legend/handle_click.js:90
-Double-click to zoom back out                                                                                                  // plotly.js: plots/cartesian/dragbox.js:299
+Double-click to zoom back out                                                                                                  // plotly.js: plots/cartesian/dragbox.js:335
 Download plot as a png                                                                                                         // plotly.js: components/modebar/buttons.js:52
 Edit in Chart Studio                                                                                                           // plotly.js: components/modebar/buttons.js:76
 Edit in HTML                                                                                                                   // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:35
-Edit in Rich Text                                                                                                              // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:244
+Edit in Rich Text                                                                                                              // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:245
 Enter Link URL                                                                                                                 // react-plotly.js-editor: /components/widgets/text_editors/RichText/LinkEditor.js:92
 Filled Area                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:101
 Fixed Height                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:179
