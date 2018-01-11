@@ -1,6 +1,6 @@
 # plotly-react-editor
 
-> Standalone React-based editor panel for Plotly charts
+> Customizable React-based editor panel for Plotly charts
 
 master
 ![master](https://circleci.com/gh/plotly/react-plotly.js-editor/tree/master.svg?style=svg&circle-token=df4574e01732846dba81d800d062be5f0fef5641)
@@ -21,8 +21,8 @@ See more examples
 ## To consider
 
 1. Decide how your application is going to manage state:
-   * via a higher level component (see [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple))
-   * with a state management library like Redux (see
+   * via a top-level component (see the [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple) or the [async-data example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/async-data))
+   * with a state management library like Redux (see the
      [redux example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/redux))
 2. Your application will need to hold in its state:
    * the `graphDiv`, which is the dom element on which plotly.js attaches data
@@ -70,6 +70,25 @@ To get around this, you can create an
 [alias](https://github.com/facebookincubator/create-react-app/issues/393) that
 points your project to the copy of react that it should be using or you can
 simply remove `react` and `react-dom` from `react-plotly.js-editor`.
+
+### Using the `simple` example for development
+
+In one terminal:
+
+```
+npm link       # registers react-plotly.js-editor for subsequent npm link calls
+npm run watch  # keep this running
+```
+
+In another terminal:
+
+```
+cd examples/simple # or any other application directory
+npm install
+rm -rf node_modules/react node_modules/react-dom node_modules/react-plotly.js-edit
+npm link react-plotly.js-edit
+npm start # keep this running
+```
 
 ## See also
 
