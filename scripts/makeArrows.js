@@ -17,24 +17,30 @@ function makeArrows() {
   const entries = lines
     .map(line => {
       const key = line.split(/\/\//)[0].trim();
-      const escapedKey = key.replace(/\'/g, "\\'");
-      const maybeQuoteKey = wordRE.test(key) ? key : "'" + escapedKey + "'";
+      const quoteChar = key.indexOf("'") === -1 ? "'" : '"';
+
+      if (key.indexOf('"') !== -1) {
+        throw new Error('double quotes are not supported, key: ' + key);
+      }
+
+      const maybeQuoteKey = wordRE.test(key)
+        ? key
+        : quoteChar + key + quoteChar;
       const arrowStr = arrowPad(getArrowLen(key));
 
-      return (
-        '  ' + maybeQuoteKey + ": '" + arrowStr + escapedKey + arrowStr + "'"
-      );
+      const quotedVal = quoteChar + arrowStr + key + arrowStr + quoteChar + ',';
+      const singleLine = '  ' + maybeQuoteKey + ': ' + quotedVal;
+
+      if (singleLine.length <= 80) return singleLine;
+
+      return '  ' + maybeQuoteKey + ':\n    ' + quotedVal;
     })
-    .join(',\n');
+    .join('\n');
 
-  const ignorePrettier = '/* eslint-disable prettier */';
   const head = 'export default {';
-  const tail = '}';
+  const tail = '};\n';
 
-  fs.writeFile(
-    pathToArrowsOut,
-    [ignorePrettier, head, entries, tail].join('\n')
-  );
+  fs.writeFile(pathToArrowsOut, [head, entries, tail].join('\n'));
   console.log('arrows mock translation written to: ' + pathToArrowsOut);
 }
 

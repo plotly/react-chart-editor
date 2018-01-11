@@ -3,5 +3,5 @@ import xx from './xx';
 
 export default {
   en: en,
-  xx: xx
+  xx: xx,
 };
