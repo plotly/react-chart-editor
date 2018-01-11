@@ -1,6 +1,6 @@
 import PanelHeader from './PanelHeader';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
 import {bem} from 'lib';
 
@@ -63,7 +63,7 @@ export default class Panel extends Component {
   }
 
   render() {
-    const {visible, children} = this.props;
+    const {visible} = this.props;
     const {individualFoldStates, nbOfFolds} = this.state;
     const hasOpen =
       individualFoldStates.length > 0 &&
@@ -71,6 +71,7 @@ export default class Panel extends Component {
     const {onUpdate, layout, updateContainer} = this.context;
 
     if (visible) {
+      let children = this.props.children;
       let action = null;
       let onAction = () => {};
 
@@ -84,6 +85,19 @@ export default class Panel extends Component {
         action = 'addAnnotation';
         onAction = () =>
           children.type.prototype.addAnnotation(layout, updateContainer);
+      }
+
+      if (Array.isArray(children)) {
+        children = children.map((child, index) => {
+          if (child.type.displayName.indexOf('Fold') >= 0) {
+            return cloneElement(child, {
+              ...child.props,
+              foldIndex: index,
+              key: index,
+            });
+          }
+          return child;
+        });
       }
 
       return (

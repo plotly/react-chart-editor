@@ -21,7 +21,7 @@
     &__collapse {
       font-size: var(--font-size-medium);
       float: left;
-      color: var(--color-rhino-core);
+      color: var(--color-text-base);
       display: flex;
       align-items: center;
       height: 100%;
@@ -29,7 +29,7 @@
       svg {
         width: 16px !important;
         height: 16px !important;
-        fill: var(--color-rhino-core);
+        fill: var(--color-text-light);
         padding-right: 3px;
       }
     }
