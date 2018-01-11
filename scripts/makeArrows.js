@@ -6,28 +6,35 @@ const pathToCombinedTranslationKeys = path.join(
   './translationKeys/combined-translation-keys.txt'
 );
 
-const pathToArrowsOut = path.join(
-  __dirname,
-  '../src/locales/xx.js'
-);
+const pathToArrowsOut = path.join(__dirname, '../src/locales/xx.js');
 
 const wordRE = /^[A-Za-z]+$/;
 
 function makeArrows() {
-  const lines = fs.readFileSync(pathToCombinedTranslationKeys, 'utf-8').split(/\r?\n/);
-  const entries = lines.map(line => {
-    const key = line.split(/\/\//)[0].trim();
-    const escapedKey = key.replace(/\'/g, '\\\'');
-    const maybeQuoteKey = wordRE.test(key) ? key : '\'' + escapedKey + '\'';
-    const arrowStr = arrowPad(getArrowLen(key));
+  const lines = fs
+    .readFileSync(pathToCombinedTranslationKeys, 'utf-8')
+    .split(/\r?\n/);
+  const entries = lines
+    .map(line => {
+      const key = line.split(/\/\//)[0].trim();
+      const escapedKey = key.replace(/\'/g, "\\'");
+      const maybeQuoteKey = wordRE.test(key) ? key : "'" + escapedKey + "'";
+      const arrowStr = arrowPad(getArrowLen(key));
 
-    return '  ' + maybeQuoteKey + ': \'' + arrowStr + escapedKey + arrowStr + '\'';
-  }).join(',\n');
+      return (
+        '  ' + maybeQuoteKey + ": '" + arrowStr + escapedKey + arrowStr + "'"
+      );
+    })
+    .join(',\n');
 
+  const ignorePrettier = '/* eslint-disable prettier */';
   const head = 'export default {';
   const tail = '}';
 
-  fs.writeFile(pathToArrowsOut, [head, entries, tail].join('\n'))
+  fs.writeFile(
+    pathToArrowsOut,
+    [ignorePrettier, head, entries, tail].join('\n')
+  );
   console.log('arrows mock translation written to: ' + pathToArrowsOut);
 }
 
@@ -38,7 +45,7 @@ function getArrowLen(key) {
 
 function arrowPad(n) {
   let out = '';
-  for(let i = 0; i < n; i++) {
+  for (let i = 0; i < n; i++) {
     out += '⇚';
   }
   return out;

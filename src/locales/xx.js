@@ -1,3 +1,4 @@
+/* eslint-disable prettier */
 export default {
   'Anchor Point': '⇚⇚Anchor Point⇚⇚',
   Angle: '⇚Angle⇚',
