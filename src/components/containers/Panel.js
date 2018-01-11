@@ -90,7 +90,7 @@ export default class Panel extends Component {
       if (Array.isArray(children)) {
         children = children.map((child, index) => {
           if (child.type.displayName.indexOf('Fold') >= 0) {
-            return cloneElement(child, {...child.props, foldIndex: index});
+            return cloneElement(child, {...child.props, foldIndex: index, key: index});
           }
           return child;
         });
