@@ -116,7 +116,7 @@ At a pseudo-code level it looks like this:
 
 ```javascript
 <PlotlyEditor {...etc}>
-  <ConnectedContainer name="the_name" {...etc}>
+  <ConnectedContainer {...etc}>
     <Field attr="path.to.figure.value" {...etc} />
   </Container>
 </PlotlyEditor>
