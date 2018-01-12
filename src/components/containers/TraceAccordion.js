@@ -64,6 +64,8 @@ class TraceAccordion extends Component {
   }
 }
 
+TraceAccordion.displayName = 'TraceAccordion';
+
 TraceAccordion.contextTypes = {
   data: PropTypes.array,
   fullData: PropTypes.array,
