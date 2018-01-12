@@ -124,6 +124,8 @@ At a pseudo-code level it looks like this:
 
 The [custom editor example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/custom) shows how to build a custom editor, and shows off all of the general-purpose containers and fields listed below.
 
+![components.png](examples/custom/components.png)
+
 ### General-purpose Containers
 
 * `<Panel />`: renders as a generic rectangular container with special handling for collapsing/expanding child `<Fold />`s and optionally an 'add' button for creating them
