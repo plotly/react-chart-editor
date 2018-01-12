@@ -20,43 +20,51 @@ npm start
 See more examples
 [here](https://github.com/plotly/react-plotly.js-editor/tree/master/examples).
 
-## To consider
+## Overview
 
-1. Decide how your application is going to manage state:
-   * via a top-level component (see the [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple) or the [async-data example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/async-data))
-   * with a state management library like Redux (see the
-     [redux example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/redux))
-2. Your application will need to hold in its state:
-   * the `graphDiv`, which is the dom element on which plotly.js attaches data
-     and layout information,
-   * the editorRevision number and plotRevision numbers, to prevent unneeded app
-     rerenders
-   * an object containing all dataSources (ex: `{col1: [1, 2, 3], col2: [4, 3, 2], col3: [17, 13, 9]}`),
-   * an array of all dataSourceOptions (ex: `[ {value: 'col1', label: 'CO2'}, {value: 'col2', label: 'NO2'}, {value: 'col3', label: 'SiO2'} ]`)
-3. Initialize your application's state with the elements above. For the
-   `graphDiv`, we can pass in an initial object containing data and layout,
-   plotly.js (via a callback), will then update our state with the `graphDiv`
-   dom element
-4. Provide onUpdate callbacks to update the application's state:
-   * Plot component's onUpdate prop: should change the app state with the updated `graphDiv`
-     and increase the editorRevision number
-   * Editor component's onUpdate prop: should increase the plotRevision number
-5. Render the Plot and Editor Components:
-   * Plot component: is created with react-plotly.js with the
-     createPlotComponent function and plotly.js as argument. It requires a few
-     props:
-     * data, layout, revision: from application state
-     * onUpdate: callback that updates state with new graphDiv and editorRevision number
-   * Editor component: is imported from `react-plotly.js-editor`, it requires
-     these props:
-     * dataSources, dataSourceOptions, graphDiv, revision: from application
-       state
-     * onUpdate: callback that updates state new plotRevision number
-     * plotly: the plotly.js library
-     * locale: if using the default locale 'en', it is not necessary to pass in
-       this prop, more on locales later
+This module's entry point is a React component called `<PlotlyEditor />` which connects to a [Plotly.js](https://plot.ly/javascript/)-powered `<Plot />` component care of [`react-plotly.js`](https://github.com/plotly/react-plotly.js). `<PlotlyEditor />` accepts as children React components whose descendents are input elements wrapped via `connectToContainer()` calls so as to bind them to the `<Plot />`'s figure values. If no children are passed to the `<PlotlyEditor />`, the `<DefaultEditor />` is used.
 
-## Styling
+This module exposes the [building block components](#Built-in-Components) that comprise the `<DefaultEditor />` so that developers can create their own customized editors.
+
+## Connecting `<PlotlyEditor />` to `<Plot />`
+
+The binding between `<PlotlyEditor />` and `<Plot />` works a little differently that in most React apps because Plotly.js mutates its properties. This is mapped onto React's one-way dataflow model via event handlers and shared revision numbers which trigger re-renders of mutated state. The following subset of the [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple) shows how this works using a parent component to store state, but the principle is the same with a different state-manage approach, as shown in the [redux example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple):
+
+```javascript
+  handlePlotUpdate(graphDiv) {
+    this.setState(({editorRevision: x}) => ({editorRevision: x + 1, graphDiv}));
+  }
+
+  handleEditorUpdate() {
+    this.setState(({plotRevision: x}) => ({plotRevision: x + 1}));
+  }
+
+  render() {
+    return (
+      <div>
+        <PlotlyEditor
+          graphDiv={this.state.graphDiv}
+          onUpdate={this.handleEditorUpdate.bind(this)}
+          revision={this.state.editorRevision}
+          ...
+        />
+        <Plot
+          data={this.state.graphDiv.data}
+          layout={this.state.graphDiv.layout}
+          onUpdate={this.handlePlotUpdate.bind(this)}
+          revision={this.state.plotRevision}
+          ....
+        />
+      </div>
+    );
+  }
+```
+
+## Data Management
+
+`<PlotlyEditor />` accepts a `dataSources` property which is an object of arrays of data, as well as a `dataSourceOptions` property which contains metadata about the `dataSources`, such as human-readable labels used to populate input elements like dropdown menus. `<PlotlyEditor />` treats these properties as immutable so any changes to them will trigger a rerender, and accepts an `onUpdateTraces` event handler property which is called whenever it needs to access a column from `dataSources`, enabling asynchronous data loading e.g. from remote APIs. The [async-data example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/async-data) shows how this is done using a dummy asynchronous back-end proxy.
+
+## Styling the `<DefaultEditor />` and the built-in components
 
 * Import editor styles with `import react-plotly.js-editor/lib/react-plotly.js-editor.min.css`
 * Interested in [theming](https://github.com/plotly/react-plotly.js-editor/tree/master/THEMING.md)?
@@ -91,6 +99,8 @@ rm -rf node_modules/react node_modules/react-dom node_modules/react-plotly.js-ed
 npm link react-plotly.js-edit
 npm start # keep this running
 ```
+
+## Built-in Component Reference
 
 ## See also
 
