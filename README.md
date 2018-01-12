@@ -124,7 +124,9 @@ At a pseudo-code level it looks like this:
 
 The [custom editor example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/custom) shows how to build a custom editor, and shows off all of the general-purpose containers and fields listed below.
 
-![components.png](examples/custom/components.png)
+<p align="center">
+  <img src="examples/custom/components.png" alt="Components" width="432" height="692" border="1">
+</p>
 
 ### General-purpose Containers
 
