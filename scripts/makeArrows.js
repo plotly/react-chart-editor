@@ -1,12 +1,19 @@
 import path from 'path';
 import fs from 'fs';
 
-const pathToCombinedTranslationKeys = path.join(
+// generalize so we can use this script in other repos
+// so you can call:
+//   makeArrows <srcPath> <outputPath>
+
+const pathToCombinedTranslationKeys = process.argv[2] || path.join(
   __dirname,
   './translationKeys/combined-translation-keys.txt'
 );
 
-const pathToArrowsOut = path.join(__dirname, '../src/locales/xx.js');
+const pathToArrowsOut = process.argv[3] || path.join(
+  __dirname,
+  '../src/locales/xx.js'
+);
 
 const wordRE = /^[A-Za-z]+$/;
 
