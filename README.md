@@ -124,10 +124,6 @@ At a pseudo-code level it looks like this:
 
 The [custom editor example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/custom) shows how to build a custom editor, and shows off all of the general-purpose containers and fields listed below.
 
-<p align="center">
-  <img src="examples/custom/components.png" alt="Components" width="432" height="692" border="1">
-</p>
-
 ### General-purpose Containers
 
 * `<Panel />`: renders as a generic rectangular container with special handling for collapsing/expanding child `<Fold />`s and optionally an 'add' button for creating them
@@ -147,6 +143,10 @@ Fields all accept an `attr` property (if bindable) to indicate which figure valu
 * `<Flaglist />`: renders as a list of checkboxes, useful for `+`-joined flag lists like `data[].mode`
 * `<MultiFormatTextEditor />`: renders as a WYSIWYG editor, useful for text like `layout.title`
 * `<Info />`: renders as text, useful for displaying help text (unbindable)
+
+<p align="center">
+  <img src="examples/custom/components.png" alt="Components" width="432" height="692" border="1">
+</p>
 
 ### Connector functions
 
