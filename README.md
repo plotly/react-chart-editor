@@ -118,7 +118,7 @@ At a pseudo-code level it looks like this:
 <PlotlyEditor {...etc}>
   <ConnectedContainer {...etc}>
     <Field attr="path.to.figure.value" {...etc} />
-  </Container>
+  </ConnectedContainer>
 </PlotlyEditor>
 ```
 
