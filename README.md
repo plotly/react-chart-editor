@@ -29,6 +29,15 @@ This module's entry point is a React component called `<PlotlyEditor />` which c
 The binding between `<PlotlyEditor />` and `<Plot />` works a little differently that in most React apps because Plotly.js mutates its properties. This is mapped onto React's one-way dataflow model via event handlers and shared revision numbers which trigger re-renders of mutated state. The following subset of the [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple) shows how this works using a parent component to store state, but the principle is the same with a different state-manage approach, as shown in the [redux example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple):
 
 ```javascript
+import PlotlyEditor from 'react-plotly.js-editor';
+import Plot from 'react-plotly.js';
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {graphDiv: {}, editorRevision: 0, plotRevision: 0};
+  }
+
   handlePlotUpdate(graphDiv) {
     this.setState(({editorRevision: x}) => ({editorRevision: x + 1, graphDiv}));
   }
@@ -56,6 +65,7 @@ The binding between `<PlotlyEditor />` and `<Plot />` works a little differently
       </div>
     );
   }
+}
 ```
 
 ## Data Management
@@ -100,14 +110,14 @@ npm start # keep this running
 
 ## Built-in Components
 
-This module provides a number of nestable _containers_ which are intended to contain _fields_ that render _widgets_ that have been connected to individual values in the figure via _connectors_. Containers can also be connected to certain parts of the figure tree such that their child fields map to the appropriate leaf values. The `<PlotlyEditor />` and connector functions use the React [`context` API]() to push configuration information to child components.
+This module provides a number of nestable _containers_ which are intended to contain _fields_ that render _widgets_ that have been connected to individual values in the figure via _connector functions_. Containers can also be connected to certain parts of the figure tree such that their child fields map to the appropriate leaf values. A field must have a connected container as an ancestor in order to be bound to the figure. The `<PlotlyEditor />` and connector functions use the React [`context` API]() to push configuration information to child components.
 
 At a pseudo-code level it looks like this:
 
 ```javascript
 <PlotlyEditor {...etc}>
-  <Container name="the_name" {...etc}>
-    <Field attr="figure.value.path" {...etc} />
+  <ConnectedContainer name="the_name" {...etc}>
+    <Field attr="path.to.figure.value" {...etc} />
   </Container>
 </PlotlyEditor>
 ```
@@ -124,17 +134,17 @@ At a pseudo-code level it looks like this:
 
 Fields all accept an `attr` property (if bindable) to indicate which figure value they are bound to. This property can be a `.`-delimited path to a leaf, starting at the context-appropriate point in the figure for the parent container (see connector functions below).
 
-* `<Numeric />`: useful for numeric values
-* `<Radio />`: useful for mutually-exclusive low-cardinality enumerable values
-* `<Dropdown />`: useful for mutually-exclusive high-cardinality enumerable values
-* `<ColorPicker />`: useful for CSS color hex value strings
-* `<Flaglist />`: useful for `+`-joined flag lists like `data[].mode`
-* `<MultiFormatTextEditor />`: useful for text like `layout.title`
-* `<Info />`: useful for displaying help text (unbindable)
+* `<Numeric />`: renders as a text field with arrows and units, useful for numeric values
+* `<Radio />`: renders as a button group, useful for mutually-exclusive low-cardinality enumerable values
+* `<Dropdown />`: renders as a dropdown menu useful for mutually-exclusive high-cardinality enumerable values
+* `<ColorPicker />`: renders as a popup color-picker, useful for CSS color hex value strings
+* `<Flaglist />`: renders as a list of checkboxes, useful for `+`-joined flag lists like `data[].mode`
+* `<MultiFormatTextEditor />`: renders as a WYSIWYG editor, useful for text like `layout.title`
+* `<Info />`: renders as text, useful for displaying help text (unbindable)
 
 ### Connector functions
 
-* `connectToContainer( Field )`: returns a wrapped field component that can be bound to a figure value.
+* `connectToContainer( Component )`: returns a field component that can be bound to a figure value via the `attr` prop.
 * `connectTraceToPlot( Container )`: returns a wrapped container component that can be bound to a figure trace such that its children are bound to that trace's figure entry under the `data` key, e.g. `<TraceAccordion />` below.
 * `connectLayoutToPlot( Container )`: returns a wrapped container component that can be bound to a figure such that its children are bound to that figure's layout under the `layout` key.
 * `connectAxesToLayout( Container )`: returns a wrapped container component that should contain an `<AxesSelector />` field (see below) and can be bound to a figure such that its children are bound to that figure's axes entries under the `layout.*axis` keys.
@@ -144,34 +154,34 @@ Fields all accept an `attr` property (if bindable) to indicate which figure valu
 
 * `<TraceAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to traces via `connectTraceToPlot()`.
 * `<AnnotationAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to annotations via `connectAnnotationToLayout()`.
-* `<TraceMarkerSection />`: Wrapper around `<Section />` with trace-specific name handling. For use in containers bound to traces e.g. as children of `<TraceAccordion />`.
+* `<TraceMarkerSection />`: `<Section />` with trace-specific name handling. For use in containers bound to traces e.g. as children of `<TraceAccordion />`.
 
 ### Special-Purpose Fields
 
 For use in containers bound to traces e.g. as children of `<TraceAccordion />`:
 
-* `<DataSelector />`: dropdown coupled to `data[].*src` etc, triggers `onUpdateTraces` when changed
-* `<TraceSelector />`: dropdown useful for `data[].type`
-* `<LineDashSelector />`: dropdown useful for `data[].line.dash`
-* `<LineShapeSelector />`: dropdown useful for `data[].line.shape`
-* `<SymbolSelector />`: dropdown useful for `data[].marker.symbol`
-* `<LayoutNumericFraction />` and `<LayoutNumericFractionInverse />`: numeric fields for use in trace-connected containers where normal `<Numerics />` would be bound to the `data` key instead of the `layout` key in the figure e.g. `layout.bargap` or `layout.barwidth`.
+* `<DataSelector />`: renders as a `<Dropdown />` coupled to `data[].*src` etc, triggers `onUpdateTraces` when changed
+* `<TraceSelector />`: renders as a `<Dropdown />` useful for `data[].type`
+* `<LineDashSelector />`: renders as a `<Dropdown />` useful for `data[].line.dash`
+* `<LineShapeSelector />`: renders as a `<Dropdown />` useful for `data[].line.shape`
+* `<SymbolSelector />`: renders as a `<Dropdown />` useful for `data[].marker.symbol`
+* `<LayoutNumericFraction />` and `<LayoutNumericFractionInverse />`: renders as a `<Numeric />` for use in trace-connected containers where normal `<Numerics />` would be bound to the `data` key instead of the `layout` key in the figure e.g. `layout.bargap` or `layout.barwidth`.
 
 For use in containers bound to layout:
 
-* `<FontSelector />`: dropdown whose options are rendered in the selected font
-* `<CanvasSize />`: numeric with visibility coupled to `layout.autosize`
+* `<FontSelector />`: renders as a `<Dropdown />` whose options are rendered in the selected font
+* `<CanvasSize />`: renders as a `<Numeric />` with visibility coupled to `layout.autosize`
 
 For use in containers bound to axes:
 
-* `<AxesSelector />`: radio group to select one or all axes. Must be in a container bound to a figure via `connectAxesToPlot()` and sets that container's context such that its children are bound to either all axes or just the selected one.
+* `<AxesSelector />`: renders as a `<Radio />` to select one or all axes. Must be in a container bound to a figure via `connectAxesToPlot()` and sets that container's context such that its children are bound to either all axes or just the selected one.
 * `<AxesRange />`: numeric with visibility coupled to `layout.*axis.autorange`
 
 For use in containers bound to annotations e.g. as children of `<AnnotationAccordion />`:
 
-* `<AnnotationRef />`: dropdown useful for `layout.annotations[].xref`, `layout.annotations[].yref`
-* `<AnnotationArrowRef />`: dropdown useful for `layout.annotations[].axref`, `layout.annotations[].ayref`
-* `<ArrowSelector />`: dropdown useful for `layout.annotations[].arrowhead`
+* `<AnnotationRef />`: renders as a `<Dropdown />` useful for `layout.annotations[].xref`, `layout.annotations[].yref`
+* `<AnnotationArrowRef />`: renders as a `<Dropdown />` useful for `layout.annotations[].axref`, `layout.annotations[].ayref`
+* `<ArrowSelector />`: renders as a `<Dropdown />` useful for `layout.annotations[].arrowhead`
 
 ## See also
 
