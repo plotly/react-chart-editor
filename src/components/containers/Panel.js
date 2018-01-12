@@ -53,7 +53,7 @@ export default class Panel extends Component {
     return (
       children &&
       !Array.isArray(children) &&
-      children.type.name === 'AnnotationAccordion'
+      children.type.displayName.indexOf('AnnotationAccordion') >= 0
     );
   }
 
