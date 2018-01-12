@@ -22,9 +22,7 @@ See more examples
 
 ## Overview
 
-This module's entry point is a React component called `<PlotlyEditor />` which connects to a [Plotly.js](https://plot.ly/javascript/)-powered `<Plot />` component care of [`react-plotly.js`](https://github.com/plotly/react-plotly.js). A Plotly.js plot is defined by a JSON-serializable object called a _figure_. `<PlotlyEditor />` accepts as children React components whose descendents are input elements wrapped via `connectToContainer()` calls so as to bind them to the `<Plot />`'s figure's values. If no children are passed to the `<PlotlyEditor />`, the `<DefaultEditor />` is used.
-
-This module exposes the [building block components](#Built-in-Components) that comprise the `<DefaultEditor />` so that developers can create their own customized editors.
+This module's entry point is a React component called `<PlotlyEditor />` which connects to a [Plotly.js](https://plot.ly/javascript/)-powered `<Plot />` component care of [`react-plotly.js`](https://github.com/plotly/react-plotly.js). A Plotly.js plot is defined by a JSON-serializable object called a _figure_. `<PlotlyEditor />` accepts as children React components whose descendents are input elements wrapped via `connectToContainer()` calls so as to bind them to the `<Plot />`'s figure's values. If no children are passed to the `<PlotlyEditor />`, the `<DefaultEditor />` is used. This module also exposes the [building block components](#Built-in-Components) that comprise the `<DefaultEditor />` so that developers can create their own customized editors.
 
 ## Connecting `<PlotlyEditor />` to `<Plot />`
 

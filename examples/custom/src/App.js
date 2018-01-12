@@ -1,9 +1,19 @@
 import React, {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly-basic';
 import createPlotComponent from 'react-plotly.js/factory';
-import PlotlyEditor, {dereference} from 'react-plotly.js-editor';
+import PlotlyEditor from 'react-plotly.js-editor';
 import CustomEditor from './CustomEditor';
 import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
+
+const dataSources = {
+  col1: [1, 2, 3], // eslint-disable-line no-magic-numbers
+  col2: [4, 3, 2], // eslint-disable-line no-magic-numbers
+  col3: [17, 13, 9], // eslint-disable-line no-magic-numbers
+};
+const dataSourceOptions = Object.keys(dataSources).map(name => ({
+  value: name,
+  label: name,
+}));
 
 const Plot = createPlotComponent(plotly);
 
@@ -11,32 +21,13 @@ class App extends Component {
   constructor() {
     super();
 
-    // DataSources are a mapping of column or data source ids to data arrays.
-    // eslint-disable-next-line no-magic-numbers
-    const dataSources = {col1: [1, 2, 3], col2: [4, 3, 2], col3: [17, 13, 9]};
-    const dataSourceOptions = [
-      {value: 'col1', label: 'CO2'},
-      {value: 'col2', label: 'NO2'},
-      {value: 'col3', label: 'SiO2'},
-    ];
-
-    // This object is passed to Plotly.js, which then causes it to be
+    // The graphDiv object is passed to Plotly.js, which then causes it to be
     // overwritten with a full DOM node that contains data, layout, _fullData,
     // _fullLayout etc in handlePlotUpdate()
-    const graphDiv = {
-      data: [{type: 'scatter', mode: 'markers'}],
-      layout: {title: 'Room readings'},
-    };
-
-    dereference(graphDiv.data, dataSources);
-
-    // Store the figure, dataSource and dataSourceOptions in state.
     this.state = {
-      graphDiv,
+      graphDiv: {},
       editorRevision: 0,
       plotRevision: 0,
-      dataSources,
-      dataSourceOptions,
     };
   }
 
@@ -53,12 +44,12 @@ class App extends Component {
       <div className="app">
         <PlotlyEditor
           locale="en"
-          dataSources={this.state.dataSources}
-          dataSourceOptions={this.state.dataSourceOptions}
           graphDiv={this.state.graphDiv}
           onUpdate={this.handleEditorUpdate.bind(this)}
           revision={this.state.editorRevision}
           plotly={plotly}
+          dataSources={dataSources}
+          dataSourceOptions={dataSourceOptions}
         >
           <CustomEditor />
         </PlotlyEditor>
