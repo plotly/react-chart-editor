@@ -46,6 +46,8 @@ class AnnotationAccordion extends Component {
   }
 }
 
+AnnotationAccordion.displayName = 'AnnotationAccordion';
+
 AnnotationAccordion.contextTypes = {
   layout: PropTypes.object,
 };

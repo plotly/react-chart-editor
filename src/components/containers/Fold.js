@@ -94,6 +94,8 @@ class Fold extends Component {
   }
 }
 
+Fold.displayName = 'Fold';
+
 Fold.propTypes = {
   canDelete: PropTypes.bool,
   children: PropTypes.node,
