@@ -22,11 +22,11 @@ See more examples
 
 ## Overview
 
-This module's entry point is a React component called `<PlotlyEditor />` which connects to a [Plotly.js](https://plot.ly/javascript/)-powered `<Plot />` component care of [`react-plotly.js`](https://github.com/plotly/react-plotly.js). A Plotly.js plot is defined by a JSON-serializable object called a _figure_. `<PlotlyEditor />` accepts as children React components whose descendents are input elements wrapped via `connectToContainer()` calls so as to bind them to the `<Plot />`'s figure's values. If no children are passed to the `<PlotlyEditor />`, the `<DefaultEditor />` is used. This module also exposes the [building block components](#Built-in-Components) that comprise the `<DefaultEditor />` so that developers can create their own customized editors.
+This module's entry point is a React component called `<PlotlyEditor />` which connects to a [plotly.js](https://plot.ly/javascript/)-powered `<Plot />` component care of [`react-plotly.js`](https://github.com/plotly/react-plotly.js). A plotly.js plot is defined by a JSON-serializable object called a _figure_. `<PlotlyEditor />` accepts as children React components whose descendents are input elements wrapped via `connectToContainer()` calls so as to bind them to the `<Plot />`'s figure's values. If no children are passed to the `<PlotlyEditor />`, the `<DefaultEditor />` is used. This module also exposes the [building block components](#Built-in-Components) that comprise the `<DefaultEditor />` so that developers can create their own customized editors.
 
 ## Connecting `<PlotlyEditor />` to `<Plot />`
 
-The binding between `<PlotlyEditor />` and `<Plot />` works a little differently that in most React apps because Plotly.js mutates its properties. This is mapped onto React's one-way dataflow model via event handlers and shared revision numbers which trigger re-renders of mutated state. The following subset of the [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple) shows how this works using a parent component to store state, but the principle is the same with a different state-manage approach, as shown in the [redux example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple):
+The binding between `<PlotlyEditor />` and `<Plot />` works a little differently that in most React apps because plotly.js mutates its properties. This is mapped onto React's one-way dataflow model via event handlers and shared revision numbers which trigger re-renders of mutated state. The following subset of the [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple) shows how this works using a parent component to store state, but the principle is the same with a different state-manage approach, as shown in the [redux example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple):
 
 ```javascript
 import PlotlyEditor from 'react-plotly.js-editor';
@@ -110,7 +110,7 @@ npm start # keep this running
 
 ## Built-in Components
 
-This module provides a number of nestable _containers_ which are intended to contain _fields_ that render _widgets_ that have been connected to individual values in the figure via _connector functions_. Containers can also be connected to certain parts of the figure tree such that their child fields map to the appropriate leaf values. A field must have a connected container as an ancestor in order to be bound to the figure. The `<PlotlyEditor />` and connector functions use the React [`context` API]() to push configuration information to child components.
+This module provides a number of nestable _containers_ which are intended to contain _fields_ that render _widgets_ that have been connected to individual values in the figure via _connector functions_. Containers can also be connected to parts of the figure tree (e.g. `layout` or specific traces in `data`) such that their child fields map to the appropriate leaf values. A field must have a connected container as an ancestor in order to be bound to the figure. The `<PlotlyEditor />` and connector functions use the React [`context` API]() to push configuration information to child components.
 
 At a pseudo-code level it looks like this:
 
@@ -134,15 +134,15 @@ The [custom editor example](https://github.com/plotly/react-plotly.js-editor/tre
 
 ### General-purpose Fields
 
-Fields all accept an `attr` property (if bindable) to indicate which figure value they are bound to. This property can be a `.`-delimited path to a leaf, starting at the context-appropriate point in the figure for the parent container (see connector functions below).
+All Fields except `<Info />` accept an `attr` property to bind them to a key in the figure (see https://plot.ly/javascript/reference/ for exhaustive documentation of figure keys). This property can be a `.`-delimited path to a leaf, starting at the context-appropriate point in the figure for the parent container (see connector functions below).
 
+* `<Info />`: renders its children as HTML, useful for displaying help text
 * `<Numeric />`: renders as a text field with arrows and units, useful for numeric values
 * `<Radio />`: renders as a button group, useful for mutually-exclusive low-cardinality enumerable values
 * `<Dropdown />`: renders as a dropdown menu useful for mutually-exclusive high-cardinality enumerable values
 * `<ColorPicker />`: renders as a popup color-picker, useful for CSS color hex value strings
 * `<Flaglist />`: renders as a list of checkboxes, useful for `+`-joined flag lists like `data[].mode`
 * `<MultiFormatTextEditor />`: renders as a WYSIWYG editor, useful for text like `layout.title`
-* `<Info />`: renders as text, useful for displaying help text (unbindable)
 
 <p align="center">
   <img src="examples/custom/components.png" alt="Components" width="432" height="692" border="1">
