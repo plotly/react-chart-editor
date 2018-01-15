@@ -154,18 +154,12 @@ All Fields except `<Info />` accept an `attr` property to bind them to a key in 
   <img src="examples/components.png" alt="Components" width="432" height="692" border="1">
 </p>
 
-### Connector functions
-
-* `connectToContainer( Component )`: returns a field component that can be bound to a figure value via the `attr` prop.
-* `connectTraceToPlot( Container )`: returns a wrapped container component that can be bound to a figure trace such that its children are bound to that trace's figure entry under the `data` key, e.g. `<TraceAccordion />` below.
-* `connectLayoutToPlot( Container )`: returns a wrapped container component that can be bound to a figure such that its children are bound to that figure's layout under the `layout` key.
-* `connectAxesToLayout( Container )`: returns a wrapped container component that should contain an `<AxesSelector />` field (see below) and can be bound to a figure such that its children are bound to that figure's axes entries under the `layout.*axis` keys.
-* `connectAnnotationToLayout( Container )`: returns a wrapped container component that can be bound to a figure annotation such that its children are bound to that annotation's figure entry under the `layout.annotations` key, e.g. `<AnnotationAccordion />` below.
-
 ### Special-Purpose Containers
 
 * `<TraceAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to traces via `connectTraceToPlot()`.
-* `<AnnotationAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to annotations via `connectAnnotationToLayout()`.
+* `<LayoutPanel />`: `<Panel />` whose children are connected to the `layout` figure key
+* `<AnnotationAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to annotations via `connectAnnotationToLayout()`. For use in a `<LayoutPanel />`.
+* `<AxesFold />`: `<Fold />` whose children are bound to axis-specific keys. For use in a `<LayoutPanel />` in concert with `<AxesSelector />` (see below).
 * `<TraceMarkerSection />`: `<Section />` with trace-specific name handling. For use in containers bound to traces e.g. as children of `<TraceAccordion />`.
 
 ### Special-Purpose Fields
@@ -186,7 +180,7 @@ For use in containers bound to layout:
 
 For use in containers bound to axes:
 
-* `<AxesSelector />`: renders as a `<Radio />` to select one or all axes. Must be in a container bound to a figure via `connectAxesToPlot()` and sets that container's context such that its children are bound to either all axes or just the selected one.
+* `<AxesSelector />`: renders as a `<Radio />` to select one or all axes. Must be in a container bound to a figure via `connectAxesToPlot()` such as `<AxesFold />` and sets that container's context such that its children are bound to either all axes or just the selected one.
 * `<AxesRange />`: numeric with visibility coupled to `layout.*axis.autorange`
 
 For use in containers bound to annotations e.g. as children of `<AnnotationAccordion />`:
@@ -194,6 +188,14 @@ For use in containers bound to annotations e.g. as children of `<AnnotationAccor
 * `<AnnotationRef />`: renders as a `<Dropdown />` useful for `layout.annotations[].xref`, `layout.annotations[].yref`
 * `<AnnotationArrowRef />`: renders as a `<Dropdown />` useful for `layout.annotations[].axref`, `layout.annotations[].ayref`
 * `<ArrowSelector />`: renders as a `<Dropdown />` useful for `layout.annotations[].arrowhead`
+
+### Connector functions
+
+* `connectToContainer( Component )`: returns a field component that can be bound to a figure value via the `attr` prop.
+* `connectTraceToPlot( Container )`: returns a wrapped container component that can be bound to a figure trace such that its children are bound to that trace's figure entry under the `data` key, e.g. `<TraceAccordion />` below.
+* `connectLayoutToPlot( Container )`: returns a wrapped container component that can be bound to a figure such that its children are bound to that figure's layout under the `layout` key.
+* `connectAxesToLayout( Container )`: returns a wrapped container component that should contain an `<AxesSelector />` field (see below) and can be bound to a figure such that its children are bound to that figure's axes entries under the `layout.*axis` keys.
+* `connectAnnotationToLayout( Container )`: returns a wrapped container component that can be bound to a figure annotation such that its children are bound to that annotation's figure entry under the `layout.annotations` key, e.g. `<AnnotationAccordion />` below.
 
 ## See also
 

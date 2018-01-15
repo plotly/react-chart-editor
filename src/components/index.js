@@ -30,6 +30,8 @@ import {
   Section,
   TraceAccordion,
   TraceMarkerSection,
+  LayoutPanel,
+  AxesFold,
 } from './containers';
 
 import PanelMenuWrapper from './PanelMenuWrapper';
@@ -64,4 +66,6 @@ export {
   TraceAccordion,
   TraceMarkerSection,
   TraceSelector,
+  LayoutPanel,
+  AxesFold,
 };
