@@ -42,6 +42,8 @@ import {
   TraceAccordion,
   TraceMarkerSection,
   TraceSelector,
+  LayoutPanel,
+  AxesFold,
 } from './components';
 
 export {
@@ -84,6 +86,8 @@ export {
   dereference,
   localize,
   walkObject,
+  LayoutPanel,
+  AxesFold,
 };
 
 export default PlotlyEditor;

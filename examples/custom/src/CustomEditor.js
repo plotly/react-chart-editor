@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {
-  Panel,
   Flaglist,
   ColorPicker,
   Fold,
@@ -11,11 +10,9 @@ import {
   Info,
   Section,
   Numeric,
-  connectLayoutToPlot,
+  LayoutPanel,
   MenuPanel,
 } from 'react-plotly.js-editor';
-
-const LayoutPanel = connectLayoutToPlot(Panel);
 
 export default class CustomEditor extends Component {
   render() {
