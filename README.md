@@ -5,6 +5,12 @@
 master
 ![master](https://circleci.com/gh/plotly/react-plotly.js-editor/tree/master.svg?style=svg&circle-token=df4574e01732846dba81d800d062be5f0fef5641)
 
+## Demo & Screenshots
+
+Check out the [live demo here](https://plotly.github.io/react-plotly.js-editor/).
+
+![gif](examples/editor.gif)
+
 ## Quick start
 
 Check out the demo of the `DefaultEditor` at https://plotly.github.io/react-plotly.js-editor/ or run it locally with:
@@ -145,7 +151,7 @@ All Fields except `<Info />` accept an `attr` property to bind them to a key in 
 * `<MultiFormatTextEditor />`: renders as a WYSIWYG editor, useful for text like `layout.title`
 
 <p align="center">
-  <img src="examples/custom/components.png" alt="Components" width="432" height="692" border="1">
+  <img src="examples/components.png" alt="Components" width="432" height="692" border="1">
 </p>
 
 ### Connector functions
