@@ -71,7 +71,7 @@ export default class Panel extends Component {
     const {onUpdate, layout, updateContainer} = this.context;
 
     if (visible) {
-      let children = this.props.children;
+      const children = this.props.children;
       let action = null;
       let onAction = () => {};
 
@@ -87,18 +87,12 @@ export default class Panel extends Component {
           children.type.prototype.addAnnotation(layout, updateContainer);
       }
 
-      if (Array.isArray(children)) {
-        children = children.map((child, index) => {
-          if (child.type.displayName.indexOf('Fold') >= 0) {
-            return cloneElement(child, {
-              ...child.props,
-              foldIndex: index,
-              key: index,
-            });
-          }
-          return child;
-        });
-      }
+      const newChildren = React.Children.map(children, (child, index) => {
+        if (child.type.displayName.indexOf('Fold') >= 0) {
+          return cloneElement(child, {foldIndex: index, key: index});
+        }
+        return child;
+      });
 
       return (
         <div className={bem('panel')}>
@@ -109,7 +103,7 @@ export default class Panel extends Component {
             hasOpen={hasOpen}
             onAction={onAction}
           />
-          {children}
+          {newChildren}
         </div>
       );
     }
