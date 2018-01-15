@@ -5,6 +5,7 @@ import Panel from './Panel';
 import Section from './Section';
 import TraceAccordion from './TraceAccordion';
 import TraceMarkerSection from './TraceMarkerSection';
+import {LayoutPanel, AxesFold} from './derived';
 
 export {
   AnnotationAccordion,
@@ -14,4 +15,6 @@ export {
   Section,
   TraceAccordion,
   TraceMarkerSection,
+  LayoutPanel,
+  AxesFold,
 };

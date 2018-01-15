@@ -30,11 +30,10 @@ import {
   TraceAccordion,
   TraceMarkerSection,
   TraceSelector,
+  LayoutPanel,
+  AxesFold,
 } from './components';
-import {localize, connectAxesToLayout, connectLayoutToPlot} from './lib';
-
-const LayoutPanel = connectLayoutToPlot(Panel);
-const AxesFold = connectAxesToLayout(Fold);
+import {localize} from './lib';
 
 class DefaultEditor extends Component {
   render() {
