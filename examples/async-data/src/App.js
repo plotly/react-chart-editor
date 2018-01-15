@@ -53,17 +53,11 @@ class App extends Component {
   constructor() {
     super();
 
-    // This object is passed to Plotly.js, which then causes it to be
+    // The graphDiv object is passed to Plotly.js, which then causes it to be
     // overwritten with a full DOM node that contains data, layout, _fullData,
     // _fullLayout etc in handlePlotUpdate()
-    const graphDiv = {
-      data: [{type: 'scatter'}],
-      layout: {title: 'Room readings'},
-    };
-
-    // Store the figure, dataSource and dataSourceOptions in state.
     this.state = {
-      graphDiv,
+      graphDiv: {},
       editorRevision: 0,
       plotRevision: 0,
       dataSources: {},
@@ -154,14 +148,14 @@ class App extends Component {
           plotly={plotly}
         />
         <div className="app__main">
-            <Plot
-                debug
-                data={this.state.graphDiv.data}
-                layout={this.state.graphDiv.layout}
-                onUpdate={this.handlePlotUpdate.bind(this)}
-                onInitialized={this.handlePlotUpdate.bind(this)}
-                revision={this.state.plotRevision}
-            />
+          <Plot
+            debug
+            data={this.state.graphDiv.data}
+            layout={this.state.graphDiv.layout}
+            onUpdate={this.handlePlotUpdate.bind(this)}
+            onInitialized={this.handlePlotUpdate.bind(this)}
+            revision={this.state.plotRevision}
+          />
         </div>
       </div>
     );

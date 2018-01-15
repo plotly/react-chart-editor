@@ -1,5 +1,5 @@
 import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
-import PlotlyEditor, {dereference} from 'react-plotly.js-editor';
+import PlotlyEditor from 'react-plotly.js-editor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import createPlotComponent from 'react-plotly.js/factory';
@@ -8,6 +8,16 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actions from './actions';
 
+const dataSources = {
+  col1: [1, 2, 3], // eslint-disable-line no-magic-numbers
+  col2: [4, 3, 2], // eslint-disable-line no-magic-numbers
+  col3: [17, 13, 9], // eslint-disable-line no-magic-numbers
+};
+const dataSourceOptions = Object.keys(dataSources).map(name => ({
+  value: name,
+  label: name,
+}));
+
 const Plot = createPlotComponent(plotly);
 
 class App extends Component {
@@ -15,20 +25,7 @@ class App extends Component {
     super(props);
     const {actions} = props;
 
-    // eslint-disable-next-line no-magic-numbers
-    const dataSources = {col1: [1, 2, 3], col2: [4, 3, 2], col3: [17, 13, 9]};
-    const dataSourceOptions = [
-      {value: 'col1', label: 'CO2'},
-      {value: 'col2', label: 'NO2'},
-      {value: 'col3', label: 'SiO2'},
-    ];
-
-    const graphDiv = {
-      data: [{type: 'scatter', xsrc: 'col1', ysrc: 'col2'}],
-      layout: {title: 'Room readings'},
-    };
-
-    dereference(graphDiv.data, dataSources);
+    const graphDiv = {data: [], layout: {}};
 
     actions.sourcesUpdate(dataSources);
     actions.dataSourceOptionsUpdate(dataSourceOptions);

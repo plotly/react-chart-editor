@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly-basic';
 import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor from 'react-plotly.js-editor';
+import CustomEditor from './CustomEditor';
 import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
 
 const dataSources = {
@@ -24,7 +25,7 @@ class App extends Component {
     // overwritten with a full DOM node that contains data, layout, _fullData,
     // _fullLayout etc in handlePlotUpdate()
     this.state = {
-      graphDiv: {},
+      graphDiv: {data: [{type: 'scatter', x: [1], y: [1]}]},
       editorRevision: 0,
       plotRevision: 0,
     };
@@ -42,13 +43,16 @@ class App extends Component {
     return (
       <div className="app">
         <PlotlyEditor
+          locale="en"
           graphDiv={this.state.graphDiv}
           onUpdate={this.handleEditorUpdate.bind(this)}
           revision={this.state.editorRevision}
+          plotly={plotly}
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}
-          plotly={plotly}
-        />
+        >
+          <CustomEditor />
+        </PlotlyEditor>
         <div className="app__main">
           <Plot
             debug

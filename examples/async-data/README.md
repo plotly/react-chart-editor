@@ -1,23 +1,10 @@
-# Simple
+# Async-data `react-plotly.js-editor` example
 
-## Temporary Requirement (until editor is published)
+This example built with [`create-react-app`](https://github.com/facebookincubator/create-react-app)uses the `DefaultEditor`, with asynchronously-loaded data and a top-level component for state, so as to demo how to use this component with data from an asyncronous source such as an API.
+
+## Quick start
 
 ```
-cd react-plotly.js-editor
-npm link
-cd examples/simple
 npm install
-npm link react-plotly.js-editor
-```
-
-## Start
-
-```
-yarn start
-```
-
-or
-
-```
 npm start
 ```
