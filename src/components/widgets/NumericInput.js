@@ -14,6 +14,7 @@ export default class NumericInput extends Component {
     this.state = {value: props.value};
     this.onChange = this.onChange.bind(this);
     this.updateValue = this.updateValue.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
