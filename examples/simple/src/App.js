@@ -49,14 +49,16 @@ class App extends Component {
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}
         />
-        <div className="app__main">
+        <div className="app__main" style={{width: '100%', height: '100%'}}>
           <Plot
             debug
+            useResizeHandler
             data={this.state.graphDiv.data}
             layout={this.state.graphDiv.layout}
             onUpdate={this.handlePlotUpdate.bind(this)}
             onInitialized={this.handlePlotUpdate.bind(this)}
             revision={this.state.plotRevision}
+            style={{width: '100%', height: '100%'}}
           />
         </div>
       </div>
