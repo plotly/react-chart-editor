@@ -1,8 +1,8 @@
-import {transform} from 'babel-core';
-import traverse from 'babel-traverse';
-import fs from 'fs';
-import glob from 'glob';
-import path from 'path';
+const transform = require('babel-core').transform;
+const traverse = require('babel-traverse').default;
+const fs = require('fs');
+const glob = require('glob');
+const path = require('path');
 
 // generalize so we can use this script in other es6 repos
 // so you can call:
@@ -90,7 +90,7 @@ function findLocaleStrings() {
       .map(k => k + spaces(maxLen - k.length) + '  // ' + dict[k])
       .join('\n');
 
-    fs.writeFile(pathToTranslationKeys, strings);
+    fs.writeFileSync(pathToTranslationKeys, strings);
     console.log(`translation keys were written to: ${pathToTranslationKeys}`);
   });
 }

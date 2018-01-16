@@ -1,5 +1,5 @@
-import path from 'path';
-import fs from 'fs';
+const path = require('path');
+const fs = require('fs');
 
 // generalize so we can use this script in other es6 repos
 // so you can call:
@@ -36,7 +36,7 @@ function combineTranslationKeys() {
   const dict = {};
   let maxLen = 0;
 
-  inputPaths.forEach(inputPath => {
+  inputPaths.map(relPath => path.resolve(relPath)).forEach(inputPath => {
     const lines = fs.readFileSync(inputPath, 'utf-8').split(/\r?\n/);
 
     const repository = getRepository(inputPath);
@@ -60,12 +60,12 @@ function combineTranslationKeys() {
     .map(k => k + spaces(maxLen - k.length) + dict[k])
     .join('\n');
 
-  fs.writeFile(outputPath, strings);
+  fs.writeFileSync(outputPath, strings);
   console.log(`combined translation keys were written to: ${outputPath}`);
 }
 
 function getRepository(inputPath) {
-  var dir = path.dirname(inputPath);
+  const dir = path.dirname(inputPath);
   if (fs.existsSync(path.join(dir, 'package.json'))) {
     return path.basename(dir);
   }

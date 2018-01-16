@@ -1,5 +1,5 @@
-import path from 'path';
-import fs from 'fs';
+const path = require('path');
+const fs = require('fs');
 
 // generalize so we can use this script in other repos
 // so you can call:
@@ -16,6 +16,7 @@ const pathToArrowsOut = process.argv[3] || path.join(
 );
 
 const wordRE = /^[A-Za-z]+$/;
+const maxLineLen = 80;
 
 function makeArrows() {
   const lines = fs
@@ -38,7 +39,9 @@ function makeArrows() {
       const quotedVal = quoteChar + arrowStr + key + arrowStr + quoteChar + ',';
       const singleLine = '  ' + maybeQuoteKey + ': ' + quotedVal;
 
-      if (singleLine.length <= 80) return singleLine;
+      if (singleLine.length <= maxLineLen) {
+        return singleLine;
+      }
 
       return '  ' + maybeQuoteKey + ':\n    ' + quotedVal;
     })
@@ -47,13 +50,14 @@ function makeArrows() {
   const head = 'export default {';
   const tail = '};\n';
 
-  fs.writeFile(pathToArrowsOut, [head, entries, tail].join('\n'));
+  fs.writeFileSync(pathToArrowsOut, [head, entries, tail].join('\n'));
   console.log('arrows mock translation written to: ' + pathToArrowsOut);
 }
 
 // inferred from the arrow file Greg provided
+const arrowFactor = 5.7;
 function getArrowLen(key) {
-  return Math.max(1, Math.round(key.length / 5.7));
+  return Math.max(1, Math.round(key.length / arrowFactor));
 }
 
 function arrowPad(n) {
