@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {MULTI_VALUED} from './constants';
-import {getDisplayName, isPlainObject} from '../lib';
+import {getDisplayName, isPlainObject, localize} from '../lib';
 
 /**
  * Simple replacer to use with JSON.stringify.
@@ -92,8 +92,8 @@ function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
   }
 }
 
-function computeAxesOptions(axes) {
-  const options = [{label: 'All', value: 'allaxes'}];
+function computeAxesOptions(axes, _) {
+  const options = [{label: _('All'), value: 'allaxes'}];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
     const axesPrefix = ax._id.length > 1 ? ' ' + ax._id.substr(1) : '';
@@ -133,7 +133,7 @@ export default function connectAxesToLayout(WrappedComponent) {
       } else {
         this.axes = [];
       }
-      this.axesOptions = computeAxesOptions(this.axes);
+      this.axesOptions = computeAxesOptions(this.axes, nextProps.localize);
 
       if (axesTarget === 'allaxes') {
         const multiValuedContainer = deepCopyPublic(this.axes[0]);
@@ -210,6 +210,7 @@ export default function connectAxesToLayout(WrappedComponent) {
 
   AxesConnectedComponent.propTypes = {
     defaultAxesTarget: PropTypes.string,
+    localize: PropTypes.func,
   };
 
   AxesConnectedComponent.defaultProps = {
@@ -234,5 +235,5 @@ export default function connectAxesToLayout(WrappedComponent) {
     updateContainer: PropTypes.func,
   };
 
-  return AxesConnectedComponent;
+  return localize(AxesConnectedComponent);
 }

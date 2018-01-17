@@ -1,13 +1,19 @@
-import {transform} from 'babel-core';
-import traverse from 'babel-traverse';
-import fs from 'fs';
-import glob from 'glob';
-import path from 'path';
+const transform = require('babel-core').transform;
+const traverse = require('babel-traverse').default;
+const fs = require('fs');
+const glob = require('glob');
+const path = require('path');
 
-const pathToSrc = path.join(__dirname, '../src');
+// generalize so we can use this script in other es6 repos
+// so you can call:
+//   findTranslationKeys <srcPath> <outputPath>
+const pathToSrc = process.argv[2] || path.join(__dirname, '../src');
 const srcGlob = path.join(pathToSrc, '**/*.js');
 
-const localizeRE = /(^|[\.])(_|localize)$/;
+const pathToTranslationKeys = process.argv[3] || path.join(
+  __dirname,
+  './translationKeys/translation-keys.txt'
+);
 
 findLocaleStrings();
 
@@ -84,11 +90,7 @@ function findLocaleStrings() {
       .map(k => k + spaces(maxLen - k.length) + '  // ' + dict[k])
       .join('\n');
 
-    const pathToTranslationKeys = path.join(
-      __dirname,
-      './translationKeys/translation-keys.txt'
-    );
-    fs.writeFile(pathToTranslationKeys, strings);
+    fs.writeFileSync(pathToTranslationKeys, strings);
     console.log(`translation keys were written to: ${pathToTranslationKeys}`);
   });
 }

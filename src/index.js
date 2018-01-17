@@ -7,6 +7,7 @@ import {
   connectTraceToPlot,
   dereference,
   localize,
+  localizeString,
   walkObject,
 } from './lib';
 import {EDITOR_ACTIONS} from './lib/constants';
@@ -85,6 +86,7 @@ export {
   connectTraceToPlot,
   dereference,
   localize,
+  localizeString,
   walkObject,
   LayoutPanel,
   AxesFold,

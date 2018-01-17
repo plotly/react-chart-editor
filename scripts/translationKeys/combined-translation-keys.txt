@@ -1,24 +1,37 @@
-Anchor Point                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:249
-Angle                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:223
+2D Contour Histogram                                                                                                           // react-plotly.js-editor: /components/fields/TraceSelector.js:25
+2D Histogram                                                                                                                   // react-plotly.js-editor: /components/fields/TraceSelector.js:24
+3D Scatter                                                                                                                     // react-plotly.js-editor: /components/fields/TraceSelector.js:30
+All                                                                                                                            // react-plotly.js-editor: /lib/connectAxesToLayout.js:96
+Anchor Point                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:248
+Angle                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:222
 Annotation                                                                                                                     // react-plotly.js-editor: /components/containers/PanelHeader.js:19
-Arrow                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:225
-Arrowhead                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:235
-Auto                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:174
+Area                                                                                                                           // react-plotly.js-editor: /components/fields/TraceSelector.js:55
+Arrow                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:224
+Arrowhead                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:234
+Atlas Map                                                                                                                      // react-plotly.js-editor: /components/fields/TraceSelector.js:33
+Auto                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:173
 Autoscale                                                                                                                      // plotly.js: components/modebar/buttons.js:139
-Axes                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:295
-Background Color                                                                                                               // react-plotly.js-editor: /DefaultEditor.js:374
-Bar Padding                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:144
-Bar Width                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:136
+Axes                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:294
+Background Color                                                                                                               // react-plotly.js-editor: /DefaultEditor.js:373
+Bar                                                                                                                            // react-plotly.js-editor: /components/fields/TraceSelector.js:21
+Bar Padding                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:143
+Bar Width                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:135
 Bars                                                                                                                           // react-plotly.js-editor: /components/containers/TraceMarkerSection.js:20
-Blank                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:163
-Border Color                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:131
-Border Width                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:130
-Bottom                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:210
-Box Padding                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:148
+Blank                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:162
+Border Color                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:130
+Border Width                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:129
+Bottom                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:209
+Box                                                                                                                            // react-plotly.js-editor: /components/fields/TraceSelector.js:20
+Box Padding                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:147
 Box Select                                                                                                                     // plotly.js: components/modebar/buttons.js:103
-Box Width                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:140
-Canvas                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:170
-Center                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:261
+Box Width                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:139
+Candlestick                                                                                                                    // react-plotly.js-editor: /components/fields/TraceSelector.js:46
+Canvas                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:169
+Carpet                                                                                                                         // react-plotly.js-editor: /components/fields/TraceSelector.js:42
+Carpet Contour                                                                                                                 // react-plotly.js-editor: /components/fields/TraceSelector.js:44
+Carpet Scatter                                                                                                                 // react-plotly.js-editor: /components/fields/TraceSelector.js:43
+Center                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:260
+Choropleth                                                                                                                     // react-plotly.js-editor: /components/fields/TraceSelector.js:34
 Click to enter Colorscale title                                                                                                // plotly.js: plots/plots.js:303
 Click to enter Component A title                                                                                               // plotly.js: plots/ternary/ternary.js:392
 Click to enter Component B title                                                                                               // plotly.js: plots/ternary/ternary.js:406
@@ -26,19 +39,21 @@ Click to enter Component C title                                                
 Click to enter Plot title                                                                                                      // plotly.js: plot_api/plot_api.js:579
 Click to enter X axis title                                                                                                    // plotly.js: plots/plots.js:301
 Click to enter Y axis title                                                                                                    // plotly.js: plots/plots.js:302
-Color                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:115
+Collapse All                                                                                                                   // react-plotly.js-editor: /components/containers/PanelHeader.js:55
+Color                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:114
 Common Case: An 'All' tab might display this message because the X and Y tabs contain different settings.                      // react-plotly.js-editor: /lib/constants.js:24
 Compare data on hover                                                                                                          // plotly.js: components/modebar/buttons.js:167
-Connect                                                                                                                        // react-plotly.js-editor: /DefaultEditor.js:162
-Connect Gaps                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:159
+Connect                                                                                                                        // react-plotly.js-editor: /DefaultEditor.js:161
+Connect Gaps                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:158
 Continue                                                                                                                       // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:200
 Continuing will convert your LaTeX expression into raw text.                                                                   // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:122
 Continuing will convert your note to LaTeX-style text.                                                                         // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:117
 Continuing will remove your expression.                                                                                        // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:127
-Custom                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:175
+Contour                                                                                                                        // react-plotly.js-editor: /components/fields/TraceSelector.js:27
+Custom                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:174
 Custom Color                                                                                                                   // react-plotly.js-editor: /components/widgets/ColorPicker.js:52
 Default Colors                                                                                                                 // react-plotly.js-editor: /components/widgets/ColorPicker.js:75
-Display                                                                                                                        // react-plotly.js-editor: /DefaultEditor.js:91
+Display                                                                                                                        // react-plotly.js-editor: /DefaultEditor.js:90
 Double-click on legend to isolate one trace                                                                                    // plotly.js: components/legend/handle_click.js:90
 Double-click to zoom back out                                                                                                  // plotly.js: plots/cartesian/dragbox.js:335
 Download plot as a png                                                                                                         // plotly.js: components/modebar/buttons.js:52
@@ -46,52 +61,63 @@ Edit in Chart Studio                                                            
 Edit in HTML                                                                                                                   // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:35
 Edit in Rich Text                                                                                                              // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:245
 Enter Link URL                                                                                                                 // react-plotly.js-editor: /components/widgets/text_editors/RichText/LinkEditor.js:92
-Filled Area                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:101
-Fixed Height                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:179
-Fixed Width                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:178
-Font Color                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:196
-Font Size                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:192
-Global Font                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:198
+Expand All                                                                                                                     // react-plotly.js-editor: /components/containers/PanelHeader.js:60
+Filled Area                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:100
+Fixed Height                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:178
+Fixed Width                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:177
+Font Color                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:195
+Font Size                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:191
+Global Font                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:197
 Go back                                                                                                                        // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:193
 Go to the 'Create' tab to define traces.                                                                                       // react-plotly.js-editor: /components/containers/TraceAccordion.js:54
 Heads up!                                                                                                                      // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:180
-Hide                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:230
-Horizontal                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:123
-Horizontal Positioning                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:247
+Heatmap                                                                                                                        // react-plotly.js-editor: /components/fields/TraceSelector.js:22
+Heatmap GL                                                                                                                     // react-plotly.js-editor: /components/fields/TraceSelector.js:37
+Hide                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:229
+Histogram                                                                                                                      // react-plotly.js-editor: /components/fields/TraceSelector.js:23
+Horizontal                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:122
+Horizontal Positioning                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:246
 IE only supports svg.  Changing format to svg.                                                                                 // plotly.js: components/modebar/buttons.js:60
 LaTeX                                                                                                                          // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:30
 LaTeX is a math typesetting language that doesn't work with rich text.                                                         // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:115
 Lasso Select                                                                                                                   // plotly.js: components/modebar/buttons.js:112
-Layout                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:169
-Left                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:211
-Legend                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:347
-Legend Box                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:363
-Line Color                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:155
-Line Width                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:233
-Linear                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:319
-Lines                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:153
+Layout                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:168
+Left                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:210
+Legend                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:346
+Legend Box                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:362
+Line                                                                                                                           // react-plotly.js-editor: /components/fields/TraceSelector.js:54
+Line Color                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:154
+Line Width                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:232
+Linear                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:318
+Lines                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:152
 Looks like there aren't any traces defined yet.                                                                                // react-plotly.js-editor: /components/containers/TraceAccordion.js:53
-Margin Color                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:181
-Margins and Padding                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:208
-Max                                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:315
-Middle                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:284
-Min                                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:314
+Margin Color                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:180
+Margins and Padding                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:207
+Max                                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:314
+Mesh3d                                                                                                                         // react-plotly.js-editor: /components/fields/TraceSelector.js:32
+Middle                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:283
+Min                                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:313
 Multiple Values                                                                                                                // react-plotly.js-editor: /lib/constants.js:18
-Normal                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:433
-Note Text                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:218
-Notes                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:216
-Opacity                                                                                                                        // react-plotly.js-editor: /DefaultEditor.js:76
+Normal                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:432
+Note Text                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:217
+Notes                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:215
+OHLC                                                                                                                           // react-plotly.js-editor: /components/fields/TraceSelector.js:45
+Opacity                                                                                                                        // react-plotly.js-editor: /DefaultEditor.js:75
 Orbital rotation                                                                                                               // plotly.js: components/modebar/buttons.js:279
-Orientation                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:420
-Padding                                                                                                                        // react-plotly.js-editor: /DefaultEditor.js:213
+Orientation                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:419
+Padding                                                                                                                        // react-plotly.js-editor: /DefaultEditor.js:212
 Pan                                                                                                                            // plotly.js: components/modebar/buttons.js:94
-Plot Background                                                                                                                // react-plotly.js-editor: /DefaultEditor.js:180
+Parallel Coordinates                                                                                                           // react-plotly.js-editor: /components/fields/TraceSelector.js:38
+Pie                                                                                                                            // react-plotly.js-editor: /components/fields/TraceSelector.js:26
+Plot Background                                                                                                                // react-plotly.js-editor: /DefaultEditor.js:179
+Point Cloud                                                                                                                    // react-plotly.js-editor: /components/fields/TraceSelector.js:36
 Points                                                                                                                         // react-plotly.js-editor: /components/containers/TraceMarkerSection.js:22
-Position                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:268
-Positioning                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:378
+Polar Scatter                                                                                                                  // react-plotly.js-editor: /components/fields/TraceSelector.js:47
+Position                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:267
+Positioning                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:377
 Produced with Plotly                                                                                                           // plotly.js: components/modebar/modebar.js:256
-Range                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:304
-Relative To                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:267
+Range                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:303
+Relative To                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:266
 Reset                                                                                                                          // plotly.js: components/modebar/buttons.js:431
 Reset axes                                                                                                                     // plotly.js: components/modebar/buttons.js:148
 Reset camera to default                                                                                                        // plotly.js: components/modebar/buttons.js:313
@@ -99,51 +125,59 @@ Reset camera to last save                                                       
 Reset view                                                                                                                     // plotly.js: components/modebar/buttons.js:582
 Reset views                                                                                                                    // plotly.js: components/modebar/buttons.js:528
 Return to the Graph > Create menu above to add data.                                                                           // react-plotly.js-editor: /components/containers/TraceAccordion.js:32
-Reversed                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:434
+Reversed                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:433
 Rich Text                                                                                                                      // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:25
 Rich text is incompatible with LaTeX.                                                                                          // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:121
-Right                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:212
-Scale                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:237
-Selection                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:306
-Shape                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:157
-Show                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:229
+Right                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:211
+Sankey                                                                                                                         // react-plotly.js-editor: /components/fields/TraceSelector.js:40
+Satellite Map                                                                                                                  // react-plotly.js-editor: /components/fields/TraceSelector.js:39
+Scale                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:236
+Scatter                                                                                                                        // react-plotly.js-editor: /components/fields/TraceSelector.js:19
+Scatter GL                                                                                                                     // react-plotly.js-editor: /components/fields/TraceSelector.js:35
+Selection                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:305
+Shape                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:156
+Show                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:228
 Show closest data on hover                                                                                                     // plotly.js: components/modebar/buttons.js:157
-Size                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:128
-Size and Spacing                                                                                                               // react-plotly.js-editor: /DefaultEditor.js:134
+Size                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:127
+Size and Spacing                                                                                                               // react-plotly.js-editor: /DefaultEditor.js:133
 Snapshot succeeded                                                                                                             // plotly.js: components/modebar/buttons.js:66
 Sorry, there was a problem downloading your snapshot!                                                                          // plotly.js: components/modebar/buttons.js:69
-Symbol                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:129
+Surface                                                                                                                        // react-plotly.js-editor: /components/fields/TraceSelector.js:31
+Symbol                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:128
+Table                                                                                                                          // react-plotly.js-editor: /components/fields/TraceSelector.js:41
 Taking snapshot - this may take a few seconds                                                                                  // plotly.js: components/modebar/buttons.js:57
-Text                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:358
-Text Attributes                                                                                                                // react-plotly.js-editor: /DefaultEditor.js:79
-The anchor point determines which side of the annotation's positioning coordinates refer to.                                   // react-plotly.js-editor: /DefaultEditor.js:252
-The positioning inputs are relative to the anchor points on the text box.                                                      // react-plotly.js-editor: /DefaultEditor.js:383
+Ternary Scatter                                                                                                                // react-plotly.js-editor: /components/fields/TraceSelector.js:28
+Text                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:357
+Text Attributes                                                                                                                // react-plotly.js-editor: /DefaultEditor.js:78
+The anchor point determines which side of the annotation's positioning coordinates refer to.                                   // react-plotly.js-editor: /DefaultEditor.js:251
+The positioning inputs are relative to the anchor points on the text box.                                                      // react-plotly.js-editor: /DefaultEditor.js:382
 This input has multiple values associated with it. Changing this setting will override these custom inputs.                    // react-plotly.js-editor: /lib/constants.js:20
 This trace does not yet have any data.                                                                                         // react-plotly.js-editor: /components/containers/TraceAccordion.js:30
-Tick Labels                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:329
-Tick Markers                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:337
-Title                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:184
-Title and Fonts                                                                                                                // react-plotly.js-editor: /DefaultEditor.js:183
-Titles                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:296
+Tick Labels                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:328
+Tick Markers                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:336
+Title                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:183
+Title and Fonts                                                                                                                // react-plotly.js-editor: /DefaultEditor.js:182
+Titles                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:295
 Toggle Spike Lines                                                                                                             // plotly.js: components/modebar/buttons.js:547
 Toggle show closest data on hover                                                                                              // plotly.js: components/modebar/buttons.js:352
-Top                                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:209
+Top                                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:208
 Trace                                                                                                                          // react-plotly.js-editor: /components/containers/PanelHeader.js:14
-Trace Order                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:429
+Trace Order                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:428
 Trace opacity is not supported for a scatter trace with fill or for a scatter trace that gets filled by another scatter trace. // react-plotly.js-editor: /components/containers/Section.js:65
 Turntable rotation                                                                                                             // plotly.js: components/modebar/buttons.js:288
-Type                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:156
-Typeface                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:187
+Type                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:155
+Typeface                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:186
 URL                                                                                                                            // react-plotly.js-editor: /components/widgets/text_editors/RichText/LinkEditor.js:93
-Vertical                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:122
-Vertical Positioning                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:270
-Width                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:154
-X Position                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:408
-X Vector                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:244
-Y Position                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:414
-Y Vector                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:245
+Vertical                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:121
+Vertical Positioning                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:269
+Violin                                                                                                                         // react-plotly.js-editor: /components/fields/TraceSelector.js:29
+Width                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:153
+X Position                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:407
+X Vector                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:243
+Y Position                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:413
+Y Vector                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:244
 Zoom                                                                                                                           // plotly.js: components/modebar/buttons.js:85
-Zoom Interactivity                                                                                                             // react-plotly.js-editor: /DefaultEditor.js:340
+Zoom Interactivity                                                                                                             // react-plotly.js-editor: /DefaultEditor.js:339
 Zoom in                                                                                                                        // plotly.js: components/modebar/buttons.js:121
 Zoom out                                                                                                                       // plotly.js: components/modebar/buttons.js:130
 close:                                                                                                                         // plotly.js: traces/ohlc/transform.js:139
@@ -151,7 +185,7 @@ high:                                                                           
 incoming flow count:                                                                                                           // plotly.js: traces/sankey/plot.js:142
 kde:                                                                                                                           // plotly.js: traces/violin/calc.js:73
 lat:                                                                                                                           // plotly.js: traces/scattergeo/calc.js:48
-log                                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:320
+log                                                                                                                            // react-plotly.js-editor: /DefaultEditor.js:319
 lon:                                                                                                                           // plotly.js: traces/scattergeo/calc.js:49
 low:                                                                                                                           // plotly.js: traces/ohlc/transform.js:138
 lower fence:                                                                                                                   // plotly.js: traces/box/calc.js:134
@@ -160,10 +194,12 @@ mean ± σ:                                                                     
 mean:                                                                                                                          // plotly.js: traces/box/calc.js:133
 median:                                                                                                                        // plotly.js: traces/box/calc.js:128
 min:                                                                                                                           // plotly.js: traces/box/calc.js:129
+no results...                                                                                                                  // react-plotly.js-editor: /components/widgets/Dropdown.js:76
 open:                                                                                                                          // plotly.js: traces/ohlc/transform.js:136
 outgoing flow count:                                                                                                           // plotly.js: traces/sankey/plot.js:143
 q1:                                                                                                                            // plotly.js: traces/box/calc.js:130
 q3:                                                                                                                            // plotly.js: traces/box/calc.js:131
+select an option...                                                                                                            // react-plotly.js-editor: /components/widgets/Dropdown.js:67
 source:                                                                                                                        // plotly.js: traces/sankey/plot.js:140
 target:                                                                                                                        // plotly.js: traces/sankey/plot.js:141
 trace                                                                                                                          // plotly.js: plots/plots.js:305

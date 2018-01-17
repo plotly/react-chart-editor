@@ -1,7 +1,6 @@
 import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import dictionaries from './locales';
 import {bem} from './lib';
 import {noShame, maybeClearAxisTypes} from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
@@ -40,7 +39,7 @@ class PlotlyEditor extends Component {
       dataSourceOptions: this.props.dataSourceOptions,
       dataSourceValueRenderer: this.props.dataSourceValueRenderer,
       dataSourceOptionRenderer: this.props.dataSourceOptionRenderer,
-      dictionaries: dictionaries,
+      dictionaries: this.props.dictionaries || {},
       fullData: gd._fullData,
       fullLayout: gd._fullLayout,
       graphDiv: gd,
@@ -159,6 +158,7 @@ PlotlyEditor.propTypes = {
   dataSourceOptions: PropTypes.array,
   dataSourceValueRenderer: PropTypes.func,
   dataSourceOptionRenderer: PropTypes.func,
+  dictionaries: PropTypes.object,
   graphDiv: PropTypes.object,
   locale: PropTypes.string,
   revision: PropTypes.any,

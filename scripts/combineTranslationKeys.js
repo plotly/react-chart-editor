@@ -1,23 +1,34 @@
-import path from 'path';
-import fs from 'fs';
+const path = require('path');
+const fs = require('fs');
+
+// generalize so we can use this script in other es6 repos
+// so you can call:
+//   combineTranslationKeys <inputPath> <inputPath> <inputPath> ... <outputPath>
 
 const pathToCombinedTranslationKeys = path.join(
   __dirname,
   './translationKeys/combined-translation-keys.txt'
 );
 
-const plotlyJS = {
-  repository: 'plotly.js',
-  path: path.join(
-    __dirname,
-    '../node_modules/plotly.js/dist/translation-keys.txt'
-  ),
-};
+const plotlyJS = path.join(
+  __dirname,
+  '../node_modules/plotly.js/dist/translation-keys.txt'
+);
 
-const editor = {
-  repository: 'react-plotly.js-editor',
-  path: path.join(__dirname, './translationKeys/translation-keys.txt'),
-};
+const editor = path.join(__dirname, './translationKeys/translation-keys.txt');
+
+const argvLen = process.argv.length;
+const minHasPaths = 4;
+
+const hasPaths = argvLen >= minHasPaths;
+
+const inputPaths = hasPaths
+  ? process.argv.slice(2, argvLen - 1)
+  : [plotlyJS, editor];
+
+const outputPath = hasPaths
+  ? process.argv[argvLen - 1]
+  : pathToCombinedTranslationKeys;
 
 combineTranslationKeys();
 
@@ -25,8 +36,10 @@ function combineTranslationKeys() {
   const dict = {};
   let maxLen = 0;
 
-  [plotlyJS, editor].forEach(file => {
-    const lines = fs.readFileSync(file.path, 'utf-8').split(/\r?\n/);
+  inputPaths.map(relPath => path.resolve(relPath)).forEach(inputPath => {
+    const lines = fs.readFileSync(inputPath, 'utf-8').split(/\r?\n/);
+
+    const repository = getRepository(inputPath);
 
     lines.forEach(line => {
       const splitString = line.split(/\/\//);
@@ -35,9 +48,9 @@ function combineTranslationKeys() {
       maxLen = Math.max(maxLen, stringToTranslate.length);
 
       if (!dict[stringToTranslate]) {
-        dict[stringToTranslate] = ' // ' + file.repository + ': ' + source;
+        dict[stringToTranslate] = ' // ' + repository + ': ' + source;
       } else {
-        dict[stringToTranslate] += ` && ${file.repository}: ${source}`;
+        dict[stringToTranslate] += ` && ${repository}: ${source}`;
       }
     });
   });
@@ -47,10 +60,16 @@ function combineTranslationKeys() {
     .map(k => k + spaces(maxLen - k.length) + dict[k])
     .join('\n');
 
-  fs.writeFile(pathToCombinedTranslationKeys, strings);
-  console.log(
-    `combined translation keys were written to: ${pathToCombinedTranslationKeys}`
-  );
+  fs.writeFileSync(outputPath, strings);
+  console.log(`combined translation keys were written to: ${outputPath}`);
+}
+
+function getRepository(inputPath) {
+  const dir = path.dirname(inputPath);
+  if (fs.existsSync(path.join(dir, 'package.json'))) {
+    return path.basename(dir);
+  }
+  return getRepository(dir);
 }
 
 function spaces(len) {
