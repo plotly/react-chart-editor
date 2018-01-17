@@ -38,7 +38,7 @@ class PanelHeader extends Component {
       allowCollapse,
       toggleFolds,
       hasOpen,
-      localize: _
+      localize: _,
     } = this.props;
 
     return !children && !action && !allowCollapse ? null : (
