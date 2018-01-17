@@ -13,13 +13,13 @@ import {
 
 describe('Plot Connection', () => {
   it('can connect Field directly with full connection pipeline', () => {
-    const onUpdateLayout = jest.fn();
+    const beforeUpdateLayout = jest.fn();
     const fixtureProps = fixtures.scatter({layout: {xaxis: {range: [0, 10]}}});
     const LayoutAxesNumeric = connectLayoutToPlot(
       connectAxesToLayout(connectToContainer(Numeric))
     );
     mount(
-      <TestEditor {...{...fixtureProps, onUpdateLayout}}>
+      <TestEditor {...{...fixtureProps, beforeUpdateLayout}}>
         <LayoutAxesNumeric label="Min" attr="range[0]" />
       </TestEditor>
     )
@@ -28,19 +28,19 @@ describe('Plot Connection', () => {
       .find('.js-numeric-increase')
       .simulate('click');
 
-    expect(onUpdateLayout).toBeCalled();
-    const payload = onUpdateLayout.mock.calls[0][0];
+    expect(beforeUpdateLayout).toBeCalled();
+    const payload = beforeUpdateLayout.mock.calls[0][0];
     expect(payload).toEqual({update: {'xaxis.range[0]': 1}});
   });
 
   it('can connect to layout when connected within trace context', () => {
-    const onUpdateLayout = jest.fn();
+    const beforeUpdateLayout = jest.fn();
     const fixtureProps = fixtures.scatter({layout: {width: 10}});
     const TraceLayoutNumeric = connectTraceToPlot(
       connectLayoutToPlot(connectToContainer(Numeric))
     );
     mount(
-      <TestEditor {...{...fixtureProps, onUpdateLayout}}>
+      <TestEditor {...{...fixtureProps, beforeUpdateLayout}}>
         <TraceLayoutNumeric traceIndex={0} label="Width" attr="width" />
       </TestEditor>
     )
@@ -49,8 +49,8 @@ describe('Plot Connection', () => {
       .find('.js-numeric-increase')
       .simulate('click');
 
-    expect(onUpdateLayout).toBeCalled();
-    const payload = onUpdateLayout.mock.calls[0][0];
+    expect(beforeUpdateLayout).toBeCalled();
+    const payload = beforeUpdateLayout.mock.calls[0][0];
     expect(payload).toEqual({update: {width: 11}});
   });
 
@@ -84,7 +84,7 @@ describe('Plot Connection', () => {
   });
 
   it('can supplyPlotProps within <Section> and nested Layout and Trace', () => {
-    const onUpdateLayout = jest.fn();
+    const beforeUpdateLayout = jest.fn();
     const fixtureProps = fixtures.scatter({layout: {width: 10}});
     const TracePanel = connectTraceToPlot(Panel);
     const LayoutConnectedNumeric = connectLayoutToPlot(
@@ -99,7 +99,7 @@ describe('Plot Connection', () => {
     );
 
     mount(
-      <TestEditor {...{...fixtureProps, onUpdateLayout}}>
+      <TestEditor {...{...fixtureProps, beforeUpdateLayout}}>
         <TracePanel traceIndex={0}>
           <Section name="Canvas">
             <LayoutConnectedNumeric traceIndex={0} label="Width" attr="width" />
@@ -112,8 +112,8 @@ describe('Plot Connection', () => {
       .find('.js-numeric-increase')
       .simulate('click');
 
-    expect(onUpdateLayout).toBeCalled();
-    const payload = onUpdateLayout.mock.calls[0][0];
+    expect(beforeUpdateLayout).toBeCalled();
+    const payload = beforeUpdateLayout.mock.calls[0][0];
     expect(payload).toEqual({update: {width: 11}});
   });
 

@@ -22,9 +22,9 @@ describe('<TraceAccordion>', () => {
 
   it('can add traces', () => {
     const fixture = fixtures.scatter();
-    const onAddTrace = jest.fn();
+    const beforeAddTrace = jest.fn();
     const editor = mount(
-      <TestEditor {...{...fixture, onAddTrace}}>
+      <TestEditor {...{...fixture, beforeAddTrace}}>
         <Panel>
           <TraceAccordion canAdd>
             <Numeric attr="textangle" />
@@ -35,14 +35,14 @@ describe('<TraceAccordion>', () => {
 
     editor.find('button.js-add-trace-button').simulate('click');
 
-    expect(onAddTrace).toBeCalled();
+    expect(beforeAddTrace).toBeCalled();
   });
 
   it('can delete traces', () => {
     const fixture = fixtures.scatter({data: [{name: 'hodor'}]});
-    const onDeleteTrace = jest.fn();
+    const beforeDeleteTrace = jest.fn();
     const editor = mount(
-      <TestEditor {...{...fixture, onDeleteTrace}}>
+      <TestEditor {...{...fixture, beforeDeleteTrace}}>
         <Panel>
           <TraceAccordion canAdd>
             <Numeric attr="textangle" />
@@ -56,8 +56,8 @@ describe('<TraceAccordion>', () => {
       .at(0)
       .simulate('click');
 
-    expect(onDeleteTrace).toBeCalled();
-    const update = onDeleteTrace.mock.calls[0][0];
+    expect(beforeDeleteTrace).toBeCalled();
+    const update = beforeDeleteTrace.mock.calls[0][0];
     expect(update.traceIndexes[0]).toBe(0);
   });
 });

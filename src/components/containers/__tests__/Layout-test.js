@@ -28,10 +28,10 @@ Layouts.forEach(Layout => {
     });
 
     it(`sends updates to gd._layout`, () => {
-      const onUpdateLayout = jest.fn();
+      const beforeUpdateLayout = jest.fn();
       const wrapper = mount(
         <Editor
-          onUpdateLayout={onUpdateLayout}
+          beforeUpdateLayout={beforeUpdateLayout}
           {...fixtures.scatter({layout: {width: 100}})}
         >
           <Panel>
@@ -46,7 +46,7 @@ Layouts.forEach(Layout => {
 
       const widthUpdate = 200;
       wrapper.prop('onChange')(widthUpdate);
-      const payload = onUpdateLayout.mock.calls[0][0];
+      const payload = beforeUpdateLayout.mock.calls[0][0];
       expect(payload).toEqual({update: {width: widthUpdate}});
     });
   });
