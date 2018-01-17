@@ -2,7 +2,7 @@ import PanelHeader from './PanelHeader';
 import PropTypes from 'prop-types';
 import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
-import {bem, localize} from 'lib';
+import {bem} from 'lib';
 import PanelEmpty from './PanelEmpty';
 
 class Panel extends Component {
@@ -65,7 +65,7 @@ class Panel extends Component {
   }
 
   render() {
-    const {visible, requireTraces, localize: _} = this.props;
+    const {visible, requireTraces} = this.props;
     const {individualFoldStates, nbOfFolds, hasTraces} = this.state;
     const hasOpen =
       individualFoldStates.length > 0 &&
@@ -105,11 +105,7 @@ class Panel extends Component {
             hasOpen={hasOpen}
             onAction={onAction}
           />
-          {requireTraces && !hasTraces ? (
-            <PanelEmpty />
-          ) : (
-            newChildren
-          )}
+          {requireTraces && !hasTraces ? <PanelEmpty /> : newChildren}
         </div>
       );
     }
@@ -144,6 +140,7 @@ class Panel extends Component {
             });
           }
         }
+        /* eslint-enable */
       }
 
       const currentNbOfFolds = document.getElementsByClassName('fold').length;
@@ -172,7 +169,6 @@ Panel.propTypes = {
   children: PropTypes.node,
   visible: PropTypes.bool,
   requireTraces: PropTypes.bool,
-  localize: PropTypes.func,
 };
 
 Panel.contextTypes = {
@@ -190,4 +186,4 @@ Panel.childContextTypes = {
   toggleFold: PropTypes.func,
 };
 
-export default localize(Panel);
+export default Panel;
