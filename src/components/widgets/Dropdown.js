@@ -64,7 +64,7 @@ class Dropdown extends Component {
       <div className={dropdownContainerClass} style={dropdownStyle}>
         <Select
           backspaceToRemoveMessage={backspaceToRemoveMessage}
-          placeholder={placeholder || _('select an option...')}
+          placeholder={placeholder || _('Select an Option')}
           clearable={clearable}
           value={value}
           options={opts}
@@ -73,7 +73,7 @@ class Dropdown extends Component {
           multi={multi}
           optionRenderer={optionRenderer}
           valueRenderer={valueRenderer}
-          noResultsText={noResultsText || _('no results...')}
+          noResultsText={noResultsText || _('No Results')}
           valueKey={valueKey}
           disabled={disabled}
           className={className}
