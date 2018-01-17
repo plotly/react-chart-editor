@@ -105,15 +105,8 @@ class Panel extends Component {
             hasOpen={hasOpen}
             onAction={onAction}
           />
-          {requireTraces ? (
-            !hasTraces ? (
-              <PanelEmpty
-                heading={_("Looks like there aren't any traces defined yet.")}
-                message={<p>{_("Go to the 'Create' tab to define traces.")}</p>}
-              />
-            ) : (
-              newChildren
-            )
+          {requireTraces && !hasTraces ? (
+            <PanelEmpty />
           ) : (
             newChildren
           )}

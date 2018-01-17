@@ -1,11 +1,17 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {ChartLineIcon} from 'plotly-icons';
-import {bem} from 'lib';
+import {bem, localize} from 'lib';
 
-export default class PanelEmpty extends Component {
+class PanelEmpty extends Component {
   render() {
-    const {children, message, heading, icon: Icon} = this.props;
+    const {
+      children,
+      localize: _,
+      heading = _("Looks like there aren't any traces defined yet."),
+      message = _("Go to the 'Create' tab to define traces."),
+      icon: Icon,
+    } = this.props;
 
     return (
       <div className={bem('panel', 'empty')}>
@@ -15,7 +21,7 @@ export default class PanelEmpty extends Component {
           </div>
           <div className="panel__empty__message__heading">{heading}</div>
           <div className="panel__empty__message__content">
-            {message}
+            <p>{message}</p>
             {children}
           </div>
         </div>
@@ -27,6 +33,9 @@ export default class PanelEmpty extends Component {
 PanelEmpty.propTypes = {
   heading: PropTypes.string,
   message: PropTypes.any,
+  localize: PropTypes.func,
   children: PropTypes.node,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };
+
+export default localize(PanelEmpty);
