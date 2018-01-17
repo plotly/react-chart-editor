@@ -35,7 +35,7 @@ Color                                                                           
 Common Case: An 'All' tab might display this message because the X and Y tabs contain different settings.                       // /lib/constants.js:24
 Connect                                                                                                                         // /DefaultEditor.js:161
 Connect Gaps                                                                                                                    // /DefaultEditor.js:158
-Continue                                                                                                                        // /components/widgets/text_editors/MultiFormatTextEditor.js:200
+Continue                                                                                                                        // /components/widgets/text_editors/MultiFormatTextEditor.js:201
 Continuing will convert your LaTeX expression into raw text.                                                                    // /components/widgets/text_editors/MultiFormatTextEditor.js:122
 Continuing will convert your note to LaTeX-style text.                                                                          // /components/widgets/text_editors/MultiFormatTextEditor.js:117
 Continuing will remove your expression.                                                                                         // /components/widgets/text_editors/MultiFormatTextEditor.js:127
@@ -45,7 +45,7 @@ Custom Color                                                                    
 Default Colors                                                                                                                  // /components/widgets/ColorPicker.js:75
 Display                                                                                                                         // /DefaultEditor.js:90
 Edit in HTML                                                                                                                    // /components/widgets/text_editors/MultiFormatTextEditor.js:35
-Edit in Rich Text                                                                                                               // /components/widgets/text_editors/MultiFormatTextEditor.js:245
+Edit in Rich Text                                                                                                               // /components/widgets/text_editors/MultiFormatTextEditor.js:246
 Enter Link URL                                                                                                                  // /components/widgets/text_editors/RichText/LinkEditor.js:92
 Expand All                                                                                                                      // /components/containers/PanelHeader.js:60
 Filled Area                                                                                                                     // /DefaultEditor.js:100
@@ -54,8 +54,8 @@ Fixed Width                                                                     
 Font Color                                                                                                                      // /DefaultEditor.js:195
 Font Size                                                                                                                       // /DefaultEditor.js:191
 Global Font                                                                                                                     // /DefaultEditor.js:197
-Go back                                                                                                                         // /components/widgets/text_editors/MultiFormatTextEditor.js:193
-Go to the 'Create' tab to define traces.                                                                                        // /components/containers/TraceAccordion.js:54
+Go back                                                                                                                         // /components/widgets/text_editors/MultiFormatTextEditor.js:194
+Go to the 'Create' tab to define traces.                                                                                        // /components/containers/PanelEmpty.js:12
 Heads up!                                                                                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:180
 Heatmap                                                                                                                         // /components/fields/TraceSelector.js:21
 Heatmap GL                                                                                                                      // /components/fields/TraceSelector.js:36
@@ -74,7 +74,7 @@ Line Color                                                                      
 Line Width                                                                                                                      // /DefaultEditor.js:232
 Linear                                                                                                                          // /DefaultEditor.js:318
 Lines                                                                                                                           // /DefaultEditor.js:152
-Looks like there aren't any traces defined yet.                                                                                 // /components/containers/TraceAccordion.js:53
+Looks like there aren't any traces defined yet.                                                                                 // /components/containers/PanelEmpty.js:11
 Margin Color                                                                                                                    // /DefaultEditor.js:180
 Margins and Padding                                                                                                             // /DefaultEditor.js:207
 Max                                                                                                                             // /DefaultEditor.js:314
@@ -82,6 +82,7 @@ Mesh3d                                                                          
 Middle                                                                                                                          // /DefaultEditor.js:283
 Min                                                                                                                             // /DefaultEditor.js:313
 Multiple Values                                                                                                                 // /lib/constants.js:18
+No Results                                                                                                                      // /components/widgets/Dropdown.js:76
 Normal                                                                                                                          // /DefaultEditor.js:432
 Note Text                                                                                                                       // /DefaultEditor.js:217
 Notes                                                                                                                           // /DefaultEditor.js:215
@@ -109,6 +110,7 @@ Satellite Map                                                                   
 Scale                                                                                                                           // /DefaultEditor.js:236
 Scatter                                                                                                                         // /components/fields/TraceSelector.js:18
 Scatter GL                                                                                                                      // /components/fields/TraceSelector.js:34
+Select an Option                                                                                                                // /components/widgets/Dropdown.js:67
 Selection                                                                                                                       // /DefaultEditor.js:305
 Shape                                                                                                                           // /DefaultEditor.js:156
 Show                                                                                                                            // /DefaultEditor.js:228
@@ -146,5 +148,3 @@ Y Position                                                                      
 Y Vector                                                                                                                        // /DefaultEditor.js:244
 Zoom Interactivity                                                                                                              // /DefaultEditor.js:339
 log                                                                                                                             // /DefaultEditor.js:319
-no results...                                                                                                                   // /components/widgets/Dropdown.js:76
-select an option...                                                                                                             // /components/widgets/Dropdown.js:67
