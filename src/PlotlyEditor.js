@@ -56,8 +56,8 @@ class PlotlyEditor extends Component {
 
     switch (type) {
       case EDITOR_ACTIONS.UPDATE_TRACES:
-        if (this.props.onUpdateTraces) {
-          this.props.onUpdateTraces(payload);
+        if (this.props.beforeUpdateTraces) {
+          this.props.beforeUpdateTraces(payload);
         }
 
         // until we start utilizing Plotly.react in `react-plotly.js`
@@ -74,14 +74,17 @@ class PlotlyEditor extends Component {
             }
           }
         }
+        if (this.props.afterUpdateTraces) {
+          this.props.afterUpdateTraces(payload);
+        }
         if (this.props.onUpdate) {
           this.props.onUpdate();
         }
         break;
 
       case EDITOR_ACTIONS.UPDATE_LAYOUT:
-        if (this.props.onUpdateLayout) {
-          this.props.onUpdateLayout(payload);
+        if (this.props.beforeUpdateLayout) {
+          this.props.beforeUpdateLayout(payload);
         }
         for (const attr in payload.update) {
           const prop = nestedProperty(graphDiv.layout, attr);
@@ -90,27 +93,36 @@ class PlotlyEditor extends Component {
             prop.set(value);
           }
         }
+        if (this.props.afterUpdateLayout) {
+          this.props.afterUpdateLayout(payload);
+        }
         if (this.props.onUpdate) {
           this.props.onUpdate();
         }
         break;
 
       case EDITOR_ACTIONS.ADD_TRACE:
-        if (this.props.onAddTrace) {
-          this.props.onAddTrace(payload);
+        if (this.props.beforeAddTrace) {
+          this.props.beforeAddTrace(payload);
         }
         graphDiv.data.push({x: [], y: [], type: 'scatter', mode: 'markers'});
+        if (this.props.afterAddTrace) {
+          this.props.afterAddTrace(payload);
+        }
         if (this.props.onUpdate) {
           this.props.onUpdate();
         }
         break;
 
       case EDITOR_ACTIONS.DELETE_TRACE:
-        if (this.props.onDeleteTrace) {
-          this.props.onDeleteTrace(payload);
-        }
         if (payload.traceIndexes && payload.traceIndexes.length) {
+          if (this.props.beforeDeleteTrace) {
+            this.props.beforeDeleteTrace(payload);
+          }
           graphDiv.data.splice(payload.traceIndexes[0], 1);
+          if (this.props.afterDeleteTrace) {
+            this.props.afterDeleteTrace(payload);
+          }
           if (this.props.onUpdate) {
             this.props.onUpdate();
           }
@@ -118,11 +130,14 @@ class PlotlyEditor extends Component {
         break;
 
       case EDITOR_ACTIONS.DELETE_ANNOTATION:
-        if (this.props.onDeleteAnnotation) {
-          this.props.onDeleteAnnotation(payload);
-        }
         if (isNumeric(payload.annotationIndex)) {
+          if (this.props.beforeDeleteAnnotation) {
+            this.props.beforeDeleteAnnotation(payload);
+          }
           graphDiv.layout.annotations.splice(payload.annotationIndex, 1);
+          if (this.props.afterDeleteAnnotation) {
+            this.props.afterDeleteAnnotation(payload);
+          }
           if (this.props.onUpdate) {
             this.props.onUpdate();
           }
@@ -152,23 +167,28 @@ class PlotlyEditor extends Component {
 }
 
 PlotlyEditor.propTypes = {
+  afterAddTrace: PropTypes.func,
+  afterDeleteAnnotation: PropTypes.func,
+  afterDeleteTrace: PropTypes.func,
+  afterUpdateLayout: PropTypes.func,
+  afterUpdateTraces: PropTypes.func,
+  beforeAddTrace: PropTypes.func,
+  beforeDeleteAnnotation: PropTypes.func,
+  beforeDeleteTrace: PropTypes.func,
+  beforeUpdateLayout: PropTypes.func,
+  beforeUpdateTraces: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
-  dataSources: PropTypes.object,
+  dataSourceOptionRenderer: PropTypes.func,
   dataSourceOptions: PropTypes.array,
   dataSourceValueRenderer: PropTypes.func,
-  dataSourceOptionRenderer: PropTypes.func,
   dictionaries: PropTypes.object,
+  dataSources: PropTypes.object,
   graphDiv: PropTypes.object,
   locale: PropTypes.string,
-  revision: PropTypes.any,
   onUpdate: PropTypes.func,
-  onUpdateTraces: PropTypes.func,
-  onUpdateLayout: PropTypes.func,
-  onAddTrace: PropTypes.func,
-  onDeleteTrace: PropTypes.func,
-  onDeleteAnnotation: PropTypes.func,
   plotly: PropTypes.object,
+  revision: PropTypes.any,
 };
 
 PlotlyEditor.defaultProps = {
