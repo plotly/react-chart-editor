@@ -108,7 +108,7 @@ export default {
   'Margin Color': '⇚⇚Margin Color⇚⇚',
   'Margins and Padding': '⇚⇚⇚Margins and Padding⇚⇚⇚',
   Max: '⇚Max⇚',
-  'Mesh3d': '⇚Mesh3d⇚',
+  Mesh3d: '⇚Mesh3d⇚',
   Middle: '⇚Middle⇚',
   Min: '⇚Min⇚',
   'Multiple Values': '⇚⇚⇚Multiple Values⇚⇚⇚',
