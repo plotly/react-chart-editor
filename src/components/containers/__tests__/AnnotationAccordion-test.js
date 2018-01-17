@@ -29,9 +29,9 @@ describe('<AnnotationAccordion>', () => {
 
   it('can add annotations', () => {
     const fixture = fixtures.scatter();
-    const onUpdateLayout = jest.fn();
+    const beforeUpdateLayout = jest.fn();
     const editor = mount(
-      <TestEditor {...{...fixture, onUpdateLayout}}>
+      <TestEditor {...{...fixture, beforeUpdateLayout}}>
         <LayoutPanel name="Annotations">
           <AnnotationAccordion canAdd>
             <Numeric attr="textangle" />
@@ -42,7 +42,7 @@ describe('<AnnotationAccordion>', () => {
 
     editor.find('button.js-add-annotation-button').simulate('click');
 
-    const payload = onUpdateLayout.mock.calls[0][0];
+    const payload = beforeUpdateLayout.mock.calls[0][0];
     expect(payload.update).toEqual({'annotations[0]': {text: 'new text'}});
   });
 
@@ -50,9 +50,9 @@ describe('<AnnotationAccordion>', () => {
     const fixture = fixtures.scatter({
       layout: {annotations: [{text: 'hodor'}, {text: 'rodoh'}]},
     });
-    const onDeleteAnnotation = jest.fn();
+    const beforeDeleteAnnotation = jest.fn();
     const editor = mount(
-      <TestEditor {...{...fixture, onDeleteAnnotation}}>
+      <TestEditor {...{...fixture, beforeDeleteAnnotation}}>
         <LayoutPanel name="Annotations">
           <AnnotationAccordion canAdd>
             <Numeric attr="textangle" />
@@ -65,7 +65,7 @@ describe('<AnnotationAccordion>', () => {
       .at(0)
       .simulate('click');
 
-    const update = onDeleteAnnotation.mock.calls[0][0];
+    const update = beforeDeleteAnnotation.mock.calls[0][0];
     expect(update.annotationIndex).toBe(0);
   });
 });

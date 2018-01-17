@@ -32,9 +32,9 @@ Traces.forEach(Trace => {
     });
 
     it('sends updates to gd.data', () => {
-      const onUpdateTraces = jest.fn();
+      const beforeUpdateTraces = jest.fn();
       const wrapper = mount(
-        <Editor onUpdateTraces={onUpdateTraces} {...fixtures.scatter()}>
+        <Editor beforeUpdateTraces={beforeUpdateTraces} {...fixtures.scatter()}>
           <Panel>
             <Trace traceIndex={0} foldIndex={0}>
               <Numeric label="Marker Size" attr="marker.size" />
@@ -47,7 +47,7 @@ Traces.forEach(Trace => {
 
       const sizeUpdate = 200;
       wrapper.prop('onChange')(sizeUpdate);
-      const payload = onUpdateTraces.mock.calls[0][0];
+      const payload = beforeUpdateTraces.mock.calls[0][0];
       expect(payload).toEqual({
         update: {'marker.size': sizeUpdate},
         traceIndexes: [0],
