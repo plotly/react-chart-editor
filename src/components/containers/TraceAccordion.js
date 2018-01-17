@@ -2,7 +2,7 @@ import Fold from './Fold';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
-import {connectTraceToPlot, localize} from 'lib';
+import {connectTraceToPlot} from 'lib';
 
 const TraceFold = connectTraceToPlot(Fold);
 
@@ -41,9 +41,8 @@ TraceAccordion.contextTypes = {
 };
 
 TraceAccordion.propTypes = {
-  localize: PropTypes.func,
   children: PropTypes.node,
   canAdd: PropTypes.bool,
 };
 
-export default localize(TraceAccordion);
+export default TraceAccordion;
