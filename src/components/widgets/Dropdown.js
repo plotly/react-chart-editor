@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Select from 'react-select';
 import classnames from 'classnames';
+import {localize} from 'lib';
 
 class Dropdown extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class Dropdown extends Component {
       disabled,
       className,
       width,
+      localize: _,
     } = this.props;
 
     const dropdownStyle = {minWidth};
@@ -62,7 +64,7 @@ class Dropdown extends Component {
       <div className={dropdownContainerClass} style={dropdownStyle}>
         <Select
           backspaceToRemoveMessage={backspaceToRemoveMessage}
-          placeholder={placeholder}
+          placeholder={placeholder || _('select an option...')}
           clearable={clearable}
           value={value}
           options={opts}
@@ -71,7 +73,7 @@ class Dropdown extends Component {
           multi={multi}
           optionRenderer={optionRenderer}
           valueRenderer={valueRenderer}
-          noResultsText={noResultsText}
+          noResultsText={noResultsText || _('no results...')}
           valueKey={valueKey}
           disabled={disabled}
           className={className}
@@ -84,8 +86,6 @@ class Dropdown extends Component {
 Dropdown.defaultProps = {
   clearable: true,
   multi: false,
-  noResultsText: 'no results...',
-  placeholder: 'select an option...',
   searchable: false,
   minWidth: '120px',
   valueKey: 'value',
@@ -110,6 +110,7 @@ Dropdown.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  localize: PropTypes.func,
 };
 
-export default Dropdown;
+export default localize(Dropdown);

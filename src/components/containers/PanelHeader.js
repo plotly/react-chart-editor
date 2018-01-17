@@ -32,7 +32,15 @@ class PanelHeader extends Component {
   }
 
   render() {
-    const {children, action, allowCollapse, toggleFolds, hasOpen} = this.props;
+    const {
+      children,
+      action,
+      allowCollapse,
+      toggleFolds,
+      hasOpen,
+      localize: _
+    } = this.props;
+
     return !children && !action && !allowCollapse ? null : (
       <div className="panel__header">
         {children && children.length ? (
@@ -44,12 +52,12 @@ class PanelHeader extends Component {
               {hasOpen ? (
                 <span>
                   <ResizeDownIcon />
-                  Collapse All
+                  {_('Collapse All')}
                 </span>
               ) : (
                 <span>
                   <ResizeUpIcon />
-                  Expand All
+                  {_('Expand All')}
                 </span>
               )}
             </div>
