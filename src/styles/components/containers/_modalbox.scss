@@ -7,8 +7,8 @@
   border: var(--border-default);
   align-content: center;
   box-shadow: var(--box-shadow-base);
-  left: var(--spacing-half-unit);
-  width: calc(100% - var(--spacing-base-unit));
+  left: calc(var(--spacing-quarter-unit) * -1);
+  width: calc(100% + var(--spacing-half-unit));
   top:calc(100% + var(--spacing-quarter-unit));
   background-color: var(--color-background-top);
   @include z-index('cloud');

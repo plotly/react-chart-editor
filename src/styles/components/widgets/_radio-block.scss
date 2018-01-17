@@ -9,6 +9,7 @@
     cursor: pointer;
     min-width: 0px;
     text-align: center;
+    font-size: var(--font-size-small);
     &:not(.radio-block__option--active) {
       &:hover {
         background-color: var(--color-background-light);
