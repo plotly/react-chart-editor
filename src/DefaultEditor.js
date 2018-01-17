@@ -69,7 +69,7 @@ class DefaultEditor extends Component {
             <DataSelector label="Z" attr="z" clearable={false} hasBlank />
           </TraceAccordion>
         </Panel>
-        <Panel group="Style" name="Traces">
+        <Panel group="Style" name="Traces" requireTraces>
           <TraceAccordion>
             <Section name={_('Trace')}>
               <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
@@ -165,7 +165,7 @@ class DefaultEditor extends Component {
             </Section>
           </TraceAccordion>
         </Panel>
-        <LayoutPanel group="Style" name={_('Layout')}>
+        <LayoutPanel group="Style" name={_('Layout')} requireTraces>
           <Fold name={_('Canvas')}>
             <Radio
               attr="autosize"
@@ -212,7 +212,7 @@ class DefaultEditor extends Component {
             <Numeric label={_('Padding')} attr="margin.pad" units="px" />
           </Fold>
         </LayoutPanel>
-        <LayoutPanel group="Style" name={_('Notes')}>
+        <LayoutPanel group="Style" name={_('Notes')} requireTraces>
           <AnnotationAccordion canAdd>
             <Section name={_('Note Text')}>
               <MultiFormatTextEditor attr="text" />
@@ -291,7 +291,7 @@ class DefaultEditor extends Component {
             </Section>
           </AnnotationAccordion>
         </LayoutPanel>
-        <LayoutPanel group="Style" name={_('Axes')}>
+        <LayoutPanel group="Style" name={_('Axes')} requireTraces>
           <AxesFold name={_('Titles')}>
             <AxesSelector />
             <MultiFormatTextEditor attr="title" />
@@ -343,7 +343,7 @@ class DefaultEditor extends Component {
             <AxesSelector />
           </AxesFold>
         </LayoutPanel>
-        <LayoutPanel group="Style" name={_('Legend')}>
+        <LayoutPanel group="Style" name={_('Legend')} requireTraces>
           <Fold hideHeader>
             <Section name={_('Legend')}>
               <Radio

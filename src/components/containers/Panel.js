@@ -2,14 +2,16 @@ import PanelHeader from './PanelHeader';
 import PropTypes from 'prop-types';
 import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
-import {bem} from 'lib';
+import {bem, localize} from 'lib';
+import PanelEmpty from './PanelEmpty';
 
-export default class Panel extends Component {
+class Panel extends Component {
   constructor(props) {
     super(props);
     this.state = {
       nbOfFolds: 0,
       individualFoldStates: [],
+      hasTraces: false,
     };
     this.toggleFolds = this.toggleFolds.bind(this);
     this.toggleFold = this.toggleFold.bind(this);
@@ -63,8 +65,8 @@ export default class Panel extends Component {
   }
 
   render() {
-    const {visible} = this.props;
-    const {individualFoldStates, nbOfFolds} = this.state;
+    const {visible, requireTraces, localize: _} = this.props;
+    const {individualFoldStates, nbOfFolds, hasTraces} = this.state;
     const hasOpen =
       individualFoldStates.length > 0 &&
       individualFoldStates.some(s => s === false);
@@ -103,7 +105,18 @@ export default class Panel extends Component {
             hasOpen={hasOpen}
             onAction={onAction}
           />
-          {newChildren}
+          {requireTraces ? (
+            !hasTraces ? (
+              <PanelEmpty
+                heading={_("Looks like there aren't any traces defined yet.")}
+                message={<p>{_("Go to the 'Create' tab to define traces.")}</p>}
+              />
+            ) : (
+              newChildren
+            )
+          ) : (
+            newChildren
+          )}
         </div>
       );
     }
@@ -112,10 +125,34 @@ export default class Panel extends Component {
 
   componentDidUpdate() {
     // to get proper number of child folds and initialize component state
-    const {visible} = this.props;
-    const {nbOfFolds} = this.state;
+    const {visible, requireTraces} = this.props;
+    const {layout} = this.context;
+    const {nbOfFolds, hasTraces} = this.state;
 
     if (visible) {
+      /**
+       * Check if there is any trace data
+       */
+      if (requireTraces) {
+        /* eslint-disable */
+        if (
+          Object.keys(layout.xaxis).length === 0 ||
+          Object.keys(layout.yaxis).length === 0
+        ) {
+          if (hasTraces) {
+            this.setState({
+              hasTraces: false,
+            });
+          }
+        } else {
+          if (!hasTraces) {
+            this.setState({
+              hasTraces: true,
+            });
+          }
+        }
+      }
+
       const currentNbOfFolds = document.getElementsByClassName('fold').length;
       if (nbOfFolds !== currentNbOfFolds) {
         /* eslint-disable */
@@ -141,6 +178,8 @@ export default class Panel extends Component {
 Panel.propTypes = {
   children: PropTypes.node,
   visible: PropTypes.bool,
+  requireTraces: PropTypes.bool,
+  localize: PropTypes.func,
 };
 
 Panel.contextTypes = {
@@ -157,3 +196,5 @@ Panel.childContextTypes = {
   individualFoldStates: PropTypes.array,
   toggleFold: PropTypes.func,
 };
+
+export default localize(Panel);
