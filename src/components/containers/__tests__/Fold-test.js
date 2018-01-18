@@ -32,9 +32,9 @@ describe('<Fold>', () => {
   });
 
   it('calls deleteContainer when function present and canDelete is true', () => {
-    const onDeleteTrace = jest.fn();
+    const beforeDeleteTrace = jest.fn();
     mount(
-      <TestEditor {...fixtures.scatter()} onDeleteTrace={onDeleteTrace}>
+      <TestEditor {...fixtures.scatter()} beforeDeleteTrace={beforeDeleteTrace}>
         <Panel>
           <TraceFold traceIndex={0} canDelete={true} foldIndex={0}>
             <Numeric attr="opacity" />
@@ -45,7 +45,7 @@ describe('<Fold>', () => {
       .find('.js-fold__delete')
       .simulate('click');
 
-    const payload = onDeleteTrace.mock.calls[0][0];
+    const payload = beforeDeleteTrace.mock.calls[0][0];
     expect(payload).toEqual({traceIndexes: [0]});
   });
 });
