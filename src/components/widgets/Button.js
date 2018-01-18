@@ -8,7 +8,15 @@ class Button extends Component {
   }
 
   render() {
-    const {variant, className, icon, label, children, ...rest} = this.props;
+    const {
+      children,
+      className,
+      group,
+      icon,
+      label,
+      variant,
+      ...rest
+    } = this.props;
 
     let classes = `button`;
 
@@ -18,7 +26,13 @@ class Button extends Component {
       classes += ` button--default`;
     }
 
-    classes += ` ${className}`;
+    if (group) {
+      classes += ' button--menu';
+    }
+
+    if (className) {
+      classes += ` ${className}`;
+    }
 
     const Icon = icon ? (
       <div className={bem('button', 'icon')}>{icon}</div>
@@ -36,11 +50,12 @@ class Button extends Component {
 }
 
 Button.propTypes = {
-  variant: PropTypes.string,
-  label: PropTypes.any,
-  className: PropTypes.any,
   children: PropTypes.node,
+  className: PropTypes.any,
+  group: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+  label: PropTypes.any,
+  variant: PropTypes.string,
 };
 
 export default Button;

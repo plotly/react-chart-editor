@@ -23,6 +23,9 @@ class PanelsWithSidebar extends Component {
   }
 
   renderGroup(group, i) {
+    if (group.type === 'Button') {
+      return <div className="sidebar__group">{group.component}</div>;
+    }
     return (
       <SidebarGroup
         key={i}
@@ -53,16 +56,28 @@ class PanelsWithSidebar extends Component {
       group = child.props.group;
       name = child.props.name;
 
-      if (groupLookup.hasOwnProperty(group)) {
-        groupIndex = groupLookup[group];
-        obj = groups[groupIndex];
-      } else {
+      if (child.type.name === 'Button') {
+        if (groupLookup.hasOwnProperty(group)) {
+          throw new Error('cannot have 2 menu buttons with same name');
+        }
         groupLookup[group] = groups.length;
-        obj = {name: group, panels: []};
+        obj = {
+          name: group,
+          type: 'Button',
+          component: child,
+        };
         groups.push(obj);
+      } else {
+        if (groupLookup.hasOwnProperty(group)) {
+          groupIndex = groupLookup[group];
+          obj = groups[groupIndex];
+        } else {
+          groupLookup[group] = groups.length;
+          obj = {name: group, panels: []};
+          groups.push(obj);
+        }
+        obj.panels.push(name);
       }
-
-      obj.panels.push(name);
     }
 
     return groups;

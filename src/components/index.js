@@ -22,6 +22,8 @@ import {
   TraceSelector,
 } from './fields';
 
+import Button from './widgets/Button';
+
 import {
   AnnotationAccordion,
   Fold,
@@ -70,4 +72,5 @@ export {
   TraceSelector,
   LayoutPanel,
   AxesFold,
+  Button,
 };
