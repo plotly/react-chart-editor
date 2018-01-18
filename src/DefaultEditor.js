@@ -442,18 +442,6 @@ class DefaultEditor extends Component {
             </Section>
           </Fold>
         </TraceRequiredPanel>
-        <Button
-          group="Save"
-          variant="primary"
-          label={_('Save')}
-          onClick={() => console.warn('ok')}
-        />
-        <Button
-          group="Delete"
-          variant="secondary"
-          label={_('Delete')}
-          onClick={() => console.warn('ok')}
-        />
       </PanelMenuWrapper>
     );
   }
