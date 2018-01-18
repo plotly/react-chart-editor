@@ -17,16 +17,13 @@ class TraceRequiredPanel extends Component {
     const {visible} = this.props;
     const {fullData} = this.context;
     const {hasTraces} = this.state;
-
     if (visible) {
-      /**
-       * Check if there is any trace data
-       */
       if (fullData.filter(trace => trace.visible).length === 0 && hasTraces) {
         this.setState({
           hasTraces: false,
         });
-      } else {
+      }
+      if (fullData.filter(trace => trace.visible).length > 0 && !hasTraces) {
         this.setState({
           hasTraces: true,
         });
