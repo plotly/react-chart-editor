@@ -31,7 +31,6 @@ import {
   TraceMarkerSection,
   TraceRequiredPanel,
   TraceSelector,
-  LayoutPanel,
   AxesFold,
 } from './components';
 import {localize} from './lib';
