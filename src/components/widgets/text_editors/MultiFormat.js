@@ -175,12 +175,16 @@ class MultiFormatTextEditor extends Component {
     };
 
     return (
-      <div className="confirmation-panel">
-        <div className="confirmation-panel__content">
-          <h3 className="confirmation-panel__header">{_('Heads up!')}</h3>
-          <div className="confirmation-panel__message">
-            <p className="confirmation-panel__message-primary">{messages[0]}</p>
-            <p className="confirmation-panel__message-secondary">
+      <div className="multi-format-editor__confirmation-panel">
+        <div className="multi-format-editor__confirmation-panel__content">
+          <h3 className="multi-format-editor__confirmation-panel__header">
+            {_('Heads up!')}
+          </h3>
+          <div className="multi-format-editor__confirmation-panel__message">
+            <p className="multi-format-editor__confirmation-panel__message-primary">
+              {messages[0]}
+            </p>
+            <p className="multi-format-editor__confirmation-panel__message-secondary">
               {messages[1]}
             </p>
           </div>
@@ -188,14 +192,14 @@ class MultiFormatTextEditor extends Component {
         <div className="confirmation-panel__actions">
           <Button
             variant="default"
-            className="confirmation-panel__cancel-button"
+            className="multi-format-editor__confirmation-panel__cancel-button"
             onClick={onCancel}
           >
             {_('Go back')}
           </Button>
           <Button
             variant="primary"
-            className="confirmation-panel__continue-button"
+            className="multi-format-editor__confirmation-panel__continue-button"
             onClick={onContinue}
           >
             {_('Continue')}
@@ -270,9 +274,11 @@ class MultiFormatTextEditor extends Component {
             {ModeTabsText[1]}
           </div>
         </div>
-        <div className={`multi-format-editor__content ${currentTab}`}>
+        <div
+          className={`multi-format-editor__content__wrapper__${currentTab.toLowerCase()}`}
+        >
           <Editor
-            className="editor-content"
+            className={`multi-format-editor__${currentTab.toLowerCase()}`}
             onChange={onChange}
             placeholder={placeholder}
             value={value}
@@ -293,11 +299,7 @@ class MultiFormatTextEditor extends Component {
       this.renderConfirmationPanel(nextTab !== null) ||
       this.renderEditor(nextTab === null);
 
-    return (
-      <div className="multi-format-editor__root multi-format-editor">
-        {content}
-      </div>
-    );
+    return <div className="multi-format-editor__root">{content}</div>;
   }
 }
 
