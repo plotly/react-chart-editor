@@ -41,8 +41,9 @@
   &__empty {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    right: 0;
+    width: var(--panel-width);
+    border-right:var(--border-default);
     height: 100%;
     padding: var(--spacing-half-unit);
     background-color: var(--panel-background);

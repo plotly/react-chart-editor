@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
 import {bem} from 'lib';
-import PanelEmpty from './PanelEmpty';
 
 class Panel extends Component {
   constructor(props) {
@@ -11,7 +10,6 @@ class Panel extends Component {
     this.state = {
       nbOfFolds: 0,
       individualFoldStates: [],
-      hasTraces: false,
     };
     this.toggleFolds = this.toggleFolds.bind(this);
     this.toggleFold = this.toggleFold.bind(this);
@@ -64,9 +62,41 @@ class Panel extends Component {
     return array.map((e, i) => i !== lastIndex);
   }
 
+  calculateFolds() {
+    // to get proper number of child folds and initialize component state
+    const {visible} = this.props;
+    const {nbOfFolds} = this.state;
+
+    if (visible) {
+      const currentNbOfFolds = document.getElementsByClassName('fold').length;
+      if (nbOfFolds !== currentNbOfFolds) {
+        if (this.isAnnotationAccordion() || this.isTraceAccordion()) {
+          this.setState({
+            nbOfFolds: currentNbOfFolds,
+            individualFoldStates: this.closeAllButLast(
+              new Array(currentNbOfFolds).fill(true)
+            ),
+          });
+        } else {
+          this.setState({
+            nbOfFolds: currentNbOfFolds,
+            individualFoldStates: new Array(currentNbOfFolds).fill(false),
+          });
+        }
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    this.calculateFolds();
+  }
+  componentDidMount() {
+    this.calculateFolds();
+  }
+
   render() {
-    const {visible, requireTraces} = this.props;
-    const {individualFoldStates, nbOfFolds, hasTraces} = this.state;
+    const {visible} = this.props;
+    const {individualFoldStates, nbOfFolds} = this.state;
     const hasOpen =
       individualFoldStates.length > 0 &&
       individualFoldStates.some(s => s === false);
@@ -105,70 +135,17 @@ class Panel extends Component {
             hasOpen={hasOpen}
             onAction={onAction}
           />
-          {requireTraces && !hasTraces ? <PanelEmpty /> : newChildren}
+          {newChildren}
         </div>
       );
     }
     return null;
-  }
-
-  componentDidUpdate() {
-    // to get proper number of child folds and initialize component state
-    const {visible, requireTraces} = this.props;
-    const {layout} = this.context;
-    const {nbOfFolds, hasTraces} = this.state;
-
-    if (visible) {
-      /**
-       * Check if there is any trace data
-       */
-      if (requireTraces) {
-        /* eslint-disable */
-        if (
-          Object.keys(layout.xaxis).length === 0 ||
-          Object.keys(layout.yaxis).length === 0
-        ) {
-          if (hasTraces) {
-            this.setState({
-              hasTraces: false,
-            });
-          }
-        } else {
-          if (!hasTraces) {
-            this.setState({
-              hasTraces: true,
-            });
-          }
-        }
-        /* eslint-enable */
-      }
-
-      const currentNbOfFolds = document.getElementsByClassName('fold').length;
-      if (nbOfFolds !== currentNbOfFolds) {
-        /* eslint-disable */
-        if (this.isAnnotationAccordion() || this.isTraceAccordion()) {
-          this.setState({
-            nbOfFolds: currentNbOfFolds,
-            individualFoldStates: this.closeAllButLast(
-              new Array(currentNbOfFolds).fill(true)
-            ),
-          });
-        } else {
-          this.setState({
-            nbOfFolds: currentNbOfFolds,
-            individualFoldStates: new Array(currentNbOfFolds).fill(false),
-          });
-        }
-        /* eslint-enable */
-      }
-    }
   }
 }
 
 Panel.propTypes = {
   children: PropTypes.node,
   visible: PropTypes.bool,
-  requireTraces: PropTypes.bool,
 };
 
 Panel.contextTypes = {

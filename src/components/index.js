@@ -30,6 +30,7 @@ import {
   Section,
   TraceAccordion,
   TraceMarkerSection,
+  TraceRequiredPanel,
   LayoutPanel,
   AxesFold,
 } from './containers';
@@ -65,6 +66,7 @@ export {
   SymbolSelector,
   TraceAccordion,
   TraceMarkerSection,
+  TraceRequiredPanel,
   TraceSelector,
   LayoutPanel,
   AxesFold,
