@@ -4,7 +4,7 @@ import {
   ColorPicker,
   Fold,
   PanelMenuWrapper,
-  MultiFormatTextEditor,
+  TextEditor,
   Radio,
   Dropdown,
   Info,
@@ -64,7 +64,7 @@ export default class CustomEditor extends Component {
                 ]}
               />
               <ColorPicker label="ColorPicker" attr="plot_bgcolor" show />
-              <MultiFormatTextEditor
+              <TextEditor
                 attr="title"
                 label="MultiFormat TextEditor"
               />

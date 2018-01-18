@@ -6,7 +6,7 @@ import FontSelector from './FontSelector';
 import Flaglist from './Flaglist';
 import Info from './Info';
 import Radio from './Radio';
-import MultiFormatTextEditor from './MultiFormatTextEditor';
+import TextEditor from './TextEditor';
 import DataSelector from './DataSelector';
 import Numeric from './Numeric';
 import SymbolSelector from './SymbolSelector';
@@ -38,7 +38,7 @@ export {
   LineDashSelector,
   LineShapeSelector,
   Radio,
-  MultiFormatTextEditor,
+  TextEditor,
   DataSelector,
   Numeric,
   SymbolSelector,

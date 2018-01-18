@@ -127,7 +127,7 @@ All Fields except `<Info />` accept an `attr` property to bind them to a key in 
 * `<Dropdown />`: renders as a dropdown menu useful for mutually-exclusive high-cardinality enumerable values
 * `<ColorPicker />`: renders as a popup color-picker, useful for CSS color hex value strings
 * `<Flaglist />`: renders as a list of checkboxes, useful for `+`-joined flag lists like `data[].mode`
-* `<MultiFormatTextEditor />`: renders as a WYSIWYG editor, useful for text like `layout.title`
+* `<TextEditor />`: renders as a WYSIWYG editor, useful for text like `layout.title`, takes props: `latexOnly`, `richTextOnly`, `htmlOnly` if no format props given, defaults to the `MultiFormat` text editor (latex && richText && html)
 
 <p align="center">
   <img src="examples/components.png" alt="Components" width="432" height="692" border="1">
