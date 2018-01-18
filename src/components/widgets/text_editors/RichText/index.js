@@ -18,7 +18,6 @@ import {
   STYLES_TO_HTML_TAGS,
   STYLE_MAP,
   INLINE_STYLES,
-  LINK_EDITOR_HORIZONTAL_OFFSET,
 } from './configuration';
 
 // Components
@@ -37,7 +36,7 @@ import {
   cursorHasLink,
 } from './DraftCommands';
 import {findLinkEntities} from './decoratorStrategies';
-import getSelectionCoordinates from './getSelectionCoordinates';
+import getCoordinates from './getSelectionCoordinates';
 
 class RichText extends Component {
   constructor(props, context) {
@@ -312,17 +311,7 @@ class RichText extends Component {
     const linkEntity = getEntityByKey(selectedLinkID);
     const linkURL = linkEntity.getData().url;
 
-    // Locate user selection in document
-    const parentOffset = this.getParentContainerVerticalOffset();
-    const selection = window.getSelection();
-    const selectionCoordinates = getSelectionCoordinates(
-      selection,
-      parentOffset
-    );
-    const coordinates = {
-      x: LINK_EDITOR_HORIZONTAL_OFFSET,
-      y: selectionCoordinates.y,
-    };
+    const coordinates = getCoordinates();
 
     return (
       <LinkEditor

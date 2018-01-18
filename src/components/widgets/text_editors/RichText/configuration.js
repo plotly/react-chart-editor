@@ -86,8 +86,3 @@ export const INLINE_STYLES = [
     value: LINK,
   },
 ];
-
-export const EDITOR_TEXT_HEIGHT = 15;
-// eslint-disable-next-line no-magic-numbers
-export const LINK_EDITOR_VERTICAL_OFFSET = EDITOR_TEXT_HEIGHT + 5;
-export const LINK_EDITOR_HORIZONTAL_OFFSET = 30;
