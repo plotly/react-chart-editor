@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import PanelEmpty from './PanelEmpty';
-import {LayoutPanel} from '../../index';
 import PropTypes from 'prop-types';
+import PanelEmpty from './PanelEmpty';
+import Panel from './Panel';
+import {connectLayoutToPlot} from 'lib';
+
+const LayoutPanel = connectLayoutToPlot(Panel);
 
 class TraceRequiredPanel extends Component {
   constructor(props) {
@@ -12,17 +15,14 @@ class TraceRequiredPanel extends Component {
   }
   checkTraceExistence() {
     const {visible} = this.props;
-    const {layout} = this.context;
+    const {fullData} = this.context;
     const {hasTraces} = this.state;
 
     if (visible) {
       /**
        * Check if there is any trace data
        */
-      if (
-        Object.keys(layout.xaxis).length === 0 ||
-        Object.keys(layout.yaxis).length === 0
-      ) {
+      if (fullData.filter(trace => trace.visible).length === 0) {
         if (hasTraces) {
           this.setState({
             hasTraces: false,
@@ -70,7 +70,7 @@ TraceRequiredPanel.defaultProps = {
 };
 
 TraceRequiredPanel.contextTypes = {
-  layout: PropTypes.object,
+  fullData: PropTypes.array,
 };
 
 export default TraceRequiredPanel;
