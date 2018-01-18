@@ -4,7 +4,7 @@ import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
 import {bem} from 'lib';
 
-export default class Panel extends Component {
+class Panel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,6 +62,38 @@ export default class Panel extends Component {
     return array.map((e, i) => i !== lastIndex);
   }
 
+  calculateFolds() {
+    // to get proper number of child folds and initialize component state
+    const {visible} = this.props;
+    const {nbOfFolds} = this.state;
+
+    if (visible) {
+      const currentNbOfFolds = document.getElementsByClassName('fold').length;
+      if (nbOfFolds !== currentNbOfFolds) {
+        if (this.isAnnotationAccordion() || this.isTraceAccordion()) {
+          this.setState({
+            nbOfFolds: currentNbOfFolds,
+            individualFoldStates: this.closeAllButLast(
+              new Array(currentNbOfFolds).fill(true)
+            ),
+          });
+        } else {
+          this.setState({
+            nbOfFolds: currentNbOfFolds,
+            individualFoldStates: new Array(currentNbOfFolds).fill(false),
+          });
+        }
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    this.calculateFolds();
+  }
+  componentDidMount() {
+    this.calculateFolds();
+  }
+
   render() {
     const {visible} = this.props;
     const {individualFoldStates, nbOfFolds} = this.state;
@@ -109,33 +141,6 @@ export default class Panel extends Component {
     }
     return null;
   }
-
-  componentDidUpdate() {
-    // to get proper number of child folds and initialize component state
-    const {visible} = this.props;
-    const {nbOfFolds} = this.state;
-
-    if (visible) {
-      const currentNbOfFolds = document.getElementsByClassName('fold').length;
-      if (nbOfFolds !== currentNbOfFolds) {
-        /* eslint-disable */
-        if (this.isAnnotationAccordion() || this.isTraceAccordion()) {
-          this.setState({
-            nbOfFolds: currentNbOfFolds,
-            individualFoldStates: this.closeAllButLast(
-              new Array(currentNbOfFolds).fill(true)
-            ),
-          });
-        } else {
-          this.setState({
-            nbOfFolds: currentNbOfFolds,
-            individualFoldStates: new Array(currentNbOfFolds).fill(false),
-          });
-        }
-        /* eslint-enable */
-      }
-    }
-  }
 }
 
 Panel.propTypes = {
@@ -157,3 +162,5 @@ Panel.childContextTypes = {
   individualFoldStates: PropTypes.array,
   toggleFold: PropTypes.func,
 };
+
+export default Panel;

@@ -184,7 +184,8 @@ class MultiFormatTextEditor extends Component {
               {messages[1]}
             </p>
           </div>
-
+        </div>
+        <div className="confirmation-panel__actions">
           <Button
             variant="default"
             className="confirmation-panel__cancel-button"

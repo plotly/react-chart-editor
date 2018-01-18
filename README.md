@@ -158,6 +158,7 @@ All Fields except `<Info />` accept an `attr` property to bind them to a key in 
 
 * `<TraceAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to traces via `connectTraceToPlot()`.
 * `<LayoutPanel />`: `<Panel />` whose children are connected to the `layout` figure key
+* `<TraceRequiredPanel />`: `<LayoutPanel />` renders `<PanelEmpty />` if no trace data is set
 * `<AnnotationAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to annotations via `connectAnnotationToLayout()`. For use in a `<LayoutPanel />`.
 * `<AxesFold />`: `<Fold />` whose children are bound to axis-specific keys. For use in a `<LayoutPanel />` in concert with `<AxesSelector />` (see below).
 * `<TraceMarkerSection />`: `<Section />` with trace-specific name handling. For use in containers bound to traces e.g. as children of `<TraceAccordion />`.

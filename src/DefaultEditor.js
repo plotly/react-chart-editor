@@ -29,8 +29,8 @@ import {
   SymbolSelector,
   TraceAccordion,
   TraceMarkerSection,
+  TraceRequiredPanel,
   TraceSelector,
-  LayoutPanel,
   AxesFold,
 } from './components';
 import {localize} from './lib';
@@ -69,7 +69,8 @@ class DefaultEditor extends Component {
             <DataSelector label="Z" attr="z" clearable={false} hasBlank />
           </TraceAccordion>
         </Panel>
-        <Panel group="Style" name="Traces">
+
+        <TraceRequiredPanel group="Style" name="Traces">
           <TraceAccordion>
             <Section name={_('Trace')}>
               <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
@@ -164,8 +165,9 @@ class DefaultEditor extends Component {
               />
             </Section>
           </TraceAccordion>
-        </Panel>
-        <LayoutPanel group="Style" name={_('Layout')}>
+        </TraceRequiredPanel>
+
+        <TraceRequiredPanel group="Style" name={_('Layout')}>
           <Fold name={_('Canvas')}>
             <Radio
               attr="autosize"
@@ -211,8 +213,9 @@ class DefaultEditor extends Component {
             <Numeric label={_('Right')} attr="margin.r" units="px" />
             <Numeric label={_('Padding')} attr="margin.pad" units="px" />
           </Fold>
-        </LayoutPanel>
-        <LayoutPanel group="Style" name={_('Notes')}>
+        </TraceRequiredPanel>
+
+        <TraceRequiredPanel group="Style" name={_('Notes')}>
           <AnnotationAccordion canAdd>
             <Section name={_('Note Text')}>
               <MultiFormatTextEditor attr="text" />
@@ -290,8 +293,9 @@ class DefaultEditor extends Component {
               <Numeric label={_('Position')} attr="y" hideArrows />
             </Section>
           </AnnotationAccordion>
-        </LayoutPanel>
-        <LayoutPanel group="Style" name={_('Axes')}>
+        </TraceRequiredPanel>
+
+        <TraceRequiredPanel group="Style" name={_('Axes')}>
           <AxesFold name={_('Titles')}>
             <AxesSelector />
             <MultiFormatTextEditor attr="title" />
@@ -342,8 +346,9 @@ class DefaultEditor extends Component {
           <AxesFold name={_('Layout')}>
             <AxesSelector />
           </AxesFold>
-        </LayoutPanel>
-        <LayoutPanel group="Style" name={_('Legend')}>
+        </TraceRequiredPanel>
+
+        <TraceRequiredPanel group="Style" name={_('Legend')}>
           <Fold hideHeader>
             <Section name={_('Legend')}>
               <Radio
@@ -435,7 +440,7 @@ class DefaultEditor extends Component {
               />
             </Section>
           </Fold>
-        </LayoutPanel>
+        </TraceRequiredPanel>
       </PanelMenuWrapper>
     );
   }
