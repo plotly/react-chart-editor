@@ -22,18 +22,14 @@ class TraceRequiredPanel extends Component {
       /**
        * Check if there is any trace data
        */
-      if (fullData.filter(trace => trace.visible).length === 0) {
-        if (hasTraces) {
-          this.setState({
-            hasTraces: false,
-          });
-        }
+      if (fullData.filter(trace => trace.visible).length === 0 && hasTraces) {
+        this.setState({
+          hasTraces: false,
+        });
       } else {
-        if (!hasTraces) {
-          this.setState({
-            hasTraces: true,
-          });
-        }
+        this.setState({
+          hasTraces: true,
+        });
       }
     }
   }
