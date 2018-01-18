@@ -1,6 +1,6 @@
 {
   "name": "react-plotly.js-editor",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "license": "MIT",
   "description": "plotly.js chart editor react component UI",
   "author": "Plotly, Inc.",
