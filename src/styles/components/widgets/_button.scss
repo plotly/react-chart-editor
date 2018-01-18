@@ -51,7 +51,9 @@ button {
       padding-left: 0;
     }
   }
-
+  &--isMenu {
+    @include button(menu);
+  }
   &--default {
     @include button();
   }
