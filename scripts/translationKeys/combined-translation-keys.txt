@@ -45,10 +45,10 @@ Common Case: An 'All' tab might display this message because the X and Y tabs co
 Compare data on hover                                                                                                          // plotly.js: components/modebar/buttons.js:167
 Connect                                                                                                                        // react-plotly.js-editor: /DefaultEditor.js:162
 Connect Gaps                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:159
-Continue                                                                                                                       // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:201
-Continuing will convert your LaTeX expression into raw text.                                                                   // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:122
-Continuing will convert your note to LaTeX-style text.                                                                         // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:117
-Continuing will remove your expression.                                                                                        // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:127
+Continue                                                                                                                       // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:205
+Continuing will convert your LaTeX expression into raw text.                                                                   // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:122
+Continuing will convert your note to LaTeX-style text.                                                                         // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:117
+Continuing will remove your expression.                                                                                        // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:127
 Contour                                                                                                                        // react-plotly.js-editor: /components/fields/TraceSelector.js:26
 Custom                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:176
 Custom Color                                                                                                                   // react-plotly.js-editor: /components/widgets/ColorPicker.js:52
@@ -58,9 +58,11 @@ Double-click on legend to isolate one trace                                     
 Double-click to zoom back out                                                                                                  // plotly.js: plots/cartesian/dragbox.js:335
 Download plot as a png                                                                                                         // plotly.js: components/modebar/buttons.js:52
 Edit in Chart Studio                                                                                                           // plotly.js: components/modebar/buttons.js:76
-Edit in HTML                                                                                                                   // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:35
-Edit in Rich Text                                                                                                              // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:246
+Edit in HTML                                                                                                                   // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:35
+Edit in Rich Text                                                                                                              // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:250
+Enter LaTeX formatted text                                                                                                     // react-plotly.js-editor: /components/fields/TextEditor.js:34
 Enter Link URL                                                                                                                 // react-plotly.js-editor: /components/widgets/text_editors/RichText/LinkEditor.js:92
+Enter html formatted text                                                                                                      // react-plotly.js-editor: /components/fields/TextEditor.js:51
 Expand All                                                                                                                     // react-plotly.js-editor: /components/containers/PanelHeader.js:60
 Filled Area                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:101
 Fixed Height                                                                                                                   // react-plotly.js-editor: /DefaultEditor.js:180
@@ -68,9 +70,9 @@ Fixed Width                                                                     
 Font Color                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:197
 Font Size                                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:193
 Global Font                                                                                                                    // react-plotly.js-editor: /DefaultEditor.js:199
-Go back                                                                                                                        // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:194
+Go back                                                                                                                        // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:198
 Go to the 'Create' tab to define traces.                                                                                       // react-plotly.js-editor: /components/containers/PanelEmpty.js:12
-Heads up!                                                                                                                      // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:180
+Heads up!                                                                                                                      // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:181
 Heatmap                                                                                                                        // react-plotly.js-editor: /components/fields/TraceSelector.js:21
 Heatmap GL                                                                                                                     // react-plotly.js-editor: /components/fields/TraceSelector.js:36
 Hide                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:232
@@ -78,8 +80,8 @@ Histogram                                                                       
 Horizontal                                                                                                                     // react-plotly.js-editor: /DefaultEditor.js:123
 Horizontal Positioning                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:249
 IE only supports svg.  Changing format to svg.                                                                                 // plotly.js: components/modebar/buttons.js:60
-LaTeX                                                                                                                          // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:30
-LaTeX is a math typesetting language that doesn't work with rich text.                                                         // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:115
+LaTeX                                                                                                                          // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:30
+LaTeX is a math typesetting language that doesn't work with rich text.                                                         // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:115
 Lasso Select                                                                                                                   // plotly.js: components/modebar/buttons.js:112
 Layout                                                                                                                         // react-plotly.js-editor: /DefaultEditor.js:170
 Left                                                                                                                           // react-plotly.js-editor: /DefaultEditor.js:212
@@ -126,8 +128,8 @@ Reset camera to last save                                                       
 Reset view                                                                                                                     // plotly.js: components/modebar/buttons.js:582
 Reset views                                                                                                                    // plotly.js: components/modebar/buttons.js:528
 Reversed                                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:438
-Rich Text                                                                                                                      // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:25
-Rich text is incompatible with LaTeX.                                                                                          // react-plotly.js-editor: /components/widgets/text_editors/MultiFormatTextEditor.js:121
+Rich Text                                                                                                                      // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:25
+Rich text is incompatible with LaTeX.                                                                                          // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:121
 Right                                                                                                                          // react-plotly.js-editor: /DefaultEditor.js:213
 Sankey                                                                                                                         // react-plotly.js-editor: /components/fields/TraceSelector.js:39
 Satellite Map                                                                                                                  // react-plotly.js-editor: /components/fields/TraceSelector.js:38

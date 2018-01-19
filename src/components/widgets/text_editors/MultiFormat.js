@@ -189,7 +189,7 @@ class MultiFormatTextEditor extends Component {
             </p>
           </div>
         </div>
-        <div className="confirmation-panel__actions">
+        <div className="multi-format-editor__confirmation-panel__actions">
           <Button
             variant="default"
             className="multi-format-editor__confirmation-panel__cancel-button"
