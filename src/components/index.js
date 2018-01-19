@@ -24,16 +24,19 @@ import {
 
 import {
   AnnotationAccordion,
+  AxesFold,
   Fold,
+  LayoutPanel,
   MenuPanel,
   Panel,
   Section,
   TraceAccordion,
   TraceMarkerSection,
   TraceRequiredPanel,
-  LayoutPanel,
-  AxesFold,
+  SingleSidebarItem,
 } from './containers';
+
+import {Button} from './widgets';
 
 import PanelMenuWrapper from './PanelMenuWrapper';
 
@@ -70,4 +73,6 @@ export {
   TraceSelector,
   LayoutPanel,
   AxesFold,
+  Button,
+  SingleSidebarItem,
 };

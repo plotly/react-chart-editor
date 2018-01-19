@@ -109,6 +109,11 @@
     border-bottom: var(--border-light);
     position: relative;
     overflow: hidden;
+
+    &--single {
+      margin-top: 15px;
+    }
+
     &::before {
       content: '';
       position: absolute;

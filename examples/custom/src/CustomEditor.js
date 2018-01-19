@@ -12,6 +12,8 @@ import {
   Numeric,
   LayoutPanel,
   MenuPanel,
+  Button,
+  SingleSidebarItem,
 } from 'react-plotly.js-editor';
 
 export default class CustomEditor extends Component {
@@ -69,6 +71,20 @@ export default class CustomEditor extends Component {
             </Section>
           </Fold>
         </LayoutPanel>
+        <SingleSidebarItem>
+          <Button
+            variant="primary"
+            label="save"
+            onClick={() => alert('save button clicked!')}
+          />
+        </SingleSidebarItem>
+        <SingleSidebarItem>
+          <Button
+            variant="secondary"
+            label="clear"
+            onClick={() => alert('clear button clicked!')}
+          />
+        </SingleSidebarItem>
       </PanelMenuWrapper>
     );
   }

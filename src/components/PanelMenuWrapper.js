@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, {cloneElement, Component} from 'react';
 import SidebarGroup from './sidebar/SidebarGroup';
 import {bem} from 'lib';
+import SingleSidebarItem from './containers/SingleSidebarItem';
 
 class PanelsWithSidebar extends Component {
   constructor(props) {
@@ -15,57 +16,59 @@ class PanelsWithSidebar extends Component {
     };
 
     this.setPanel = this.setPanel.bind(this);
-    this.renderGroup = this.renderGroup.bind(this);
+    this.renderSection = this.renderSection.bind(this);
   }
 
   setPanel(group, panel) {
     this.setState({group, panel});
   }
 
-  renderGroup(group, i) {
+  renderSection(section, i) {
+    if (section.type && section.type === SingleSidebarItem) {
+      const sectionWithKey = cloneElement(section, {key: i});
+      return <div>{sectionWithKey}</div>;
+    }
     return (
       <SidebarGroup
         key={i}
         selectedGroup={this.state.group}
         selectedPanel={this.state.panel}
-        group={group.name}
-        panels={group.panels}
+        group={section.name}
+        panels={section.panels}
         onChangeGroup={this.setPanel}
       />
     );
   }
 
   computeMenuOptions(props) {
-    let obj, child, group, name;
-
-    let {children} = props;
-
-    if (!Array.isArray(children)) {
-      children = [children];
-    }
-
+    const {children} = props;
+    const sections = [];
     const groupLookup = {};
     let groupIndex;
-    const groups = [];
 
-    for (let i = 0; i < children.length; i++) {
-      child = children[i];
-      group = child.props.group;
-      name = child.props.name;
+    React.Children.forEach(children, child => {
+      const group = child.props.group;
+      const name = child.props.name;
 
-      if (groupLookup.hasOwnProperty(group)) {
-        groupIndex = groupLookup[group];
-        obj = groups[groupIndex];
-      } else {
-        groupLookup[group] = groups.length;
-        obj = {name: group, panels: []};
-        groups.push(obj);
+      if (group && name) {
+        let obj;
+        if (groupLookup.hasOwnProperty(group)) {
+          groupIndex = groupLookup[group];
+          obj = sections[groupIndex];
+        } else {
+          groupLookup[group] = sections.length;
+          obj = {name: group, panels: []};
+          sections.push(obj);
+        }
+        obj.panels.push(name);
       }
 
-      obj.panels.push(name);
-    }
+      if (child.type === SingleSidebarItem) {
+        sections.push(child);
+      }
+    });
 
-    return groups;
+    return sections;
   }
 
   render() {
@@ -77,7 +80,7 @@ class PanelsWithSidebar extends Component {
 
     return (
       <div className={bem('plotly-editor', 'wrapper')}>
-        <div className={bem('sidebar')}>{menuOpts.map(this.renderGroup)}</div>
+        <div className={bem('sidebar')}>{menuOpts.map(this.renderSection)}</div>
         {children.map((child, i) =>
           cloneElement(child, {
             key: i,

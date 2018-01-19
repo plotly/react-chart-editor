@@ -46,6 +46,8 @@ import {
   TraceSelector,
   LayoutPanel,
   AxesFold,
+  Button,
+  SingleSidebarItem,
 } from './components';
 
 export {
@@ -92,6 +94,8 @@ export {
   walkObject,
   LayoutPanel,
   AxesFold,
+  Button,
+  SingleSidebarItem,
 };
 
 export default PlotlyEditor;
