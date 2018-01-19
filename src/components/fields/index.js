@@ -20,7 +20,6 @@ import {
   LayoutNumericFractionInverse,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './lineSelectors';
-import Button from '../widgets/Button';
 
 export {
   AnnotationArrowRef,
@@ -44,5 +43,4 @@ export {
   Numeric,
   SymbolSelector,
   TraceSelector,
-  Button,
 };

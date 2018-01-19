@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {cloneElement, Component} from 'react';
 import SidebarGroup from './sidebar/SidebarGroup';
 import {bem} from 'lib';
-import SingleSidebarItem from './sidebar/SingleSidebarItem';
+import SingleSidebarItem from './containers/SingleSidebarItem';
 
 class PanelsWithSidebar extends Component {
   constructor(props) {

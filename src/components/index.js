@@ -20,7 +20,6 @@ import {
   Numeric,
   SymbolSelector,
   TraceSelector,
-  Button,
 } from './fields';
 
 import {
@@ -36,6 +35,8 @@ import {
   TraceRequiredPanel,
   SingleSidebarItem,
 } from './containers';
+
+import {Button} from './widgets';
 
 import PanelMenuWrapper from './PanelMenuWrapper';
 
