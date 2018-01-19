@@ -26,10 +26,6 @@ class Button extends Component {
       classes += ` button--default`;
     }
 
-    if (group) {
-      classes += ' button--menu';
-    }
-
     if (className) {
       classes += ` ${className}`;
     }
@@ -52,7 +48,6 @@ class Button extends Component {
 Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.any,
-  group: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   label: PropTypes.any,
   variant: PropTypes.string,

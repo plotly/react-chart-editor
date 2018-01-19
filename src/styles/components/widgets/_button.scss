@@ -51,8 +51,8 @@ button {
       padding-left: 0;
     }
   }
-  &--isMenu {
-    @include button(menu);
+  &--menu {
+    min-width: 75px;
   }
   &--default {
     @include button();

@@ -23,18 +23,19 @@ import {
 } from './fields';
 
 import Button from './widgets/Button';
+import SingleSidebarItem from './sidebar/SingleSidebarItem';
 
 import {
   AnnotationAccordion,
+  AxesFold,
   Fold,
+  LayoutPanel,
   MenuPanel,
   Panel,
   Section,
   TraceAccordion,
   TraceMarkerSection,
   TraceRequiredPanel,
-  LayoutPanel,
-  AxesFold,
 } from './containers';
 
 import PanelMenuWrapper from './PanelMenuWrapper';
@@ -73,4 +74,5 @@ export {
   LayoutPanel,
   AxesFold,
   Button,
+  SingleSidebarItem,
 };
