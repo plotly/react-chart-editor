@@ -8,15 +8,7 @@ class Button extends Component {
   }
 
   render() {
-    const {
-      children,
-      className,
-      group,
-      icon,
-      label,
-      variant,
-      ...rest
-    } = this.props;
+    const {children, className, icon, label, variant, ...rest} = this.props;
 
     let classes = `button`;
 
