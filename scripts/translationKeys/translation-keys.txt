@@ -2,147 +2,147 @@
 2D Histogram                                                                                                                    // /components/fields/TraceSelector.js:23
 3D Scatter                                                                                                                      // /components/fields/TraceSelector.js:29
 All                                                                                                                             // /lib/connectAxesToLayout.js:96
-Anchor Point                                                                                                                    // /DefaultEditor.js:253
-Angle                                                                                                                           // /DefaultEditor.js:227
+Anchor Point                                                                                                                    // /DefaultEditor.js:251
+Angle                                                                                                                           // /DefaultEditor.js:225
 Annotation                                                                                                                      // /components/containers/PanelHeader.js:19
 Area                                                                                                                            // /components/fields/TraceSelector.js:54
-Arrow                                                                                                                           // /DefaultEditor.js:229
-Arrowhead                                                                                                                       // /DefaultEditor.js:239
+Arrow                                                                                                                           // /DefaultEditor.js:227
+Arrowhead                                                                                                                       // /DefaultEditor.js:237
 Atlas Map                                                                                                                       // /components/fields/TraceSelector.js:32
-Auto                                                                                                                            // /DefaultEditor.js:177
-Axes                                                                                                                            // /DefaultEditor.js:300
-Background Color                                                                                                                // /DefaultEditor.js:380
+Auto                                                                                                                            // /DefaultEditor.js:175
+Axes                                                                                                                            // /DefaultEditor.js:298
+Background Color                                                                                                                // /DefaultEditor.js:378
 Bar                                                                                                                             // /components/fields/TraceSelector.js:20
-Bar Padding                                                                                                                     // /DefaultEditor.js:146
-Bar Width                                                                                                                       // /DefaultEditor.js:138
+Bar Padding                                                                                                                     // /DefaultEditor.js:144
+Bar Width                                                                                                                       // /DefaultEditor.js:136
 Bars                                                                                                                            // /components/containers/TraceMarkerSection.js:20
-Blank                                                                                                                           // /DefaultEditor.js:165
-Border Color                                                                                                                    // /DefaultEditor.js:133
-Border Width                                                                                                                    // /DefaultEditor.js:132
-Bottom                                                                                                                          // /DefaultEditor.js:213
+Blank                                                                                                                           // /DefaultEditor.js:163
+Border Color                                                                                                                    // /DefaultEditor.js:131
+Border Width                                                                                                                    // /DefaultEditor.js:130
+Bottom                                                                                                                          // /DefaultEditor.js:211
 Box                                                                                                                             // /components/fields/TraceSelector.js:19
-Box Padding                                                                                                                     // /DefaultEditor.js:150
-Box Width                                                                                                                       // /DefaultEditor.js:142
+Box Padding                                                                                                                     // /DefaultEditor.js:148
+Box Width                                                                                                                       // /DefaultEditor.js:140
 Candlestick                                                                                                                     // /components/fields/TraceSelector.js:45
-Canvas                                                                                                                          // /DefaultEditor.js:173
+Canvas                                                                                                                          // /DefaultEditor.js:171
 Carpet                                                                                                                          // /components/fields/TraceSelector.js:41
 Carpet Contour                                                                                                                  // /components/fields/TraceSelector.js:43
 Carpet Scatter                                                                                                                  // /components/fields/TraceSelector.js:42
-Center                                                                                                                          // /DefaultEditor.js:265
+Center                                                                                                                          // /DefaultEditor.js:263
 Choropleth                                                                                                                      // /components/fields/TraceSelector.js:33
 Collapse All                                                                                                                    // /components/containers/PanelHeader.js:55
-Color                                                                                                                           // /DefaultEditor.js:117
+Color                                                                                                                           // /DefaultEditor.js:115
 Common Case: An 'All' tab might display this message because the X and Y tabs contain different settings.                       // /lib/constants.js:24
-Connect                                                                                                                         // /DefaultEditor.js:164
-Connect Gaps                                                                                                                    // /DefaultEditor.js:161
+Connect                                                                                                                         // /DefaultEditor.js:162
+Connect Gaps                                                                                                                    // /DefaultEditor.js:159
 Continue                                                                                                                        // /components/widgets/text_editors/MultiFormatTextEditor.js:201
 Continuing will convert your LaTeX expression into raw text.                                                                    // /components/widgets/text_editors/MultiFormatTextEditor.js:122
 Continuing will convert your note to LaTeX-style text.                                                                          // /components/widgets/text_editors/MultiFormatTextEditor.js:117
 Continuing will remove your expression.                                                                                         // /components/widgets/text_editors/MultiFormatTextEditor.js:127
 Contour                                                                                                                         // /components/fields/TraceSelector.js:26
-Custom                                                                                                                          // /DefaultEditor.js:178
+Custom                                                                                                                          // /DefaultEditor.js:176
 Custom Color                                                                                                                    // /components/widgets/ColorPicker.js:52
 Default Colors                                                                                                                  // /components/widgets/ColorPicker.js:75
-Display                                                                                                                         // /DefaultEditor.js:93
+Display                                                                                                                         // /DefaultEditor.js:91
 Edit in HTML                                                                                                                    // /components/widgets/text_editors/MultiFormatTextEditor.js:35
 Edit in Rich Text                                                                                                               // /components/widgets/text_editors/MultiFormatTextEditor.js:246
 Enter Link URL                                                                                                                  // /components/widgets/text_editors/RichText/LinkEditor.js:92
 Expand All                                                                                                                      // /components/containers/PanelHeader.js:60
-Filled Area                                                                                                                     // /DefaultEditor.js:103
-Fixed Height                                                                                                                    // /DefaultEditor.js:182
-Fixed Width                                                                                                                     // /DefaultEditor.js:181
-Font Color                                                                                                                      // /DefaultEditor.js:199
-Font Size                                                                                                                       // /DefaultEditor.js:195
-Global Font                                                                                                                     // /DefaultEditor.js:201
+Filled Area                                                                                                                     // /DefaultEditor.js:101
+Fixed Height                                                                                                                    // /DefaultEditor.js:180
+Fixed Width                                                                                                                     // /DefaultEditor.js:179
+Font Color                                                                                                                      // /DefaultEditor.js:197
+Font Size                                                                                                                       // /DefaultEditor.js:193
+Global Font                                                                                                                     // /DefaultEditor.js:199
 Go back                                                                                                                         // /components/widgets/text_editors/MultiFormatTextEditor.js:194
 Go to the 'Create' tab to define traces.                                                                                        // /components/containers/PanelEmpty.js:12
 Heads up!                                                                                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:180
 Heatmap                                                                                                                         // /components/fields/TraceSelector.js:21
 Heatmap GL                                                                                                                      // /components/fields/TraceSelector.js:36
-Hide                                                                                                                            // /DefaultEditor.js:234
+Hide                                                                                                                            // /DefaultEditor.js:232
 Histogram                                                                                                                       // /components/fields/TraceSelector.js:22
-Horizontal                                                                                                                      // /DefaultEditor.js:125
-Horizontal Positioning                                                                                                          // /DefaultEditor.js:251
+Horizontal                                                                                                                      // /DefaultEditor.js:123
+Horizontal Positioning                                                                                                          // /DefaultEditor.js:249
 LaTeX                                                                                                                           // /components/widgets/text_editors/MultiFormatTextEditor.js:30
 LaTeX is a math typesetting language that doesn't work with rich text.                                                          // /components/widgets/text_editors/MultiFormatTextEditor.js:115
-Layout                                                                                                                          // /DefaultEditor.js:172
-Left                                                                                                                            // /DefaultEditor.js:214
-Legend                                                                                                                          // /DefaultEditor.js:353
-Legend Box                                                                                                                      // /DefaultEditor.js:369
+Layout                                                                                                                          // /DefaultEditor.js:170
+Left                                                                                                                            // /DefaultEditor.js:212
+Legend                                                                                                                          // /DefaultEditor.js:351
+Legend Box                                                                                                                      // /DefaultEditor.js:367
 Line                                                                                                                            // /components/fields/TraceSelector.js:53
-Line Color                                                                                                                      // /DefaultEditor.js:157
-Line Width                                                                                                                      // /DefaultEditor.js:237
-Linear                                                                                                                          // /DefaultEditor.js:324
-Lines                                                                                                                           // /DefaultEditor.js:155
+Line Color                                                                                                                      // /DefaultEditor.js:155
+Line Width                                                                                                                      // /DefaultEditor.js:235
+Linear                                                                                                                          // /DefaultEditor.js:322
+Lines                                                                                                                           // /DefaultEditor.js:153
 Looks like there aren't any traces defined yet.                                                                                 // /components/containers/PanelEmpty.js:11
-Margin Color                                                                                                                    // /DefaultEditor.js:184
-Margins and Padding                                                                                                             // /DefaultEditor.js:211
-Max                                                                                                                             // /DefaultEditor.js:320
+Margin Color                                                                                                                    // /DefaultEditor.js:182
+Margins and Padding                                                                                                             // /DefaultEditor.js:209
+Max                                                                                                                             // /DefaultEditor.js:318
 Mesh3d                                                                                                                          // /components/fields/TraceSelector.js:31
-Middle                                                                                                                          // /DefaultEditor.js:288
-Min                                                                                                                             // /DefaultEditor.js:319
+Middle                                                                                                                          // /DefaultEditor.js:286
+Min                                                                                                                             // /DefaultEditor.js:317
 Multiple Values                                                                                                                 // /lib/constants.js:18
 No Results                                                                                                                      // /components/widgets/Dropdown.js:76
-Normal                                                                                                                          // /DefaultEditor.js:439
-Note Text                                                                                                                       // /DefaultEditor.js:222
-Notes                                                                                                                           // /DefaultEditor.js:220
+Normal                                                                                                                          // /DefaultEditor.js:437
+Note Text                                                                                                                       // /DefaultEditor.js:220
+Notes                                                                                                                           // /DefaultEditor.js:218
 OHLC                                                                                                                            // /components/fields/TraceSelector.js:44
-Opacity                                                                                                                         // /DefaultEditor.js:78
-Orientation                                                                                                                     // /DefaultEditor.js:426
-Padding                                                                                                                         // /DefaultEditor.js:216
+Opacity                                                                                                                         // /DefaultEditor.js:76
+Orientation                                                                                                                     // /DefaultEditor.js:424
+Padding                                                                                                                         // /DefaultEditor.js:214
 Parallel Coordinates                                                                                                            // /components/fields/TraceSelector.js:37
 Pie                                                                                                                             // /components/fields/TraceSelector.js:25
-Plot Background                                                                                                                 // /DefaultEditor.js:183
+Plot Background                                                                                                                 // /DefaultEditor.js:181
 Point Cloud                                                                                                                     // /components/fields/TraceSelector.js:35
 Points                                                                                                                          // /components/containers/TraceMarkerSection.js:22
 Polar Scatter                                                                                                                   // /components/fields/TraceSelector.js:46
-Position                                                                                                                        // /DefaultEditor.js:272
-Positioning                                                                                                                     // /DefaultEditor.js:384
-Range                                                                                                                           // /DefaultEditor.js:309
-Relative To                                                                                                                     // /DefaultEditor.js:271
-Reversed                                                                                                                        // /DefaultEditor.js:440
+Position                                                                                                                        // /DefaultEditor.js:270
+Positioning                                                                                                                     // /DefaultEditor.js:382
+Range                                                                                                                           // /DefaultEditor.js:307
+Relative To                                                                                                                     // /DefaultEditor.js:269
+Reversed                                                                                                                        // /DefaultEditor.js:438
 Rich Text                                                                                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:25
 Rich text is incompatible with LaTeX.                                                                                           // /components/widgets/text_editors/MultiFormatTextEditor.js:121
-Right                                                                                                                           // /DefaultEditor.js:215
+Right                                                                                                                           // /DefaultEditor.js:213
 Sankey                                                                                                                          // /components/fields/TraceSelector.js:39
 Satellite Map                                                                                                                   // /components/fields/TraceSelector.js:38
-Scale                                                                                                                           // /DefaultEditor.js:241
+Scale                                                                                                                           // /DefaultEditor.js:239
 Scatter                                                                                                                         // /components/fields/TraceSelector.js:18
 Scatter GL                                                                                                                      // /components/fields/TraceSelector.js:34
 Select an Option                                                                                                                // /components/widgets/Dropdown.js:67
-Selection                                                                                                                       // /DefaultEditor.js:311
-Shape                                                                                                                           // /DefaultEditor.js:159
-Show                                                                                                                            // /DefaultEditor.js:233
-Size                                                                                                                            // /DefaultEditor.js:130
-Size and Spacing                                                                                                                // /DefaultEditor.js:136
+Selection                                                                                                                       // /DefaultEditor.js:309
+Shape                                                                                                                           // /DefaultEditor.js:157
+Show                                                                                                                            // /DefaultEditor.js:231
+Size                                                                                                                            // /DefaultEditor.js:128
+Size and Spacing                                                                                                                // /DefaultEditor.js:134
 Surface                                                                                                                         // /components/fields/TraceSelector.js:30
-Symbol                                                                                                                          // /DefaultEditor.js:131
+Symbol                                                                                                                          // /DefaultEditor.js:129
 Table                                                                                                                           // /components/fields/TraceSelector.js:40
 Ternary Scatter                                                                                                                 // /components/fields/TraceSelector.js:27
-Text                                                                                                                            // /DefaultEditor.js:364
-Text Attributes                                                                                                                 // /DefaultEditor.js:81
-The anchor point determines which side of the annotation's positioning coordinates refer to.                                    // /DefaultEditor.js:256
-The positioning inputs are relative to the anchor points on the text box.                                                       // /DefaultEditor.js:389
+Text                                                                                                                            // /DefaultEditor.js:362
+Text Attributes                                                                                                                 // /DefaultEditor.js:79
+The anchor point determines which side of the annotation's positioning coordinates refer to.                                    // /DefaultEditor.js:254
+The positioning inputs are relative to the anchor points on the text box.                                                       // /DefaultEditor.js:387
 This input has multiple values associated with it. Changing this setting will override these custom inputs.                     // /lib/constants.js:20
-Tick Labels                                                                                                                     // /DefaultEditor.js:334
-Tick Markers                                                                                                                    // /DefaultEditor.js:342
-Title                                                                                                                           // /DefaultEditor.js:187
-Title and Fonts                                                                                                                 // /DefaultEditor.js:186
-Titles                                                                                                                          // /DefaultEditor.js:301
-Top                                                                                                                             // /DefaultEditor.js:212
+Tick Labels                                                                                                                     // /DefaultEditor.js:332
+Tick Markers                                                                                                                    // /DefaultEditor.js:340
+Title                                                                                                                           // /DefaultEditor.js:185
+Title and Fonts                                                                                                                 // /DefaultEditor.js:184
+Titles                                                                                                                          // /DefaultEditor.js:299
+Top                                                                                                                             // /DefaultEditor.js:210
 Trace                                                                                                                           // /components/containers/PanelHeader.js:14
-Trace Order                                                                                                                     // /DefaultEditor.js:435
+Trace Order                                                                                                                     // /DefaultEditor.js:433
 Trace opacity is not supported for a scatter trace with fill or for a scatter trace that gets filled by another scatter trace.  // /components/containers/Section.js:65
-Type                                                                                                                            // /DefaultEditor.js:158
-Typeface                                                                                                                        // /DefaultEditor.js:190
+Type                                                                                                                            // /DefaultEditor.js:156
+Typeface                                                                                                                        // /DefaultEditor.js:188
 URL                                                                                                                             // /components/widgets/text_editors/RichText/LinkEditor.js:93
-Vertical                                                                                                                        // /DefaultEditor.js:124
-Vertical Positioning                                                                                                            // /DefaultEditor.js:274
+Vertical                                                                                                                        // /DefaultEditor.js:122
+Vertical Positioning                                                                                                            // /DefaultEditor.js:272
 Violin                                                                                                                          // /components/fields/TraceSelector.js:28
-Width                                                                                                                           // /DefaultEditor.js:156
-X Position                                                                                                                      // /DefaultEditor.js:414
-X Vector                                                                                                                        // /DefaultEditor.js:248
-Y Position                                                                                                                      // /DefaultEditor.js:420
-Y Vector                                                                                                                        // /DefaultEditor.js:249
-Zoom Interactivity                                                                                                              // /DefaultEditor.js:345
-log                                                                                                                             // /DefaultEditor.js:325
+Width                                                                                                                           // /DefaultEditor.js:154
+X Position                                                                                                                      // /DefaultEditor.js:412
+X Vector                                                                                                                        // /DefaultEditor.js:246
+Y Position                                                                                                                      // /DefaultEditor.js:418
+Y Vector                                                                                                                        // /DefaultEditor.js:247
+Zoom Interactivity                                                                                                              // /DefaultEditor.js:343
+log                                                                                                                             // /DefaultEditor.js:323

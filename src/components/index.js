@@ -20,10 +20,8 @@ import {
   Numeric,
   SymbolSelector,
   TraceSelector,
+  Button,
 } from './fields';
-
-import Button from './widgets/Button';
-import SingleSidebarItem from './sidebar/SingleSidebarItem';
 
 import {
   AnnotationAccordion,
@@ -36,6 +34,7 @@ import {
   TraceAccordion,
   TraceMarkerSection,
   TraceRequiredPanel,
+  SingleSidebarItem,
 } from './containers';
 
 import PanelMenuWrapper from './PanelMenuWrapper';

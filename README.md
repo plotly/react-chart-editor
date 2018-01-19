@@ -137,6 +137,7 @@ The [custom editor example](https://github.com/plotly/react-plotly.js-editor/tre
 * `<Fold />`: collapsable container within a `<Panel />`
 * `<Section />`: uncollapsable container within a `<Panel />` or `<Fold />`
 * `<MenuPanel />`: container child of `<Section />` that appears when a cog icon in the section title is clicked on
+* `<SingleSidebarItem/>`: wraps any item you would like to see appear in the sidebar menu.
 
 ### General-purpose Fields
 
@@ -149,6 +150,7 @@ All Fields except `<Info />` accept an `attr` property to bind them to a key in 
 * `<ColorPicker />`: renders as a popup color-picker, useful for CSS color hex value strings
 * `<Flaglist />`: renders as a list of checkboxes, useful for `+`-joined flag lists like `data[].mode`
 * `<MultiFormatTextEditor />`: renders as a WYSIWYG editor, useful for text like `layout.title`
+* `<Button/>`: simple button component, useful when combined with `<SingleSidebarItem/>` to add as menu item
 
 <p align="center">
   <img src="examples/components.png" alt="Components" width="432" height="692" border="1">

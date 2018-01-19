@@ -7,6 +7,7 @@ import TraceAccordion from './TraceAccordion';
 import TraceMarkerSection from './TraceMarkerSection';
 import {LayoutPanel, AxesFold} from './derived';
 import TraceRequiredPanel from './TraceRequiredPanel';
+import SingleSidebarItem from '../sidebar/SingleSidebarItem';
 
 export {
   AnnotationAccordion,
@@ -19,4 +20,5 @@ export {
   TraceRequiredPanel,
   LayoutPanel,
   AxesFold,
+  SingleSidebarItem,
 };
