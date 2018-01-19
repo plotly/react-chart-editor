@@ -64,10 +64,14 @@ export default class CustomEditor extends Component {
                 ]}
               />
               <ColorPicker label="ColorPicker" attr="plot_bgcolor" show />
+              <TextEditor attr="title" label="TextEditor default" />
               <TextEditor
                 attr="title"
-                label="MultiFormat TextEditor"
+                label="TextEditor richTextOnly"
+                richTextOnly
               />
+              <TextEditor attr="title" label="TextEditor htmlOnly" htmlOnly />
+              <TextEditor attr="title" label="TextEditor latexOnly" latexOnly />
             </Section>
           </Fold>
         </LayoutPanel>
