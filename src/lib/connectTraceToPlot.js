@@ -106,5 +106,8 @@ export default function connectTraceToPlot(WrappedComponent) {
     fullContainer: PropTypes.object,
   };
 
+  const {plotly_editor_traits} = WrappedComponent;
+  TraceConnectedComponent.plotly_editor_traits = plotly_editor_traits;
+
   return TraceConnectedComponent;
 }

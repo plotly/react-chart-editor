@@ -6,22 +6,6 @@ import {connectAnnotationToLayout, bem} from 'lib';
 const AnnotationFold = connectAnnotationToLayout(Fold);
 
 class AnnotationAccordion extends Component {
-  addAnnotation(layout, updateContainer) {
-    let annotationIndex;
-    if (Array.isArray(layout.annotations)) {
-      annotationIndex = layout.annotations.length;
-    } else {
-      annotationIndex = 0;
-    }
-
-    const key = `annotations[${annotationIndex}]`;
-    const value = {text: 'new text'};
-
-    if (updateContainer) {
-      updateContainer({[key]: value});
-    }
-  }
-
   render() {
     const {layout: {annotations = []}} = this.context;
     const {canAdd, children} = this.props;
@@ -46,7 +30,26 @@ class AnnotationAccordion extends Component {
   }
 }
 
-AnnotationAccordion.displayName = 'AnnotationAccordion';
+AnnotationAccordion.plotly_editor_traits = {
+  add_action: {
+    label: 'Annotation',
+    handler: ({layout, updateContainer}) => {
+      let annotationIndex;
+      if (Array.isArray(layout.annotations)) {
+        annotationIndex = layout.annotations.length;
+      } else {
+        annotationIndex = 0;
+      }
+
+      const key = `annotations[${annotationIndex}]`;
+      const value = {text: 'new text'};
+
+      if (updateContainer) {
+        updateContainer({[key]: value});
+      }
+    },
+  },
+};
 
 AnnotationAccordion.contextTypes = {
   layout: PropTypes.object,

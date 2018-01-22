@@ -40,7 +40,7 @@ describe('<AnnotationAccordion>', () => {
       </TestEditor>
     );
 
-    editor.find('button.js-add-annotation-button').simulate('click');
+    editor.find('button.js-add-button').simulate('click');
 
     const payload = beforeUpdateLayout.mock.calls[0][0];
     expect(payload.update).toEqual({'annotations[0]': {text: 'new text'}});

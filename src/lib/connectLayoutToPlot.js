@@ -78,5 +78,8 @@ export default function connectLayoutToPlot(WrappedComponent) {
     fullContainer: PropTypes.object,
   };
 
+  const {plotly_editor_traits} = WrappedComponent;
+  LayoutConnectedComponent.plotly_editor_traits = plotly_editor_traits;
+
   return LayoutConnectedComponent;
 }
