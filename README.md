@@ -13,7 +13,7 @@ Check out the [live demo here](https://plotly.github.io/react-plotly.js-editor/)
 
 ## Quick start
 
-Check out the demo of the `DefaultEditor` at https://plotly.github.io/react-plotly.js-editor/ or run it locally with:
+Check out the demo of the latest release of the `DefaultEditor` at https://plotly.github.io/react-plotly.js-editor/ or run it locally with:
 
 ```
 git clone [this repo]
@@ -86,32 +86,10 @@ class App extends Component {
 
 ## Development Setup
 
-You can use `npm link` to link your local copy of the `react-plotly.js-editor` to your test repo.
-
-With `npm link` you can get some errors related to
-[multiple copies of react being loaded](https://github.com/facebookincubator/create-react-app/issues/1107).
-To get around this, you can create an
-[alias](https://github.com/facebookincubator/create-react-app/issues/393) that
-points your project to the copy of react that it should be using or you can
-simply remove `react` and `react-dom` from `react-plotly.js-editor`.
-
-### Using the `simple` example for development
-
-In one terminal:
-
 ```
-npm link       # registers react-plotly.js-editor for subsequent npm link calls
-npm run watch  # keep this running
-```
-
-In another terminal:
-
-```
-cd examples/simple # or any other application directory
 npm install
-rm -rf node_modules/react node_modules/react-dom node_modules/react-plotly.js-edit
-npm link react-plotly.js-edit
-npm start # keep this running
+npm start
+# start hacking
 ```
 
 ## Built-in Components
