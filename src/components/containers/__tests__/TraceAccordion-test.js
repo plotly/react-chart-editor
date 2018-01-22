@@ -33,7 +33,7 @@ describe('<TraceAccordion>', () => {
       </TestEditor>
     );
 
-    editor.find('button.js-add-trace-button').simulate('click');
+    editor.find('button.js-add-button').simulate('click');
 
     expect(beforeAddTrace).toBeCalled();
   });

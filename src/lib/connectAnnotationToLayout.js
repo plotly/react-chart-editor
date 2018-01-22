@@ -83,5 +83,8 @@ export default function connectAnnotationToLayout(WrappedComponent) {
     fullContainer: PropTypes.object,
   };
 
+  const {plotly_editor_traits} = WrappedComponent;
+  AnnotationConnectedComponent.plotly_editor_traits = plotly_editor_traits;
+
   return AnnotationConnectedComponent;
 }

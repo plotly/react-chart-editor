@@ -7,14 +7,6 @@ import {connectTraceToPlot, localize} from 'lib';
 const TraceFold = connectTraceToPlot(Fold);
 
 class TraceAccordion extends Component {
-  addTrace(onUpdate) {
-    if (onUpdate) {
-      onUpdate({
-        type: EDITOR_ACTIONS.ADD_TRACE,
-      });
-    }
-  }
-
   render() {
     const {data = []} = this.context;
     const {canAdd, children} = this.props;
@@ -33,7 +25,18 @@ class TraceAccordion extends Component {
   }
 }
 
-TraceAccordion.displayName = 'TraceAccordion';
+TraceAccordion.plotly_editor_traits = {
+  add_action: {
+    label: 'Trace',
+    handler: ({onUpdate}) => {
+      if (onUpdate) {
+        onUpdate({
+          type: EDITOR_ACTIONS.ADD_TRACE,
+        });
+      }
+    },
+  },
+};
 
 TraceAccordion.contextTypes = {
   data: PropTypes.array,

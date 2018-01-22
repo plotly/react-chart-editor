@@ -38,28 +38,14 @@ class Panel extends Component {
     );
   }
 
-  isTraceAccordion() {
-    const {children} = this.props;
-    return (
-      children &&
-      !Array.isArray(children) &&
-      children.type.displayName &&
-      children.type.displayName.indexOf('TraceAccordion') >= 0
-    );
-  }
-
-  isAnnotationAccordion() {
-    const {children} = this.props;
-    return (
-      children &&
-      !Array.isArray(children) &&
-      children.type.displayName.indexOf('AnnotationAccordion') >= 0
-    );
-  }
-
   closeAllButLast(array) {
     const lastIndex = array.length - 1;
     return array.map((e, i) => i !== lastIndex);
+  }
+
+  firstChildWithCanAdd() {
+    const children = React.Children.map(this.props.children, c => c);
+    return children && children.filter(c => c.props.canAdd)[0];
   }
 
   calculateFolds() {
@@ -70,7 +56,7 @@ class Panel extends Component {
     if (visible) {
       const currentNbOfFolds = document.getElementsByClassName('fold').length;
       if (nbOfFolds !== currentNbOfFolds) {
-        if (this.isAnnotationAccordion() || this.isTraceAccordion()) {
+        if (this.firstChildWithCanAdd()) {
           this.setState({
             nbOfFolds: currentNbOfFolds,
             individualFoldStates: this.closeAllButLast(
@@ -100,40 +86,32 @@ class Panel extends Component {
     const hasOpen =
       individualFoldStates.length > 0 &&
       individualFoldStates.some(s => s === false);
-    const {onUpdate, layout, updateContainer} = this.context;
 
     if (visible) {
-      const children = this.props.children;
-      let action = null;
-      let onAction = () => {};
+      let addAction;
 
-      if (this.isTraceAccordion() && children.props.canAdd) {
-        action = 'addTrace';
-        onAction = () =>
-          children.type.prototype.render().type.prototype.addTrace(onUpdate);
+      const addableChild = this.firstChildWithCanAdd();
+      if (addableChild) {
+        addAction = (addableChild.type.plotly_editor_traits || {}).add_action;
       }
 
-      if (this.isAnnotationAccordion() && children.props.canAdd) {
-        action = 'addAnnotation';
-        onAction = () =>
-          children.type.prototype.addAnnotation(layout, updateContainer);
-      }
-
-      const newChildren = React.Children.map(children, (child, index) => {
-        if (child.type.displayName.indexOf('Fold') >= 0) {
-          return cloneElement(child, {foldIndex: index, key: index});
+      const newChildren = React.Children.map(
+        this.props.children,
+        (child, index) => {
+          if ((child.type.plotly_editor_traits || {}).foldable) {
+            return cloneElement(child, {foldIndex: index, key: index});
+          }
+          return child;
         }
-        return child;
-      });
+      );
 
       return (
         <div className={bem('panel')}>
           <PanelHeader
-            action={action}
+            addAction={addAction}
             allowCollapse={nbOfFolds > 1}
             toggleFolds={this.toggleFolds}
             hasOpen={hasOpen}
-            onAction={onAction}
           />
           {newChildren}
         </div>
