@@ -3,13 +3,7 @@ import isNumeric from 'fast-isnumeric';
 import {MULTI_VALUED, MULTI_VALUED_PLACEHOLDER} from './constants';
 
 export default function unpackPlotProps(props, context) {
-  const {
-    container,
-    getValObject,
-    defaultContainer,
-    fullContainer,
-    updateContainer,
-  } = context;
+  const {container, getValObject, defaultContainer, updateContainer} = context;
 
   if (!props.attr) {
     throw new Error('connectedToContainer components require an `attr` prop');
@@ -24,6 +18,21 @@ export default function unpackPlotProps(props, context) {
   let attrMeta;
   if (getValObject) {
     attrMeta = context.getValObject(props.attr) || {};
+  }
+
+  /*
+   * This needed to be adjusted as financial charts
+   * do not contain their 'true' attributes, but rather attributes of the trace
+   * types that are used to compose them. Financial chart attributes are found in
+   * fullContainer._fullInput
+   */
+  let fullContainer = context.fullContainer;
+  if (
+    fullContainer &&
+    fullContainer._fullInput &&
+    fullContainer._fullInput.type === 'ohlc'
+  ) {
+    fullContainer = fullContainer._fullInput;
   }
 
   const fullProperty = nestedProperty(fullContainer, props.attr);

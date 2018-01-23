@@ -33,9 +33,15 @@ export default function connectTraceToPlot(WrappedComponent) {
 
       let getValObject;
       if (plotly) {
+        /*
+         * Since fullTrace._fullInput contains the _module.attributes key:
+         * https://github.com/plotly/plotly.js/blob/70f3f70ec5b306cf74630355676f5e318f685824/src/plot_api/plot_schema.js#L241
+         * this will work for all chart types. This needed to be adjusted as financial charts
+         * do not contain their 'true' attributes, but rather attributes of the trace types that are used to compose them
+        */
         getValObject = attr =>
           plotly.PlotSchema.getTraceValObject(
-            fullTrace,
+            fullTrace._fullInput,
             nestedProperty({}, attr).parts
           );
       }

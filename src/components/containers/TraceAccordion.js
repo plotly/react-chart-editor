@@ -40,7 +40,6 @@ TraceAccordion.plotly_editor_traits = {
 
 TraceAccordion.contextTypes = {
   data: PropTypes.array,
-  fullData: PropTypes.array,
 };
 
 TraceAccordion.propTypes = {
