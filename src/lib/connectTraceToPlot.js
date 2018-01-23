@@ -56,7 +56,7 @@ export default function connectTraceToPlot(WrappedComponent) {
       this.icon = renderTraceIcon(plotlyTraceToCustomTrace(trace));
       this.name = fullTrace.name;
 
-      const DEFAULT_FIN_CHART_TRACE_NAME = '- increasing';
+      const DEFAULT_FIN_CHART_TRACE_NAME = ' - increasing';
       if (fullTrace.name.indexOf(DEFAULT_FIN_CHART_TRACE_NAME) && !trace.name) {
         this.name = fullTrace.name.replace(DEFAULT_FIN_CHART_TRACE_NAME, '');
       }
