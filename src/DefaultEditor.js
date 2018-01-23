@@ -218,7 +218,7 @@ class DefaultEditor extends Component {
             </Section>
 
             <Section name={_('Text Shown on Hover')}>
-              <MultiFormatTextEditor attr="text" />
+              <TextEditor attr="text" />
             </Section>
           </TraceAccordion>
         </TraceRequiredPanel>
