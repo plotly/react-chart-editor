@@ -35,18 +35,20 @@ Color                                                                           
 Common Case: An 'All' tab might display this message because the X and Y tabs contain different settings.                       // /lib/constants.js:24
 Connect                                                                                                                         // /DefaultEditor.js:162
 Connect Gaps                                                                                                                    // /DefaultEditor.js:159
-Continue                                                                                                                        // /components/widgets/text_editors/MultiFormatTextEditor.js:201
-Continuing will convert your LaTeX expression into raw text.                                                                    // /components/widgets/text_editors/MultiFormatTextEditor.js:122
-Continuing will convert your note to LaTeX-style text.                                                                          // /components/widgets/text_editors/MultiFormatTextEditor.js:117
-Continuing will remove your expression.                                                                                         // /components/widgets/text_editors/MultiFormatTextEditor.js:127
+Continue                                                                                                                        // /components/widgets/text_editors/MultiFormat.js:205
+Continuing will convert your LaTeX expression into raw text.                                                                    // /components/widgets/text_editors/MultiFormat.js:122
+Continuing will convert your note to LaTeX-style text.                                                                          // /components/widgets/text_editors/MultiFormat.js:117
+Continuing will remove your expression.                                                                                         // /components/widgets/text_editors/MultiFormat.js:127
 Contour                                                                                                                         // /components/fields/TraceSelector.js:26
 Custom                                                                                                                          // /DefaultEditor.js:176
 Custom Color                                                                                                                    // /components/widgets/ColorPicker.js:52
 Default Colors                                                                                                                  // /components/widgets/ColorPicker.js:75
 Display                                                                                                                         // /DefaultEditor.js:91
-Edit in HTML                                                                                                                    // /components/widgets/text_editors/MultiFormatTextEditor.js:35
-Edit in Rich Text                                                                                                               // /components/widgets/text_editors/MultiFormatTextEditor.js:246
+Edit in HTML                                                                                                                    // /components/widgets/text_editors/MultiFormat.js:35
+Edit in Rich Text                                                                                                               // /components/widgets/text_editors/MultiFormat.js:250
+Enter LaTeX formatted text                                                                                                      // /components/fields/TextEditor.js:34
 Enter Link URL                                                                                                                  // /components/widgets/text_editors/RichText/LinkEditor.js:92
+Enter html formatted text                                                                                                       // /components/fields/TextEditor.js:51
 Expand All                                                                                                                      // /components/containers/PanelHeader.js:60
 Filled Area                                                                                                                     // /DefaultEditor.js:101
 Fixed Height                                                                                                                    // /DefaultEditor.js:180
@@ -54,17 +56,17 @@ Fixed Width                                                                     
 Font Color                                                                                                                      // /DefaultEditor.js:197
 Font Size                                                                                                                       // /DefaultEditor.js:193
 Global Font                                                                                                                     // /DefaultEditor.js:199
-Go back                                                                                                                         // /components/widgets/text_editors/MultiFormatTextEditor.js:194
+Go back                                                                                                                         // /components/widgets/text_editors/MultiFormat.js:198
 Go to the 'Create' tab to define traces.                                                                                        // /components/containers/PanelEmpty.js:12
-Heads up!                                                                                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:180
+Heads up!                                                                                                                       // /components/widgets/text_editors/MultiFormat.js:181
 Heatmap                                                                                                                         // /components/fields/TraceSelector.js:21
 Heatmap GL                                                                                                                      // /components/fields/TraceSelector.js:36
 Hide                                                                                                                            // /DefaultEditor.js:232
 Histogram                                                                                                                       // /components/fields/TraceSelector.js:22
 Horizontal                                                                                                                      // /DefaultEditor.js:123
 Horizontal Positioning                                                                                                          // /DefaultEditor.js:249
-LaTeX                                                                                                                           // /components/widgets/text_editors/MultiFormatTextEditor.js:30
-LaTeX is a math typesetting language that doesn't work with rich text.                                                          // /components/widgets/text_editors/MultiFormatTextEditor.js:115
+LaTeX                                                                                                                           // /components/widgets/text_editors/MultiFormat.js:30
+LaTeX is a math typesetting language that doesn't work with rich text.                                                          // /components/widgets/text_editors/MultiFormat.js:115
 Layout                                                                                                                          // /DefaultEditor.js:170
 Left                                                                                                                            // /DefaultEditor.js:212
 Legend                                                                                                                          // /DefaultEditor.js:351
@@ -101,8 +103,8 @@ Positioning                                                                     
 Range                                                                                                                           // /DefaultEditor.js:307
 Relative To                                                                                                                     // /DefaultEditor.js:269
 Reversed                                                                                                                        // /DefaultEditor.js:438
-Rich Text                                                                                                                       // /components/widgets/text_editors/MultiFormatTextEditor.js:25
-Rich text is incompatible with LaTeX.                                                                                           // /components/widgets/text_editors/MultiFormatTextEditor.js:121
+Rich Text                                                                                                                       // /components/widgets/text_editors/MultiFormat.js:25
+Rich text is incompatible with LaTeX.                                                                                           // /components/widgets/text_editors/MultiFormat.js:121
 Right                                                                                                                           // /DefaultEditor.js:213
 Sankey                                                                                                                          // /components/fields/TraceSelector.js:39
 Satellite Map                                                                                                                   // /components/fields/TraceSelector.js:38

@@ -59,25 +59,26 @@ export default class LaTeX extends TextArea {
   }
 
   render() {
+    const {className} = this.props;
+    const editorClassNames = className ? className : 'text-editor__latex';
     return (
-      <div className="latex-editor">
-        <textarea
-          ref="textinput"
-          value={this.state.value}
-          placeholder={this.props.placeholder}
-          onChange={this.onChange}
-          onBlur={this.onBlur}
-          className="editor__textarea latex"
-        />
-      </div>
+      <textarea
+        ref="textinput"
+        value={this.state.value}
+        placeholder={this.props.placeholder}
+        onChange={this.onChange}
+        onBlur={this.onBlur}
+        className={editorClassNames}
+      />
     );
   }
 }
 
 LaTeX.propTypes = {
+  className: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string,
   placeholder: PropTypes.string,
+  value: PropTypes.string,
 };
 
 LaTeX.defaultProps = {

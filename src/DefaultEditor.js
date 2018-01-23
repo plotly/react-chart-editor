@@ -23,7 +23,7 @@ import {
   Panel,
   PanelMenuWrapper,
   Radio,
-  MultiFormatTextEditor,
+  TextEditor,
   Section,
   MenuPanel,
   SymbolSelector,
@@ -218,7 +218,7 @@ class DefaultEditor extends Component {
             </Section>
 
             <Section name={_('Text Shown on Hover')}>
-              <MultiFormatTextEditor attr="text" />
+              <TextEditor attr="text" />
             </Section>
           </TraceAccordion>
         </TraceRequiredPanel>
@@ -239,7 +239,7 @@ class DefaultEditor extends Component {
           </Fold>
           <Fold name={_('Title and Fonts')}>
             <Section name={_('Title')}>
-              <MultiFormatTextEditor attr="title" />
+              <TextEditor attr="title" />
               <FontSelector
                 label={_('Typeface')}
                 attr="titlefont.family"
@@ -274,7 +274,7 @@ class DefaultEditor extends Component {
         <TraceRequiredPanel group="Style" name={_('Notes')}>
           <AnnotationAccordion canAdd>
             <Section name={_('Note Text')}>
-              <MultiFormatTextEditor attr="text" />
+              <TextEditor attr="text" />
               <FontSelector label={_('Typeface')} attr="font.family" />
               <Numeric label={_('Font Size')} attr="font.size" units="px" />
               <ColorPicker label={_('Font Color')} attr="font.color" />
@@ -354,7 +354,7 @@ class DefaultEditor extends Component {
         <TraceRequiredPanel group="Style" name={_('Axes')}>
           <AxesFold name={_('Titles')}>
             <AxesSelector />
-            <MultiFormatTextEditor attr="title" />
+            <TextEditor attr="title" />
             <FontSelector label={_('Typeface')} attr="titlefont.family" />
             <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
             <ColorPicker label={_('Font Color')} attr="titlefont.color" />

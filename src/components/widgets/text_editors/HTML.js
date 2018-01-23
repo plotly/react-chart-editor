@@ -1,21 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextArea from '../TextArea';
 
 class HTML extends TextArea {
   render() {
+    const {className} = this.props;
+    const editorClassNames = className ? className : 'text-editor__html';
     return (
-      <div className="html-editor">
-        <textarea
-          ref="textinput"
-          value={this.state.value}
-          placeholder={this.props.placeholder}
-          onChange={this.onChange}
-          className="editor__textarea html"
-        />
-      </div>
+      <textarea
+        ref="textinput"
+        value={this.state.value}
+        placeholder={this.props.placeholder}
+        onChange={this.onChange}
+        className={editorClassNames}
+      />
     );
   }
 }
+
+HTML.propTypes = {
+  className: PropTypes.string,
+};
 
 HTML.defaultProps = {
   placeholder: '',

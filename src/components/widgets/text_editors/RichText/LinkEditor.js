@@ -93,10 +93,13 @@ class LinkEditor extends Component {
     const urlText = _('URL');
     // TODO: add close button
     return (
-      <div className="link-editor" style={{left: position.x, top: position.y}}>
-        <span className="link-editor__label">{urlText}</span>
+      <div
+        className="rich-text-editor__link-editor"
+        style={{left: position.x, top: position.y}}
+      >
+        <span className="rich-text-editor__link-editor__label">{urlText}</span>
         <input
-          className="link-editor__input"
+          className="rich-text-editor__link-editor__input"
           onBlur={onBlur}
           onFocus={onFocus}
           onChange={ev => this.onInputChange(ev.target.value)}
