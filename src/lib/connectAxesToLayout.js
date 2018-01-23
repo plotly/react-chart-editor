@@ -235,5 +235,8 @@ export default function connectAxesToLayout(WrappedComponent) {
     updateContainer: PropTypes.func,
   };
 
+  const {plotly_editor_traits} = WrappedComponent;
+  AxesConnectedComponent.plotly_editor_traits = plotly_editor_traits;
+
   return localize(AxesConnectedComponent);
 }

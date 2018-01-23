@@ -17,6 +17,8 @@ export default class SingleSidebarItem extends Component {
   }
 }
 
+SingleSidebarItem.plotly_editor_traits = {sidebar_element: true};
+
 SingleSidebarItem.propTypes = {
   children: PropTypes.any,
 };

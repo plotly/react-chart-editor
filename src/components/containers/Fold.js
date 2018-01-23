@@ -94,7 +94,7 @@ class Fold extends Component {
   }
 }
 
-Fold.displayName = 'Fold';
+Fold.plotly_editor_traits = {foldable: true};
 
 Fold.propTypes = {
   canDelete: PropTypes.bool,

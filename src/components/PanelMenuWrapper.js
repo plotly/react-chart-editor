@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, {cloneElement, Component} from 'react';
 import SidebarGroup from './sidebar/SidebarGroup';
 import {bem} from 'lib';
-import SingleSidebarItem from './containers/SingleSidebarItem';
 
 class PanelsWithSidebar extends Component {
   constructor(props) {
@@ -24,7 +23,10 @@ class PanelsWithSidebar extends Component {
   }
 
   renderSection(section, i) {
-    if (section.type && section.type === SingleSidebarItem) {
+    if (
+      section.type &&
+      (section.type.plotly_editor_traits || {}).sidebar_element
+    ) {
       const sectionWithKey = cloneElement(section, {key: i});
       return <div>{sectionWithKey}</div>;
     }
@@ -63,7 +65,7 @@ class PanelsWithSidebar extends Component {
         obj.panels.push(name);
       }
 
-      if (child.type === SingleSidebarItem) {
+      if ((child.type.plotly_editor_traits || {}).sidebar_element) {
         sections.push(child);
       }
     });
@@ -74,14 +76,10 @@ class PanelsWithSidebar extends Component {
   render() {
     const menuOpts = this.computeMenuOptions(this.props);
 
-    const children = Array.isArray(this.props.children)
-      ? this.props.children
-      : [this.props.children];
-
     return (
       <div className={bem('plotly-editor', 'wrapper')}>
         <div className={bem('sidebar')}>{menuOpts.map(this.renderSection)}</div>
-        {children.map((child, i) =>
+        {React.Children.map(this.props.children, (child, i) =>
           cloneElement(child, {
             key: i,
             visible:

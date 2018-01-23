@@ -24,6 +24,8 @@ export default function localize(Comp) {
   LocalizedComponent.contextTypes.dictionaries = PropTypes.object;
   LocalizedComponent.contextTypes.locale = PropTypes.string;
 
+  LocalizedComponent.plotly_editor_traits = Comp.plotly_editor_traits;
+
   return LocalizedComponent;
 }
 

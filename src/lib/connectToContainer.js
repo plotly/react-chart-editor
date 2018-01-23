@@ -96,5 +96,8 @@ export default function connectToContainer(WrappedComponent, config = {}) {
 
   ContainerConnectedComponent.contextTypes = containerConnectedContextTypes;
 
+  const {plotly_editor_traits} = WrappedComponent;
+  ContainerConnectedComponent.plotly_editor_traits = plotly_editor_traits;
+
   return ContainerConnectedComponent;
 }
