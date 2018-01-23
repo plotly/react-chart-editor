@@ -13,7 +13,7 @@ import tinyColor from 'tinycolor2';
 import unpackPlotProps from './unpackPlotProps';
 import walkObject, {isPlainObject} from './walkObject';
 import {
-  customTraceToPlotlyTrace,
+  traceTypeToPlotlyInitFigure,
   plotlyTraceToCustomTrace,
 } from './customTraceType';
 import * as PlotlyIcons from 'plotly-icons';
@@ -53,7 +53,7 @@ export {
   connectToContainer,
   connectTraceToPlot,
   containerConnectedContextTypes,
-  customTraceToPlotlyTrace,
+  traceTypeToPlotlyInitFigure,
   dereference,
   findFullTraceIndex,
   getDisplayName,

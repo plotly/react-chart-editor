@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {
   connectToContainer,
-  customTraceToPlotlyTrace,
+  traceTypeToPlotlyInitFigure,
   localize,
   plotlyTraceToCustomTrace,
 } from 'lib';
@@ -99,7 +99,7 @@ class TraceSelector extends Component {
   }
 
   setTraceDefaults(container, fullContainer, updateContainer) {
-    if (!container.mode && fullContainer.type === 'scatter') {
+    if (!container.mode && fullContainer._fullInput.type === 'scatter') {
       updateContainer({
         type: 'scatter',
         mode: fullContainer.mode || 'markers',
@@ -114,9 +114,10 @@ class TraceSelector extends Component {
   }
 
   updatePlot(value) {
-    const update = customTraceToPlotlyTrace(value);
-    if (this.props.updateContainer) {
-      this.props.updateContainer(update);
+    const {updateContainer} = this.props;
+
+    if (updateContainer) {
+      updateContainer(traceTypeToPlotlyInitFigure(value));
     }
   }
 

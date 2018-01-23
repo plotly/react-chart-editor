@@ -48,6 +48,7 @@ class DefaultEditor extends Component {
               clearable={false}
               show
             />
+
             <DataSelector
               label="Labels"
               attr="labels"
@@ -67,6 +68,19 @@ class DefaultEditor extends Component {
             <DataSelector label="Y" attr="y" clearable={false} hasBlank />
 
             <DataSelector label="Z" attr="z" clearable={false} hasBlank />
+
+            <DataSelector label="Open" attr="open" clearable={false} hasBlank />
+
+            <DataSelector label="High" attr="high" clearable={false} hasBlank />
+
+            <DataSelector label="Low" attr="low" clearable={false} hasBlank />
+
+            <DataSelector
+              label="Close"
+              attr="close"
+              clearable={false}
+              hasBlank
+            />
           </TraceAccordion>
         </Panel>
 
@@ -150,6 +164,10 @@ class DefaultEditor extends Component {
               />
             </Section>
 
+            <Section name={_('Ticks')}>
+              <Numeric label={_('Width')} attr="tickwidth" />
+            </Section>
+
             <Section name={_('Lines')}>
               <Numeric label={_('Width')} attr="line.width" />
               <ColorPicker label={_('Line Color')} attr="line.color" />
@@ -163,6 +181,44 @@ class DefaultEditor extends Component {
                   {label: _('Blank'), value: false},
                 ]}
               />
+            </Section>
+
+            <Section name={_('Increasing Trace Styles')}>
+              <Numeric label={_('Width')} attr="increasing.line.width" />
+              <ColorPicker
+                label={_('Line Color')}
+                attr="increasing.line.color"
+              />
+              <LineDashSelector label={_('Type')} attr="increasing.line.dash" />
+              <Radio
+                label="Show in Legend"
+                attr="increasing.showlegend"
+                options={[
+                  {label: _('Show'), value: true},
+                  {label: _('Hide'), value: false},
+                ]}
+              />
+            </Section>
+
+            <Section name={_('Decreasing Trace Styles')}>
+              <Numeric label={_('Width')} attr="decreasing.line.width" />
+              <ColorPicker
+                label={_('Line Color')}
+                attr="decreasing.line.color"
+              />
+              <LineDashSelector label={_('Type')} attr="decreasing.line.dash" />
+              <Radio
+                label="Show in Legend"
+                attr="decreasing.showlegend"
+                options={[
+                  {label: _('Show'), value: true},
+                  {label: _('Hide'), value: false},
+                ]}
+              />
+            </Section>
+
+            <Section name={_('Text Shown on Hover')}>
+              <MultiFormatTextEditor attr="text" />
             </Section>
           </TraceAccordion>
         </TraceRequiredPanel>

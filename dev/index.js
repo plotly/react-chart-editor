@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import plotly from 'plotly.js/dist/plotly-basic';
+import plotly from 'plotly.js/dist/plotly';
 import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor from '../src';
 import '../src/styles/main.scss';

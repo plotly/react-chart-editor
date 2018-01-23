@@ -15,18 +15,28 @@ export function plotlyTraceToCustomTrace(trace) {
   return trace.type;
 }
 
-export function customTraceToPlotlyTrace(customTraceType) {
-  if (customTraceType === 'line') {
+export function traceTypeToPlotlyInitFigure(traceType) {
+  if (traceType === 'line') {
     return {type: 'scatter', mode: 'lines', fill: 'none'};
   }
 
-  if (customTraceType === 'scatter') {
+  if (traceType === 'scatter') {
     return {type: 'scatter', mode: 'markers', fill: 'none'};
   }
 
-  if (customTraceType === 'area') {
+  if (traceType === 'area') {
     return {type: 'scatter', fill: 'tozeroy'};
   }
 
-  return {type: customTraceType};
+  if (traceType === 'ohlc') {
+    return {
+      type: 'ohlc',
+      autobinx: true,
+      autobiny: true,
+      decreasing: {line: {color: '#7F7F7F'}},
+      increasing: {line: {color: '#17BECF'}},
+    };
+  }
+
+  return {type: traceType};
 }

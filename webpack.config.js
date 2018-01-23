@@ -19,4 +19,5 @@ module.exports = {
   devServer: {
     contentBase: './dev',
   },
+  devtool: 'eval-source-map',
 };
