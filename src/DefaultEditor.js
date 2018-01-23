@@ -200,7 +200,7 @@ class DefaultEditor extends Component {
               />
             </Section>
 
-            <Section name={_('Increasing Trace Styles')}>
+            <Section name={_('Decreasing Trace Styles')}>
               <Numeric label={_('Width')} attr="decreasing.line.width" />
               <ColorPicker
                 label={_('Line Color')}
