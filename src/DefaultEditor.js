@@ -49,38 +49,23 @@ class DefaultEditor extends Component {
               show
             />
 
-            <DataSelector
-              label="Labels"
-              attr="labels"
-              clearable={false}
-              hasBlank
-            />
+            <DataSelector label="Labels" attr="labels" clearable hasBlank />
 
-            <DataSelector
-              label="Values"
-              attr="values"
-              clearable={false}
-              hasBlank
-            />
+            <DataSelector label="Values" attr="values" clearable hasBlank />
 
-            <DataSelector label="X" attr="x" clearable={false} hasBlank />
+            <DataSelector label="X" attr="x" clearable hasBlank />
 
-            <DataSelector label="Y" attr="y" clearable={false} hasBlank />
+            <DataSelector label="Y" attr="y" clearable hasBlank />
 
-            <DataSelector label="Z" attr="z" clearable={false} hasBlank />
+            <DataSelector label="Z" attr="z" clearable hasBlank />
 
-            <DataSelector label="Open" attr="open" clearable={false} hasBlank />
+            <DataSelector label="Open" attr="open" clearable hasBlank />
 
-            <DataSelector label="High" attr="high" clearable={false} hasBlank />
+            <DataSelector label="High" attr="high" clearable hasBlank />
 
-            <DataSelector label="Low" attr="low" clearable={false} hasBlank />
+            <DataSelector label="Low" attr="low" clearable hasBlank />
 
-            <DataSelector
-              label="Close"
-              attr="close"
-              clearable={false}
-              hasBlank
-            />
+            <DataSelector label="Close" attr="close" clearable hasBlank />
           </TraceAccordion>
         </Panel>
 
