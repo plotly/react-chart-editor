@@ -36,6 +36,10 @@ class DataSelector extends Component {
     } else {
       this.fullValue = this.props.fullValue;
     }
+
+    this.is2D =
+      props.attr === 'z' &&
+      ['contour', 'heatmap', 'surface'].includes(props.container.type);
   }
 
   updatePlot(value) {
@@ -47,8 +51,14 @@ class DataSelector extends Component {
       update[this.srcAttr] = value;
     }
 
-    if (Array.isArray(this.dataSources[value])) {
-      update[this.props.attr] = this.dataSources[value];
+    if (!Array.isArray(value)) {
+      if (Array.isArray(this.dataSources[value])) {
+        update[this.props.attr] = this.dataSources[value];
+      }
+    } else {
+      update[this.props.attr] = value
+        .filter(v => Array.isArray(this.dataSources[v]))
+        .map(v => this.dataSources[v]);
     }
 
     this.props.updateContainer(update);
@@ -61,6 +71,7 @@ class DataSelector extends Component {
           options={this.dataSourceOptions}
           value={this.fullValue}
           onChange={this.updatePlot}
+          multi={this.is2D}
           optionRenderer={this.context.dataSourceOptionRenderer}
           valueRenderer={this.context.dataSourceValueRenderer}
           clearable={this.props.clearable}
