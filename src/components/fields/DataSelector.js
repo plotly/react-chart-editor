@@ -53,8 +53,9 @@ class DataSelector extends Component {
 
       if (!value) {
         /*
-         * we're deleting a data attribute, let's also clean it up from gd.data
-         * to prevent issues when switching plots (i.e. candlestick -> box plot)
+         * when !value, then we're deleting ${attr}src, let's also clan up the
+         * related src to prevent issues when switching plots (i.e. candlestick -> box plot)
+         * ex: clean up both xsrc and x from gd.data
          */
         update[srcAttr.replace('src', '')] = value;
       }
