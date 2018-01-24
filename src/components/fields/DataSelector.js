@@ -84,7 +84,6 @@ class DataSelector extends Component {
           multi={this.is2D}
           optionRenderer={this.context.dataSourceOptionRenderer}
           valueRenderer={this.context.dataSourceValueRenderer}
-          clearable={this.props.clearable || true}
         />
       </Field>
     );
