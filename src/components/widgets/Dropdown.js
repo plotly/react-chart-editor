@@ -17,8 +17,7 @@ class Dropdown extends Component {
     if (!selection) {
       return onChange(null);
     } else if (multi) {
-      throw new Error('TODO: de-ramda');
-      // return onChange(map(prop(valueKey), selection));
+      return onChange(selection.map(s => s[valueKey]));
     }
 
     return onChange(selection[valueKey]);
