@@ -94,7 +94,6 @@ class DataSelector extends Component {
 DataSelector.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
-  clearable: PropTypes.bool,
   ...Field.propTypes,
 };
 
