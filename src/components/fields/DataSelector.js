@@ -47,28 +47,15 @@ class DataSelector extends Component {
       return;
     }
     const update = {};
-    if (this.dataSrcExists) {
-      const srcAttr = this.srcAttr;
-      update[srcAttr] = value;
 
-      if (!value) {
-        /*
-         * when !value, then we're deleting ${attr}src, let's also clan up the
-         * related src to prevent issues when switching plots (i.e. candlestick -> box plot)
-         * ex: clean up both xsrc and x from gd.data
-         */
-        update[this.props.attr] = value;
-      }
-    }
-
-    if (!Array.isArray(value)) {
-      if (Array.isArray(this.dataSources[value])) {
-        update[this.props.attr] = this.dataSources[value];
-      }
-    } else {
+    if (Array.isArray(value)) {
       update[this.props.attr] = value
         .filter(v => Array.isArray(this.dataSources[v]))
         .map(v => this.dataSources[v]);
+      update[this.srcAttr] = value;
+    } else {
+      update[this.srcAttr] = value;
+      update[this.props.attr] = this.dataSources[value] || null;
     }
 
     this.props.updateContainer(update);
