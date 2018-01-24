@@ -1,6 +1,7 @@
 # react-plotly.js-editor
 
-> Customizable React-based editor panel for Plotly charts
+> Customizable React-based editor panel for Plotly charts, Part of Plotly's [React Component Suite](https://plot.ly/products/react/) for building data visualization Web apps and products.
+
 
 master
 ![master](https://circleci.com/gh/plotly/react-plotly.js-editor/tree/master.svg?style=svg&circle-token=df4574e01732846dba81d800d062be5f0fef5641)
