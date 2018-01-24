@@ -57,7 +57,7 @@ class DataSelector extends Component {
          * related src to prevent issues when switching plots (i.e. candlestick -> box plot)
          * ex: clean up both xsrc and x from gd.data
          */
-        update[srcAttr.replace('src', '')] = value;
+        update[this.props.attr] = value;
       }
     }
 
@@ -84,7 +84,7 @@ class DataSelector extends Component {
           multi={this.is2D}
           optionRenderer={this.context.dataSourceOptionRenderer}
           valueRenderer={this.context.dataSourceValueRenderer}
-          clearable={this.props.clearable}
+          clearable={this.props.clearable || true}
         />
       </Field>
     );
