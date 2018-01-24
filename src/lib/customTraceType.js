@@ -38,5 +38,19 @@ export function traceTypeToPlotlyInitFigure(traceType) {
     };
   }
 
+  if (traceType === 'candlestick') {
+    return {
+      type: 'candlestick',
+      decreasing: {
+        line: {color: '#7F7F7F'},
+        fillcolor: 'rgba(127, 127, 127, 0.5)',
+      },
+      increasing: {
+        line: {color: '#17BECF'},
+        fillcolor: 'rgba(23, 190, 207, 0.5)',
+      },
+    };
+  }
+
   return {type: traceType};
 }

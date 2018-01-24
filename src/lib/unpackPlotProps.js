@@ -30,7 +30,8 @@ export default function unpackPlotProps(props, context) {
   if (
     fullContainer &&
     fullContainer._fullInput &&
-    fullContainer._fullInput.type === 'ohlc'
+    (fullContainer._fullInput.type === 'ohlc' ||
+      fullContainer._fullInput.type === 'candlestick')
   ) {
     fullContainer = fullContainer._fullInput;
   }

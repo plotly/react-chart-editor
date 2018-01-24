@@ -168,6 +168,10 @@ class DefaultEditor extends Component {
               <Numeric label={_('Width')} attr="tickwidth" />
             </Section>
 
+            <Section name={_('Whiskers')}>
+              <Numeric label={_('Width')} attr="whiskerwidth" />
+            </Section>
+
             <Section name={_('Lines')}>
               <Numeric label={_('Width')} attr="line.width" />
               <ColorPicker label={_('Line Color')} attr="line.color" />
@@ -184,10 +188,19 @@ class DefaultEditor extends Component {
             </Section>
 
             <Section name={_('Increasing Trace Styles')}>
+              <TextEditor
+                label={_('Name')}
+                attr="increasing.name"
+                richTextOnly
+              />
               <Numeric label={_('Width')} attr="increasing.line.width" />
               <ColorPicker
                 label={_('Line Color')}
                 attr="increasing.line.color"
+              />
+              <ColorPicker
+                label={_('Fill Color')}
+                attr="increasing.fillcolor"
               />
               <LineDashSelector label={_('Type')} attr="increasing.line.dash" />
               <Radio
@@ -201,10 +214,19 @@ class DefaultEditor extends Component {
             </Section>
 
             <Section name={_('Decreasing Trace Styles')}>
+              <TextEditor
+                label={_('Name')}
+                attr="decreasing.name"
+                richTextOnly
+              />
               <Numeric label={_('Width')} attr="decreasing.line.width" />
               <ColorPicker
                 label={_('Line Color')}
                 attr="decreasing.line.color"
+              />
+              <ColorPicker
+                label={_('Fill Color')}
+                attr="decreasing.fillcolor"
               />
               <LineDashSelector label={_('Type')} attr="decreasing.line.dash" />
               <Radio
