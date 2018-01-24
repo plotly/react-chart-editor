@@ -47,18 +47,15 @@ class DataSelector extends Component {
       return;
     }
     const update = {};
-    if (this.dataSrcExists) {
-      update[this.srcAttr] = value;
-    }
 
-    if (!Array.isArray(value)) {
-      if (Array.isArray(this.dataSources[value])) {
-        update[this.props.attr] = this.dataSources[value];
-      }
-    } else {
+    if (Array.isArray(value)) {
       update[this.props.attr] = value
         .filter(v => Array.isArray(this.dataSources[v]))
         .map(v => this.dataSources[v]);
+      update[this.srcAttr] = value;
+    } else {
+      update[this.srcAttr] = value;
+      update[this.props.attr] = this.dataSources[value] || null;
     }
 
     this.props.updateContainer(update);
@@ -74,7 +71,7 @@ class DataSelector extends Component {
           multi={this.is2D}
           optionRenderer={this.context.dataSourceOptionRenderer}
           valueRenderer={this.context.dataSourceValueRenderer}
-          clearable={this.props.clearable}
+          clearable={true}
         />
       </Field>
     );
@@ -84,7 +81,6 @@ class DataSelector extends Component {
 DataSelector.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
-  clearable: PropTypes.bool,
   ...Field.propTypes,
 };
 

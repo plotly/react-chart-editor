@@ -126,6 +126,7 @@ class TraceSelector extends Component {
       fullValue: this.fullValue,
       updatePlot: this.updatePlot,
       options: this.traceOptions,
+      clearable: false,
     });
 
     return <UnconnectedDropdown {...props} />;

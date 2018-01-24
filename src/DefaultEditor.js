@@ -42,45 +42,25 @@ class DefaultEditor extends Component {
       <PanelMenuWrapper>
         <Panel group="Graph" name="Create">
           <TraceAccordion canAdd>
-            <TraceSelector
-              label="Plot Type"
-              attr="type"
-              clearable={false}
-              show
-            />
+            <TraceSelector label="Plot Type" attr="type" show />
 
-            <DataSelector
-              label="Labels"
-              attr="labels"
-              clearable={false}
-              hasBlank
-            />
+            <DataSelector label="Labels" attr="labels" />
 
-            <DataSelector
-              label="Values"
-              attr="values"
-              clearable={false}
-              hasBlank
-            />
+            <DataSelector label="Values" attr="values" />
 
-            <DataSelector label="X" attr="x" clearable={false} hasBlank />
+            <DataSelector label="X" attr="x" />
 
-            <DataSelector label="Y" attr="y" clearable={false} hasBlank />
+            <DataSelector label="Y" attr="y" />
 
-            <DataSelector label="Z" attr="z" clearable={false} hasBlank />
+            <DataSelector label="Z" attr="z" />
 
-            <DataSelector label="Open" attr="open" clearable={false} hasBlank />
+            <DataSelector label="Open" attr="open" />
 
-            <DataSelector label="High" attr="high" clearable={false} hasBlank />
+            <DataSelector label="High" attr="high" />
 
-            <DataSelector label="Low" attr="low" clearable={false} hasBlank />
+            <DataSelector label="Low" attr="low" />
 
-            <DataSelector
-              label="Close"
-              attr="close"
-              clearable={false}
-              hasBlank
-            />
+            <DataSelector label="Close" attr="close" />
           </TraceAccordion>
         </Panel>
 
