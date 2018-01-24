@@ -48,7 +48,16 @@ class DataSelector extends Component {
     }
     const update = {};
     if (this.dataSrcExists) {
-      update[this.srcAttr] = value;
+      const srcAttr = this.srcAttr;
+      update[srcAttr] = value;
+
+      if (!value) {
+        /*
+         * we're deleting a data attribute, let's also clean it up from gd.data
+         * to prevent issues when switching plots (i.e. candlestick -> box plot)
+         */
+        update[srcAttr.replace('src', '')] = value;
+      }
     }
 
     if (!Array.isArray(value)) {
