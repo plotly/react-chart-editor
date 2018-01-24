@@ -32,6 +32,7 @@ import {
   TraceRequiredPanel,
   TraceSelector,
   AxesFold,
+  TraceTypeSection,
 } from './components';
 import {localize} from './lib';
 
@@ -152,7 +153,7 @@ class DefaultEditor extends Component {
               <Numeric label={_('Width')} attr="whiskerwidth" />
             </Section>
 
-            <Section name={_('Lines')}>
+            <TraceTypeSection name={_('Lines')} traceTypes={['scatter']}>
               <Numeric label={_('Width')} attr="line.width" />
               <ColorPicker label={_('Line Color')} attr="line.color" />
               <LineDashSelector label={_('Type')} attr="line.dash" />
@@ -165,7 +166,18 @@ class DefaultEditor extends Component {
                   {label: _('Blank'), value: false},
                 ]}
               />
-            </Section>
+            </TraceTypeSection>
+
+            <TraceTypeSection name={_('Gaps in data')} traceTypes={['heatmap']}>
+              <Radio
+                label={_('Connect Gaps')}
+                attr="connectgaps"
+                options={[
+                  {label: _('Fill with Interpolation'), value: true},
+                  {label: _('Blank'), value: false},
+                ]}
+              />
+            </TraceTypeSection>
 
             <Section name={_('Increasing Trace Styles')}>
               <TextEditor

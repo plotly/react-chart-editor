@@ -1,5 +1,6 @@
 import React from 'react';
 import Section from '../Section';
+import {TraceTypeSection} from '../derived';
 import MenuPanel from '../MenuPanel';
 import {Flaglist, Info, Numeric} from '../../fields';
 import {TestEditor, fixtures} from 'lib/test-utils';
@@ -130,5 +131,53 @@ describe('Section', () => {
     ).find('[name="test-section"]');
 
     expect(wrapper.find(Info).length).toBe(0);
+  });
+});
+
+describe('TraceTypeSection', () => {
+  it('will show when the type is right', () => {
+    const TraceSection = connectTraceToPlot(TraceTypeSection);
+    const wrapper = mount(
+      <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
+        <TraceSection
+          name="test-section"
+          traceIndex={0}
+          traceTypes={['scatter']}
+        >
+          <Flaglist
+            attr="mode"
+            options={[
+              {label: 'Lines', value: 'lines'},
+              {label: 'Points', value: 'markers'},
+            ]}
+          />
+        </TraceSection>
+      </TestEditor>
+    ).find('[name="test-section"]');
+
+    expect(wrapper.find(Flaglist).length).toBe(1);
+  });
+
+  it('will hide when the type is wrong', () => {
+    const TraceSection = connectTraceToPlot(TraceTypeSection);
+    const wrapper = mount(
+      <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
+        <TraceSection
+          name="test-section"
+          traceIndex={0}
+          traceTypes={['heatmap']}
+        >
+          <Flaglist
+            attr="mode"
+            options={[
+              {label: 'Lines', value: 'lines'},
+              {label: 'Points', value: 'markers'},
+            ]}
+          />
+        </TraceSection>
+      </TestEditor>
+    ).find('[name="test-section"]');
+
+    expect(wrapper.find(Flaglist).length).toBe(0);
   });
 });
