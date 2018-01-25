@@ -25,7 +25,13 @@ import {localize} from '../lib';
 const StyleTracesPanel = ({visible, localize: _}) => (
   <TraceRequiredPanel visible={visible}>
     <TraceAccordion>
-      <Section name={_('Trace')}>
+      <Section
+        name={_('Trace')}
+        infoTextIfEmpty={_(
+          'Trace opacity is not supported for a scatter trace with fill ' +
+            'or for a scatter trace that gets filled by another scatter trace.'
+        )}
+      >
         <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
       </Section>
 

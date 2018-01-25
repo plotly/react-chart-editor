@@ -24,52 +24,20 @@ class Section extends Component {
   }
 
   processAndSetChildren(nextProps, nextContext) {
-    const {fullContainer} = nextContext;
-    const {localize: _} = nextProps;
     this.sectionVisible = false;
 
-    const children = React.Children.toArray(nextProps.children);
-    this.children = [];
-    let menuPanel = null;
-
-    for (let i = 0; i < children.length; i++) {
-      const child = children[i];
-      if (!child) {
-        continue;
-      }
+    this.children = React.Children.map(nextProps.children, child => {
       if (child.type === MenuPanel) {
         // Process the first menuPanel. Ignore the rest. MenuPanel does
         // not affect visibility.
-        if (menuPanel) {
-          continue;
+        if (!this.menuPanel) {
+          this.menuPanel = child;
         }
-        menuPanel = child;
-        continue;
+        return null;
       }
 
-      const isAttr = Boolean(child.props.attr);
-      let plotProps;
-      let newProps = {};
-      if (child.plotProps) {
-        plotProps = child.plotProps;
-      } else if (
-        fullContainer &&
-        fullContainer._fullInput &&
-        fullContainer._fullInput.type === 'scatter' &&
-        !fullContainer.opacity &&
-        child.props.attr === 'opacity'
-      ) {
-        this.sectionVisible = true;
-        const child = (
-          <Info>
-            {_(
-              'Trace opacity is not supported for a scatter trace with fill ' +
-                'or for a scatter trace that gets filled by another scatter trace.'
-            )}
-          </Info>
-        );
-        this.children.push(child);
-      } else if (isAttr) {
+      if (child.props.attr) {
+        let plotProps;
         if (child.type.supplyPlotProps) {
           plotProps = child.type.supplyPlotProps(child.props, nextContext);
           if (child.type.modifyPlotProps) {
@@ -81,38 +49,37 @@ class Section extends Component {
 
         // assign plotProps as a prop of children. If they are connectedToContainer
         // it will see plotProps and skip recomputing them.
-        newProps = {plotProps};
         this.sectionVisible = this.sectionVisible || plotProps.isVisible;
-        this.children.push(cloneElement(child, newProps));
-      } else if (child.type === Info) {
-        // Info panels do not change section visibility.
-        this.children.push(child);
-      } else {
-        // custom UI currently forces section visibility.
+        return cloneElement(child, {plotProps});
+      } else if (child.type !== Info) {
+        // custom UI other than Info forces section visibility.
         this.sectionVisible = true;
-        this.children.push(child);
       }
-    }
-
-    this.menuPanel = menuPanel;
+      return child;
+    });
   }
 
   render() {
-    return this.sectionVisible ? (
+    const {infoTextIfEmpty} = this.props;
+    if (!this.sectionVisible && !infoTextIfEmpty) {
+      return null;
+    }
+    return (
       <div className="section">
         <div className="section__heading">
           <div className="section__heading__text">{this.props.name}</div>
           {this.menuPanel}
         </div>
-        {this.children}
+        {this.sectionVisible ? this.children : <Info>{infoTextIfEmpty}</Info>}
       </div>
-    ) : null;
+    );
   }
 }
 
 Section.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
+  infoTextIfEmpty: PropTypes.string,
 };
 
 Section.contextTypes = containerConnectedContextTypes;
