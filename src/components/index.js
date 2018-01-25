@@ -34,6 +34,7 @@ import {
   TraceMarkerSection,
   TraceRequiredPanel,
   SingleSidebarItem,
+  TraceTypeSection,
 } from './containers';
 
 import {Button} from './widgets';
@@ -75,4 +76,5 @@ export {
   AxesFold,
   Button,
   SingleSidebarItem,
+  TraceTypeSection,
 };
