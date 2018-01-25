@@ -50,6 +50,15 @@ import {
   SingleSidebarItem,
 } from './components';
 
+import {
+  GraphCreatePanel,
+  StyleLayoutPanel,
+  StyleAxesPanel,
+  StyleLegendPanel,
+  StyleNotesPanel,
+  StyleTracesPanel,
+} from './default_panels';
+
 export {
   AnnotationAccordion,
   AnnotationArrowRef,
@@ -96,6 +105,12 @@ export {
   AxesFold,
   Button,
   SingleSidebarItem,
+  GraphCreatePanel,
+  StyleLayoutPanel,
+  StyleAxesPanel,
+  StyleLegendPanel,
+  StyleNotesPanel,
+  StyleTracesPanel,
 };
 
 export default PlotlyEditor;
