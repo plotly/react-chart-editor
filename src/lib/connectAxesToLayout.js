@@ -98,7 +98,9 @@ function computeAxesOptions(axes, _) {
     const ax = axes[i];
     const axesPrefix = ax._id.length > 1 ? ' ' + ax._id.substr(1) : '';
     const label = `${ax._id.charAt(0).toUpperCase()}${axesPrefix}`;
-    options[i + 1] = {label, value: ax._name};
+    const value =
+      (axesPrefix.length > 0 ? axesPrefix + '.' : '').trim() + ax._name;
+    options[i + 1] = {label, value};
   }
 
   return options;

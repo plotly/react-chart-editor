@@ -67,6 +67,9 @@ const StyleAxesPanel = ({localize: _}) => (
     <AxesFold name={_('Layout')}>
       <AxesSelector />
     </AxesFold>
+    <AxesFold name={_('Hover Projections')}>
+      <AxesSelector />
+    </AxesFold>
   </TraceRequiredPanel>
 );
 

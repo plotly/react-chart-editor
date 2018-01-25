@@ -20,6 +20,15 @@ export const CanvasSize = connectToContainer(UnconnectedNumeric, {
   },
 });
 
+export const ContourNumeric = connectToContainer(UnconnectedNumeric, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {fullContainer} = plotProps;
+    if (plotProps.isVisible && fullContainer && fullContainer.autocontour) {
+      plotProps.isVisible = false;
+    }
+  },
+});
+
 export const AxesRange = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;
