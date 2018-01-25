@@ -52,5 +52,12 @@ export function traceTypeToPlotlyInitFigure(traceType) {
     };
   }
 
+  if (traceType === 'box') {
+    return {
+      type: 'box',
+      boxpoints: false,
+    };
+  }
+
   return {type: traceType};
 }

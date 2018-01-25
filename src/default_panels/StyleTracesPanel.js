@@ -15,9 +15,9 @@ import {
   Section,
   SymbolSelector,
   TraceAccordion,
-  TraceMarkerSection,
-  TraceRequiredPanel,
   TraceTypeSection,
+  TraceRequiredPanel,
+  TraceMarkerSection,
 } from '../components';
 
 import {localize} from '../lib';
@@ -25,13 +25,16 @@ import {localize} from '../lib';
 const StyleTracesPanel = ({localize: _}) => (
   <TraceRequiredPanel>
     <TraceAccordion>
-      <Section
-        name={_('Trace')}
-        infoTextIfEmpty={_(
-          'Trace opacity is not supported for a scatter trace with fill ' +
-            'or for a scatter trace that gets filled by another scatter trace.'
-        )}
-      >
+      <Section name={_('Trace')}>
+        <TextEditor label={_('Name')} attr="name" richTextOnly />
+        <Radio
+          label={_('Orientation')}
+          attr="orientation"
+          options={[
+            {label: _('Vertical'), value: 'v'},
+            {label: _('Horizontal'), value: 'h'},
+          ]}
+        />
         <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
       </Section>
 
@@ -76,11 +79,19 @@ const StyleTracesPanel = ({localize: _}) => (
 
       <TraceMarkerSection>
         <Radio
-          attr="orientation"
+          attr="boxpoints"
           options={[
-            {label: _('Vertical'), value: 'v'},
-            {label: _('Horizontal'), value: 'h'},
+            {label: _('Show'), value: 'all'},
+            {label: _('Hide'), value: false},
           ]}
+        />
+        <Numeric label={_('Jitter')} attr="jitter" min={0} max={1} step={0.1} />
+        <Numeric
+          label={_('Position')}
+          attr="pointpos"
+          min={-2}
+          max={2}
+          step={0.1}
         />
         <ColorPicker label={_('Color')} attr="marker.color" />
         <Numeric label={_('Opacity')} step={0.1} attr="marker.opacity" />
@@ -163,8 +174,35 @@ const StyleTracesPanel = ({localize: _}) => (
         />
       </Section>
 
-      <Section name={_('Text Shown on Hover')}>
-        <TextEditor attr="text" />
+      <Section name={_('Highlight')}>
+        <Radio
+          attr="boxmean"
+          label={_('Mean')}
+          options={[
+            {label: _('Show'), value: true},
+            {label: _('Hide'), value: false},
+          ]}
+        />
+        <Radio
+          attr="boxmean"
+          label={_('Standard Deviation')}
+          options={[
+            {label: _('Show'), value: 'sd'},
+            {label: _('Hide'), value: false},
+          ]}
+        />
+      </Section>
+
+      <Section name={_('Hover Action')}>
+        <Flaglist
+          attr="hoveron"
+          label={_('Hover on')}
+          options={[
+            {label: _('Boxes'), value: 'boxes'},
+            {label: _('Points'), value: 'points'},
+          ]}
+        />
+        <TextEditor attr="text" label={_('Text')} richTextOnly />
       </Section>
     </TraceAccordion>
   </TraceRequiredPanel>

@@ -66,7 +66,10 @@ class FlaglistCheckboxGroup extends Component {
   // Turns the activeOptions "e.g "x+y+z" into an array that
   // the CheckboxGroup component can handle
   renderCheckedOption() {
-    const activeOptions = this.state.activeOption.split('+');
+    const activeOptions =
+      typeof this.state.activeOption === 'string'
+        ? this.state.activeOption.split('+')
+        : [this.state.activeOption];
     const allOptions = this.props.options;
     const newOptions = [];
 
@@ -104,11 +107,11 @@ class FlaglistCheckboxGroup extends Component {
 FlaglistCheckboxGroup.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.string.isRequired,
+      value: PropTypes.any.isRequired,
       label: PropTypes.string.isRequired,
     })
   ).isRequired,
-  activeOption: PropTypes.string,
+  activeOption: PropTypes.any,
   onChange: PropTypes.func,
   className: PropTypes.string,
   orientation: PropTypes.string,

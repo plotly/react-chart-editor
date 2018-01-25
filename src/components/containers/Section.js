@@ -60,8 +60,7 @@ class Section extends Component {
   }
 
   render() {
-    const {infoTextIfEmpty} = this.props;
-    if (!this.sectionVisible && !infoTextIfEmpty) {
+    if (!this.sectionVisible) {
       return null;
     }
     return (
@@ -70,7 +69,7 @@ class Section extends Component {
           <div className="section__heading__text">{this.props.name}</div>
           {this.menuPanel}
         </div>
-        {this.sectionVisible ? this.children : <Info>{infoTextIfEmpty}</Info>}
+        {this.children}
       </div>
     );
   }
@@ -79,7 +78,6 @@ class Section extends Component {
 Section.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
-  infoTextIfEmpty: PropTypes.string,
 };
 
 Section.contextTypes = containerConnectedContextTypes;
