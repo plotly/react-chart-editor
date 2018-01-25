@@ -19,6 +19,7 @@ import {
   ContourNumeric,
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
+  TraceOrientation,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './lineSelectors';
 
@@ -45,4 +46,5 @@ export {
   Numeric,
   SymbolSelector,
   TraceSelector,
+  TraceOrientation,
 };

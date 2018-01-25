@@ -19,6 +19,7 @@ import {
   TraceTypeSection,
   TraceRequiredPanel,
   TraceMarkerSection,
+  TraceOrientation,
 } from '../components';
 
 import {localize} from '../lib';
@@ -28,7 +29,7 @@ const StyleTracesPanel = ({localize: _}) => (
     <TraceAccordion>
       <Section name={_('Trace')}>
         <TextEditor label={_('Name')} attr="name" richTextOnly />
-        <Radio
+        <TraceOrientation
           label={_('Orientation')}
           attr="orientation"
           options={[

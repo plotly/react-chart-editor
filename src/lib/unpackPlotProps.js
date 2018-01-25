@@ -64,29 +64,7 @@ export default function unpackPlotProps(props, context) {
 
   const updatePlot = v => {
     if (updateContainer) {
-      const update = {};
-      if (
-        props.attr === 'orientation' &&
-        container.type === 'box' &&
-        v === 'h'
-      ) {
-        update.y = null;
-        update.ysrc = null;
-        update.x = container.y;
-        update.xsrc = container.y;
-      }
-      if (
-        props.attr === 'orientation' &&
-        container.type === 'box' &&
-        v === 'v'
-      ) {
-        update.x = null;
-        update.xsrc = null;
-        update.y = container.x;
-        update.ysrc = container.xsrc;
-      }
-      update[props.attr] = v;
-      updateContainer(update);
+      updateContainer({[props.attr]: v});
     }
   };
 
