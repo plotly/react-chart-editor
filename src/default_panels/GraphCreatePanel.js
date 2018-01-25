@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   Panel,
   TraceAccordion,
@@ -7,8 +6,8 @@ import {
   DataSelector,
 } from '../components';
 
-const GraphCreatePanel = ({visible}) => (
-  <Panel visible={visible}>
+const GraphCreatePanel = () => (
+  <Panel>
     <TraceAccordion canAdd>
       <TraceSelector label="Plot Type" attr="type" show />
 
@@ -32,9 +31,5 @@ const GraphCreatePanel = ({visible}) => (
     </TraceAccordion>
   </Panel>
 );
-
-GraphCreatePanel.propTypes = {
-  visible: PropTypes.bool,
-};
 
 export default GraphCreatePanel;

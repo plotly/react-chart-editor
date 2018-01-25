@@ -15,8 +15,8 @@ import {
 
 import {localize} from '../lib';
 
-const StyleAxesPanel = ({visible, localize: _}) => (
-  <TraceRequiredPanel visible={visible}>
+const StyleAxesPanel = ({localize: _}) => (
+  <TraceRequiredPanel>
     <AxesFold name={_('Titles')}>
       <AxesSelector />
       <TextEditor attr="title" />
@@ -72,8 +72,6 @@ const StyleAxesPanel = ({visible, localize: _}) => (
 
 StyleAxesPanel.propTypes = {
   localize: PropTypes.func,
-
-  visible: PropTypes.bool,
 };
 
 export default localize(StyleAxesPanel);

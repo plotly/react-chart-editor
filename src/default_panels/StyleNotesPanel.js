@@ -18,8 +18,8 @@ import {
 
 import {localize} from '../lib';
 
-const StyleNotesPanel = ({visible, localize: _}) => (
-  <TraceRequiredPanel visible={visible}>
+const StyleNotesPanel = ({localize: _}) => (
+  <TraceRequiredPanel>
     <AnnotationAccordion canAdd>
       <Section name={_('Note Text')}>
         <TextEditor attr="text" />
@@ -97,8 +97,6 @@ const StyleNotesPanel = ({visible, localize: _}) => (
 
 StyleNotesPanel.propTypes = {
   localize: PropTypes.func,
-
-  visible: PropTypes.bool,
 };
 
 export default localize(StyleNotesPanel);
