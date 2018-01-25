@@ -14,8 +14,8 @@ import {
 
 import {localize} from '../lib';
 
-const StyleLayoutPanel = ({visible, localize: _}) => (
-  <TraceRequiredPanel visible={visible}>
+const StyleLayoutPanel = ({localize: _}) => (
+  <TraceRequiredPanel>
     <Fold name={_('Canvas')}>
       <Radio
         attr="autosize"
@@ -62,7 +62,6 @@ const StyleLayoutPanel = ({visible, localize: _}) => (
 
 StyleLayoutPanel.propTypes = {
   localize: PropTypes.func,
-  visible: PropTypes.bool,
 };
 
 export default localize(StyleLayoutPanel);

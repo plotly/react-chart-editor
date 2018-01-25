@@ -14,8 +14,8 @@ import {
 
 import {localize} from '../lib';
 
-const StyleLegendPanel = ({visible, localize: _}) => (
-  <TraceRequiredPanel visible={visible}>
+const StyleLegendPanel = ({localize: _}) => (
+  <TraceRequiredPanel>
     <Fold hideHeader>
       <Section name={_('Legend')}>
         <Radio
@@ -106,8 +106,6 @@ const StyleLegendPanel = ({visible, localize: _}) => (
 
 StyleLegendPanel.propTypes = {
   localize: PropTypes.func,
-
-  visible: PropTypes.bool,
 };
 
 export default localize(StyleLegendPanel);

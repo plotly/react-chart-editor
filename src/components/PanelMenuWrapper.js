@@ -79,13 +79,13 @@ class PanelsWithSidebar extends Component {
     return (
       <div className={bem('plotly-editor', 'wrapper')}>
         <div className={bem('sidebar')}>{menuOpts.map(this.renderSection)}</div>
-        {React.Children.map(this.props.children, (child, i) =>
-          cloneElement(child, {
-            key: i,
-            visible:
-              this.state.group === child.props.group &&
-              this.state.panel === child.props.name,
-          })
+        {React.Children.map(
+          this.props.children,
+          (child, i) =>
+            this.state.group !== child.props.group ||
+            this.state.panel !== child.props.name
+              ? null
+              : cloneElement(child, {key: i})
         )}
       </div>
     );

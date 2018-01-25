@@ -22,8 +22,8 @@ import {
 
 import {localize} from '../lib';
 
-const StyleTracesPanel = ({visible, localize: _}) => (
-  <TraceRequiredPanel visible={visible}>
+const StyleTracesPanel = ({localize: _}) => (
+  <TraceRequiredPanel>
     <TraceAccordion>
       <Section
         name={_('Trace')}
@@ -172,8 +172,6 @@ const StyleTracesPanel = ({visible, localize: _}) => (
 
 StyleTracesPanel.propTypes = {
   localize: PropTypes.func,
-
-  visible: PropTypes.bool,
 };
 
 export default localize(StyleTracesPanel);

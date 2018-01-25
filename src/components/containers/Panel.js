@@ -50,25 +50,22 @@ class Panel extends Component {
 
   calculateFolds() {
     // to get proper number of child folds and initialize component state
-    const {visible} = this.props;
     const {nbOfFolds} = this.state;
 
-    if (visible) {
-      const currentNbOfFolds = document.getElementsByClassName('fold').length;
-      if (nbOfFolds !== currentNbOfFolds) {
-        if (this.firstChildWithCanAdd()) {
-          this.setState({
-            nbOfFolds: currentNbOfFolds,
-            individualFoldStates: this.closeAllButLast(
-              new Array(currentNbOfFolds).fill(true)
-            ),
-          });
-        } else {
-          this.setState({
-            nbOfFolds: currentNbOfFolds,
-            individualFoldStates: new Array(currentNbOfFolds).fill(false),
-          });
-        }
+    const currentNbOfFolds = document.getElementsByClassName('fold').length;
+    if (nbOfFolds !== currentNbOfFolds) {
+      if (this.firstChildWithCanAdd()) {
+        this.setState({
+          nbOfFolds: currentNbOfFolds,
+          individualFoldStates: this.closeAllButLast(
+            new Array(currentNbOfFolds).fill(true)
+          ),
+        });
+      } else {
+        this.setState({
+          nbOfFolds: currentNbOfFolds,
+          individualFoldStates: new Array(currentNbOfFolds).fill(false),
+        });
       }
     }
   }
@@ -81,59 +78,50 @@ class Panel extends Component {
   }
 
   render() {
-    const {visible} = this.props;
     const {individualFoldStates, nbOfFolds} = this.state;
     const hasOpen =
       individualFoldStates.length > 0 &&
       individualFoldStates.some(s => s === false);
 
-    if (visible) {
-      let addAction;
+    let addAction;
 
-      const addableChild = this.firstChildWithCanAdd();
-      if (addableChild) {
-        addAction = (addableChild.type.plotly_editor_traits || {}).add_action;
-      }
-
-      const newChildren = React.Children.map(
-        this.props.children,
-        (child, index) => {
-          if ((child.type.plotly_editor_traits || {}).foldable) {
-            return cloneElement(child, {foldIndex: index, key: index});
-          }
-          return child;
-        }
-      );
-
-      return (
-        <div className={bem('panel')}>
-          <PanelHeader
-            addAction={addAction}
-            allowCollapse={nbOfFolds > 1}
-            toggleFolds={this.toggleFolds}
-            hasOpen={hasOpen}
-          />
-          {newChildren}
-        </div>
-      );
+    const addableChild = this.firstChildWithCanAdd();
+    if (addableChild) {
+      addAction = (addableChild.type.plotly_editor_traits || {}).add_action;
     }
-    return null;
+
+    const newChildren = React.Children.map(
+      this.props.children,
+      (child, index) => {
+        if ((child.type.plotly_editor_traits || {}).foldable) {
+          return cloneElement(child, {foldIndex: index, key: index});
+        }
+        return child;
+      }
+    );
+
+    return (
+      <div className={bem('panel')}>
+        <PanelHeader
+          addAction={addAction}
+          allowCollapse={nbOfFolds > 1}
+          toggleFolds={this.toggleFolds}
+          hasOpen={hasOpen}
+        />
+        {newChildren}
+      </div>
+    );
   }
 }
 
 Panel.propTypes = {
   children: PropTypes.node,
-  visible: PropTypes.bool,
 };
 
 Panel.contextTypes = {
   layout: PropTypes.object,
   onUpdate: PropTypes.func,
   updateContainer: PropTypes.func,
-};
-
-Panel.defaultProps = {
-  visible: true,
 };
 
 Panel.childContextTypes = {
