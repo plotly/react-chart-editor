@@ -1,24 +1,27 @@
+import 'react-select/dist/react-select.css';
+import PropTypes from 'prop-types';
 import React from 'react';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 
-export default props => (
+const Nav = props => (
   <div
     style={{
-      height: '40px',
+      height: '50px',
       width: '100%',
-      backgroundColor: 'rgb(235, 240, 248)',
-      borderBottom: '2px solid #c8d4e3',
+      backgroundColor: '#27374e',
       display: 'inline-flex',
+      color: 'white',
     }}
   >
-    <a
-      style={{marginLeft: '20px', marginRight: '20px', fontSize: 'large'}}
-      href="#"
+    <span style={{lineHeight: '50px', paddingLeft: '10px'}}>Select mock:</span>
+    <div
+      style={{
+        width: '300px',
+        marginLeft: '20px',
+        marginRight: '20px',
+        marginTop: '7px',
+      }}
     >
-      react-plotly.js-editor
-    </a>
-    <div style={{width: '300px', marginLeft: '20px', marginRight: '20px'}}>
       <Select
         clearable={true}
         value={props.currentMockIndex}
@@ -31,7 +34,16 @@ export default props => (
         searchPromptText="Search for a mock"
         onChange={option => props.loadMock(option.value)}
         noResultsText={'No Results'}
+        placeholder={'plotly.js/contents/test/image/mocks'}
       />
     </div>
   </div>
 );
+
+Nav.propTypes = {
+  currentMockIndex: PropTypes.number,
+  loadMock: PropTypes.func,
+  mocks: PropTypes.object,
+};
+
+export default Nav;
