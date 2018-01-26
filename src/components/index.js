@@ -21,6 +21,7 @@ import {
   Numeric,
   SymbolSelector,
   TraceSelector,
+  TraceOrientation,
 } from './fields';
 
 import {
@@ -79,4 +80,5 @@ export {
   Button,
   SingleSidebarItem,
   TraceTypeSection,
+  TraceOrientation,
 };

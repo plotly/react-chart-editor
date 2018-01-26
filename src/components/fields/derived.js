@@ -1,6 +1,7 @@
 import isNumeric from 'fast-isnumeric';
 import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedDropdown} from './Dropdown';
+import {UnconnectedRadio} from './Radio';
 import {
   connectLayoutToPlot,
   connectToContainer,
@@ -25,6 +26,38 @@ export const ContourNumeric = connectToContainer(UnconnectedNumeric, {
     const {fullContainer} = plotProps;
     if (plotProps.isVisible && fullContainer && fullContainer.autocontour) {
       plotProps.isVisible = false;
+    }
+  },
+});
+
+export const TraceOrientation = connectToContainer(UnconnectedRadio, {
+  modifyPlotProps: (props, context, plotProps) => {
+    if (
+      context.container.type === 'box' &&
+      plotProps.fullValue === 'h' &&
+      context.container.y &&
+      context.container.y.length !== 0
+    ) {
+      context.updateContainer({
+        y: null,
+        ysrc: null,
+        x: context.container.y,
+        xsrc: context.container.ysrc,
+      });
+    }
+
+    if (
+      context.container.type === 'box' &&
+      plotProps.fullValue === 'v' &&
+      context.container.x &&
+      context.container.x.length !== 0
+    ) {
+      context.updateContainer({
+        x: null,
+        xsrc: null,
+        y: context.container.x,
+        ysrc: context.container.xsrc,
+      });
     }
   },
 });

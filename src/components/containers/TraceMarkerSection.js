@@ -18,8 +18,6 @@ class TraceMarkerSection extends Component {
     const traceType = context.fullContainer._fullInput.type;
     if (traceType === 'bar') {
       this.name = _('Bars');
-    } else if (traceType === 'box') {
-      this.name = _('Outliers');
     } else {
       this.name = _('Points');
     }

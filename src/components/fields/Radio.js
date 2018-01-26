@@ -4,7 +4,7 @@ import RadioBlocks from '../widgets/RadioBlocks';
 import Field from './Field';
 import {connectToContainer} from 'lib';
 
-class Radio extends Component {
+export class UnconnectedRadio extends Component {
   render() {
     return (
       <Field {...this.props}>
@@ -18,7 +18,7 @@ class Radio extends Component {
   }
 }
 
-Radio.propTypes = {
+UnconnectedRadio.propTypes = {
   center: PropTypes.bool,
   fullValue: PropTypes.any,
   options: PropTypes.array.isRequired,
@@ -28,8 +28,8 @@ Radio.propTypes = {
 
 // for better appearance <Radio> overrides <Field> {center: false}
 // default prop. This can be overridden manually using props for <Radio>.
-Radio.defaultProps = {
+UnconnectedRadio.defaultProps = {
   center: true,
 };
 
-export default connectToContainer(Radio);
+export default connectToContainer(UnconnectedRadio);
