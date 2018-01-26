@@ -5,6 +5,7 @@ import {
   ColorPicker,
   Dropdown,
   Flaglist,
+  ContourNumeric,
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
   LineDashSelector,
@@ -116,7 +117,7 @@ const StyleTracesPanel = ({localize: _}) => (
         <Numeric label={_('Width')} attr="whiskerwidth" />
       </Section>
 
-      <TraceTypeSection name={_('Lines')} traceTypes={['scatter']}>
+      <TraceTypeSection name={_('Lines')} traceTypes={['scatter', 'contour']}>
         <Numeric label={_('Width')} attr="line.width" />
         <ColorPicker label={_('Line Color')} attr="line.color" />
         <LineDashSelector label={_('Type')} attr="line.dash" />
@@ -131,16 +132,104 @@ const StyleTracesPanel = ({localize: _}) => (
         />
       </TraceTypeSection>
 
-      <TraceTypeSection name={_('Gaps in data')} traceTypes={['heatmap']}>
+      <Section name={_('Heatmap')}>
         <Radio
-          label={_('Connect Gaps')}
+          label={_('Smoothing')}
+          attr="zsmooth"
+          options={[
+            {label: _('On'), value: 'fast'},
+            {label: _('Off'), value: false},
+          ]}
+        />
+        <Numeric label={_('Horizontal Gaps')} attr="xgap" />
+        <Numeric label={_('Vertical Gaps')} attr="ygap" />
+      </Section>
+
+      <TraceTypeSection
+        name={_('Gaps in Data')}
+        traceTypes={['heatmap', 'contour']}
+      >
+        <Radio
+          label={_('Interpolate Gaps')}
           attr="connectgaps"
           options={[
-            {label: _('Fill with Interpolation'), value: true},
-            {label: _('Blank'), value: false},
+            {label: _('On'), value: true},
+            {label: _('Off'), value: false},
           ]}
         />
       </TraceTypeSection>
+
+      <Section name={_('Contours')}>
+        <Radio
+          label={_('Coloring')}
+          attr="contours.coloring"
+          options={[
+            {label: _('Fill'), value: 'fill'},
+            {label: _('Heatmap'), value: 'heatmap'},
+            {label: _('Lines'), value: 'lines'},
+          ]}
+        />
+        <Radio
+          label={_('Contour Lines')}
+          attr="contours.showlines"
+          options={[
+            {label: _('On'), value: true},
+            {label: _('Off'), value: false},
+          ]}
+        />
+        <Radio
+          label={_('Number of Contours')}
+          attr="autocontour"
+          options={[
+            {label: _('Auto'), value: true},
+            {label: _('Custom'), value: false},
+          ]}
+        />
+        <Numeric label={_('Max Contours')} attr="ncontours" />
+
+        <ContourNumeric label={_('Step Size')} attr="contours.size" />
+        <ContourNumeric label={_('Min Contour')} attr="contours.start" />
+        <ContourNumeric label={_('Max Contour')} attr="contours.end" />
+      </Section>
+
+      <Section name={_('Lighting')}>
+        <Numeric
+          label={_('Ambient')}
+          attr="lighting.ambient"
+          units="%"
+          step={0.1}
+        />
+        <Numeric
+          label={_('Diffuse')}
+          attr="lighting.diffuse"
+          units="%"
+          step={0.1}
+        />
+        <Numeric
+          label={_('Specular')}
+          attr="lighting.specular"
+          units="%"
+          step={0.1}
+        />
+        <Numeric
+          label={_('Roughness')}
+          attr="lighting.roughness"
+          units="%"
+          step={0.1}
+        />
+        <LayoutNumericFraction
+          label={_('Fresnel')}
+          attr="lighting.fresnel"
+          units="%"
+          step={0.1}
+        />
+      </Section>
+
+      <Section name={_('Light Position')}>
+        <Numeric label={_('X')} attr="lightposition.x" />
+        <Numeric label={_('Y')} attr="lightposition.y" />
+        <Numeric label={_('Z')} attr="lightposition.z" />
+      </Section>
 
       <Section name={_('Increasing Trace Styles')}>
         <TextEditor label={_('Name')} attr="increasing.name" richTextOnly />
@@ -189,6 +278,18 @@ const StyleTracesPanel = ({localize: _}) => (
           options={[
             {label: _('Show'), value: 'sd'},
             {label: _('Hide'), value: false},
+          ]}
+        />
+      </Section>
+
+      <Section name={_('Values Shown On Hover')}>
+        <Flaglist
+          attr="hoverinfo"
+          label={_('Values Shown On Hover')}
+          options={[
+            {label: _('X'), value: 'x'},
+            {label: _('Y'), value: 'y'},
+            {label: _('Z'), value: 'z'},
           ]}
         />
       </Section>

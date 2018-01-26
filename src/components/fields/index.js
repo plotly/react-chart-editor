@@ -16,6 +16,7 @@ import {
   AnnotationRef,
   AxesRange,
   CanvasSize,
+  ContourNumeric,
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
 } from './derived';
@@ -28,6 +29,7 @@ export {
   AxesRange,
   AxesSelector,
   CanvasSize,
+  ContourNumeric,
   ColorPicker,
   Dropdown,
   Flaglist,

@@ -28,6 +28,14 @@ const StyleLayoutPanel = ({localize: _}) => (
       <CanvasSize label={_('Fixed Height')} attr="height" units="px" />
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
+      <Radio
+        label="Hover Interaction"
+        attr="hovermode"
+        options={[
+          {label: _('Enable'), value: 'closest'},
+          {label: _('Disable'), value: false},
+        ]}
+      />
     </Fold>
     <Fold name={_('Title and Fonts')}>
       <Section name={_('Title')}>

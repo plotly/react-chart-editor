@@ -23,7 +23,7 @@ class UnconnectedTextEditor extends Component {
     let fullValue = this.props.fullValue;
 
     let placeholder;
-    if (multiValued || (!container[attr] && fullValue)) {
+    if (multiValued || (fullValue && (!container || !container[attr]))) {
       placeholder = fullValue;
       fullValue = '';
     }
