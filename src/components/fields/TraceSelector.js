@@ -7,6 +7,7 @@ import {
   localize,
   plotlyTraceToCustomTrace,
 } from 'lib';
+import {EDITOR_ACTIONS} from 'lib/constants';
 
 function computeTraceOptionsFromSchema(schema, _) {
   // Filter out Polar "area" type as it is fairly broken and we want to present
@@ -51,7 +52,8 @@ function computeTraceOptionsFromSchema(schema, _) {
     i + 1,
     0,
     {label: _('Line'), value: 'line'},
-    {label: _('Area'), value: 'area'}
+    {label: _('Area'), value: 'area'},
+    {label: _('Timeseries'), value: 'timeseries'}
   );
 
   return traceOptions;
@@ -146,4 +148,44 @@ TraceSelector.propTypes = {
   updateContainer: PropTypes.func,
 };
 
-export default connectToContainer(localize(TraceSelector));
+export default connectToContainer(localize(TraceSelector), {
+  modifyPlotProps: (props, context) => {
+    if (
+      plotlyTraceToCustomTrace(context.container) === 'timeseries' &&
+      (!context.layout.xaxis ||
+        !context.layout.xaxis.rangeslider ||
+        !context.layout.xaxis.rangeslider.visible)
+    ) {
+      context.onUpdate({
+        type: EDITOR_ACTIONS.UPDATE_LAYOUT,
+        payload: {
+          update: {
+            xaxis: {
+              rangeslider: {visible: true},
+            },
+          },
+        },
+      });
+    }
+
+    if (
+      ['timeseries', 'candlestick', 'ohlc'].indexOf(
+        plotlyTraceToCustomTrace(context.container)
+      ) === -1 &&
+      context.fullLayout.xaxis &&
+      context.fullLayout.xaxis.rangeslider &&
+      context.fullLayout.xaxis.rangeslider.visible
+    ) {
+      context.onUpdate({
+        type: EDITOR_ACTIONS.UPDATE_LAYOUT,
+        payload: {
+          update: {
+            xaxis: {
+              rangeslider: {visible: false},
+            },
+          },
+        },
+      });
+    }
+  },
+});
