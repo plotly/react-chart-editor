@@ -1,15 +1,22 @@
 /* eslint-disable no-magic-numbers */
+import DataSelector from '../DataSelector';
 import DropdownWidget from '../../widgets/Dropdown';
+import Field from '../Field';
 import React from 'react';
 import {TestEditor, fixtures, plotly} from 'lib/test-utils';
+import connectTraceToPlot from 'lib/connectTraceToPlot';
 import {mount} from 'enzyme';
 
-function render(overrides = {}) {
+function render(overrides = {}, children) {
   const {attr = 'x', ...props} = overrides;
   const editorProps = {...fixtures.scatter(), onUpdate: jest.fn(), ...props};
 
   // return the inner-most plot connected dropdown (last)
-  return mount(<TestEditor {...editorProps} plotly={plotly} />)
+  return mount(
+    <TestEditor {...editorProps} plotly={plotly}>
+      {children}
+    </TestEditor>
+  )
     .find(`[traceIndex=1]`)
     .find(`[attr="${attr}"]`)
     .last();
@@ -51,5 +58,18 @@ describe('DataSelector', () => {
 
     wrapper = render({...fixtures.pie(), attr: 'x'}).find(DropdownWidget);
     expect(wrapper.exists()).toBe(false);
+  });
+
+  it('uses trace specific label', () => {
+    const TraceDataSelector = connectTraceToPlot(DataSelector);
+    const wrapper = render(
+      {},
+      <TraceDataSelector
+        traceIndex={0}
+        label={{pie: 'hodor', '*': 'rodoh'}}
+        attr="x"
+      />
+    );
+    expect(wrapper.text()).toContain('rodoh');
   });
 });

@@ -17,11 +17,17 @@ const GraphCreatePanel = ({localize: _}) => (
 
     <DataSelector label={_('Values')} attr="values" />
 
+    <DataSelector label={_('Locations')} attr="locations" />
+
+    <DataSelector label={_('Latitude')} attr="lat" />
+
+    <DataSelector label={_('Longitude')} attr="lon" />
+
     <DataSelector label={_('X')} attr="x" />
 
     <DataSelector label={_('Y')} attr="y" />
 
-    <DataSelector label={_('Z')} attr="z" />
+    <DataSelector label={{choropleth: _('Values'), '*': _('Z')}} attr="z" />
 
     <DataSelector label={_('Open')} attr="open" />
 
