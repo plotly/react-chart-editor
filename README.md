@@ -2,7 +2,6 @@
 
 > Customizable React-based editor panel for Plotly charts, Part of Plotly's [React Component Suite](https://plot.ly/products/react/) for building data visualization Web apps and products.
 
-
 master
 ![master](https://circleci.com/gh/plotly/react-plotly.js-editor/tree/master.svg?style=svg&circle-token=df4574e01732846dba81d800d062be5f0fef5641)
 
@@ -127,6 +126,7 @@ All Fields except `<Info />` accept an `attr` property to bind them to a key in 
 * `<Radio />`: renders as a button group, useful for mutually-exclusive low-cardinality enumerable values
 * `<Dropdown />`: renders as a dropdown menu useful for mutually-exclusive high-cardinality enumerable values
 * `<ColorPicker />`: renders as a popup color-picker, useful for CSS color hex value strings
+* `<ColorscalePicker />`: npm module [react-colorscales](https://github.com/plotly/react-colorscales)
 * `<Flaglist />`: renders as a list of checkboxes, useful for `+`-joined flag lists like `data[].mode`
 * `<TextEditor />`: renders as a WYSIWYG editor, useful for text like `layout.title`, takes props: `latexOnly`, `richTextOnly`, `htmlOnly` if no format props given, defaults to the `MultiFormat` text editor (latex && richText && html)
 

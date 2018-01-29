@@ -25,7 +25,16 @@ class App extends Component {
     // overwritten with a full DOM node that contains data, layout, _fullData,
     // _fullLayout etc in handlePlotUpdate()
     this.state = {
-      graphDiv: {data: [{type: 'scatter', x: [1], y: [1]}]},
+      graphDiv: {
+        data: [
+          {
+            type: 'scatter',
+            x: dataSources.col1,
+            y: dataSources.col2,
+            marker: {color: dataSources.col3},
+          },
+        ],
+      },
       editorRevision: 0,
       plotRevision: 0,
     };

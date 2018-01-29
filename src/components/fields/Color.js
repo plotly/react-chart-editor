@@ -6,7 +6,7 @@ import {connectToContainer} from 'lib';
 
 class Color extends Component {
   render() {
-    return Array.isArray(this.props.fullValue) ? null : (
+    return (
       <Field {...this.props}>
         <ColorPicker
           selectedColor={this.props.fullValue}
