@@ -18,13 +18,14 @@ class Scale extends Component {
   }
 
   render() {
+    const {selected, onColorscaleChange} = this.props;
     return (
       <div>
-        <Colorscale colorscale={this.props.selected} onClick={this.toggle} />
+        <Colorscale colorscale={selected} onClick={this.toggle} />
         {this.state.showColorscalePicker ? (
           <ColorscalePicker
-            onChange={this.props.onColorscaleChange}
-            colorscale={this.props.selected}
+            onChange={onColorscaleChange}
+            colorscale={selected}
           />
         ) : null}
       </div>
