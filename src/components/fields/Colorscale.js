@@ -21,15 +21,16 @@ class Colorscale extends Component {
     );
   }
   render() {
-    const colorscale = this.props.fullValue.map(v => v[1]);
-    return (
+    const {container, fullValue} = this.props;
+    const colorscale = fullValue.map(v => v[1]);
+    return container.marker && Array.isArray(container.marker.color) ? (
       <Field {...this.props}>
         <ColorscalePicker
           selected={colorscale}
           onColorscaleChange={this.onUpdate}
         />
       </Field>
-    );
+    ) : null;
   }
 }
 
