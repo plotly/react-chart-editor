@@ -33,6 +33,8 @@ const GraphCreatePanel = ({localize: _}) => (
 
       <DataSelector label={_('Close')} attr="close" />
 
+      <DataSelector label={_('Color')} attr="marker.color" />
+
       <Radio
         label={_('Transpose')}
         attr="transpose"

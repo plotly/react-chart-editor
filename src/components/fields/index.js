@@ -1,6 +1,7 @@
 import ArrowSelector from './ArrowSelector';
 import AxesSelector from './AxesSelector';
 import ColorPicker from './Color';
+import ColorscalePicker from './Colorscale';
 import Dropdown from './Dropdown';
 import FontSelector from './FontSelector';
 import Flaglist from './Flaglist';
@@ -30,8 +31,10 @@ export {
   AxesRange,
   AxesSelector,
   CanvasSize,
-  ContourNumeric,
   ColorPicker,
+  ColorscalePicker,
+  ContourNumeric,
+  DataSelector,
   Dropdown,
   Flaglist,
   FontSelector,
@@ -40,11 +43,10 @@ export {
   LayoutNumericFractionInverse,
   LineDashSelector,
   LineShapeSelector,
-  Radio,
-  TextEditor,
-  DataSelector,
   Numeric,
+  Radio,
   SymbolSelector,
-  TraceSelector,
+  TextEditor,
   TraceOrientation,
+  TraceSelector,
 };

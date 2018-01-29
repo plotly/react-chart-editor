@@ -20,6 +20,7 @@ import {
   TraceRequiredPanel,
   TraceMarkerSection,
   TraceOrientation,
+  ColorscalePicker,
 } from '../components';
 
 import {localize} from '../lib';
@@ -95,6 +96,7 @@ const StyleTracesPanel = ({localize: _}) => (
           max={2}
           step={0.1}
         />
+        <ColorscalePicker label={_('Colorscale')} attr="marker.colorscale" />
         <ColorPicker label={_('Color')} attr="marker.color" />
         <Numeric label={_('Opacity')} step={0.1} attr="marker.opacity" />
         <Numeric label={_('Size')} attr="marker.size" />
