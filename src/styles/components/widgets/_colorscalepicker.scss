@@ -1,0 +1,17 @@
+.colorscalePickerContainer {
+  position: relative;
+  width: 300px;
+  margin-left: -76px;
+}
+
+.colorscalePickerContainer::-webkit-scrollbar {
+  width: 5px;
+}
+
+.colorscale-selected {
+  display: none;
+}
+
+.rc-slider {
+  width: 200px;
+}

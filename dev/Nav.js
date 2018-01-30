@@ -43,7 +43,7 @@ const Nav = props => (
 Nav.propTypes = {
   currentMockIndex: PropTypes.number,
   loadMock: PropTypes.func,
-  mocks: PropTypes.object,
+  mocks: PropTypes.array,
 };
 
 export default Nav;

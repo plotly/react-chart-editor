@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
   Flaglist,
   ColorPicker,
+  ColorscalePicker,
   Fold,
   PanelMenuWrapper,
   TextEditor,
@@ -14,13 +15,22 @@ import {
   MenuPanel,
   Button,
   SingleSidebarItem,
+  TraceAccordion,
+  TraceRequiredPanel,
 } from 'react-plotly.js-editor';
 
 export default class CustomEditor extends Component {
   render() {
     return (
       <PanelMenuWrapper>
-        <LayoutPanel group="Panel Menu Wrapper" name="Panel">
+        <TraceRequiredPanel group="Traces" name="Style">
+          <TraceAccordion>
+            <Section>
+              <ColorscalePicker label="Colorscale" attr="marker.colorscale" />
+            </Section>
+          </TraceAccordion>
+        </TraceRequiredPanel>
+        <LayoutPanel group="Layout" name="Style">
           <Fold name="Fold">
             <Info>
               <p>

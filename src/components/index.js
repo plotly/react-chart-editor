@@ -22,6 +22,7 @@ import {
   SymbolSelector,
   TraceSelector,
   TraceOrientation,
+  ColorscalePicker,
 } from './fields';
 
 import {
@@ -81,4 +82,5 @@ export {
   SingleSidebarItem,
   TraceTypeSection,
   TraceOrientation,
+  ColorscalePicker,
 };
