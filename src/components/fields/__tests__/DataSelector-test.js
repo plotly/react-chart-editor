@@ -10,7 +10,7 @@ function render(overrides = {}) {
 
   // return the inner-most plot connected dropdown (last)
   return mount(<TestEditor {...editorProps} plotly={plotly} />)
-    .find(`[traceIndex=0]`)
+    .find(`[traceIndex=1]`)
     .find(`[attr="${attr}"]`)
     .last();
 }
@@ -41,7 +41,7 @@ describe('DataSelector', () => {
     wrapper.prop('onChange')('y1');
     expect(beforeUpdateTraces.mock.calls[0][0]).toEqual({
       update: {xsrc: 'y1', x: [2, 3, 4]},
-      traceIndexes: [0],
+      traceIndexes: [1],
     });
   });
 
