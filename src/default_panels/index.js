@@ -4,6 +4,7 @@ import StyleAxesPanel from './StyleAxesPanel';
 import StyleLegendPanel from './StyleLegendPanel';
 import StyleNotesPanel from './StyleNotesPanel';
 import StyleTracesPanel from './StyleTracesPanel';
+import StyleColorbarsPanel from './StyleColorbarsPanel';
 
 export {
   GraphCreatePanel,
@@ -12,4 +13,5 @@ export {
   StyleLegendPanel,
   StyleNotesPanel,
   StyleTracesPanel,
+  StyleColorbarsPanel,
 };

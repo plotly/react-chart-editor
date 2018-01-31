@@ -1,7 +1,8 @@
 import Fold from './Fold';
+import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectAnnotationToLayout, bem} from 'lib';
+import {connectAnnotationToLayout} from 'lib';
 
 const AnnotationFold = connectAnnotationToLayout(Fold);
 
@@ -17,39 +18,38 @@ class AnnotationAccordion extends Component {
           key={i}
           annotationIndex={i}
           name={ann.text}
-          foldIndex={i}
           canDelete={canAdd}
         >
           {children}
         </AnnotationFold>
       ));
 
+    const addAction = {
+      label: 'Annotation',
+      handler: ({layout, updateContainer}) => {
+        let annotationIndex;
+        if (Array.isArray(layout.annotations)) {
+          annotationIndex = layout.annotations.length;
+        } else {
+          annotationIndex = 0;
+        }
+
+        const key = `annotations[${annotationIndex}]`;
+        const value = {text: 'new text'};
+
+        if (updateContainer) {
+          updateContainer({[key]: value});
+        }
+      },
+    };
+
     return (
-      <div className={bem('panel', 'content')}>{content ? content : null}</div>
+      <TraceRequiredPanel addAction={canAdd ? addAction : null}>
+        {content ? content : null}
+      </TraceRequiredPanel>
     );
   }
 }
-
-AnnotationAccordion.plotly_editor_traits = {
-  add_action: {
-    label: 'Annotation',
-    handler: ({layout, updateContainer}) => {
-      let annotationIndex;
-      if (Array.isArray(layout.annotations)) {
-        annotationIndex = layout.annotations.length;
-      } else {
-        annotationIndex = 0;
-      }
-
-      const key = `annotations[${annotationIndex}]`;
-      const value = {text: 'new text'};
-
-      if (updateContainer) {
-        updateContainer({[key]: value});
-      }
-    },
-  },
-};
 
 AnnotationAccordion.contextTypes = {
   layout: PropTypes.object,
