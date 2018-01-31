@@ -4,7 +4,6 @@ import {
   DataSelector,
   Dropdown,
   LayoutSectionOverride,
-  Panel,
   Radio,
   Section,
   TraceAccordion,

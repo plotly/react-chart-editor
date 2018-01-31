@@ -1,7 +1,6 @@
-/* eslint-disable no-magic-numbers */
+/* eslint-disable no-magic-numbers*/
 import DataSelector from '../DataSelector';
 import DropdownWidget from '../../widgets/Dropdown';
-import Field from '../Field';
 import React from 'react';
 import {TestEditor, fixtures, plotly} from 'lib/test-utils';
 import connectTraceToPlot from 'lib/connectTraceToPlot';
@@ -65,11 +64,11 @@ describe('DataSelector', () => {
     const wrapper = render(
       {},
       <TraceDataSelector
-        traceIndex={0}
+        traceIndex={1}
         label={{pie: 'hodor', '*': 'rodoh'}}
         attr="x"
       />
     );
-    expect(wrapper.text()).toContain('rodoh');
+    expect(wrapper.find('.field__title-text').text()).toContain('rodoh');
   });
 });
