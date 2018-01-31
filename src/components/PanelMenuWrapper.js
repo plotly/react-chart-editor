@@ -27,8 +27,7 @@ class PanelsWithSidebar extends Component {
       section.type &&
       (section.type.plotly_editor_traits || {}).sidebar_element
     ) {
-      const sectionWithKey = cloneElement(section, {key: i});
-      return <div>{sectionWithKey}</div>;
+      return cloneElement(section, {key: i});
     }
     return (
       <SidebarGroup
