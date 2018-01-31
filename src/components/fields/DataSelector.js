@@ -62,8 +62,21 @@ class DataSelector extends Component {
   }
 
   render() {
+    const {label} = this.props;
+    let newLabel;
+    if (typeof label === 'object') {
+      const traceType = this.props.container.type;
+      if (label[traceType]) {
+        newLabel = label[traceType];
+      } else {
+        newLabel = label['*'];
+      }
+    } else {
+      newLabel = label;
+    }
+
     return (
-      <Field {...this.props}>
+      <Field {...{...this.props, label: newLabel}}>
         <DropdownWidget
           options={this.dataSourceOptions}
           value={this.fullValue}
@@ -81,6 +94,7 @@ class DataSelector extends Component {
 DataSelector.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
+  container: PropTypes.object,
   ...Field.propTypes,
 };
 
