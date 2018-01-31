@@ -5,8 +5,7 @@ import {UnconnectedRadio} from './Radio';
 import {
   connectLayoutToPlot,
   connectToContainer,
-  getLayoutContext,
-  unpackPlotProps,
+  supplyLayoutPlotProps,
 } from 'lib';
 
 export const CanvasSize = connectToContainer(UnconnectedNumeric, {
@@ -76,16 +75,6 @@ class NumericFraction extends UnconnectedNumeric {}
 NumericFraction.propTypes = UnconnectedNumeric.propTypes;
 NumericFraction.defaultProps = {
   units: '%',
-};
-
-// Workaround the issue with nested layouts inside trace component.
-// See:
-// https://github.com/plotly/react-plotly.js-editor/issues/58#issuecomment-345492794
-const supplyLayoutPlotProps = (props, context) => {
-  return unpackPlotProps(props, {
-    ...context,
-    ...getLayoutContext(context),
-  });
 };
 
 export const LayoutNumericFractionInverse = connectLayoutToPlot(
