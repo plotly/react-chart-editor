@@ -8,7 +8,6 @@ class Panel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nbOfFolds: 0,
       individualFoldStates: [],
     };
     this.toggleFolds = this.toggleFolds.bind(this);
@@ -31,40 +30,23 @@ class Panel extends Component {
     );
   }
 
-  closeAllButLast(array) {
-    const lastIndex = array.length - 1;
-    return array.map((e, i) => i !== lastIndex);
-  }
-
-  firstChildWithCanAdd() {
-    const children = React.Children.map(this.props.children, c => c);
-    return children && children.filter(c => c.props.canAdd)[0];
-  }
-
   calculateFolds() {
     // to get proper number of child folds and initialize component state
-    const {nbOfFolds} = this.state;
-    const currentNbOfFolds = (
-      React.Children.map(
-        this.props.children,
-        child => ((child.type.plotly_editor_traits || {}).foldable ? 1 : 0)
-      ) || []
-    ).reduce((sum, x) => sum + x, 0);
+    let numFolds = 0;
 
-    if (nbOfFolds !== currentNbOfFolds) {
-      if (this.firstChildWithCanAdd()) {
-        this.setState({
-          nbOfFolds: currentNbOfFolds,
-          individualFoldStates: this.closeAllButLast(
-            new Array(currentNbOfFolds).fill(true)
-          ),
-        });
-      } else {
-        this.setState({
-          nbOfFolds: currentNbOfFolds,
-          individualFoldStates: new Array(currentNbOfFolds).fill(false),
-        });
+    React.Children.forEach(this.props.children, child => {
+      if ((child.type.plotly_editor_traits || {}).foldable) {
+        numFolds++;
       }
+    });
+
+    if (this.state.individualFoldStates.length !== numFolds) {
+      const newFoldStates = new Array(numFolds).fill(false);
+      this.setState({
+        individualFoldStates: this.props.addAction
+          ? newFoldStates.map((e, i) => i !== numFolds - 1)
+          : newFoldStates,
+      });
     }
   }
 
@@ -76,10 +58,7 @@ class Panel extends Component {
   }
 
   render() {
-    const {individualFoldStates, nbOfFolds} = this.state;
-    const hasOpen =
-      individualFoldStates.length > 0 &&
-      individualFoldStates.some(s => s === false);
+    const {individualFoldStates} = this.state;
 
     const newChildren = React.Children.map(
       this.props.children,
@@ -87,7 +66,7 @@ class Panel extends Component {
         if ((child.type.plotly_editor_traits || {}).foldable) {
           return cloneElement(child, {
             key: index,
-            folded: this.state.individualFoldStates[index] || false,
+            folded: individualFoldStates[index] || false,
             toggleFold: () => this.toggleFold(index),
           });
         }
@@ -99,9 +78,9 @@ class Panel extends Component {
       <div className={bem('panel')}>
         <PanelHeader
           addAction={this.props.addAction}
-          allowCollapse={nbOfFolds > 1}
+          allowCollapse={individualFoldStates.length > 1}
           toggleFolds={this.toggleFolds}
-          hasOpen={hasOpen}
+          hasOpen={individualFoldStates.some(s => s === false)}
         />
         <div className={bem('panel', 'content')}>{newChildren}</div>
       </div>
