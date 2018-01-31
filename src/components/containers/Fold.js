@@ -7,19 +7,18 @@ import {localize} from 'lib';
 
 class Fold extends Component {
   render() {
-    const {deleteContainer, individualFoldStates, toggleFold} = this.context;
+    const {deleteContainer} = this.context;
     const {
       canDelete,
       children,
       className,
-      foldIndex,
+      folded,
+      toggleFold,
       hideHeader,
       icon: Icon,
       isEmpty,
       name,
     } = this.props;
-
-    const folded = individualFoldStates[foldIndex];
 
     const doDelete = typeof deleteContainer === 'function' && canDelete;
 
@@ -56,7 +55,7 @@ class Fold extends Component {
     const icon = Icon ? <Icon className="fold__top__icon" /> : null;
 
     const foldHeader = !hideHeader && (
-      <div className={headerClass} onClick={() => toggleFold(foldIndex)}>
+      <div className={headerClass} onClick={toggleFold}>
         <div className="fold__top__arrow-title">
           {arrowIcon}
           {icon}
@@ -100,7 +99,8 @@ Fold.propTypes = {
   canDelete: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  foldIndex: PropTypes.number.isRequired,
+  folded: PropTypes.bool.isRequired,
+  toggleFold: PropTypes.func.isRequired,
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   isEmpty: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
@@ -110,8 +110,6 @@ Fold.propTypes = {
 
 Fold.contextTypes = {
   deleteContainer: PropTypes.func,
-  individualFoldStates: PropTypes.array.isRequired,
-  toggleFold: PropTypes.func.isRequired,
 };
 
 export default localize(Fold);

@@ -15,13 +15,6 @@ class Panel extends Component {
     this.toggleFold = this.toggleFold.bind(this);
   }
 
-  getChildContext() {
-    return {
-      individualFoldStates: this.state.individualFoldStates,
-      toggleFold: this.toggleFold,
-    };
-  }
-
   toggleFolds() {
     const {individualFoldStates} = this.state;
     const hasOpen =
@@ -51,8 +44,13 @@ class Panel extends Component {
   calculateFolds() {
     // to get proper number of child folds and initialize component state
     const {nbOfFolds} = this.state;
+    const currentNbOfFolds = (
+      React.Children.map(
+        this.props.children,
+        child => ((child.type.plotly_editor_traits || {}).foldable ? 1 : 0)
+      ) || []
+    ).reduce((sum, x) => sum + x, 0);
 
-    const currentNbOfFolds = document.getElementsByClassName('fold').length;
     if (nbOfFolds !== currentNbOfFolds) {
       if (this.firstChildWithCanAdd()) {
         this.setState({
@@ -83,18 +81,15 @@ class Panel extends Component {
       individualFoldStates.length > 0 &&
       individualFoldStates.some(s => s === false);
 
-    let addAction;
-
-    const addableChild = this.firstChildWithCanAdd();
-    if (addableChild) {
-      addAction = (addableChild.type.plotly_editor_traits || {}).add_action;
-    }
-
     const newChildren = React.Children.map(
       this.props.children,
       (child, index) => {
         if ((child.type.plotly_editor_traits || {}).foldable) {
-          return cloneElement(child, {foldIndex: index, key: index});
+          return cloneElement(child, {
+            key: index,
+            folded: this.state.individualFoldStates[index] || false,
+            toggleFold: () => this.toggleFold(index),
+          });
         }
         return child;
       }
@@ -103,12 +98,12 @@ class Panel extends Component {
     return (
       <div className={bem('panel')}>
         <PanelHeader
-          addAction={addAction}
+          addAction={this.props.addAction}
           allowCollapse={nbOfFolds > 1}
           toggleFolds={this.toggleFolds}
           hasOpen={hasOpen}
         />
-        {newChildren}
+        <div className={bem('panel', 'content')}>{newChildren}</div>
       </div>
     );
   }
@@ -116,17 +111,13 @@ class Panel extends Component {
 
 Panel.propTypes = {
   children: PropTypes.node,
+  addAction: PropTypes.object,
 };
 
 Panel.contextTypes = {
   layout: PropTypes.object,
   onUpdate: PropTypes.func,
   updateContainer: PropTypes.func,
-};
-
-Panel.childContextTypes = {
-  individualFoldStates: PropTypes.array,
-  toggleFold: PropTypes.func,
 };
 
 export default Panel;

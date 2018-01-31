@@ -1,4 +1,6 @@
 import Fold from './Fold';
+import TraceRequiredPanel from './TraceRequiredPanel';
+import Panel from './Panel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
@@ -15,28 +17,28 @@ class TraceAccordion extends Component {
       data.length &&
       data.map((d, i) => {
         return (
-          <TraceFold key={i} traceIndex={i} foldIndex={i} canDelete={canAdd}>
+          <TraceFold key={i} traceIndex={i} canDelete={canAdd}>
             {children}
           </TraceFold>
         );
       });
 
-    return <div className="panel__content">{content ? content : null}</div>;
+    if (canAdd) {
+      const addAction = {
+        label: 'Trace',
+        handler: ({onUpdate}) => {
+          if (onUpdate) {
+            onUpdate({
+              type: EDITOR_ACTIONS.ADD_TRACE,
+            });
+          }
+        },
+      };
+      return <Panel addAction={addAction}>{content ? content : null}</Panel>;
+    }
+    return <TraceRequiredPanel>{content ? content : null}</TraceRequiredPanel>;
   }
 }
-
-TraceAccordion.plotly_editor_traits = {
-  add_action: {
-    label: 'Trace',
-    handler: ({onUpdate}) => {
-      if (onUpdate) {
-        onUpdate({
-          type: EDITOR_ACTIONS.ADD_TRACE,
-        });
-      }
-    },
-  },
-};
 
 TraceAccordion.contextTypes = {
   data: PropTypes.array,

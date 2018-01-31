@@ -59,6 +59,7 @@ import {
   StyleLegendPanel,
   StyleNotesPanel,
   StyleTracesPanel,
+  StyleColorbarsPanel,
 } from './default_panels';
 
 export {
@@ -115,6 +116,7 @@ export {
   StyleLegendPanel,
   StyleNotesPanel,
   StyleTracesPanel,
+  StyleColorbarsPanel,
 };
 
 export default PlotlyEditor;
