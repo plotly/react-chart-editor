@@ -7,7 +7,6 @@
   border-right: var(--border-default);
   box-sizing: border-box;
   position: relative;
-  width: calc(var(--panel-width));
   @include scrollbar();
   &__header {
     margin-bottom: var(--spacing-half-unit);
@@ -43,7 +42,7 @@
     top: 0;
     right: 0;
     width: var(--panel-width);
-    border-right:var(--border-default);
+    border-right: var(--border-default);
     height: 100%;
     padding: var(--spacing-half-unit);
     background-color: var(--panel-background);

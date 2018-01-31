@@ -53,6 +53,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "babel-traverse": "^6.26.0",
+    "canvas": "^1.6.9",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.9",
     "cssnano": "^3.10.0",

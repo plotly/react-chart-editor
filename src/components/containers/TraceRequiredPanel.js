@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import PanelEmpty from './PanelEmpty';
-import Panel from './Panel';
-import {connectLayoutToPlot} from 'lib';
-
-const LayoutPanel = connectLayoutToPlot(Panel);
+import {LayoutPanel} from './derived';
 
 class TraceRequiredPanel extends Component {
   constructor(props) {

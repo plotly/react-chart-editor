@@ -9,16 +9,18 @@ import {
   StyleLegendPanel,
   StyleNotesPanel,
   StyleTracesPanel,
+  StyleColorbarsPanel,
 } from './default_panels';
 
 const DefaultEditor = ({localize: _}) => (
   <PanelMenuWrapper>
-    <GraphCreatePanel group="Graph" name="Create" />
-    <StyleTracesPanel group="Style" name="Traces" />
-    <StyleLayoutPanel group="Style" name={_('Layout')} />
-    <StyleNotesPanel group="Style" name={_('Notes')} />
-    <StyleAxesPanel group="Style" name={_('Axes')} />
-    <StyleLegendPanel group="Style" name={_('Legend')} />
+    <GraphCreatePanel group={_('Graph')} name={_('Create')} />
+    <StyleTracesPanel group={_('Style')} name={_('Traces')} />
+    <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
+    <StyleNotesPanel group={_('Style')} name={_('Notes')} />
+    <StyleAxesPanel group={_('Style')} name={_('Axes')} />
+    <StyleLegendPanel group={_('Style')} name={_('Legend')} />
+    <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />
   </PanelMenuWrapper>
 );
 

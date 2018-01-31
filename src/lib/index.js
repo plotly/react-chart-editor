@@ -27,7 +27,7 @@ function getDisplayName(WrappedComponent) {
 }
 
 function capitalize(s) {
-  return s.charAt(0).toUpperCase() + s.substring(1);
+  return !s ? '' : s.charAt(0).toUpperCase() + s.substring(1);
 }
 
 const TOO_LIGHT_FACTOR = 0.8;
