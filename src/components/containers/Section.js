@@ -24,7 +24,8 @@ class Section extends Component {
   }
 
   processAndSetChildren(nextProps, nextContext) {
-    this.sectionVisible = false;
+    const {isVisible} = unpackPlotProps(nextProps, nextContext);
+    this.sectionVisible = isVisible === true;
 
     this.children = React.Children.map(nextProps.children, child => {
       if (child.type === MenuPanel) {
@@ -78,6 +79,7 @@ class Section extends Component {
 Section.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
+  attr: PropTypes.string,
 };
 
 Section.contextTypes = containerConnectedContextTypes;

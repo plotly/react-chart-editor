@@ -38,7 +38,7 @@ const StyleLayoutPanel = ({localize: _}) => (
       />
     </Fold>
     <Fold name={_('Title and Fonts')}>
-      <Section name={_('Title')}>
+      <Section name={_('Title')} attr="title">
         <TextEditor attr="title" />
         <FontSelector
           label={_('Typeface')}

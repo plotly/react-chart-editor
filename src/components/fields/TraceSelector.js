@@ -154,6 +154,9 @@ TraceSelector.propTypes = {
 
 export default connectToContainer(localize(TraceSelector), {
   modifyPlotProps: (props, context) => {
+    if (!context.container) {
+      return;
+    }
     if (
       plotlyTraceToCustomTrace(context.container) === 'timeseries' &&
       (!context.layout.xaxis ||

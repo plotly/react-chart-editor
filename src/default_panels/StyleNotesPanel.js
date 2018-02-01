@@ -19,7 +19,7 @@ import {localize} from '../lib';
 
 const StyleNotesPanel = ({localize: _}) => (
   <AnnotationAccordion canAdd>
-    <Section name={_('Note Text')}>
+    <Section name={_('Note Text')} attr="text">
       <TextEditor attr="text" />
       <FontSelector label={_('Typeface')} attr="font.family" />
       <Numeric label={_('Font Size')} attr="font.size" units="px" />

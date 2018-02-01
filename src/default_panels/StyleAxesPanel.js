@@ -30,7 +30,7 @@ const StyleAxesPanel = ({localize: _}) => (
 
     <AxesFold name={_('Range')}>
       <AxesSelector />
-      <Section name={_('Selection')}>
+      <Section name={_('Selection')} attr="autorange">
         <Radio
           attr="autorange"
           options={[
@@ -53,7 +53,7 @@ const StyleAxesPanel = ({localize: _}) => (
     <AxesFold name={_('Lines')}>
       <AxesSelector />
 
-      <Section name={_('Axis Line')}>
+      <Section name={_('Axis Line')} attr="showline">
         <Radio
           attr="showline"
           options={[
@@ -83,7 +83,7 @@ const StyleAxesPanel = ({localize: _}) => (
           ]}
         />
       </Section>
-      <Section name={_('Grid Lines')}>
+      <Section name={_('Grid Lines')} attr="showgrid">
         <Radio
           attr="showgrid"
           options={[
@@ -94,7 +94,7 @@ const StyleAxesPanel = ({localize: _}) => (
         <Numeric label={_('Thickness')} attr="gridwidth" units="px" />
         <ColorPicker label={_('Color')} attr="gridcolor" />
       </Section>
-      <Section name={_('Zero Line')}>
+      <Section name={_('Zero Line')} attr="zeroline">
         <Radio
           attr="zeroline"
           options={[
@@ -106,7 +106,7 @@ const StyleAxesPanel = ({localize: _}) => (
         <ColorPicker label={_('Color')} attr="zerolinecolor" />
       </Section>
 
-      <Section name={_('Axis Background')}>
+      <Section name={_('Axis Background')} attr="showbackground">
         <Radio
           attr="showbackground"
           options={[
@@ -120,7 +120,7 @@ const StyleAxesPanel = ({localize: _}) => (
 
     <AxesFold name={_('Tick Labels')}>
       <AxesSelector />
-      <Section name={_('Tick Labels')}>
+      <Section name={_('Tick Labels')} attr="showticklabels">
         <Radio
           attr="showticklabels"
           options={[
@@ -224,7 +224,7 @@ const StyleAxesPanel = ({localize: _}) => (
     </AxesFold>
     <AxesFold name={_('Tick Markers')}>
       <AxesSelector />
-      <Section name={_('Tick Markers')}>
+      <Section name={_('Tick Markers')} attr="ticks">
         <Radio
           attr="ticks"
           options={[
@@ -288,7 +288,7 @@ const StyleAxesPanel = ({localize: _}) => (
     <AxesFold name={_('Layout')}>
       <AxesSelector />
 
-      <Section name={_('Axis Width')}>
+      <Section name={_('Axis Width')} attr="domain[0]">
         <Numeric
           label={_('Start Position')}
           attr="domain[0]"

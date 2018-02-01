@@ -16,16 +16,14 @@ import {localize} from '../lib';
 
 const StyleLegendPanel = ({localize: _}) => (
   <TraceRequiredPanel>
-    <Fold hideHeader>
-      <Section name={_('Legend')}>
-        <Radio
-          attr="showlegend"
-          options={[
-            {label: _('Show'), value: true},
-            {label: _('Hide'), value: false},
-          ]}
-        />
-      </Section>
+    <Fold name={_('Legend')}>
+      <Radio
+        attr="showlegend"
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
+      />
       <Section name={_('Text')}>
         <FontSelector label={_('Typeface')} attr="legend.font.family" />
         <Numeric label={_('Size')} attr="legend.font.size" units="px" />

@@ -6,17 +6,17 @@ import {Radio, TextEditor, TraceAccordion, Fold, Panel} from '../components';
 import {localize} from '../lib';
 
 const StyleTracesPanel = ({localize: _}) => (
-  <TraceAccordion>
-    <Panel>
-      <Radio
-        attr="showscale"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
-      />
+  <TraceAccordion messageIfEmptyFold="Need a color for a colorbar!">
+    <Radio
+      attr="showscale"
+      options={[
+        {label: _('Show'), value: true},
+        {label: _('Hide'), value: false},
+      ]}
+    />
+    <Panel showExpandCollapse={false}>
       <Fold name={_('Title')}>
-        <TextEditor label={_('Title')} attr="colorbar.title" />
+        <TextEditor attr="colorbar.title" />
       </Fold>
       <Fold name={_('Size and Positioning')} />
       <Fold name={_('Labels')} />
