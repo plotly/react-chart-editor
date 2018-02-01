@@ -41,6 +41,8 @@ const GraphCreatePanel = ({localize: _}) => (
 
     <DataSelector label={{choropleth: _('Values'), '*': _('Z')}} attr="z" />
 
+    <DataSelector label={_('Color')} attr="marker.color" />
+
     <DataSelector label={_('Open')} attr="open" />
 
     <DataSelector label={_('High')} attr="high" />
