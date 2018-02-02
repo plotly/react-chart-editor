@@ -2,7 +2,11 @@ import isNumeric from 'fast-isnumeric';
 import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedDropdown} from './Dropdown';
 import {UnconnectedRadio} from './Radio';
-import {connectLayoutToPlot, connectToContainer, supplyLayoutPlotProps} from 'lib';
+import {
+  connectLayoutToPlot,
+  connectToContainer,
+  supplyLayoutPlotProps,
+} from 'lib';
 
 export const CanvasSize = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
