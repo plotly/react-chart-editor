@@ -78,7 +78,9 @@ class Panel extends Component {
       <div className={bem('panel')}>
         <PanelHeader
           addAction={this.props.addAction}
-          allowCollapse={individualFoldStates.length > 1}
+          allowCollapse={
+            this.props.showExpandCollapse && individualFoldStates.length > 1
+          }
           toggleFolds={this.toggleFolds}
           hasOpen={individualFoldStates.some(s => s === false)}
         />
@@ -91,6 +93,11 @@ class Panel extends Component {
 Panel.propTypes = {
   children: PropTypes.node,
   addAction: PropTypes.object,
+  showExpandCollapse: PropTypes.bool,
+};
+
+Panel.defaultProps = {
+  showExpandCollapse: true,
 };
 
 Panel.contextTypes = {

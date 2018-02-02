@@ -159,6 +159,12 @@
       border-width: 1px 1px 1px 1px;
     }
   }
+
+  .panel {
+    background-color: var(--fold-background);
+    border-right: none;
+    width: 100%;
+  }
 }
 
 .fold + .fold {

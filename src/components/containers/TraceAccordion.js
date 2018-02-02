@@ -11,13 +11,18 @@ const TraceFold = connectTraceToPlot(Fold);
 class TraceAccordion extends Component {
   render() {
     const {data = []} = this.context;
-    const {canAdd, children} = this.props;
+    const {canAdd, children, messageIfEmptyFold} = this.props;
 
     const content =
       data.length &&
       data.map((d, i) => {
         return (
-          <TraceFold key={i} traceIndex={i} canDelete={canAdd}>
+          <TraceFold
+            key={i}
+            traceIndex={i}
+            canDelete={canAdd}
+            messageIfEmpty={messageIfEmptyFold}
+          >
             {children}
           </TraceFold>
         );
@@ -48,6 +53,7 @@ TraceAccordion.propTypes = {
   localize: PropTypes.func,
   children: PropTypes.node,
   canAdd: PropTypes.bool,
+  messageIfEmptyFold: PropTypes.string,
 };
 
 export default localize(TraceAccordion);

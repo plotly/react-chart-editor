@@ -1,6 +1,6 @@
 import React from 'react';
-import {TraceAccordion, Fold, Panel} from '..';
-import {Numeric} from '../../fields';
+import {TraceAccordion, Fold, LayoutPanel} from '..';
+import {TextEditor} from '../../fields';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';
 
 describe('<TraceAccordion>', () => {
@@ -9,11 +9,11 @@ describe('<TraceAccordion>', () => {
 
     const folds = mount(
       <TestEditor {...{...fixture, onUpdate: jest.fn()}}>
-        <Panel>
+        <LayoutPanel>
           <TraceAccordion>
-            <Numeric attr="textangle" />
+            <TextEditor attr="name" />
           </TraceAccordion>
-        </Panel>
+        </LayoutPanel>
       </TestEditor>
     ).find(Fold);
 
@@ -21,15 +21,15 @@ describe('<TraceAccordion>', () => {
   });
 
   it('can add traces', () => {
-    const fixture = fixtures.scatter();
+    const fixture = fixtures.scatter({data: [{name: 'hodor'}]});
     const beforeAddTrace = jest.fn();
     const editor = mount(
       <TestEditor {...{...fixture, beforeAddTrace}}>
-        <Panel>
+        <LayoutPanel>
           <TraceAccordion canAdd>
-            <Numeric attr="textangle" />
+            <TextEditor attr="name" />
           </TraceAccordion>
-        </Panel>
+        </LayoutPanel>
       </TestEditor>
     );
 
@@ -43,11 +43,11 @@ describe('<TraceAccordion>', () => {
     const beforeDeleteTrace = jest.fn();
     const editor = mount(
       <TestEditor {...{...fixture, beforeDeleteTrace}}>
-        <Panel>
+        <LayoutPanel>
           <TraceAccordion canAdd>
-            <Numeric attr="textangle" />
+            <TextEditor attr="name" />
           </TraceAccordion>
-        </Panel>
+        </LayoutPanel>
       </TestEditor>
     );
 

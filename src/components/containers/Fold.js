@@ -3,10 +3,47 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
-import {localize} from 'lib';
+import {unpackPlotProps, localize, containerConnectedContextTypes} from 'lib';
 
 class Fold extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    this.foldVisible = false;
+    this.determineVisibility(props, context);
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.determineVisibility(nextProps, nextContext);
+  }
+
+  determineVisibility(nextProps, nextContext) {
+    this.foldVisible = false;
+
+    React.Children.forEach(nextProps.children, child => {
+      if (child.props.attr) {
+        let plotProps;
+        if (child.type.supplyPlotProps) {
+          plotProps = child.type.supplyPlotProps(child.props, nextContext);
+          if (child.type.modifyPlotProps) {
+            child.type.modifyPlotProps(child.props, nextContext, plotProps);
+          }
+        } else {
+          plotProps = unpackPlotProps(child.props, nextContext);
+        }
+
+        if (plotProps.isVisible) {
+          this.foldVisible = true;
+          return;
+        }
+      }
+    });
+  }
+
   render() {
+    if (!this.foldVisible && !this.props.messageIfEmpty) {
+      return null;
+    }
     const {deleteContainer} = this.context;
     const {
       canDelete,
@@ -16,7 +53,7 @@ class Fold extends Component {
       toggleFold,
       hideHeader,
       icon: Icon,
-      isEmpty,
+      messageIfEmpty,
       name,
     } = this.props;
 
@@ -66,20 +103,16 @@ class Fold extends Component {
     );
 
     let foldContent = null;
-    if (!folded && !isEmpty) {
-      foldContent = <div className={contentClass}>{children}</div>;
-    }
-
-    if (!folded && isEmpty) {
-      foldContent = (
-        <div className={contentClass}>
-          <FoldEmpty
-            icon={Icon}
-            messagePrimary={isEmpty.messagePrimary}
-            messageSecondary={isEmpty.messageSecondary}
-          />
-        </div>
-      );
+    if (!folded) {
+      if (this.foldVisible) {
+        foldContent = <div className={contentClass}>{children}</div>;
+      } else {
+        foldContent = (
+          <div className={contentClass}>
+            <FoldEmpty icon={Icon} messagePrimary={messageIfEmpty} />
+          </div>
+        );
+      }
     }
 
     const classes = className ? ' ' + className : '';
@@ -103,13 +136,16 @@ Fold.propTypes = {
   toggleFold: PropTypes.func.isRequired,
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  isEmpty: PropTypes.oneOfType([PropTypes.bool, PropTypes.object]),
+  messageIfEmpty: PropTypes.string,
   localize: PropTypes.func,
   name: PropTypes.string,
 };
 
-Fold.contextTypes = {
-  deleteContainer: PropTypes.func,
-};
+Fold.contextTypes = Object.assign(
+  {
+    deleteContainer: PropTypes.func,
+  },
+  containerConnectedContextTypes
+);
 
 export default localize(Fold);
