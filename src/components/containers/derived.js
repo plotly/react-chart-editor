@@ -8,7 +8,6 @@ import {
   connectLayoutToPlot,
   connectAxesToLayout,
   containerConnectedContextTypes,
-  supplyLayoutPlotProps,
 } from 'lib';
 
 const LayoutPanel = connectLayoutToPlot(Panel);
@@ -16,10 +15,7 @@ const LayoutPanel = connectLayoutToPlot(Panel);
 const AxesFold = connectAxesToLayout(Fold);
 
 // Special purpose Section for usage when nested inside a Trace connected container.
-// supplyLayoutPlotProps overrides the trace context with a layout context.
-const LayoutSectionOverride = connectLayoutToPlot(Section, {
-  supplyLayoutPlotProps,
-});
+const LayoutSectionOverride = connectLayoutToPlot(Section);
 
 const TraceTypeSection = (props, context) => {
   const {fullContainer} = context;
