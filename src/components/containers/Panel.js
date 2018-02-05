@@ -1,17 +1,44 @@
 import PanelHeader from './PanelHeader';
+import PanelEmpty from './PanelEmpty';
 import PropTypes from 'prop-types';
 import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
-import {bem} from 'lib';
+import {bem, localize} from 'lib';
+import {EmbedIconIcon} from 'plotly-icons';
+
+class PanelErrorImpl extends Component {
+  render() {
+    const {localize: _} = this.props;
+
+    return (
+      <PanelEmpty
+        icon={EmbedIconIcon}
+        heading={_('Well this is embarrassing.')}
+        message={_('This panel could not be displayed due to an error.')}
+      />
+    );
+  }
+}
+
+PanelErrorImpl.propTypes = {
+  localize: PropTypes.func,
+};
+
+const PanelError = localize(PanelErrorImpl);
 
 class Panel extends Component {
   constructor(props) {
     super(props);
     this.state = {
       individualFoldStates: [],
+      hasError: false,
     };
     this.toggleFolds = this.toggleFolds.bind(this);
     this.toggleFold = this.toggleFold.bind(this);
+  }
+
+  componentDidCatch() {
+    this.setState({hasError: true});
   }
 
   toggleFolds() {
@@ -58,7 +85,11 @@ class Panel extends Component {
   }
 
   render() {
-    const {individualFoldStates} = this.state;
+    const {individualFoldStates, hasError} = this.state;
+
+    if (hasError) {
+      return <PanelError />;
+    }
 
     const newChildren = React.Children.map(
       this.props.children,
