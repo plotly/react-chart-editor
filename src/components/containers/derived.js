@@ -14,9 +14,6 @@ const LayoutPanel = connectLayoutToPlot(Panel);
 
 const AxesFold = connectAxesToLayout(Fold);
 
-// Special purpose Section for usage when nested inside a Trace connected container.
-const LayoutSectionOverride = connectLayoutToPlot(Section);
-
 const TraceTypeSection = (props, context) => {
   const {fullContainer} = context;
   if (
@@ -41,4 +38,4 @@ TraceTypeSection.defaultProps = {
   traceTypes: [],
 };
 
-export {AxesFold, LayoutPanel, LayoutSectionOverride, TraceTypeSection};
+export {AxesFold, LayoutPanel, TraceTypeSection};

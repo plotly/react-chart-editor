@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {
   DataSelector,
   Dropdown,
-  LayoutSectionOverride,
+  GeoProjections,
+  GeoScope,
   Radio,
   Section,
   TraceAccordion,
@@ -12,48 +13,6 @@ import {
 import {localize} from '../lib';
 
 const GraphCreatePanel = ({localize: _}) => {
-  const geoProjectionOptions = {
-    usa: [
-      {
-        label: _('Albers USA'),
-        value: 'albers usa',
-      },
-    ],
-    other: [
-      {label: _('Equirectangular'), value: 'equirectangular'},
-      {label: _('Mercator'), value: 'mercator'},
-      {label: _('Orthographic'), value: 'orthographic'},
-      {label: _('Natural Earth'), value: 'naturalEarth'},
-      {label: _('Kavrayskiy7'), value: 'kavrayskiy7'},
-      {label: _('Miller'), value: 'miller'},
-      {label: _('Robinson'), value: 'robinson'},
-      {label: _('Eckert4'), value: 'eckert4'},
-      {label: _('Azimuthal Equal Area'), value: 'azimuthalEqualArea'},
-      {label: _('Azimuthal Equidistant'), value: 'azimuthalEquidistant'},
-      {label: _('Conic Equal Area'), value: 'conicEqualArea'},
-      {label: _('Conic Conformal'), value: 'conicConformal'},
-      {label: _('Conic Equidistant'), value: 'conicEquidistant'},
-      {label: _('Gnomonic'), value: 'gnomonic'},
-      {label: _('Stereographic'), value: 'stereographic'},
-      {label: _('Mollweide'), value: 'mollweide'},
-      {label: _('Hammer'), value: 'hammer'},
-      {label: _('Transverse Mercator'), value: 'transverseMercator'},
-      {label: _('Winkel Tripel'), value: 'winkel3'},
-      {label: _('Aitoff'), value: 'aitoff'},
-      {label: _('Sinusoidal'), value: 'sinusoidal'},
-    ],
-  };
-
-  const geoScopeOptions = [
-    {label: _('World'), value: 'world'},
-    {label: _('USA'), value: 'usa'},
-    {label: _('Europe'), value: 'europe'},
-    {label: _('Asia'), value: 'asia'},
-    {label: _('Africa'), value: 'africa'},
-    {label: _('North America'), value: 'north america'},
-    {label: _('South America'), value: 'south america'},
-  ];
-
   return (
     <TraceAccordion canAdd>
       <TraceSelector label={_('Plot Type')} attr="type" show />
@@ -108,21 +67,17 @@ const GraphCreatePanel = ({localize: _}) => {
         />
       </Section>
 
-      <LayoutSectionOverride name={_('Map Region')}>
-        <Dropdown
-          attr="geo.scope"
-          clearable={false}
-          options={geoScopeOptions}
-        />
-      </LayoutSectionOverride>
+      <Section name={_('Map Region')}>
+        <GeoScope attr="geo.scope" clearable={false} localize={_} />
+      </Section>
 
-      <LayoutSectionOverride name={_('Projection')}>
-        <Dropdown
+      <Section name={_('Projection')}>
+        <GeoProjections
           attr="geo.projection.type"
           clearable={false}
-          options={geoProjectionOptions}
+          localize={_}
         />
-      </LayoutSectionOverride>
+      </Section>
     </TraceAccordion>
   );
 };
