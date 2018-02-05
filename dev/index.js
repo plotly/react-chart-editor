@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import plotly from 'plotly.js/dist/plotly';
 import createPlotComponent from 'react-plotly.js/factory';
+import {getAccessToken} from '../src/lib';
 import PlotlyEditor from '../src';
 import '../src/styles/main.scss';
 import Nav from './Nav';
@@ -96,6 +97,7 @@ class App extends Component {
               onInitialized={this.handlePlotUpdate.bind(this)}
               revision={this.state.plotRevision}
               style={{width: '100%', height: '100%', minHeight: '100vh'}}
+              config={{mapboxAccessToken: getAccessToken('MAPBOX')}}
             />
           </div>
         </div>

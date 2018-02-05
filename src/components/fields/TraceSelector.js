@@ -6,13 +6,14 @@ import {
   traceTypeToPlotlyInitFigure,
   localize,
   plotlyTraceToCustomTrace,
+  getAccessToken
 } from 'lib';
 import {EDITOR_ACTIONS} from 'lib/constants';
 
 function computeTraceOptionsFromSchema(schema, _) {
   // Filter out Polar "area" type as it is fairly broken and we want to present
   // scatter with fill as an "area" chart type for convenience.
-  const traceTypes = Object.keys(schema.traces).filter(t => t !== 'area');
+  const traceTypes = Object.keys(schema.traces).filter(t => !['area', 'scattermapbox'].includes(t));
 
   // explicit map of all supported trace types (as of plotlyjs 1.32)
   const traceOptions = [
@@ -36,7 +37,7 @@ function computeTraceOptionsFromSchema(schema, _) {
     {value: 'pointcloud', label: _('Point Cloud')},
     {value: 'heatmapgl', label: _('Heatmap GL')},
     {value: 'parcoords', label: _('Parallel Coordinates')},
-    {value: 'scattermapbox', label: _('Satellite Map')},
+
     {value: 'sankey', label: _('Sankey')},
     {value: 'table', label: _('Table')},
     {value: 'carpet', label: _('Carpet')},
@@ -55,6 +56,10 @@ function computeTraceOptionsFromSchema(schema, _) {
     {label: _('Area'), value: 'area'},
     {label: _('Timeseries'), value: 'timeseries'}
   );
+
+  if (getAccessToken('MAPBOX')) {
+    traceOptions.push({value: 'scattermapbox', label: _('Satellite Map')})
+  }
 
   return traceOptions;
 }
