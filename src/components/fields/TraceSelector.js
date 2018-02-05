@@ -9,10 +9,12 @@ import {
 } from 'lib';
 import {EDITOR_ACTIONS} from 'lib/constants';
 
-function computeTraceOptionsFromSchema(schema, _) {
+function computeTraceOptionsFromSchema(schema, _, context) {
   // Filter out Polar "area" type as it is fairly broken and we want to present
   // scatter with fill as an "area" chart type for convenience.
-  const traceTypes = Object.keys(schema.traces).filter(t => !['area', 'scattermapbox'].includes(t));
+  const traceTypes = Object.keys(schema.traces).filter(
+    t => !['area', 'scattermapbox'].includes(t)
+  );
 
   // explicit map of all supported trace types (as of plotlyjs 1.32)
   const traceOptions = [
@@ -56,8 +58,8 @@ function computeTraceOptionsFromSchema(schema, _) {
     {label: _('Timeseries'), value: 'timeseries'}
   );
 
-  if (getAccessToken('MAPBOX')) {
-    traceOptions.push({value: 'scattermapbox', label: _('Satellite Map')})
+  if (context.config && context.config.mapboxAccessToken) {
+    traceOptions.push({value: 'scattermapbox', label: _('Satellite Map')});
   }
 
   return traceOptions;
@@ -97,7 +99,11 @@ class TraceSelector extends Component {
     if (props.traceOptions) {
       this.traceOptions = props.traceOptions;
     } else if (context.plotSchema) {
-      this.traceOptions = computeTraceOptionsFromSchema(context.plotSchema, _);
+      this.traceOptions = computeTraceOptionsFromSchema(
+        context.plotSchema,
+        _,
+        this.context
+      );
     } else {
       this.traceOptions = [{label: _('Scatter'), value: 'scatter'}];
     }
@@ -145,6 +151,7 @@ class TraceSelector extends Component {
 
 TraceSelector.contextTypes = {
   plotSchema: PropTypes.object,
+  config: PropTypes.object,
 };
 
 TraceSelector.propTypes = {
