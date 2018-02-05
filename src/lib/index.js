@@ -18,6 +18,7 @@ import {
 } from './customTraceType';
 import * as PlotlyIcons from 'plotly-icons';
 import supplyLayoutPlotProps from './supplyLayoutPlotProps';
+import getAccessToken from './getAccessToken';
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -67,4 +68,5 @@ export {
   unpackPlotProps,
   walkObject,
   supplyLayoutPlotProps,
+  getAccessToken,
 };

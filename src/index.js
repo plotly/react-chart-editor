@@ -6,6 +6,7 @@ import {
   connectToContainer,
   connectTraceToPlot,
   dereference,
+  getAccessToken,
   localize,
   localizeString,
   walkObject,
@@ -117,6 +118,7 @@ export {
   StyleNotesPanel,
   StyleTracesPanel,
   StyleColorbarsPanel,
+  getAccessToken
 };
 
 export default PlotlyEditor;
