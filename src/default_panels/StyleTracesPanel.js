@@ -20,6 +20,7 @@ import {
   TraceMarkerSection,
   TraceOrientation,
   ColorscalePicker,
+  HoverInfo,
 } from '../components';
 
 import {localize} from '../lib';
@@ -304,14 +305,10 @@ const StyleTracesPanel = ({localize: _}) => (
     </Section>
 
     <Section name={_('Values Shown On Hover')}>
-      <Flaglist
+      <HoverInfo
         attr="hoverinfo"
         label={_('Values Shown On Hover')}
-        options={[
-          {label: _('X'), value: 'x'},
-          {label: _('Y'), value: 'y'},
-          {label: _('Z'), value: 'z'},
-        ]}
+        localize={_}
       />
     </Section>
 

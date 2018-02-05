@@ -5,12 +5,7 @@ import Panel from './Panel';
 import Section from './Section';
 import TraceAccordion from './TraceAccordion';
 import TraceMarkerSection from './TraceMarkerSection';
-import {
-  AxesFold,
-  LayoutPanel,
-  LayoutSectionOverride,
-  TraceTypeSection,
-} from './derived';
+import {AxesFold, LayoutPanel, TraceTypeSection} from './derived';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import SingleSidebarItem from './SingleSidebarItem';
 
@@ -24,7 +19,6 @@ export {
   TraceMarkerSection,
   TraceRequiredPanel,
   LayoutPanel,
-  LayoutSectionOverride,
   AxesFold,
   SingleSidebarItem,
   TraceTypeSection,

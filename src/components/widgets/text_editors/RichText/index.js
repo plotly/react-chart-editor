@@ -50,7 +50,7 @@ class RichText extends Component {
          * See `componentWillReceiveProps`.
          */
     this.state = {
-      editorState: props.value.trim().length
+      editorState: props.value.toString().trim().length
         ? this.createEditorStateFromHTML(props.value)
         : EditorState.createEmpty(this.getDecorator()),
     };
@@ -361,7 +361,7 @@ class RichText extends Component {
 RichText.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.any,
 };
 
 RichText.defaultProps = {

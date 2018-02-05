@@ -2,6 +2,7 @@ import isNumeric from 'fast-isnumeric';
 import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedDropdown} from './Dropdown';
 import {UnconnectedRadio} from './Radio';
+import {UnconnectedFlaglist} from './Flaglist';
 import {
   connectLayoutToPlot,
   connectToContainer,
@@ -234,3 +235,93 @@ function computeAxesRefOptions(axes) {
 
   return options;
 }
+
+export const GeoScope = connectLayoutToPlot(
+  connectToContainer(UnconnectedDropdown, {
+    supplyPlotProps: (props, context) => {
+      const {localize: _} = props;
+      const options = [
+        {label: _('World'), value: 'world'},
+        {label: _('USA'), value: 'usa'},
+        {label: _('Europe'), value: 'europe'},
+        {label: _('Asia'), value: 'asia'},
+        {label: _('Africa'), value: 'africa'},
+        {label: _('North America'), value: 'north america'},
+        {label: _('South America'), value: 'south america'},
+      ];
+      return {...supplyLayoutPlotProps(props, context), options};
+    },
+  })
+);
+
+export const GeoProjections = connectLayoutToPlot(
+  connectToContainer(UnconnectedDropdown, {
+    supplyPlotProps: (props, context) => {
+      const {localize: _} = props;
+      let options = [
+        {label: _('Equirectangular'), value: 'equirectangular'},
+        {label: _('Mercator'), value: 'mercator'},
+        {label: _('Orthographic'), value: 'orthographic'},
+        {label: _('Natural Earth'), value: 'naturalEarth'},
+        {label: _('Kavrayskiy7'), value: 'kavrayskiy7'},
+        {label: _('Miller'), value: 'miller'},
+        {label: _('Robinson'), value: 'robinson'},
+        {label: _('Eckert4'), value: 'eckert4'},
+        {label: _('Azimuthal Equal Area'), value: 'azimuthalEqualArea'},
+        {label: _('Azimuthal Equidistant'), value: 'azimuthalEquidistant'},
+        {label: _('Conic Equal Area'), value: 'conicEqualArea'},
+        {label: _('Conic Conformal'), value: 'conicConformal'},
+        {label: _('Conic Equidistant'), value: 'conicEquidistant'},
+        {label: _('Gnomonic'), value: 'gnomonic'},
+        {label: _('Stereographic'), value: 'stereographic'},
+        {label: _('Mollweide'), value: 'mollweide'},
+        {label: _('Hammer'), value: 'hammer'},
+        {label: _('Transverse Mercator'), value: 'transverseMercator'},
+        {label: _('Winkel Tripel'), value: 'winkel3'},
+        {label: _('Aitoff'), value: 'aitoff'},
+        {label: _('Sinusoidal'), value: 'sinusoidal'},
+      ];
+
+      if (
+        context.fullLayout &&
+        context.fullLayout.geo &&
+        context.fullLayout.geo.scope === 'usa'
+      ) {
+        options = [{label: _('Albers USA'), value: 'albers usa'}];
+      }
+
+      return {...supplyLayoutPlotProps(props, context), options};
+    },
+  })
+);
+
+export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = props;
+    let options = [
+      {label: _('X'), value: 'x'},
+      {label: _('Y'), value: 'y'},
+      {label: _('Z'), value: 'z'},
+    ];
+
+    if (context.container.type === 'choropleth') {
+      options = [
+        {label: _('Location'), value: 'location'},
+        {label: _('Values'), value: 'z'},
+        {label: _('Text'), value: 'text'},
+        {label: _('Name'), value: 'name'},
+      ];
+    }
+
+    if (context.container.type === 'scattergeo') {
+      options = [
+        {label: _('Longitude'), value: 'loc'},
+        {label: _('Latitude'), value: 'lat'},
+        {label: _('Location'), value: 'location'},
+        {label: _('Text'), value: 'text'},
+        {label: _('Name'), value: 'name'},
+      ];
+    }
+    plotProps.options = options;
+  },
+});
