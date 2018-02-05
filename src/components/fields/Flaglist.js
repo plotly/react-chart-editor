@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 
-class Flaglist extends Component {
+export class UnconnectedFlaglist extends Component {
   render() {
     return (
       <Field {...this.props}>
@@ -18,11 +18,11 @@ class Flaglist extends Component {
   }
 }
 
-Flaglist.propTypes = {
+UnconnectedFlaglist.propTypes = {
   fullValue: PropTypes.any,
   options: PropTypes.array.isRequired,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };
 
-export default connectToContainer(Flaglist);
+export default connectToContainer(UnconnectedFlaglist);

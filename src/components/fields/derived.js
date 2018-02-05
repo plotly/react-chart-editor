@@ -2,6 +2,7 @@ import isNumeric from 'fast-isnumeric';
 import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedDropdown} from './Dropdown';
 import {UnconnectedRadio} from './Radio';
+import {UnconnectedFlaglist} from './Flaglist';
 import {
   connectLayoutToPlot,
   connectToContainer,
@@ -248,9 +249,7 @@ export const GeoScope = connectLayoutToPlot(
         {label: _('North America'), value: 'north america'},
         {label: _('South America'), value: 'south america'},
       ];
-      return Object.assign({}, supplyLayoutPlotProps(props, context), {
-        options,
-      });
+      return {...supplyLayoutPlotProps(props, context), options};
     },
   })
 );
@@ -291,9 +290,38 @@ export const GeoProjections = connectLayoutToPlot(
         options = [{label: _('Albers USA'), value: 'albers usa'}];
       }
 
-      return Object.assign({}, supplyLayoutPlotProps(props, context), {
-        options,
-      });
+      return {...supplyLayoutPlotProps(props, context), options};
     },
   })
 );
+
+export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = props;
+    let options = [
+      {label: _('X'), value: 'x'},
+      {label: _('Y'), value: 'y'},
+      {label: _('Z'), value: 'z'},
+    ];
+
+    if (context.container.type === 'choropleth') {
+      options = [
+        {label: _('Location'), value: 'location'},
+        {label: _('Values'), value: 'z'},
+        {label: _('Text'), value: 'text'},
+        {label: _('Name'), value: 'name'},
+      ];
+    }
+
+    if (context.container.type === 'scattergeo') {
+      options = [
+        {label: _('Longitude'), value: 'loc'},
+        {label: _('Latitude'), value: 'lat'},
+        {label: _('Location'), value: 'location'},
+        {label: _('Text'), value: 'text'},
+        {label: _('Name'), value: 'name'},
+      ];
+    }
+    plotProps.options = options;
+  },
+});
