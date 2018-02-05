@@ -329,7 +329,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         {label: _('Latitude'), value: 'lat'},
         {label: _('Text'), value: 'text'},
         {label: _('Name'), value: 'name'},
-      ]
+      ];
     }
 
     plotProps.options = options;

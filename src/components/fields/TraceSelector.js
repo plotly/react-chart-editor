@@ -6,7 +6,6 @@ import {
   traceTypeToPlotlyInitFigure,
   localize,
   plotlyTraceToCustomTrace,
-  getAccessToken
 } from 'lib';
 import {EDITOR_ACTIONS} from 'lib/constants';
 
