@@ -34,6 +34,7 @@ class PlotlyEditor extends Component {
   getChildContext() {
     const gd = this.props.graphDiv || {};
     return {
+      config: gd._context,
       data: gd.data,
       dataSources: this.props.dataSources,
       dataSourceOptions: this.props.dataSourceOptions,
@@ -196,6 +197,7 @@ PlotlyEditor.defaultProps = {
 };
 
 PlotlyEditor.childContextTypes = {
+  config: PropTypes.object,
   data: PropTypes.array,
   dataSources: PropTypes.object,
   dataSourceOptions: PropTypes.array,

@@ -184,6 +184,12 @@ For use in containers bound to annotations e.g. as children of `<AnnotationAccor
 * `connectAxesToLayout( Container )`: returns a wrapped container component that should contain an `<AxesSelector />` field (see below) and can be bound to a figure such that its children are bound to that figure's axes entries under the `layout.*axis` keys.
 * `connectAnnotationToLayout( Container )`: returns a wrapped container component that can be bound to a figure annotation such that its children are bound to that annotation's figure entry under the `layout.annotations` key, e.g. `<AnnotationAccordion />` below.
 
+## Mapbox Access Tokens
+
+To use Satellite Maps in the Editor, [Mapbox access tokens](https://www.mapbox.com/help/how-access-tokens-work/) are required.
+
+Once you have your tokens, you can provide it as a config prop to the `react-plotly.js` generated `Plot` component: `<Plot config={{mapboxAccessToken: 'your token'}}/>`
+
 ## See also
 
 * [plotly.js](https://github.com/plotly/plotly.js)

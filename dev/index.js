@@ -5,6 +5,7 @@ import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor from '../src';
 import '../src/styles/main.scss';
 import Nav from './Nav';
+import ACCESS_TOKENS from '../accessTokens';
 
 const dataSources = {
   col1: [1, 2, 3], // eslint-disable-line no-magic-numbers
@@ -96,6 +97,7 @@ class App extends Component {
               onInitialized={this.handlePlotUpdate.bind(this)}
               revision={this.state.plotRevision}
               style={{width: '100%', height: '100%', minHeight: '100vh'}}
+              config={{mapboxAccessToken: ACCESS_TOKENS.MAPBOX}}
             />
           </div>
         </div>
