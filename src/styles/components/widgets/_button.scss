@@ -24,7 +24,6 @@ button {
 }
 
 .button {
-  $c: &;
   &__wrapper {
     display: flex;
     align-items: center;
@@ -32,7 +31,6 @@ button {
     position: relative;
     overflow: hidden;
   }
-
   &__label {
     padding-left: var(--spacing-half-unit);
   }
