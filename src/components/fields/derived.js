@@ -332,6 +332,41 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       ];
     }
 
+    if (context.container.type === 'scatterternary') {
+      options = [
+        {label: _('A'), value: 'a'},
+        {label: _('B'), value: 'b'},
+        {label: _('C'), value: 'c'},
+        {label: _('Text'), value: 'text'},
+        {label: _('Name'), value: 'name'},
+      ];
+    }
+
     plotProps.options = options;
+  },
+});
+
+export const FillDropdown = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = props;
+
+    let options = [
+      {label: _('None'), value: 'none'},
+      {label: _('Y = 0'), value: 'tozeroy'},
+      {label: _('X = 0'), value: 'tozerox'},
+      {label: _('Previous Y'), value: 'tonexty'},
+      {label: _('Previous X'), value: 'tonextx'},
+    ];
+
+    if (context.container.type === 'scatterternary') {
+      options = [
+        {label: _('None'), value: 'none'},
+        {label: _('To Self'), value: 'toself'},
+        {label: _('To Next'), value: 'tonext'},
+      ];
+    }
+
+    plotProps.options = options;
+    plotProps.clearable = false;
   },
 });
