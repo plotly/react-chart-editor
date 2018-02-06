@@ -28,6 +28,7 @@ import {localize} from '../lib';
 const StyleTracesPanel = ({localize: _}) => (
   <TraceAccordion>
     <Section name={_('Trace')} attr="name">
+      <TextEditor label={_('Name')} attr="name" richTextOnly />
       <TraceOrientation
         label={_('Orientation')}
         attr="orientation"
@@ -44,10 +45,10 @@ const StyleTracesPanel = ({localize: _}) => (
       <Flaglist
         attr="textinfo"
         options={[
-          {label: 'Label', value: 'label'},
-          {label: 'Text', value: 'text'},
-          {label: 'Value', value: 'value'},
-          {label: '%', value: 'percent'},
+          {label: _('Label'), value: 'label'},
+          {label: _('Text'), value: 'text'},
+          {label: _('Value'), value: 'value'},
+          {label: _('%'), value: 'percent'},
         ]}
       />
     </Section>
@@ -56,8 +57,9 @@ const StyleTracesPanel = ({localize: _}) => (
       <Flaglist
         attr="mode"
         options={[
-          {label: 'Lines', value: 'lines'},
-          {label: 'Points', value: 'markers'},
+          {label: _('Lines'), value: 'lines'},
+          {label: _('Points'), value: 'markers'},
+          {label: _('Text'), value: 'text'},
         ]}
       />
     </Section>
@@ -128,6 +130,7 @@ const StyleTracesPanel = ({localize: _}) => (
     <Section name={_('Colorscale')}>
       <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
       <Radio
+        label={_('Orientation')}
         attr="reversescale"
         options={[
           {label: _('Normal'), value: false},
