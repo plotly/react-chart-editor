@@ -1,5 +1,4 @@
 import Info from '../fields/Info';
-import MenuPanel from './MenuPanel';
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -28,7 +27,7 @@ class Section extends Component {
     this.sectionVisible = isVisible === true;
 
     this.children = React.Children.map(nextProps.children, child => {
-      if (child.type === MenuPanel) {
+      if ((child.type.plotly_editor_traits || {}).is_menu_panel) {
         // Process the first menuPanel. Ignore the rest. MenuPanel does
         // not affect visibility.
         if (!this.menuPanel) {
