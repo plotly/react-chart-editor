@@ -6,11 +6,16 @@
   overflow: hidden;
   border: var(--border-default);
   border-radius: var(--border-radius);
+  min-height: 155px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 
   textarea[class='multi-format-editor__latex'] {
     height: 155px;
     width: 100%;
     margin: 10px;
+    border: var(--border-default);
   }
 
   textarea[class='multi-format-editor__html'] {
@@ -96,6 +101,11 @@
     }
   }
   &__content__wrapper {
+    &__rich_text{
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
     &__latex {
       background-color: var(--color-background-light);
       display: flex;
@@ -161,9 +171,25 @@
     border-top: none;
     width: 100%;
     color: var(--color-text-base);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
   &__editor {
     cursor: text;
+    position: relative;
+    flex-grow: 1;
+    & > div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      overflow: auto;
+      flex-grow: 1;
+      left: 0;
+      top: 0;
+    }
   }
   &__controls {
     display: flex;
