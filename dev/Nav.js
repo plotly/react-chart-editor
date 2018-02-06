@@ -4,24 +4,9 @@ import React from 'react';
 import Select from 'react-select';
 
 const Nav = props => (
-  <div
-    style={{
-      height: '50px',
-      width: '100%',
-      backgroundColor: '#27374e',
-      display: 'inline-flex',
-      color: 'white',
-    }}
-  >
-    <span style={{lineHeight: '50px', paddingLeft: '10px'}}>Select mock:</span>
-    <div
-      style={{
-        width: '300px',
-        marginLeft: '20px',
-        marginRight: '20px',
-        marginTop: '7px',
-      }}
-    >
+  <div className="mock-nav">
+    <span className="mock-nav__label">Select mock:</span>
+    <div className="mock-nav__select">
       <Select
         clearable={true}
         value={props.currentMockIndex}
@@ -30,6 +15,7 @@ const Nav = props => (
           label: item.name,
           value: i,
         }))}
+        className="open-top"
         searchable={true}
         searchPromptText="Search for a mock"
         onChange={option => props.loadMock(option.value)}

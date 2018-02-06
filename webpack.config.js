@@ -1,5 +1,7 @@
+const webpack = require('webpack');
+
 module.exports = {
-  entry: ['babel-polyfill', './dev/index.js'],
+  entry: ['babel-polyfill', 'react-hot-loader/patch', './dev/index.js'],
   output: {
     filename: 'bundle.js',
   },
@@ -17,6 +19,7 @@ module.exports = {
     ],
   },
   devServer: {
+    open: true,
     contentBase: './dev',
   },
   devtool: 'eval-source-map',
