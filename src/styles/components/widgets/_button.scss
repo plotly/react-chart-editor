@@ -56,8 +56,6 @@ button {
   // If a button is placed in the sidebar,
   // it should grow to the width of the available space.
   @at-root .sidebar .button {
-    box-sizing: border-box;
-    flex-grow: 1;
     width: calc(100% - var(--spacing-base-unit));
     margin-left: var(--spacing-half-unit);
     margin-right: var(--spacing-half-unit);
