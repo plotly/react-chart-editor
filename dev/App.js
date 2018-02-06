@@ -6,9 +6,8 @@ import PlotlyEditor from '../src';
 import '../src/styles/main.scss';
 import Nav from './Nav';
 
-// Satellite Maps in the Editor ->
 // https://github.com/plotly/react-plotly.js-editor#mapbox-access-tokens
-// import ACCESS_TOKENS from '../accessTokens';
+import ACCESS_TOKENS from '../accessTokens';
 
 const dataSources = {
   col1: [1, 2, 3], // eslint-disable-line no-magic-numbers
@@ -87,13 +86,14 @@ class App extends Component {
           />
           <div className="app__main" style={{width: '100%', height: '100%'}}>
             <Plot
-              debug
-              useResizeHandler
+              config={{mapboxAccessToken: ACCESS_TOKENS.MAPBOX}}
               data={this.state.graphDiv.data}
+              debug
               layout={this.state.graphDiv.layout}
-              onUpdate={this.handlePlotUpdate.bind(this)}
               onInitialized={this.handlePlotUpdate.bind(this)}
+              onUpdate={this.handlePlotUpdate.bind(this)}
               revision={this.state.plotRevision}
+              useResizeHandler
               style={{
                 width: '100%',
                 height: '100%',
@@ -103,9 +103,9 @@ class App extends Component {
           </div>
         </div>
         <Nav
-          mocks={this.state.mocks}
           currentMockIndex={this.state.currentMockIndex}
           loadMock={this.loadMock}
+          mocks={this.state.mocks}
         />
       </div>
     );
