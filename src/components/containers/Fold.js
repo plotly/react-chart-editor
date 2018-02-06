@@ -96,7 +96,10 @@ class Fold extends Component {
         <div className="fold__top__arrow-title">
           {arrowIcon}
           {icon}
-          <div className="fold__top__title">{name}</div>
+          <div
+            className="fold__top__title"
+            dangerouslySetInnerHTML={{__html: name}}
+          />
         </div>
         {deleteButton(deleteContainer)}
       </div>

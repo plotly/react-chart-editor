@@ -17,8 +17,8 @@ import {localize} from '../lib';
 const GraphCreatePanel = ({localize: _}) => {
   return (
     <TraceAccordion canAdd>
-      <TraceSelector label={_('Type')} attr="type" show />
       <TextEditor label={_('Name')} attr="name" richTextOnly />
+      <TraceSelector label={_('Type')} attr="type" show />
 
       <Section name={_('Data')}>
         <DataSelector label={_('Labels')} attr="labels" />
