@@ -9,51 +9,38 @@ import {
   Section,
   TraceAccordion,
   TraceSelector,
+  TextEditor,
+  Numeric,
 } from '../components';
 import {localize} from '../lib';
 
 const GraphCreatePanel = ({localize: _}) => {
   return (
     <TraceAccordion canAdd>
-      <TraceSelector label={_('Plot Type')} attr="type" show />
+      <TraceSelector label={_('Type')} attr="type" show />
+      <TextEditor label={_('Name')} attr="name" richTextOnly />
 
-      <DataSelector label={_('Labels')} attr="labels" />
+      <Section name={_('Data')}>
+        <DataSelector label={_('Labels')} attr="labels" />
+        <DataSelector label={_('Values')} attr="values" />
+        <DataSelector label={_('Locations')} attr="locations" />
+        <DataSelector label={_('Latitude')} attr="lat" />
+        <DataSelector label={_('Longitude')} attr="lon" />
+        <DataSelector label={_('X')} attr="x" />
+        <DataSelector label={_('Y')} attr="y" />
+        <DataSelector label={{choropleth: _('Values'), '*': _('Z')}} attr="z" />
+        <DataSelector label={_('Open')} attr="open" />
+        <DataSelector label={_('High')} attr="high" />
+        <DataSelector label={_('Low')} attr="low" />
+        <DataSelector label={_('Close')} attr="close" />
+        <DataSelector label={_('A')} attr="a" />
+        <DataSelector label={_('B')} attr="b" />
+        <DataSelector label={_('C')} attr="c" />
+      </Section>
 
-      <DataSelector label={_('Values')} attr="values" />
-
-      <DataSelector label={_('Locations')} attr="locations" />
-
-      <DataSelector label={_('Latitude')} attr="lat" />
-
-      <DataSelector label={_('Longitude')} attr="lon" />
-
-      <DataSelector label={_('X')} attr="x" />
-
-      <DataSelector label={_('Y')} attr="y" />
-
-      <DataSelector label={{choropleth: _('Values'), '*': _('Z')}} attr="z" />
-
-      <DataSelector label={_('Color')} attr="marker.color" />
-
-      <DataSelector label={_('Open')} attr="open" />
-
-      <DataSelector label={_('High')} attr="high" />
-
-      <DataSelector label={_('Low')} attr="low" />
-
-      <DataSelector label={_('Close')} attr="close" />
-
-      <Radio
-        label={_('Transpose')}
-        attr="transpose"
-        options={[
-          {label: _('No'), value: false},
-          {label: _('Yes'), value: true},
-        ]}
-      />
-
-      <Section name={_('Location Format')}>
+      <Section name={_('Options')}>
         <Dropdown
+          label={_('Location Format')}
           attr="locationmode"
           clearable={false}
           options={[
@@ -65,17 +52,28 @@ const GraphCreatePanel = ({localize: _}) => {
             },
           ]}
         />
-      </Section>
-
-      <Section name={_('Map Region')}>
-        <GeoScope attr="geo.scope" clearable={false} localize={_} />
-      </Section>
-
-      <Section name={_('Projection')}>
+        <GeoScope
+          label={_('Map Region')}
+          attr="geo.scope"
+          clearable={false}
+          localize={_}
+        />
         <GeoProjections
+          label={_('Projection')}
           attr="geo.projection.type"
           clearable={false}
           localize={_}
+        />
+        <Numeric label={_('Sum')} step={10} attr="sum" />
+        <DataSelector label={_('Text')} attr="text" />
+        <DataSelector label={_('Color')} attr="marker.color" />
+        <Radio
+          label={_('Transpose')}
+          attr="transpose"
+          options={[
+            {label: _('No'), value: false},
+            {label: _('Yes'), value: true},
+          ]}
         />
       </Section>
     </TraceAccordion>

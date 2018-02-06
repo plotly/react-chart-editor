@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import {
   ColorPicker,
-  Dropdown,
   Flaglist,
   ContourNumeric,
   LayoutNumericFraction,
@@ -21,6 +20,7 @@ import {
   TraceOrientation,
   ColorscalePicker,
   HoverInfo,
+  FillDropdown,
 } from '../components';
 
 import {localize} from '../lib';
@@ -28,7 +28,6 @@ import {localize} from '../lib';
 const StyleTracesPanel = ({localize: _}) => (
   <TraceAccordion>
     <Section name={_('Trace')} attr="name">
-      <TextEditor label={_('Name')} attr="name" richTextOnly />
       <TraceOrientation
         label={_('Orientation')}
         attr="orientation"
@@ -37,6 +36,7 @@ const StyleTracesPanel = ({localize: _}) => (
           {label: _('Horizontal'), value: 'h'},
         ]}
       />
+
       <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
     </Section>
 
@@ -63,19 +63,7 @@ const StyleTracesPanel = ({localize: _}) => (
     </Section>
 
     <Section name={_('Filled Area')}>
-      <Dropdown
-        label="Fill to"
-        attr="fill"
-        clearable={false}
-        options={[
-          {label: 'None', value: 'none'},
-          {label: 'Y = 0', value: 'tozeroy'},
-          {label: 'X = 0', value: 'tozerox'},
-          {label: 'Previous Y', value: 'tonexty'},
-          {label: 'Previous X', value: 'tonextx'},
-        ]}
-      />
-
+      <FillDropdown attr="fill" label={_('Fill to')} localize={_} />
       <ColorPicker label={_('Color')} attr="fillcolor" />
     </Section>
 
@@ -119,7 +107,10 @@ const StyleTracesPanel = ({localize: _}) => (
       <Numeric label={_('Width')} attr="whiskerwidth" />
     </Section>
 
-    <TraceTypeSection name={_('Lines')} traceTypes={['scatter', 'contour']}>
+    <TraceTypeSection
+      name={_('Lines')}
+      traceTypes={['scatter', 'contour', 'scatterternary']}
+    >
       <Numeric label={_('Width')} attr="line.width" />
       <ColorPicker label={_('Line Color')} attr="line.color" />
       <LineDashSelector label={_('Type')} attr="line.dash" />
@@ -312,7 +303,7 @@ const StyleTracesPanel = ({localize: _}) => (
       />
     </Section>
 
-    <Section name={_('Hover Action')}>
+    <TraceTypeSection name={_('Hover Action')} traceTypes={['box']}>
       <Flaglist
         attr="hoveron"
         label={_('Hover on')}
@@ -321,8 +312,21 @@ const StyleTracesPanel = ({localize: _}) => (
           {label: _('Points'), value: 'points'},
         ]}
       />
-      <TextEditor attr="text" label={_('Text')} richTextOnly />
-    </Section>
+    </TraceTypeSection>
+
+    <TraceTypeSection
+      name={_('Hover Action')}
+      traceTypes={['scatter', 'scatterternary']}
+    >
+      <Flaglist
+        attr="hoveron"
+        label={_('Hover on')}
+        options={[
+          {label: _('Fills'), value: 'fills'},
+          {label: _('Points'), value: 'points'},
+        ]}
+      />
+    </TraceTypeSection>
   </TraceAccordion>
 );
 
