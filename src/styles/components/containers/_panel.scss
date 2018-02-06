@@ -8,7 +8,14 @@
   box-sizing: border-box;
   position: relative;
   width: calc(var(--panel-width));
+  display: flex;
+  flex-direction: column;
   @include scrollbar();
+  &__content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
   &__header {
     margin-bottom: var(--spacing-half-unit);
     display: flex;
@@ -74,5 +81,8 @@
         line-height: var(--font-leading-body);
       }
     }
+  }
+  &--with-tabs {
+    padding: 0;
   }
 }

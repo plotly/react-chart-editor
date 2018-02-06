@@ -50,14 +50,16 @@ class TraceAccordion extends Component {
     }
     if (canGroup) {
       return (
-        <TraceRequiredPanel>
+        <TraceRequiredPanel tabs>
           <Tabs>
             <TabList>
               <Tab>Grouped</Tab>
               <Tab>Individual</Tab>
+              <Tab>A third longer one</Tab>
             </TabList>
             <TabPanel>a{content ? content : null}</TabPanel>
             <TabPanel>b{content ? content : null}</TabPanel>
+            <TabPanel>c{content ? content : null}</TabPanel>
           </Tabs>
         </TraceRequiredPanel>
       );
