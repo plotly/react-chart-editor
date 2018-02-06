@@ -1,5 +1,6 @@
 .panel {
   .react-tabs {
+    $tab-bar-height: 32px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -7,15 +8,19 @@
       &-list {
         background: var(--color-background-medium);
         margin: 0;
+        flex-shrink:0;
         list-style: none;
         display: flex;
+        align-items: flex-end;
         padding-top: var(--spacing-half-unit);
         padding-left: var(--spacing-half-unit);
         padding-right: var(--spacing-half-unit);
         padding-bottom: 0;
+        height: $tab-bar-height;
       }
       // Tab Styles
       flex-grow: 1;
+      flex-shrink:0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -71,6 +76,8 @@
         padding: var(--spacing-half-unit);
         border-top: var(--border-default);
         display: none;
+        overflow-y: scroll;
+        @include scrollbar;
         &--selected {
           flex-grow: 1;
           display: flex;
