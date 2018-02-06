@@ -2,7 +2,6 @@ import 'react-select/dist/react-select.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import Select from 'react-select';
-import './styles.css';
 
 const Nav = props => (
   <div className="mock-nav">
