@@ -31,7 +31,6 @@ button {
     position: relative;
     overflow: hidden;
   }
-
   &__label {
     padding-left: var(--spacing-half-unit);
   }
@@ -51,9 +50,15 @@ button {
       padding-left: 0;
     }
   }
-  &--menu {
-    min-width: 75px;
+
+  // If a button is placed in the sidebar,
+  // it should grow to the width of the available space.
+  @at-root .sidebar .button {
+    width: calc(100% - var(--spacing-base-unit));
+    margin-left: var(--spacing-half-unit);
+    margin-right: var(--spacing-half-unit);
   }
+
   &--default {
     @include button();
   }

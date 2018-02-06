@@ -68,3 +68,5 @@ MenuPanel.propTypes = {
   question: PropTypes.bool,
   show: PropTypes.bool,
 };
+
+MenuPanel.plotly_editor_traits = {is_menu_panel: true};
