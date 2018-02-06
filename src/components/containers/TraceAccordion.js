@@ -5,13 +5,20 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import {connectTraceToPlot, localize} from 'lib';
+import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 
 const TraceFold = connectTraceToPlot(Fold);
 
 class TraceAccordion extends Component {
   render() {
     const {data = []} = this.context;
-    const {canAdd, children, messageIfEmptyFold, localize: _} = this.props;
+    const {
+      canAdd,
+      canGroup,
+      children,
+      messageIfEmptyFold,
+      localize: _,
+    } = this.props;
 
     const content =
       data.length &&
@@ -41,6 +48,20 @@ class TraceAccordion extends Component {
       };
       return <Panel addAction={addAction}>{content ? content : null}</Panel>;
     }
+    if (canGroup) {
+      return (
+        <TraceRequiredPanel>
+          <Tabs>
+            <TabList>
+              <Tab>Grouped</Tab>
+              <Tab>Individual</Tab>
+            </TabList>
+            <TabPanel>a{content ? content : null}</TabPanel>
+            <TabPanel>b{content ? content : null}</TabPanel>
+          </Tabs>
+        </TraceRequiredPanel>
+      );
+    }
     return <TraceRequiredPanel>{content ? content : null}</TraceRequiredPanel>;
   }
 }
@@ -53,6 +74,7 @@ TraceAccordion.propTypes = {
   localize: PropTypes.func,
   children: PropTypes.node,
   canAdd: PropTypes.bool,
+  canGroup: PropTypes.bool,
   messageIfEmptyFold: PropTypes.string,
 };
 
