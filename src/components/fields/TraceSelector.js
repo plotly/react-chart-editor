@@ -1,6 +1,6 @@
 import {UnconnectedDropdown} from './Dropdown';
 import PropTypes from 'prop-types';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {
   connectToContainer,
   traceTypeToPlotlyInitFigure,
@@ -8,7 +8,6 @@ import {
   plotlyTraceToCustomTrace,
 } from 'lib';
 import {EDITOR_ACTIONS} from 'lib/constants';
-import {Tunnel} from 'react-tunnels';
 import TraceTypeSelector from 'components/widgets/TraceTypeSelector';
 
 function computeTraceOptionsFromSchema(schema, _, context) {
@@ -75,9 +74,6 @@ function computeTraceOptionsFromSchema(schema, _, context) {
 class TraceSelector extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      showTraceModal: false,
-    };
 
     this.updatePlot = this.updatePlot.bind(this);
 
@@ -145,21 +141,9 @@ class TraceSelector extends Component {
 
   updatePlot(value) {
     const {updateContainer} = this.props;
-
     if (updateContainer) {
       updateContainer(traceTypeToPlotlyInitFigure(value));
     }
-  }
-
-  hideAdvancedTraceTypeModal() {
-    this.setState({
-      showTraceModal: false,
-    });
-  }
-  showAdvancedTraceTypeModal() {
-    this.setState({
-      showTraceModal: true,
-    });
   }
 
   render() {
@@ -169,25 +153,18 @@ class TraceSelector extends Component {
       options: this.traceOptions,
       clearable: false,
     });
-
+    // Check and see if the advanced slector prop is true
     const {advancedTraceTypeSelector} = this.context;
-
     if (advancedTraceTypeSelector) {
       return (
-        <Fragment>
-          <Tunnel id="global-modal">
-            <TraceTypeSelector
-              handleClose={() => this.hideAdvancedTraceTypeModal()}
-              showing={this.state.showTraceModal}
-            />
-          </Tunnel>
-          <div
-            className="trace-type-select-dropdown__wrapper"
-            onClick={() => this.showAdvancedTraceTypeModal()}
-          >
-            <UnconnectedDropdown {...props} />
-          </div>
-        </Fragment>
+        <div
+          className="trace-type-select-dropdown__wrapper"
+          onClick={() =>
+            this.context.openModal(<TraceTypeSelector {...props} />)
+          }
+        >
+          <UnconnectedDropdown {...props} />
+        </div>
       );
     }
 
@@ -196,6 +173,8 @@ class TraceSelector extends Component {
 }
 
 TraceSelector.contextTypes = {
+  openModal: PropTypes.func,
+  advancedTraceTypeSelector: PropTypes.bool,
   plotSchema: PropTypes.object,
   config: PropTypes.object,
 };

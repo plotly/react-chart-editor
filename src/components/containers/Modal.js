@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {CloseIcon} from 'plotly-icons';
 
@@ -17,33 +17,35 @@ const ModalHeader = ({title, handleClose}) => (
 );
 
 class Modal extends Component {
-  componentDidUpdate() {
-    const body = document.body;
-    const {showing} = this.props;
-
-    // Toggle scroll on document body if modal is open
-    const hasClass = body.classList.contains('no-scroll');
-
-    if (showing && !hasClass) {
-      body.classList.add('no-scroll');
-    }
-    if (!showing && hasClass) {
-      body.classList.remove('no-scroll');
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAnimatingOut: false,
+    };
   }
 
+  handleClose() {
+    this.setState({isAnimatingOut: true});
+    const {closeModal} = this.context;
+    const animationDuration = 600;
+    setTimeout(() => {
+      this.setState({isAnimatingOut: false});
+      closeModal();
+    }, animationDuration);
+  }
   render() {
-    const {children, handleClose, title, showing} = this.props;
-    if (!showing) {
-      return null;
+    const {children, title} = this.props;
+    let classes = 'modal';
+    if (this.state.isAnimatingOut) {
+      classes += ' modal--animate-out';
     }
     return (
-      <div className="modal">
+      <div className={classes}>
         <div className="modal__card">
-          <ModalHeader title={title} handleClose={handleClose} />
+          <ModalHeader title={title} handleClose={() => this.handleClose()} />
           {children}
         </div>
-        <div className="modal__backdrop" onClick={() => handleClose()} />
+        <div className="modal__backdrop" onClick={() => this.handleClose()} />
       </div>
     );
   }
@@ -64,9 +66,11 @@ ModalContent.propTypes = {
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  showing: PropTypes.bool.isRequired,
   title: PropTypes.node,
+};
+
+Modal.contextTypes = {
+  closeModal: PropTypes.func,
 };
 
 export default Modal;

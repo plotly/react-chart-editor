@@ -1,13 +1,13 @@
 import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {bem} from './lib';
 import {maybeClearAxisTypes} from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {CATEGORY_LAYOUT, TRACE_TYPES} from 'lib/constants';
-import {TunnelProvider, TunnelPlaceholder} from 'react-tunnels';
+import {ModalProvider} from 'components/containers';
 
 class PlotlyEditor extends Component {
   constructor(props, context) {
@@ -208,20 +208,19 @@ class PlotlyEditor extends Component {
 
   render() {
     return (
-      <TunnelProvider>
-        <div
-          className={
-            bem('plotly-editor') +
-            ' plotly-editor--theme-provider' +
-            `${this.props.className ? ` ${this.props.className}` : ''}`
-          }
-        >
-          <TunnelPlaceholder id="global-modal" />
+      <div
+        className={
+          bem('plotly-editor') +
+          ' plotly-editor--theme-provider' +
+          `${this.props.className ? ` ${this.props.className}` : ''}`
+        }
+      >
+        <ModalProvider>
           {this.props.graphDiv &&
             this.props.graphDiv._fullLayout &&
             (this.props.children ? this.props.children : <DefaultEditor />)}
-        </div>
-      </TunnelProvider>
+        </ModalProvider>
+      </div>
     );
   }
 }

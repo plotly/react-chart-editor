@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal, {ModalContent} from 'components/containers/Modal';
 
+// to be removed when icons are converted to svg
 function slugify(text) {
   return text
     .toString()
@@ -14,24 +15,38 @@ function slugify(text) {
     .replace(/-+$/, ''); // Trim - from end of text
 }
 
-import Modal, {ModalHeader, ModalContent} from '../containers/Modal';
+const Item = ({item, active, columnLength, columnIndex}) => {
+  const isEven = value => value % 2 === 0;
+  const middle = Math.floor(columnLength / 2);
 
-const data = [
-  {
-    category: 'Basic',
-    types: [{}],
-  },
-];
+  // for left leaning columns
+  let position = '-right';
 
-const Item = ({item}) => {
+  // if we have an even number of columns
+  // we want to have the 2 center rows display their tooltip
+  // in the middle vs left/right
+  if (isEven(columnLength) && columnLength > 3) {
+    if (columnIndex === middle || columnIndex === middle - 1) {
+      position = '';
+    }
+  } else {
+    if (columnIndex === middle) {
+      position = '';
+    }
+  }
+
+  // for right leaning columns
+  if (columnIndex > middle) {
+    position = '-left';
+  }
   const {label} = item;
   return (
-    <div className="trace-item">
+    <div className={`trace-item${active ? ' trace-item--active' : ''}`}>
       <div className="trace-item__actions">
         <div
           className="trace-item__actions__item"
           aria-label="Charts like this by Plotly users."
-          data-microtip-position="top-right"
+          data-microtip-position={`top${position}`}
           role="tooltip"
         >
           <SearchIcon />
@@ -39,7 +54,7 @@ const Item = ({item}) => {
         <div
           className="trace-item__actions__item"
           aria-label="View tutorials on this chart type."
-          data-microtip-position="right"
+          data-microtip-position={`top${position}`}
           role="tooltip"
         >
           <ThumnailViewIcon />
@@ -47,7 +62,7 @@ const Item = ({item}) => {
         <div
           className="trace-item__actions__item"
           aria-label="See a basic example."
-          data-microtip-position="bottom-right"
+          data-microtip-position={`bottom${position}`}
           role="tooltip"
         >
           <GraphIcon />
@@ -63,6 +78,7 @@ const Item = ({item}) => {
 
 class TraceTypeSelector extends Component {
   renderCategories() {
+    const {fullValue} = this.props;
     const {traces: TRACE_TYPES, categories} = this.context.traceSelectorConfig;
     const traces = Object.entries(TRACE_TYPES);
 
@@ -74,7 +90,15 @@ class TraceTypeSelector extends Component {
         <div className="trace-grid__column" key={i}>
           <div className="trace-grid__column__header">{category.label}</div>
           <div className="trace-grid__column__items">
-            {items.map(([key, value], i) => <Item item={value.meta} />)}
+            {items.map(([key, value]) => (
+              <Item
+                columnLength={categories.length}
+                columnIndex={i}
+                key={key}
+                active={fullValue === key}
+                item={value.meta}
+              />
+            ))}
           </div>
         </div>
       );
@@ -83,11 +107,7 @@ class TraceTypeSelector extends Component {
 
   render() {
     return (
-      <Modal
-        showing={this.props.showing}
-        handleClose={() => this.props.handleClose()}
-        title="Select Chart Type"
-      >
+      <Modal title="Select Chart Type">
         <ModalContent>
           <div className="trace-grid">{this.renderCategories()}</div>
         </ModalContent>
@@ -98,6 +118,10 @@ class TraceTypeSelector extends Component {
 
 TraceTypeSelector.contextTypes = {
   traceSelectorConfig: PropTypes.object,
+};
+Item.propTypes = {
+  item: PropTypes.object,
+  active: PropTypes.bool,
 };
 
 export default TraceTypeSelector;

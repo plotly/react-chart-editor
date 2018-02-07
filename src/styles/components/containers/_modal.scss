@@ -5,10 +5,10 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
+  @include z-index('orbit');
 
   &__backdrop {
     height: 100%;
@@ -17,6 +17,7 @@
     top: 0;
     position: fixed;
     opacity: 0;
+    will-change: opacity;
     &::before {
       content: '';
       height: 100%;
@@ -27,7 +28,6 @@
       background: var(--color-background-dark);
       position: fixed;
     }
-    @include animate('fade-in', 1.25s);
   }
 
   &__card {
@@ -39,7 +39,7 @@
     box-shadow: var(--box-shadow-base);
     display: flex;
     flex-direction: column;
-    @include animate('fsb', 0.85s, 0.1s);
+    will-change: opacity, transform;
   }
 
   &__header {
@@ -75,6 +75,25 @@
     background-color: var(--color-background-light);
     border-bottom-left-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
+  }
+
+  // ANIMATIONS
+
+  &__backdrop {
+    @include animate('fade-in', 1.25s);
+  }
+  &__card {
+    @include animate('fsb', 0.85s, 0.1s);
+  }
+
+  &--animate-out {
+    pointer-events: none;
+    .modal__backdrop {
+      @include animate('fade-out', 1.25s);
+    }
+    .modal__card {
+      @include animate('fsbr', 1.25s);
+    }
   }
 }
 

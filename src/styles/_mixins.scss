@@ -191,14 +191,24 @@
   }
 }
 
-@mixin animate($type: 'fade-in', $time: 0.25s, $delay: 0s){
+@mixin animate($type: 'fade-in', $time: 1s, $delay: 0s){
   @if $type == 'fade-in' {
     @extend .animate--fade-in;
     animation-duration: $time;
     animation-delay: $delay;
   }
+  @if $type == 'fade-out' {
+    @extend .animate--fade-out;
+    animation-duration: $time;
+    animation-delay: $delay;
+  }
   @if $type == 'fsb' {
     @extend .animate--fade-and-slide-in-from-bottom;
+    animation-duration: $time;
+    animation-delay: $delay;
+  }
+  @if $type == 'fsbr' {
+    @extend .animate--fsbr;
     animation-duration: $time;
     animation-delay: $delay;
   }

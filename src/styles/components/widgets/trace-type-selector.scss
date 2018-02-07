@@ -25,6 +25,13 @@
   @include trans;
   position: relative;
 
+  &--active {
+    .trace-item__image {
+      border-color: var(--color-accent);
+      border-width: 2px;
+    }
+  }
+
   &__actions {
     position: absolute;
     width: calc(100% + 10px);
