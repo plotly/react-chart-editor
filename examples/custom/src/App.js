@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import plotly from 'plotly.js/dist/plotly-basic';
+import plotly from 'plotly.js/dist/plotly';
 import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor from 'react-plotly.js-editor';
 import CustomEditor from './CustomEditor';

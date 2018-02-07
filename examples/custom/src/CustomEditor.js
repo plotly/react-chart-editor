@@ -16,23 +16,25 @@ import {
   Button,
   SingleSidebarItem,
   TraceAccordion,
-  TraceRequiredPanel,
 } from 'react-plotly.js-editor';
 
 export default class CustomEditor extends Component {
   render() {
     return (
       <PanelMenuWrapper>
-        <TraceRequiredPanel group="Traces" name="Style">
-          <TraceAccordion>
-            <Section>
-              <ColorscalePicker label="Colorscale" attr="marker.colorscale" />
-            </Section>
-          </TraceAccordion>
-        </TraceRequiredPanel>
+        <TraceAccordion group="Traces" name="Style">
+          <Section name="Colorscale" attr="marker.colorscale">
+            <ColorscalePicker label="Colorscale" attr="marker.colorscale" />
+          </Section>
+        </TraceAccordion>
+
         <LayoutPanel group="Layout" name="Style">
           <Fold name="Fold">
-            <Info>
+            {
+              // At least one of the direct children of Fold must have an attr prop
+              // for the Fold to display itself
+            }
+            <Info attr="title">
               <p>
                 This custom editor demonstrates the general-purpose container
                 and field components.
