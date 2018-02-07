@@ -73,11 +73,8 @@
         border-left: none;
       }
       &-panel {
-        padding: var(--spacing-half-unit);
         border-top: var(--border-default);
         display: none;
-        overflow-y: scroll;
-        @include scrollbar;
         &--selected {
           flex-grow: 1;
           display: flex;
