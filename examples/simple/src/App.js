@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import plotly from 'plotly.js/dist/plotly-basic';
+import plotly from 'plotly.js/dist/plotly';
 import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor from 'react-plotly.js-editor';
 import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
@@ -49,7 +49,7 @@ class App extends Component {
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}
         />
-        <div className="app__main" style={{width: '100%', height: '100%'}}>
+        <div className="app__main" style={{width: 1000, height: 700}}>
           <Plot
             debug
             useResizeHandler

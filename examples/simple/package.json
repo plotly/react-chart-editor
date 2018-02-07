@@ -6,7 +6,7 @@
     "plotly.js": "^1.32.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-plotly.js-editor": "0.7.0",
+    "react-plotly.js-editor": "^0.8.0",
     "react-plotly.js": "^1.2.0",
     "react-scripts": "1.0.17"
   },
@@ -14,9 +14,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "homepage": "http://plotly.github.io/react-plotly.js-editor",
   "devDependencies": {

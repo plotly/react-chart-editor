@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.app__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.app {
+  display: flex;
+  /*
+       We are defining the max height of the app so that the editor knows how big to be
+       currently the editor will take up whatever space it can if it is not constrained in its parent
+     */
+  flex-grow: 1;
+  height: calc(100vh - 50px);
+  max-height: calc(100vh - 50px);
+  width: 100%;
+}
+
+.app__main {
+  max-width: 100%;
+  height: calc(100vh - 50px);
+  max-height: calc(100vh - 50px);
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.mock-nav {
+  height: 50px;
+  width: 100%;
+  background-color: var(--color-background-inverse);
+  display: inline-flex;
+  color: white;
+}
+
+.mock-nav__label {
+  line-height: 50px;
+  padding-left: 10px;
+}
+
+.mock-nav__select {
+  width: 300px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 7px;
+}
+
+.Select.open-top .Select-menu-outer {
+  top: auto;
+  bottom: 100%;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  border-bottom-right-radius: unset;
+  border-bottom-left-radius: unset;
+}
+.Select.open-top .Select-option:first-child {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.Select.open-top .Select-option:last-child {
+  border-bottom-right-radius: unset;
+  border-bottom-left-radius: unset;
+}
+.Select.open-top .Select.is-open > .Select-control {
+  border-top-right-radius: unset;
+  border-top-left-radius: unset;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}

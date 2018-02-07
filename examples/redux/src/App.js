@@ -3,7 +3,7 @@ import PlotlyEditor from 'react-plotly.js-editor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import createPlotComponent from 'react-plotly.js/factory';
-import plotly from 'plotly.js/dist/plotly-basic';
+import plotly from 'plotly.js/dist/plotly';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as actions from './actions';

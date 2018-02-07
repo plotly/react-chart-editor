@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-.app{
+.app {
   display: flex;
   /*
      We are defining the max height of the app so that the editor knows how big to be
