@@ -65,7 +65,7 @@ const StyleTracesPanel = ({localize: _}) => (
       />
       <Radio
         attr="flatshading"
-        label={_('flatshading')}
+        label={_('Flatshading')}
         options={[
           {label: _('Enable'), value: true},
           {label: _('Disable'), value: false},

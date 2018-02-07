@@ -2,14 +2,14 @@ import Fold from './Fold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectAnnotationToLayout} from 'lib';
+import {connectAnnotationToLayout, localize} from 'lib';
 
 const AnnotationFold = connectAnnotationToLayout(Fold);
 
 class AnnotationAccordion extends Component {
   render() {
     const {layout: {annotations = []}} = this.context;
-    const {canAdd, children} = this.props;
+    const {canAdd, children, localize: _} = this.props;
 
     const content =
       annotations.length &&
@@ -25,7 +25,7 @@ class AnnotationAccordion extends Component {
       ));
 
     const addAction = {
-      label: 'Annotation',
+      label: _('Annotation'),
       handler: ({layout, updateContainer}) => {
         let annotationIndex;
         if (Array.isArray(layout.annotations)) {
@@ -58,6 +58,7 @@ AnnotationAccordion.contextTypes = {
 AnnotationAccordion.propTypes = {
   children: PropTypes.node,
   canAdd: PropTypes.bool,
+  localize: PropTypes.func,
 };
 
-export default AnnotationAccordion;
+export default localize(AnnotationAccordion);

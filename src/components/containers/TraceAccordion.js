@@ -11,7 +11,7 @@ const TraceFold = connectTraceToPlot(Fold);
 class TraceAccordion extends Component {
   render() {
     const {data = []} = this.context;
-    const {canAdd, children, messageIfEmptyFold} = this.props;
+    const {canAdd, children, messageIfEmptyFold, localize: _} = this.props;
 
     const content =
       data.length &&
@@ -30,7 +30,7 @@ class TraceAccordion extends Component {
 
     if (canAdd) {
       const addAction = {
-        label: 'Trace',
+        label: _('Trace'),
         handler: ({onUpdate}) => {
           if (onUpdate) {
             onUpdate({
