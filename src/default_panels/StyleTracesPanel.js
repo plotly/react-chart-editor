@@ -127,6 +127,13 @@ const StyleTracesPanel = ({localize: _}) => (
       />
     </TraceTypeSection>
 
+    <TraceTypeSection name={_('Lines')} traceTypes={['scatter3d']}>
+      <Numeric label={_('Width')} attr="line.width" />
+      <ColorPicker label={_('Line Color')} attr="line.color" />
+      <LineDashSelector label={_('Type')} attr="line.dash" />
+      <LineShapeSelector label={_('Shape')} attr="line.shape" />
+    </TraceTypeSection>
+
     <Section name={_('Colorscale')}>
       <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
       <Radio

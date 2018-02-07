@@ -38,7 +38,6 @@ function computeTraceOptionsFromSchema(schema, _, context) {
     {value: 'pointcloud', label: _('Point Cloud')},
     {value: 'heatmapgl', label: _('Heatmap GL')},
     {value: 'parcoords', label: _('Parallel Coordinates')},
-
     {value: 'sankey', label: _('Sankey')},
     {value: 'table', label: _('Table')},
     {value: 'carpet', label: _('Carpet')},
@@ -49,14 +48,21 @@ function computeTraceOptionsFromSchema(schema, _, context) {
     {value: 'scatterpolar', label: _('Polar Scatter')},
   ].filter(obj => traceTypes.indexOf(obj.value) !== -1);
 
-  const i = traceOptions.findIndex(opt => opt.value === 'scatter');
+  const traceIndex = traceType =>
+    traceOptions.findIndex(opt => opt.value === traceType);
+
   traceOptions.splice(
-    i + 1,
+    traceIndex('scatter') + 1,
     0,
     {label: _('Line'), value: 'line'},
     {label: _('Area'), value: 'area'},
     {label: _('Timeseries'), value: 'timeseries'}
   );
+
+  traceOptions.splice(traceIndex('scatter3d') + 1, 0, {
+    label: _('3D Line'),
+    value: 'line3d',
+  });
 
   if (context.config && context.config.mapboxAccessToken) {
     traceOptions.push({value: 'scattermapbox', label: _('Satellite Map')});

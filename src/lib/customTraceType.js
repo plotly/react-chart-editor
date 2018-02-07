@@ -13,6 +13,8 @@ export function plotlyTraceToCustomTrace(trace) {
     (trace.mode === 'lines' || trace.mode === 'lines+markers')
   ) {
     return 'line';
+  } else if (trace.type === 'scatter3d' && trace.mode === 'lines') {
+    return 'line3d';
   }
   return trace.type;
 }
@@ -56,6 +58,16 @@ export function traceTypeToPlotlyInitFigure(traceType) {
         mode: 'lines',
         autobinx: true,
         autobiny: true,
+      };
+    case 'line3d':
+      return {
+        type: 'scatter3d',
+        mode: 'lines',
+      };
+    case 'scatter3d':
+      return {
+        type: 'scatter3d',
+        mode: 'markers',
       };
     default:
       return {type: traceType};
