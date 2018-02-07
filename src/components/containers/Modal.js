@@ -19,33 +19,27 @@ const ModalHeader = ({title, handleClose}) => (
 class Modal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isAnimatingOut: false,
-    };
   }
 
-  handleClose() {
-    this.setState({isAnimatingOut: true});
-    const {closeModal} = this.context;
-    const animationDuration = 600;
-    setTimeout(() => {
-      this.setState({isAnimatingOut: false});
-      closeModal();
-    }, animationDuration);
-  }
   render() {
     const {children, title} = this.props;
     let classes = 'modal';
-    if (this.state.isAnimatingOut) {
+    if (this.context.isAnimatingOut) {
       classes += ' modal--animate-out';
     }
     return (
       <div className={classes}>
         <div className="modal__card">
-          <ModalHeader title={title} handleClose={() => this.handleClose()} />
+          <ModalHeader
+            title={title}
+            handleClose={() => this.context.handleClose()}
+          />
           {children}
         </div>
-        <div className="modal__backdrop" onClick={() => this.handleClose()} />
+        <div
+          className="modal__backdrop"
+          onClick={() => this.context.handleClose()}
+        />
       </div>
     );
   }
@@ -70,7 +64,8 @@ Modal.propTypes = {
 };
 
 Modal.contextTypes = {
-  closeModal: PropTypes.func,
+  handleClose: PropTypes.func,
+  isAnimatingOut: PropTypes.bool,
 };
 
 export default Modal;

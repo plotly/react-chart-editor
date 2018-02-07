@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal, {ModalContent} from 'components/containers/Modal';
+import {traceTypeToPlotlyInitFigure} from 'lib';
 
 // to be removed when icons are converted to svg
 function slugify(text) {
@@ -15,7 +16,7 @@ function slugify(text) {
     .replace(/-+$/, ''); // Trim - from end of text
 }
 
-const Item = ({item, active, columnLength, columnIndex}) => {
+const Item = ({item, active, columnLength, columnIndex, handleClick}) => {
   const isEven = value => value % 2 === 0;
   const middle = Math.floor(columnLength / 2);
 
@@ -41,7 +42,10 @@ const Item = ({item, active, columnLength, columnIndex}) => {
   }
   const {label, type} = item;
   return (
-    <div className={`trace-item${active ? ' trace-item--active' : ''}`}>
+    <div
+      className={`trace-item${active ? ' trace-item--active' : ''}`}
+      onClick={() => handleClick()}
+    >
       <div className="trace-item__actions">
         <a
           className="trace-item__actions__item"
@@ -79,6 +83,10 @@ const Item = ({item, active, columnLength, columnIndex}) => {
 };
 
 class TraceTypeSelector extends Component {
+  selectAndClose(value) {
+    this.props.updateContainer(traceTypeToPlotlyInitFigure(value));
+    this.context.handleClose();
+  }
   renderCategories() {
     const {fullValue} = this.props;
     const {traces: TRACE_TYPES, categories} = this.context.traceSelectorConfig;
@@ -99,6 +107,7 @@ class TraceTypeSelector extends Component {
                 key={key}
                 active={fullValue === key}
                 item={value.meta}
+                handleClick={() => this.selectAndClose(value.meta.type)}
               />
             ))}
           </div>
@@ -117,9 +126,12 @@ class TraceTypeSelector extends Component {
     );
   }
 }
-
+TraceTypeSelector.propTypes = {
+  updateContainer: PropTypes.func,
+};
 TraceTypeSelector.contextTypes = {
   traceSelectorConfig: PropTypes.object,
+  handleClose: PropTypes.func,
 };
 Item.propTypes = {
   item: PropTypes.object,

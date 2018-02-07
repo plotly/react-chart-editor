@@ -6,9 +6,12 @@ class ModalProvider extends React.Component {
     super(props);
     this.state = {
       component: null,
+      componentProps: {},
       open: false,
+      isAnimatingOut: false,
     };
   }
+
   componentDidUpdate() {
     const body = document.body;
     const {open} = this.state;
@@ -24,16 +27,16 @@ class ModalProvider extends React.Component {
     }
   }
 
-  openModal(component) {
+  openModal(component, props) {
     if (!component) {
       throw Error('You need to provide a component for the modal to open!');
     }
-
     const {open} = this.state;
 
     if (!open) {
       this.setState({
         component: component,
+        componentProps: props,
         open: true,
       });
     }
@@ -48,20 +51,32 @@ class ModalProvider extends React.Component {
       });
     }
   }
+  handleClose() {
+    this.setState({isAnimatingOut: true});
+    const animationDuration = 600;
+    setTimeout(() => {
+      this.setState({isAnimatingOut: false});
+      this.closeModal();
+    }, animationDuration);
+  }
 
   getChildContext() {
     return {
-      openModal: c => this.openModal(c),
+      openModal: (c, p) => this.openModal(c, p),
       closeModal: () => this.closeModal(),
+      handleClose: () => this.handleClose(),
+      isAnimatingOut: this.state.isAnimatingOut,
     };
   }
 
   render() {
-    const {component: Component} = this.state;
+    const {component: Component, componentProps, isAnimatingOut} = this.state;
     return (
       <Fragment>
         {this.props.children}
-        {this.state.open ? Component : null}
+        {this.state.open ? (
+          <Component isAnimatingOut={isAnimatingOut} {...componentProps} />
+        ) : null}
       </Fragment>
     );
   }
@@ -73,6 +88,8 @@ ModalProvider.propTypes = {
 ModalProvider.childContextTypes = {
   openModal: PropTypes.func,
   closeModal: PropTypes.func,
+  handleClose: PropTypes.func,
+  isAnimatingOut: PropTypes.bool,
 };
 
 export default ModalProvider;

@@ -140,6 +140,7 @@ class TraceSelector extends Component {
   }
 
   updatePlot(value) {
+
     const {updateContainer} = this.props;
     if (updateContainer) {
       updateContainer(traceTypeToPlotlyInitFigure(value));
@@ -160,7 +161,7 @@ class TraceSelector extends Component {
         <div
           className="trace-type-select-dropdown__wrapper"
           onClick={() =>
-            this.context.openModal(<TraceTypeSelector {...props} />)
+            this.context.openModal(TraceTypeSelector, props)
           }
         >
           <UnconnectedDropdown {...props} />
