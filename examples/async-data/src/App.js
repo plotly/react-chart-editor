@@ -4,7 +4,7 @@ import PlotlyEditor, {dereference} from 'react-plotly.js-editor';
 import React, {Component} from 'react';
 import createPlotComponent from 'react-plotly.js/factory';
 import ee from 'event-emitter';
-import plotly from 'plotly.js/dist/plotly-basic';
+import plotly from 'plotly.js/dist/plotly';
 
 const Plot = createPlotComponent(plotly);
 
