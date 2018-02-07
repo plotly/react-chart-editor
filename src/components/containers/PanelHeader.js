@@ -45,7 +45,7 @@ class PanelHeader extends Component {
                 className="js-add-button"
                 onClick={() => addAction.handler(this.context)}
                 icon={icon}
-                label={_(addAction.label)}
+                label={addAction.label}
               />{' '}
             </div>
           ) : null}
