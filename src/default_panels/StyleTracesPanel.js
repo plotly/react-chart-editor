@@ -39,6 +39,7 @@ const StyleTracesPanel = ({localize: _}) => (
       />
 
       <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
+      <ColorPicker label={_('Color')} attr="color" />
     </Section>
 
     <Section name={_('Text Attributes')}>
@@ -60,6 +61,14 @@ const StyleTracesPanel = ({localize: _}) => (
           {label: _('Lines'), value: 'lines'},
           {label: _('Points'), value: 'markers'},
           {label: _('Text'), value: 'text'},
+        ]}
+      />
+      <Radio
+        attr="flatshading"
+        label={_('flatshading')}
+        options={[
+          {label: _('Enable'), value: true},
+          {label: _('Disable'), value: false},
         ]}
       />
     </Section>
@@ -246,6 +255,18 @@ const StyleTracesPanel = ({localize: _}) => (
         units="%"
         step={0.1}
       />
+      <Numeric
+        label={_('Vertex Normal')}
+        attr="lighting.vertexnormalsepsilon"
+        units="%"
+        step={0.1}
+      />
+      <Numeric
+        label={_('Face Normal')}
+        attr="lighting.facenormalsepsilon"
+        units="%"
+        step={0.1}
+      />
     </Section>
 
     <Section name={_('Light Position')}>
@@ -305,12 +326,22 @@ const StyleTracesPanel = ({localize: _}) => (
       />
     </Section>
 
-    <Section name={_('Values Shown On Hover')}>
+    <Section name={_('On Hover')}>
       <HoverInfo
         attr="hoverinfo"
         label={_('Values Shown On Hover')}
         localize={_}
       />
+      <Radio
+        label={_('Show contour')}
+        attr="contour.show"
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
+      />
+      <ColorPicker label={_('Contour Color')} attr="contour.color" />
+      <Numeric label={_('Contour Width')} attr="contour.width" />
     </Section>
 
     <TraceTypeSection name={_('Hover Action')} traceTypes={['box']}>

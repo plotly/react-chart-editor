@@ -29,6 +29,9 @@ const GraphCreatePanel = ({localize: _}) => {
         <DataSelector label={_('X')} attr="x" />
         <DataSelector label={_('Y')} attr="y" />
         <DataSelector label={{choropleth: _('Values'), '*': _('Z')}} attr="z" />
+        <DataSelector label={_('I (Optional)')} attr="i" />
+        <DataSelector label={_('J (Optional)')} attr="j" />
+        <DataSelector label={_('K (Optional)')} attr="k" />
         <DataSelector label={_('Open')} attr="open" />
         <DataSelector label={_('High')} attr="high" />
         <DataSelector label={_('Low')} attr="low" />
@@ -39,6 +42,9 @@ const GraphCreatePanel = ({localize: _}) => {
       </Section>
 
       <Section name={_('Options')}>
+        <DataSelector label={_('Intensity')} attr="intensity" />
+        <DataSelector label={_('Facecolor')} attr="facecolor" />
+        <DataSelector label={_('Vertexcolor')} attr="vertexcolor" />
         <Dropdown
           label={_('Location Format')}
           attr="locationmode"

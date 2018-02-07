@@ -31,7 +31,7 @@ function computeTraceOptionsFromSchema(schema, _, context) {
     {value: 'violin', label: _('Violin')},
     {value: 'scatter3d', label: _('3D Scatter')},
     {value: 'surface', label: _('Surface')},
-    {value: 'mesh3d', label: _('Mesh3d')},
+    {value: 'mesh3d', label: _('3D Mesh')},
     {value: 'scattergeo', label: _('Atlas Map')},
     {value: 'choropleth', label: _('Choropleth')},
     {value: 'scattergl', label: _('Scatter GL')},
