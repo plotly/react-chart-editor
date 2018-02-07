@@ -28,6 +28,7 @@ import {localize} from '../lib';
 const StyleTracesPanel = ({localize: _}) => (
   <TraceAccordion>
     <Section name={_('Trace')} attr="name">
+      <TextEditor label={_('Name')} attr="name" richTextOnly />
       <TraceOrientation
         label={_('Orientation')}
         attr="orientation"
@@ -38,16 +39,17 @@ const StyleTracesPanel = ({localize: _}) => (
       />
 
       <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
+      <ColorPicker label={_('Color')} attr="color" />
     </Section>
 
     <Section name={_('Text Attributes')}>
       <Flaglist
         attr="textinfo"
         options={[
-          {label: 'Label', value: 'label'},
-          {label: 'Text', value: 'text'},
-          {label: 'Value', value: 'value'},
-          {label: '%', value: 'percent'},
+          {label: _('Label'), value: 'label'},
+          {label: _('Text'), value: 'text'},
+          {label: _('Value'), value: 'value'},
+          {label: _('%'), value: 'percent'},
         ]}
       />
     </Section>
@@ -56,8 +58,17 @@ const StyleTracesPanel = ({localize: _}) => (
       <Flaglist
         attr="mode"
         options={[
-          {label: 'Lines', value: 'lines'},
-          {label: 'Points', value: 'markers'},
+          {label: _('Lines'), value: 'lines'},
+          {label: _('Points'), value: 'markers'},
+          {label: _('Text'), value: 'text'},
+        ]}
+      />
+      <Radio
+        attr="flatshading"
+        label={_('flatshading')}
+        options={[
+          {label: _('Enable'), value: true},
+          {label: _('Disable'), value: false},
         ]}
       />
     </Section>
@@ -125,9 +136,17 @@ const StyleTracesPanel = ({localize: _}) => (
       />
     </TraceTypeSection>
 
+    <TraceTypeSection name={_('Lines')} traceTypes={['scatter3d']}>
+      <Numeric label={_('Width')} attr="line.width" />
+      <ColorPicker label={_('Line Color')} attr="line.color" />
+      <LineDashSelector label={_('Type')} attr="line.dash" />
+      <LineShapeSelector label={_('Shape')} attr="line.shape" />
+    </TraceTypeSection>
+
     <Section name={_('Colorscale')}>
       <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
       <Radio
+        label={_('Orientation')}
         attr="reversescale"
         options={[
           {label: _('Normal'), value: false},
@@ -236,6 +255,18 @@ const StyleTracesPanel = ({localize: _}) => (
         units="%"
         step={0.1}
       />
+      <Numeric
+        label={_('Vertex Normal')}
+        attr="lighting.vertexnormalsepsilon"
+        units="%"
+        step={0.1}
+      />
+      <Numeric
+        label={_('Face Normal')}
+        attr="lighting.facenormalsepsilon"
+        units="%"
+        step={0.1}
+      />
     </Section>
 
     <Section name={_('Light Position')}>
@@ -295,12 +326,22 @@ const StyleTracesPanel = ({localize: _}) => (
       />
     </Section>
 
-    <Section name={_('Values Shown On Hover')}>
+    <Section name={_('On Hover')}>
       <HoverInfo
         attr="hoverinfo"
         label={_('Values Shown On Hover')}
         localize={_}
       />
+      <Radio
+        label={_('Show contour')}
+        attr="contour.show"
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
+      />
+      <ColorPicker label={_('Contour Color')} attr="contour.color" />
+      <Numeric label={_('Contour Width')} attr="contour.width" />
     </Section>
 
     <TraceTypeSection name={_('Hover Action')} traceTypes={['box']}>
