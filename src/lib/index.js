@@ -52,6 +52,8 @@ function renderTraceIcon(trace) {
     : PlotlyIcons.PlotLineIcon;
 }
 
+import {computeTraceOptionsFromSchema} from './computeTraceOptionsFromSchema';
+
 export {
   axisIdToAxisName,
   bem,
@@ -65,6 +67,7 @@ export {
   connectToContainer,
   connectTraceToPlot,
   containerConnectedContextTypes,
+  computeTraceOptionsFromSchema,
   traceTypeToPlotlyInitFigure,
   dereference,
   findFullTraceIndex,

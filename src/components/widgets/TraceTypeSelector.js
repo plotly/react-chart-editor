@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal, {ModalContent} from 'components/containers/Modal';
-import {traceTypeToPlotlyInitFigure} from 'lib';
+import {traceTypeToPlotlyInitFigure, computeTraceOptionsFromSchema} from 'lib';
 
 // to be removed when icons are converted to svg
 function slugify(text) {
