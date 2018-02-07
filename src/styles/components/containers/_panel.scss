@@ -1,17 +1,21 @@
 .panel {
   flex-grow: 1;
-  //flex-shrink: 0;
   overflow-x: hidden;
-  background-color: var(--panel-background);
   overflow-y: auto;
   padding: var(--spacing-half-unit);
-  border-right: var(--border-default);
   box-sizing: border-box;
   position: relative;
-  width: calc(var(--panel-width));
   display: flex;
   flex-direction: column;
+  width: 100%;
   @include scrollbar();
+
+  @at-root .plotly-editor__wrapper > .panel {
+    // These are for the first panel
+    background-color: var(--panel-background);
+    border-right: var(--border-default);
+    width: calc(var(--panel-width));
+  }
   &__content {
     flex-grow: 1;
     display: flex;
@@ -20,6 +24,7 @@
   &__header {
     margin-bottom: var(--spacing-half-unit);
     display: flex;
+    flex-shrink: 0;
     &__content {
       flex-grow: 1;
     }
