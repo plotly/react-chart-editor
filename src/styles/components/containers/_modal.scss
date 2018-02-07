@@ -9,16 +9,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  &::before {
-    content: '';
+
+  &__backdrop {
     height: 100%;
     width: 100%;
     left: 0;
     top: 0;
-    background: var(--color-background-dark);
-    opacity: 0.5;
     position: fixed;
+    opacity: 0;
+    &::before {
+      content: '';
+      height: 100%;
+      width: 100%;
+      left: 0;
+      opacity: 0.5;
+      top: 0;
+      background: var(--color-background-dark);
+      position: fixed;
+    }
+    @include animate('fade-in', 1.25s);
   }
+
   &__card {
     background: var(--color-background-top);
     border-radius: var(--border-radius);
@@ -28,6 +39,7 @@
     box-shadow: var(--box-shadow-base);
     display: flex;
     flex-direction: column;
+    @include animate('fsb', 0.85s, 0.1s);
   }
 
   &__header {

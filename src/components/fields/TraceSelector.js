@@ -1,12 +1,15 @@
 import {UnconnectedDropdown} from './Dropdown';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {
   connectToContainer,
   traceTypeToPlotlyInitFigure,
   localize,
   plotlyTraceToCustomTrace,
 } from 'lib';
+import {EDITOR_ACTIONS} from 'lib/constants';
+import {Tunnel} from 'react-tunnels';
+import TraceTypeSelector from 'components/widgets/TraceTypeSelector';
 
 function computeTraceOptionsFromSchema(schema, _, context) {
   // Filter out Polar "area" type as it is fairly broken and we want to present
@@ -72,6 +75,10 @@ function computeTraceOptionsFromSchema(schema, _, context) {
 class TraceSelector extends Component {
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      showTraceModal: false,
+    };
+
     this.updatePlot = this.updatePlot.bind(this);
 
     let fillMeta;
@@ -144,6 +151,17 @@ class TraceSelector extends Component {
     }
   }
 
+  hideAdvancedTraceTypeModal() {
+    this.setState({
+      showTraceModal: false,
+    });
+  }
+  showAdvancedTraceTypeModal() {
+    this.setState({
+      showTraceModal: true,
+    });
+  }
+
   render() {
     const props = Object.assign({}, this.props, {
       fullValue: this.fullValue,
@@ -151,6 +169,27 @@ class TraceSelector extends Component {
       options: this.traceOptions,
       clearable: false,
     });
+
+    const {advancedTraceTypeSelector} = this.context;
+
+    if (advancedTraceTypeSelector) {
+      return (
+        <Fragment>
+          <Tunnel id="global-modal">
+            <TraceTypeSelector
+              handleClose={() => this.hideAdvancedTraceTypeModal()}
+              showing={this.state.showTraceModal}
+            />
+          </Tunnel>
+          <div
+            className="trace-type-select-dropdown__wrapper"
+            onClick={() => this.showAdvancedTraceTypeModal()}
+          >
+            <UnconnectedDropdown {...props} />
+          </div>
+        </Fragment>
+      );
+    }
 
     return <UnconnectedDropdown {...props} />;
   }

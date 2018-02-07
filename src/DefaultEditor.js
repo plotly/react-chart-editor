@@ -14,12 +14,8 @@ import {
   StyleColorbarsPanel,
 } from './default_panels';
 
-import Modal from './components/containers/Modal';
-import TraceTypeSelector from './components/widgets/TraceTypeSelector';
-
 const DefaultEditor = ({localize: _}) => (
   <Fragment>
-    <TraceTypeSelector />
     <PanelMenuWrapper>
       <GraphCreatePanel group={_('Graph')} name={_('Create')} />
       <StyleTracesPanel group={_('Style')} name={_('Traces')} />

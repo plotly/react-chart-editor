@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {CATEGORY_LAYOUT, TRACE_TYPES} from 'lib/constants';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
+import Modal, {ModalContent} from 'components/containers/Modal';
 
 function slugify(text) {
   return text
@@ -61,8 +61,9 @@ const Item = ({item}) => {
   );
 };
 
-export default class TraceTypeSelector extends Component {
-  renderCategories(categories = CATEGORY_LAYOUT) {
+class TraceTypeSelector extends Component {
+  renderCategories() {
+    const {traces: TRACE_TYPES, categories} = this.context.traceSelectorConfig;
     const traces = Object.entries(TRACE_TYPES);
 
     return categories.map((category, i) => {
@@ -82,8 +83,11 @@ export default class TraceTypeSelector extends Component {
 
   render() {
     return (
-      <Modal>
-        <ModalHeader title="Select Chart Type" />
+      <Modal
+        showing={this.props.showing}
+        handleClose={() => this.props.handleClose()}
+        title="Select Chart Type"
+      >
         <ModalContent>
           <div className="trace-grid">{this.renderCategories()}</div>
         </ModalContent>
@@ -91,3 +95,9 @@ export default class TraceTypeSelector extends Component {
     );
   }
 }
+
+TraceTypeSelector.contextTypes = {
+  traceSelectorConfig: PropTypes.object,
+};
+
+export default TraceTypeSelector;

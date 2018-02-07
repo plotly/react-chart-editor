@@ -2,8 +2,7 @@
 @import 'variables/main';
 @import 'mixins';
 @import 'helpers';
-@import '~microtip/microtip';
-
+@import 'movement';
 :root {
   --env: $ENV;
 }
