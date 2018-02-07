@@ -55,11 +55,13 @@ class TraceAccordion extends Component {
             <TabList>
               <Tab>Grouped</Tab>
               <Tab>Individual</Tab>
-              <Tab>A third longer one</Tab>
             </TabList>
-            <TabPanel>a{content ? content : null}</TabPanel>
-            <TabPanel>b{content ? content : null}</TabPanel>
-            <TabPanel>c{content ? content : null}</TabPanel>
+            <TabPanel>
+              <Panel>{content ? content : null}</Panel>
+            </TabPanel>
+            <TabPanel>
+              <Panel>{content ? content : null}</Panel>
+            </TabPanel>
           </Tabs>
         </TraceRequiredPanel>
       );
