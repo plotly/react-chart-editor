@@ -58,6 +58,7 @@ AnnotationAccordion.contextTypes = {
 AnnotationAccordion.propTypes = {
   children: PropTypes.node,
   canAdd: PropTypes.bool,
+  localize: PropTypes.func,
 };
 
 export default localize(AnnotationAccordion);
