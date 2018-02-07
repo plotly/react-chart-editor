@@ -39,18 +39,20 @@ const Item = ({item, active, columnLength, columnIndex}) => {
   if (columnIndex > middle) {
     position = '-left';
   }
-  const {label} = item;
+  const {label, type} = item;
   return (
     <div className={`trace-item${active ? ' trace-item--active' : ''}`}>
       <div className="trace-item__actions">
-        <div
+        <a
           className="trace-item__actions__item"
           aria-label="Charts like this by Plotly users."
           data-microtip-position={`top${position}`}
           role="tooltip"
+          href={`https://plot.ly/feed/?q=plottype:${type}`}
+          target="_blank"
         >
           <SearchIcon />
-        </div>
+        </a>
         <div
           className="trace-item__actions__item"
           aria-label="View tutorials on this chart type."
