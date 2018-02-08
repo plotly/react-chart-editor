@@ -87,8 +87,6 @@ class Panel extends Component {
   render() {
     const {individualFoldStates, hasError} = this.state;
 
-    const {tabs} = this.props;
-
     if (hasError) {
       return <PanelError />;
     }
@@ -108,7 +106,9 @@ class Panel extends Component {
     );
 
     return (
-      <div className={`panel${tabs ? ' panel--with-tabs' : ''}`}>
+      <div
+        className={`panel${this.props.noPadding ? ' panel--no-padding' : ''}`}
+      >
         <PanelHeader
           addAction={this.props.addAction}
           allowCollapse={
@@ -127,7 +127,7 @@ Panel.propTypes = {
   children: PropTypes.node,
   addAction: PropTypes.object,
   showExpandCollapse: PropTypes.bool,
-  tabs: PropTypes.bool,
+  noPadding: PropTypes.bool,
 };
 
 Panel.defaultProps = {

@@ -78,7 +78,7 @@ class TraceAccordion extends Component {
         }
       );
       return (
-        <TraceRequiredPanel tabs>
+        <TraceRequiredPanel noPadding>
           <Tabs>
             <TabList>
               <Tab>{_('All Traces')}</Tab>
