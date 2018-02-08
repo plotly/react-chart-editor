@@ -17,7 +17,7 @@ Layouts.forEach(Layout => {
       const wrapper = mount(
         <Editor {...fixtures.scatter({layout: {width: 100}})}>
           <Panel>
-            <Layout foldIndex={0}>
+            <Layout>
               <Numeric label="Width" step={10} attr="width" />
             </Layout>
           </Panel>
@@ -37,7 +37,7 @@ Layouts.forEach(Layout => {
           {...fixtures.scatter({layout: {width: 100}})}
         >
           <Panel>
-            <Layout foldIndex={0}>
+            <Layout>
               <Numeric label="Width" step={10} attr="width" />
             </Layout>
           </Panel>
@@ -60,7 +60,7 @@ Layouts.forEach(Layout => {
           {...fixtures.scatter({layout: {showlegend: true}})}
         >
           <Panel>
-            <Layout foldIndex={0}>
+            <Layout>
               <Numeric label="Position x" step={0.01} attr="legend.x" />
             </Layout>
           </Panel>

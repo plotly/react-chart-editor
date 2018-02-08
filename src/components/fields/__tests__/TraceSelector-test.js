@@ -16,7 +16,7 @@ describe('TraceSelector', () => {
     };
     const wrapper = mount(
       <TestEditor {...editorProps} plotly={plotly}>
-        <TraceSection traceIndex={0}>
+        <TraceSection traceIndexes={[0]}>
           <TraceSelector attr="type" />
         </TraceSection>
       </TestEditor>
@@ -37,7 +37,7 @@ describe('TraceSelector', () => {
     };
     const wrapper = mount(
       <TestEditor {...editorProps} plotly={plotly}>
-        <TraceSection traceIndex={0}>
+        <TraceSection traceIndexes={[0]}>
           <TraceSelector attr="type" />
         </TraceSection>
       </TestEditor>
@@ -59,7 +59,7 @@ describe('TraceSelector', () => {
 
     const wrapper = mount(
       <TestEditor {...editorProps} plotly={plotly}>
-        <TraceSection traceIndex={0}>
+        <TraceSection traceIndexes={[0]}>
           <TraceSelector attr="type" />
         </TraceSection>
       </TestEditor>
@@ -77,7 +77,7 @@ describe('TraceSelector', () => {
     };
     const wrapper = mount(
       <TestEditor {...editorProps} plotly={plotly}>
-        <TraceSection traceIndex={0}>
+        <TraceSection traceIndexes={[0]}>
           <TraceSelector attr="type" />
         </TraceSection>
       </TestEditor>
@@ -95,7 +95,7 @@ describe('TraceSelector', () => {
     };
     const wrapper = mount(
       <TestEditor {...editorProps} plotly={plotly}>
-        <TraceSection traceIndex={0}>
+        <TraceSection traceIndexes={[0]}>
           <TraceSelector attr="type" />
         </TraceSection>
       </TestEditor>
@@ -113,7 +113,7 @@ describe('TraceSelector', () => {
     };
     const wrapper = mount(
       <TestEditor {...editorProps} plotly={plotly}>
-        <TraceSection traceIndex={0}>
+        <TraceSection traceIndexes={[0]}>
           <TraceSelector attr="type" />
         </TraceSection>
       </TestEditor>
@@ -133,7 +133,7 @@ describe('TraceSelector', () => {
     };
     const wrapper = mount(
       <TestEditor {...editorProps}>
-        <TraceSection traceIndex={0}>
+        <TraceSection traceIndexes={[0]}>
           <TraceSelector attr="type" />
         </TraceSection>
       </TestEditor>
@@ -159,7 +159,7 @@ describe('TraceSelector', () => {
     };
     const wrapper = mount(
       <TestEditor {...editorProps}>
-        <TraceSection traceIndex={0}>
+        <TraceSection traceIndexes={[0]}>
           <TraceSelector attr="type" />
         </TraceSection>
       </TestEditor>

@@ -16,7 +16,6 @@ function render(overrides = {}, children) {
       {children}
     </TestEditor>
   )
-    .find(`[traceIndex=1]`)
     .find(`[attr="${attr}"]`)
     .last();
 }
@@ -64,7 +63,7 @@ describe('DataSelector', () => {
     const wrapper = render(
       {},
       <TraceDataSelector
-        traceIndex={1}
+        traceIndexes={[0]}
         label={{pie: 'hodor', '*': 'rodoh'}}
         attr="x"
       />

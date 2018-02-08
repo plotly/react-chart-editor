@@ -15,7 +15,7 @@ Layouts.forEach(Layout => {
       const wrapper = mount(
         <Editor {...fixtures.scatter({layout: {width: 100}})}>
           <Panel>
-            <Layout foldIndex={0}>
+            <Layout>
               <Numeric label="Width" min={100} step={10} attr="width" />
             </Layout>
           </Panel>
@@ -35,7 +35,7 @@ Layouts.forEach(Layout => {
           {...fixtures.scatter({layout: {width: 100}})}
         >
           <Panel>
-            <Layout foldIndex={0}>
+            <Layout>
               <Numeric label="Width" min={100} step={10} attr="width" />
             </Layout>
           </Panel>

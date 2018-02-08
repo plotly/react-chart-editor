@@ -19,7 +19,7 @@ Traces.forEach(Trace => {
       const wrapper = mount(
         <Editor {...fixtures.scatter()}>
           <Panel>
-            <Trace traceIndex={0} foldIndex={0}>
+            <Trace traceIndexes={[0]}>
               <Numeric label="Marker Size" attr="marker.size" />
             </Trace>
           </Panel>
@@ -36,7 +36,7 @@ Traces.forEach(Trace => {
       const wrapper = mount(
         <Editor beforeUpdateTraces={beforeUpdateTraces} {...fixtures.scatter()}>
           <Panel>
-            <Trace traceIndex={0} foldIndex={0}>
+            <Trace traceIndexes={[0]}>
               <Numeric label="Marker Size" attr="marker.size" />
             </Trace>
           </Panel>
@@ -58,7 +58,7 @@ Traces.forEach(Trace => {
       const wrapper = mount(
         <Editor {...fixtures.scatter()}>
           <Panel>
-            <Trace traceIndex={0} foldIndex={0}>
+            <Trace traceIndexes={[0]}>
               <Numeric label="marker size" attr="marker.size" />
             </Trace>
           </Panel>
@@ -76,7 +76,7 @@ Traces.forEach(Trace => {
       const wrapper = mount(
         <Editor {...fixtures.scatter({data: [{name}]})}>
           <Panel>
-            <Trace traceIndex={0} foldIndex={0} />
+            <Trace traceIndexes={[0]} />
           </Panel>
         </Editor>
       )

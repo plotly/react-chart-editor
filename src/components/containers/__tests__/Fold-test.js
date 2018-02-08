@@ -11,7 +11,7 @@ describe('<Fold>', () => {
     const withoutDelete = mount(
       <TestEditor {...fixtures.scatter()}>
         <Panel>
-          <Fold foldIndex={0}>
+          <Fold>
             <Numeric attr="opacity" />
           </Fold>
         </Panel>
@@ -22,7 +22,7 @@ describe('<Fold>', () => {
     const withDelete = mount(
       <TestEditor {...fixtures.scatter()}>
         <Panel>
-          <TraceFold traceIndex={0} canDelete={true} foldIndex={0}>
+          <TraceFold traceIndexes={[0]} canDelete={true}>
             <Numeric attr="opacity" />
           </TraceFold>
         </Panel>
@@ -36,7 +36,7 @@ describe('<Fold>', () => {
     mount(
       <TestEditor {...fixtures.scatter()} beforeDeleteTrace={beforeDeleteTrace}>
         <Panel>
-          <TraceFold traceIndex={0} canDelete={true} foldIndex={0}>
+          <TraceFold traceIndexes={[0]} canDelete={true}>
             <Numeric attr="opacity" />
           </TraceFold>
         </Panel>

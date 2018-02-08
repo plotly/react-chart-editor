@@ -20,7 +20,7 @@ describe('connectToContainer', () => {
 
     const numeric = mount(
       <TestEditor {...{...fixtureProps, onUpdate}}>
-        <ConnectedNumeric traceIndex={0} label="Opacity" attr="opacity" />
+        <ConnectedNumeric traceIndexes={[0]} label="Opacity" attr="opacity" />
       </TestEditor>
     ).find(Numeric);
 

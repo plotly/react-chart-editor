@@ -14,7 +14,7 @@ describe('Section', () => {
     // mode is visible with scatter. Hole is not visible. Section should show.
     const wrapper = mount(
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection traceIndex={0} name="test-section">
+        <TraceSection traceIndexes={[0]} name="test-section">
           <Flaglist
             attr="mode"
             options={[
@@ -64,9 +64,9 @@ describe('Section', () => {
     // pull and hole are not scatter attrs. Section should not show.
     const wrapper = mount(
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection traceIndex={0} name="test-section">
-          <Numeric attr="pull" min={0} max={1} step={0.1} traceIndex={0} />
-          <Numeric attr="hole" min={0} max={1} step={0.1} traceIndex={0} />
+        <TraceSection traceIndexes={[0]} name="test-section">
+          <Numeric attr="pull" min={0} max={1} step={0.1} traceIndexes={[0]} />
+          <Numeric attr="hole" min={0} max={1} step={0.1} traceIndexes={[0]} />
         </TraceSection>
       </TestEditor>
     )
@@ -85,8 +85,8 @@ describe('Section', () => {
     const TraceSection = connectTraceToPlot(Section);
     const wrapper = mount(
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection name="test-section" traceIndex={0}>
-          <Numeric attr="opacity" traceIndex={0} />
+        <TraceSection name="test-section" traceIndexes={[0]}>
+          <Numeric attr="opacity" traceIndexes={[0]} />
           <MenuPanel show>
             <Info>INFO</Info>
           </MenuPanel>
@@ -106,8 +106,8 @@ describe('Section', () => {
     const TraceSection = connectTraceToPlot(Section);
     const wrapper = mount(
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection name="test-section" traceIndex={0}>
-          <Numeric attr="badattr" traceIndex={0} />
+        <TraceSection name="test-section" traceIndexes={[0]}>
+          <Numeric attr="badattr" traceIndexes={[0]} />
           <MenuPanel show>
             <Info>INFO</Info>
           </MenuPanel>
@@ -123,8 +123,8 @@ describe('Section', () => {
     const TraceSection = connectTraceToPlot(Section);
     const wrapper = mount(
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection name="test-section" traceIndex={0}>
-          <Numeric attr="badattr" traceIndex={0} />
+        <TraceSection name="test-section" traceIndexes={[0]}>
+          <Numeric attr="badattr" traceIndexes={[0]} />
           <Info>INFO</Info>
         </TraceSection>
       </TestEditor>
@@ -141,7 +141,7 @@ describe('TraceTypeSection', () => {
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
         <TraceSection
           name="test-section"
-          traceIndex={0}
+          traceIndexes={[0]}
           traceTypes={['scatter']}
         >
           <Flaglist
@@ -164,7 +164,7 @@ describe('TraceTypeSection', () => {
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
         <TraceSection
           name="test-section"
-          traceIndex={0}
+          traceIndexes={[0]}
           traceTypes={['heatmap']}
         >
           <Flaglist
