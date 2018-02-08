@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import SymbolSelectorWidget from '../widgets/SymbolSelector';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {connectToContainer, tooLight} from 'lib';
+import {MULTI_VALUED} from '../../lib/constants';
 
 // TODO compute these from plotly.js
 const SYMBOLS = [
@@ -353,20 +354,25 @@ const SYMBOLS = [
 ];
 
 class SymbolSelector extends Component {
-  constructor(props) {
-    super(props);
-    this.setLocals(props);
+  constructor(props, context) {
+    super(props, context);
+    this.setLocals(props, context);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setLocals(nextProps);
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.setLocals(nextProps, nextContext);
   }
 
-  setLocals(props) {
+  setLocals(props, context) {
     const {fullContainer} = props;
+    const {defaultContainer} = context;
 
     this.markerColor = nestedProperty(fullContainer, 'marker.color').get();
     this.borderWidth = nestedProperty(fullContainer, 'marker.line.width').get();
+
+    if (this.markerColor === MULTI_VALUED) {
+      this.markerColor = nestedProperty(defaultContainer, 'marker.color').get();
+    }
 
     this.borderColor = this.markerColor;
     if (this.borderWidth) {
@@ -374,6 +380,12 @@ class SymbolSelector extends Component {
         fullContainer,
         'marker.line.color'
       ).get();
+      if (this.borderColor === MULTI_VALUED) {
+        this.borderColor = nestedProperty(
+          defaultContainer,
+          'marker.line.color'
+        ).get();
+      }
     }
 
     if (this.props.is3D) {
@@ -403,10 +415,13 @@ class SymbolSelector extends Component {
 }
 
 SymbolSelector.propTypes = {
-  defaultValue: PropTypes.number,
+  defaultValue: PropTypes.string,
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
+};
+SymbolSelector.contextTypes = {
+  defaultContainer: PropTypes.object,
 };
 
 SymbolSelector.defaultProps = {

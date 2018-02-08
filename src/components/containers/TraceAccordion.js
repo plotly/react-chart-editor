@@ -11,7 +11,7 @@ const TraceFold = connectTraceToPlot(Fold);
 
 class TraceAccordion extends Component {
   render() {
-    const {data = [], fullData = []} = this.context;
+    const {data = []} = this.context;
     const {
       canAdd,
       canGroup,
@@ -52,31 +52,30 @@ class TraceAccordion extends Component {
         </Panel>
       );
     }
-    if (canGroup && data.length > 1) {
-      const tracesByGroup = data.reduce((allTraces, next, index) => {
-        const traceType = plotlyTraceToCustomTrace(
-          fullData.filter(trace => trace.index === index)[0]
-        );
-        if (!allTraces[traceType]) {
-          allTraces[traceType] = [];
-        }
-        allTraces[traceType].push(index);
-        return allTraces;
-      }, {});
+    const tracesByGroup = data.reduce((allTraces, nextTrace, index) => {
+      const traceType = plotlyTraceToCustomTrace(nextTrace);
+      if (!allTraces[traceType]) {
+        allTraces[traceType] = [];
+      }
+      allTraces[traceType].push(index);
+      return allTraces;
+    }, {});
 
-      const groupedTraces = Object.keys(tracesByGroup).map(
-        (traceType, index) => {
-          return (
-            <TraceFold
-              key={index}
-              traceIndexes={tracesByGroup[traceType]}
-              name={traceType}
-            >
-              {this.props.children}
-            </TraceFold>
-          );
-        }
-      );
+    const groupedTraces = Object.keys(tracesByGroup)
+      .filter(traceType => !['ohlc', 'candlestick'].includes(traceType))
+      .map((traceType, index) => {
+        return (
+          <TraceFold
+            key={index}
+            traceIndexes={tracesByGroup[traceType]}
+            name={traceType}
+          >
+            {this.props.children}
+          </TraceFold>
+        );
+      });
+
+    if (canGroup && data.length > 1 && groupedTraces.length > 0) {
       return (
         <TraceRequiredPanel noPadding>
           <Tabs>
