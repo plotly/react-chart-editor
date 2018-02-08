@@ -59,6 +59,38 @@ export const TraceOrientation = connectToContainer(UnconnectedRadio, {
         ysrc: context.container.xsrc,
       });
     }
+
+    if (
+      context.container.type === 'histogram' &&
+      plotProps.fullValue === 'v' &&
+      context.container.y &&
+      context.container.y.length !== 0
+    ) {
+      context.updateContainer({
+        y: null,
+        ysrc: null,
+        ybins: null,
+        x: context.container.y,
+        xsrc: context.container.ysrc,
+        xbins: context.container.ybins,
+      });
+    }
+
+    if (
+      context.container.type === 'histogram' &&
+      plotProps.fullValue === 'h' &&
+      context.container.x &&
+      context.container.x.length !== 0
+    ) {
+      context.updateContainer({
+        x: null,
+        xsrc: null,
+        xbins: null,
+        y: context.container.x,
+        ysrc: context.container.xsrc,
+        ybins: context.container.xbins,
+      });
+    }
   },
 });
 
