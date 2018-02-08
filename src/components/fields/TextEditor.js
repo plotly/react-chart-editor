@@ -85,4 +85,10 @@ UnconnectedTextEditor.propTypes = {
 
 export const LocalizedTextEditor = localize(UnconnectedTextEditor);
 
-export default connectToContainer(LocalizedTextEditor);
+export default connectToContainer(LocalizedTextEditor, {
+  modifyPlotProps: (props, context, plotProps) => {
+    if (plotProps.isVisible && plotProps.multiValued) {
+      plotProps.isVisible = false;
+    }
+  },
+});

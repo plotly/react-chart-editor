@@ -7,6 +7,7 @@ import {
   plotlyTraceToCustomTrace,
   renderTraceIcon,
 } from '../lib';
+import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
 import {EDITOR_ACTIONS} from './constants';
 
 export default function connectTraceToPlot(WrappedComponent) {
@@ -56,6 +57,20 @@ export default function connectTraceToPlot(WrappedComponent) {
         container: trace,
         fullContainer: fullTrace,
       };
+
+      if (traceIndexes.length > 1) {
+        const multiValuedContainer = deepCopyPublic(fullTrace);
+        fullData.forEach(t =>
+          Object.keys(t).forEach(key =>
+            setMultiValuedContainer(multiValuedContainer, t, key, {
+              searchArrays: true,
+            })
+          )
+        );
+        this.childContext.fullContainer = multiValuedContainer;
+        this.childContext.defaultContainer = fullTrace;
+        this.childContext.container = {};
+      }
 
       if (trace && fullTrace) {
         this.icon = renderTraceIcon(plotlyTraceToCustomTrace(trace));
@@ -121,6 +136,7 @@ export default function connectTraceToPlot(WrappedComponent) {
     getValObject: PropTypes.func,
     updateContainer: PropTypes.func,
     deleteContainer: PropTypes.func,
+    defaultContainer: PropTypes.object,
     container: PropTypes.object,
     fullContainer: PropTypes.object,
   };
