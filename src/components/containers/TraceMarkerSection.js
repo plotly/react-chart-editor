@@ -16,7 +16,7 @@ class TraceMarkerSection extends Component {
   setLocals(context) {
     const _ = this.props.localize;
     const traceType = context.fullContainer._fullInput.type;
-    if (traceType === 'bar') {
+    if (['bar', 'histogram'].includes(traceType)) {
       this.name = _('Bars');
     } else {
       this.name = _('Points');

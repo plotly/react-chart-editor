@@ -26,9 +26,30 @@ const GraphCreatePanel = ({localize: _}) => {
         <DataSelector label={_('Locations')} attr="locations" />
         <DataSelector label={_('Latitude')} attr="lat" />
         <DataSelector label={_('Longitude')} attr="lon" />
-        <DataSelector label={_('X')} attr="x" />
-        <DataSelector label={_('Y')} attr="y" />
-        <DataSelector label={{choropleth: _('Values'), '*': _('Z')}} attr="z" />
+        <DataSelector
+          label={{
+            histogram2d: _('X Values'),
+            histogram: _('X Values'),
+            '*': _('X'),
+          }}
+          attr="x"
+        />
+        <DataSelector
+          label={{
+            histogram2d: _('Y Values'),
+            histogram: _('Y Values'),
+            '*': _('Y'),
+          }}
+          attr="y"
+        />
+        <DataSelector
+          label={{
+            choropleth: _('Values'),
+            histogram2d: _('Z Values'),
+            '*': _('Z'),
+          }}
+          attr="z"
+        />
         <DataSelector label={_('I (Optional)')} attr="i" />
         <DataSelector label={_('J (Optional)')} attr="j" />
         <DataSelector label={_('K (Optional)')} attr="k" />
