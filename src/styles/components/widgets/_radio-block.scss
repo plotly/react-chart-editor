@@ -1,7 +1,9 @@
 .radio-block {
   width: 100%;
   line-height: var(--font-leading-head);
+  display: flex;
   &__option {
+    flex-grow: 1;
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
     background-color: var(--color-background-top);
     border: var(--border-default);

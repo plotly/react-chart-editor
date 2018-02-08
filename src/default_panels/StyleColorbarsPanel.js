@@ -18,7 +18,7 @@ import {
 import {localize} from '../lib';
 
 const StyleColorBarsPanel = ({localize: _}) => (
-  <TraceAccordion messageIfEmptyFold="Need a color for a colorbar!">
+  <TraceAccordion messageIfEmptyFold="Need a color scale for a colorbar!">
     <Radio
       attr="showscale"
       options={[

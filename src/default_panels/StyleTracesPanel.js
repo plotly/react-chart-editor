@@ -26,7 +26,7 @@ import {
 import {localize} from '../lib';
 
 const StyleTracesPanel = ({localize: _}) => (
-  <TraceAccordion>
+  <TraceAccordion canGroup>
     <Section name={_('Trace')} attr="name">
       <TextEditor label={_('Name')} attr="name" richTextOnly />
       <TraceOrientation

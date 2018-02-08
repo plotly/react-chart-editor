@@ -150,7 +150,6 @@
         font-family: var(--font-family-body);
         font-size: var(--font-size-small);
         text-align: center;
-        font-size: 13px;
         color: var(--color-text-base);
       }
     }
@@ -158,12 +157,6 @@
     &--noheader {
       border-width: 1px 1px 1px 1px;
     }
-  }
-
-  .panel {
-    background-color: var(--fold-background);
-    border-right: none;
-    width: 100%;
   }
 }
 

@@ -41,7 +41,7 @@ describe('Plot Connection', () => {
     );
     mount(
       <TestEditor {...{...fixtureProps, beforeUpdateLayout}}>
-        <TraceLayoutNumeric traceIndex={0} label="Width" attr="width" />
+        <TraceLayoutNumeric traceIndexes={[0]} label="Width" attr="width" />
       </TestEditor>
     )
       .find('[attr="width"]')
@@ -70,7 +70,11 @@ describe('Plot Connection', () => {
     const wrapper = mount(
       <TestEditor {...{...fixtureProps}}>
         <Section name="Canvas">
-          <DeeplyConnectedNumeric traceIndex={0} label="Width" attr="width" />
+          <DeeplyConnectedNumeric
+            traceIndexes={[0]}
+            label="Width"
+            attr="width"
+          />
         </Section>
       </TestEditor>
     )
@@ -100,9 +104,13 @@ describe('Plot Connection', () => {
 
     mount(
       <TestEditor {...{...fixtureProps, beforeUpdateLayout}}>
-        <TracePanel traceIndex={0}>
+        <TracePanel traceIndexes={[0]}>
           <Section name="Canvas">
-            <LayoutConnectedNumeric traceIndex={0} label="Width" attr="width" />
+            <LayoutConnectedNumeric
+              traceIndexes={[0]}
+              label="Width"
+              attr="width"
+            />
           </Section>
         </TracePanel>
       </TestEditor>
@@ -139,9 +147,9 @@ describe('Plot Connection', () => {
 
     const wrapper = mount(
       <TestEditor {...{...fixtureProps}}>
-        <TracePanel traceIndex={0}>
+        <TracePanel traceIndexes={[0]}>
           <Section name="Canvas">
-            <LayoutWidth traceIndex={0} label="Width" attr="width" />
+            <LayoutWidth traceIndexes={[0]} label="Width" attr="width" />
           </Section>
         </TracePanel>
       </TestEditor>

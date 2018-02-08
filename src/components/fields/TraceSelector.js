@@ -113,11 +113,14 @@ class TraceSelector extends Component {
     } else {
       this.traceOptions = [{label: _('Scatter'), value: 'scatter'}];
     }
-    this.fullValue = plotlyTraceToCustomTrace(props.container);
+    if (props.container) {
+      this.fullValue = plotlyTraceToCustomTrace(props.container);
+    }
   }
 
   setTraceDefaults(container, fullContainer, updateContainer) {
     if (
+      container &&
       container.uid &&
       !container.mode &&
       fullContainer._fullInput.type === 'scatter'

@@ -4,22 +4,29 @@ import Panel from './Panel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
-import {connectTraceToPlot, localize} from 'lib';
+import {connectTraceToPlot, localize, plotlyTraceToCustomTrace} from 'lib';
+import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 
 const TraceFold = connectTraceToPlot(Fold);
 
 class TraceAccordion extends Component {
   render() {
-    const {data = []} = this.context;
-    const {canAdd, children, messageIfEmptyFold, localize: _} = this.props;
+    const {data = [], fullData = []} = this.context;
+    const {
+      canAdd,
+      canGroup,
+      children,
+      messageIfEmptyFold,
+      localize: _,
+    } = this.props;
 
-    const content =
+    const individualTraces =
       data.length &&
       data.map((d, i) => {
         return (
           <TraceFold
             key={i}
-            traceIndex={i}
+            traceIndexes={[i]}
             canDelete={canAdd}
             messageIfEmpty={messageIfEmptyFold}
           >
@@ -39,13 +46,64 @@ class TraceAccordion extends Component {
           }
         },
       };
-      return <Panel addAction={addAction}>{content ? content : null}</Panel>;
+      return (
+        <Panel addAction={addAction}>
+          {individualTraces ? individualTraces : null}
+        </Panel>
+      );
     }
-    return <TraceRequiredPanel>{content ? content : null}</TraceRequiredPanel>;
+    if (canGroup && data.length > 1) {
+      const tracesByGroup = data.reduce((allTraces, next, index) => {
+        const traceType = plotlyTraceToCustomTrace(
+          fullData.filter(trace => trace.index === index)[0]
+        );
+        if (!allTraces[traceType]) {
+          allTraces[traceType] = [];
+        }
+        allTraces[traceType].push(index);
+        return allTraces;
+      }, {});
+
+      const groupedTraces = Object.keys(tracesByGroup).map(
+        (traceType, index) => {
+          return (
+            <TraceFold
+              key={index}
+              traceIndexes={tracesByGroup[traceType]}
+              name={traceType}
+            >
+              {this.props.children}
+            </TraceFold>
+          );
+        }
+      );
+      return (
+        <TraceRequiredPanel noPadding>
+          <Tabs>
+            <TabList>
+              <Tab>{_('All Traces')}</Tab>
+              <Tab>{_('Individual')}</Tab>
+            </TabList>
+            <TabPanel>
+              <Panel>{groupedTraces ? groupedTraces : null}</Panel>
+            </TabPanel>
+            <TabPanel>
+              <Panel>{individualTraces ? individualTraces : null}</Panel>
+            </TabPanel>
+          </Tabs>
+        </TraceRequiredPanel>
+      );
+    }
+    return (
+      <TraceRequiredPanel>
+        {individualTraces ? individualTraces : null}
+      </TraceRequiredPanel>
+    );
   }
 }
 
 TraceAccordion.contextTypes = {
+  fullData: PropTypes.array,
   data: PropTypes.array,
 };
 
@@ -53,6 +111,7 @@ TraceAccordion.propTypes = {
   localize: PropTypes.func,
   children: PropTypes.node,
   canAdd: PropTypes.bool,
+  canGroup: PropTypes.bool,
   messageIfEmptyFold: PropTypes.string,
 };
 

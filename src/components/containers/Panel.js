@@ -106,7 +106,9 @@ class Panel extends Component {
     );
 
     return (
-      <div className={bem('panel')}>
+      <div
+        className={`panel${this.props.noPadding ? ' panel--no-padding' : ''}`}
+      >
         <PanelHeader
           addAction={this.props.addAction}
           allowCollapse={
@@ -125,6 +127,7 @@ Panel.propTypes = {
   children: PropTypes.node,
   addAction: PropTypes.object,
   showExpandCollapse: PropTypes.bool,
+  noPadding: PropTypes.bool,
 };
 
 Panel.defaultProps = {
