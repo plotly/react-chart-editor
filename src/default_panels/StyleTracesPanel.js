@@ -20,27 +20,27 @@ import {
   TraceOrientation,
   ColorscalePicker,
   HoverInfo,
+  Dropdown,
   FillDropdown,
+  FontSelector,
 } from '../components';
 
 import {localize} from '../lib';
 
 const StyleTracesPanel = ({localize: _}) => (
   <TraceAccordion canGroup>
-    <Section name={_('Trace')} attr="name">
-      <TextEditor label={_('Name')} attr="name" richTextOnly />
-      <TraceOrientation
-        label={_('Orientation')}
-        attr="orientation"
-        options={[
-          {label: _('Vertical'), value: 'v'},
-          {label: _('Horizontal'), value: 'h'},
-        ]}
-      />
+    <TextEditor label={_('Name')} richTextOnly />
+    <TraceOrientation
+      label={_('Orientation')}
+      attr="orientation"
+      options={[
+        {label: _('Vertical'), value: 'v'},
+        {label: _('Horizontal'), value: 'h'},
+      ]}
+    />
 
-      <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
-      <ColorPicker label={_('Color')} attr="color" />
-    </Section>
+    <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
+    <ColorPicker label={_('Color')} attr="color" />
 
     <Section name={_('Text Attributes')}>
       <Flaglist
@@ -141,6 +141,28 @@ const StyleTracesPanel = ({localize: _}) => (
       <ColorPicker label={_('Line Color')} attr="line.color" />
       <LineDashSelector label={_('Type')} attr="line.dash" />
       <LineShapeSelector label={_('Shape')} attr="line.shape" />
+    </TraceTypeSection>
+
+    <TraceTypeSection name={_('Text')} traceTypes={['scatter']}>
+      <FontSelector label={_('Typeface')} attr="textfont.family" />
+      <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
+      <ColorPicker label={_('Font Color')} attr="textfont.color" />
+      <Dropdown
+        label={_('Text Position')}
+        attr="textposition"
+        clearable={false}
+        options={[
+          {label: _('Top Left'), value: 'top left'},
+          {label: _('Top Center'), value: 'top center'},
+          {label: _('Top Right'), value: 'top right'},
+          {label: _('Middle Left'), value: 'middle left'},
+          {label: _('Middle Center'), value: 'middle center'},
+          {label: _('Middle Right'), value: 'middle right'},
+          {label: _('Bottom Left'), value: 'bottom left'},
+          {label: _('Bottom Center'), value: 'bottom center'},
+          {label: _('Bottom Right'), value: 'bottom right'},
+        ]}
+      />
     </TraceTypeSection>
 
     <Section name={_('Colorscale')}>

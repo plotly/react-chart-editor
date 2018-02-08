@@ -16,11 +16,7 @@ const AxesFold = connectAxesToLayout(Fold);
 
 const TraceTypeSection = (props, context) => {
   const {fullContainer} = context;
-  if (
-    fullContainer &&
-    fullContainer._fullInput &&
-    props.traceTypes.includes(fullContainer._fullInput.type)
-  ) {
+  if (fullContainer && props.traceTypes.includes(fullContainer.type)) {
     return <Section {...props} />;
   }
 
