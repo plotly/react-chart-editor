@@ -406,7 +406,7 @@ export const FillDropdown = connectToContainer(UnconnectedDropdown, {
 
 export const CustomErrorBars = connectToContainer(UnconnectedDataSelector, {
   modifyPlotProps: (props, context, plotProps) => {
-    const errorBar = props.attr.replace('.array', '');
+    const errorBar = props.attr.split('.')[0].trim();
     if (
       attributeIsData(plotProps.attrMeta) &&
       context.container &&

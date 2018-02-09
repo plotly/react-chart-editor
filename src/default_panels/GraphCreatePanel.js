@@ -73,6 +73,10 @@ const GraphCreatePanel = ({localize: _}) => {
           ]}
         />
         <CustomErrorBars label={_('Custom Error X')} attr="error_x.array" />
+        <CustomErrorBars
+          label={_('Custom Error X (-)')}
+          attr="error_x.arrayminus"
+        />
         <Radio
           label={_('Error Y')}
           attr="error_y.visible"
@@ -82,6 +86,10 @@ const GraphCreatePanel = ({localize: _}) => {
           ]}
         />
         <CustomErrorBars label={_('Custom Error Y')} attr="error_y.array" />
+        <CustomErrorBars
+          label={_('Custom Error Y (-)')}
+          attr="error_y.arrayminus"
+        />
         <Radio
           label={_('Error Z')}
           attr="error_z.visible"
@@ -91,6 +99,10 @@ const GraphCreatePanel = ({localize: _}) => {
           ]}
         />
         <CustomErrorBars label={_('Custom Error Z')} attr="error_z.array" />
+        <CustomErrorBars
+          label={_('Custom Error Z (-)')}
+          attr="error_z.arrayminus"
+        />
       </Section>
 
       <Section name={_('Options')}>
