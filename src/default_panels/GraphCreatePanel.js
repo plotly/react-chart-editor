@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  CustomErrorBars,
   DataSelector,
   Dropdown,
   GeoProjections,
@@ -60,6 +61,36 @@ const GraphCreatePanel = ({localize: _}) => {
         <DataSelector label={_('A')} attr="a" />
         <DataSelector label={_('B')} attr="b" />
         <DataSelector label={_('C')} attr="c" />
+      </Section>
+
+      <Section name={_('Error Bars')}>
+        <Radio
+          label={_('Error X')}
+          attr="error_x.visible"
+          options={[
+            {label: _('Show'), value: true},
+            {label: _('Hide'), value: false},
+          ]}
+        />
+        <CustomErrorBars label={_('Custom Error X')} attr="error_x.array" />
+        <Radio
+          label={_('Error Y')}
+          attr="error_y.visible"
+          options={[
+            {label: _('Show'), value: true},
+            {label: _('Hide'), value: false},
+          ]}
+        />
+        <CustomErrorBars label={_('Custom Error Y')} attr="error_y.array" />
+        <Radio
+          label={_('Error Z')}
+          attr="error_z.visible"
+          options={[
+            {label: _('Show'), value: true},
+            {label: _('Hide'), value: false},
+          ]}
+        />
+        <CustomErrorBars label={_('Custom Error Z')} attr="error_z.array" />
       </Section>
 
       <Section name={_('Options')}>

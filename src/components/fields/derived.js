@@ -1,8 +1,9 @@
 import isNumeric from 'fast-isnumeric';
-import {UnconnectedNumeric} from './Numeric';
+import {UnconnectedDataSelector, attributeIsData} from './DataSelector';
 import {UnconnectedDropdown} from './Dropdown';
-import {UnconnectedRadio} from './Radio';
 import {UnconnectedFlaglist} from './Flaglist';
+import {UnconnectedNumeric} from './Numeric';
+import {UnconnectedRadio} from './Radio';
 import {
   connectLayoutToPlot,
   connectToContainer,
@@ -400,5 +401,19 @@ export const FillDropdown = connectToContainer(UnconnectedDropdown, {
 
     plotProps.options = options;
     plotProps.clearable = false;
+  },
+});
+
+export const CustomErrorBars = connectToContainer(UnconnectedDataSelector, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const errorBar = props.attr.replace('.array', '');
+    if (
+      attributeIsData(plotProps.attrMeta) &&
+      context.container &&
+      context.container[errorBar] &&
+      context.container[errorBar].visible
+    ) {
+      plotProps.isVisible = true;
+    }
   },
 });
