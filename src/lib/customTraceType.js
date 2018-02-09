@@ -6,8 +6,6 @@ export function plotlyTraceToCustomTrace(trace) {
     )
   ) {
     return 'area';
-  } else if (trace.type === 'timeseries') {
-    return 'timeseries';
   } else if (
     trace.type === 'scatter' &&
     (trace.mode === 'lines' || trace.mode === 'lines+markers')
@@ -30,8 +28,6 @@ export function traceTypeToPlotlyInitFigure(traceType) {
     case 'ohlc':
       return {
         type: 'ohlc',
-        autobinx: true,
-        autobiny: true,
         decreasing: {line: {color: '#7F7F7F'}},
         increasing: {line: {color: '#17BECF'}},
       };
@@ -51,13 +47,6 @@ export function traceTypeToPlotlyInitFigure(traceType) {
       return {
         type: 'box',
         boxpoints: false,
-      };
-    case 'timeseries':
-      return {
-        type: 'timeseries',
-        mode: 'lines',
-        autobinx: true,
-        autobiny: true,
       };
     case 'line3d':
       return {
