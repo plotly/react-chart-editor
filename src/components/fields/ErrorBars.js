@@ -7,18 +7,50 @@ import {connectToContainer} from 'lib';
 class ErrorBars extends Component {
   constructor(props, context) {
     super(props, context);
+    this.updatePlot = this.updatePlot.bind(this);
+  }
 
-    this.state = {
-      mode: 'hidden',
-    };
-
-    if (props.fullValue.visible) {
-      if (props.fullValue.symmetric) {
-        this.state.mode = 'symmetric';
-      } else {
-        this.state.mode = 'custom';
-      }
+  updatePlot(value) {
+    if (value === 'symmetric') {
+      this.props.updatePlot({
+        ...this.props.fullValue,
+        visible: true,
+        symmetric: true,
+      });
     }
+
+    if (value === 'asymmetric') {
+      this.props.updatePlot({
+        ...this.props.fullValue,
+        visible: true,
+        symmetric: false,
+      });
+    }
+
+    if (value === 'hidden') {
+      this.props.updatePlot({
+        ...this.props.fullValue,
+        visible: false,
+      });
+    }
+  }
+
+  getMode() {
+    let mode;
+
+    if (!this.props.fullValue.visible) {
+      mode = 'hidden';
+    }
+
+    if (this.props.fullValue.visible && this.props.fullValue.symmetric) {
+      mode = 'symmetric';
+    }
+
+    if (this.props.fullValue.visible && !this.props.fullValue.symmetric) {
+      mode = 'asymmetric';
+    }
+
+    return mode;
   }
 
   renderModeSelector() {
@@ -27,12 +59,12 @@ class ErrorBars extends Component {
     return (
       <UnconnectedRadio
         label={_('Type')}
-        updatePlot={value => this.setState({mode: value})}
-        activeOption={this.state.mode}
+        updatePlot={this.updatePlot}
+        activeOption={this.getMode()}
         options={[
           {label: _('Symmetric'), value: 'symmetric'},
-          {label: _('Custom'), value: 'custom'},
-          {label: _('Disable'), value: 'hidden'},
+          {label: _('Asymmetric'), value: 'asymmetric'},
+          {label: _('Hidden'), value: 'hidden'},
         ]}
       />
     );
@@ -40,16 +72,9 @@ class ErrorBars extends Component {
 
   renderErrorBarControls() {
     const {localize: _} = this.props;
+    const mode = this.getMode();
 
-    if (this.state.mode === 'symmetric') {
-      if (!this.props.fullValue.visible || !this.props.fullValue.symmetric) {
-        this.props.updatePlot({
-          ...this.props.fullValue,
-          visible: true,
-          symmetric: true,
-        });
-      }
-
+    if (mode === 'symmetric') {
       return (
         <Fragment>
           <Radio
@@ -66,15 +91,7 @@ class ErrorBars extends Component {
       );
     }
 
-    if (this.state.mode === 'custom') {
-      if (!this.props.fullValue.visible || this.props.fullValue.symmetric) {
-        this.props.updatePlot({
-          ...this.props.fullValue,
-          visible: true,
-          symmetric: false,
-        });
-      }
-
+    if (mode === 'asymmetric') {
       return (
         <Fragment>
           <DataSelector
