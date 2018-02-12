@@ -1,8 +1,8 @@
 import isNumeric from 'fast-isnumeric';
-import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedDropdown} from './Dropdown';
-import {UnconnectedRadio} from './Radio';
 import {UnconnectedFlaglist} from './Flaglist';
+import {UnconnectedNumeric} from './Numeric';
+import {UnconnectedRadio} from './Radio';
 import {
   connectLayoutToPlot,
   connectToContainer,

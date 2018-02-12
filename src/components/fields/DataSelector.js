@@ -5,11 +5,11 @@ import Field from './Field';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {connectToContainer} from 'lib';
 
-function attributeIsData(meta = {}) {
+export function attributeIsData(meta = {}) {
   return meta.valType === 'data_array' || meta.arrayOk;
 }
 
-class DataSelector extends Component {
+export class UnconnectedDataSelector extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -91,14 +91,14 @@ class DataSelector extends Component {
   }
 }
 
-DataSelector.propTypes = {
+UnconnectedDataSelector.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   container: PropTypes.object,
   ...Field.propTypes,
 };
 
-DataSelector.contextTypes = {
+UnconnectedDataSelector.contextTypes = {
   dataSources: PropTypes.object,
   dataSourceOptions: PropTypes.array,
   dataSourceValueRenderer: PropTypes.func,
@@ -111,4 +111,4 @@ function modifyPlotProps(props, context, plotProps) {
   }
 }
 
-export default connectToContainer(DataSelector, {modifyPlotProps});
+export default connectToContainer(UnconnectedDataSelector, {modifyPlotProps});

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   DataSelector,
   Dropdown,
+  ErrorBars,
   GeoProjections,
   GeoScope,
   Radio,
@@ -60,6 +61,18 @@ const GraphCreatePanel = ({localize: _}) => {
         <DataSelector label={_('A')} attr="a" />
         <DataSelector label={_('B')} attr="b" />
         <DataSelector label={_('C')} attr="c" />
+      </Section>
+
+      <Section name={_('Error Bars X')}>
+        <ErrorBars localize={_} attr="error_x" />
+      </Section>
+
+      <Section name={_('Error Bars Y')}>
+        <ErrorBars localize={_} attr="error_y" />
+      </Section>
+
+      <Section name={_('Error Bars Z')}>
+        <ErrorBars localize={_} attr="error_z" />
       </Section>
 
       <Section name={_('Options')}>
