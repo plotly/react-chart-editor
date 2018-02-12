@@ -16,3 +16,6 @@ lib
 !src/lib
 
 accessTokens.js
+
+yarn.lock
+package-lock.json
