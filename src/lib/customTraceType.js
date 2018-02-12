@@ -25,6 +25,8 @@ export function traceTypeToPlotlyInitFigure(traceType) {
       return {type: 'scatter', mode: 'markers', fill: 'none'};
     case 'area':
       return {type: 'scatter', fill: 'tozeroy'};
+    case 'cartesianArea':
+      return {type: 'scatter', fill: 'tozeroy'};
     case 'ohlc':
       return {
         type: 'ohlc',

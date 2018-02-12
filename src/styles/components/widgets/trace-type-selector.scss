@@ -101,7 +101,9 @@
     }
   }
   &__label {
+    font-weight: var(--font-weight-semibold);
     width: 90px;
+    //min-height: 38px;
     margin-top: var(--spacing-half-unit);
     color: var(--color-text-base);
     text-transform: capitalize;

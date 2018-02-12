@@ -6,7 +6,7 @@ import {maybeClearAxisTypes} from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {CATEGORY_LAYOUT, TRACE_TYPES} from 'lib/constants';
+import {categoryLayout, traceTypes} from 'lib/traceTypes';
 import {ModalProvider} from 'components/containers';
 
 class PlotlyEditor extends Component {
@@ -258,8 +258,8 @@ PlotlyEditor.propTypes = {
 PlotlyEditor.defaultProps = {
   locale: 'en',
   traceSelectorConfig: {
-    categories: CATEGORY_LAYOUT,
-    traces: TRACE_TYPES,
+    categories: _ => categoryLayout(_),
+    traces: _ => traceTypes(_),
   },
 };
 

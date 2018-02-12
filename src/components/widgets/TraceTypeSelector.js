@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal, {ModalContent} from 'components/containers/Modal';
-import {traceTypeToPlotlyInitFigure, computeTraceOptionsFromSchema} from 'lib';
+import {
+  traceTypeToPlotlyInitFigure,
+  localize,
+  plotlyTraceToCustomTrace,
+  computeTraceOptionsFromSchema,
+} from 'lib';
 
 // to be removed when icons are converted to svg
 function slugify(text) {
@@ -40,7 +45,7 @@ const Item = ({item, active, columnLength, columnIndex, handleClick}) => {
   if (columnIndex > middle) {
     position = '-left';
   }
-  const {label, type} = item;
+  const {label, value, type} = item;
   return (
     <div
       className={`trace-item${active ? ' trace-item--active' : ''}`}
@@ -75,7 +80,7 @@ const Item = ({item, active, columnLength, columnIndex, handleClick}) => {
         </div>
       </div>
       <div className="trace-item__image">
-        <img src={`/_temp/ic-${slugify(label)}.svg`} />
+        <img src={`/_temp/ic-${slugify(value)}.svg`} />
       </div>
       <div className="trace-item__label">{label}</div>
     </div>
@@ -84,30 +89,30 @@ const Item = ({item, active, columnLength, columnIndex, handleClick}) => {
 
 class TraceTypeSelector extends Component {
   selectAndClose(value) {
-    this.props.updateContainer(traceTypeToPlotlyInitFigure(value));
+    const computedValue = traceTypeToPlotlyInitFigure(value);
+    this.props.updateContainer(computedValue);
     this.context.handleClose();
   }
   renderCategories() {
-    const {fullValue} = this.props;
-    const {traces: TRACE_TYPES, categories} = this.context.traceSelectorConfig;
-    const traces = Object.entries(TRACE_TYPES);
+    const {fullValue, localize: _} = this.props;
+    const {traces, categories} = this.context.traceSelectorConfig;
 
-    return categories.map((category, i) => {
-      const items = traces.filter(
-        ([key, value]) => value.meta.category === category.category
+    return categories(_).map((category, i) => {
+      const items = traces(_).filter(
+        ({category: {value}}) => value === category.value
       );
       return (
         <div className="trace-grid__column" key={i}>
           <div className="trace-grid__column__header">{category.label}</div>
           <div className="trace-grid__column__items">
-            {items.map(([key, value]) => (
+            {items.map(item => (
               <Item
                 columnLength={categories.length}
                 columnIndex={i}
-                key={key}
-                active={fullValue === key}
-                item={value.meta}
-                handleClick={() => this.selectAndClose(value.meta.type)}
+                key={item.value}
+                active={fullValue === item.value}
+                item={item}
+                handleClick={() => this.selectAndClose(item.value)}
               />
             ))}
           </div>
@@ -138,4 +143,4 @@ Item.propTypes = {
   active: PropTypes.bool,
 };
 
-export default TraceTypeSelector;
+export default localize(TraceTypeSelector);
