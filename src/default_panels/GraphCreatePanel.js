@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  CustomErrorBars,
   DataSelector,
   Dropdown,
+  ErrorBars,
   GeoProjections,
   GeoScope,
   Radio,
@@ -63,46 +63,16 @@ const GraphCreatePanel = ({localize: _}) => {
         <DataSelector label={_('C')} attr="c" />
       </Section>
 
-      <Section name={_('Error Bars')}>
-        <Radio
-          label={_('Error X')}
-          attr="error_x.visible"
-          options={[
-            {label: _('Show'), value: true},
-            {label: _('Hide'), value: false},
-          ]}
-        />
-        <CustomErrorBars label={_('Custom Error X')} attr="error_x.array" />
-        <CustomErrorBars
-          label={_('Custom Error X (-)')}
-          attr="error_x.arrayminus"
-        />
-        <Radio
-          label={_('Error Y')}
-          attr="error_y.visible"
-          options={[
-            {label: _('Show'), value: true},
-            {label: _('Hide'), value: false},
-          ]}
-        />
-        <CustomErrorBars label={_('Custom Error Y')} attr="error_y.array" />
-        <CustomErrorBars
-          label={_('Custom Error Y (-)')}
-          attr="error_y.arrayminus"
-        />
-        <Radio
-          label={_('Error Z')}
-          attr="error_z.visible"
-          options={[
-            {label: _('Show'), value: true},
-            {label: _('Hide'), value: false},
-          ]}
-        />
-        <CustomErrorBars label={_('Custom Error Z')} attr="error_z.array" />
-        <CustomErrorBars
-          label={_('Custom Error Z (-)')}
-          attr="error_z.arrayminus"
-        />
+      <Section name={_('Error Bars X')}>
+        <ErrorBars localize={_} attr="error_x" />
+      </Section>
+
+      <Section name={_('Error Bars Y')}>
+        <ErrorBars localize={_} attr="error_y" />
+      </Section>
+
+      <Section name={_('Error Bars Z')}>
+        <ErrorBars localize={_} attr="error_z" />
       </Section>
 
       <Section name={_('Options')}>

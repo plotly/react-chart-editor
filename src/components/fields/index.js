@@ -12,13 +12,13 @@ import DataSelector from './DataSelector';
 import Numeric from './Numeric';
 import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
+import ErrorBars from './ErrorBars';
 import {
   AnnotationArrowRef,
   AnnotationRef,
   AxesRange,
   CanvasSize,
   ContourNumeric,
-  CustomErrorBars,
   FillDropdown,
   GeoProjections,
   GeoScope,
@@ -39,9 +39,9 @@ export {
   ColorPicker,
   ColorscalePicker,
   ContourNumeric,
-  CustomErrorBars,
   DataSelector,
   Dropdown,
+  ErrorBars,
   FillDropdown,
   Flaglist,
   FontSelector,
