@@ -8,10 +8,12 @@ function computeAxesOptions(axes, _) {
   const options = [{label: _('All'), value: 'allaxes'}];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
-    const axesPrefix = ax._id.length > 1 ? ' ' + ax._id.substr(1) : '';
-    const label = `${ax._id.charAt(0).toUpperCase()}${axesPrefix}`;
-    const value =
-      (axesPrefix.length > 0 ? axesPrefix + '.' : '').trim() + ax._name;
+    const label = ax._name
+      .split('axis')[0]
+      .charAt(0)
+      .toUpperCase();
+
+    const value = (ax.prefix ? ax.prefix + '.' : '').trim() + ax._name;
     options[i + 1] = {label, value};
   }
 
@@ -35,18 +37,37 @@ export default function connectAxesToLayout(WrappedComponent) {
       this.setLocals(nextProps, nextState, nextContext);
     }
 
-    // This function should be optimized. We can compare a list of
-    // axesNames to nextAxesNames and check gd.layout[axesN] for shallow
-    // equality. Unfortunately we are currently mutating gd.layout so the
-    // shallow check is not possible.
     setLocals(nextProps, nextState, nextContext) {
-      const {plotly, graphDiv, container, fullContainer} = nextContext;
+      const {container, fullContainer} = nextContext;
       const {axesTarget} = nextState;
-      if (plotly) {
-        this.axes = plotly.Axes.list(graphDiv);
-      } else {
-        this.axes = [];
-      }
+
+      this.axes = [];
+
+      // Plotly.js should really have a helper function for this, but until it does..
+      Object.keys(fullContainer._subplots)
+        .filter(
+          // cartesian types will have xaxis or yaxis directly in _fullLayout
+          type =>
+            type !== 'cartesian' && fullContainer._subplots[type].length !== 0
+        )
+        .forEach(type => {
+          if (['xaxis', 'yaxis'].includes(type)) {
+            this.axes.push(fullContainer[type]);
+          }
+          if (!['xaxis', 'yaxis', 'cartesian'].includes(type)) {
+            this.axes = Object.keys(
+              fullContainer[fullContainer._subplots[type]]
+            )
+              .filter(key => key.includes('axis'))
+              .map(axis => {
+                // will take care of subplots after
+                const prefix = fullContainer._subplots[type][0];
+                fullContainer[prefix][axis].prefix = prefix;
+                return fullContainer[prefix][axis];
+              });
+          }
+        });
+
       this.axesOptions = computeAxesOptions(this.axes, nextProps.localize);
 
       if (axesTarget === 'allaxes') {
