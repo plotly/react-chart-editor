@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  AxesSelector,
   AxesRange,
   ColorPicker,
   Dropdown,
@@ -21,7 +20,6 @@ import {localize} from '../lib';
 const StyleAxesPanel = ({localize: _}) => (
   <TraceRequiredPanel>
     <AxesFold name={_('Titles')}>
-      <AxesSelector />
       <TextEditor attr="title" />
       <FontSelector label={_('Typeface')} attr="titlefont.family" />
       <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
@@ -29,7 +27,6 @@ const StyleAxesPanel = ({localize: _}) => (
     </AxesFold>
 
     <AxesFold name={_('Range')}>
-      <AxesSelector />
       <Section name={_('Selection')} attr="autorange">
         <Radio
           attr="autorange"
@@ -51,8 +48,6 @@ const StyleAxesPanel = ({localize: _}) => (
     </AxesFold>
 
     <AxesFold name={_('Lines')}>
-      <AxesSelector />
-
       <Section name={_('Axis Line')} attr="showline">
         <Radio
           attr="showline"
@@ -119,7 +114,6 @@ const StyleAxesPanel = ({localize: _}) => (
     </AxesFold>
 
     <AxesFold name={_('Tick Labels')}>
-      <AxesSelector />
       <Section name={_('Tick Labels')} attr="showticklabels">
         <Radio
           attr="showticklabels"
@@ -223,7 +217,6 @@ const StyleAxesPanel = ({localize: _}) => (
       </Section>
     </AxesFold>
     <AxesFold name={_('Tick Markers')}>
-      <AxesSelector />
       <Section name={_('Tick Markers')} attr="ticks">
         <Radio
           attr="ticks"
@@ -276,7 +269,6 @@ const StyleAxesPanel = ({localize: _}) => (
     </Fold>
 
     <AxesFold name={_('Zoom Interactivity')}>
-      <AxesSelector />
       <Radio
         attr="fixedrange"
         options={[
@@ -286,8 +278,6 @@ const StyleAxesPanel = ({localize: _}) => (
       />
     </AxesFold>
     <AxesFold name={_('Layout')}>
-      <AxesSelector />
-
       <Section name={_('Axis Width')} attr="domain[0]">
         <Numeric
           label={_('Start Position')}
@@ -317,8 +307,6 @@ const StyleAxesPanel = ({localize: _}) => (
     </AxesFold>
 
     <AxesFold name={_('Hover Projections')}>
-      <AxesSelector />
-
       <Radio
         attr="showspikes"
         options={[
