@@ -128,7 +128,7 @@ export default function connectAxesToLayout(WrappedComponent) {
   };
 
   AxesConnectedComponent.defaultProps = {
-    defaultAxesTarget: 'xaxis',
+    defaultAxesTarget: 'allaxes',
   };
 
   AxesConnectedComponent.contextTypes = {
