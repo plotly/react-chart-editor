@@ -20,7 +20,11 @@ describe('Plot Connection', () => {
     );
     mount(
       <TestEditor {...{...fixtureProps, beforeUpdateLayout}}>
-        <LayoutAxesNumeric label="Min" attr="range[0]" />
+        <LayoutAxesNumeric
+          label="Min"
+          attr="range[0]"
+          defaultAxesTarget="xaxis"
+        />
       </TestEditor>
     )
       .find('[attr="range[0]"]')
