@@ -32,6 +32,8 @@ import {
 
 import {
   AnnotationAccordion,
+  ShapeAccordion,
+  ImageAccordion,
   AxesFold,
   Fold,
   LayoutPanel,
@@ -51,6 +53,8 @@ import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
   AnnotationAccordion,
+  ShapeAccordion,
+  ImageAccordion,
   AnnotationArrowRef,
   AnnotationRef,
   ArrowSelector,

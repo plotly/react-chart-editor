@@ -35,7 +35,7 @@ class AnnotationAccordion extends Component {
         }
 
         const key = `annotations[${annotationIndex}]`;
-        const value = {text: 'new text'};
+        const value = {text: _('new text')};
 
         if (updateContainer) {
           updateContainer({[key]: value});

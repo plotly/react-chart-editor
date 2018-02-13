@@ -1,6 +1,8 @@
 import PlotlyEditor from './PlotlyEditor';
 import {
   connectAnnotationToLayout,
+  connectShapeToLayout,
+  connectImageToLayout,
   connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,
@@ -14,6 +16,8 @@ import {EDITOR_ACTIONS} from './lib/constants';
 
 import {
   AnnotationAccordion,
+  ShapeAccordion,
+  ImageAccordion,
   AnnotationArrowRef,
   AnnotationRef,
   ArrowSelector,
@@ -60,11 +64,15 @@ import {
   StyleLayoutPanel,
   StyleLegendPanel,
   StyleNotesPanel,
+  StyleShapesPanel,
+  StyleImagesPanel,
   StyleTracesPanel,
 } from './default_panels';
 
 export {
   AnnotationAccordion,
+  ShapeAccordion,
+  ImageAccordion,
   AnnotationArrowRef,
   AnnotationRef,
   ArrowSelector,
@@ -103,6 +111,8 @@ export {
   StyleLayoutPanel,
   StyleLegendPanel,
   StyleNotesPanel,
+  StyleShapesPanel,
+  StyleImagesPanel,
   StyleTracesPanel,
   SymbolSelector,
   TextEditor,
@@ -111,6 +121,8 @@ export {
   TraceRequiredPanel,
   TraceSelector,
   connectAnnotationToLayout,
+  connectShapeToLayout,
+  connectImageToLayout,
   connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,

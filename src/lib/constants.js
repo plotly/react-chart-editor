@@ -34,6 +34,8 @@ export const EDITOR_ACTIONS = {
   DELETE_TRACE: 'plotly-editor-delete-trace',
   UPDATE_LAYOUT: 'plotly-editor-update-layout',
   DELETE_ANNOTATION: 'plotly-editor-delete-annotation',
+  DELETE_SHAPE: 'plotly-editor-delete-shape',
+  DELETE_IMAGE: 'plotly-editor-delete-image',
 };
 
 export const DEFAULT_FONTS = [

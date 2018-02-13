@@ -145,6 +145,36 @@ class PlotlyEditor extends Component {
         }
         break;
 
+      case EDITOR_ACTIONS.DELETE_SHAPE:
+        if (isNumeric(payload.shapeIndex)) {
+          if (this.props.beforeDeleteShape) {
+            this.props.beforeDeleteShape(payload);
+          }
+          graphDiv.layout.shapes.splice(payload.shapeIndex, 1);
+          if (this.props.afterDeleteShape) {
+            this.props.afterDeleteShape(payload);
+          }
+          if (this.props.onUpdate) {
+            this.props.onUpdate();
+          }
+        }
+        break;
+
+      case EDITOR_ACTIONS.DELETE_IMAGE:
+        if (isNumeric(payload.imageIndex)) {
+          if (this.props.beforeDeleteImage) {
+            this.props.beforeDeleteImage(payload);
+          }
+          graphDiv.layout.images.splice(payload.imageIndex, 1);
+          if (this.props.afterDeleteImage) {
+            this.props.afterDeleteImage(payload);
+          }
+          if (this.props.onUpdate) {
+            this.props.onUpdate();
+          }
+        }
+        break;
+
       default:
         throw new Error('must specify an action type to handleEditorUpdate');
     }
@@ -170,11 +200,15 @@ class PlotlyEditor extends Component {
 PlotlyEditor.propTypes = {
   afterAddTrace: PropTypes.func,
   afterDeleteAnnotation: PropTypes.func,
+  afterDeleteShape: PropTypes.func,
+  afterDeleteImage: PropTypes.func,
   afterDeleteTrace: PropTypes.func,
   afterUpdateLayout: PropTypes.func,
   afterUpdateTraces: PropTypes.func,
   beforeAddTrace: PropTypes.func,
   beforeDeleteAnnotation: PropTypes.func,
+  beforeDeleteShape: PropTypes.func,
+  beforeDeleteImage: PropTypes.func,
   beforeDeleteTrace: PropTypes.func,
   beforeUpdateLayout: PropTypes.func,
   beforeUpdateTraces: PropTypes.func,

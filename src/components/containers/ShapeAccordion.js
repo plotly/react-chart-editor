@@ -1,0 +1,59 @@
+import Fold from './Fold';
+import TraceRequiredPanel from './TraceRequiredPanel';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+import {connectShapeToLayout, localize} from 'lib';
+
+const ShapeFold = connectShapeToLayout(Fold);
+
+class ShapeAccordion extends Component {
+  render() {
+    const {layout: {shapes = []}} = this.context;
+    const {canAdd, children, localize: _} = this.props;
+
+    const content =
+      shapes.length &&
+      shapes.map((ann, i) => (
+        <ShapeFold key={i} shapeIndex={i} name={ann.text} canDelete={canAdd}>
+          {children}
+        </ShapeFold>
+      ));
+
+    const addAction = {
+      label: _('Shape'),
+      handler: ({layout, updateContainer}) => {
+        let shapeIndex;
+        if (Array.isArray(layout.shapes)) {
+          shapeIndex = layout.shapes.length;
+        } else {
+          shapeIndex = 0;
+        }
+
+        const key = `shapes[${shapeIndex}]`;
+        const value = {text: `${_('Shape')} ${shapeIndex}`};
+
+        if (updateContainer) {
+          updateContainer({[key]: value});
+        }
+      },
+    };
+
+    return (
+      <TraceRequiredPanel addAction={canAdd ? addAction : null}>
+        {content ? content : null}
+      </TraceRequiredPanel>
+    );
+  }
+}
+
+ShapeAccordion.contextTypes = {
+  layout: PropTypes.object,
+};
+
+ShapeAccordion.propTypes = {
+  children: PropTypes.node,
+  canAdd: PropTypes.bool,
+  localize: PropTypes.func,
+};
+
+export default localize(ShapeAccordion);
