@@ -9,7 +9,27 @@ module.exports = {
     rules: [
       {
         test: /\.js?$/,
-        use: {loader: 'babel-loader'},
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['react', 'es2015'],
+            plugins: [
+              'react-hot-loader/babel',
+              'transform-object-rest-spread',
+              [
+                'module-resolver',
+                {
+                  root: ['./'],
+                  alias: {
+                    components: './src/components',
+                    lib: './src/lib',
+                    styles: './src/styles',
+                  },
+                },
+              ],
+            ],
+          },
+        },
         exclude: /node_modules/,
       },
       {
