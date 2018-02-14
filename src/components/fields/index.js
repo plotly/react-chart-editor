@@ -16,6 +16,7 @@ import ErrorBars from './ErrorBars';
 import {
   AnnotationArrowRef,
   AnnotationRef,
+  PositioningRef,
   AxesRange,
   CanvasSize,
   ContourNumeric,
@@ -32,6 +33,7 @@ import {LineDashSelector, LineShapeSelector} from './lineSelectors';
 export {
   AnnotationArrowRef,
   AnnotationRef,
+  PositioningRef,
   ArrowSelector,
   AxesRange,
   AxesSelector,

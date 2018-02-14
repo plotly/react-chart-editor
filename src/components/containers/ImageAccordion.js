@@ -30,7 +30,13 @@ class ImageAccordion extends Component {
         }
 
         const key = `images[${imageIndex}]`;
-        const value = {text: `${_('Image')} ${imageIndex}`};
+        const value = {
+          text: `${_('Image')} ${imageIndex}`,
+          sizex: 0.1,
+          sizey: 0.1,
+          x: 0.5,
+          y: 0.5,
+        };
 
         if (updateContainer) {
           updateContainer({[key]: value});

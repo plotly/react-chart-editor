@@ -1,6 +1,7 @@
 import {
   AnnotationArrowRef,
   AnnotationRef,
+  PositioningRef,
   ArrowSelector,
   AxesRange,
   AxesSelector,
@@ -57,6 +58,7 @@ export {
   ImageAccordion,
   AnnotationArrowRef,
   AnnotationRef,
+  PositioningRef,
   ArrowSelector,
   AxesFold,
   AxesRange,

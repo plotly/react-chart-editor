@@ -30,7 +30,12 @@ class ShapeAccordion extends Component {
         }
 
         const key = `shapes[${shapeIndex}]`;
-        const value = {text: `${_('Shape')} ${shapeIndex}`};
+        const value = {
+          text: `${_('Shape')} ${shapeIndex}`,
+          line: {color: '#444444'},
+          fillcolor: '#7F7F7F',
+          opacity: 0.3,
+        };
 
         if (updateContainer) {
           updateContainer({[key]: value});

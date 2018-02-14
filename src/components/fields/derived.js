@@ -255,6 +255,21 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
   },
 });
 
+export const PositioningRef = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {graphDiv, plotly} = context;
+
+    plotProps.options = [
+      {label: 'Canvas', value: 'paper'},
+      ...computeAxesRefOptions(
+        plotly.Axes.list(graphDiv, props.attr.charAt(0))
+      ),
+    ];
+
+    plotProps.clearable = false;
+  },
+});
+
 function computeAxesRefOptions(axes) {
   const options = [];
   for (let i = 0; i < axes.length; i++) {
