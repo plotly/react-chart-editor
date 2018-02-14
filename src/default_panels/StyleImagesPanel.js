@@ -33,6 +33,8 @@ const StyleImagesPanel = ({localize: _}) => (
         {label: _('Stretch'), value: 'stretch'},
       ]}
     />
+    <Numeric attr="sizex" label={_('Width')} />
+    <Numeric attr="sizey" label={_('Height')} />
     <Section name={_('Horizontal Positioning')}>
       <MenuPanel>
         <Section name={_('Anchor Point')}>
@@ -48,7 +50,6 @@ const StyleImagesPanel = ({localize: _}) => (
       </MenuPanel>
       <PositioningRef label={_('Relative To')} attr="xref" />
       <Numeric label={_('Position')} attr="x" hideArrows />
-      <Numeric attr="sizex" label={_('Width')} />
     </Section>
 
     <Section name={_('Vertical Positioning')}>
@@ -66,7 +67,6 @@ const StyleImagesPanel = ({localize: _}) => (
       </MenuPanel>
       <PositioningRef label={_('Relative To')} attr="yref" />
       <Numeric label={_('Position')} attr="y" hideArrows />
-      <Numeric attr="sizey" label={_('Height')} />
     </Section>
   </ImageAccordion>
 );

@@ -86,7 +86,7 @@ class App extends Component {
           />
           <div className="app__main" style={{width: '100%', height: '100%'}}>
             <Plot
-              config={{mapboxAccessToken: ACCESS_TOKENS.MAPBOX}}
+              config={{mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true}}
               data={this.state.graphDiv.data}
               debug
               layout={this.state.graphDiv.layout}

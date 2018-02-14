@@ -32,7 +32,7 @@ This module's entry point is a React component called `<PlotlyEditor />` which c
 
 ## Connecting `<PlotlyEditor />` to `<Plot />`
 
-The binding between `<PlotlyEditor />` and `<Plot />` works a little differently that in most React apps because plotly.js mutates its properties. This is mapped onto React's one-way dataflow model via event handlers and shared revision numbers which trigger re-renders of mutated state. The following subset of the [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple) shows how this works using a parent component to store state, but the principle is the same with a different state-manage approach, as shown in the [redux example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple):
+The binding between `<PlotlyEditor />` and `<Plot />` works a little differently that in most React apps because plotly.js mutates its properties. This is mapped onto React's one-way dataflow model via event handlers and shared revision numbers which trigger re-renders of mutated state. The following subset of the [simple example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/simple) shows how this works using a parent component to store state, but the principle is the same with a different state-manage approach, as shown in the [redux example](https://github.com/plotly/react-plotly.js-editor/tree/master/examples/redux):
 
 ```javascript
 import PlotlyEditor from 'react-plotly.js-editor';
@@ -86,10 +86,13 @@ class App extends Component {
 
 ## Development Setup
 
+This repo contains a [dev app](https://github.com/plotly/react-plotly.js-editor/tree/master/dev) that depends on the components locally and is configured for hot reloading, for easy local development. A `jest`-based test suite is also included.
+
 ```
 npm install
 npm start
-# start hacking
+# hacking happens here
+npm test
 ```
 
 ## Built-in Components
@@ -146,7 +149,9 @@ Simple component that takes in props and renders.
 * `<LayoutPanel />`: `<Panel />` whose children are connected to the `layout` figure key
 * `<TraceRequiredPanel />`: `<LayoutPanel />` renders `<PanelEmpty />` if no trace data is set
 * `<AnnotationAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to annotations via `connectAnnotationToLayout()`. For use in a `<LayoutPanel />`.
-* `<AxesFold />`: `<Fold />` whose children are bound to axis-specific keys. For use in a `<LayoutPanel />` in concert with `<AxesSelector />` (see below).
+* `<ShapeAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to shapes via `connectShapeToLayout()`. For use in a `<LayoutPanel />`.
+* `<ImageAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to images via `connectImageToLayout()`. For use in a `<LayoutPanel />`.
+* `<AxesFold />`: `<Fold />` whose children are bound to axis-specific keys. For use in a `<LayoutPanel />`; and automatically contains an `<AxesSelector />` (see below).
 * `<TraceMarkerSection />`: `<Section />` with trace-specific name handling. For use in containers bound to traces e.g. as children of `<TraceAccordion />`.
 
 ### Special-Purpose Fields
@@ -159,6 +164,7 @@ For use in containers bound to traces e.g. as children of `<TraceAccordion />`:
 * `<LineShapeSelector />`: renders as a `<Dropdown />` useful for `data[].line.shape`
 * `<SymbolSelector />`: renders as a `<Dropdown />` useful for `data[].marker.symbol`
 * `<LayoutNumericFraction />` and `<LayoutNumericFractionInverse />`: renders as a `<Numeric />` for use in trace-connected containers where normal `<Numerics />` would be bound to the `data` key instead of the `layout` key in the figure e.g. `layout.bargap` or `layout.barwidth`.
+* `<PositioningRef />`: renders as a `<Dropdown />` useful for `layout.*.xref/yref` where the allowable values are `paper|[axis]`
 
 For use in containers bound to layout:
 
@@ -167,7 +173,7 @@ For use in containers bound to layout:
 
 For use in containers bound to axes:
 
-* `<AxesSelector />`: renders as a `<Radio />` to select one or all axes. Must be in a container bound to a figure via `connectAxesToPlot()` such as `<AxesFold />` and sets that container's context such that its children are bound to either all axes or just the selected one.
+* `<AxesSelector />`: renders as a `<Radio />` to select one or all axes. Must be in a container bound to a figure via `connectAxesToPlot()` and sets that container's context such that its children are bound to either all axes or just the selected one. `<AxesFold>`s automatically contain this component.
 * `<AxesRange />`: numeric with visibility coupled to `layout.*axis.autorange`
 
 For use in containers bound to annotations e.g. as children of `<AnnotationAccordion />`:
@@ -179,10 +185,12 @@ For use in containers bound to annotations e.g. as children of `<AnnotationAccor
 ### Connector functions
 
 * `connectToContainer( Component )`: returns a field component that can be bound to a figure value via the `attr` prop.
-* `connectTraceToPlot( Container )`: returns a wrapped container component that can be bound to a figure trace such that its children are bound to that trace's figure entry under the `data` key, e.g. `<TraceAccordion />` below.
+* `connectTraceToPlot( Container )`: returns a wrapped container component that can be bound to a figure trace such that its children are bound to that trace's figure entry under the `data` key, e.g. `<TraceAccordion />` above.
 * `connectLayoutToPlot( Container )`: returns a wrapped container component that can be bound to a figure such that its children are bound to that figure's layout under the `layout` key.
-* `connectAxesToLayout( Container )`: returns a wrapped container component that should contain an `<AxesSelector />` field (see below) and can be bound to a figure such that its children are bound to that figure's axes entries under the `layout.*axis` keys.
-* `connectAnnotationToLayout( Container )`: returns a wrapped container component that can be bound to a figure annotation such that its children are bound to that annotation's figure entry under the `layout.annotations` key, e.g. `<AnnotationAccordion />` below.
+* `connectAxesToLayout( Container )`: returns a wrapped container component that should contain an `<AxesSelector />` field (see above) and can be bound to a figure such that its children are bound to that figure's axes entries under the `layout.*axis` keys.
+* `connectAnnotationToLayout( Container )`: returns a wrapped container component that can be bound to a figure annotation such that its children are bound to that annotation's figure entry under the `layout.annotations` key, e.g. the `<Fold>`s in `<AnnotationAccordion />` above.
+* `connectShapeToLayout( Container )`: returns a wrapped container component that can be bound to a shape such that its children are bound to that shape's figure entry under the `layout.shapes` key, e.g. the `<Fold>`s in `<ShapeAccordion />` above.
+* `connectImagesToLayout( Container )`: returns a wrapped container component that can be bound to an image such that its children are bound to that image's figure entry under the `layout.image` key, e.g. the `<Fold>`s in `<ImageAccordion />` above.
 
 ## Mapbox Access Tokens
 

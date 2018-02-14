@@ -73,6 +73,7 @@ class App extends Component {
       <div className="app__container plotly-editor--theme-provider">
         <div className="app">
           <PlotlyEditor
+            config={{editable: true}}
             graphDiv={this.state.graphDiv}
             onUpdate={this.handleEditorUpdate.bind(this)}
             revision={this.state.editorRevision}
