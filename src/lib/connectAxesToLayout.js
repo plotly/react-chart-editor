@@ -118,12 +118,11 @@ export default function connectAxesToLayout(WrappedComponent) {
       const keys = Object.keys(update);
       for (let i = 0; i < keys.length; i++) {
         for (let j = 0; j < axes.length; j++) {
-          const scene = axes[j]._id.substr(1);
+          const prefix = axes[j].prefix;
           let axesKey = axes[j]._name;
 
-          // scenes are nested
-          if (scene.indexOf('scene') !== -1) {
-            axesKey = `${scene}.${axesKey}`;
+          if (prefix) {
+            axesKey = `${prefix}.${axesKey}`;
           }
 
           const newkey = `${axesKey}.${keys[i]}`;
