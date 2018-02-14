@@ -154,8 +154,6 @@ export default function connectAxesToLayout(WrappedComponent) {
   AxesConnectedComponent.contextTypes = {
     container: PropTypes.object.isRequired,
     fullContainer: PropTypes.object.isRequired,
-    graphDiv: PropTypes.object.isRequired,
-    plotly: PropTypes.object,
     updateContainer: PropTypes.func,
   };
 
