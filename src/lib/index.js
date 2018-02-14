@@ -1,5 +1,7 @@
 import bem from './bem';
 import connectAnnotationToLayout from './connectAnnotationToLayout';
+import connectShapeToLayout from './connectShapeToLayout';
+import connectImageToLayout from './connectImageToLayout';
 import connectAxesToLayout from './connectAxesToLayout';
 import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
 import connectToContainer, {
@@ -49,6 +51,8 @@ export {
   capitalize,
   clamp,
   connectAnnotationToLayout,
+  connectShapeToLayout,
+  connectImageToLayout,
   connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,

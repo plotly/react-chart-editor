@@ -53,6 +53,7 @@ class App extends Component {
           <Plot
             debug
             useResizeHandler
+            config={{editable: true}}
             data={this.state.graphDiv.data}
             layout={this.state.graphDiv.layout}
             onUpdate={this.handlePlotUpdate.bind(this)}

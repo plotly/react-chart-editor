@@ -8,6 +8,8 @@ import {
   StyleAxesPanel,
   StyleLegendPanel,
   StyleNotesPanel,
+  StyleShapesPanel,
+  StyleImagesPanel,
   StyleTracesPanel,
   StyleColorbarsPanel,
 } from './default_panels';
@@ -21,6 +23,8 @@ const DefaultEditor = ({localize: _}) => (
     <StyleAxesPanel group={_('Style')} name={_('Axes')} />
     <StyleLegendPanel group={_('Style')} name={_('Legend')} />
     <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />
+    <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
+    <StyleImagesPanel group={_('Style')} name={_('Images')} />
   </PanelMenuWrapper>
 );
 

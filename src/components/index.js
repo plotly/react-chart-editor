@@ -1,6 +1,7 @@
 import {
   AnnotationArrowRef,
   AnnotationRef,
+  PositioningRef,
   ArrowSelector,
   AxesRange,
   AxesSelector,
@@ -32,6 +33,8 @@ import {
 
 import {
   AnnotationAccordion,
+  ShapeAccordion,
+  ImageAccordion,
   AxesFold,
   Fold,
   LayoutPanel,
@@ -51,8 +54,11 @@ import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
   AnnotationAccordion,
+  ShapeAccordion,
+  ImageAccordion,
   AnnotationArrowRef,
   AnnotationRef,
+  PositioningRef,
   ArrowSelector,
   AxesFold,
   AxesRange,

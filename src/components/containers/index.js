@@ -1,4 +1,6 @@
 import AnnotationAccordion from './AnnotationAccordion';
+import ShapeAccordion from './ShapeAccordion';
+import ImageAccordion from './ImageAccordion';
 import AxesFold from './AxesFold';
 import Fold from './Fold';
 import MenuPanel from './MenuPanel';
@@ -12,6 +14,8 @@ import SingleSidebarItem from './SingleSidebarItem';
 
 export {
   AnnotationAccordion,
+  ShapeAccordion,
+  ImageAccordion,
   MenuPanel,
   Fold,
   Panel,
