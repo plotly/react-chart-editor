@@ -1,12 +1,16 @@
 .modal {
-  $c: &;
+  box-sizing: border-box;
+  * {
+    box-sizing: border-box;
+  }
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  overflow-y: auto;
   justify-content: center;
   @include z-index('orbit');
 
@@ -34,12 +38,14 @@
     background: var(--color-background-top);
     border-radius: var(--border-radius);
     position: relative;
-    z-index: 4;
-    max-width: 100%;
+    @include z-index('orbit');
+    max-width: calc(100% - var(--spacing-base-unit));
     box-shadow: var(--box-shadow-base);
     display: flex;
     flex-direction: column;
     will-change: opacity, transform;
+    flex-grow: 0;
+    margin: 5vh 10vw;
   }
 
   &__header {
@@ -48,7 +54,7 @@
     align-items: center;
     color: var(--color-text-base);
     padding: var(--spacing-half-unit);
-    border-bottom: var(--border-light);
+    font-weight: var(--font-weight-semibold);
 
     &__close {
       opacity: 0.5;
@@ -65,13 +71,7 @@
     }
   }
   &__content {
-    max-height: 80vh;
-    overflow-y: auto;
-    overflow-x: visible;
-    @include scrollbar();
     flex-grow: 1;
-    padding: var(--spacing-half-unit);
-    padding-bottom: var(--spacing-base-unit);
     background-color: var(--color-background-light);
     border-bottom-left-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
@@ -123,7 +123,6 @@
   @include trans;
   position: relative;
 
-
   &__actions {
     position: absolute;
     width: 100%;
@@ -134,24 +133,23 @@
     justify-content: flex-start;
     align-items: flex-end;
     z-index: 99;
-    &__item{
+    &__item {
       transform: translateX(0px);
       opacity: 0;
       pointer-events: none;
       color: var(--color-text-light);
-      &:not(:last-child){
+      &:not(:last-child) {
         margin-bottom: var(--spacing-quarter-unit);
       }
-      &:hover{
-
+      &:hover {
         color: var(--color-accent);
       }
       @include trans;
-      svg{
+      svg {
         display: block;
-        width:16px;
+        width: 16px;
         height: 16px;
-        *{
+        * {
           fill: currentColor;
         }
       }
@@ -160,7 +158,7 @@
 
   &:hover {
     cursor: pointer;
-    .trace-item__actions__item{
+    .trace-item__actions__item {
       transform: translateX(10px);
       opacity: 1;
       pointer-events: initial;

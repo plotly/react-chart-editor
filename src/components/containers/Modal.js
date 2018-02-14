@@ -16,6 +16,10 @@ const ModalHeader = ({title, handleClose}) => (
   </div>
 );
 
+const ModalContent = ({children}) => (
+  <div className="modal__content">{children}</div>
+);
+
 class Modal extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +38,7 @@ class Modal extends Component {
             title={title}
             handleClose={() => this.context.handleClose()}
           />
-          {children}
+          <ModalContent>{children}</ModalContent>
         </div>
         <div
           className="modal__backdrop"
@@ -44,10 +48,6 @@ class Modal extends Component {
     );
   }
 }
-
-const ModalContent = ({children}) => (
-  <div className="modal__content">{children}</div>
-);
 
 ModalHeader.propTypes = {
   title: PropTypes.node,

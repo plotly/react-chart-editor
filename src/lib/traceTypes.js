@@ -30,7 +30,7 @@ export const chartCategory = _ => {
     },
     WEB_GL: {
       value: 'WEB_GL',
-      label: _('WebGL Accelerated'),
+      label: _('WebGL'),
     },
   };
 };
@@ -38,11 +38,11 @@ export const chartCategory = _ => {
 // Layout specification for TraceTypeSelector.js
 export const categoryLayout = _ => [
   chartCategory(_).SIMPLE,
-  chartCategory(_).CHARTS_3D,
-  chartCategory(_).FINANCIAL,
-  chartCategory(_).DISTRIBUTIONS,
-  chartCategory(_).MAPS,
   chartCategory(_).WEB_GL,
+  chartCategory(_).DISTRIBUTIONS,
+  chartCategory(_).FINANCIAL,
+  chartCategory(_).MAPS,
+  chartCategory(_).SPECIALIZED,
 ];
 
 export const traceTypes = _ => [
@@ -89,22 +89,22 @@ export const traceTypes = _ => [
   {
     value: 'scatter3d',
     label: _('3D Scatter'),
-    category: chartCategory(_).CHARTS_3D,
+    category: chartCategory(_).WEB_GL,
   },
   {
     value: 'line3d',
     label: _('3D Line'),
-    category: chartCategory(_).CHARTS_3D,
+    category: chartCategory(_).WEB_GL,
   },
   {
     value: 'surface',
     label: _('3D Surface'),
-    category: chartCategory(_).CHARTS_3D,
+    category: chartCategory(_).WEB_GL,
   },
   {
     value: 'mesh3d',
     label: _('3D Mesh'),
-    category: chartCategory(_).CHARTS_3D,
+    category: chartCategory(_).WEB_GL,
   },
   {
     value: 'box',
@@ -188,17 +188,17 @@ export const traceTypes = _ => [
   },
   {
     value: 'scattergl',
-    label: _('Scatter (GL)'),
+    label: _('Scatter'),
     category: chartCategory(_).WEB_GL,
   },
   {
     value: 'scatterpolarghl',
-    label: _('Scatter Polar (GL)'),
+    label: _('Scatter Polar'),
     category: chartCategory(_).WEB_GL,
   },
   {
     value: 'heatmapgl',
-    label: _('Heatmap (GL)'),
+    label: _('Heatmap'),
     category: chartCategory(_).WEB_GL,
   },
 ];

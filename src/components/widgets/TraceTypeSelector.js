@@ -2,97 +2,75 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal, {ModalContent} from 'components/containers/Modal';
-import {
-  traceTypeToPlotlyInitFigure,
-  localize,
-  plotlyTraceToCustomTrace,
-  computeTraceOptionsFromSchema,
-} from 'lib';
+import {traceTypeToPlotlyInitFigure, localize} from 'lib';
 
-// to be removed when icons are converted to svg
-function slugify(text) {
-  return text
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
-    .replace(/^-+/, '') // Trim - from start of text
-    .replace(/-+$/, ''); // Trim - from end of text
-}
+const actions = ({value}) => [
+  {
+    label: `Charts like this by Plotly users.`,
+    href: `https://plot.ly/feed/?q=plottype:${value}`,
+    icon: <SearchIcon />,
+  },
+  {
+    label: `View tutorials on this chart type.`,
+    href: `#`, // update
+    icon: <ThumnailViewIcon />,
+  },
+  {
+    label: `See a basic example.`,
+    href: `#`, // update
+    icon: <GraphIcon />,
+  },
+];
 
-const Item = ({item, active, columnLength, columnIndex, handleClick}) => {
-  const isEven = value => value % 2 === 0;
-  const middle = Math.floor(columnLength / 2);
+/**
+ * This renders our item actions
+ */
+const renderActionItems = (actionItems, item) =>
+  actionItems(item).map((action, i) => (
+    <a
+      className="trace-item__actions__item"
+      key={i}
+      aria-label={action.label}
+      data-microtip-position={`top-left`}
+      role="tooltip"
+      href={action.href}
+      target="_blank"
+    >
+      {action.icon}
+    </a>
+  ));
 
-  // for left leaning columns
-  let position = '-right';
-
-  // if we have an even number of columns
-  // we want to have the 2 center rows display their tooltip
-  // in the middle vs left/right
-  if (isEven(columnLength) && columnLength > 3) {
-    if (columnIndex === middle || columnIndex === middle - 1) {
-      position = '';
-    }
-  } else {
-    if (columnIndex === middle) {
-      position = '';
-    }
-  }
-
-  // for right leaning columns
-  if (columnIndex > middle) {
-    position = '-left';
-  }
-  const {label, value, type} = item;
+/**
+ * Trace Type Item
+ */
+const Item = ({item, active, handleClick}) => {
+  const {label, value} = item;
   return (
     <div
       className={`trace-item${active ? ' trace-item--active' : ''}`}
       onClick={() => handleClick()}
     >
       <div className="trace-item__actions">
-        <a
-          className="trace-item__actions__item"
-          aria-label="Charts like this by Plotly users."
-          data-microtip-position={`top${position}`}
-          role="tooltip"
-          href={`https://plot.ly/feed/?q=plottype:${type}`}
-          target="_blank"
-        >
-          <SearchIcon />
-        </a>
-        <div
-          className="trace-item__actions__item"
-          aria-label="View tutorials on this chart type."
-          data-microtip-position={`top${position}`}
-          role="tooltip"
-        >
-          <ThumnailViewIcon />
-        </div>
-        <div
-          className="trace-item__actions__item"
-          aria-label="See a basic example."
-          data-microtip-position={`bottom${position}`}
-          role="tooltip"
-        >
-          <GraphIcon />
-        </div>
+        {actions ? renderActionItems(actions, item) : null}
       </div>
       <div className="trace-item__image">
-        <img src={`/_temp/ic-${slugify(value)}.svg`} />
+        <img src={`/_temp/ic-${value}.svg`} />
       </div>
       <div className="trace-item__label">{label}</div>
     </div>
   );
 };
 
+/**
+ * Trace Type Selector
+ */
 class TraceTypeSelector extends Component {
   selectAndClose(value) {
     const computedValue = traceTypeToPlotlyInitFigure(value);
     this.props.updateContainer(computedValue);
     this.context.handleClose();
   }
+
   renderCategories() {
     const {fullValue, localize: _} = this.props;
     const {traces, categories} = this.context.traceSelectorConfig;
@@ -101,14 +79,21 @@ class TraceTypeSelector extends Component {
       const items = traces(_).filter(
         ({category: {value}}) => value === category.value
       );
+
+      const MAX_ITEMS = 6;
+      let columnClasses = 'trace-grid__column';
+
+      // If the category has more than 6 items, it will span 2 columns
+      if (items.length > MAX_ITEMS) {
+        columnClasses += ' trace-grid__column--double';
+      }
+
       return (
-        <div className="trace-grid__column" key={i}>
+        <div className={columnClasses} key={i}>
           <div className="trace-grid__column__header">{category.label}</div>
           <div className="trace-grid__column__items">
             {items.map(item => (
               <Item
-                columnLength={categories.length}
-                columnIndex={i}
                 key={item.value}
                 active={fullValue === item.value}
                 item={item}
@@ -124,15 +109,16 @@ class TraceTypeSelector extends Component {
   render() {
     return (
       <Modal title="Select Chart Type">
-        <ModalContent>
           <div className="trace-grid">{this.renderCategories()}</div>
-        </ModalContent>
       </Modal>
     );
   }
 }
+
 TraceTypeSelector.propTypes = {
   updateContainer: PropTypes.func,
+  fullValue: PropTypes.string,
+  localize: PropTypes.func,
 };
 TraceTypeSelector.contextTypes = {
   traceSelectorConfig: PropTypes.object,
@@ -141,6 +127,7 @@ TraceTypeSelector.contextTypes = {
 Item.propTypes = {
   item: PropTypes.object,
   active: PropTypes.bool,
+  handleClick: PropTypes.func,
 };
 
 export default localize(TraceTypeSelector);
