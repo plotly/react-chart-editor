@@ -2,17 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
-import {getDisplayName, localize} from '../lib';
+import {getDisplayName, localize, capitalize} from '../lib';
 
 function computeAxesOptions(axes, _) {
   const options = [{label: _('All'), value: 'allaxes'}];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
-    const label = ax._name
-      .split('axis')[0]
-      .charAt(0)
-      .toUpperCase();
-
+    const label = capitalize(ax._name.split('axis')[0]);
     const value = (ax.prefix ? ax.prefix + '.' : '').trim() + ax._name;
     options[i + 1] = {label, value};
   }
@@ -63,6 +59,10 @@ export default function connectAxesToLayout(WrappedComponent) {
                 // will take care of subplots after
                 const prefix = fullContainer._subplots[type][0];
                 fullContainer[prefix][axis].prefix = prefix;
+                if (!fullContainer[prefix][axis]._name) {
+                  // it should be in plotly.js, but it's not there for geo axes..
+                  fullContainer[prefix][axis]._name = axis;
+                }
                 return fullContainer[prefix][axis];
               });
           }

@@ -14,6 +14,7 @@ import {
   AxisRequiredPanel,
   AxesFold,
   Fold,
+  TraceTypeSection,
 } from '../components';
 
 import {localize} from '../lib';
@@ -49,6 +50,14 @@ const StyleAxesPanel = ({localize: _}) => (
             ]}
           />
         </Section>
+        <TraceTypeSection
+          name={_('Selection')}
+          traceTypes={['choropleth', 'scattergeo']}
+          attr="range"
+        >
+          <AxesRange label={_('Min')} attr="range[0]" />
+          <AxesRange label={_('Max')} attr="range[1]" />
+        </TraceTypeSection>
       </AxesFold>
 
       <AxesFold name={_('Lines')}>
@@ -206,7 +215,7 @@ const StyleAxesPanel = ({localize: _}) => (
           />
         </Section>
 
-        <Section name={_('Number of labels')}>
+        <Section name={_('Number of labels')} attr="dtick">
           <Radio
             attr="tickmode"
             options={[
