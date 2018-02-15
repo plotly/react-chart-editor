@@ -81,11 +81,11 @@ export default function connectAxesToLayout(WrappedComponent) {
         );
         this.fullContainer = multiValuedContainer;
         this.defaultContainer = this.axes[0];
-        // what should this be set to? Probably doesn't matter.
         this.container = {};
       } else {
         this.fullContainer = nestedProperty(fullContainer, axesTarget).get();
-        this.container = nestedProperty(container, axesTarget).get();
+        this.container = this.container =
+          nestedProperty(container, axesTarget).get() || {};
       }
     }
 
