@@ -166,6 +166,7 @@ For use in containers bound to traces e.g. as children of `<TraceAccordion />`:
 * `<SymbolSelector />`: renders as a `<Dropdown />` useful for `data[].marker.symbol`
 * `<LayoutNumericFraction />` and `<LayoutNumericFractionInverse />`: renders as a `<Numeric />` for use in trace-connected containers where normal `<Numerics />` would be bound to the `data` key instead of the `layout` key in the figure e.g. `layout.bargap` or `layout.barwidth`.
 * `<PositioningRef />`: renders as a `<Dropdown />` useful for `layout.*.xref/yref` where the allowable values are `paper|[axis]`
+* `<ErrorBars/>`: renders a set of controls that control a trace's error bars (`visibility`, `type`, `value`, `valueminus`, `array`, `arrayminus`)
 
 For use in containers bound to layout:
 
