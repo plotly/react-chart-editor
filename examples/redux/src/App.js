@@ -60,6 +60,7 @@ class App extends Component {
             debug
             data={graphDiv.data}
             layout={graphDiv.layout}
+            config={{editable: true}}
             onUpdate={actions.plotUpdate}
             onInitialized={actions.plotUpdate}
             revision={plotRevision}
