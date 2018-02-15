@@ -195,7 +195,7 @@ const StyleColorBarsPanel = ({localize: _}) => (
             ]}
           />
         </Section>
-        <Section name={_('Number of labels')}>
+        <Section name={_('Number of Labels')}>
           <Radio
             attr="colorbar.tickmode"
             options={[

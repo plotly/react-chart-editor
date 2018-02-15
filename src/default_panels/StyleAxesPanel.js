@@ -215,7 +215,7 @@ const StyleAxesPanel = ({localize: _}) => (
           />
         </Section>
 
-        <Section name={_('Number of labels')} attr="dtick">
+        <Section name={_('Number of Labels')} attr="dtick">
           <Radio
             attr="tickmode"
             options={[

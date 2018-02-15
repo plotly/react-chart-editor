@@ -355,7 +355,7 @@ const StyleTracesPanel = ({localize: _}) => (
         localize={_}
       />
       <Radio
-        label={_('Show contour')}
+        label={_('Show Contour')}
         attr="contour.show"
         options={[
           {label: _('Show'), value: true},
