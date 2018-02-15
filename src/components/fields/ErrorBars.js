@@ -107,7 +107,7 @@ class ErrorBars extends Component {
           <Numeric label={_('Value')} attr={`${this.props.attr}.value`} />
           {showCustomDataControl ? (
             <DataSelector
-              label={_(`Custom Data`)}
+              label={_('Custom Data')}
               attr={`${this.props.attr}.array`}
             />
           ) : null}
@@ -135,11 +135,11 @@ class ErrorBars extends Component {
           {showCustomDataControl ? (
             <Fragment>
               <DataSelector
-                label={_(`Error (+)`)}
+                label={_('Error (+)')}
                 attr={`${this.props.attr}.array`}
               />
               <DataSelector
-                label={_(`Error (-)`)}
+                label={_('Error (-)')}
                 attr={`${this.props.attr}.arrayminus`}
               />
             </Fragment>
