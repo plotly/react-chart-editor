@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import PanelEmpty from './PanelEmpty';
+import PropTypes from 'prop-types';
+import React, {Component} from 'react';
 import {LayoutPanel} from './derived';
+import {localize} from 'lib';
 
 class TraceRequiredPanel extends Component {
   constructor(props) {
@@ -36,14 +37,17 @@ class TraceRequiredPanel extends Component {
   }
 
   render() {
-    const {children, ...rest} = this.props;
+    const {localize: _, children, ...rest} = this.props;
     const {hasTraces} = this.state;
 
     if (this.props.visible) {
       return hasTraces ? (
         <LayoutPanel {...rest}>{children}</LayoutPanel>
       ) : (
-        <PanelEmpty />
+        <PanelEmpty
+          heading={_("Looks like there aren't any traces defined yet.")}
+          message={_("Go to the 'Create' tab to define traces.")}
+        />
       );
     }
     return null;
@@ -52,6 +56,7 @@ class TraceRequiredPanel extends Component {
 
 TraceRequiredPanel.propTypes = {
   children: PropTypes.node,
+  localize: PropTypes.func,
   visible: PropTypes.bool,
 };
 
@@ -63,4 +68,4 @@ TraceRequiredPanel.contextTypes = {
   fullData: PropTypes.array,
 };
 
-export default TraceRequiredPanel;
+export default localize(TraceRequiredPanel);

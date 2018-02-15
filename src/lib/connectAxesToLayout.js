@@ -2,16 +2,14 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
-import {getDisplayName, localize} from '../lib';
+import {getDisplayName, localize, capitalize} from '../lib';
 
 function computeAxesOptions(axes, _) {
   const options = [{label: _('All'), value: 'allaxes'}];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
-    const axesPrefix = ax._id.length > 1 ? ' ' + ax._id.substr(1) : '';
-    const label = `${ax._id.charAt(0).toUpperCase()}${axesPrefix}`;
-    const value =
-      (axesPrefix.length > 0 ? axesPrefix + '.' : '').trim() + ax._name;
+    const label = capitalize(ax._name.split('axis')[0]);
+    const value = (ax.prefix ? ax.prefix + '.' : '').trim() + ax._name;
     options[i + 1] = {label, value};
   }
 
@@ -35,18 +33,41 @@ export default function connectAxesToLayout(WrappedComponent) {
       this.setLocals(nextProps, nextState, nextContext);
     }
 
-    // This function should be optimized. We can compare a list of
-    // axesNames to nextAxesNames and check gd.layout[axesN] for shallow
-    // equality. Unfortunately we are currently mutating gd.layout so the
-    // shallow check is not possible.
     setLocals(nextProps, nextState, nextContext) {
-      const {plotly, graphDiv, container, fullContainer} = nextContext;
+      const {container, fullContainer} = nextContext;
       const {axesTarget} = nextState;
-      if (plotly) {
-        this.axes = plotly.Axes.list(graphDiv);
-      } else {
-        this.axes = [];
-      }
+
+      this.axes = [];
+
+      // Plotly.js should really have a helper function for this, but until it does..
+      Object.keys(fullContainer._subplots)
+        .filter(
+          // cartesian types will have xaxis or yaxis directly in _fullLayout
+          type =>
+            type !== 'cartesian' && fullContainer._subplots[type].length !== 0
+        )
+        .forEach(type => {
+          if (['xaxis', 'yaxis'].includes(type)) {
+            this.axes.push(fullContainer[type]);
+          }
+          if (!['xaxis', 'yaxis', 'cartesian'].includes(type)) {
+            this.axes = Object.keys(
+              fullContainer[fullContainer._subplots[type]]
+            )
+              .filter(key => key.includes('axis'))
+              .map(axis => {
+                // will take care of subplots after
+                const prefix = fullContainer._subplots[type][0];
+                fullContainer[prefix][axis].prefix = prefix;
+                if (!fullContainer[prefix][axis]._name) {
+                  // it should be in plotly.js, but it's not there for geo axes..
+                  fullContainer[prefix][axis]._name = axis;
+                }
+                return fullContainer[prefix][axis];
+              });
+          }
+        });
+
       this.axesOptions = computeAxesOptions(this.axes, nextProps.localize);
 
       if (axesTarget === 'allaxes') {
@@ -60,11 +81,11 @@ export default function connectAxesToLayout(WrappedComponent) {
         );
         this.fullContainer = multiValuedContainer;
         this.defaultContainer = this.axes[0];
-        // what should this be set to? Probably doesn't matter.
         this.container = {};
       } else {
         this.fullContainer = nestedProperty(fullContainer, axesTarget).get();
-        this.container = nestedProperty(container, axesTarget).get();
+        this.container = this.container =
+          nestedProperty(container, axesTarget).get() || {};
       }
     }
 
@@ -97,12 +118,11 @@ export default function connectAxesToLayout(WrappedComponent) {
       const keys = Object.keys(update);
       for (let i = 0; i < keys.length; i++) {
         for (let j = 0; j < axes.length; j++) {
-          const scene = axes[j]._id.substr(1);
+          const prefix = axes[j].prefix;
           let axesKey = axes[j]._name;
 
-          // scenes are nested
-          if (scene.indexOf('scene') !== -1) {
-            axesKey = `${scene}.${axesKey}`;
+          if (prefix) {
+            axesKey = `${prefix}.${axesKey}`;
           }
 
           const newkey = `${axesKey}.${keys[i]}`;
@@ -134,8 +154,6 @@ export default function connectAxesToLayout(WrappedComponent) {
   AxesConnectedComponent.contextTypes = {
     container: PropTypes.object.isRequired,
     fullContainer: PropTypes.object.isRequired,
-    graphDiv: PropTypes.object.isRequired,
-    plotly: PropTypes.object,
     updateContainer: PropTypes.func,
   };
 
