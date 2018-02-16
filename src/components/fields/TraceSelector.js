@@ -8,7 +8,10 @@ import {
   plotlyTraceToCustomTrace,
   computeTraceOptionsFromSchema,
 } from 'lib';
-import TraceTypeSelector from 'components/widgets/TraceTypeSelector';
+import TraceTypeSelector, {
+  TraceTypeSelectorButton,
+} from 'components/widgets/TraceTypeSelector';
+import Field from './Field';
 
 class TraceSelector extends Component {
   constructor(props, context) {
@@ -96,12 +99,12 @@ class TraceSelector extends Component {
     const {advancedTraceTypeSelector} = this.context;
     if (advancedTraceTypeSelector) {
       return (
-        <div
-          className="trace-type-select-dropdown__wrapper"
-          onClick={() => this.context.openModal(TraceTypeSelector, props)}
-        >
-          <UnconnectedDropdown {...props} />
-        </div>
+        <Field {...props}>
+          <TraceTypeSelectorButton
+            {...props}
+            handleClick={() => this.context.openModal(TraceTypeSelector, props)}
+          />
+        </Field>
       );
     }
 

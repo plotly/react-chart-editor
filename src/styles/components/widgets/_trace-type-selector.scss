@@ -175,3 +175,28 @@ $item-size: 90px;
     }
   }
 }
+
+.trace-type-select-button {
+  display: flex;
+  align-items: center;
+  border: var(--border-default);
+  width: 100%;
+  height: 36px;
+  border-radius: var(--border-radius);
+  padding: 0 var(--spacing-quarter-unit);
+  &:hover{
+    cursor: pointer;
+    border-color: var(--color-border-dark);
+  }
+  &__icon {
+    max-width: 20px;
+    margin-right: var(--spacing-quarter-unit);
+    svg {
+      max-width: 100%;
+      display: block;
+      *{
+        fill: currentColor;
+      }
+    }
+  }
+}

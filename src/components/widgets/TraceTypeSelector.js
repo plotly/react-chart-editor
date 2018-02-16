@@ -1,8 +1,26 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
-import Modal, {ModalContent} from 'components/containers/Modal';
-import {traceTypeToPlotlyInitFigure, localize} from 'lib';
+import Modal from 'components/containers/Modal';
+import {
+  traceTypeToPlotlyInitFigure,
+  localize,
+  plotlyTraceToCustomTrace,
+  renderTraceIcon,
+} from 'lib';
+
+export const TraceTypeSelectorButton = ({handleClick, fullValue, options}) => {
+  const Icon = renderTraceIcon(fullValue);
+  const {label} = options.find(type => type.value ===  fullValue)
+  return (
+    <div className="trace-type-select-button" onClick={() => handleClick()}>
+      <div className="trace-type-select-button__icon">
+        <Icon />
+      </div>
+      {label}
+    </div>
+  );
+};
 
 const actions = ({value}) => [
   {
@@ -44,7 +62,7 @@ const renderActionItems = (actionItems, item) =>
  * Trace Type Item
  */
 const Item = ({item, active, handleClick}) => {
-  const {label, value} = item;
+  const {label, value, icon} = item;
   return (
     <div
       className={`trace-item${active ? ' trace-item--active' : ''}`}
@@ -54,7 +72,7 @@ const Item = ({item, active, handleClick}) => {
         {actions ? renderActionItems(actions, item) : null}
       </div>
       <div className="trace-item__image">
-        <img src={`/_temp/ic-${value}.svg`} />
+        <img src={`/_temp/ic-${icon ? icon : value}.svg`} />
       </div>
       <div className="trace-item__label">{label}</div>
     </div>
@@ -109,7 +127,7 @@ class TraceTypeSelector extends Component {
   render() {
     return (
       <Modal title="Select Chart Type">
-          <div className="trace-grid">{this.renderCategories()}</div>
+        <div className="trace-grid">{this.renderCategories()}</div>
       </Modal>
     );
   }
