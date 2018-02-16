@@ -189,19 +189,19 @@ export const traceTypes = _ => [
   {
     value: 'scattergl',
     icon: 'scatter',
-    label: _('Scatter'),
+    label: _('Scatter GL'),
     category: chartCategory(_).WEB_GL,
   },
   {
     value: 'scatterpolarghl',
     icon: 'scatterpolar',
-    label: _('Scatter Polar'),
+    label: _('Scatter Polar GL'),
     category: chartCategory(_).WEB_GL,
   },
   {
     value: 'heatmapgl',
     icon: 'heatmap',
-    label: _('Heatmap'),
+    label: _('Heatmap GL'),
     category: chartCategory(_).WEB_GL,
   },
 ];

@@ -2,25 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal from 'components/containers/Modal';
-import {
-  traceTypeToPlotlyInitFigure,
-  localize,
-  plotlyTraceToCustomTrace,
-  renderTraceIcon,
-} from 'lib';
-
-export const TraceTypeSelectorButton = ({handleClick, fullValue, options}) => {
-  const Icon = renderTraceIcon(fullValue);
-  const {label} = options.find(type => type.value ===  fullValue)
-  return (
-    <div className="trace-type-select-button" onClick={() => handleClick()}>
-      <div className="trace-type-select-button__icon">
-        <Icon />
-      </div>
-      {label}
-    </div>
-  );
-};
+import {traceTypeToPlotlyInitFigure, localize, renderTraceIcon} from 'lib';
 
 const actions = ({value}) => [
   {
@@ -133,10 +115,47 @@ class TraceTypeSelector extends Component {
   }
 }
 
+class TraceTypeButton extends React.Component {
+  render() {
+    const {
+      handleClick,
+      fullValue,
+      localize: _,
+      traceSelectorConfig: {traces},
+    } = this.props;
+
+    const {label, icon, value} = traces(_).find(
+      type => type.value === fullValue
+    );
+
+    const Icon = renderTraceIcon(icon ? icon : value);
+
+    return (
+      <div
+        className="trace-type-select-button"
+        onClick={handleClick ? () => handleClick() : null}
+      >
+        <div className="trace-type-select-button__icon">
+          <Icon />
+        </div>
+        {label}
+      </div>
+    );
+  }
+}
+
+export const TraceTypeSelectorButton = localize(TraceTypeButton);
+
 TraceTypeSelector.propTypes = {
   updateContainer: PropTypes.func,
   fullValue: PropTypes.string,
   localize: PropTypes.func,
+};
+TraceTypeButton.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+  fullValue: PropTypes.string.isRequired,
+  localize: PropTypes.func.isRequired,
+  traceSelectorConfig: PropTypes.object.isRequired,
 };
 TraceTypeSelector.contextTypes = {
   traceSelectorConfig: PropTypes.object,

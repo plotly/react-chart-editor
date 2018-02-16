@@ -95,13 +95,14 @@ class TraceSelector extends Component {
       options: this.traceOptions,
       clearable: false,
     });
-    // Check and see if the advanced slector prop is true
+    // Check and see if the advanced selector prop is true
     const {advancedTraceTypeSelector} = this.context;
     if (advancedTraceTypeSelector) {
       return (
         <Field {...props}>
           <TraceTypeSelectorButton
             {...props}
+            traceSelectorConfig={this.context.traceSelectorConfig}
             handleClick={() => this.context.openModal(TraceTypeSelector, props)}
           />
         </Field>
@@ -115,6 +116,7 @@ class TraceSelector extends Component {
 TraceSelector.contextTypes = {
   openModal: PropTypes.func,
   advancedTraceTypeSelector: PropTypes.bool,
+  traceSelectorConfig: PropTypes.object,
   plotSchema: PropTypes.object,
   config: PropTypes.object,
 };
