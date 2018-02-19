@@ -8,6 +8,7 @@ import connectToContainer, {
   containerConnectedContextTypes,
 } from './connectToContainer';
 import connectTraceToPlot from './connectTraceToPlot';
+import connectSubplotToLayout from './connectSubplotToLayout';
 import dereference from './dereference';
 import findFullTraceIndex from './findFullTraceIndex';
 import getAllAxes from './getAllAxes';
@@ -58,6 +59,7 @@ export {
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
+  connectSubplotToLayout,
   containerConnectedContextTypes,
   traceTypeToPlotlyInitFigure,
   dereference,

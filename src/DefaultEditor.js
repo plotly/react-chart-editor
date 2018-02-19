@@ -4,6 +4,7 @@ import {PanelMenuWrapper} from './components';
 import {localize} from './lib';
 import {
   GraphCreatePanel,
+  GraphSubplotsPanel,
   StyleLayoutPanel,
   StyleAxesPanel,
   StyleLegendPanel,
@@ -17,6 +18,7 @@ import {
 const DefaultEditor = ({localize: _}) => (
   <PanelMenuWrapper>
     <GraphCreatePanel group={_('Graph')} name={_('Create')} />
+    <GraphSubplotsPanel group={_('Graph')} name={_('Subplots')} />
     <StyleTracesPanel group={_('Style')} name={_('Traces')} />
     <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
     <StyleNotesPanel group={_('Style')} name={_('Notes')} />
