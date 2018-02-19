@@ -12,19 +12,16 @@ const actions = ({value}) => [
   },
   {
     label: `View tutorials on this chart type.`,
-    href: `#`, // update
+    href: `#`,
     icon: <ThumnailViewIcon />,
   },
   {
     label: `See a basic example.`,
-    href: `#`, // update
+    href: `#`,
     icon: <GraphIcon />,
   },
 ];
 
-/**
- * This renders our item actions
- */
 const renderActionItems = (actionItems, item) =>
   actionItems(item).map((action, i) => (
     <a
@@ -40,10 +37,7 @@ const renderActionItems = (actionItems, item) =>
     </a>
   ));
 
-/**
- * Trace Type Item
- */
-const Item = ({item, active, handleClick}) => {
+const Item = ({item, active, handleClick, actions, showActions}) => {
   const {label, value, icon} = item;
   return (
     <div
@@ -51,7 +45,7 @@ const Item = ({item, active, handleClick}) => {
       onClick={() => handleClick()}
     >
       <div className="trace-item__actions">
-        {actions ? renderActionItems(actions, item) : null}
+        {actions && showActions ? renderActionItems(actions, item) : null}
       </div>
       <div className="trace-item__image">
         <img src={`/_temp/ic-${icon ? icon : value}.svg`} />
@@ -61,9 +55,6 @@ const Item = ({item, active, handleClick}) => {
   );
 };
 
-/**
- * Trace Type Selector
- */
 class TraceTypeSelector extends Component {
   selectAndClose(value) {
     const computedValue = traceTypeToPlotlyInitFigure(value);
@@ -81,9 +72,9 @@ class TraceTypeSelector extends Component {
       );
 
       const MAX_ITEMS = 6;
+
       let columnClasses = 'trace-grid__column';
 
-      // If the category has more than 6 items, it will span 2 columns
       if (items.length > MAX_ITEMS) {
         columnClasses += ' trace-grid__column--double';
       }
@@ -97,6 +88,8 @@ class TraceTypeSelector extends Component {
                 key={item.value}
                 active={fullValue === item.value}
                 item={item}
+                actions={actions}
+                showActions={false}
                 handleClick={() => this.selectAndClose(item.value)}
               />
             ))}
@@ -144,8 +137,6 @@ class TraceTypeButton extends React.Component {
   }
 }
 
-export const TraceTypeSelectorButton = localize(TraceTypeButton);
-
 TraceTypeSelector.propTypes = {
   updateContainer: PropTypes.func,
   fullValue: PropTypes.string,
@@ -165,6 +156,10 @@ Item.propTypes = {
   item: PropTypes.object,
   active: PropTypes.bool,
   handleClick: PropTypes.func,
+  actions: PropTypes.array,
+  showActions: PropTypes.bool,
 };
 
 export default localize(TraceTypeSelector);
+
+export const TraceTypeSelectorButton = localize(TraceTypeButton);

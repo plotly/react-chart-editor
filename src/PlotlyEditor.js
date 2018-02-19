@@ -1,6 +1,6 @@
 import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {bem} from './lib';
 import {maybeClearAxisTypes} from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
