@@ -188,6 +188,9 @@ class PlotlyEditor extends Component {
             graphDiv.layout.yaxis2.domain = payload.y;
             graphDiv.layout.yaxis2.anchor = 'x2';
           }
+          if (this.props.onUpdate) {
+            this.props.onUpdate();
+          }
         });
         break;
 
