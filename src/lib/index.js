@@ -11,7 +11,7 @@ import connectTraceToPlot from './connectTraceToPlot';
 import connectSubplotToLayout from './connectSubplotToLayout';
 import dereference from './dereference';
 import findFullTraceIndex from './findFullTraceIndex';
-import getAllAxes from './getAllAxes';
+import getAllAxes, {traceTypeToAxisType} from './getAllAxes';
 import localize, {localizeString} from './localize';
 import tinyColor from 'tinycolor2';
 import unpackPlotProps from './unpackPlotProps';
@@ -75,4 +75,5 @@ export {
   unpackPlotProps,
   walkObject,
   supplyLayoutPlotProps,
+  traceTypeToAxisType,
 };

@@ -46,8 +46,6 @@ export default function connectSubplotToLayout(WrappedComponent) {
   SubplotConnectedComponent.contextTypes = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    data: PropTypes.array,
-    layout: PropTypes.object,
   };
 
   SubplotConnectedComponent.childContextTypes = {

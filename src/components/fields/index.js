@@ -11,6 +11,7 @@ import TextEditor from './TextEditor';
 import DataSelector from './DataSelector';
 import Numeric from './Numeric';
 import SymbolSelector from './SymbolSelector';
+import SubplotTracePicker from './SubplotTracePicker';
 import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
 import {
@@ -57,6 +58,7 @@ export {
   LineShapeSelector,
   Numeric,
   Radio,
+  SubplotTracePicker,
   SymbolSelector,
   TextEditor,
   TraceOrientation,

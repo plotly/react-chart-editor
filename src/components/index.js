@@ -25,6 +25,7 @@ import {
   LineShapeSelector,
   Numeric,
   Radio,
+  SubplotTracePicker,
   SymbolSelector,
   TextEditor,
   TraceOrientation,
@@ -103,4 +104,5 @@ export {
   TraceSelector,
   TraceTypeSection,
   SubplotAccordion,
+  SubplotTracePicker,
 };

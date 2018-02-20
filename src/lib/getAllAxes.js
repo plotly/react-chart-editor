@@ -37,3 +37,34 @@ export default function getAllAxes(fullLayout) {
 
   return axes;
 }
+
+export function traceTypeToAxisType(traceType) {
+  const TRACE_TO_AXIS = {
+    cartesian: [
+      'scatter',
+      'box',
+      'bar',
+      'heatmap',
+      'contour',
+      'ohlc',
+      'candlestick',
+    ],
+    ternary: ['ternary'],
+    gl3d: ['scatter3d', 'surface', 'mesh3d'],
+    geo: ['scattergeo', 'choropleth'],
+    mapbox: ['scattermapbox'],
+  };
+
+  let category = null;
+
+  Object.keys(TRACE_TO_AXIS).forEach(c => {
+    if (TRACE_TO_AXIS[c].includes(traceType)) {
+      category = c;
+    }
+  });
+
+  if (category) {
+    return category;
+  }
+  throw new Error(`Sorry, could not find ${traceType} in any category.`);
+}

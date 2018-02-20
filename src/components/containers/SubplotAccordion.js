@@ -1,4 +1,5 @@
 import Fold from './Fold';
+import SubplotTracePicker from '../fields/SubplotTracePicker';
 import {localize, connectSubplotToLayout} from 'lib';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
@@ -10,10 +11,12 @@ class SubplotAccordion extends Component {
   constructor() {
     super();
     this.state = {
-      subplots: [{x: [0, 1], y: [0, 1]}],
+      subplots: [{x: [0, 0.45], y: [0, 1]}],
+      linkedTraceIndices: [[]],
     };
     this.deleteSubplot = this.deleteSubplot.bind(this);
     this.updateSubplot = this.updateSubplot.bind(this);
+    this.updateSubplotTraces = this.updateSubplotTraces.bind(this);
   }
 
   updateSubplot(update, subplotIndex) {
@@ -41,13 +44,26 @@ class SubplotAccordion extends Component {
     });
   }
 
+  updateSubplotTraces(value, subplotIndex) {
+    const newState = [...this.state.linkedTraceIndices];
+
+    if (value.length > 0) {
+      newState[subplotIndex].push(value[0]);
+      this.setState({linkedTraceIndices: newState});
+    } else {
+      newState[subplotIndex] = value;
+      this.setState({linkedTraceIndices: newState});
+    }
+  }
+
   render() {
     const {localize: _} = this.props;
     const addAction = {
       label: _('Subplot'),
       handler: () =>
         this.setState({
-          subplots: [...this.state.subplots, {x: [0, 1], y: [0, 1]}],
+          subplots: [...this.state.subplots, {x: [0.55, 1], y: [0, 1]}],
+          linkedTraceIndices: [...this.state.linkedTraceIndices, []],
         }),
     };
 
@@ -63,10 +79,17 @@ class SubplotAccordion extends Component {
             key={name}
             subplotIndex={i}
             subplotInfo={this.state.subplots[i]}
-            canDelete
+            canDelete={i !== 0}
             deleteSubplot={this.deleteSubplot}
             updateSubplot={this.updateSubplot}
           >
+            <SubplotTracePicker
+              attr="x"
+              updateSubplotTraces={this.updateSubplotTraces}
+              linkedTraceIndices={this.state.linkedTraceIndices[i]}
+              subplotInfo={this.state.subplots[i]}
+              subplotIndex={i}
+            />
             {this.props.children}
           </SubplotFold>
         );
