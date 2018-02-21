@@ -8,20 +8,16 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Entity} from 'draft-js';
 
 const LinkDecorator = props => {
-  const {url} = Entity.get(props.entityKey).getData();
-
   return (
-    <a href={url} style={props.style}>
+    <a href="#" style={props.style}>
       {props.children}
     </a>
   );
 };
 
 LinkDecorator.propTypes = {
-  entityKey: PropTypes.string.isRequired,
   style: PropTypes.object.isRequired,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
     .isRequired,
