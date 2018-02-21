@@ -13,8 +13,8 @@ class ShapeAccordion extends Component {
 
     const content =
       shapes.length &&
-      shapes.map((ann, i) => (
-        <ShapeFold key={i} shapeIndex={i} name={ann.text} canDelete={canAdd}>
+      shapes.map((shp, i) => (
+        <ShapeFold key={i} shapeIndex={i} name={shp.text} canDelete={canAdd}>
           {children}
         </ShapeFold>
       ));

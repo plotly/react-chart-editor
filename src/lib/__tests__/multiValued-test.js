@@ -7,7 +7,7 @@ import {connectLayoutToPlot, connectAxesToLayout} from '..';
 import {mount} from 'enzyme';
 
 describe('multiValued Numeric', () => {
-  it.only('uses placeholder and empty string value', () => {
+  it('uses placeholder and empty string value', () => {
     const fixtureProps = fixtures.scatter({
       layout: {xaxis: {range: [0, 1]}, yaxis: {range: [-1, 1]}},
     });

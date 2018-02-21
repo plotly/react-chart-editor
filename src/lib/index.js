@@ -8,8 +8,10 @@ import connectToContainer, {
   containerConnectedContextTypes,
 } from './connectToContainer';
 import connectTraceToPlot from './connectTraceToPlot';
+import connectSubplotToLayout from './connectSubplotToLayout';
 import dereference from './dereference';
 import findFullTraceIndex from './findFullTraceIndex';
+import getAllAxes, {traceTypeToAxisType} from './getAllAxes';
 import localize, {localizeString} from './localize';
 import tinyColor from 'tinycolor2';
 import unpackPlotProps from './unpackPlotProps';
@@ -57,10 +59,12 @@ export {
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
+  connectSubplotToLayout,
   containerConnectedContextTypes,
   traceTypeToPlotlyInitFigure,
   dereference,
   findFullTraceIndex,
+  getAllAxes,
   getDisplayName,
   getLayoutContext,
   isPlainObject,
@@ -71,4 +75,5 @@ export {
   unpackPlotProps,
   walkObject,
   supplyLayoutPlotProps,
+  traceTypeToAxisType,
 };

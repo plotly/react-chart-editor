@@ -1,7 +1,7 @@
 import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem} from './lib';
+import {bem, traceTypeToAxisType} from './lib';
 import {noShame, maybeClearAxisTypes} from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
@@ -173,6 +173,25 @@ class PlotlyEditor extends Component {
             this.props.onUpdate();
           }
         }
+        break;
+
+      case EDITOR_ACTIONS.LINK_TRACE_TO_SUBPLOT:
+        payload.linkedTraceIndices.forEach(index => {
+          const category = traceTypeToAxisType(graphDiv.data[index].type);
+          if (category === 'cartesian') {
+            graphDiv.data[index].xaxis = 'x2';
+            graphDiv.data[index].yaxis = 'y2';
+            graphDiv.layout.xaxis2 = {};
+            graphDiv.layout.yaxis2 = {};
+            graphDiv.layout.xaxis.domain = [0, 0.45];
+            graphDiv.layout.xaxis2.domain = payload.x;
+            graphDiv.layout.yaxis2.domain = payload.y;
+            graphDiv.layout.yaxis2.anchor = 'x2';
+          }
+          if (this.props.onUpdate) {
+            this.props.onUpdate();
+          }
+        });
         break;
 
       default:

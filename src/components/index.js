@@ -25,6 +25,7 @@ import {
   LineShapeSelector,
   Numeric,
   Radio,
+  SubplotTracePicker,
   SymbolSelector,
   TextEditor,
   TraceOrientation,
@@ -35,6 +36,7 @@ import {
   AnnotationAccordion,
   ShapeAccordion,
   ImageAccordion,
+  SubplotAccordion,
   AxesFold,
   AxisRequiredPanel,
   Fold,
@@ -101,4 +103,6 @@ export {
   TraceRequiredPanel,
   TraceSelector,
   TraceTypeSection,
+  SubplotAccordion,
+  SubplotTracePicker,
 };

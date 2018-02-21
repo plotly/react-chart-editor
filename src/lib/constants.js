@@ -33,6 +33,7 @@ export const EDITOR_ACTIONS = {
   ADD_TRACE: 'plotly-editor-add-trace',
   DELETE_TRACE: 'plotly-editor-delete-trace',
   UPDATE_LAYOUT: 'plotly-editor-update-layout',
+  LINK_TRACE_TO_SUBPLOT: 'plotly-editor-link-trace-to-subplot',
   DELETE_ANNOTATION: 'plotly-editor-delete-annotation',
   DELETE_SHAPE: 'plotly-editor-delete-shape',
   DELETE_IMAGE: 'plotly-editor-delete-image',

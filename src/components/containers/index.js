@@ -1,6 +1,7 @@
 import AnnotationAccordion from './AnnotationAccordion';
 import ShapeAccordion from './ShapeAccordion';
 import ImageAccordion from './ImageAccordion';
+import SubplotAccordion from './SubplotAccordion';
 import AxesFold from './AxesFold';
 import AxisRequiredPanel from './AxisRequiredPanel';
 import Fold from './Fold';
@@ -29,4 +30,5 @@ export {
   AxesFold,
   SingleSidebarItem,
   TraceTypeSection,
+  SubplotAccordion,
 };
