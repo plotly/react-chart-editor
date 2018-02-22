@@ -2,6 +2,7 @@ import EditableText from './EditableText';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import isNumeric from 'fast-isnumeric';
+import Slider from 'react-rangeslider';
 import {CarretDownIcon, CarretUpIcon} from 'plotly-icons';
 
 export const UP_ARROW = 38;
@@ -116,6 +117,23 @@ export default class NumericInput extends Component {
     );
   }
 
+  renderSlider() {
+    if (!this.props.showSlider) {
+      return null;
+    }
+
+    return (
+      <Slider
+        min={this.props.min}
+        max={this.props.max}
+        step={this.props.step}
+        value={this.state.value}
+        onChange={this.updateValue}
+        tooltip={false}
+      />
+    );
+  }
+
   render() {
     return (
       <div className="numeric-input__wrapper">
@@ -129,6 +147,7 @@ export default class NumericInput extends Component {
           onKeyDown={this.onKeyDown}
         />
         {this.renderArrows()}
+        {this.renderSlider()}
       </div>
     );
   }
@@ -143,6 +162,7 @@ NumericInput.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   showArrows: PropTypes.bool,
+  showSlider: PropTypes.bool,
   step: PropTypes.number,
   value: PropTypes.any,
 };

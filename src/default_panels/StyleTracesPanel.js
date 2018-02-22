@@ -250,44 +250,51 @@ const StyleTracesPanel = ({localize: _}) => (
       <Numeric
         label={_('Ambient')}
         attr="lighting.ambient"
-        units="%"
         step={0.1}
+        hideArrows
+        showSlider
       />
       <Numeric
         label={_('Diffuse')}
         attr="lighting.diffuse"
-        units="%"
         step={0.1}
+        hideArrows
+        showSlider
       />
       <Numeric
         label={_('Specular')}
         attr="lighting.specular"
-        units="%"
         step={0.1}
+        hideArrows
+        showSlider
       />
       <Numeric
         label={_('Roughness')}
         attr="lighting.roughness"
-        units="%"
         step={0.1}
+        hideArrows
+        showSlider
       />
-      <LayoutNumericFraction
+      <Numeric
         label={_('Fresnel')}
         attr="lighting.fresnel"
-        units="%"
         step={0.1}
+        hideArrows
+        showSlider
       />
       <Numeric
         label={_('Vertex Normal')}
         attr="lighting.vertexnormalsepsilon"
-        units="%"
         step={0.1}
+        hideArrows
+        showSlider
       />
       <Numeric
         label={_('Face Normal')}
         attr="lighting.facenormalsepsilon"
-        units="%"
         step={0.1}
+        hideArrows
+        showSlider
       />
     </Section>
 
