@@ -20,6 +20,7 @@ import {
 } from './customTraceType';
 import * as PlotlyIcons from 'plotly-icons';
 import supplyLayoutPlotProps from './supplyLayoutPlotProps';
+import striptags from './striptags';
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -71,4 +72,5 @@ export {
   unpackPlotProps,
   walkObject,
   supplyLayoutPlotProps,
+  striptags,
 };
