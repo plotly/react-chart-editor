@@ -95,7 +95,7 @@ export default class NumericInput extends Component {
   }
 
   renderArrows() {
-    if (!this.props.showArrows) {
+    if (!this.props.showArrows || this.props.showSlider) {
       return null;
     }
 

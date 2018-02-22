@@ -4,7 +4,7 @@ import {
   ImageAccordion,
   Radio,
   TextEditor,
-  Numeric,
+  PositioningNumeric,
   Section,
   PositioningRef,
   Dropdown,
@@ -33,8 +33,8 @@ const StyleImagesPanel = ({localize: _}) => (
         {label: _('Stretch'), value: 'stretch'},
       ]}
     />
-    <Numeric attr="sizex" label={_('Width')} />
-    <Numeric attr="sizey" label={_('Height')} />
+    <PositioningNumeric attr="sizex" label={_('Width')} />
+    <PositioningNumeric attr="sizey" label={_('Height')} />
     <Section name={_('Horizontal Positioning')}>
       <MenuPanel>
         <Section name={_('Anchor Point')}>
@@ -49,7 +49,7 @@ const StyleImagesPanel = ({localize: _}) => (
         </Section>
       </MenuPanel>
       <PositioningRef label={_('Relative To')} attr="xref" />
-      <Numeric label={_('Position')} attr="x" hideArrows />
+      <PositioningNumeric label={_('Position')} attr="x" />
     </Section>
 
     <Section name={_('Vertical Positioning')}>
@@ -66,7 +66,7 @@ const StyleImagesPanel = ({localize: _}) => (
         </Section>
       </MenuPanel>
       <PositioningRef label={_('Relative To')} attr="yref" />
-      <Numeric label={_('Position')} attr="y" hideArrows />
+      <PositioningNumeric label={_('Position')} attr="y" />
     </Section>
   </ImageAccordion>
 );

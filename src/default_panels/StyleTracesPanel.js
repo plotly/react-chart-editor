@@ -10,6 +10,7 @@ import {
   LineDashSelector,
   LineShapeSelector,
   Numeric,
+  NumericFraction,
   Radio,
   TextEditor,
   Section,
@@ -247,61 +248,25 @@ const StyleTracesPanel = ({localize: _}) => (
     </Section>
 
     <Section name={_('Lighting')}>
-      <Numeric
-        label={_('Ambient')}
-        attr="lighting.ambient"
-        step={0.1}
-        hideArrows
-        showSlider
-      />
-      <Numeric
-        label={_('Diffuse')}
-        attr="lighting.diffuse"
-        step={0.1}
-        hideArrows
-        showSlider
-      />
-      <Numeric
-        label={_('Specular')}
-        attr="lighting.specular"
-        step={0.1}
-        hideArrows
-        showSlider
-      />
-      <Numeric
-        label={_('Roughness')}
-        attr="lighting.roughness"
-        step={0.1}
-        hideArrows
-        showSlider
-      />
-      <Numeric
-        label={_('Fresnel')}
-        attr="lighting.fresnel"
-        step={0.1}
-        hideArrows
-        showSlider
-      />
-      <Numeric
+      <NumericFraction label={_('Ambient')} attr="lighting.ambient" />
+      <NumericFraction label={_('Diffuse')} attr="lighting.diffuse" />
+      <NumericFraction label={_('Specular')} attr="lighting.specular" />
+      <NumericFraction label={_('Roughness')} attr="lighting.roughness" />
+      <NumericFraction label={_('Fresnel')} attr="lighting.fresnel" />
+      <NumericFraction
         label={_('Vertex Normal')}
         attr="lighting.vertexnormalsepsilon"
-        step={0.1}
-        hideArrows
-        showSlider
       />
-      <Numeric
+      <NumericFraction
         label={_('Face Normal')}
         attr="lighting.facenormalsepsilon"
-        step={0.1}
-        hideArrows
-        showSlider
       />
     </Section>
 
     <Section name={_('Light Position')}>
-      <Numeric label={_('X')} attr="lightposition.x" />
-      <Numeric label={_('Y')} attr="lightposition.y" />
-      <Numeric label={_('Z')} attr="lightposition.z" />
+      <NumericFraction label={_('X')} attr="lightposition.x" />
+      <NumericFraction label={_('Y')} attr="lightposition.y" />
+      <NumericFraction label={_('Z')} attr="lightposition.z" />
     </Section>
 
     <Section name={_('Increasing Trace Styles')}>

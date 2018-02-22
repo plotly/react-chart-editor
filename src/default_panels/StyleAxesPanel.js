@@ -6,6 +6,7 @@ import {
   Dropdown,
   FontSelector,
   Numeric,
+  NumericFraction,
   Radio,
   TextEditor,
   MenuPanel,
@@ -292,18 +293,8 @@ const StyleAxesPanel = ({localize: _}) => (
       </AxesFold>
       <AxesFold name={_('Layout')}>
         <Section name={_('Axis Width')} attr="domain[0]">
-          <Numeric
-            label={_('Start Position')}
-            attr="domain[0]"
-            units="%"
-            step={0.1}
-          />
-          <Numeric
-            label={_('End Position')}
-            attr="domain[1]"
-            units="%"
-            step={0.1}
-          />
+          <NumericFraction label={_('Start Position')} attr="domain[0]" />
+          <NumericFraction label={_('End Position')} attr="domain[1]" />
         </Section>
         <Section name={_('Positioning')}>
           <Radio
