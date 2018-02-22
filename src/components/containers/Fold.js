@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
 import {unpackPlotProps, localize, containerConnectedContextTypes} from 'lib';
+import striptags from 'striptags';
 
 class Fold extends Component {
   constructor(props, context) {
@@ -96,7 +97,7 @@ class Fold extends Component {
         <div className="fold__top__arrow-title">
           {arrowIcon}
           {icon}
-          <div className="fold__top__title">{name}</div>
+          <div className="fold__top__title">{striptags(name)}</div>
         </div>
         {deleteButton(deleteContainer)}
       </div>
