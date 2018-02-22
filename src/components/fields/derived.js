@@ -8,6 +8,7 @@ import {
   connectToContainer,
   supplyLayoutPlotProps,
 } from 'lib';
+import striptags from 'striptags';
 
 export const CanvasSize = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
@@ -276,7 +277,7 @@ function computeAxesRefOptions(axes) {
     const ax = axes[i];
 
     // checking user data for title avoids default "Click to enter axis title"
-    const label = ax._input.title || ax._id;
+    const label = striptags(ax._input.title || ax._id);
     options[i] = {label, value: ax._id};
   }
 
