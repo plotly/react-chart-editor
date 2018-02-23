@@ -1,4 +1,3 @@
-import Info from '../fields/Info';
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -51,7 +50,9 @@ class Section extends Component {
         // it will see plotProps and skip recomputing them.
         this.sectionVisible = this.sectionVisible || plotProps.isVisible;
         return cloneElement(child, {plotProps});
-      } else if (child.type !== Info) {
+      } else if (
+        !(child.type.plotly_editor_traits || {}).no_visibility_forcing
+      ) {
         // custom UI other than Info forces section visibility.
         this.sectionVisible = true;
       }
