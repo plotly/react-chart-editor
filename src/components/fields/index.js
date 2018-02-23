@@ -13,11 +13,13 @@ import Numeric from './Numeric';
 import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
+import AxisCreator from './AxisCreator';
 import {
   AnnotationArrowRef,
   AnnotationRef,
   PositioningRef,
   AxesRange,
+  AxisAnchorDropdown,
   CanvasSize,
   ContourNumeric,
   FillDropdown,
@@ -36,6 +38,7 @@ import {LineDashSelector, LineShapeSelector} from './lineSelectors';
 export {
   AnnotationArrowRef,
   AnnotationRef,
+  AxisAnchorDropdown,
   PositioningRef,
   ArrowSelector,
   AxesRange,
@@ -67,4 +70,5 @@ export {
   TextEditor,
   TraceOrientation,
   TraceSelector,
+  AxisCreator,
 };

@@ -1,3 +1,5 @@
+import {TRACE_TO_AXIS} from 'lib/constants';
+
 export default function getAllAxes(fullLayout) {
   const axes = [];
   // Plotly.js should really have a helper function for this, but until it does..
@@ -36,4 +38,20 @@ export default function getAllAxes(fullLayout) {
   }
 
   return axes;
+}
+
+export function traceTypeToAxisType(traceType) {
+  let category = null;
+
+  Object.keys(TRACE_TO_AXIS).forEach(c => {
+    if (TRACE_TO_AXIS[c].includes(traceType)) {
+      category = c;
+    }
+  });
+
+  if (category) {
+    return category;
+  }
+
+  throw new Error(`Sorry, could not find ${traceType} in any category.`);
 }

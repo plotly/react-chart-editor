@@ -1,6 +1,7 @@
 import {
   AnnotationArrowRef,
   AnnotationRef,
+  AxisAnchorDropdown,
   PositioningRef,
   ArrowSelector,
   AxesRange,
@@ -28,6 +29,7 @@ import {
   LineShapeSelector,
   Numeric,
   Radio,
+  AxisCreator,
   SymbolSelector,
   TextEditor,
   TraceOrientation,
@@ -58,6 +60,7 @@ import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
   AnnotationAccordion,
+  AxisAnchorDropdown,
   ShapeAccordion,
   ImageAccordion,
   AnnotationArrowRef,
@@ -99,6 +102,7 @@ export {
   Radio,
   Section,
   SingleSidebarItem,
+  AxisCreator,
   SymbolSelector,
   TextEditor,
   TraceAccordion,

@@ -35,7 +35,17 @@ class Section extends Component {
         return null;
       }
 
-      if (child.props.attr) {
+      if ((child.type.plotly_editor_traits || {}).is_axis_creator) {
+        if (this.context.data.length > 1) {
+          this.sectionVisible = true;
+          return cloneElement(child, {
+            isVisible: true,
+            container: this.context.container,
+            fullContainer: this.context.fullContainer,
+          });
+        }
+        this.sectionVisible = false;
+      } else if (child.props.attr) {
         let plotProps;
         if (child.type.supplyPlotProps) {
           plotProps = child.type.supplyPlotProps(child.props, nextContext);

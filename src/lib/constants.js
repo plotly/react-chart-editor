@@ -48,3 +48,19 @@ export const RETURN_KEY = 'Enter';
 export const ESCAPE_KEY = 'Escape';
 export const COMMAND_KEY = 'Meta';
 export const CONTROL_KEY = 'Control';
+
+export const TRACE_TO_AXIS = {
+  cartesian: [
+    'scatter',
+    'box',
+    'bar',
+    'heatmap',
+    'contour',
+    'ohlc',
+    'candlestick',
+  ],
+  ternary: ['scatterternary'],
+  gl3d: ['scatter3d', 'surface', 'mesh3d'],
+  geo: ['scattergeo', 'choropleth'],
+  mapbox: ['scattermapbox'],
+};

@@ -4,11 +4,32 @@ import {UnconnectedFlaglist} from './Flaglist';
 import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedRadio} from './Radio';
 import {
+  capitalize,
   connectLayoutToPlot,
   connectToContainer,
   supplyLayoutPlotProps,
   striptags,
 } from 'lib';
+
+export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = props;
+    let options = [];
+    plotProps.options = [{label: 'x', value: 'x'}];
+    if (plotProps.fullContainer.subplot.includes('xaxis')) {
+      options = context.fullLayout._subplots.yaxis.map(axis => {
+        return {label: capitalize(axis), value: axis};
+      });
+    } else if (plotProps.fullContainer.subplot.includes('yaxis')) {
+      options = context.fullLayout._subplots.xaxis.map(axis => {
+        return {label: capitalize(axis), value: axis};
+      });
+    }
+    options.push({label: _('Free'), value: 'free'});
+    plotProps.options = options;
+    plotProps.clearable = false;
+  },
+});
 
 export const CanvasSize = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {

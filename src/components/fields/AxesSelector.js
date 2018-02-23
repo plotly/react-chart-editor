@@ -1,5 +1,6 @@
 import Field from './Field';
 import PropTypes from 'prop-types';
+import Dropdown from '../widgets/Dropdown';
 import RadioBlocks from '../widgets/RadioBlocks';
 import React, {Component} from 'react';
 
@@ -19,11 +20,20 @@ export default class AxesSelector extends Component {
 
     return (
       <Field {...this.props} center>
-        <RadioBlocks
-          options={axesOptions}
-          activeOption={axesTarget}
-          onOptionChange={axesTargetHandler}
-        />
+        {axesOptions.length > 4 ? ( // eslint-disable-line no-magic-numbers
+          <Dropdown
+            options={axesOptions}
+            value={axesTarget}
+            onChange={axesTargetHandler}
+            clearable={false}
+          />
+        ) : (
+          <RadioBlocks
+            options={axesOptions}
+            activeOption={axesTarget}
+            onOptionChange={axesTargetHandler}
+          />
+        )}
       </Field>
     );
   }

@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import {bem, localize} from 'lib';
 import {getMultiValueText} from 'lib/constants';
 import {CloseIcon} from 'plotly-icons';
+import Button from '../widgets/Button';
 
 export class FieldDelete extends Component {
   render() {
@@ -20,6 +21,8 @@ export class FieldDelete extends Component {
 class Field extends Component {
   render() {
     const {
+      action,
+      onAction,
       center,
       children,
       label,
@@ -58,6 +61,14 @@ class Field extends Component {
             </MenuPanel>
           ) : null}
         </div>
+        {action ? (
+          <Button
+            label={onAction.label}
+            variant={onAction.variant}
+            icon={onAction.icon}
+            onClick={onAction.onClick}
+          />
+        ) : null}
         {units ? (
           <div className={bem('field', 'units')}>
             <div className={bem('field', 'units-text')}>{units}</div>
@@ -75,6 +86,8 @@ Field.propTypes = {
   units: PropTypes.string,
   multiValued: PropTypes.bool,
   children: PropTypes.node,
+  action: PropTypes.bool,
+  onAction: PropTypes.object,
 };
 
 Field.defaultProps = {

@@ -8,6 +8,7 @@ import {
   GeoScope,
   Radio,
   Section,
+  AxisCreator,
   TraceAccordion,
   TraceSelector,
   TextEditor,
@@ -61,6 +62,10 @@ const GraphCreatePanel = ({localize: _}) => {
         <DataSelector label={_('A')} attr="a" />
         <DataSelector label={_('B')} attr="b" />
         <DataSelector label={_('C')} attr="c" />
+      </Section>
+
+      <Section name={_('Axes to Use')}>
+        <AxisCreator attr="fakeattr" />
       </Section>
 
       <Section name={_('Error Bars X')}>
