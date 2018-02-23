@@ -17,12 +17,29 @@ export default class AxesSelector extends Component {
 
   render() {
     const {axesTargetHandler, axesOptions, axesTarget} = this.context;
+    const hasSecondaryAxis =
+      axesOptions &&
+      axesOptions.some(option => {
+        return (
+          option.axisGroup &&
+          this.context.fullLayout._subplots[option.axisGroup].length > 1
+        );
+      });
 
     return (
       <Field {...this.props} center>
-        {axesOptions.length > 4 ? ( // eslint-disable-line no-magic-numbers
+        {hasSecondaryAxis ? (
           <Dropdown
-            options={axesOptions}
+            options={axesOptions.map(option => {
+              if (option.value !== 'allaxes') {
+                return {
+                  label: option.title,
+                  value: option.value,
+                };
+              }
+
+              return option;
+            })}
             value={axesTarget}
             onChange={axesTargetHandler}
             clearable={false}
@@ -43,4 +60,5 @@ AxesSelector.contextTypes = {
   axesTargetHandler: PropTypes.func,
   axesOptions: PropTypes.array,
   axesTarget: PropTypes.string,
+  fullLayout: PropTypes.object,
 };

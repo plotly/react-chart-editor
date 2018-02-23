@@ -2,7 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
-import {capitalize, getAllAxes, getDisplayName, localize} from '../lib';
+import {
+  capitalize,
+  getAllAxes,
+  getDisplayName,
+  localize,
+  striptags,
+} from '../lib';
 
 function computeAxesOptions(axes, _) {
   const options = [{label: _('All'), value: 'allaxes'}];
@@ -15,7 +21,15 @@ function computeAxesOptions(axes, _) {
       ? ax.subplot + '.' + ax._name
       : ax.subplot
     ).trim();
-    options[i + 1] = {label, value};
+    const axisTitle = !ax.title.startsWith('Click') ? ax.title : null;
+    options[i + 1] = {
+      label,
+      value,
+      axisGroup: ax.axisGroup,
+      title: striptags(
+        axisTitle ? `${label} Axis: ${axisTitle}` : capitalize(ax._id)
+      ),
+    };
   }
 
   return options;

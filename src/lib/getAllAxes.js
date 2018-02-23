@@ -19,12 +19,14 @@ export default function getAllAxes(fullLayout) {
                 : subplot + 'axis';
 
             fullLayout[subplot].subplot = subplot;
+            fullLayout[subplot].axisGroup = type;
             axes.push(fullLayout[subplot]);
           } else {
             Object.keys(fullLayout[subplot])
               .filter(key => key.includes('axis'))
               .forEach(axis => {
                 fullLayout[subplot][axis].subplot = subplot;
+                fullLayout[subplot][axis].axisGroup = type;
 
                 // it should be in plotly.js, but it's not there for geo axes..
                 if (!fullLayout[subplot][axis]._name) {
