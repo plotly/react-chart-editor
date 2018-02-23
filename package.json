@@ -62,7 +62,7 @@
     "postcss-remove-root": "^0.0.2",
     "prettier": "^1.9.2",
     "react-hot-loader": "^4.0.0-beta.21",
-    "react-plotly.js": "^1.4.0",
+    "react-plotly.js": "^1.6.0",
     "react-test-renderer": "^16.2.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
