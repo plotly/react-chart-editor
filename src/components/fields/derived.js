@@ -7,8 +7,8 @@ import {
   connectLayoutToPlot,
   connectToContainer,
   supplyLayoutPlotProps,
+  striptags,
 } from 'lib';
-import striptags from 'striptags';
 
 export const CanvasSize = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {

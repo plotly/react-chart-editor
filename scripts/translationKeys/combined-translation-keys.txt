@@ -9,10 +9,10 @@ $                                                                               
 45                                                                                                          // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:148
 90                                                                                                          // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:149
 @                                                                                                           // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:202
-A                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:384
-Africa                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:295
-Aitoff                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:328
-Albers USA                                                                                                  // react-plotly.js-editor: /components/fields/derived.js:337
+A                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:385
+Africa                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:296
+Aitoff                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:329
+Albers USA                                                                                                  // react-plotly.js-editor: /components/fields/derived.js:338
 All                                                                                                         // react-plotly.js-editor: /lib/connectAxesToLayout.js:8
 All Traces                                                                                                  // react-plotly.js-editor: /components/containers/TraceAccordion.js:83
 Ambient                                                                                                     // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:251
@@ -22,7 +22,7 @@ Annotation                                                                      
 Area                                                                                                        // react-plotly.js-editor: /components/fields/TraceSelector.js:57
 Arrow                                                                                                       // react-plotly.js-editor: /default_panels/StyleNotesPanel.js:29
 Arrowhead                                                                                                   // react-plotly.js-editor: /default_panels/StyleNotesPanel.js:39
-Asia                                                                                                        // react-plotly.js-editor: /components/fields/derived.js:294
+Asia                                                                                                        // react-plotly.js-editor: /components/fields/derived.js:295
 Aspect Ratio                                                                                                // react-plotly.js-editor: /default_panels/StyleImagesPanel.js:28
 Asymmetric                                                                                                  // react-plotly.js-editor: /components/fields/ErrorBars.js:81
 Atlas Map                                                                                                   // react-plotly.js-editor: /components/fields/TraceSelector.js:34
@@ -32,9 +32,9 @@ Axes                                                                            
 Axis Background                                                                                             // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:117
 Axis Line                                                                                                   // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:64
 Axis Width                                                                                                  // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:294
-Azimuthal Equal Area                                                                                        // react-plotly.js-editor: /components/fields/derived.js:317
-Azimuthal Equidistant                                                                                       // react-plotly.js-editor: /components/fields/derived.js:318
-B                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:385
+Azimuthal Equal Area                                                                                        // react-plotly.js-editor: /components/fields/derived.js:318
+Azimuthal Equidistant                                                                                       // react-plotly.js-editor: /components/fields/derived.js:319
+B                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:386
 Background Color                                                                                            // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:275
 Bar                                                                                                         // react-plotly.js-editor: /components/fields/TraceSelector.js:22
 Bar Padding                                                                                                 // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:109
@@ -53,7 +53,7 @@ Box Padding                                                                     
 Box Select                                                                                                  // plotly.js: components/modebar/buttons.js:103
 Box Width                                                                                                   // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:108
 Boxes                                                                                                       // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:374
-C                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:386
+C                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:387
 Candlestick                                                                                                 // react-plotly.js-editor: /components/fields/TraceSelector.js:46
 Canvas                                                                                                      // react-plotly.js-editor: /default_panels/StyleLayoutPanel.js:19
 Center                                                                                                      // react-plotly.js-editor: /default_panels/StyleColorbarsPanel.js:80
@@ -75,9 +75,9 @@ Coloring                                                                        
 Colorscale                                                                                                  // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:97
 Common Case: An 'All' tab might display this message because the X and Y tabs contain different settings.   // react-plotly.js-editor: /lib/constants.js:24
 Compare data on hover                                                                                       // plotly.js: components/modebar/buttons.js:167
-Conic Conformal                                                                                             // react-plotly.js-editor: /components/fields/derived.js:320
-Conic Equal Area                                                                                            // react-plotly.js-editor: /components/fields/derived.js:319
-Conic Equidistant                                                                                           // react-plotly.js-editor: /components/fields/derived.js:321
+Conic Conformal                                                                                             // react-plotly.js-editor: /components/fields/derived.js:321
+Conic Equal Area                                                                                            // react-plotly.js-editor: /components/fields/derived.js:320
+Conic Equidistant                                                                                           // react-plotly.js-editor: /components/fields/derived.js:322
 Connect                                                                                                     // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:133
 Connect Gaps                                                                                                // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:130
 Constant                                                                                                    // react-plotly.js-editor: /components/fields/ErrorBars.js:102
@@ -108,7 +108,7 @@ Double-click on legend to isolate one trace                                     
 Double-click to zoom back out                                                                               // plotly.js: plots/cartesian/dragbox.js:963
 Download plot as a png                                                                                      // plotly.js: components/modebar/buttons.js:52
 E+6                                                                                                         // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:162
-Eckert4                                                                                                     // react-plotly.js-editor: /components/fields/derived.js:316
+Eckert4                                                                                                     // react-plotly.js-editor: /components/fields/derived.js:317
 Edit in Chart Studio                                                                                        // plotly.js: components/modebar/buttons.js:76
 Edit in HTML                                                                                                // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:35
 Edit in Rich Text                                                                                           // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:250
@@ -119,14 +119,14 @@ End Position                                                                    
 Enter LaTeX formatted text                                                                                  // react-plotly.js-editor: /components/fields/TextEditor.js:34
 Enter Link URL                                                                                              // react-plotly.js-editor: /components/widgets/text_editors/RichText/LinkEditor.js:92
 Enter html formatted text                                                                                   // react-plotly.js-editor: /components/fields/TextEditor.js:51
-Equirectangular                                                                                             // react-plotly.js-editor: /components/fields/derived.js:309
+Equirectangular                                                                                             // react-plotly.js-editor: /components/fields/derived.js:310
 Error (+)                                                                                                   // react-plotly.js-editor: /components/fields/ErrorBars.js:138
 Error (-)                                                                                                   // react-plotly.js-editor: /components/fields/ErrorBars.js:142
 Error Bars X                                                                                                // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:66
 Error Bars Y                                                                                                // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:70
 Error Bars Z                                                                                                // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:74
 Error Type                                                                                                  // react-plotly.js-editor: /components/fields/ErrorBars.js:98
-Europe                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:293
+Europe                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:294
 Every                                                                                                       // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:176
 Expand All                                                                                                  // react-plotly.js-editor: /components/containers/PanelHeader.js:35
 Exponents                                                                                                   // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:156
@@ -147,12 +147,12 @@ Fraction of Plot                                                                
 Fresnel                                                                                                     // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:275
 Gaps in Data                                                                                                // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:203
 Global Font                                                                                                 // react-plotly.js-editor: /default_panels/StyleLayoutPanel.js:51
-Gnomonic                                                                                                    // react-plotly.js-editor: /components/fields/derived.js:322
+Gnomonic                                                                                                    // react-plotly.js-editor: /components/fields/derived.js:323
 Go back                                                                                                     // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:198
 Go to the 'Create' tab to define traces.                                                                    // react-plotly.js-editor: /components/containers/TraceRequiredPanel.js:49
 Graph                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:19
 Grid Lines                                                                                                  // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:94
-Hammer                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:325
+Hammer                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:326
 Heads up!                                                                                                   // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:181
 Heatmap                                                                                                     // react-plotly.js-editor: /components/fields/TraceSelector.js:23
 Height                                                                                                      // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:270
@@ -181,7 +181,7 @@ Interpolate Gaps                                                                
 J (Optional)                                                                                                // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:55
 Jitter                                                                                                      // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:89
 K (Optional)                                                                                                // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:56
-Kavrayskiy7                                                                                                 // react-plotly.js-editor: /components/fields/derived.js:313
+Kavrayskiy7                                                                                                 // react-plotly.js-editor: /components/fields/derived.js:314
 LaTeX                                                                                                       // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:30
 LaTeX is a math typesetting language that doesn't work with rich text.                                      // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:115
 Label                                                                                                       // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:49
@@ -189,7 +189,7 @@ Label Formatting                                                                
 Labels                                                                                                      // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:25
 Lasso Select                                                                                                // plotly.js: components/modebar/buttons.js:112
 Last                                                                                                        // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:178
-Latitude                                                                                                    // react-plotly.js-editor: /components/fields/derived.js:366
+Latitude                                                                                                    // react-plotly.js-editor: /components/fields/derived.js:367
 Layout                                                                                                      // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:293
 Left                                                                                                        // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:81
 Legend                                                                                                      // react-plotly.js-editor: /default_panels/StyleLegendPanel.js:19
@@ -202,10 +202,10 @@ Line Color                                                                      
 Line Width                                                                                                  // react-plotly.js-editor: /default_panels/StyleNotesPanel.js:37
 Linear                                                                                                      // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:48
 Lines                                                                                                       // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:63
-Location                                                                                                    // react-plotly.js-editor: /components/fields/derived.js:356
+Location                                                                                                    // react-plotly.js-editor: /components/fields/derived.js:357
 Location Format                                                                                             // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:83
 Locations                                                                                                   // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:27
-Longitude                                                                                                   // react-plotly.js-editor: /components/fields/derived.js:365
+Longitude                                                                                                   // react-plotly.js-editor: /components/fields/derived.js:366
 Looks like there aren't any traces defined yet.                                                             // react-plotly.js-editor: /components/containers/TraceRequiredPanel.js:48
 Low                                                                                                         // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:59
 Map Region                                                                                                  // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:96
@@ -217,24 +217,24 @@ Max Contours                                                                    
 Max Number of Labels                                                                                        // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:229
 Max Number of Markers                                                                                       // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:257
 Mean                                                                                                        // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:335
-Mercator                                                                                                    // react-plotly.js-editor: /components/fields/derived.js:310
+Mercator                                                                                                    // react-plotly.js-editor: /components/fields/derived.js:311
 Middle                                                                                                      // react-plotly.js-editor: /default_panels/StyleColorbarsPanel.js:93
 Middle Center                                                                                               // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:159
 Middle Left                                                                                                 // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:158
 Middle Right                                                                                                // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:160
-Miller                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:314
+Miller                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:315
 Min                                                                                                         // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:43
 Min Contour                                                                                                 // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:245
 Mirror Axis                                                                                                 // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:86
-Mollweide                                                                                                   // react-plotly.js-editor: /components/fields/derived.js:324
+Mollweide                                                                                                   // react-plotly.js-editor: /components/fields/derived.js:325
 Multiple Values                                                                                             // react-plotly.js-editor: /lib/constants.js:18
-Name                                                                                                        // react-plotly.js-editor: /components/fields/derived.js:359
-Natural Earth                                                                                               // react-plotly.js-editor: /components/fields/derived.js:312
+Name                                                                                                        // react-plotly.js-editor: /components/fields/derived.js:360
+Natural Earth                                                                                               // react-plotly.js-editor: /components/fields/derived.js:313
 No                                                                                                          // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:114
 No Results                                                                                                  // react-plotly.js-editor: /components/widgets/Dropdown.js:75
-None                                                                                                        // react-plotly.js-editor: /components/fields/derived.js:401
+None                                                                                                        // react-plotly.js-editor: /components/fields/derived.js:402
 Normal                                                                                                      // react-plotly.js-editor: /default_panels/StyleLegendPanel.js:96
-North America                                                                                               // react-plotly.js-editor: /components/fields/derived.js:296
+North America                                                                                               // react-plotly.js-editor: /components/fields/derived.js:297
 Note Text                                                                                                   // react-plotly.js-editor: /default_panels/StyleNotesPanel.js:22
 Notes                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:22
 Number of Contours                                                                                          // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:235
@@ -249,7 +249,7 @@ Open                                                                            
 Options                                                                                                     // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:78
 Orbital rotation                                                                                            // plotly.js: components/modebar/buttons.js:276
 Orientation                                                                                                 // react-plotly.js-editor: /default_panels/StyleLegendPanel.js:83
-Orthographic                                                                                                // react-plotly.js-editor: /components/fields/derived.js:311
+Orthographic                                                                                                // react-plotly.js-editor: /components/fields/derived.js:312
 Outside                                                                                                     // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:238
 Padding                                                                                                     // react-plotly.js-editor: /default_panels/StyleColorbarsPanel.js:98
 Pan                                                                                                         // plotly.js: components/modebar/buttons.js:94
@@ -261,8 +261,8 @@ Position                                                                        
 Positioning                                                                                                 // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:308
 Positioning Anchor                                                                                          // react-plotly.js-editor: /default_panels/StyleColorbarsPanel.js:76
 Prefix                                                                                                      // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:172
-Previous X                                                                                                  // react-plotly.js-editor: /components/fields/derived.js:405
-Previous Y                                                                                                  // react-plotly.js-editor: /components/fields/derived.js:404
+Previous X                                                                                                  // react-plotly.js-editor: /components/fields/derived.js:406
+Previous Y                                                                                                  // react-plotly.js-editor: /components/fields/derived.js:405
 Produced with Plotly                                                                                        // plotly.js: components/modebar/modebar.js:256
 Projection                                                                                                  // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:102
 Range                                                                                                       // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:34
@@ -280,7 +280,7 @@ Reversed                                                                        
 Rich Text                                                                                                   // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:25
 Rich text is incompatible with LaTeX.                                                                       // react-plotly.js-editor: /components/widgets/text_editors/MultiFormat.js:121
 Right                                                                                                       // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:82
-Robinson                                                                                                    // react-plotly.js-editor: /components/fields/derived.js:315
+Robinson                                                                                                    // react-plotly.js-editor: /components/fields/derived.js:316
 Roughness                                                                                                   // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:269
 Satellite Map                                                                                               // react-plotly.js-editor: /components/fields/TraceSelector.js:66
 Scale                                                                                                       // react-plotly.js-editor: /default_panels/StyleNotesPanel.js:40
@@ -294,21 +294,21 @@ Show Contour                                                                    
 Show Sides                                                                                                  // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:332
 Show closest data on hover                                                                                  // plotly.js: components/modebar/buttons.js:157
 Side                                                                                                        // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:310
-Sinusoidal                                                                                                  // react-plotly.js-editor: /components/fields/derived.js:329
+Sinusoidal                                                                                                  // react-plotly.js-editor: /components/fields/derived.js:330
 Size                                                                                                        // react-plotly.js-editor: /default_panels/StyleColorbarsPanel.js:51
 Size and Positioning                                                                                        // react-plotly.js-editor: /default_panels/StyleColorbarsPanel.js:50
 Size and Spacing                                                                                            // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:106
 Snapshot succeeded                                                                                          // plotly.js: components/modebar/buttons.js:66
 Sorry, there was a problem downloading your snapshot!                                                       // plotly.js: components/modebar/buttons.js:69
 Source                                                                                                      // react-plotly.js-editor: /default_panels/StyleImagesPanel.js:25
-South America                                                                                               // react-plotly.js-editor: /components/fields/derived.js:297
+South America                                                                                               // react-plotly.js-editor: /components/fields/derived.js:298
 Specular                                                                                                    // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:263
 Standard Deviation                                                                                          // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:343
 Start Point                                                                                                 // react-plotly.js-editor: /default_panels/StyleShapesPanel.js:35
 Start Position                                                                                              // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:296
 Step Offset                                                                                                 // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:227
 Step Size                                                                                                   // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:228
-Stereographic                                                                                               // react-plotly.js-editor: /components/fields/derived.js:323
+Stereographic                                                                                               // react-plotly.js-editor: /components/fields/derived.js:324
 Stretch                                                                                                     // react-plotly.js-editor: /default_panels/StyleImagesPanel.js:33
 Style                                                                                                       // react-plotly.js-editor: /DefaultEditor.js:20
 Suffix                                                                                                      // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:183
@@ -318,7 +318,7 @@ Symbol                                                                          
 Symmetric                                                                                                   // react-plotly.js-editor: /components/fields/ErrorBars.js:80
 Taking snapshot - this may take a few seconds                                                               // plotly.js: components/modebar/buttons.js:57
 Ternary Scatter                                                                                             // react-plotly.js-editor: /components/fields/TraceSelector.js:29
-Text                                                                                                        // react-plotly.js-editor: /components/fields/derived.js:358
+Text                                                                                                        // react-plotly.js-editor: /components/fields/derived.js:359
 Text Attributes                                                                                             // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:45
 Text Position                                                                                               // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:151
 The anchor point determines which side of the annotation's positioning coordinates refer to.                // react-plotly.js-editor: /default_panels/StyleNotesPanel.js:51
@@ -333,8 +333,8 @@ Ticks                                                                           
 Title                                                                                                       // react-plotly.js-editor: /default_panels/StyleColorbarsPanel.js:30
 Title and Fonts                                                                                             // react-plotly.js-editor: /default_panels/StyleLayoutPanel.js:40
 Titles                                                                                                      // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:27
-To Next                                                                                                     // react-plotly.js-editor: /components/fields/derived.js:412
-To Self                                                                                                     // react-plotly.js-editor: /components/fields/derived.js:411
+To Next                                                                                                     // react-plotly.js-editor: /components/fields/derived.js:413
+To Self                                                                                                     // react-plotly.js-editor: /components/fields/derived.js:412
 Toggle Spike Lines                                                                                          // plotly.js: components/modebar/buttons.js:548
 Toggle show closest data on hover                                                                           // plotly.js: components/modebar/buttons.js:353
 Top                                                                                                         // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:80
@@ -345,16 +345,16 @@ Trace                                                                           
 Trace Order                                                                                                 // react-plotly.js-editor: /default_panels/StyleLegendPanel.js:92
 Traces                                                                                                      // react-plotly.js-editor: /DefaultEditor.js:20
 Transpose                                                                                                   // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:111
-Transverse Mercator                                                                                         // react-plotly.js-editor: /components/fields/derived.js:326
+Transverse Mercator                                                                                         // react-plotly.js-editor: /components/fields/derived.js:327
 Turntable rotation                                                                                          // plotly.js: components/modebar/buttons.js:285
 Type                                                                                                        // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:22
 Typeface                                                                                                    // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:29
 URL                                                                                                         // react-plotly.js-editor: /components/widgets/text_editors/RichText/LinkEditor.js:93
-USA                                                                                                         // react-plotly.js-editor: /components/fields/derived.js:292
+USA                                                                                                         // react-plotly.js-editor: /components/fields/derived.js:293
 USA State Abbreviations (e.g. NY)                                                                           // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:90
 Value                                                                                                       // react-plotly.js-editor: /components/fields/ErrorBars.js:107
 Value (-)                                                                                                   // react-plotly.js-editor: /components/fields/ErrorBars.js:132
-Values                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:357
+Values                                                                                                      // react-plotly.js-editor: /components/fields/derived.js:358
 Values Shown On Hover                                                                                       // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:354
 Vertex Normal                                                                                               // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:281
 Vertexcolor                                                                                                 // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:81
@@ -367,21 +367,21 @@ Vertical Positioning                                                            
 Well this is embarrassing.                                                                                  // react-plotly.js-editor: /components/containers/Panel.js:16
 Whiskers                                                                                                    // react-plotly.js-editor: /default_panels/StyleTracesPanel.js:117
 Width                                                                                                       // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:243
-Winkel Tripel                                                                                               // react-plotly.js-editor: /components/fields/derived.js:327
-World                                                                                                       // react-plotly.js-editor: /components/fields/derived.js:291
-X                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:349
-X = 0                                                                                                       // react-plotly.js-editor: /components/fields/derived.js:403
+Winkel Tripel                                                                                               // react-plotly.js-editor: /components/fields/derived.js:328
+World                                                                                                       // react-plotly.js-editor: /components/fields/derived.js:292
+X                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:350
+X = 0                                                                                                       // react-plotly.js-editor: /components/fields/derived.js:404
 X Position                                                                                                  // react-plotly.js-editor: /default_panels/StyleLegendPanel.js:71
 X Values                                                                                                    // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:32
 X Vector                                                                                                    // react-plotly.js-editor: /default_panels/StyleNotesPanel.js:43
-Y                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:350
-Y = 0                                                                                                       // react-plotly.js-editor: /components/fields/derived.js:402
+Y                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:351
+Y = 0                                                                                                       // react-plotly.js-editor: /components/fields/derived.js:403
 Y Position                                                                                                  // react-plotly.js-editor: /default_panels/StyleLegendPanel.js:77
 Y Values                                                                                                    // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:40
 Y Vector                                                                                                    // react-plotly.js-editor: /default_panels/StyleNotesPanel.js:44
 Yes                                                                                                         // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:115
 Your plot does not have any axes to style.                                                                  // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:25
-Z                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:351
+Z                                                                                                           // react-plotly.js-editor: /components/fields/derived.js:352
 Z Values                                                                                                    // react-plotly.js-editor: /default_panels/GraphCreatePanel.js:49
 Zero Line                                                                                                   // react-plotly.js-editor: /default_panels/StyleAxesPanel.js:105
 Zoom                                                                                                        // plotly.js: components/modebar/buttons.js:85
