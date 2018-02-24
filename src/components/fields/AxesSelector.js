@@ -30,6 +30,7 @@ export default class AxesSelector extends Component {
       <Field {...this.props} center>
         {hasSecondaryAxis ? (
           <Dropdown
+            label={_('Select Axis')}
             options={axesOptions.map(option => {
               if (option.value !== 'allaxes') {
                 return {

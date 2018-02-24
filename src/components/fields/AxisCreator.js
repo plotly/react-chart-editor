@@ -23,10 +23,9 @@ export class UnconnectedAxisCreator extends Component {
       context.data.filter(d => d.type === props.container.type).length === 1;
 
     function getNewSubplot(axis, subplot) {
-      const ok = isFirstTraceOfType
+      return isFirstTraceOfType
         ? axis
         : axis + (context.fullLayout._subplots[subplot].length + 1);
-      return ok;
     }
 
     function getAxisControl(label, attr, subplot, update) {

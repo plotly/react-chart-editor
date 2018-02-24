@@ -55,5 +55,9 @@ export function traceTypeToAxisType(traceType) {
     return category;
   }
 
+  if (traceType === 'pie') {
+    return null;
+  }
+
   throw new Error(`Sorry, could not find ${traceType} in any category.`);
 }

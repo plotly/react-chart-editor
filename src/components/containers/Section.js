@@ -4,6 +4,7 @@ import {
   containerConnectedContextTypes,
   localize,
   unpackPlotProps,
+  traceTypeToAxisType,
 } from '../../lib';
 
 class Section extends Component {
@@ -36,7 +37,13 @@ class Section extends Component {
       }
 
       if ((child.type.plotly_editor_traits || {}).is_axis_creator) {
-        if (this.context.data.length > 1) {
+        const {data, fullContainer} = this.context;
+
+        // for now, only allowing for cartesian chart types
+        if (
+          data.length > 1 &&
+          traceTypeToAxisType(data[fullContainer.index].type) === 'cartesian'
+        ) {
           this.sectionVisible = true;
           return cloneElement(child, {
             isVisible: true,
