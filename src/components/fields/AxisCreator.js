@@ -4,6 +4,7 @@ import Info from './Info';
 import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
 import {connectToContainer, localize, traceTypeToAxisType} from 'lib';
+import {EDITOR_ACTIONS} from 'lib/constants';
 import {PlusIcon} from 'plotly-icons';
 
 export class UnconnectedAxisCreator extends Component {
@@ -40,7 +41,21 @@ export class UnconnectedAxisCreator extends Component {
             label: _('Axis'),
             variant: 'secondary',
             icon: icon,
-            onClick: () => props.updateContainer(update),
+            onClick: () => {
+              props.updateContainer(update);
+              if (subplot.startsWith('yaxis')) {
+                context.onUpdate({
+                  type: EDITOR_ACTIONS.UPDATE_LAYOUT,
+                  payload: {
+                    update: {
+                      [`${subplot +
+                        (context.fullLayout._subplots[subplot].length +
+                          1)}.side`]: 'right',
+                    },
+                  },
+                });
+              }
+            },
           }}
           options={context.fullLayout._subplots[subplot].map(subplot => ({
             label: subplot,
@@ -125,6 +140,7 @@ UnconnectedAxisCreator.propTypes = {
 UnconnectedAxisCreator.contextTypes = {
   fullLayout: PropTypes.object,
   data: PropTypes.array,
+  onUpdate: PropTypes.func,
 };
 
 UnconnectedAxisCreator.plotly_editor_traits = {

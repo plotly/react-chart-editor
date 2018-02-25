@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import Dropdown from '../widgets/Dropdown';
 import RadioBlocks from '../widgets/RadioBlocks';
 import React, {Component} from 'react';
+import {localize} from 'lib';
 
-export default class AxesSelector extends Component {
+class AxesSelector extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -17,6 +18,7 @@ export default class AxesSelector extends Component {
 
   render() {
     const {axesTargetHandler, axesOptions, axesTarget} = this.context;
+    const {localize: _} = this.props;
     const hasSecondaryAxis =
       axesOptions &&
       axesOptions.some(option => {
@@ -26,11 +28,10 @@ export default class AxesSelector extends Component {
         );
       });
 
-    return (
-      <Field {...this.props} center>
-        {hasSecondaryAxis ? (
+    if (hasSecondaryAxis) {
+      return (
+        <Field {...this.props} label={_('Axis to Style')}>
           <Dropdown
-            label={_('Select Axis')}
             options={axesOptions.map(option => {
               if (option.value !== 'allaxes') {
                 return {
@@ -45,13 +46,17 @@ export default class AxesSelector extends Component {
             onChange={axesTargetHandler}
             clearable={false}
           />
-        ) : (
-          <RadioBlocks
-            options={axesOptions}
-            activeOption={axesTarget}
-            onOptionChange={axesTargetHandler}
-          />
-        )}
+        </Field>
+      );
+    }
+
+    return (
+      <Field {...this.props} center>
+        <RadioBlocks
+          options={axesOptions}
+          activeOption={axesTarget}
+          onOptionChange={axesTargetHandler}
+        />
       </Field>
     );
   }
@@ -63,3 +68,9 @@ AxesSelector.contextTypes = {
   axesTarget: PropTypes.string,
   fullLayout: PropTypes.object,
 };
+
+AxesSelector.propTypes = {
+  localize: PropTypes.func,
+};
+
+export default localize(AxesSelector);
