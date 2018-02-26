@@ -21,13 +21,15 @@ function computeAxesOptions(axes, _) {
       ? ax.subplot + '.' + ax._name
       : ax.subplot
     ).trim();
-    const axisTitle = !ax.title.startsWith('Click') ? ax.title : null;
+
     options[i + 1] = {
       label,
       value,
       axisGroup: ax.axisGroup,
       title: striptags(
-        axisTitle ? `${label} Axis: ${axisTitle}` : capitalize(ax._id)
+        ax._input.title
+          ? `${label} Axis: ${ax._input.title}`
+          : capitalize(ax._id)
       ),
     };
   }

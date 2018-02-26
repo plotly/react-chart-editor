@@ -7,6 +7,7 @@ import {
   capitalize,
   connectLayoutToPlot,
   connectToContainer,
+  getAllAxes,
   supplyLayoutPlotProps,
   striptags,
 } from 'lib';
@@ -196,7 +197,7 @@ export const LayoutNumericFractionInverse = connectLayoutToPlot(
 
 export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {fullContainer: {xref, yref}, plotly, graphDiv} = context;
+    const {fullContainer: {xref, yref}} = context;
 
     let currentAxisRef;
     if (props.attr === 'axref') {
@@ -212,12 +213,19 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
 
     if (currentAxisRef === 'paper') {
       // If currentAxesRef is paper provide all axes options to user.
-      plotProps.options = [
-        {label: 'in pixels', value: 'pixel'},
-        ...computeAxesRefOptions(
-          plotly.Axes.list(graphDiv, props.attr.charAt(1))
-        ),
-      ];
+      if (props.attr === 'axref') {
+        plotProps.options = [
+          {label: 'in pixels', value: 'pixel'},
+          ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'x'),
+        ];
+      }
+
+      if (props.attr === 'ayref') {
+        plotProps.options = [
+          {label: 'in pixels', value: 'pixel'},
+          ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'y'),
+        ];
+      }
     } else {
       // If currentAxesRef is an actual axes then offer that value as the only
       // axes option.
@@ -233,7 +241,7 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
 
 export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {fullContainer: {axref, ayref}, graphDiv, plotly} = context;
+    const {fullContainer: {axref, ayref}} = context;
 
     let currentOffsetRef;
     if (props.attr === 'xref') {
@@ -247,12 +255,19 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
       );
     }
 
-    plotProps.options = [
-      {label: 'Canvas', value: 'paper'},
-      ...computeAxesRefOptions(
-        plotly.Axes.list(graphDiv, props.attr.charAt(0))
-      ),
-    ];
+    if (props.attr === 'xref') {
+      plotProps.options = [
+        {label: 'Canvas', value: 'paper'},
+        ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'x'),
+      ];
+    }
+
+    if (props.attr === 'yref') {
+      plotProps.options = [
+        {label: 'Canvas', value: 'paper'},
+        ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'y'),
+      ];
+    }
 
     if (currentOffsetRef !== 'pixel') {
       plotProps.updatePlot = v => {
@@ -280,15 +295,19 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
 
 export const PositioningRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {graphDiv, plotly} = context;
+    if (props.attr === 'xref') {
+      plotProps.options = [
+        {label: 'Canvas', value: 'paper'},
+        ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'x'),
+      ];
+    }
 
-    plotProps.options = [
-      {label: 'Canvas', value: 'paper'},
-      ...computeAxesRefOptions(
-        plotly.Axes.list(graphDiv, props.attr.charAt(0))
-      ),
-    ];
-
+    if (props.attr === 'yref') {
+      plotProps.options = [
+        {label: 'Canvas', value: 'paper'},
+        ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'y'),
+      ];
+    }
     plotProps.clearable = false;
   },
 });
@@ -321,14 +340,15 @@ export const PositioningNumeric = connectToContainer(UnconnectedNumeric, {
   },
 });
 
-function computeAxesRefOptions(axes) {
+function computeAxesRefOptions(axes, refAxis) {
   const options = [];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
-
-    // checking user data for title avoids default "Click to enter axis title"
-    const label = striptags(ax._input.title || ax._id);
-    options[i] = {label, value: ax._id};
+    if (ax._id.charAt(0) === refAxis) {
+      // checking user data for title avoids default "Click to enter axis title"
+      const label = striptags(ax._input.title || ax._id);
+      options.push({label, value: ax._id});
+    }
   }
 
   return options;
