@@ -4,8 +4,6 @@
 import {getFromId} from 'plotly.js/src/plots/cartesian/axis_ids';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 
-
-
 // Temporary fix for:
 // https://github.com/plotly/react-plotly.js-editor/issues/103
 // We should be able to remove this once the plotly.react method has
