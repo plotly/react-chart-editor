@@ -2,7 +2,7 @@
 * Rangeslider
 */
 .rangeslider {
-  margin: 20px var(--spacing-quarter-unit);
+  margin: 0 var(--spacing-quarter-unit);
   min-width: 60px;
   position: relative;
   background: var(--color-background-light);
@@ -60,7 +60,7 @@
 * Rangeslider - Horizontal slider
 */
 .rangeslider-horizontal {
-  height: 10px;
+  height: 6px;
   border-radius: 10px;
   .rangeslider__fill {
     height: 100%;
