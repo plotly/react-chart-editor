@@ -369,21 +369,15 @@ export const PositioningNumeric = connectToContainer(UnconnectedNumeric, {
   },
 });
 
-function computeAxesRefOptions(axes, refAxis) {
+function computeAxesRefOptions(axes, propsAttr) {
   const options = [];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
-<<<<<<< HEAD
-    if (ax._id.charAt(0) === refAxis) {
-      // checking user data for title avoids default "Click to enter axis title"
-      const label = striptags(ax._input.title || ax._id);
-=======
     if (
       ax._id.charAt(0) === propsAttr.charAt(0) ||
       ax._id.charAt(0) === propsAttr.charAt(1)
     ) {
       const label = getAxisTitle(ax);
->>>>>>> Standardize axis titles
       options.push({label, value: ax._id});
     }
   }
