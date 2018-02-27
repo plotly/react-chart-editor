@@ -40,6 +40,7 @@
   }
   &__title {
     width: 30%;
+    //flex-shrink:0;
     padding-left: var(--spacing-half-unit);
     display: block;
     font-size: var(--font-size-small);
