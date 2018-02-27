@@ -61,6 +61,40 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
   },
 });
 
+export const AxisSide = connectToContainer(UnconnectedRadio, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const _ = props.localize;
+    if (
+      context.fullContainer._id &&
+      context.fullContainer._id.startsWith('y')
+    ) {
+      plotProps.options = [
+        {label: _('Left'), value: 'left'},
+        {label: _('Right'), value: 'right'},
+      ];
+      return;
+    }
+
+    if (
+      context.fullContainer._id &&
+      context.fullContainer._id.startsWith('x')
+    ) {
+      plotProps.options = [
+        {label: _('Bottom'), value: 'bottom'},
+        {label: _('Top'), value: 'top'},
+      ];
+      return;
+    }
+
+    plotProps.options = [
+      {label: _('Left'), value: 'left'},
+      {label: _('Right'), value: 'right'},
+      {label: _('Bottom'), value: 'bottom'},
+      {label: _('Top'), value: 'top'},
+    ];
+  },
+});
+
 export const CanvasSize = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer, updateContainer, container} = plotProps;

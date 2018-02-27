@@ -33,6 +33,7 @@ import {
   LayoutNumericFractionInverse,
   TraceOrientation,
   AxisOverlayDropdown,
+  AxisSide,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './lineSelectors';
 
@@ -73,4 +74,5 @@ export {
   TraceSelector,
   AxisCreator,
   AxisOverlayDropdown,
+  AxisSide,
 };

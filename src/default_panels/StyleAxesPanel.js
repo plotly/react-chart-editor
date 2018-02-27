@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   AxisAnchorDropdown,
   AxisOverlayDropdown,
+  AxisSide,
   AxesRange,
   ColorPicker,
   Dropdown,
@@ -47,16 +48,7 @@ const StyleAxesPanel = ({localize: _}) => (
             attr="overlaying"
             localize={_}
           />
-          <Radio
-            label={_('Side')}
-            attr="side"
-            options={[
-              {label: _('Bottom'), value: 'bottom'},
-              {label: _('Top'), value: 'top'},
-              {label: _('Left'), value: 'left'},
-              {label: _('Right'), value: 'right'},
-            ]}
-          />
+          <AxisSide label={_('Side')} attr="side" localize={_} />
         </Section>
       </AxesFold>
 
