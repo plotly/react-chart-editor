@@ -2,7 +2,7 @@ import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {bem} from './lib';
-import {noShame, maybeClearAxisTypes} from './shame';
+import {maybeClearAxisTypes} from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
@@ -10,8 +10,6 @@ import nestedProperty from 'plotly.js/src/lib/nested_property';
 class PlotlyEditor extends Component {
   constructor(props, context) {
     super(props, context);
-
-    noShame({plotly: this.props.plotly});
 
     // we only need to compute this once.
     if (this.props.plotly) {
