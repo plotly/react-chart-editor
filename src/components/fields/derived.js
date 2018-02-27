@@ -17,14 +17,14 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
     const {localize: _} = props;
     let options = [];
     plotProps.options = [{label: 'x', value: 'x'}];
-    if (plotProps.fullContainer.subplot.includes('xaxis')) {
+    if (plotProps.fullContainer._subplot.includes('xaxis')) {
       options = context.fullLayout._subplots.yaxis.map(axis => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
           value: axis,
         };
       });
-    } else if (plotProps.fullContainer.subplot.includes('yaxis')) {
+    } else if (plotProps.fullContainer._subplot.includes('yaxis')) {
       options = context.fullLayout._subplots.xaxis.map(axis => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
@@ -41,14 +41,14 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
 export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
     let options = [];
-    if (plotProps.fullContainer.subplot.includes('xaxis')) {
+    if (plotProps.fullContainer._subplot.includes('xaxis')) {
       options = context.fullLayout._subplots.xaxis.map(axis => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
           value: axis,
         };
       });
-    } else if (plotProps.fullContainer.subplot.includes('yaxis')) {
+    } else if (plotProps.fullContainer._subplot.includes('yaxis')) {
       options = context.fullLayout._subplots.yaxis.map(axis => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),

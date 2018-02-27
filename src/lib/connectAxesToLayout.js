@@ -15,17 +15,17 @@ function computeAxesOptions(axes, _) {
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
     const label = capitalize(ax._name.split('axis')[0]);
-    const value = (ax.subplot &&
-    !ax.subplot.includes('xaxis') &&
-    !ax.subplot.includes('yaxis')
-      ? ax.subplot + '.' + ax._name
-      : ax.subplot
+    const value = (ax._subplot &&
+    !ax._subplot.includes('xaxis') &&
+    !ax._subplot.includes('yaxis')
+      ? ax._subplot + '.' + ax._name
+      : ax._subplot
     ).trim();
 
     options[i + 1] = {
       label,
       value,
-      axisGroup: ax.axisGroup,
+      axisGroup: ax._axisGroup,
       title: getAxisTitle(ax),
     };
   }
@@ -105,7 +105,7 @@ export default function connectAxesToLayout(WrappedComponent) {
       const keys = Object.keys(update);
       for (let i = 0; i < keys.length; i++) {
         for (let j = 0; j < axes.length; j++) {
-          const subplot = axes[j].subplot;
+          const subplot = axes[j]._subplot;
           let axesKey = axes[j]._name;
 
           if (
