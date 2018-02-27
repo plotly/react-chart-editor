@@ -3,8 +3,12 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
-import {unpackPlotProps, localize, containerConnectedContextTypes} from 'lib';
-import striptags from 'striptags';
+import {
+  unpackPlotProps,
+  localize,
+  containerConnectedContextTypes,
+  striptags,
+} from 'lib';
 
 class Fold extends Component {
   constructor(props, context) {
