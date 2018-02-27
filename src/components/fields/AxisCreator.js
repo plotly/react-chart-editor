@@ -50,6 +50,7 @@ export class UnconnectedAxisCreator extends Component {
             onClick: () => {
               props.updateContainer(update);
               if (subplot.startsWith('yaxis')) {
+                const currentAxis = props.fullContainer.yaxis;
                 context.onUpdate({
                   type: EDITOR_ACTIONS.UPDATE_LAYOUT,
                   payload: {
@@ -57,6 +58,9 @@ export class UnconnectedAxisCreator extends Component {
                       [`${subplot +
                         (context.fullLayout._subplots[subplot].length +
                           1)}.side`]: 'right',
+                      [`${subplot +
+                        (context.fullLayout._subplots[subplot].length +
+                          1)}.overlaying`]: currentAxis,
                     },
                   },
                 });

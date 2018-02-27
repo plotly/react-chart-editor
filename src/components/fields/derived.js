@@ -38,6 +38,29 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
   },
 });
 
+export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    let options = [];
+    if (plotProps.fullContainer.subplot.includes('xaxis')) {
+      options = context.fullLayout._subplots.xaxis.map(axis => {
+        return {
+          label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
+          value: axis,
+        };
+      });
+    } else if (plotProps.fullContainer.subplot.includes('yaxis')) {
+      options = context.fullLayout._subplots.yaxis.map(axis => {
+        return {
+          label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
+          value: axis,
+        };
+      });
+    }
+    plotProps.options = options;
+    plotProps.clearable = false;
+  },
+});
+
 export const CanvasSize = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer, updateContainer, container} = plotProps;

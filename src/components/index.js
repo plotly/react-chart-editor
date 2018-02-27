@@ -2,6 +2,7 @@ import {
   AnnotationArrowRef,
   AnnotationRef,
   AxisAnchorDropdown,
+  AxisOverlayDropdown,
   PositioningRef,
   ArrowSelector,
   AxesRange,
@@ -61,6 +62,7 @@ import PanelMenuWrapper from './PanelMenuWrapper';
 export {
   AnnotationAccordion,
   AxisAnchorDropdown,
+  AxisOverlayDropdown,
   ShapeAccordion,
   ImageAccordion,
   AnnotationArrowRef,

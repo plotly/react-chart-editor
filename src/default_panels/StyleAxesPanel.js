@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   AxisAnchorDropdown,
+  AxisOverlayDropdown,
   AxesRange,
   ColorPicker,
   Dropdown,
@@ -41,6 +42,11 @@ const StyleAxesPanel = ({localize: _}) => (
 
         <Section name={_('Positioning')}>
           <AxisAnchorDropdown label={_('Anchor')} attr="anchor" localize={_} />
+          <AxisOverlayDropdown
+            label={_('Overlay')}
+            attr="overlaying"
+            localize={_}
+          />
           <Radio
             label={_('Side')}
             attr="side"
