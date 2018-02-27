@@ -5,7 +5,6 @@ function computeTraceOptionsFromSchema(schema, _, context) {
     t => !['area', 'scattermapbox'].includes(t)
   );
 
-  // explicit map of all supported trace types (as of plotlyjs 1.32)
   const traceOptions = [
     {
       value: 'scatter',

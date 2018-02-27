@@ -38,7 +38,7 @@ $item-size: 90px;
       .trace-grid__column__items {
         display: grid;
         grid-gap: 0px;
-        grid-template-columns: repeat(4, $item-size);
+        grid-template-columns: repeat(4, 1fr);
       }
     }
 
@@ -75,6 +75,7 @@ $item-size: 90px;
   justify-content: flex-start;
   flex-grow: 0;
   margin-top: var(--spacing-base-unit);
+  color: var(--color-text-base);
   @include trans;
   position: relative;
 
@@ -128,7 +129,7 @@ $item-size: 90px;
 
   &:hover {
     cursor: pointer;
-
+    color: var(--color-accent);
     .trace-item__label {
       color: var(--color-accent);
     }
@@ -146,10 +147,25 @@ $item-size: 90px;
     border-radius: var(--border-radius);
     background: var(--color-background-top);
     box-shadow: 0 2px 9px transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     @include trans;
+
+    svg {
+      display: block;
+      * {
+        fill: currentColor;
+      }
+    }
 
     img {
       display: block;
+      font-size: 10px;
+      color: var(--color-text-base);
+    }
+    &__wrapper {
+      width: 100%;
     }
   }
   &__label {
@@ -184,7 +200,7 @@ $item-size: 90px;
   height: 36px;
   border-radius: var(--border-radius);
   padding: 0 var(--spacing-quarter-unit);
-  &:hover{
+  &:hover {
     cursor: pointer;
     border-color: var(--color-border-dark);
   }
@@ -194,7 +210,7 @@ $item-size: 90px;
     svg {
       max-width: 100%;
       display: block;
-      *{
+      * {
         fill: currentColor;
       }
     }

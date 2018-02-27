@@ -49,7 +49,7 @@ class PlotlyEditor extends Component {
       onUpdate: this.handleUpdate.bind(this),
       plotSchema: this.plotSchema,
       plotly: this.props.plotly,
-      traceSelectorConfig: this.props.traceSelectorConfig,
+      traceTypesConfig: this.props.traceTypesConfig,
     };
   }
 
@@ -252,12 +252,12 @@ PlotlyEditor.propTypes = {
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
   revision: PropTypes.any,
-  traceSelectorConfig: PropTypes.object,
+  traceTypesConfig: PropTypes.object,
 };
 
 PlotlyEditor.defaultProps = {
   locale: 'en',
-  traceSelectorConfig: {
+  traceTypesConfig: {
     categories: _ => categoryLayout(_),
     traces: _ => traceTypes(_),
   },
@@ -279,7 +279,7 @@ PlotlyEditor.childContextTypes = {
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
   plotSchema: PropTypes.object,
-  traceSelectorConfig: PropTypes.object,
+  traceTypesConfig: PropTypes.object,
 };
 
 export default PlotlyEditor;

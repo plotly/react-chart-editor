@@ -61,21 +61,21 @@ export const traceTypes = _ => [
     label: _('Line'),
     category: chartCategory(_).SIMPLE,
   },
-  {
-    value: 'area',
-    label: _('Area'),
-    category: chartCategory(_).SIMPLE,
-  },
+  // {
+  //   value: 'area',
+  //   label: _('Area'),
+  //   category: chartCategory(_).SIMPLE,
+  // },
   {
     value: 'heatmap',
     label: _('Heatmap'),
     category: chartCategory(_).SIMPLE,
   },
-  {
-    value: 'table',
-    label: _('Table'),
-    category: chartCategory(_).SIMPLE,
-  },
+  // {
+  //   value: 'table',
+  //   label: _('Table'),
+  //   category: chartCategory(_).SIMPLE,
+  // },
   {
     value: 'contour',
     label: _('Contour'),
@@ -126,11 +126,11 @@ export const traceTypes = _ => [
     label: _('2D Contour Histogram'),
     category: chartCategory(_).DISTRIBUTIONS,
   },
-  {
-    value: 'violin',
-    label: _('Violin'),
-    category: chartCategory(_).DISTRIBUTIONS,
-  },
+  // {
+  //   value: 'violin',
+  //   label: _('Violin'),
+  //   category: chartCategory(_).DISTRIBUTIONS,
+  // },
   {
     value: 'choropleth',
     label: _('Choropleth'),
@@ -156,52 +156,52 @@ export const traceTypes = _ => [
     label: _('OHLC'),
     category: chartCategory(_).FINANCIAL,
   },
-  {
-    value: 'parcoords',
-    label: _('Parallel Coordinates'),
-    category: chartCategory(_).SPECIALIZED,
-  },
-  {
-    value: 'sankey',
-    label: _('Sankey'),
-    category: chartCategory(_).SPECIALIZED,
-  },
-  {
-    value: 'carpet',
-    label: _('Carpet'),
-    category: chartCategory(_).SPECIALIZED,
-  },
-  {
-    value: 'scatterpolar',
-    label: _('Polar Scatter'),
-    category: chartCategory(_).SPECIALIZED,
-  },
+  // {
+  //   value: 'parcoords',
+  //   label: _('Parallel Coordinates'),
+  //   category: chartCategory(_).SPECIALIZED,
+  // },
+  // {
+  //   value: 'sankey',
+  //   label: _('Sankey'),
+  //   category: chartCategory(_).SPECIALIZED,
+  // },
+  // {
+  //   value: 'carpet',
+  //   label: _('Carpet'),
+  //   category: chartCategory(_).SPECIALIZED,
+  // },
+  // {
+  //   value: 'scatterpolar',
+  //   label: _('Polar Scatter'),
+  //   category: chartCategory(_).SPECIALIZED,
+  // },
   {
     value: 'scatterternary',
     label: _('Ternary Scatter'),
     category: chartCategory(_).SPECIALIZED,
   },
-  {
-    value: 'pointcloud',
-    label: _('Point Cloud'),
-    category: chartCategory(_).WEB_GL,
-  },
+  // {
+  //   value: 'pointcloud',
+  //   label: _('Point Cloud'),
+  //   category: chartCategory(_).WEB_GL,
+  // },
   {
     value: 'scattergl',
     icon: 'scatter',
     label: _('Scatter GL'),
     category: chartCategory(_).WEB_GL,
   },
-  {
-    value: 'scatterpolarghl',
-    icon: 'scatterpolar',
-    label: _('Scatter Polar GL'),
-    category: chartCategory(_).WEB_GL,
-  },
-  {
-    value: 'heatmapgl',
-    icon: 'heatmap',
-    label: _('Heatmap GL'),
-    category: chartCategory(_).WEB_GL,
-  },
+  // {
+  //   value: 'scatterpolarghl',
+  //   icon: 'scatterpolar',
+  //   label: _('Scatter Polar GL'),
+  //   category: chartCategory(_).WEB_GL,
+  // },
+  // {
+  //   value: 'heatmapgl',
+  //   icon: 'heatmap',
+  //   label: _('Heatmap GL'),
+  //   category: chartCategory(_).WEB_GL,
+  // },
 ];

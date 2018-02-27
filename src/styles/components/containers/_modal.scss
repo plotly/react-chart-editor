@@ -80,7 +80,7 @@
   // ANIMATIONS
 
   &__backdrop {
-    @include animate('fade-in', 1.25s);
+    @include animate('fade-in', 1s);
   }
   &__card {
     @include animate('fsb', 0.85s, 0.1s);
@@ -89,10 +89,10 @@
   &--animate-out {
     pointer-events: none;
     .modal__backdrop {
-      @include animate('fade-out', 1.25s);
+      @include animate('fade-out', 0.85s);
     }
     .modal__card {
-      @include animate('fsbr', 1.25s);
+      @include animate('fsbr', 0.85s);
     }
   }
 }

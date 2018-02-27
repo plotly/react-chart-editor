@@ -21,10 +21,6 @@ const ModalContent = ({children}) => (
 );
 
 class Modal extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const {children, title} = this.props;
     let classes = 'modal';

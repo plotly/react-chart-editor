@@ -23,22 +23,31 @@ const actions = ({value}) => [
 ];
 
 const renderActionItems = (actionItems, item) =>
-  actionItems(item).map((action, i) => (
-    <a
-      className="trace-item__actions__item"
-      key={i}
-      aria-label={action.label}
-      data-microtip-position={`top-left`}
-      role="tooltip"
-      href={action.href}
-      target="_blank"
-    >
-      {action.icon}
-    </a>
-  ));
+  actionItems
+    ? actionItems(item).map((action, i) => (
+        <a
+          className="trace-item__actions__item"
+          key={i}
+          aria-label={action.label}
+          data-microtip-position={`top-left`}
+          role="tooltip"
+          href={action.href}
+          target="_blank"
+        >
+          {action.icon}
+        </a>
+      ))
+    : null;
 
 const Item = ({item, active, handleClick, actions, showActions}) => {
   const {label, value, icon} = item;
+  const SimpleIcon = renderTraceIcon(icon ? icon : value);
+  const ComplexIcon = renderTraceIcon(
+    icon ? `TraceType${icon}` : `TraceType${value}`
+  );
+
+  const complex = true;
+
   return (
     <div
       className={`trace-item${active ? ' trace-item--active' : ''}`}
@@ -48,7 +57,19 @@ const Item = ({item, active, handleClick, actions, showActions}) => {
         {actions && showActions ? renderActionItems(actions, item) : null}
       </div>
       <div className="trace-item__image">
-        <img src={`/_temp/ic-${icon ? icon : value}.svg`} />
+        {!complex && (
+          <div className="trace-item__image__svg">
+            <SimpleIcon />
+          </div>
+        )}
+        {complex && (
+          <div className="trace-item__image__wrapper">
+            <img
+              src={`/_temp/ic-${icon ? icon : value}.svg`}
+              alt={`Trace Type: ${label}`}
+            />
+          </div>
+        )}
       </div>
       <div className="trace-item__label">{label}</div>
     </div>
@@ -64,14 +85,14 @@ class TraceTypeSelector extends Component {
 
   renderCategories() {
     const {fullValue, localize: _} = this.props;
-    const {traces, categories} = this.context.traceSelectorConfig;
+    const {traces, categories} = this.context.traceTypesConfig;
 
     return categories(_).map((category, i) => {
       const items = traces(_).filter(
         ({category: {value}}) => value === category.value
       );
 
-      const MAX_ITEMS = 6;
+      const MAX_ITEMS = 4;
 
       let columnClasses = 'trace-grid__column';
 
@@ -114,7 +135,7 @@ class TraceTypeButton extends React.Component {
       handleClick,
       fullValue,
       localize: _,
-      traceSelectorConfig: {traces},
+      traceTypesConfig: {traces},
     } = this.props;
 
     const {label, icon, value} = traces(_).find(
@@ -146,10 +167,10 @@ TraceTypeButton.propTypes = {
   handleClick: PropTypes.func.isRequired,
   fullValue: PropTypes.string.isRequired,
   localize: PropTypes.func.isRequired,
-  traceSelectorConfig: PropTypes.object.isRequired,
+  traceTypesConfig: PropTypes.object.isRequired,
 };
 TraceTypeSelector.contextTypes = {
-  traceSelectorConfig: PropTypes.object,
+  traceTypesConfig: PropTypes.object,
   handleClose: PropTypes.func,
 };
 Item.propTypes = {

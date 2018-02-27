@@ -47,6 +47,8 @@ class TraceSelector extends Component {
     const _ = props.localize;
     if (props.traceOptions) {
       this.traceOptions = props.traceOptions;
+    } else if (context.traceTypesConfig) {
+      this.traceOptions = context.traceTypesConfig.traces(_);
     } else if (context.plotSchema) {
       this.traceOptions = computeTraceOptionsFromSchema(
         context.plotSchema,
@@ -102,7 +104,7 @@ class TraceSelector extends Component {
         <Field {...props}>
           <TraceTypeSelectorButton
             {...props}
-            traceSelectorConfig={this.context.traceSelectorConfig}
+            traceTypesConfig={this.context.traceTypesConfig}
             handleClick={() => this.context.openModal(TraceTypeSelector, props)}
           />
         </Field>
@@ -116,7 +118,7 @@ class TraceSelector extends Component {
 TraceSelector.contextTypes = {
   openModal: PropTypes.func,
   advancedTraceTypeSelector: PropTypes.bool,
-  traceSelectorConfig: PropTypes.object,
+  traceTypesConfig: PropTypes.object,
   plotSchema: PropTypes.object,
   config: PropTypes.object,
 };
