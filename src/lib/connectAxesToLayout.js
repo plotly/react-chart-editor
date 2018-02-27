@@ -7,7 +7,7 @@ import {
   getAllAxes,
   getDisplayName,
   localize,
-  striptags,
+  getAxisTitle,
 } from '../lib';
 
 function computeAxesOptions(axes, _) {
@@ -26,11 +26,7 @@ function computeAxesOptions(axes, _) {
       label,
       value,
       axisGroup: ax.axisGroup,
-      title: striptags(
-        ax._input.title
-          ? `${label} Axis: ${ax._input.title}`
-          : capitalize(ax._id)
-      ),
+      title: getAxisTitle(ax),
     };
   }
 

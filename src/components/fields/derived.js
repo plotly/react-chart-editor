@@ -4,12 +4,12 @@ import {UnconnectedFlaglist} from './Flaglist';
 import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedRadio} from './Radio';
 import {
-  capitalize,
   connectLayoutToPlot,
   connectToContainer,
   getAllAxes,
+  getAxisTitle,
+  axisIdToAxisName,
   supplyLayoutPlotProps,
-  striptags,
 } from 'lib';
 
 export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
@@ -19,11 +19,17 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
     plotProps.options = [{label: 'x', value: 'x'}];
     if (plotProps.fullContainer.subplot.includes('xaxis')) {
       options = context.fullLayout._subplots.yaxis.map(axis => {
-        return {label: capitalize(axis), value: axis};
+        return {
+          label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
+          value: axis,
+        };
       });
     } else if (plotProps.fullContainer.subplot.includes('yaxis')) {
       options = context.fullLayout._subplots.xaxis.map(axis => {
-        return {label: capitalize(axis), value: axis};
+        return {
+          label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
+          value: axis,
+        };
       });
     }
     options.push({label: _('Free'), value: 'free'});
@@ -344,9 +350,17 @@ function computeAxesRefOptions(axes, refAxis) {
   const options = [];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
+<<<<<<< HEAD
     if (ax._id.charAt(0) === refAxis) {
       // checking user data for title avoids default "Click to enter axis title"
       const label = striptags(ax._input.title || ax._id);
+=======
+    if (
+      ax._id.charAt(0) === propsAttr.charAt(0) ||
+      ax._id.charAt(0) === propsAttr.charAt(1)
+    ) {
+      const label = getAxisTitle(ax);
+>>>>>>> Standardize axis titles
       options.push({label, value: ax._id});
     }
   }

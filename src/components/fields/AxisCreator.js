@@ -3,9 +3,15 @@ import Field from './Field';
 import Info from './Info';
 import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
-import {connectToContainer, localize, traceTypeToAxisType} from 'lib';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import {PlusIcon} from 'plotly-icons';
+import {
+  connectToContainer,
+  localize,
+  traceTypeToAxisType,
+  getAxisTitle,
+  axisIdToAxisName,
+} from 'lib';
 
 export class UnconnectedAxisCreator extends Component {
   constructor(props, context) {
@@ -58,7 +64,7 @@ export class UnconnectedAxisCreator extends Component {
             },
           }}
           options={context.fullLayout._subplots[subplot].map(subplot => ({
-            label: subplot,
+            label: getAxisTitle(context.fullLayout[axisIdToAxisName(subplot)]),
             value: subplot,
           }))}
         />

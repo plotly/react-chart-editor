@@ -1,4 +1,5 @@
 import {TRACE_TO_AXIS} from 'lib/constants';
+import {capitalize, striptags} from 'lib';
 
 export default function getAllAxes(fullLayout) {
   const axes = [];
@@ -60,4 +61,15 @@ export function traceTypeToAxisType(traceType) {
   }
 
   throw new Error(`Sorry, could not find ${traceType} in any category.`);
+}
+
+export function axisIdToAxisName(id) {
+  return id.charAt(0) + 'axis' + id.slice(1);
+}
+
+export function getAxisTitle(axis) {
+  const axisType = capitalize(axis._name.split('axis')[0]);
+  return axis._input && axis._input.title
+    ? striptags(`${axisType} Axis: ${axis._input.title}`)
+    : capitalize(axis._id);
 }
