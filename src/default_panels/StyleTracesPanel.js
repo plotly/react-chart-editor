@@ -10,6 +10,7 @@ import {
   LineDashSelector,
   LineShapeSelector,
   Numeric,
+  NumericFraction,
   Radio,
   TextEditor,
   Section,
@@ -247,54 +248,25 @@ const StyleTracesPanel = ({localize: _}) => (
     </Section>
 
     <Section name={_('Lighting')}>
-      <Numeric
-        label={_('Ambient')}
-        attr="lighting.ambient"
-        units="%"
-        step={0.1}
-      />
-      <Numeric
-        label={_('Diffuse')}
-        attr="lighting.diffuse"
-        units="%"
-        step={0.1}
-      />
-      <Numeric
-        label={_('Specular')}
-        attr="lighting.specular"
-        units="%"
-        step={0.1}
-      />
-      <Numeric
-        label={_('Roughness')}
-        attr="lighting.roughness"
-        units="%"
-        step={0.1}
-      />
-      <LayoutNumericFraction
-        label={_('Fresnel')}
-        attr="lighting.fresnel"
-        units="%"
-        step={0.1}
-      />
-      <Numeric
+      <NumericFraction label={_('Ambient')} attr="lighting.ambient" />
+      <NumericFraction label={_('Diffuse')} attr="lighting.diffuse" />
+      <NumericFraction label={_('Specular')} attr="lighting.specular" />
+      <NumericFraction label={_('Roughness')} attr="lighting.roughness" />
+      <NumericFraction label={_('Fresnel')} attr="lighting.fresnel" />
+      <NumericFraction
         label={_('Vertex Normal')}
         attr="lighting.vertexnormalsepsilon"
-        units="%"
-        step={0.1}
       />
-      <Numeric
+      <NumericFraction
         label={_('Face Normal')}
         attr="lighting.facenormalsepsilon"
-        units="%"
-        step={0.1}
       />
     </Section>
 
     <Section name={_('Light Position')}>
-      <Numeric label={_('X')} attr="lightposition.x" />
-      <Numeric label={_('Y')} attr="lightposition.y" />
-      <Numeric label={_('Z')} attr="lightposition.z" />
+      <NumericFraction label={_('X')} attr="lightposition.x" />
+      <NumericFraction label={_('Y')} attr="lightposition.y" />
+      <NumericFraction label={_('Z')} attr="lightposition.z" />
     </Section>
 
     <Section name={_('Increasing Trace Styles')}>

@@ -105,14 +105,45 @@ export const AxesRange = connectToContainer(UnconnectedNumeric, {
   },
 });
 
-class NumericFraction extends UnconnectedNumeric {}
-NumericFraction.propTypes = UnconnectedNumeric.propTypes;
-NumericFraction.defaultProps = {
+class UnconnectedNumericFraction extends UnconnectedNumeric {}
+UnconnectedNumericFraction.propTypes = UnconnectedNumeric.propTypes;
+UnconnectedNumericFraction.defaultProps = {
   units: '%',
+  showSlider: true,
 };
 
+const numericFractionModifyPlotProps = (props, context, plotProps) => {
+  const {attrMeta, fullValue, updatePlot} = plotProps;
+  const min = attrMeta.min || 0;
+  const max = attrMeta.max || 1;
+  if (isNumeric(fullValue)) {
+    plotProps.fullValue = Math.round(100 * (fullValue - min) / (max - min));
+  }
+
+  plotProps.updatePlot = v => {
+    if (isNumeric(v)) {
+      updatePlot(v / 100 * (max - min) + min);
+    } else {
+      updatePlot(v);
+    }
+  };
+  plotProps.max = 100;
+  plotProps.min = 0;
+};
+
+export const NumericFraction = connectToContainer(UnconnectedNumericFraction, {
+  modifyPlotProps: numericFractionModifyPlotProps,
+});
+
+export const LayoutNumericFraction = connectLayoutToPlot(
+  connectToContainer(UnconnectedNumericFraction, {
+    supplyPlotProps: supplyLayoutPlotProps,
+    modifyPlotProps: numericFractionModifyPlotProps,
+  })
+);
+
 export const LayoutNumericFractionInverse = connectLayoutToPlot(
-  connectToContainer(NumericFraction, {
+  connectToContainer(UnconnectedNumericFraction, {
     supplyPlotProps: supplyLayoutPlotProps,
     modifyPlotProps: (props, context, plotProps) => {
       const {attrMeta, fullValue, updatePlot} = plotProps;
@@ -136,36 +167,6 @@ export const LayoutNumericFractionInverse = connectLayoutToPlot(
 
         if (isNumeric(attrMeta.max)) {
           plotProps.min = (1 - attrMeta.max) * 100;
-        }
-      }
-    },
-  })
-);
-
-export const LayoutNumericFraction = connectLayoutToPlot(
-  connectToContainer(NumericFraction, {
-    supplyPlotProps: supplyLayoutPlotProps,
-    modifyPlotProps: (props, context, plotProps) => {
-      const {attrMeta, fullValue, updatePlot} = plotProps;
-      if (isNumeric(fullValue)) {
-        plotProps.fullValue = fullValue * 100;
-      }
-
-      plotProps.updatePlot = v => {
-        if (isNumeric(v)) {
-          updatePlot(v / 100);
-        } else {
-          updatePlot(v);
-        }
-      };
-
-      if (attrMeta) {
-        if (isNumeric(attrMeta.max)) {
-          plotProps.max = attrMeta.max * 100;
-        }
-
-        if (isNumeric(attrMeta.min)) {
-          plotProps.min = attrMeta.min * 100;
         }
       }
     },
@@ -268,6 +269,34 @@ export const PositioningRef = connectToContainer(UnconnectedDropdown, {
     ];
 
     plotProps.clearable = false;
+  },
+});
+
+export const PositioningNumeric = connectToContainer(UnconnectedNumeric, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {fullContainer, fullValue, updatePlot} = plotProps;
+    if (
+      fullContainer &&
+      (fullContainer[props.attr[0] + 'ref'] === 'paper' ||
+        fullContainer[props.attr[props.attr.length - 1] + 'ref'] === 'paper')
+    ) {
+      plotProps.units = '%';
+      plotProps.showSlider = true;
+      plotProps.max = 100;
+      plotProps.min = 0;
+      plotProps.step = 1;
+      if (isNumeric(fullValue)) {
+        plotProps.fullValue = Math.round(100 * fullValue);
+      }
+
+      plotProps.updatePlot = v => {
+        if (isNumeric(v)) {
+          updatePlot(v / 100);
+        } else {
+          updatePlot(v);
+        }
+      };
+    }
   },
 });
 

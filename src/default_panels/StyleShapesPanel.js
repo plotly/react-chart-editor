@@ -5,6 +5,7 @@ import {
   Radio,
   Section,
   PositioningRef,
+  PositioningNumeric,
   Numeric,
   ColorPicker,
   LineDashSelector,
@@ -32,14 +33,14 @@ const StyleShapesPanel = ({localize: _}) => (
 
     <Section name={_('Horizontal Boundaries')}>
       <PositioningRef label={_('Relative to')} attr="xref" />
-      <Numeric label={_('Start Point')} attr="x0" />
-      <Numeric label={_('End Point')} attr="x1" />
+      <PositioningNumeric label={_('Start Point')} attr="x0" />
+      <PositioningNumeric label={_('End Point')} attr="x1" />
     </Section>
 
     <Section name={_('Vertical Boundaries')}>
       <PositioningRef label={_('Relative to')} attr="yref" />
-      <Numeric label={_('Start Point')} attr="y0" />
-      <Numeric label={_('End Point')} attr="y1" />
+      <PositioningNumeric label={_('Start Point')} attr="y0" />
+      <PositioningNumeric label={_('End Point')} attr="y1" />
     </Section>
     <Section name={_('Lines')}>
       <Numeric label={_('Width')} attr="line.width" />

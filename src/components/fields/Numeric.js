@@ -25,6 +25,7 @@ export class UnconnectedNumeric extends Component {
           onChange={this.props.updatePlot}
           onUpdate={this.props.updatePlot}
           showArrows={!this.props.hideArrows}
+          showSlider={this.props.showSlider}
         />
       </Field>
     );
@@ -38,6 +39,7 @@ UnconnectedNumeric.propTypes = {
   max: PropTypes.number,
   multiValued: PropTypes.bool,
   hideArrows: PropTypes.bool,
+  showSlider: PropTypes.bool,
   step: PropTypes.number,
   updatePlot: PropTypes.func,
   ...Field.propTypes,

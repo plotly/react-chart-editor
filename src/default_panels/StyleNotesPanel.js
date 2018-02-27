@@ -9,6 +9,7 @@ import {
   FontSelector,
   Info,
   Numeric,
+  PositioningNumeric,
   Radio,
   TextEditor,
   Section,
@@ -40,8 +41,8 @@ const StyleNotesPanel = ({localize: _}) => (
       <Numeric label={_('Scale')} step={0.1} attr="arrowsize" units="px" />
       <AnnotationArrowRef label="X Offset" attr="axref" />
       <AnnotationArrowRef label="Y Offset" attr="ayref" />
-      <Numeric label={_('X Vector')} attr="ax" hideArrows />
-      <Numeric label={_('Y Vector')} attr="ay" hideArrows />
+      <Numeric label={_('X Vector')} attr="ax" />
+      <Numeric label={_('Y Vector')} attr="ay" />
     </Section>
     <Section name={_('Horizontal Positioning')}>
       <MenuPanel>
@@ -64,7 +65,7 @@ const StyleNotesPanel = ({localize: _}) => (
         </Section>
       </MenuPanel>
       <AnnotationRef label={_('Relative To')} attr="xref" />
-      <Numeric label={_('Position')} attr="x" hideArrows />
+      <PositioningNumeric label={_('Position')} attr="x" />
     </Section>
     <Section name={_('Vertical Positioning')}>
       <MenuPanel>
@@ -87,7 +88,7 @@ const StyleNotesPanel = ({localize: _}) => (
         </Section>
       </MenuPanel>
       <AnnotationRef label={_('Relative To')} attr="yref" />
-      <Numeric label={_('Position')} attr="y" hideArrows />
+      <PositioningNumeric label={_('Position')} attr="y" />
     </Section>
   </AnnotationAccordion>
 );

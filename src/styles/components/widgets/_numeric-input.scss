@@ -1,20 +1,26 @@
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
   color: var(--color-text-placeholder);
 }
-::-moz-placeholder { /* Firefox 19+ */
+::-moz-placeholder {
+  /* Firefox 19+ */
   color: var(--color-text-placeholder);
 }
-:-ms-input-placeholder { /* IE 10+ */
+:-ms-input-placeholder {
+  /* IE 10+ */
   color: var(--color-text-placeholder);
 }
-:-moz-placeholder { /* Firefox 18- */
+:-moz-placeholder {
+  /* Firefox 18- */
   color: var(--color-text-placeholder);
 }
-
 
 .numeric-input__wrapper {
   line-height: 20px;
   max-width: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
   color: var(--color-text-base);
 }
 
@@ -28,7 +34,8 @@
   white-space: nowrap;
   text-align: left;
   border-radius: var(--border-radius-small);
-  padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit) var(--spacing-quarter-unit) var(--spacing-half-unit);
+  padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit)
+    var(--spacing-quarter-unit) var(--spacing-half-unit);
   width: 62px;
   vertical-align: middle;
   font-size: inherit;
