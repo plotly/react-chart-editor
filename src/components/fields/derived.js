@@ -16,7 +16,6 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _} = props;
     let options = [];
-    plotProps.options = [{label: 'x', value: 'x'}];
 
     if (
       plotProps.fullContainer._subplot &&
@@ -289,19 +288,11 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
 
     if (currentAxisRef === 'paper') {
       // If currentAxesRef is paper provide all axes options to user.
-      if (props.attr === 'axref') {
-        plotProps.options = [
-          {label: 'in pixels', value: 'pixel'},
-          ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'x'),
-        ];
-      }
 
-      if (props.attr === 'ayref') {
-        plotProps.options = [
-          {label: 'in pixels', value: 'pixel'},
-          ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'y'),
-        ];
-      }
+      plotProps.options = [
+        {label: 'in pixels', value: 'pixel'},
+        ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
+      ];
     } else {
       // If currentAxesRef is an actual axes then offer that value as the only
       // axes option.
@@ -331,19 +322,10 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
       );
     }
 
-    if (props.attr === 'xref') {
-      plotProps.options = [
-        {label: 'Canvas', value: 'paper'},
-        ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'x'),
-      ];
-    }
-
-    if (props.attr === 'yref') {
-      plotProps.options = [
-        {label: 'Canvas', value: 'paper'},
-        ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'y'),
-      ];
-    }
+    plotProps.options = [
+      {label: 'Canvas', value: 'paper'},
+      ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
+    ];
 
     if (currentOffsetRef !== 'pixel') {
       plotProps.updatePlot = v => {
@@ -371,19 +353,11 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
 
 export const PositioningRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    if (props.attr === 'xref') {
-      plotProps.options = [
-        {label: 'Canvas', value: 'paper'},
-        ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'x'),
-      ];
-    }
+    plotProps.options = [
+      {label: 'Canvas', value: 'paper'},
+      ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
+    ];
 
-    if (props.attr === 'yref') {
-      plotProps.options = [
-        {label: 'Canvas', value: 'paper'},
-        ...computeAxesRefOptions(getAllAxes(context.fullLayout), 'y'),
-      ];
-    }
     plotProps.clearable = false;
   },
 });
