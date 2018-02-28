@@ -23,8 +23,8 @@ class AxesSelector extends Component {
       axesOptions &&
       axesOptions.some(option => {
         return (
-          option._axisGroup &&
-          this.context.fullLayout._subplots[option._axisGroup].length > 1
+          option.axisGroup &&
+          this.context.fullLayout._subplots[option.axisGroup].length > 1
         );
       });
 
