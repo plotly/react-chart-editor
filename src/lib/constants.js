@@ -32,6 +32,7 @@ export const EDITOR_ACTIONS = {
   UPDATE_TRACES: 'plotly-editor-update-traces',
   ADD_TRACE: 'plotly-editor-add-trace',
   DELETE_TRACE: 'plotly-editor-delete-trace',
+  UPDATE_AXIS_REFERENCES: 'plotly-editor-update-axis-references',
   UPDATE_LAYOUT: 'plotly-editor-update-layout',
   DELETE_ANNOTATION: 'plotly-editor-delete-annotation',
   DELETE_SHAPE: 'plotly-editor-delete-shape',

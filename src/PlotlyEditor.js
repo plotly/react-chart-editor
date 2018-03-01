@@ -100,6 +100,31 @@ class PlotlyEditor extends Component {
         }
         break;
 
+      case EDITOR_ACTIONS.UPDATE_AXIS_REFERENCES:
+        payload.tracesToAdjust.forEach(trace => {
+          const axis = trace[payload.attrToAdjust].charAt(0);
+          // n.b: currentAxisIdNumber will never be 0, i.e. Number('x'.slice(1)),
+          // because payload.tracesToAdjust is a filter of all traces that have
+          // an axis ID above the one of the axis ID we deprecated
+          const currentAxisIdNumber = Number(
+            trace[payload.attrToAdjust].slice(1)
+          );
+          const adjustedAxisIdNumber = currentAxisIdNumber - 1;
+
+          const currentAxisLayoutProperties = {
+            ...graphDiv.layout[payload.attrToAdjust + currentAxisIdNumber],
+          };
+
+          graphDiv.data[trace.index][payload.attrToAdjust] =
+            // for cases when we're adjusting x2 => x, so that it becomes x not x1
+            adjustedAxisIdNumber === 1 ? axis : axis + adjustedAxisIdNumber;
+
+          graphDiv.layout[
+            payload.attrToAdjust + adjustedAxisIdNumber
+          ] = currentAxisLayoutProperties;
+        });
+        break;
+
       case EDITOR_ACTIONS.ADD_TRACE:
         if (this.props.beforeAddTrace) {
           this.props.beforeAddTrace(payload);

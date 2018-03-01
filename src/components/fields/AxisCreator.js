@@ -1,9 +1,9 @@
 import Dropdown from './Dropdown';
-import Field from './Field';
 import Info from './Info';
 import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
+import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
 import {
   connectToContainer,
@@ -13,153 +13,176 @@ import {
   axisIdToAxisName,
 } from 'lib';
 
-export class UnconnectedAxisCreator extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.setLocals(props, context);
-  }
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setLocals(nextProps, nextContext);
-  }
-
-  setLocals(props, context) {
-    const _ = props.localize;
-    this.axisType = traceTypeToAxisType(props.container.type);
-    const isFirstTraceOfType =
-      context.data.filter(d => d.type === props.container.type).length === 1;
-
-    function getNewSubplot(axis, subplot) {
-      return isFirstTraceOfType
-        ? axis
-        : axis + (context.fullLayout._subplots[subplot].length + 1);
-    }
-
-    function getAxisControl(label, attr, subplot, update) {
-      const icon = <PlusIcon />;
-      return (
-        <Dropdown
-          label={label}
-          attr={attr}
-          action={!isFirstTraceOfType}
-          clearable={false}
-          onAction={{
-            label: _('Axis'),
-            variant: 'secondary',
-            icon: icon,
-            onClick: () => {
-              props.updateContainer(update);
-              if (subplot.startsWith('yaxis')) {
-                const currentAxis = props.fullContainer.yaxis;
-                context.onUpdate({
-                  type: EDITOR_ACTIONS.UPDATE_LAYOUT,
-                  payload: {
-                    update: {
-                      [`${subplot +
-                        (context.fullLayout._subplots[subplot].length +
-                          1)}.side`]: 'right',
-                      [`${subplot +
-                        (context.fullLayout._subplots[subplot].length +
-                          1)}.overlaying`]: currentAxis,
-                    },
-                  },
-                });
-              }
-            },
-          }}
-          options={context.fullLayout._subplots[subplot].map(subplot => ({
-            label: getAxisTitle(context.fullLayout[axisIdToAxisName(subplot)]),
-            value: subplot,
-          }))}
-        />
-      );
-    }
-
-    if (this.axisType === 'cartesian') {
-      this.subplotControls = (
-        <Fragment>
-          {getAxisControl(_('X axis'), 'xaxis', 'xaxis', {
-            xaxis: getNewSubplot('x', 'xaxis'),
-          })}
-          {getAxisControl(_('Y axis'), 'yaxis', 'yaxis', {
-            yaxis: getNewSubplot('y', 'yaxis'),
-          })}
-        </Fragment>
-      );
-    }
-
-    if (this.axisType === 'gl3d') {
-      this.subplotControls = getAxisControl(
-        _('Subplot to use'),
-        'scene',
-        'gl3d',
-        {geo: getNewSubplot('scene', 'gl3d')}
-      );
-    }
-
-    if (this.axisType === 'ternary') {
-      this.subplotControls = getAxisControl(
-        _('Subplot to use'),
-        'subplot',
-        'ternary',
-        {subplot: getNewSubplot('ternary', 'ternary')}
-      );
-    }
-
-    if (this.axisType === 'geo') {
-      this.subplotControls = getAxisControl(_('Subplot to use'), 'geo', 'geo', {
-        geo: getNewSubplot('geo', 'geo'),
-      });
-    }
-
-    if (this.axisType === 'mapbox') {
-      this.subplotControls = getAxisControl(
-        _('Subplot to use'),
-        'subplot',
-        'mapbox',
-        {subplot: getNewSubplot('mapbox', 'mapbox')}
-      );
-    }
-  }
-
-  renderSubplotControls() {
-    const {localize: _} = this.props;
-    return (
-      <Fragment>
-        {this.subplotControls}
-        <Info>
-          {_('You can style and position your axes in the Style > Axes Panel')}
-        </Info>
-      </Fragment>
+class UnconnectedNewAxisCreator extends Component {
+  canAddAxis() {
+    const currentAxisId = this.props.fullContainer[this.props.attr];
+    const currentTraceIndex = this.props.fullContainer.index;
+    return this.context.fullData.some(
+      d => d.index !== currentTraceIndex && d[this.props.attr] === currentAxisId
     );
   }
 
+  updateAxis() {
+    const {attr, updateContainer} = this.props;
+    const {onUpdate, fullLayout} = this.context;
+
+    updateContainer({
+      [attr]: attr.charAt(0) + (fullLayout._subplots[attr].length + 1),
+    });
+
+    if (attr === 'yaxis') {
+      onUpdate({
+        type: EDITOR_ACTIONS.UPDATE_LAYOUT,
+        payload: {
+          update: {
+            [`${attr + (fullLayout._subplots[attr].length + 1)}.side`]: 'right',
+            [`${attr +
+              (fullLayout._subplots[attr].length + 1)}.overlaying`]: 'y',
+          },
+        },
+      });
+    }
+  }
+
+  recalcAxes(update) {
+    const currentAxisId = this.props.fullContainer[this.props.attr];
+
+    // When we select another axis, make sure no unused axes are left:
+    // does any other trace have this axisID? If so, nothing needs to change
+    if (
+      this.context.fullData.some(
+        t =>
+          t[this.props.attr] === currentAxisId &&
+          t.index !== this.props.fullContainer.index
+      )
+    ) {
+      this.props.updateContainer({[this.props.attr]: update});
+      return;
+    }
+
+    // if not, send action to readjust axis references in trace data and layout
+    const tracesToAdjust = this.context.fullData.filter(
+      trace =>
+        Number(trace[this.props.attr].slice(1)) > Number(currentAxisId.slice(1))
+    );
+
+    this.context.onUpdate({
+      type: EDITOR_ACTIONS.UPDATE_AXIS_REFERENCES,
+      payload: {tracesToAdjust, attrToAdjust: this.props.attr},
+    });
+
+    this.props.updateContainer({[this.props.attr]: update});
+  }
+
   render() {
-    return <Field {...this.props}>{this.renderSubplotControls()}</Field>;
+    const icon = <PlusIcon />;
+    const _ = this.props.localize;
+
+    return (
+      <Fragment>
+        <Dropdown
+          label={this.props.label}
+          attr={this.props.attr}
+          clearable={false}
+          options={this.props.options}
+          updatePlot={u => this.recalcAxes(u)}
+        />
+        {this.canAddAxis() ? (
+          <Button
+            attr={this.props.attr}
+            label={_('Axis')}
+            variant="secondary"
+            icon={icon}
+            onClick={() => this.updateAxis()}
+          />
+        ) : null}
+      </Fragment>
+    );
   }
 }
 
-UnconnectedAxisCreator.propTypes = {
+UnconnectedNewAxisCreator.propTypes = {
   attr: PropTypes.string,
+  label: PropTypes.string,
+  options: PropTypes.array,
+  canAddAxis: PropTypes.bool,
   localize: PropTypes.func,
   container: PropTypes.object,
   fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,
 };
 
-UnconnectedAxisCreator.contextTypes = {
+UnconnectedNewAxisCreator.contextTypes = {
   fullLayout: PropTypes.object,
   data: PropTypes.array,
+  fullData: PropTypes.array,
   onUpdate: PropTypes.func,
 };
 
-UnconnectedAxisCreator.plotly_editor_traits = {
+const ConnectedNewAxisCreator = connectToContainer(UnconnectedNewAxisCreator);
+
+export class AxisCreator extends Component {
+  render() {
+    const isFirstTraceOfType =
+      this.context.data.filter(d => d.type === this.props.container.type)
+        .length === 1;
+
+    if (isFirstTraceOfType) {
+      return null;
+    }
+
+    const {localize: _} = this.props;
+    const {fullLayout} = this.context;
+    const axisType = traceTypeToAxisType(this.props.container.type);
+    const controls = [];
+
+    function getOptions(axisType) {
+      return fullLayout._subplots[axisType].map(axisId => ({
+        label: getAxisTitle(fullLayout[axisIdToAxisName(axisId)]),
+        value: axisId,
+      }));
+    }
+
+    // for the moment only cartesian subplots are supported
+    if (axisType === 'cartesian') {
+      ['xaxis', 'yaxis'].forEach((type, index) => {
+        controls.push(
+          <ConnectedNewAxisCreator
+            key={index}
+            attr={type}
+            label={type.charAt(0).toUpperCase() + ' Axis'}
+            options={getOptions(type)}
+            localize={_}
+          />
+        );
+      });
+    }
+
+    return (
+      <Fragment>
+        {controls}
+        <Info>
+          {_('You can style and position your axes in the Style > Axes Panel')}
+        </Info>
+      </Fragment>
+    );
+  }
+}
+
+AxisCreator.propTypes = {
+  localize: PropTypes.func,
+  container: PropTypes.object,
+  fullContainer: PropTypes.object,
+};
+
+AxisCreator.plotly_editor_traits = {
   is_axis_creator: true,
 };
 
-function modifyPlotProps(props, context, plotProps) {
-  return plotProps.isVisible;
-}
-export default localize(
-  connectToContainer(UnconnectedAxisCreator, {modifyPlotProps})
-);
+AxisCreator.contextTypes = {
+  data: PropTypes.array,
+  fullData: PropTypes.array,
+  fullLayout: PropTypes.object,
+};
+
+export default localize(connectToContainer(AxisCreator));

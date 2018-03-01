@@ -69,7 +69,7 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
       });
     }
     plotProps.options = options;
-    plotProps.clearable = false;
+    plotProps.clearable = true;
   },
 });
 
