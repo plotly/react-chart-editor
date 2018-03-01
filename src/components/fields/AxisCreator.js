@@ -89,7 +89,6 @@ class UnconnectedNewAxisCreator extends Component {
 
   render() {
     const icon = <PlusIcon />;
-    const _ = this.props.localize;
     const extraComponent = this.canAddAxis() ? (
       <Button variant="no-text" icon={icon} onClick={() => this.updateAxis()} />
     ) : (
@@ -129,7 +128,7 @@ UnconnectedNewAxisCreator.contextTypes = {
 
 const ConnectedNewAxisCreator = connectToContainer(UnconnectedNewAxisCreator);
 
-export class AxisCreator extends Component {
+class AxisCreator extends Component {
   render() {
     const isFirstTraceOfType =
       this.context.data.filter(d => d.type === this.props.container.type)
