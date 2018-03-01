@@ -42,6 +42,19 @@ class UnconnectedNewAxisCreator extends Component {
         },
       });
     }
+
+    if (attr === 'xaxis') {
+      onUpdate({
+        type: EDITOR_ACTIONS.UPDATE_LAYOUT,
+        payload: {
+          update: {
+            [`${attr + (fullLayout._subplots[attr].length + 1)}.side`]: 'top',
+            [`${attr +
+              (fullLayout._subplots[attr].length + 1)}.overlaying`]: 'x',
+          },
+        },
+      });
+    }
   }
 
   recalcAxes(update) {
