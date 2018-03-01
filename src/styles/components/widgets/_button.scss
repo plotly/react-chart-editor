@@ -59,6 +59,19 @@ button {
     margin-right: var(--spacing-half-unit);
   }
 
+  &--no-text {
+    @include button();
+    padding-right: var(--spacing-quarter-unit);
+    margin-left: 5px;
+    &--disabled {
+      @include button();
+      padding-right: var(--spacing-quarter-unit);
+      margin-left: 5px;
+      color: rgb(186, 186, 186);
+      cursor: default;
+    }
+  }
+
   &--default {
     @include button();
   }

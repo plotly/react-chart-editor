@@ -77,26 +77,21 @@ class UnconnectedNewAxisCreator extends Component {
   render() {
     const icon = <PlusIcon />;
     const _ = this.props.localize;
+    const extraComponent = this.canAddAxis() ? (
+      <Button variant="no-text" icon={icon} onClick={() => this.updateAxis()} />
+    ) : (
+      <Button variant="no-text--disabled" icon={icon} onClick={() => {}} />
+    );
 
     return (
-      <Fragment>
-        <Dropdown
-          label={this.props.label}
-          attr={this.props.attr}
-          clearable={false}
-          options={this.props.options}
-          updatePlot={u => this.recalcAxes(u)}
-        />
-        {this.canAddAxis() ? (
-          <Button
-            attr={this.props.attr}
-            label={_('Axis')}
-            variant="secondary"
-            icon={icon}
-            onClick={() => this.updateAxis()}
-          />
-        ) : null}
-      </Fragment>
+      <Dropdown
+        label={this.props.label}
+        attr={this.props.attr}
+        clearable={false}
+        options={this.props.options}
+        updatePlot={u => this.recalcAxes(u)}
+        extraComponent={extraComponent}
+      />
     );
   }
 }
