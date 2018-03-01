@@ -68,7 +68,12 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
         };
       });
     }
-    plotProps.options = options;
+
+    // filter out the current axisID, can't overlay over itself
+    plotProps.options = options.filter(
+      option => context.fullContainer._id !== option.value
+    );
+
     plotProps.clearable = true;
   },
 });
