@@ -9,7 +9,7 @@ import {
   Dropdown,
   FontSelector,
   Numeric,
-  NumericFraction,
+  NumericFractionDomain,
   Radio,
   TextEditor,
   MenuPanel,
@@ -36,16 +36,20 @@ const StyleAxesPanel = ({localize: _}) => (
       </AxesFold>
 
       <AxesFold name={_('Layout')}>
-        <Section name={_('Axis Space')} attr="domain[0]">
-          <NumericFraction label={_('Start Position')} attr="domain[0]" />
-          <NumericFraction label={_('End Position')} attr="domain[1]" />
-        </Section>
-
-        <Section name={_('Positioning')}>
-          <AxisAnchorDropdown label={_('Anchor')} attr="anchor" localize={_} />
+        <Section name={_('Boundaries')} attr="domain[0]">
           <AxisOverlayDropdown
             label={_('Overlay')}
             attr="overlaying"
+            localize={_}
+          />
+          <NumericFractionDomain label={_('Start Position')} attr="domain[0]" />
+          <NumericFractionDomain label={_('End Position')} attr="domain[1]" />
+        </Section>
+
+        <Section name={_('Anchor')}>
+          <AxisAnchorDropdown
+            label={_('Anchor To')}
+            attr="anchor"
             localize={_}
           />
           <AxisSide label={_('Side')} attr="side" localize={_} />

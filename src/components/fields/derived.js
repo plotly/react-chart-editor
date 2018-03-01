@@ -232,6 +232,18 @@ export const NumericFraction = connectToContainer(UnconnectedNumericFraction, {
   modifyPlotProps: numericFractionModifyPlotProps,
 });
 
+export const NumericFractionDomain = connectToContainer(
+  UnconnectedNumericFraction,
+  {
+    modifyPlotProps: (props, context, plotProps) => {
+      numericFractionModifyPlotProps(props, context, plotProps);
+      if (context.container.overlaying) {
+        plotProps.isVisible = null;
+      }
+    },
+  }
+);
+
 export const LayoutNumericFraction = connectLayoutToPlot(
   connectToContainer(UnconnectedNumericFraction, {
     supplyPlotProps: supplyLayoutPlotProps,
