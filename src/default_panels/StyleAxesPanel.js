@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
+  AxisAnchorDropdown,
+  AxisOverlayDropdown,
+  AxisSide,
   AxesRange,
   ColorPicker,
   Dropdown,
   FontSelector,
   Numeric,
-  NumericFraction,
+  NumericFractionDomain,
   Radio,
   TextEditor,
   MenuPanel,
@@ -30,6 +33,27 @@ const StyleAxesPanel = ({localize: _}) => (
         <FontSelector label={_('Typeface')} attr="titlefont.family" />
         <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
         <ColorPicker label={_('Font Color')} attr="titlefont.color" />
+      </AxesFold>
+
+      <AxesFold name={_('Layout')}>
+        <Section name={_('Boundaries')} attr="domain[0]">
+          <AxisOverlayDropdown
+            label={_('Overlay')}
+            attr="overlaying"
+            localize={_}
+          />
+          <NumericFractionDomain label={_('Start Position')} attr="domain[0]" />
+          <NumericFractionDomain label={_('End Position')} attr="domain[1]" />
+        </Section>
+
+        <Section name={_('Anchor')}>
+          <AxisAnchorDropdown
+            label={_('Anchor To')}
+            attr="anchor"
+            localize={_}
+          />
+          <AxisSide label={_('Side')} attr="side" localize={_} />
+        </Section>
       </AxesFold>
 
       <AxesFold name={_('Range')}>
@@ -290,24 +314,6 @@ const StyleAxesPanel = ({localize: _}) => (
             {label: _('Disable'), value: true},
           ]}
         />
-      </AxesFold>
-      <AxesFold name={_('Layout')}>
-        <Section name={_('Axis Width')} attr="domain[0]">
-          <NumericFraction label={_('Start Position')} attr="domain[0]" />
-          <NumericFraction label={_('End Position')} attr="domain[1]" />
-        </Section>
-        <Section name={_('Positioning')}>
-          <Radio
-            label={_('Side')}
-            attr="side"
-            options={[
-              {label: _('Bottom'), value: 'bottom'},
-              {label: _('Top'), value: 'top'},
-              {label: _('Left'), value: 'left'},
-              {label: _('Right'), value: 'right'},
-            ]}
-          />
-        </Section>
       </AxesFold>
 
       <AxesFold name={_('Hover Projections')}>

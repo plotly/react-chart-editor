@@ -32,6 +32,7 @@ export const EDITOR_ACTIONS = {
   UPDATE_TRACES: 'plotly-editor-update-traces',
   ADD_TRACE: 'plotly-editor-add-trace',
   DELETE_TRACE: 'plotly-editor-delete-trace',
+  UPDATE_AXIS_REFERENCES: 'plotly-editor-update-axis-references',
   UPDATE_LAYOUT: 'plotly-editor-update-layout',
   DELETE_ANNOTATION: 'plotly-editor-delete-annotation',
   DELETE_SHAPE: 'plotly-editor-delete-shape',
@@ -48,3 +49,19 @@ export const RETURN_KEY = 'Enter';
 export const ESCAPE_KEY = 'Escape';
 export const COMMAND_KEY = 'Meta';
 export const CONTROL_KEY = 'Control';
+
+export const TRACE_TO_AXIS = {
+  cartesian: [
+    'scatter',
+    'box',
+    'bar',
+    'heatmap',
+    'contour',
+    'ohlc',
+    'candlestick',
+  ],
+  ternary: ['scatterternary'],
+  gl3d: ['scatter3d', 'surface', 'mesh3d'],
+  geo: ['scattergeo', 'choropleth'],
+  mapbox: ['scattermapbox'],
+};

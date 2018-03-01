@@ -13,11 +13,13 @@ import Numeric from './Numeric';
 import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
+import AxisCreator from './AxisCreator';
 import {
   AnnotationArrowRef,
   AnnotationRef,
   PositioningRef,
   AxesRange,
+  AxisAnchorDropdown,
   CanvasSize,
   ContourNumeric,
   FillDropdown,
@@ -25,17 +27,21 @@ import {
   GeoScope,
   HoverInfo,
   NumericFraction,
+  NumericFractionDomain,
   PositioningNumeric,
   NumericFractionInverse,
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
   TraceOrientation,
+  AxisOverlayDropdown,
+  AxisSide,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './lineSelectors';
 
 export {
   AnnotationArrowRef,
   AnnotationRef,
+  AxisAnchorDropdown,
   PositioningRef,
   ArrowSelector,
   AxesRange,
@@ -57,6 +63,7 @@ export {
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
   NumericFraction,
+  NumericFractionDomain,
   NumericFractionInverse,
   PositioningNumeric,
   LineDashSelector,
@@ -67,4 +74,7 @@ export {
   TextEditor,
   TraceOrientation,
   TraceSelector,
+  AxisCreator,
+  AxisOverlayDropdown,
+  AxisSide,
 };

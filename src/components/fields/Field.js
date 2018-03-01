@@ -26,6 +26,7 @@ class Field extends Component {
       localize: _,
       multiValued,
       units,
+      extraComponent,
     } = this.props;
 
     let fieldClass;
@@ -57,6 +58,7 @@ class Field extends Component {
               </div>
             </MenuPanel>
           ) : null}
+          {extraComponent ? extraComponent : null}
         </div>
         {units ? (
           <div className={bem('field', 'units')}>
@@ -75,6 +77,7 @@ Field.propTypes = {
   units: PropTypes.string,
   multiValued: PropTypes.bool,
   children: PropTypes.node,
+  extraComponent: PropTypes.any,
 };
 
 Field.defaultProps = {

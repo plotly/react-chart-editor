@@ -1,14 +1,8 @@
 /*
  * DELETE THIS FILE. EVERYTHING NEEDS TO FIND A HOME.
  */
-import {list, getFromId} from 'plotly.js/src/plots/cartesian/axis_ids';
+import {getFromId} from 'plotly.js/src/plots/cartesian/axis_ids';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-
-export function noShame(opts) {
-  if (opts.plotly && !opts.plotly.Axes) {
-    opts.plotly.Axes = {list};
-  }
-}
 
 // Temporary fix for:
 // https://github.com/plotly/react-plotly.js-editor/issues/103

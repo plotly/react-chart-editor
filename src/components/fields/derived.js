@@ -6,9 +6,111 @@ import {UnconnectedRadio} from './Radio';
 import {
   connectLayoutToPlot,
   connectToContainer,
+  getAllAxes,
+  getAxisTitle,
+  axisIdToAxisName,
   supplyLayoutPlotProps,
-  striptags,
 } from 'lib';
+
+export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = props;
+    let options = [];
+
+    if (
+      plotProps.fullContainer._subplot &&
+      plotProps.fullContainer._subplot.includes('xaxis')
+    ) {
+      options = context.fullLayout._subplots.yaxis.map(axis => {
+        return {
+          label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
+          value: axis,
+        };
+      });
+    } else if (
+      plotProps.fullContainer._subplot &&
+      plotProps.fullContainer._subplot.includes('yaxis')
+    ) {
+      options = context.fullLayout._subplots.xaxis.map(axis => {
+        return {
+          label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
+          value: axis,
+        };
+      });
+    }
+    options.push({label: _('Free'), value: 'free'});
+    plotProps.options = options;
+    plotProps.clearable = false;
+  },
+});
+
+export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    let options = [];
+    if (
+      plotProps.fullContainer._subplot &&
+      plotProps.fullContainer._subplot.includes('xaxis')
+    ) {
+      options = context.fullLayout._subplots.xaxis.map(axis => {
+        return {
+          label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
+          value: axis,
+        };
+      });
+    } else if (
+      plotProps.fullContainer._subplot &&
+      plotProps.fullContainer._subplot.includes('yaxis')
+    ) {
+      options = context.fullLayout._subplots.yaxis.map(axis => {
+        return {
+          label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
+          value: axis,
+        };
+      });
+    }
+
+    // filter out the current axisID, can't overlay over itself
+    plotProps.options = options.filter(
+      option => context.fullContainer._id !== option.value
+    );
+
+    plotProps.clearable = true;
+  },
+});
+
+export const AxisSide = connectToContainer(UnconnectedRadio, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const _ = props.localize;
+    if (
+      context.fullContainer._id &&
+      context.fullContainer._id.startsWith('y')
+    ) {
+      plotProps.options = [
+        {label: _('Left'), value: 'left'},
+        {label: _('Right'), value: 'right'},
+      ];
+      return;
+    }
+
+    if (
+      context.fullContainer._id &&
+      context.fullContainer._id.startsWith('x')
+    ) {
+      plotProps.options = [
+        {label: _('Bottom'), value: 'bottom'},
+        {label: _('Top'), value: 'top'},
+      ];
+      return;
+    }
+
+    plotProps.options = [
+      {label: _('Left'), value: 'left'},
+      {label: _('Right'), value: 'right'},
+      {label: _('Bottom'), value: 'bottom'},
+      {label: _('Top'), value: 'top'},
+    ];
+  },
+});
 
 export const CanvasSize = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
@@ -135,6 +237,18 @@ export const NumericFraction = connectToContainer(UnconnectedNumericFraction, {
   modifyPlotProps: numericFractionModifyPlotProps,
 });
 
+export const NumericFractionDomain = connectToContainer(
+  UnconnectedNumericFraction,
+  {
+    modifyPlotProps: (props, context, plotProps) => {
+      numericFractionModifyPlotProps(props, context, plotProps);
+      if (context.container.overlaying) {
+        plotProps.isVisible = null;
+      }
+    },
+  }
+);
+
 export const LayoutNumericFraction = connectLayoutToPlot(
   connectToContainer(UnconnectedNumericFraction, {
     supplyPlotProps: supplyLayoutPlotProps,
@@ -175,7 +289,7 @@ export const LayoutNumericFractionInverse = connectLayoutToPlot(
 
 export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {fullContainer: {xref, yref}, plotly, graphDiv} = context;
+    const {fullContainer: {xref, yref}} = context;
 
     let currentAxisRef;
     if (props.attr === 'axref') {
@@ -191,11 +305,10 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
 
     if (currentAxisRef === 'paper') {
       // If currentAxesRef is paper provide all axes options to user.
+
       plotProps.options = [
         {label: 'in pixels', value: 'pixel'},
-        ...computeAxesRefOptions(
-          plotly.Axes.list(graphDiv, props.attr.charAt(1))
-        ),
+        ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
       ];
     } else {
       // If currentAxesRef is an actual axes then offer that value as the only
@@ -212,7 +325,7 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
 
 export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {fullContainer: {axref, ayref}, graphDiv, plotly} = context;
+    const {fullContainer: {axref, ayref}} = context;
 
     let currentOffsetRef;
     if (props.attr === 'xref') {
@@ -228,9 +341,7 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
 
     plotProps.options = [
       {label: 'Canvas', value: 'paper'},
-      ...computeAxesRefOptions(
-        plotly.Axes.list(graphDiv, props.attr.charAt(0))
-      ),
+      ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
     ];
 
     if (currentOffsetRef !== 'pixel') {
@@ -259,13 +370,9 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
 
 export const PositioningRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {graphDiv, plotly} = context;
-
     plotProps.options = [
       {label: 'Canvas', value: 'paper'},
-      ...computeAxesRefOptions(
-        plotly.Axes.list(graphDiv, props.attr.charAt(0))
-      ),
+      ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
     ];
 
     plotProps.clearable = false;
@@ -300,14 +407,17 @@ export const PositioningNumeric = connectToContainer(UnconnectedNumeric, {
   },
 });
 
-function computeAxesRefOptions(axes) {
+function computeAxesRefOptions(axes, propsAttr) {
   const options = [];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
-
-    // checking user data for title avoids default "Click to enter axis title"
-    const label = striptags(ax._input.title || ax._id);
-    options[i] = {label, value: ax._id};
+    if (
+      ax._id.charAt(0) === propsAttr.charAt(0) ||
+      ax._id.charAt(0) === propsAttr.charAt(1)
+    ) {
+      const label = getAxisTitle(ax);
+      options.push({label, value: ax._id});
+    }
   }
 
   return options;

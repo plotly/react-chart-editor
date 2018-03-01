@@ -1,10 +1,10 @@
-import Info from '../fields/Info';
 import React, {Component, cloneElement} from 'react';
 import PropTypes from 'prop-types';
 import {
   containerConnectedContextTypes,
   localize,
   unpackPlotProps,
+  traceTypeToAxisType,
 } from '../../lib';
 
 class Section extends Component {
@@ -36,7 +36,23 @@ class Section extends Component {
         return null;
       }
 
-      if (child.props.attr) {
+      if ((child.type.plotly_editor_traits || {}).is_axis_creator) {
+        const {data, fullContainer} = this.context;
+
+        // for now, only allowing for cartesian chart types
+        if (
+          data.length > 1 &&
+          traceTypeToAxisType(data[fullContainer.index].type) === 'cartesian'
+        ) {
+          this.sectionVisible = true;
+          return cloneElement(child, {
+            isVisible: true,
+            container: this.context.container,
+            fullContainer: this.context.fullContainer,
+          });
+        }
+        this.sectionVisible = false;
+      } else if (child.props.attr) {
         let plotProps;
         if (child.type.supplyPlotProps) {
           plotProps = child.type.supplyPlotProps(child.props, nextContext);
@@ -51,7 +67,9 @@ class Section extends Component {
         // it will see plotProps and skip recomputing them.
         this.sectionVisible = this.sectionVisible || plotProps.isVisible;
         return cloneElement(child, {plotProps});
-      } else if (child.type !== Info) {
+      } else if (
+        !(child.type.plotly_editor_traits || {}).no_visibility_forcing
+      ) {
         // custom UI other than Info forces section visibility.
         this.sectionVisible = true;
       }

@@ -2,7 +2,7 @@ import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {bem} from './lib';
-import {noShame, maybeClearAxisTypes} from './shame';
+import {maybeClearAxisTypes} from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
@@ -10,8 +10,6 @@ import nestedProperty from 'plotly.js/src/lib/nested_property';
 class PlotlyEditor extends Component {
   constructor(props, context) {
     super(props, context);
-
-    noShame({plotly: this.props.plotly});
 
     // we only need to compute this once.
     if (this.props.plotly) {
@@ -100,6 +98,31 @@ class PlotlyEditor extends Component {
         if (this.props.onUpdate) {
           this.props.onUpdate();
         }
+        break;
+
+      case EDITOR_ACTIONS.UPDATE_AXIS_REFERENCES:
+        payload.tracesToAdjust.forEach(trace => {
+          const axis = trace[payload.attrToAdjust].charAt(0);
+          // n.b: currentAxisIdNumber will never be 0, i.e. Number('x'.slice(1)),
+          // because payload.tracesToAdjust is a filter of all traces that have
+          // an axis ID above the one of the axis ID we deprecated
+          const currentAxisIdNumber = Number(
+            trace[payload.attrToAdjust].slice(1)
+          );
+          const adjustedAxisIdNumber = currentAxisIdNumber - 1;
+
+          const currentAxisLayoutProperties = {
+            ...graphDiv.layout[payload.attrToAdjust + currentAxisIdNumber],
+          };
+
+          graphDiv.data[trace.index][payload.attrToAdjust] =
+            // for cases when we're adjusting x2 => x, so that it becomes x not x1
+            adjustedAxisIdNumber === 1 ? axis : axis + adjustedAxisIdNumber;
+
+          graphDiv.layout[
+            payload.attrToAdjust + adjustedAxisIdNumber
+          ] = currentAxisLayoutProperties;
+        });
         break;
 
       case EDITOR_ACTIONS.ADD_TRACE:

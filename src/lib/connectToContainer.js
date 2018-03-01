@@ -5,6 +5,7 @@ import {getDisplayName} from '../lib';
 
 export const containerConnectedContextTypes = {
   container: PropTypes.object,
+  data: PropTypes.array,
   defaultContainer: PropTypes.object,
   fullContainer: PropTypes.object,
   fullData: PropTypes.array,

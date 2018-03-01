@@ -69,12 +69,12 @@
     }
   }
 
-  &:hover {
+  &:hover:not(.button--no-text--disabled) {
     background-color: var(--color-button-#{$variant}-hover-fill);
     border: 1px solid var(--color-button-#{$variant}-hover-border);
     color: var(--color-button-#{$variant}-hover-text);
   }
-  &:active {
+  &:active:not(.button--no-text--disabled) {
     background-color: var(--color-button-#{$variant}-active-fill);
     border: 1px solid var(--color-button-#{$variant}-active-border);
     color: var(--color-button-#{$variant}-active-text);
