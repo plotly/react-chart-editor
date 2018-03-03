@@ -208,3 +208,9 @@ Once you have your tokens, you can provide it as a config prop to the `react-plo
 ## License
 
 &copy; 2017 Plotly, Inc. MIT License.
+
+## Sponsors
+
+This work was made possible by [Alteryx](https://www.alteryx.com/), a leader in self-serve data analytics and data blending. 
+
+![alteryx](https://www.alteryx.com/sites/all/themes/alteryx2014/_media/alteryx-logo.png)
