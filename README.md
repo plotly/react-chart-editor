@@ -147,8 +147,7 @@ Simple component that takes in props and renders.
 
 * `<TraceAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to traces via `connectTraceToPlot()`.
 * `<LayoutPanel />`: `<Panel />` whose children are connected to the `layout` figure key
-* `<TraceRequiredPanel />`: `<LayoutPanel />` renders `<PanelEmpty />` if no trace data is set
-* `<AxisRequiredPanel />`: `<Panel />` renders `<PanelEmpty />` if no axis in `_fullLayout._subplots`
+* `<TraceRequiredPanel />`: `<LayoutPanel />` renders `<PanelEmpty />` if no trace data is set, can add extra conditions (i.e. an array of functions that will be run) with the `extraConditions` prop and a matching array with extraEmptyPanelMessages to show when those conditions are not met.
 * `<AnnotationAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to annotations via `connectAnnotationToLayout()`. For use in a `<LayoutPanel />`.
 * `<ShapeAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to shapes via `connectShapeToLayout()`. For use in a `<LayoutPanel />`.
 * `<ImageAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to images via `connectImageToLayout()`. For use in a `<LayoutPanel />`.
@@ -211,6 +210,6 @@ Once you have your tokens, you can provide it as a config prop to the `react-plo
 
 ## Sponsors
 
-This work was made possible by [Alteryx](https://www.alteryx.com/), a leader in self-serve data analytics and data blending. 
+This work was made possible by [Alteryx](https://www.alteryx.com/), a leader in self-serve data analytics and data blending.
 
 ![alteryx](https://www.alteryx.com/sites/all/themes/alteryx2014/_media/alteryx-logo.png)

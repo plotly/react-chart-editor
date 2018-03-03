@@ -2,7 +2,6 @@ import AnnotationAccordion from './AnnotationAccordion';
 import ShapeAccordion from './ShapeAccordion';
 import ImageAccordion from './ImageAccordion';
 import AxesFold from './AxesFold';
-import AxisRequiredPanel from './AxisRequiredPanel';
 import Fold from './Fold';
 import MenuPanel from './MenuPanel';
 import Panel from './Panel';
@@ -17,7 +16,6 @@ import Modal from './Modal';
 
 export {
   AnnotationAccordion,
-  AxisRequiredPanel,
   ShapeAccordion,
   ImageAccordion,
   MenuPanel,

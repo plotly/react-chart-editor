@@ -5,48 +5,46 @@ import {LayoutPanel} from './derived';
 import {localize} from 'lib';
 
 class TraceRequiredPanel extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      hasTraces: false,
-    };
-  }
-  checkTraceExistence() {
-    const {visible} = this.props;
-    const {fullData} = this.context;
-    const {hasTraces} = this.state;
-    if (visible) {
-      if (fullData.filter(trace => trace.visible).length === 0 && hasTraces) {
-        this.setState({
-          hasTraces: false,
-        });
-      }
-      if (fullData.filter(trace => trace.visible).length > 0 && !hasTraces) {
-        this.setState({
-          hasTraces: true,
-        });
-      }
-    }
-  }
-
-  componentDidUpdate() {
-    this.checkTraceExistence();
-  }
-  componentDidMount() {
-    this.checkTraceExistence();
+  hasTrace() {
+    return this.context.fullData.filter(trace => trace.visible).length > 0;
   }
 
   render() {
     const {localize: _, children, ...rest} = this.props;
-    const {hasTraces} = this.state;
+    const emptyPanelMessage = {
+      heading: _("Looks like there aren't any traces defined yet."),
+      message: _("Go to the 'Create' tab to define traces."),
+    };
+
+    let showPanel = false;
 
     if (this.props.visible) {
-      return hasTraces ? (
-        <LayoutPanel {...rest}>{children}</LayoutPanel>
-      ) : (
+      if (this.hasTrace()) {
+        showPanel = true;
+      }
+
+      if (this.props.extraConditions) {
+        this.props.extraConditions.forEach((condition, index) => {
+          if (!condition()) {
+            showPanel = false;
+            emptyPanelMessage.heading = this.props.extraEmptyPanelMessages[
+              index
+            ].heading;
+            emptyPanelMessage.message = this.props.extraEmptyPanelMessages[
+              index
+            ].message;
+          }
+        });
+      }
+
+      if (showPanel) {
+        return <LayoutPanel {...rest}>{children}</LayoutPanel>;
+      }
+
+      return (
         <PanelEmpty
-          heading={_("Looks like there aren't any traces defined yet.")}
-          message={_("Go to the 'Create' tab to define traces.")}
+          heading={emptyPanelMessage.heading}
+          message={emptyPanelMessage.message}
         />
       );
     }
@@ -58,6 +56,8 @@ TraceRequiredPanel.propTypes = {
   children: PropTypes.node,
   localize: PropTypes.func,
   visible: PropTypes.bool,
+  extraConditions: PropTypes.array,
+  extraEmptyPanelMessages: PropTypes.array,
 };
 
 TraceRequiredPanel.defaultProps = {
