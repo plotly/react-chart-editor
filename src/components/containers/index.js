@@ -12,6 +12,8 @@ import TraceMarkerSection from './TraceMarkerSection';
 import {LayoutPanel, TraceTypeSection} from './derived';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import SingleSidebarItem from './SingleSidebarItem';
+import ModalProvider from './ModalProvider';
+import Modal from './Modal';
 
 export {
   AnnotationAccordion,
@@ -29,4 +31,6 @@ export {
   AxesFold,
   SingleSidebarItem,
   TraceTypeSection,
+  Modal,
+  ModalProvider,
 };

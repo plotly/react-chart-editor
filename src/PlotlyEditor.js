@@ -6,6 +6,8 @@ import {maybeClearAxisTypes} from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
+import {categoryLayout, traceTypes} from 'lib/traceTypes';
+import {ModalProvider} from 'components/containers';
 
 class PlotlyEditor extends Component {
   constructor(props, context) {
@@ -32,6 +34,7 @@ class PlotlyEditor extends Component {
   getChildContext() {
     const gd = this.props.graphDiv || {};
     return {
+      advancedTraceTypeSelector: this.props.advancedTraceTypeSelector,
       config: gd._context,
       data: gd.data,
       dataSources: this.props.dataSources,
@@ -47,6 +50,7 @@ class PlotlyEditor extends Component {
       onUpdate: this.handleUpdate.bind(this),
       plotSchema: this.plotSchema,
       plotly: this.props.plotly,
+      traceTypesConfig: this.props.traceTypesConfig,
     };
   }
 
@@ -212,15 +216,18 @@ class PlotlyEditor extends Component {
           `${this.props.className ? ` ${this.props.className}` : ''}`
         }
       >
-        {this.props.graphDiv &&
-          this.props.graphDiv._fullLayout &&
-          (this.props.children ? this.props.children : <DefaultEditor />)}
+        <ModalProvider>
+          {this.props.graphDiv &&
+            this.props.graphDiv._fullLayout &&
+            (this.props.children ? this.props.children : <DefaultEditor />)}
+        </ModalProvider>
       </div>
     );
   }
 }
 
 PlotlyEditor.propTypes = {
+  advancedTraceTypeSelector: PropTypes.bool,
   afterAddTrace: PropTypes.func,
   afterDeleteAnnotation: PropTypes.func,
   afterDeleteShape: PropTypes.func,
@@ -239,27 +246,34 @@ PlotlyEditor.propTypes = {
   className: PropTypes.string,
   dataSourceOptionRenderer: PropTypes.func,
   dataSourceOptions: PropTypes.array,
+  dataSources: PropTypes.object,
   dataSourceValueRenderer: PropTypes.func,
   dictionaries: PropTypes.object,
-  dataSources: PropTypes.object,
   graphDiv: PropTypes.object,
   locale: PropTypes.string,
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
   revision: PropTypes.any,
+  traceTypesConfig: PropTypes.object,
 };
 
 PlotlyEditor.defaultProps = {
   locale: 'en',
+  traceTypesConfig: {
+    categories: _ => categoryLayout(_),
+    traces: _ => traceTypes(_),
+    complex: true,
+  },
 };
 
 PlotlyEditor.childContextTypes = {
+  advancedTraceTypeSelector: PropTypes.bool,
   config: PropTypes.object,
   data: PropTypes.array,
-  dataSources: PropTypes.object,
-  dataSourceOptions: PropTypes.array,
-  dataSourceValueRenderer: PropTypes.func,
   dataSourceOptionRenderer: PropTypes.func,
+  dataSourceOptions: PropTypes.array,
+  dataSources: PropTypes.object,
+  dataSourceValueRenderer: PropTypes.func,
   dictionaries: PropTypes.object,
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,
@@ -267,8 +281,9 @@ PlotlyEditor.childContextTypes = {
   layout: PropTypes.object,
   locale: PropTypes.string,
   onUpdate: PropTypes.func,
-  plotSchema: PropTypes.object,
   plotly: PropTypes.object,
+  plotSchema: PropTypes.object,
+  traceTypesConfig: PropTypes.object,
 };
 
 export default PlotlyEditor;
