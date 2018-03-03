@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
+import {hot} from 'react-hot-loader';
 import plotly from 'plotly.js/dist/plotly';
 import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor from '../src';
-import {hot} from 'react-hot-loader';
 import '../src/styles/main.scss';
 import Nav from './Nav';
+
+// https://github.com/plotly/react-plotly.js-editor#mapbox-access-tokens
+import ACCESS_TOKENS from '../accessTokens';
 
 const dataSources = {
   col1: [1, 2, 3], // eslint-disable-line no-magic-numbers
@@ -71,12 +74,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Nav
-          mocks={this.state.mocks}
-          currentMockIndex={this.state.currentMockIndex}
-          loadMock={this.loadMock}
-        />
+      <div className="app__container plotly-editor--theme-provider">
         <div className="app">
           <PlotlyEditor
             graphDiv={this.state.graphDiv}
@@ -85,20 +83,31 @@ class App extends Component {
             dataSources={dataSources}
             dataSourceOptions={dataSourceOptions}
             plotly={plotly}
+            advancedTraceTypeSelector
           />
           <div className="app__main" style={{width: '100%', height: '100%'}}>
             <Plot
-              debug
-              useResizeHandler
+              config={{mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true}}
               data={this.state.graphDiv.data}
+              debug
               layout={this.state.graphDiv.layout}
-              onUpdate={this.handlePlotUpdate.bind(this)}
               onInitialized={this.handlePlotUpdate.bind(this)}
+              onUpdate={this.handlePlotUpdate.bind(this)}
               revision={this.state.plotRevision}
-              style={{width: '100%', height: '100%', minHeight: '100vh'}}
+              useResizeHandler
+              style={{
+                width: '100%',
+                height: '100%',
+                minHeight: 'calc(100vh - 50px)',
+              }}
             />
           </div>
         </div>
+        <Nav
+          currentMockIndex={this.state.currentMockIndex}
+          loadMock={this.loadMock}
+          mocks={this.state.mocks}
+        />
       </div>
     );
   }

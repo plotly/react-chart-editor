@@ -163,7 +163,9 @@
   @each $var, $val in $sidebar {
     #{--sidebar}-#{$var}: $val;
   }
-  --editor-width: calc(var(--sidebar-width) + var(--panel-width) + 1px); // +1px for border
+  --editor-width: calc(
+    var(--sidebar-width) + var(--panel-width) + 1px
+  ); // +1px for border
 }
 
 @mixin heading($type: 'base') {
@@ -191,7 +193,7 @@
   }
 }
 
-@mixin animate($type: 'fade-in', $time: 1s, $delay: 0s){
+@mixin animate($type: 'fade-in', $time: 1s, $delay: 0s) {
   @if $type == 'fade-in' {
     @extend .animate--fade-in;
     animation-duration: $time;

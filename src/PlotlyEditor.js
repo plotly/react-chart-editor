@@ -34,6 +34,7 @@ class PlotlyEditor extends Component {
   getChildContext() {
     const gd = this.props.graphDiv || {};
     return {
+      advancedTraceTypeSelector: this.props.advancedTraceTypeSelector,
       config: gd._context,
       data: gd.data,
       dataSources: this.props.dataSources,
@@ -226,6 +227,7 @@ class PlotlyEditor extends Component {
 }
 
 PlotlyEditor.propTypes = {
+  advancedTraceTypeSelector: PropTypes.bool,
   afterAddTrace: PropTypes.func,
   afterDeleteAnnotation: PropTypes.func,
   afterDeleteShape: PropTypes.func,
@@ -260,10 +262,12 @@ PlotlyEditor.defaultProps = {
   traceTypesConfig: {
     categories: _ => categoryLayout(_),
     traces: _ => traceTypes(_),
+    complex: true,
   },
 };
 
 PlotlyEditor.childContextTypes = {
+  advancedTraceTypeSelector: PropTypes.bool,
   config: PropTypes.object,
   data: PropTypes.array,
   dataSourceOptionRenderer: PropTypes.func,

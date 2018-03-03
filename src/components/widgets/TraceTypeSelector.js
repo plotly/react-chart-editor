@@ -39,14 +39,15 @@ const renderActionItems = (actionItems, item) =>
       ))
     : null;
 
-const Item = ({item, active, handleClick, actions, showActions}) => {
+const Item = ({item, active, handleClick, actions, showActions, complex}) => {
   const {label, value, icon} = item;
   const SimpleIcon = renderTraceIcon(icon ? icon : value);
-  const ComplexIcon = renderTraceIcon(
-    icon ? `TraceType${icon}` : `TraceType${value}`
+  const ComplexIcon = () => (
+    <img
+      src={`/_temp/ic-${icon ? icon : value}.svg`}
+      alt={`Trace Type: ${label}`}
+    />
   );
-
-  const complex = true;
 
   return (
     <div
@@ -64,10 +65,7 @@ const Item = ({item, active, handleClick, actions, showActions}) => {
         )}
         {complex && (
           <div className="trace-item__image__wrapper">
-            <img
-              src={`/_temp/ic-${icon ? icon : value}.svg`}
-              alt={`Trace Type: ${label}`}
-            />
+            <ComplexIcon />
           </div>
         )}
       </div>
@@ -85,7 +83,7 @@ class TraceTypeSelector extends Component {
 
   renderCategories() {
     const {fullValue, localize: _} = this.props;
-    const {traces, categories} = this.context.traceTypesConfig;
+    const {traces, categories, complex} = this.context.traceTypesConfig;
 
     return categories(_).map((category, i) => {
       const items = traces(_).filter(
@@ -106,6 +104,7 @@ class TraceTypeSelector extends Component {
           <div className="trace-grid__column__items">
             {items.map(item => (
               <Item
+                complex={complex}
                 key={item.value}
                 active={fullValue === item.value}
                 item={item}
@@ -176,6 +175,7 @@ TraceTypeSelector.contextTypes = {
 Item.propTypes = {
   item: PropTypes.object,
   active: PropTypes.bool,
+  complex: PropTypes.bool,
   handleClick: PropTypes.func,
   actions: PropTypes.array,
   showActions: PropTypes.bool,
