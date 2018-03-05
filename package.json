@@ -14,7 +14,6 @@
     "draft-js-utils": "^1.2.0",
     "fast-isnumeric": "^1.1.1",
     "immutability-helper": "^2.6.4",
-    "microtip": "^0.2.2",
     "plotly-icons": "^1.1.5",
     "plotly.js": "^1.33.0",
     "prop-types": "^15.5.10",
