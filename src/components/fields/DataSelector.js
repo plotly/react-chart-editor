@@ -38,8 +38,9 @@ export class UnconnectedDataSelector extends Component {
     }
 
     this.is2D =
-      props.attr === 'z' &&
-      ['contour', 'heatmap', 'surface'].includes(props.container.type);
+      (props.attr === 'z' &&
+        ['contour', 'heatmap', 'surface'].includes(props.container.type)) ||
+      (props.container.type === 'table' && props.attr !== 'columnorder');
   }
 
   updatePlot(value) {
@@ -52,6 +53,28 @@ export class UnconnectedDataSelector extends Component {
       update[this.props.attr] = value
         .filter(v => Array.isArray(this.dataSources[v]))
         .map(v => this.dataSources[v]);
+
+      // Table traces have many configuration options,
+      // The below attributes can be 2d or 1d and will affect the plot differently
+      // EX:
+      // header.values = ['Jan', 'Feb', 'Mar'] => will put data in a row
+      // header.values = [['Jan', 1], ['Feb', 2], ['Mar', 3]] => will create 3 columns
+      // 1d arrays affect columns
+      // 2d arrays affect rows within each column
+
+      if (
+        this.props.container.type === 'table' &&
+        value.length === 1 &&
+        [
+          'header.values',
+          'header.font.color',
+          'header.font.size',
+          'header.fill.color',
+          'columnwidth',
+        ].includes(this.props.attr)
+      ) {
+        update[this.props.attr] = update[this.props.attr][0];
+      }
       update[this.srcAttr] = value;
     } else {
       update[this.srcAttr] = value;

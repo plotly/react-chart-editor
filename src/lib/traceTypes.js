@@ -61,21 +61,21 @@ export const traceTypes = _ => [
     label: _('Line'),
     category: chartCategory(_).SIMPLE,
   },
-  // {
-  //   value: 'area',
-  //   label: _('Area'),
-  //   category: chartCategory(_).SIMPLE,
-  // },
+  {
+    value: 'area',
+    label: _('Area'),
+    category: chartCategory(_).SIMPLE,
+  },
   {
     value: 'heatmap',
     label: _('Heatmap'),
     category: chartCategory(_).SIMPLE,
   },
-  // {
-  //   value: 'table',
-  //   label: _('Table'),
-  //   category: chartCategory(_).SIMPLE,
-  // },
+  {
+    value: 'table',
+    label: _('Table'),
+    category: chartCategory(_).SIMPLE,
+  },
   {
     value: 'contour',
     label: _('Contour'),
