@@ -36,7 +36,7 @@ export default function connectTraceToPlot(WrappedComponent) {
       const fullTrace = fullData[fullTraceIndex] || {};
 
       let getValObject;
-      if (plotly) {
+      if (plotly && fullTrace._fullInput) {
         /*
          * Since fullTrace._fullInput contains the _module.attributes key:
          * https://github.com/plotly/plotly.js/blob/70f3f70ec5b306cf74630355676f5e318f685824/src/plot_api/plot_schema.js#L241
@@ -77,6 +77,7 @@ export default function connectTraceToPlot(WrappedComponent) {
         this.name = fullTrace.name;
         const DEFAULT_FIN_CHART_TRACE_NAME = ' - increasing';
         if (
+          fullTrace.name &&
           fullTrace.name.indexOf(DEFAULT_FIN_CHART_TRACE_NAME) &&
           !trace.name
         ) {
