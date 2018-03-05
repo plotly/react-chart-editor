@@ -44,7 +44,9 @@ const Item = ({item, active, handleClick, actions, showActions, complex}) => {
   const SimpleIcon = renderTraceIcon(icon ? icon : value);
   const ComplexIcon = () => (
     <img
-      src={`https://images.plot.ly/react-plotly.js-editor/ic-${icon ? icon : value}.svg`}
+      src={`https://images.plot.ly/react-plotly.js-editor/ic-${
+        icon ? icon : value
+      }.svg`}
       alt={`Trace Type: ${label}`}
     />
   );
