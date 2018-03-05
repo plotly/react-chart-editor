@@ -529,6 +529,10 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       ];
     }
 
+    if (context.container.type === 'table') {
+      plotProps.isVisible = false;
+    }
+
     plotProps.options = options;
   },
 });

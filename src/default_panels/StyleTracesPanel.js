@@ -55,6 +55,44 @@ const StyleTracesPanel = ({localize: _}) => (
       />
     </Section>
 
+    <Section name={_('Header')}>
+      <Numeric label={_('Height')} attr="header.height" />
+      <ColorPicker label={_('Fill Color')} attr="header.fill.color" />
+      <FontSelector label={_('Typeface')} attr="header.font.family" />
+      <Numeric label={_('Font Size')} attr="header.font.size" />
+      <Dropdown
+        label={_('Text Alignment')}
+        options={[
+          {label: _('Left'), value: 'left'},
+          {label: _('Center'), value: 'center'},
+          {label: _('Right'), value: 'right'},
+        ]}
+        attr="header.align"
+      />
+      <ColorPicker label={_('Font Color')} attr="header.font.color" />
+      <Numeric label={_('Border Width')} attr="header.line.width" />
+      <ColorPicker label={_('Border Color')} attr="header.line.color" />
+    </Section>
+
+    <Section name={_('Cells')}>
+      <Numeric label={_('Height')} attr="cells.height" />
+      <ColorPicker label={_('Fill Color')} attr="cells.fill.color" />
+      <FontSelector label={_('Typeface')} attr="cells.font.family" />
+      <Numeric label={_('Font Size')} attr="cells.font.size" />
+      <Dropdown
+        label={_('Text Alignment')}
+        options={[
+          {label: _('Left'), value: 'left'},
+          {label: _('Center'), value: 'center'},
+          {label: _('Right'), value: 'right'},
+        ]}
+        attr="cells.align"
+      />
+      <ColorPicker label={_('Font Color')} attr="cells.font.color" />
+      <Numeric label={_('Border Width')} attr="cells.line.width" />
+      <ColorPicker label={_('Border Color')} attr="cells.line.color" />
+    </Section>
+
     <Section name={_('Display')}>
       <Flaglist
         attr="mode"

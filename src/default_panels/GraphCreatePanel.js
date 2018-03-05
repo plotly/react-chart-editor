@@ -62,6 +62,8 @@ const GraphCreatePanel = ({localize: _}) => {
         <DataSelector label={_('A')} attr="a" />
         <DataSelector label={_('B')} attr="b" />
         <DataSelector label={_('C')} attr="c" />
+        <DataSelector label={_('Headers')} attr="header.values" />
+        <DataSelector label={_('Columns')} attr="cells.values" />
       </Section>
 
       <Section name={_('Axes to Use')}>
@@ -78,6 +80,23 @@ const GraphCreatePanel = ({localize: _}) => {
 
       <Section name={_('Error Bars Z')}>
         <ErrorBars localize={_} attr="error_z" />
+      </Section>
+
+      <Section name={_('Header Options')}>
+        <DataSelector label={_('Fill Color')} attr="header.fill.color" />
+        <DataSelector label={_('Font Color')} attr="header.font.color" />
+        <DataSelector label={_('Font Size')} attr="header.font.size" />
+      </Section>
+
+      <Section name={_('Cell Options')}>
+        <DataSelector label={_('Fill Color')} attr="cells.fill.color" />
+        <DataSelector label={_('Font Color')} attr="cells.font.color" />
+        <DataSelector label={_('Font Size')} attr="cells.font.size" />
+      </Section>
+
+      <Section name={_('Column Options')}>
+        <DataSelector label={_('Width')} attr="columnwidth" />
+        <DataSelector label={_('Order')} attr="columnorder" />
       </Section>
 
       <Section name={_('Options')}>

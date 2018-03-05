@@ -10,9 +10,12 @@ import Nav from './Nav';
 import ACCESS_TOKENS from '../accessTokens';
 
 const dataSources = {
-  col1: [1, 2, 3], // eslint-disable-line no-magic-numbers
-  col2: [4, 3, 2], // eslint-disable-line no-magic-numbers
-  col3: [17, 13, 9], // eslint-disable-line no-magic-numbers
+  col1: ['Jan', 'Feb', 'Mar'], // eslint-disable-line no-magic-numbers
+  col2: [1, 2, 3],
+  col3: [4, 3, 2], // eslint-disable-line no-magic-numbers
+  col4: [17, 13, 9], // eslint-disable-line no-magic-numbers
+  col5: ['blue'],
+  col6: ['yellow', 'green', 'yellow'],
 };
 const dataSourceOptions = Object.keys(dataSources).map(name => ({
   value: name,
