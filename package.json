@@ -7,6 +7,7 @@
     "url": "https://github.com/plotly/react-plotly.js-editor/issues"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "draft-js": "^0.10.4",
     "draft-js-export-html": "github:plotly/draft-js-export-html",
     "draft-js-import-html": "^1.2.1",
@@ -14,14 +15,13 @@
     "fast-isnumeric": "^1.1.1",
     "immutability-helper": "^2.6.4",
     "microtip": "^0.2.2",
-    "plotly-icons": "^1.1.4",
+    "plotly-icons": "^1.1.5",
     "plotly.js": "^1.33.0",
     "prop-types": "^15.5.10",
     "raf": "^3.4.0",
-    "react": "^16.2.0",
     "react-color": "^2.13.8",
     "react-colorscales": "^0.4.2",
-    "react-dom": "^16.2.0",
+    "react-plotly.js": "^1.6.0",
     "react-rangeslider": "^2.2.0",
     "react-select": "^1.0.0-rc.10",
     "react-tabs": "^2.2.1",
@@ -41,7 +41,6 @@
     "babel-preset-stage-2": "^6.24.1",
     "babel-traverse": "^6.26.0",
     "canvas": "^1.6.9",
-    "classnames": "^2.2.5",
     "css-loader": "^0.28.9",
     "cssnano": "^3.10.0",
     "enzyme": "^3.1.0",
@@ -62,13 +61,18 @@
     "postcss-custom-properties": "^6.2.0",
     "postcss-remove-root": "^0.0.2",
     "prettier": "^1.9.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-hot-loader": "^4.0.0-beta.21",
-    "react-plotly.js": "^1.6.0",
     "react-test-renderer": "^16.2.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
+  },
+  "peerDependencies": {
+    "react": ">15",
+    "react-dom": ">15"
   },
   "homepage": "https://plotly.github.io/react-plotly.js-editor/",
   "jest": {
@@ -92,10 +96,6 @@
   ],
   "license": "MIT",
   "main": "lib/index.js",
-  "peerDependencies": {
-    "react": "^15.3.0 || ^16.0.0-rc || ^16.0",
-    "react-dom": "^0.14.9 || ^15.3.0 || ^16.0.0-rc || ^16.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/plotly/react-plotly.js-editor.git"
