@@ -5,7 +5,7 @@ jobs:
       # specify the version you desire here
       - image: circleci/node:8.9
 
-    working_directory: ~/react-plotly.js-editor
+    working_directory: ~/react-chart-editor
 
     steps:
       - checkout

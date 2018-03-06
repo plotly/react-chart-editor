@@ -16,7 +16,7 @@ import {
   Button,
   SingleSidebarItem,
   TraceAccordion,
-} from 'react-plotly.js-editor';
+} from 'react-chart-editor';
 
 export default class CustomEditor extends Component {
   render() {

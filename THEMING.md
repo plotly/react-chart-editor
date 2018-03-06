@@ -83,10 +83,10 @@ You can inspect the editor and see a full listing of all variables that you can 
 CSS custom properties are not supported in IE11. However, you can use a [PostCSS](https://github.com/postcss/postcss) plugin to convert the css properties to their true value when they are used. We are using [PostCSS Custom Properties](https://github.com/postcss/postcss-custom-properties).
 
 The PostCSS plugin we are using only applies to variables that are in the `:root{}` scope. If you'd like to both theme and use your styles to support IE11, you would need to import the unminified IE styles we ship with the editor:
- `import react-plotly.js-editor/lib/react-plotly.js-editor.ie.css` (this stylesheet has the variables attached to the `:root{}` scope).
+ `import react-chart-editor/lib/react-chart-editor.ie.css` (this stylesheet has the variables attached to the `:root{}` scope).
 
  Then, rather than applying your custom properties to `.theme--dark .plotly-editor--theme-provider`, you would apply your overrides to `:root{}`.
 
  Finally, you would pipe in the PostCSS plugin(s) to your project and produce a css file with the properties applied as their true value. It's recommended to use the [PostCSS Remove Root](https://github.com/cbracco/postcss-remove-root) plugin after you have converted all of the properties.
 
- You can see our PostCSS scripts [here](https://github.com/plotly/react-plotly.js-editor/tree/master/scripts/postcss.js).
+ You can see our PostCSS scripts [here](https://github.com/plotly/react-chart-editor/tree/master/scripts/postcss.js).

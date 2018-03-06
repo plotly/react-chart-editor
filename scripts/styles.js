@@ -7,7 +7,7 @@ const SASS_ENV = process.env.SASS_ENV || 'default';
 const BUILD_ENV = process.env.BUILD_ENV || 'lib';
 
 const src = 'src/styles/main.scss';
-const fileName = `react-plotly.js-editor`;
+const fileName = `react-chart-editor`;
 const dist =
   SASS_ENV === 'ie'
     ? `${BUILD_ENV}/${fileName}.ie.css`

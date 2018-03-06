@@ -1,4 +1,4 @@
-# Custom `react-plotly.js-editor` example
+# Custom `react-chart-editor` example
 
 This example built with [`create-react-app`](https://github.com/facebookincubator/create-react-app) uses a [customized editor](src/CustomEditor.js), with synchronously-loaded data and a top-level component for state, so as to demo the customizability of this component.
 

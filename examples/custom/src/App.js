@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly';
 import createPlotComponent from 'react-plotly.js/factory';
-import PlotlyEditor from 'react-plotly.js-editor';
+import PlotlyEditor from 'react-chart-editor';
 import CustomEditor from './CustomEditor';
-import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
+import 'react-chart-editor/lib/react-chart-editor.css';
 
 const dataSources = {
   col1: [1, 2, 3], // eslint-disable-line no-magic-numbers

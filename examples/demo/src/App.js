@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly';
 import createPlotComponent from 'react-plotly.js/factory';
-import PlotlyEditor from 'react-plotly.js-editor';
-import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
+import PlotlyEditor from 'react-chart-editor';
+import 'react-chart-editor/lib/react-chart-editor.css';
 import Nav from './Nav';
 
 const dataSources = {
