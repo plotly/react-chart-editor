@@ -262,7 +262,6 @@ PlotlyEditor.defaultProps = {
   traceTypesConfig: {
     categories: _ => categoryLayout(_),
     traces: _ => traceTypes(_),
-    complex: true,
   },
 };
 
