@@ -38,7 +38,6 @@ class App extends Component {
       dataSources,
       dataSourceOptions,
       graphDiv,
-      editorRevision,
       plotRevision,
     } = this.props;
 
@@ -51,7 +50,6 @@ class App extends Component {
             dataSourceOptions={dataSourceOptions}
             graphDiv={graphDiv}
             onUpdate={actions.editorUpdate}
-            revision={editorRevision}
             plotly={plotly}
           />
         </aside>

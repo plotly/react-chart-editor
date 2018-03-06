@@ -35,13 +35,12 @@ class App extends Component {
           },
         ],
       },
-      editorRevision: 0,
       plotRevision: 0,
     };
   }
 
   handlePlotUpdate(graphDiv) {
-    this.setState(({editorRevision: x}) => ({editorRevision: x + 1, graphDiv}));
+    this.setState({graphDiv});
   }
 
   handleEditorUpdate() {
@@ -55,7 +54,6 @@ class App extends Component {
           locale="en"
           graphDiv={this.state.graphDiv}
           onUpdate={this.handleEditorUpdate.bind(this)}
-          revision={this.state.editorRevision}
           plotly={plotly}
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}

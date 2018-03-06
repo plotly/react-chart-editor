@@ -4,7 +4,6 @@ const initialState = {
   dataSources: {},
   dataSourceOptions: [],
   graphDiv: {},
-  editorRevision: 0,
   plotRevision: 0,
 };
 
@@ -23,7 +22,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         graphDiv: action.payload,
-        editorRevision: state.editorRevision + 1,
       };
     case ACTIONS.INITIALIZE_PLOT:
       return {
