@@ -60,31 +60,28 @@ class UnconnectedNewAxisCreator extends Component {
   recalcAxes(update) {
     const currentAxisId = this.props.fullContainer[this.props.attr];
 
-    // When we select another axis, make sure no unused axes are left:
-    // does any other trace have this axisID? If so, nothing needs to change
-    if (
-      this.context.fullData.some(
-        t =>
-          t[this.props.attr] === currentAxisId &&
-          t.index !== this.props.fullContainer.index
-      )
-    ) {
-      this.props.updateContainer({[this.props.attr]: update});
-      return;
-    }
-
-    // if not, send action to readjust axis references in trace data and layout
-    const tracesToAdjust = this.context.fullData.filter(
-      trace =>
-        Number(trace[this.props.attr].slice(1)) > Number(currentAxisId.slice(1))
-    );
+    // When we select another axis, make sure no unused axes are left
+    const tracesNeedingAxisAdjustment = this.context.fullData.some(
+      t =>
+        t[this.props.attr] === currentAxisId &&
+        t.index !== this.props.fullContainer.index
+    )
+      ? null
+      : this.context.fullData.filter(
+          trace =>
+            Number(trace[this.props.attr].slice(1)) >
+            Number(currentAxisId.slice(1))
+        );
 
     this.context.onUpdate({
-      type: EDITOR_ACTIONS.UPDATE_AXIS_REFERENCES,
-      payload: {tracesToAdjust, attrToAdjust: this.props.attr},
+      type: EDITOR_ACTIONS.UPDATE_TRACES,
+      payload: {
+        tracesNeedingAxisAdjustment,
+        axisAttrToAdjust: this.props.attr,
+        update: {[this.props.attr]: update},
+        traceIndexes: [this.props.fullContainer.index],
+      },
     });
-
-    this.props.updateContainer({[this.props.attr]: update});
   }
 
   render() {

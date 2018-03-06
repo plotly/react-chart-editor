@@ -42,6 +42,31 @@ class PlotlyEditor extends Component {
     };
   }
 
+  maybeAdjustAxisRef(payload) {
+    const {graphDiv} = this.props;
+    if (payload.tracesNeedingAxisAdjustment) {
+      payload.tracesNeedingAxisAdjustment.forEach(trace => {
+        const axis = trace[payload.axisAttrToAdjust].charAt(0);
+        const currentAxisIdNumber = Number(
+          trace[payload.axisAttrToAdjust].slice(1)
+        );
+        const adjustedAxisIdNumber = currentAxisIdNumber - 1;
+
+        const currentAxisLayoutProperties = {
+          ...graphDiv.layout[payload.axisAttrToAdjust + currentAxisIdNumber],
+        };
+
+        // for cases when we're adjusting x2 => x, so that it becomes x not x1
+        graphDiv.data[trace.index][payload.axisAttrToAdjust] =
+          adjustedAxisIdNumber === 1 ? axis : axis + adjustedAxisIdNumber;
+
+        graphDiv.layout[
+          payload.axisAttrToAdjust + adjustedAxisIdNumber
+        ] = currentAxisLayoutProperties;
+      });
+    }
+  }
+
   handleUpdate({type, payload}) {
     const {graphDiv} = this.props;
 
@@ -55,16 +80,20 @@ class PlotlyEditor extends Component {
         // force clear axes types when a `src` has changed.
         maybeClearAxisTypes(graphDiv, payload.traceIndexes, payload.update);
 
+        this.maybeAdjustAxisRef(payload);
+
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {
             const traceIndex = payload.traceIndexes[i];
             const prop = nestedProperty(graphDiv.data[traceIndex], attr);
             const value = payload.update[attr];
+
             if (value !== void 0) {
               prop.set(value);
             }
           }
         }
+
         if (this.props.afterUpdateTraces) {
           this.props.afterUpdateTraces(payload);
         }
@@ -90,31 +119,6 @@ class PlotlyEditor extends Component {
         if (this.props.onUpdate) {
           this.props.onUpdate();
         }
-        break;
-
-      case EDITOR_ACTIONS.UPDATE_AXIS_REFERENCES:
-        payload.tracesToAdjust.forEach(trace => {
-          const axis = trace[payload.attrToAdjust].charAt(0);
-          // n.b: currentAxisIdNumber will never be 0, i.e. Number('x'.slice(1)),
-          // because payload.tracesToAdjust is a filter of all traces that have
-          // an axis ID above the one of the axis ID we deprecated
-          const currentAxisIdNumber = Number(
-            trace[payload.attrToAdjust].slice(1)
-          );
-          const adjustedAxisIdNumber = currentAxisIdNumber - 1;
-
-          const currentAxisLayoutProperties = {
-            ...graphDiv.layout[payload.attrToAdjust + currentAxisIdNumber],
-          };
-
-          graphDiv.data[trace.index][payload.attrToAdjust] =
-            // for cases when we're adjusting x2 => x, so that it becomes x not x1
-            adjustedAxisIdNumber === 1 ? axis : axis + adjustedAxisIdNumber;
-
-          graphDiv.layout[
-            payload.attrToAdjust + adjustedAxisIdNumber
-          ] = currentAxisLayoutProperties;
-        });
         break;
 
       case EDITOR_ACTIONS.ADD_TRACE:
