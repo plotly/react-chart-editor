@@ -127,7 +127,7 @@ TraceSelector.propTypes = {
   getValObject: PropTypes.func,
   container: PropTypes.object.isRequired,
   fullContainer: PropTypes.object.isRequired,
-  fullValue: PropTypes.any.isRequired,
+  fullValue: PropTypes.any,
   localize: PropTypes.func,
   updateContainer: PropTypes.func,
 };

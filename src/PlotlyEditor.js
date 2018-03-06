@@ -19,18 +19,6 @@ class PlotlyEditor extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (
-      nextProps.revision === void 0 ||
-      nextProps.revision !== this.props.revision ||
-      nextProps.dataSources !== this.props.dataSources ||
-      nextProps.dataSourceOptions !== this.props.dataSourceOptions
-    ) {
-      return true;
-    }
-    return false;
-  }
-
   getChildContext() {
     const gd = this.props.graphDiv || {};
     return {
@@ -253,7 +241,6 @@ PlotlyEditor.propTypes = {
   locale: PropTypes.string,
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
-  revision: PropTypes.any,
   traceTypesConfig: PropTypes.object,
 };
 

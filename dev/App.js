@@ -33,7 +33,6 @@ class App extends Component {
     // _fullLayout etc in handlePlotUpdate()
     this.state = {
       graphDiv: {},
-      editorRevision: 0,
       plotRevision: 0,
       currentMockIndex: -1,
       mocks: [],
@@ -51,7 +50,7 @@ class App extends Component {
   }
 
   handlePlotUpdate(graphDiv) {
-    this.setState(({editorRevision: x}) => ({editorRevision: x + 1, graphDiv}));
+    this.setState({graphDiv});
   }
 
   handleEditorUpdate() {
@@ -82,7 +81,6 @@ class App extends Component {
           <PlotlyEditor
             graphDiv={this.state.graphDiv}
             onUpdate={this.handleEditorUpdate.bind(this)}
-            revision={this.state.editorRevision}
             dataSources={dataSources}
             dataSourceOptions={dataSourceOptions}
             plotly={plotly}
