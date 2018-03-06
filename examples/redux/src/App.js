@@ -1,5 +1,5 @@
-import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
-import PlotlyEditor from 'react-plotly.js-editor';
+import 'react-chart-editor/lib/react-chart-editor.css';
+import PlotlyEditor from 'react-chart-editor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import createPlotComponent from 'react-plotly.js/factory';

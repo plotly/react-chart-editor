@@ -10,7 +10,7 @@ const removeRoot = require('postcss-remove-root');
 const SASS_ENV = process.env.SASS_ENV || 'default';
 const BUILD_ENV = process.env.BUILD_ENV || 'lib';
 
-const fileName = `react-plotly.js-editor`;
+const fileName = `react-chart-editor`;
 const dist = `${BUILD_ENV}/${fileName}.css`;
 
 const internetExplorerPostCSS = () => {

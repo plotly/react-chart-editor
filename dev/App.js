@@ -6,7 +6,7 @@ import PlotlyEditor from '../src';
 import '../src/styles/main.scss';
 import Nav from './Nav';
 
-// https://github.com/plotly/react-plotly.js-editor#mapbox-access-tokens
+// https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
 
 const dataSources = {

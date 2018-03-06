@@ -6,7 +6,7 @@
     "plotly.js": "^1.32.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-plotly.js-editor": "latest",
+    "react-chart-editor": "latest",
     "react-plotly.js": "^1.2.0",
     "react-scripts": "1.0.17"
   },
@@ -18,7 +18,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "http://plotly.github.io/react-plotly.js-editor",
+  "homepage": "http://plotly.github.io/react-chart-editor",
   "devDependencies": {
     "gh-pages": "^1.1.0"
   }
