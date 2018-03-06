@@ -83,7 +83,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
         this.plotProps,
         this.props
       );
-      if (props.isVisible && props.container) {
+      if (props.isVisible) {
         return <WrappedComponent {...props} plotProps={plotProps} />;
       }
 

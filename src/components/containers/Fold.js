@@ -62,8 +62,6 @@ class Fold extends Component {
       name,
     } = this.props;
 
-    const doDelete = typeof deleteContainer === 'function' && canDelete;
-
     const contentClass = classnames('fold__content', {
       'fold__content--noheader': hideHeader,
     });
@@ -84,17 +82,20 @@ class Fold extends Component {
       </div>
     );
 
-    const deleteButton = handleClick =>
-      doDelete ? (
+    const icon = Icon ? <Icon className="fold__top__icon" /> : null;
+
+    const deleteButton =
+      canDelete && typeof deleteContainer === 'function' ? (
         <div
           className="fold__top__delete js-fold__delete"
-          onClick={handleClick}
+          onClick={e => {
+            e.stopPropagation();
+            deleteContainer(e);
+          }}
         >
           <CloseIcon />
         </div>
       ) : null;
-
-    const icon = Icon ? <Icon className="fold__top__icon" /> : null;
 
     const foldHeader = !hideHeader && (
       <div className={headerClass} onClick={toggleFold}>
@@ -103,7 +104,7 @@ class Fold extends Component {
           {icon}
           <div className="fold__top__title">{striptags(name)}</div>
         </div>
-        {deleteButton(deleteContainer)}
+        {deleteButton}
       </div>
     );
 
