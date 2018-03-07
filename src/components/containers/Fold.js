@@ -48,7 +48,7 @@ class Fold extends Component {
         // except for Folds of Folds, which should keep their visibility rules
         if (
           child.type.plotly_editor_traits &&
-          !child.type.plotly_editor_traits.is_fold
+          !child.type.plotly_editor_traits.foldable
         ) {
           this.foldVisible = true;
           return;
@@ -165,9 +165,5 @@ Fold.contextTypes = Object.assign(
   },
   containerConnectedContextTypes
 );
-
-Fold.plotly_editor_traits = {
-  is_fold: true,
-};
 
 export default localize(Fold);
