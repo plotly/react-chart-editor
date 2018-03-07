@@ -37,14 +37,14 @@ $item-size: 90px;
       flex-grow: 0;
       .trace-grid__column__items {
         display: grid;
-        grid-gap: 0px;
+        grid-gap: 0;
         grid-template-columns: repeat(4, 1fr);
       }
     }
 
     &__items {
       display: grid;
-      grid-gap: 0px;
+      grid-gap: 0;
       grid-template-columns: repeat(2, $item-size);
       flex-grow: 1;
       width: 100%;
@@ -83,6 +83,7 @@ $item-size: 90px;
     .trace-item__image {
       border-color: var(--color-accent);
       border-width: 2px;
+      color: var(--color-accent);
     }
   }
 
@@ -149,6 +150,11 @@ $item-size: 90px;
     justify-content: center;
     @include trans;
 
+    &__svg {
+      width: 100%;
+      flex-grow: 1;
+      padding: var(--spacing-quarter-unit);
+    }
     svg {
       display: block;
     }
@@ -201,7 +207,6 @@ $item-size: 90px;
   &__icon {
     max-width: 20px;
     width: 20px;
-    flex-shrink: 0;
     margin-right: var(--spacing-quarter-unit);
     svg {
       max-width: 100%;
