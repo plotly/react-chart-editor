@@ -44,6 +44,7 @@ export default class NumericInput extends Component {
     } else {
       this.incrementValue('decrease');
     }
+    e.stopPropagation();
   }
 
   onChange(value) {
