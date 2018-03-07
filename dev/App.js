@@ -3,7 +3,7 @@ import {hot} from 'react-hot-loader';
 import plotly from 'plotly.js/dist/plotly';
 import '../src/styles/main.scss';
 import Nav from './Nav';
-import {PlotlyEditorWithPlot} from '../src';
+import PlotlyEditor from '../src';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
@@ -63,7 +63,7 @@ class App extends Component {
   render() {
     return (
       <div className="app__container plotly-editor--theme-provider">
-        <PlotlyEditorWithPlot
+        <PlotlyEditor
           data={this.state.data}
           layout={this.state.layout}
           config={config}
