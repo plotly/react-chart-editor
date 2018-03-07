@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly';
 import createPlotComponent from 'react-plotly.js/factory';
-import PlotlyEditor from 'react-plotly.js-editor';
-import 'react-plotly.js-editor/lib/react-plotly.js-editor.css';
+import PlotlyEditor from 'react-chart-editor';
+import 'react-chart-editor/lib/react-chart-editor.css';
 
 const dataSources = {
   col1: [1, 2, 3], // eslint-disable-line no-magic-numbers
@@ -25,13 +25,12 @@ class App extends Component {
     // _fullLayout etc in handlePlotUpdate()
     this.state = {
       graphDiv: {},
-      editorRevision: 0,
       plotRevision: 0,
     };
   }
 
   handlePlotUpdate(graphDiv) {
-    this.setState(({editorRevision: x}) => ({editorRevision: x + 1, graphDiv}));
+    this.setState({graphDiv});
   }
 
   handleEditorUpdate() {
@@ -44,7 +43,6 @@ class App extends Component {
         <PlotlyEditor
           graphDiv={this.state.graphDiv}
           onUpdate={this.handleEditorUpdate.bind(this)}
-          revision={this.state.editorRevision}
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}

@@ -58,7 +58,7 @@ describe('Plot Connection', () => {
     expect(payload).toEqual({update: {width: 11}});
   });
 
-  // see https://github.com/plotly/react-plotly.js-editor/issues/58#issuecomment-345492794
+  // see https://github.com/plotly/react-chart-editor/issues/58#issuecomment-345492794
   it("can't find correct Container when Section divides Trace and Layout", () => {
     const fixtureProps = fixtures.scatter({layout: {width: 10}});
     const DeeplyConnectedNumeric = connectTraceToPlot(

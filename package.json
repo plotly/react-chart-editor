@@ -1,10 +1,10 @@
 {
-  "name": "react-plotly.js-editor",
+  "name": "react-chart-editor",
   "description": "plotly.js chart editor react component UI",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "author": "Plotly, Inc.",
   "bugs": {
-    "url": "https://github.com/plotly/react-plotly.js-editor/issues"
+    "url": "https://github.com/plotly/react-chart-editor/issues"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -73,7 +73,7 @@
     "react": ">15",
     "react-dom": ">15"
   },
-  "homepage": "https://plotly.github.io/react-plotly.js-editor/",
+  "homepage": "https://plotly.github.io/react-chart-editor/",
   "jest": {
     "roots": [
       "<rootDir>/src/"
@@ -97,7 +97,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/plotly/react-plotly.js-editor.git"
+    "url": "https://github.com/plotly/react-chart-editor.git"
   },
   "scripts": {
     "lint": "prettier --write \"src/**/*.js\"",
@@ -113,7 +113,7 @@
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill",
     "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-plotly.js-editor.css",
+    "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
     "watch-test": "jest --watch"
   }
 }

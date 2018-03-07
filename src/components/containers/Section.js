@@ -42,6 +42,7 @@ class Section extends Component {
         // for now, only allowing for cartesian chart types
         if (
           data.length > 1 &&
+          data[fullContainer.index] &&
           traceTypeToAxisType(data[fullContainer.index].type) === 'cartesian'
         ) {
           this.sectionVisible = true;
