@@ -16,6 +16,7 @@ export default class NumericInput extends Component {
     this.onChange = this.onChange.bind(this);
     this.updateValue = this.updateValue.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.onWheel = this.onWheel.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,6 +35,14 @@ export default class NumericInput extends Component {
         break;
       default:
         break;
+    }
+  }
+
+  onWheel(e) {
+    if (e.deltaY > 0) {
+      this.incrementValue('increase');
+    } else {
+      this.incrementValue('decrease');
     }
   }
 
@@ -145,6 +154,7 @@ export default class NumericInput extends Component {
           onChange={this.onChange}
           onUpdate={this.updateValue}
           onKeyDown={this.onKeyDown}
+          onWheel={this.onWheel}
         />
         {this.renderArrows()}
         {this.renderSlider()}

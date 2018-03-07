@@ -57,6 +57,7 @@ class EditableText extends Component {
       autoFocus,
       onKeyDown,
       placeholder,
+      onWheel,
       readOnly,
       size,
     } = this.props;
@@ -73,6 +74,7 @@ class EditableText extends Component {
         autoFocus={autoFocus}
         onKeyPress={this.handleKeyPress}
         onKeyDown={onKeyDown}
+        onWheel={onWheel}
         placeholder={placeholder}
         readOnly={readOnly}
         size={size}
@@ -91,6 +93,7 @@ EditableText.propTypes = {
   // Called on input keyDown events
   onKeyDown: PropTypes.func,
 
+  onWheel: PropTypes.func,
   // Input value property ...
   text: PropTypes.any,
 
