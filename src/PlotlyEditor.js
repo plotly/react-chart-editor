@@ -98,7 +98,7 @@ class PlotlyEditor extends Component {
           this.props.afterUpdateTraces(payload);
         }
         if (this.props.onUpdate) {
-          this.props.onUpdate();
+          this.props.onUpdate(graphDiv.data, graphDiv.layout);
         }
         break;
 
@@ -117,7 +117,7 @@ class PlotlyEditor extends Component {
           this.props.afterUpdateLayout(payload);
         }
         if (this.props.onUpdate) {
-          this.props.onUpdate();
+          this.props.onUpdate(graphDiv.data, graphDiv.layout);
         }
         break;
 
@@ -130,7 +130,7 @@ class PlotlyEditor extends Component {
           this.props.afterAddTrace(payload);
         }
         if (this.props.onUpdate) {
-          this.props.onUpdate();
+          this.props.onUpdate(graphDiv.data, graphDiv.layout);
         }
         break;
 
@@ -144,7 +144,7 @@ class PlotlyEditor extends Component {
             this.props.afterDeleteTrace(payload);
           }
           if (this.props.onUpdate) {
-            this.props.onUpdate();
+            this.props.onUpdate(graphDiv.data, graphDiv.layout);
           }
         }
         break;
@@ -159,7 +159,7 @@ class PlotlyEditor extends Component {
             this.props.afterDeleteAnnotation(payload);
           }
           if (this.props.onUpdate) {
-            this.props.onUpdate();
+            this.props.onUpdate(graphDiv.data, graphDiv.layout);
           }
         }
         break;
@@ -174,7 +174,7 @@ class PlotlyEditor extends Component {
             this.props.afterDeleteShape(payload);
           }
           if (this.props.onUpdate) {
-            this.props.onUpdate();
+            this.props.onUpdate(graphDiv.data, graphDiv.layout);
           }
         }
         break;
@@ -189,7 +189,7 @@ class PlotlyEditor extends Component {
             this.props.afterDeleteImage(payload);
           }
           if (this.props.onUpdate) {
-            this.props.onUpdate();
+            this.props.onUpdate(graphDiv.data, graphDiv.layout);
           }
         }
         break;

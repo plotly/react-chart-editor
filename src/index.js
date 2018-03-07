@@ -1,4 +1,5 @@
 import PlotlyEditor from './PlotlyEditor';
+import PlotlyEditorWithPlot from './PlotlyEditorWithPlot';
 import {
   connectAnnotationToLayout,
   connectShapeToLayout,
@@ -141,6 +142,7 @@ export {
   localize,
   localizeString,
   walkObject,
+  PlotlyEditorWithPlot,
 };
 
 export default PlotlyEditor;
