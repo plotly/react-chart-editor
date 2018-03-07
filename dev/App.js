@@ -21,6 +21,8 @@ const dataSourceOptions = Object.keys(dataSources).map(name => ({
   label: name,
 }));
 
+const config = {mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true};
+
 class App extends Component {
   constructor() {
     super();
@@ -64,7 +66,7 @@ class App extends Component {
         <PlotlyEditorWithPlot
           data={this.state.data}
           layout={this.state.layout}
-          config={{mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true}}
+          config={config}
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}
