@@ -40,7 +40,7 @@ const StyleTracesPanel = ({localize: _}) => (
       ]}
     />
 
-    <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
+    <NumericFraction label={_('Opacity')} attr="opacity" />
     <ColorPicker label={_('Color')} attr="color" />
 
     <Section name={_('Text Attributes')}>
@@ -135,7 +135,7 @@ const StyleTracesPanel = ({localize: _}) => (
       />
       <ColorscalePicker label={_('Colorscale')} attr="marker.colorscale" />
       <ColorPicker label={_('Color')} attr="marker.color" />
-      <Numeric label={_('Opacity')} step={0.1} attr="marker.opacity" />
+      <NumericFraction label={_('Opacity')} attr="marker.opacity" />
       <Numeric label={_('Size')} attr="marker.size" />
       <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
       <Numeric label={_('Border Width')} attr="marker.line.width" />
