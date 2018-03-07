@@ -29,7 +29,6 @@ import supplyLayoutPlotProps from './supplyLayoutPlotProps';
 import striptags from './striptags';
 import {
   capitalize,
-  replaceAccents,
   lowerCase,
   upperCase,
   removeNonWord,
@@ -63,7 +62,6 @@ export {
   axisIdToAxisName,
   bem,
   capitalize,
-  replaceAccents,
   lowerCase,
   upperCase,
   removeNonWord,
