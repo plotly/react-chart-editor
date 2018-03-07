@@ -42,14 +42,7 @@ const renderActionItems = (actionItems, item) =>
 const Item = ({item, active, handleClick, actions, showActions, complex}) => {
   const {label, value, icon} = item;
   const SimpleIcon = renderTraceIcon(icon ? icon : value);
-  const ComplexIcon = () => (
-    <img
-      src={`https://images.plot.ly/react-plotly.js-editor/ic-${
-        icon ? icon : value
-      }.svg`}
-      alt={`Trace Type: ${label}`}
-    />
-  );
+  const ComplexIcon = renderTraceIcon(icon ? icon : value, 'TraceType');
 
   return (
     <div
@@ -179,7 +172,7 @@ Item.propTypes = {
   active: PropTypes.bool,
   complex: PropTypes.bool,
   handleClick: PropTypes.func,
-  actions: PropTypes.array,
+  actions: PropTypes.func,
   showActions: PropTypes.bool,
 };
 

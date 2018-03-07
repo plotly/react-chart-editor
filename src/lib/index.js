@@ -7,6 +7,7 @@ import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
 import connectToContainer, {
   containerConnectedContextTypes,
 } from './connectToContainer';
+import {computeTraceOptionsFromSchema} from './computeTraceOptionsFromSchema';
 import connectTraceToPlot from './connectTraceToPlot';
 import dereference from './dereference';
 import findFullTraceIndex from './findFullTraceIndex';
@@ -26,6 +27,17 @@ import {
 import * as PlotlyIcons from 'plotly-icons';
 import supplyLayoutPlotProps from './supplyLayoutPlotProps';
 import striptags from './striptags';
+import {
+  capitalize,
+  replaceAccents,
+  lowerCase,
+  upperCase,
+  removeNonWord,
+  camelCase,
+  pascalCase,
+} from './strings';
+
+const TOO_LIGHT_FACTOR = 0.8;
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -35,29 +47,28 @@ function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
-function capitalize(s) {
-  return !s ? '' : s.charAt(0).toUpperCase() + s.substring(1);
-}
-
-const TOO_LIGHT_FACTOR = 0.8;
-export function tooLight(color) {
+function tooLight(color) {
   const hslColor = tinyColor(color).toHsl();
   return hslColor.l > TOO_LIGHT_FACTOR;
 }
 
-function renderTraceIcon(trace) {
-  const componentName = `Plot${capitalize(trace)}Icon`;
+function renderTraceIcon(trace, prefix = 'Plot') {
+  const componentName = `${prefix}${pascalCase(trace)}Icon`;
   return PlotlyIcons[componentName]
     ? PlotlyIcons[componentName]
     : PlotlyIcons.PlotLineIcon;
 }
 
-import {computeTraceOptionsFromSchema} from './computeTraceOptionsFromSchema';
-
 export {
   axisIdToAxisName,
   bem,
   capitalize,
+  replaceAccents,
+  lowerCase,
+  upperCase,
+  removeNonWord,
+  camelCase,
+  pascalCase,
   clamp,
   connectAnnotationToLayout,
   connectShapeToLayout,
@@ -83,6 +94,7 @@ export {
   unpackPlotProps,
   walkObject,
   supplyLayoutPlotProps,
+  tooLight,
   striptags,
   traceTypeToAxisType,
 };
