@@ -47,8 +47,9 @@ class Fold extends Component {
         // allow custom components in folds to automatically show up,
         // except for Folds of Folds, which should keep their visibility rules
         if (
-          child.type.plotly_editor_traits &&
-          !child.type.plotly_editor_traits.foldable
+          !child.type.plotly_editor_traits ||
+          (child.type.plotly_editor_traits &&
+            !child.type.plotly_editor_traits.foldable)
         ) {
           this.foldVisible = true;
           return;
