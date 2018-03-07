@@ -26,34 +26,33 @@ class Fold extends Component {
     this.foldVisible = false;
 
     React.Children.forEach(nextProps.children, child => {
-      if (child) {
-        if (child.props.attr) {
-          let plotProps;
-          if (child.type.supplyPlotProps) {
-            plotProps = child.type.supplyPlotProps(child.props, nextContext);
-            if (child.type.modifyPlotProps) {
-              child.type.modifyPlotProps(child.props, nextContext, plotProps);
-            }
-          } else {
-            plotProps = unpackPlotProps(child.props, nextContext);
+      if (child && child.props.attr) {
+        let plotProps;
+        if (child.type.supplyPlotProps) {
+          plotProps = child.type.supplyPlotProps(child.props, nextContext);
+          if (child.type.modifyPlotProps) {
+            child.type.modifyPlotProps(child.props, nextContext, plotProps);
           }
-
-          if (plotProps.isVisible) {
-            this.foldVisible = true;
-            return;
-          }
+        } else {
+          plotProps = unpackPlotProps(child.props, nextContext);
         }
 
-        // allow custom components in folds to automatically show up,
-        // except for Folds of Folds, which should keep their visibility rules
-        if (
-          !child.type.plotly_editor_traits ||
-          (child.type.plotly_editor_traits &&
-            !child.type.plotly_editor_traits.foldable)
-        ) {
+        if (plotProps.isVisible) {
           this.foldVisible = true;
           return;
         }
+      }
+
+      // allow custom components in folds to automatically show up,
+      // except for Folds of Folds, which should keep their visibility rules
+      if (
+        child &&
+        (!child.type.plotly_editor_traits ||
+          (child.type.plotly_editor_traits &&
+            !child.type.plotly_editor_traits.foldable))
+      ) {
+        this.foldVisible = true;
+        return;
       }
     });
   }
