@@ -1,4 +1,4 @@
-import plotly from 'plotly.js';
+import plotly from 'plotly.js/dist/plotly-basic';
 import {extendDeep} from 'plotly.js/src/lib/extend';
 import PlotlyEditor from '../PlotlyEditor';
 import {configure, mount, shallow} from 'enzyme';
