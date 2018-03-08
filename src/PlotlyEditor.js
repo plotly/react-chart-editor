@@ -20,6 +20,9 @@ class PlotlyEditor extends Component {
           plotly={this.props.plotly}
           onUpdate={this.props.onUpdate}
           advancedTraceTypeSelector={this.props.advancedTraceTypeSelector}
+          locale={this.props.locale}
+          traceTypesConfig={this.props.traceTypesConfig}
+          dictionaries={this.props.dictionaries}
         >
           {this.props.children}
         </EditorControls>
@@ -56,6 +59,9 @@ PlotlyEditor.propTypes = {
   useResizeHandler: PropTypes.bool,
   debug: PropTypes.bool,
   advancedTraceTypeSelector: PropTypes.bool,
+  locale: PropTypes.string,
+  traceTypesConfig: PropTypes.object,
+  dictionaries: PropTypes.object,
 };
 
 export default PlotlyEditor;

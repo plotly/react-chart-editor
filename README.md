@@ -28,55 +28,7 @@ See more examples
 
 ## Overview
 
-This module's entry point is a React component called `<PlotlyEditor />` which connects to a [plotly.js](https://plot.ly/javascript/)-powered `<Plot />` component care of [`react-plotly.js`](https://github.com/plotly/react-plotly.js). A plotly.js plot is defined by a JSON-serializable object called a _figure_. `<PlotlyEditor />` accepts as children React components whose descendents are input elements wrapped via `connectToContainer()` calls so as to bind them to the `<Plot />`'s figure's values. If no children are passed to the `<PlotlyEditor />`, the `<DefaultEditor />` is used. This module also exposes the [building block components](#Built-in-Components) that comprise the `<DefaultEditor />` so that developers can create their own customized editors.
-
-## Connecting `<PlotlyEditor />` to `<Plot />`
-
-The binding between `<PlotlyEditor />` and `<Plot />` works a little differently that in most React apps because plotly.js mutates its properties. This is mapped onto React's one-way dataflow model via event handlers and shared revision numbers which trigger re-renders of mutated state. The following subset of the [simple example](https://github.com/plotly/react-chart-editor/tree/master/examples/simple) shows how this works using a parent component to store state, but the principle is the same with a different state-manage approach, as shown in the [redux example](https://github.com/plotly/react-chart-editor/tree/master/examples/redux):
-
-```javascript
-import PlotlyEditor from 'react-chart-editor';
-import Plot from 'react-plotly.js';
-
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {graphDiv: {}, editorRevision: 0, plotRevision: 0};
-  }
-
-  handlePlotUpdate(graphDiv) {
-    this.setState(({editorRevision: x}) => ({editorRevision: x + 1, graphDiv}));
-  }
-
-  handleEditorUpdate() {
-    this.setState(({plotRevision: x}) => ({plotRevision: x + 1}));
-  }
-
-  render() {
-    return (
-      <div>
-        <PlotlyEditor
-          graphDiv={this.state.graphDiv}
-          onUpdate={this.handleEditorUpdate.bind(this)}
-          revision={this.state.editorRevision}
-          {...snip}
-        />
-        <Plot
-          data={this.state.graphDiv.data}
-          layout={this.state.graphDiv.layout}
-          onUpdate={this.handlePlotUpdate.bind(this)}
-          revision={this.state.plotRevision}
-          {...snip}
-        />
-      </div>
-    );
-  }
-}
-```
-
-## Data Management
-
-`<PlotlyEditor />` accepts a `dataSources` property which is an object of arrays of data, as well as a `dataSourceOptions` property which contains metadata about the `dataSources`, such as human-readable labels used to populate input elements like dropdown menus. `<PlotlyEditor />` treats these properties as immutable so any changes to them will trigger a rerender, and accepts an `onUpdateTraces` event handler property which is called whenever it needs to access a column from `dataSources`, enabling asynchronous data loading e.g. from remote APIs. The [async-data example](https://github.com/plotly/react-chart-editor/tree/master/examples/async-data) shows how this is done using a dummy asynchronous back-end proxy.
+This module's entry point is a React component called `<PlotlyEditor />` which connects an instance of `<EditorControls />` to a [plotly.js](https://plot.ly/javascript/)-powered `<Plot />` component care of [`react-plotly.js`](https://github.com/plotly/react-plotly.js). `<PlotlyEditor />` accepts as children React components whose descendents are input elements wrapped via `connectToContainer()` calls so as to bind them to the `<Plot />`'s figure's values. If no children are passed to the `<PlotlyEditor />`, the `<DefaultEditor />` is used. This module also exposes the [building block components](#Built-in-Components) that comprise the `<DefaultEditor />` so that developers can create their own customized editors.
 
 ## Styling the `<DefaultEditor />` and the built-in components
 
@@ -198,7 +150,7 @@ For use in containers bound to annotations e.g. as children of `<AnnotationAccor
 
 To use Satellite Maps in the Editor, [Mapbox access tokens](https://www.mapbox.com/help/how-access-tokens-work/) are required.
 
-Once you have your tokens, you can provide it as a config prop to the `react-plotly.js` generated `Plot` component: `<Plot config={{mapboxAccessToken: 'your token'}}/>`
+Once you have your tokens, you can provide it as a config prop to the `<PlotlyEditor />` component: `<PlotlyEditor config={{mapboxAccessToken: 'your token'}}/>`
 
 ## See also
 
