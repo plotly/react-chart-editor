@@ -289,6 +289,9 @@ export const LayoutNumericFractionInverse = connectLayoutToPlot(
 
 export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
+    if (!context.fullContainer) {
+      return;
+    }
     const {fullContainer: {xref, yref}} = context;
 
     let currentAxisRef;
@@ -325,6 +328,9 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
 
 export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
+    if (!context.fullContainer) {
+      return;
+    }
     const {fullContainer: {axref, ayref}} = context;
 
     let currentOffsetRef;
