@@ -7,6 +7,7 @@ import {
   PositioningRef,
   PositioningNumeric,
   Numeric,
+  NumericFraction,
   ColorPicker,
   LineDashSelector,
 } from '../components';
@@ -49,7 +50,7 @@ const StyleShapesPanel = ({localize: _}) => (
     </Section>
     <Section name={_('Fill')}>
       <ColorPicker label={_('Color')} attr="fillcolor" />
-      <Numeric label={_('Opacity')} step={0.1} attr="opacity" />
+      <NumericFraction label={_('Opacity')} attr="opacity" />
     </Section>
   </ShapeAccordion>
 );

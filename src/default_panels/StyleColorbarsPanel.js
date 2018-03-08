@@ -70,7 +70,12 @@ const StyleColorBarsPanel = ({localize: _}) => (
           />
         </Section>
         <Section name={_('Horizontal Positioning')} attr="colorbar.x">
-          <Numeric label={_('Horizontal Position')} attr="colorbar.x" />
+          <Numeric
+            label={_('Horizontal Position')}
+            attr="colorbar.x"
+            showSlider
+            step={0.02}
+          />
 
           <Dropdown
             label={_('Positioning Anchor')}
@@ -83,7 +88,12 @@ const StyleColorBarsPanel = ({localize: _}) => (
           />
         </Section>
         <Section name={_('Vertical Positioning')} attr="colorbar.y">
-          <Numeric label={_('Vertical Position')} attr="colorbar.y" />
+          <Numeric
+            label={_('Vertical Position')}
+            attr="colorbar.y"
+            showSlider
+            step={0.02}
+          />
 
           <Dropdown
             label={_('Positioning Anchor')}

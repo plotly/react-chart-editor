@@ -69,15 +69,15 @@ const StyleLegendPanel = ({localize: _}) => (
         </MenuPanel>
         <Numeric
           label={_('X Position')}
-          step={0.01}
+          showSlider
+          step={0.02}
           attr="legend.x"
-          units="px"
         />
         <Numeric
           label={_('Y Position')}
-          step={0.01}
+          showSlider
+          step={0.02}
           attr="legend.y"
-          units="px"
         />
       </Section>
       <Section name={_('Orientation')}>
