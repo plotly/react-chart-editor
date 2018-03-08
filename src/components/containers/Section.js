@@ -94,6 +94,8 @@ class Section extends Component {
   }
 }
 
+Section.plotly_editor_traits = {is_container: true};
+
 Section.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
