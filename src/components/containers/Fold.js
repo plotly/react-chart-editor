@@ -26,7 +26,11 @@ class Fold extends Component {
     this.foldVisible = false;
 
     React.Children.forEach(nextProps.children, child => {
-      if (child && child.props.attr) {
+      if (!child) {
+        return;
+      }
+
+      if (child.props.attr) {
         let plotProps;
         if (child.type.supplyPlotProps) {
           plotProps = child.type.supplyPlotProps(child.props, nextContext);
@@ -41,16 +45,32 @@ class Fold extends Component {
           this.foldVisible = true;
           return;
         }
+        return;
       }
 
-      // allow custom components in folds to automatically show up,
-      // except for Folds of Folds, which should keep their visibility rules
-      if (
-        child &&
-        (!child.type.plotly_editor_traits ||
-          (child.type.plotly_editor_traits &&
-            !child.type.plotly_editor_traits.foldable))
-      ) {
+      let hasFold = false;
+
+      function findFolds(node) {
+        if (hasFold) {
+          return;
+        }
+
+        if (
+          node.type &&
+          node.type.plotly_editor_traits &&
+          node.type.plotly_editor_traits.is_fold
+        ) {
+          hasFold = true;
+        }
+
+        if (node.props && node.props.children) {
+          React.Children.forEach(node.props.children, findFolds);
+        }
+      }
+
+      findFolds(child);
+
+      if (!hasFold) {
         this.foldVisible = true;
         return;
       }
@@ -144,7 +164,7 @@ class Fold extends Component {
   }
 }
 
-Fold.plotly_editor_traits = {foldable: true};
+Fold.plotly_editor_traits = {foldable: true, is_fold: true};
 
 Fold.propTypes = {
   canDelete: PropTypes.bool,

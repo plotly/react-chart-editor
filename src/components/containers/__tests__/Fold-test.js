@@ -1,5 +1,5 @@
 import {Numeric} from '../../fields';
-import {Fold, Panel} from '..';
+import {Fold, Panel, Info} from '..';
 import React from 'react';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';
 import {connectTraceToPlot} from 'lib';
@@ -47,5 +47,19 @@ describe('<Fold>', () => {
 
     const payload = beforeDeleteTrace.mock.calls[0][0];
     expect(payload).toEqual({traceIndexes: [0]});
+  });
+
+  it('displays fold if it contains a child that has no attr', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <Panel>
+          <Fold>
+            <div> ok </div>
+          </Fold>
+        </Panel>
+      </TestEditor>
+    );
+
+    expect(wrapper.find('.fold__content').length).toEqual(1);
   });
 });
