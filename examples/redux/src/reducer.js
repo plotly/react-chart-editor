@@ -3,8 +3,8 @@ import ACTIONS from './constants';
 const initialState = {
   dataSources: {},
   dataSourceOptions: [],
-  graphDiv: {},
-  plotRevision: 0,
+  data: [],
+  layout: {},
 };
 
 export default (state = initialState, action) => {
@@ -16,17 +16,8 @@ export default (state = initialState, action) => {
     case ACTIONS.EDITOR_UPDATE:
       return {
         ...state,
-        plotRevision: state.plotRevision + 1,
-      };
-    case ACTIONS.PLOT_UPDATE:
-      return {
-        ...state,
-        graphDiv: action.payload,
-      };
-    case ACTIONS.INITIALIZE_PLOT:
-      return {
-        ...state,
-        graphDiv: action.payload,
+        data: action.payload.data,
+        layout: action.payload.layout,
       };
     default:
       return state;

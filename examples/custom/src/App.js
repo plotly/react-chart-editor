@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly';
-import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor from 'react-chart-editor';
 import CustomEditor from './CustomEditor';
 import 'react-chart-editor/lib/react-chart-editor.css';
@@ -15,63 +14,40 @@ const dataSourceOptions = Object.keys(dataSources).map(name => ({
   label: name,
 }));
 
-const Plot = createPlotComponent(plotly);
+const config = {editable: true};
 
 class App extends Component {
   constructor() {
     super();
-
-    // The graphDiv object is passed to Plotly.js, which then causes it to be
-    // overwritten with a full DOM node that contains data, layout, _fullData,
-    // _fullLayout etc in handlePlotUpdate()
     this.state = {
-      graphDiv: {
-        data: [
-          {
-            type: 'scatter',
-            x: dataSources.col1,
-            y: dataSources.col2,
-            marker: {color: dataSources.col3},
-          },
-        ],
-      },
-      plotRevision: 0,
+      data: [
+        {
+          type: 'scatter',
+          x: dataSources.col1,
+          y: dataSources.col2,
+          marker: {color: dataSources.col3},
+        },
+      ],
+      layout: {},
     };
-  }
-
-  handlePlotUpdate(graphDiv) {
-    this.setState({graphDiv});
-  }
-
-  handleEditorUpdate() {
-    this.setState(({plotRevision: x}) => ({plotRevision: x + 1}));
   }
 
   render() {
     return (
-      <div className="app">
-        <PlotlyEditor
-          locale="en"
-          graphDiv={this.state.graphDiv}
-          onUpdate={this.handleEditorUpdate.bind(this)}
-          plotly={plotly}
-          dataSources={dataSources}
-          dataSourceOptions={dataSourceOptions}
-        >
-          <CustomEditor />
-        </PlotlyEditor>
-        <div className="app__main">
-          <Plot
-            debug
-            data={this.state.graphDiv.data}
-            layout={this.state.graphDiv.layout}
-            config={{editable: true}}
-            onUpdate={this.handlePlotUpdate.bind(this)}
-            onInitialized={this.handlePlotUpdate.bind(this)}
-            revision={this.state.plotRevision}
-          />
-        </div>
-      </div>
+      <PlotlyEditor
+        data={this.state.data}
+        layout={this.state.layout}
+        config={config}
+        dataSources={dataSources}
+        dataSourceOptions={dataSourceOptions}
+        plotly={plotly}
+        onUpdate={(data, layout) => this.setState({data, layout})}
+        useResizeHandler
+        debug
+        advancedTraceTypeSelector
+      >
+        <CustomEditor />
+      </PlotlyEditor>
     );
   }
 }

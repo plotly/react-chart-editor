@@ -20,7 +20,9 @@ class PlotlyEditor extends Component {
           plotly={this.props.plotly}
           onUpdate={this.props.onUpdate}
           advancedTraceTypeSelector={this.props.advancedTraceTypeSelector}
-        />
+        >
+          {this.props.children}
+        </EditorControls>
         <div className="app__main" style={{width: '100%', height: '100%'}}>
           <this.PlotComponent
             data={this.props.data}
@@ -43,6 +45,7 @@ class PlotlyEditor extends Component {
 }
 
 PlotlyEditor.propTypes = {
+  children: PropTypes.any,
   layout: PropTypes.object,
   data: PropTypes.array,
   config: PropTypes.object,
