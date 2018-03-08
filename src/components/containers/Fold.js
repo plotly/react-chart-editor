@@ -41,16 +41,13 @@ class Fold extends Component {
           this.foldVisible = true;
           return;
         }
-      }
-
-      // allow custom components in folds to automatically show up,
-      // except for Folds of Folds, which should keep their visibility rules
-      if (
+      } else if (
         child &&
         (!child.type.plotly_editor_traits ||
-          (child.type.plotly_editor_traits &&
-            !child.type.plotly_editor_traits.foldable))
+          !child.type.plotly_editor_traits.is_container)
       ) {
+        // allow custom components in folds to automatically show up,
+        // except for Folds of Folds, which should keep their visibility rules
         this.foldVisible = true;
         return;
       }
