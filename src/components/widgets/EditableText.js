@@ -13,6 +13,7 @@ class EditableText extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleWheel = this.handleWheel.bind(this);
     this.getRef = this.getRef.bind(this);
   }
 
@@ -48,6 +49,12 @@ class EditableText extends Component {
     }
   }
 
+  handleWheel(event) {
+    if (this.props.onWheel && document.activeElement === this._ref) {
+      this.props.onWheel(event);
+    }
+  }
+
   render() {
     const {
       type,
@@ -57,7 +64,6 @@ class EditableText extends Component {
       autoFocus,
       onKeyDown,
       placeholder,
-      onWheel,
       readOnly,
       size,
     } = this.props;
@@ -74,7 +80,7 @@ class EditableText extends Component {
         autoFocus={autoFocus}
         onKeyPress={this.handleKeyPress}
         onKeyDown={onKeyDown}
-        onWheel={onWheel}
+        onWheel={this.handleWheel}
         placeholder={placeholder}
         readOnly={readOnly}
         size={size}

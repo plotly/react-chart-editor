@@ -39,12 +39,13 @@ export default class NumericInput extends Component {
   }
 
   onWheel(e) {
+    e.stopPropagation();
+    e.preventDefault();
     if (e.deltaY > 0) {
       this.incrementValue('increase');
     } else {
       this.incrementValue('decrease');
     }
-    e.stopPropagation();
   }
 
   onChange(value) {
