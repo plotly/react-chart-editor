@@ -219,6 +219,129 @@ describe('Panel > Fold > p & Section', () => {
   });
 });
 
+// Field forces Fold open, then normal Section rules apply
+describe('Panel > Fold > Field-with-visible-attr & Section', () => {
+  describe('div', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <LayoutPanel>
+          <Fold>
+            <Numeric attr="width" />
+            <Section>
+              <div id="thediv"> ok </div>
+            </Section>
+          </Fold>
+        </LayoutPanel>
+      </TestEditor>
+    );
+    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows Section', () =>
+      expect(wrapper.find('div.section').length).toEqual(1));
+    it('shows div', () => expect(wrapper.find('#thediv').length).toEqual(1));
+  });
+
+  describe('Field-with-visible-attr', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <LayoutPanel>
+          <Fold>
+            <Numeric attr="width" />
+            <Section>
+              <Numeric attr="title" />
+            </Section>
+          </Fold>
+        </LayoutPanel>
+      </TestEditor>
+    );
+    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows Section', () =>
+      expect(wrapper.find('div.section').length).toEqual(1));
+    it('shows Field in Section', () =>
+      expect(wrapper.find('input').length).toEqual(2));
+  });
+
+  describe('Field-with-invisible-attr', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <LayoutPanel>
+          <Fold>
+            <Numeric attr="width" />
+            <Section>
+              <Numeric attr="not_an_attr" />
+            </Section>
+          </Fold>
+        </LayoutPanel>
+      </TestEditor>
+    );
+
+    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+    it('HIDES Section', () =>
+      expect(wrapper.find('div.section').length).toEqual(0));
+    it('HIDES Field in Section', () =>
+      expect(wrapper.find('input').length).toEqual(1));
+  });
+});
+
+// invisible Field doesn't forces Fold open
+describe('Panel > Fold > Field-with-invisible-attr & Section', () => {
+  describe('div', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <LayoutPanel>
+          <Fold>
+            <Numeric attr="not_an_attr" />
+            <Section>
+              <div id="thediv"> ok </div>
+            </Section>
+          </Fold>
+        </LayoutPanel>
+      </TestEditor>
+    );
+    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES Section', () =>
+      expect(wrapper.find('div.section').length).toEqual(0));
+    it('HIDES div', () => expect(wrapper.find('#thediv').length).toEqual(0));
+  });
+
+  describe('Field-with-visible-attr', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <LayoutPanel>
+          <Fold>
+            <Numeric attr="not_an_attr" />
+            <Section>
+              <Numeric attr="title" />
+            </Section>
+          </Fold>
+        </LayoutPanel>
+      </TestEditor>
+    );
+    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES Section', () =>
+      expect(wrapper.find('div.section').length).toEqual(0));
+    it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
+  });
+
+  describe('Field-with-invisible-attr', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <LayoutPanel>
+          <Fold>
+            <Numeric attr="not_an_attr" />
+            <Section>
+              <Numeric attr="not_an_attr" />
+            </Section>
+          </Fold>
+        </LayoutPanel>
+      </TestEditor>
+    );
+    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES Section', () =>
+      expect(wrapper.find('div.section').length).toEqual(0));
+    it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
+  });
+});
+
 // visible attr on Section forces Fold open
 describe('Panel > Fold > Section-with-visible-attr', () => {
   describe('div', () => {
