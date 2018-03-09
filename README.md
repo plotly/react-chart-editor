@@ -117,7 +117,7 @@ The [custom editor example](https://github.com/plotly/react-chart-editor/tree/ma
 * `<PanelMenuWrapper />`: renders as a sidebar selector menu for `<Panel />`s
 * `<Fold />`: collapsable container within a `<Panel />`
 * `<Section />`: uncollapsable container within a `<Panel />` or `<Fold />`
-* `<CustomSection/>`: a `Section` to wrap custom child components.
+* `<SectionHeader/>`: a `SectionHeader` to use separately with custom layouts.
 * `<MenuPanel />`: container child of `<Section />` that appears when a cog icon in the section title is clicked on
 * `<SingleSidebarItem/>`: wraps any item you would like to see appear in the sidebar menu.
 

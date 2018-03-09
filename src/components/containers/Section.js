@@ -6,6 +6,7 @@ import {
   unpackPlotProps,
   traceTypeToAxisType,
 } from '../../lib';
+import SectionHeader from './SectionHeader';
 
 class Section extends Component {
   constructor(props, context) {
@@ -84,10 +85,7 @@ class Section extends Component {
     }
     return (
       <div className="section">
-        <div className="section__heading">
-          <div className="section__heading__text">{this.props.name}</div>
-          {this.menuPanel}
-        </div>
+        <SectionHeader name={this.props.name} menuPanel={this.menuPanel} />
         {this.children}
       </div>
     );
