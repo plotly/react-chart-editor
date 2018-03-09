@@ -14,7 +14,7 @@ describe('Section', () => {
     // mode is visible with scatter. Hole is not visible. Section should show.
     const wrapper = mount(
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection traceIndexes={[0]} name="test-section">
+        <TraceSection name="test-section" traceIndexes={[0]}>
           <Flaglist
             attr="mode"
             options={[
@@ -25,26 +25,11 @@ describe('Section', () => {
           <Numeric attr="hole" min={0} max={1} step={0.1} />
         </TraceSection>
       </TestEditor>
-    )
-      .find('[name="test-section"]')
-      // we use last to select the Section within the higher-level component
-      .last();
+    ).find(Section);
 
     expect(wrapper.children().length).toBe(1);
-    expect(
-      wrapper
-        .find(Flaglist)
-        // unwrap higher-level component
-        .childAt(0)
-        .exists()
-    ).toBe(true);
-    expect(
-      wrapper
-        .find(Numeric)
-        // unwrap higher-level component
-        .childAt(0)
-        .exists()
-    ).toBe(false);
+    expect(wrapper.find(Flaglist).props().plotProps.isVisible).toBe(true);
+    expect(wrapper.find(Numeric).props().plotProps.isVisible).toBe(false);
   });
 
   it('is visible if it contains any non attr children', () => {
@@ -54,9 +39,9 @@ describe('Section', () => {
           <div className="extra">special extra</div>
         </Section>
       </TestEditor>
-    ).find('[name="test-section"]');
+    ).find(Section);
 
-    expect(wrapper.children().length).toBe(2);
+    expect(wrapper.children().length).toBe(1);
     expect(wrapper.find('.extra').text()).toBe('special extra');
   });
 
@@ -64,20 +49,13 @@ describe('Section', () => {
     // pull and hole are not scatter attrs. Section should not show.
     const wrapper = mount(
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection traceIndexes={[0]} name="test-section">
+        <TraceSection name="test-section" traceIndexes={[0]}>
           <Numeric attr="pull" min={0} max={1} step={0.1} traceIndexes={[0]} />
           <Numeric attr="hole" min={0} max={1} step={0.1} traceIndexes={[0]} />
         </TraceSection>
       </TestEditor>
-    )
-      .find('[name="test-section"]')
-      // we use last to select the Section within the higher-level component
-      .last();
+    ).find(Section);
 
-    // childAt(0) unwraps higher-level component
-    expect(wrapper.children().length).toBe(0);
-
-    expect(wrapper.find(Flaglist).exists()).toBe(false);
     expect(wrapper.find(Numeric).exists()).toBe(false);
   });
 
@@ -95,7 +73,7 @@ describe('Section', () => {
           </MenuPanel>
         </TraceSection>
       </TestEditor>
-    ).find('[name="test-section"]');
+    ).find(Section);
 
     expect(wrapper.find(MenuPanel).length).toBe(1);
     expect(wrapper.find(Info).length).toBe(1);
@@ -113,7 +91,7 @@ describe('Section', () => {
           </MenuPanel>
         </TraceSection>
       </TestEditor>
-    ).find('[name="test-section"]');
+    ).find(Section);
 
     expect(wrapper.find(MenuPanel).length).toBe(0);
     expect(wrapper.find(Info).length).toBe(0);
@@ -128,7 +106,7 @@ describe('Section', () => {
           <Info>INFO</Info>
         </TraceSection>
       </TestEditor>
-    ).find('[name="test-section"]');
+    ).find(Section);
 
     expect(wrapper.find(Info).length).toBe(0);
   });
@@ -153,7 +131,7 @@ describe('TraceTypeSection', () => {
           />
         </TraceSection>
       </TestEditor>
-    ).find('[name="test-section"]');
+    ).find(Section);
 
     expect(wrapper.find(Flaglist).length).toBe(1);
   });
@@ -176,7 +154,7 @@ describe('TraceTypeSection', () => {
           />
         </TraceSection>
       </TestEditor>
-    ).find('[name="test-section"]');
+    ).find(Section);
 
     expect(wrapper.find(Flaglist).length).toBe(0);
   });

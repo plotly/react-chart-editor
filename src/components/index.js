@@ -54,6 +54,7 @@ import {
   TraceRequiredPanel,
   SingleSidebarItem,
   TraceTypeSection,
+  SectionHeader,
 } from './containers';
 
 import {Button} from './widgets';
@@ -115,4 +116,5 @@ export {
   TraceRequiredPanel,
   TraceSelector,
   TraceTypeSection,
+  SectionHeader,
 };
