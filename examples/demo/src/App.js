@@ -72,7 +72,6 @@ class App extends Component {
       <div className="app__container plotly-editor--theme-provider">
         <div className="app">
           <PlotlyEditor
-            config={{editable: true}}
             graphDiv={this.state.graphDiv}
             onUpdate={this.handleEditorUpdate.bind(this)}
             dataSources={dataSources}
@@ -82,6 +81,7 @@ class App extends Component {
           />
           <div className="app__main" style={{width: '100%', height: '100%'}}>
             <Plot
+              config={{editable: true}}
               data={this.state.graphDiv.data}
               debug
               layout={this.state.graphDiv.layout}
