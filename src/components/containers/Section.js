@@ -38,9 +38,10 @@ class Section extends Component {
       }
 
       if ((child.type.plotly_editor_traits || {}).is_axis_creator) {
+        // as a hack, right now any section with an axis creator in it will be
+        // hidden unless in a trace-connected container whose trace is cartesian
         const {data, fullContainer} = this.context;
 
-        // for now, only allowing for cartesian chart types
         if (
           data.length > 1 &&
           data[fullContainer.index] &&
@@ -54,7 +55,10 @@ class Section extends Component {
           });
         }
         this.sectionVisible = false;
-      } else if (child.props.attr) {
+        return child;
+      }
+
+      if (child.props.attr) {
         let plotProps;
         if (child.type.supplyPlotProps) {
           plotProps = child.type.supplyPlotProps(child.props, nextContext);
@@ -69,12 +73,14 @@ class Section extends Component {
         // it will see plotProps and skip recomputing them.
         this.sectionVisible = this.sectionVisible || plotProps.isVisible;
         return cloneElement(child, {plotProps});
-      } else if (
-        !(child.type.plotly_editor_traits || {}).no_visibility_forcing
-      ) {
-        // custom UI other than Info forces section visibility.
-        this.sectionVisible = true;
       }
+
+      if (!(child.type.plotly_editor_traits || {}).no_visibility_forcing) {
+        // non-attr components force visibility (unless they don't via traits)
+        this.sectionVisible = true;
+        return child;
+      }
+
       return child;
     });
   }
@@ -92,7 +98,7 @@ class Section extends Component {
   }
 }
 
-Section.plotly_editor_traits = {is_container: true};
+Section.plotly_editor_traits = {no_visibility_forcing: true};
 
 Section.propTypes = {
   children: PropTypes.node,
