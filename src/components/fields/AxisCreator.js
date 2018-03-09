@@ -7,10 +7,10 @@ import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
 import {
   connectToContainer,
-  localize,
   traceTypeToAxisType,
   getAxisTitle,
   axisIdToAxisName,
+  unpackPlotProps,
 } from 'lib';
 
 class UnconnectedNewAxisCreator extends Component {
@@ -110,7 +110,6 @@ UnconnectedNewAxisCreator.propTypes = {
   label: PropTypes.string,
   options: PropTypes.array,
   canAddAxis: PropTypes.bool,
-  localize: PropTypes.func,
   container: PropTypes.object,
   fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,
@@ -156,7 +155,6 @@ class AxisCreator extends Component {
             attr={type}
             label={type.charAt(0).toUpperCase() + ' Axis'}
             options={getOptions(type)}
-            localize={_}
           />
         );
       });
@@ -179,14 +177,21 @@ AxisCreator.propTypes = {
   fullContainer: PropTypes.object,
 };
 
-AxisCreator.plotly_editor_traits = {
-  is_axis_creator: true,
-};
-
 AxisCreator.contextTypes = {
   data: PropTypes.array,
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,
 };
 
-export default localize(connectToContainer(AxisCreator));
+export default connectToContainer(AxisCreator, {
+  supplyPlotProps: (props, context) => unpackPlotProps(props, {...context}),
+  modifyPlotProps: (props, context, plotProps) => {
+    const {data} = context;
+    const {fullContainer} = plotProps;
+
+    plotProps.isVisible =
+      data.length > 1 &&
+      data[fullContainer.index] &&
+      traceTypeToAxisType(data[fullContainer.index].type) === 'cartesian';
+  },
+});

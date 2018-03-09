@@ -67,7 +67,7 @@ const GraphCreatePanel = ({localize: _}) => {
       </Section>
 
       <Section name={_('Axes to Use')}>
-        <AxisCreator attr="fakeattr" />
+        <AxisCreator attr="fake_attr" localize={_} />
       </Section>
 
       <Section name={_('Error Bars X')}>

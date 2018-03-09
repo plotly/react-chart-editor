@@ -4,7 +4,6 @@ import {
   containerConnectedContextTypes,
   localize,
   unpackPlotProps,
-  traceTypeToAxisType,
 } from '../../lib';
 import SectionHeader from './SectionHeader';
 
@@ -35,27 +34,6 @@ class Section extends Component {
           this.menuPanel = child;
         }
         return null;
-      }
-
-      if ((child.type.plotly_editor_traits || {}).is_axis_creator) {
-        // as a hack, right now any section with an axis creator in it will be
-        // hidden unless in a trace-connected container whose trace is cartesian
-        const {data, fullContainer} = this.context;
-
-        if (
-          data.length > 1 &&
-          data[fullContainer.index] &&
-          traceTypeToAxisType(data[fullContainer.index].type) === 'cartesian'
-        ) {
-          this.sectionVisible = true;
-          return cloneElement(child, {
-            isVisible: true,
-            container: this.context.container,
-            fullContainer: this.context.fullContainer,
-          });
-        }
-        this.sectionVisible = false;
-        return child;
       }
 
       if (child.props.attr) {
