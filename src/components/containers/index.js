@@ -13,6 +13,7 @@ import TraceRequiredPanel from './TraceRequiredPanel';
 import SingleSidebarItem from './SingleSidebarItem';
 import ModalProvider from './ModalProvider';
 import Modal from './Modal';
+import CustomSection from './CustomSection';
 
 export {
   AnnotationAccordion,
@@ -31,4 +32,5 @@ export {
   TraceTypeSection,
   Modal,
   ModalProvider,
+  CustomSection,
 };

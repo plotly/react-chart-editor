@@ -59,6 +59,7 @@ import {
   TraceMarkerSection,
   TraceRequiredPanel,
   TraceSelector,
+  CustomSection,
 } from './components';
 
 import {
@@ -89,6 +90,7 @@ export {
   ColorPicker,
   ColorscalePicker,
   ContourNumeric,
+  CustomSection,
   ErrorBars,
   DataSelector,
   Dropdown,
