@@ -123,7 +123,7 @@ class Panel extends Component {
   }
 }
 
-Panel.plotly_editor_traits = {is_container: true};
+Panel.plotly_editor_traits = {no_visibility_forcing: true};
 
 Panel.propTypes = {
   children: PropTypes.node,
