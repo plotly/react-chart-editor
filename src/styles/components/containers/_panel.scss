@@ -10,7 +10,7 @@
   width: 100%;
   @include scrollbar();
 
-  @at-root .plotly-editor__wrapper > .panel {
+  @at-root .editor_controls__wrapper > .panel {
     // These are for the first panel
     background-color: var(--panel-background);
     border-right: var(--border-default);

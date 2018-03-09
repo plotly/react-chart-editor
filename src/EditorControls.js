@@ -215,7 +215,7 @@ class EditorControls extends Component {
     return (
       <div
         className={
-          bem('plotly-editor') +
+          bem('editor_controls') +
           ' plotly-editor--theme-provider' +
           `${this.props.className ? ` ${this.props.className}` : ''}`
         }

@@ -58,7 +58,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app__container plotly-editor--theme-provider">
+      <div className="app">
         <PlotlyEditor
           data={this.state.data}
           layout={this.state.layout}

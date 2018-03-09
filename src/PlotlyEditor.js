@@ -12,7 +12,7 @@ class PlotlyEditor extends Component {
 
   render() {
     return (
-      <div className="app">
+      <div className="plotly_editor">
         <EditorControls
           graphDiv={this.state.graphDiv}
           dataSources={this.props.dataSources}
@@ -26,7 +26,10 @@ class PlotlyEditor extends Component {
         >
           {this.props.children}
         </EditorControls>
-        <div className="app__main" style={{width: '100%', height: '100%'}}>
+        <div
+          className="plotly_editor_plot"
+          style={{width: '100%', height: '100%'}}
+        >
           <this.PlotComponent
             data={this.props.data}
             layout={this.props.layout}
@@ -35,11 +38,7 @@ class PlotlyEditor extends Component {
             debug={this.props.debug}
             onInitialized={graphDiv => this.setState({graphDiv})}
             onUpdate={graphDiv => this.setState({graphDiv})}
-            style={{
-              width: '100%',
-              height: '100%',
-              minHeight: 'calc(100vh - 50px)',
-            }}
+            style={{width: '100%', height: '100%'}}
           />
         </div>
       </div>

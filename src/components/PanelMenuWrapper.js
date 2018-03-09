@@ -76,7 +76,7 @@ class PanelsWithSidebar extends Component {
     const menuOpts = this.computeMenuOptions(this.props);
 
     return (
-      <div className={bem('plotly-editor', 'wrapper')}>
+      <div className={bem('editor_controls', 'wrapper')}>
         <div className={bem('sidebar')}>{menuOpts.map(this.renderSection)}</div>
         {React.Children.map(
           this.props.children,

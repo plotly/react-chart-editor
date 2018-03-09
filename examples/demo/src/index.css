@@ -4,35 +4,15 @@ body {
   font-family: sans-serif;
 }
 
-.app__container {
-  display: flex;
-  flex-direction: column;
-}
-
 .app {
-  display: flex;
-  /*
-       We are defining the max height of the app so that the editor knows how big to be
-       currently the editor will take up whatever space it can if it is not constrained in its parent
-     */
-  flex-grow: 1;
   height: calc(100vh - 50px);
   max-height: calc(100vh - 50px);
-  width: 100%;
-}
-
-.app__main {
-  max-width: 100%;
-  height: calc(100vh - 50px);
-  max-height: calc(100vh - 50px);
-  overflow: auto;
-  flex-grow: 1;
 }
 
 .mock-nav {
   height: 50px;
   width: 100%;
-  background-color: var(--color-background-inverse);
+  background-color: #506784;
   display: inline-flex;
   color: white;
 }

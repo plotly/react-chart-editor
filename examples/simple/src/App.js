@@ -24,18 +24,20 @@ class App extends Component {
 
   render() {
     return (
-      <PlotlyEditor
-        data={this.state.data}
-        layout={this.state.layout}
-        config={config}
-        dataSources={dataSources}
-        dataSourceOptions={dataSourceOptions}
-        plotly={plotly}
-        onUpdate={(data, layout) => this.setState({data, layout})}
-        useResizeHandler
-        debug
-        advancedTraceTypeSelector
-      />
+      <div className="app">
+        <PlotlyEditor
+          data={this.state.data}
+          layout={this.state.layout}
+          config={config}
+          dataSources={dataSources}
+          dataSourceOptions={dataSourceOptions}
+          plotly={plotly}
+          onUpdate={(data, layout) => this.setState({data, layout})}
+          useResizeHandler
+          debug
+          advancedTraceTypeSelector
+        />
+      </div>
     );
   }
 }

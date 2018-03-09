@@ -32,18 +32,20 @@ class App extends Component {
     const {actions, dataSources, dataSourceOptions, data, layout} = this.props;
 
     return (
-      <PlotlyEditor
-        data={data}
-        layout={layout}
-        config={config}
-        dataSources={dataSources}
-        dataSourceOptions={dataSourceOptions}
-        plotly={plotly}
-        onUpdate={actions.editorUpdate}
-        useResizeHandler
-        debug
-        advancedTraceTypeSelector
-      />
+      <div className="app">
+        <PlotlyEditor
+          data={data}
+          layout={layout}
+          config={config}
+          dataSources={dataSources}
+          dataSourceOptions={dataSourceOptions}
+          plotly={plotly}
+          onUpdate={actions.editorUpdate}
+          useResizeHandler
+          debug
+          advancedTraceTypeSelector
+        />
+      </div>
     );
   }
 }
