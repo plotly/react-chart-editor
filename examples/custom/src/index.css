@@ -5,6 +5,6 @@ body {
 }
 
 .app {
-  height: calc(100vh - 50px);
-  max-height: calc(100vh - 50px);
+  height: 100vh;
+  max-height: 100vh;
 }

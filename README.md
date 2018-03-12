@@ -18,7 +18,7 @@ Check out the demo of the latest release of the `DefaultEditor` at https://plotl
 ```
 git clone [this repo]
 cd react-chart-editor
-cd examples/simple
+cd examples/demo
 npm install
 npm start
 ```
