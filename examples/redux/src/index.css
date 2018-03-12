@@ -4,16 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-.app{
-    display: flex;
-    min-height: 100vh;
-}
-.app__aside{
-    display: flex;
-    max-height: 100vh;
-}
-.app__main{
-    max-height: 100vh;
-    width: 100%;
-    overflow: auto;
+.app {
+  height: 100vh;
+  max-height: 100vh;
 }

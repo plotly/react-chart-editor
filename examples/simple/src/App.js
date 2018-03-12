@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly';
-import createPlotComponent from 'react-plotly.js/factory';
 import PlotlyEditor from 'react-chart-editor';
 import 'react-chart-editor/lib/react-chart-editor.css';
 
@@ -9,57 +8,35 @@ const dataSources = {
   col2: [4, 3, 2], // eslint-disable-line no-magic-numbers
   col3: [17, 13, 9], // eslint-disable-line no-magic-numbers
 };
+
 const dataSourceOptions = Object.keys(dataSources).map(name => ({
   value: name,
   label: name,
 }));
 
-const Plot = createPlotComponent(plotly);
+const config = {editable: true};
 
 class App extends Component {
   constructor() {
     super();
-
-    // The graphDiv object is passed to Plotly.js, which then causes it to be
-    // overwritten with a full DOM node that contains data, layout, _fullData,
-    // _fullLayout etc in handlePlotUpdate()
-    this.state = {
-      graphDiv: {},
-      plotRevision: 0,
-    };
-  }
-
-  handlePlotUpdate(graphDiv) {
-    this.setState({graphDiv});
-  }
-
-  handleEditorUpdate() {
-    this.setState(({plotRevision: x}) => ({plotRevision: x + 1}));
+    this.state = {data: [], layout: {}};
   }
 
   render() {
     return (
       <div className="app">
         <PlotlyEditor
-          graphDiv={this.state.graphDiv}
-          onUpdate={this.handleEditorUpdate.bind(this)}
+          data={this.state.data}
+          layout={this.state.layout}
+          config={config}
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}
+          onUpdate={(data, layout) => this.setState({data, layout})}
+          useResizeHandler
+          debug
+          advancedTraceTypeSelector
         />
-        <div className="app__main" style={{width: 1000, height: 700}}>
-          <Plot
-            debug
-            useResizeHandler
-            config={{editable: true}}
-            data={this.state.graphDiv.data}
-            layout={this.state.graphDiv.layout}
-            onUpdate={this.handlePlotUpdate.bind(this)}
-            onInitialized={this.handlePlotUpdate.bind(this)}
-            revision={this.state.plotRevision}
-            style={{width: '100%', height: '100%'}}
-          />
-        </div>
       </div>
     );
   }

@@ -14,22 +14,9 @@ export function dataSourceOptionsUpdate(payload) {
   };
 }
 
-export function editorUpdate() {
+export function editorUpdate(data, layout) {
   return {
     type: ACTIONS.EDITOR_UPDATE,
-  };
-}
-
-export function plotUpdate(payload) {
-  return {
-    type: ACTIONS.PLOT_UPDATE,
-    payload,
-  };
-}
-
-export function initializePlot(payload) {
-  return {
-    type: ACTIONS.INITIALIZE_PLOT,
-    payload,
+    payload: {data, layout},
   };
 }

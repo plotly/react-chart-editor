@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import plotly from 'plotly.js/dist/plotly';
-import createPlotComponent from 'react-plotly.js/factory';
-import PlotlyEditor from '../src';
 import '../src/styles/main.scss';
 import Nav from './Nav';
+import PlotlyEditor from '../src';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
@@ -22,18 +21,15 @@ const dataSourceOptions = Object.keys(dataSources).map(name => ({
   label: name,
 }));
 
-const Plot = createPlotComponent(plotly);
+const config = {mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true};
 
 class App extends Component {
   constructor() {
     super();
 
-    // The graphDiv object is passed to Plotly.js, which then causes it to be
-    // overwritten with a full DOM node that contains data, layout, _fullData,
-    // _fullLayout etc in handlePlotUpdate()
     this.state = {
-      graphDiv: {},
-      plotRevision: 0,
+      data: [],
+      layout: {},
       currentMockIndex: -1,
       mocks: [],
     };
@@ -49,14 +45,6 @@ class App extends Component {
       .then(mocks => this.setState({mocks}));
   }
 
-  handlePlotUpdate(graphDiv) {
-    this.setState({graphDiv});
-  }
-
-  handleEditorUpdate() {
-    this.setState(({plotRevision: x}) => ({plotRevision: x + 1}));
-  }
-
   loadMock(mockIndex) {
     const mock = this.state.mocks[mockIndex];
     fetch(mock.url, {
@@ -64,46 +52,29 @@ class App extends Component {
     })
       .then(response => response.json())
       .then(figure => {
-        const graphDiv = this.state.graphDiv;
-        graphDiv.layout = figure.layout;
-        graphDiv.data = figure.data;
-        this.setState(({plotRevision: x}) => ({
+        this.setState({
           currentMockIndex: mockIndex,
-          plotRevision: x + 1,
-        }));
+          data: figure.data,
+          layout: figure.layout,
+        });
       });
   }
 
   render() {
     return (
-      <div className="app__container plotly-editor--theme-provider">
-        <div className="app">
-          <PlotlyEditor
-            graphDiv={this.state.graphDiv}
-            onUpdate={this.handleEditorUpdate.bind(this)}
-            dataSources={dataSources}
-            dataSourceOptions={dataSourceOptions}
-            plotly={plotly}
-            advancedTraceTypeSelector
-          />
-          <div className="app__main" style={{width: '100%', height: '100%'}}>
-            <Plot
-              config={{mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true}}
-              data={this.state.graphDiv.data}
-              debug
-              layout={this.state.graphDiv.layout}
-              onInitialized={this.handlePlotUpdate.bind(this)}
-              onUpdate={this.handlePlotUpdate.bind(this)}
-              revision={this.state.plotRevision}
-              useResizeHandler
-              style={{
-                width: '100%',
-                height: '100%',
-                minHeight: 'calc(100vh - 50px)',
-              }}
-            />
-          </div>
-        </div>
+      <div className="app">
+        <PlotlyEditor
+          data={this.state.data}
+          layout={this.state.layout}
+          config={config}
+          dataSources={dataSources}
+          dataSourceOptions={dataSourceOptions}
+          plotly={plotly}
+          onUpdate={(data, layout) => this.setState({data, layout})}
+          useResizeHandler
+          debug
+          advancedTraceTypeSelector
+        />
         <Nav
           currentMockIndex={this.state.currentMockIndex}
           loadMock={this.loadMock}
