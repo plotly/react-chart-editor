@@ -99,7 +99,11 @@ class EditorControls extends Component {
           this.props.afterUpdateTraces(payload);
         }
         if (this.props.onUpdate) {
-          this.props.onUpdate(graphDiv.data.slice(), graphDiv.layout);
+          this.props.onUpdate(
+            graphDiv.data.slice(),
+            graphDiv.layout,
+            graphDiv._transitionData._frames
+          );
         }
         break;
 
