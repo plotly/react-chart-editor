@@ -1,6 +1,7 @@
 import bem from './bem';
 import connectAnnotationToLayout from './connectAnnotationToLayout';
 import connectShapeToLayout from './connectShapeToLayout';
+import connectSliderToLayout from './connectSliderToLayout';
 import connectImageToLayout from './connectImageToLayout';
 import connectAxesToLayout from './connectAxesToLayout';
 import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
@@ -52,6 +53,9 @@ function tooLight(color) {
 }
 
 function renderTraceIcon(trace, prefix = 'Plot') {
+  if (!trace) {
+    return null;
+  }
   const componentName = `${prefix}${pascalCase(trace)}Icon`;
   return PlotlyIcons[componentName]
     ? PlotlyIcons[componentName]
@@ -70,6 +74,7 @@ export {
   clamp,
   connectAnnotationToLayout,
   connectShapeToLayout,
+  connectSliderToLayout,
   connectImageToLayout,
   connectAxesToLayout,
   connectLayoutToPlot,

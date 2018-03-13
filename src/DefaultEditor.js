@@ -9,6 +9,7 @@ import {
   StyleLegendPanel,
   StyleNotesPanel,
   StyleShapesPanel,
+  StyleSlidersPanel,
   StyleImagesPanel,
   StyleTracesPanel,
   StyleColorbarsPanel,
@@ -26,6 +27,7 @@ const DefaultEditor = ({localize: _}) => (
       <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />
       <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
       <StyleImagesPanel group={_('Style')} name={_('Images')} />
+      <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />
     </PanelMenuWrapper>
   </Fragment>
 );

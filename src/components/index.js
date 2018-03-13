@@ -42,6 +42,7 @@ import {
 import {
   AnnotationAccordion,
   ShapeAccordion,
+  SliderAccordion,
   ImageAccordion,
   AxesFold,
   Fold,
@@ -67,6 +68,7 @@ export {
   AxisOverlayDropdown,
   AxisSide,
   ShapeAccordion,
+  SliderAccordion,
   ImageAccordion,
   AnnotationArrowRef,
   AnnotationRef,
