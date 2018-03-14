@@ -45,7 +45,7 @@ class UpdateMenuButtons extends Component {
 UpdateMenuButtons.propTypes = {
   attr: PropTypes.string,
   localize: PropTypes.func,
-  fullValue: PropTypes.object,
+  fullValue: PropTypes.array,
   updatePlot: PropTypes.func,
 };
 
