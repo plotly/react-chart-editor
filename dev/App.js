@@ -39,18 +39,21 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch(
-      'https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks'
-    )
+    // curl https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks \
+    // | jq '[.[] | .name ]' > mocks.json
+    fetch('/mocks.json')
       .then(response => response.json())
       .then(mocks => this.setState({mocks}));
   }
 
   loadMock(mockIndex) {
-    const mock = this.state.mocks[mockIndex];
-    fetch(mock.url, {
-      headers: new Headers({Accept: 'application/vnd.github.v3.raw'}),
-    })
+    fetch(
+      'https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks/' +
+        this.state.mocks[mockIndex],
+      {
+        headers: new Headers({Accept: 'application/vnd.github.v3.raw'}),
+      }
+    )
       .then(response => response.json())
       .then(figure => {
         this.setState({
