@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import plotly from 'plotly.js/dist/plotly';
 import '../src/styles/main.scss';
+import ReactJson from 'react-json-view';
 import Nav from './Nav';
-import PlotlyEditor from '../src';
+import PlotlyEditor, {DefaultEditor, Panel} from '../src';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
@@ -82,7 +83,27 @@ class App extends Component {
           useResizeHandler
           debug
           advancedTraceTypeSelector
-        />
+        >
+          {' '}
+          <DefaultEditor>
+            <Panel group="Dev" name="JSON">
+              <ReactJson
+                enableClipboard={false}
+                name={false}
+                displayDataTypes={false}
+                displayObjectSize={false}
+                indentWidth={2}
+                onAdd={({updated_src}) => this.setState(updated_src)}
+                onEdit={({updated_src}) => this.setState(updated_src)}
+                onDelete={({updated_src}) => this.setState(updated_src)}
+                src={{
+                  data: this.state.data,
+                  layout: this.state.layout,
+                }}
+              />
+            </Panel>
+          </DefaultEditor>
+        </PlotlyEditor>
         <Nav
           currentMockIndex={this.state.currentMockIndex}
           loadMock={this.loadMock}

@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import Select from 'react-select';
 
+const prefix =
+  'https://raw.githubusercontent.com/plotly/plotly.js/master/test/image/mocks/';
+
 const Nav = props => (
   <div className="mock-nav">
     <span className="mock-nav__label">Select mock:</span>
@@ -23,6 +26,17 @@ const Nav = props => (
         placeholder={'plotly.js/contents/test/image/mocks'}
       />
     </div>
+    {props.currentMockIndex === -1 ? null : (
+      <span className="mock-nav__label">
+        <a
+          href={prefix + props.mocks[props.currentMockIndex]}
+          target="_blank"
+          style={{color: 'white'}}
+        >
+          open {props.mocks[props.currentMockIndex]} &raquo;
+        </a>
+      </span>
+    )}
   </div>
 );
 

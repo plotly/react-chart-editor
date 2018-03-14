@@ -48,6 +48,9 @@ class PanelsWithSidebar extends Component {
     let groupIndex;
 
     React.Children.forEach(children, child => {
+      if (!child) {
+        return;
+      }
       const group = child.props.group;
       const name = child.props.name;
 
@@ -81,6 +84,7 @@ class PanelsWithSidebar extends Component {
         {React.Children.map(
           this.props.children,
           (child, i) =>
+            child === null ||
             this.state.group !== child.props.group ||
             this.state.panel !== child.props.name
               ? null

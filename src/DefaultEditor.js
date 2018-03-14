@@ -16,7 +16,7 @@ import {
   StyleUpdateMenusPanel,
 } from './default_panels';
 
-const DefaultEditor = ({localize: _}) => (
+const DefaultEditor = ({children, localize: _}) => (
   <Fragment>
     <PanelMenuWrapper>
       <GraphCreatePanel group={_('Graph')} name={_('Create')} />
@@ -30,12 +30,14 @@ const DefaultEditor = ({localize: _}) => (
       <StyleImagesPanel group={_('Style')} name={_('Images')} />
       <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />
       <StyleUpdateMenusPanel group={_('Style')} name={_('Update Menus')} />
+      {children ? children : null}
     </PanelMenuWrapper>
   </Fragment>
 );
 
 DefaultEditor.propTypes = {
   localize: PropTypes.func,
+  children: PropTypes.node,
 };
 
 export default localize(DefaultEditor);
