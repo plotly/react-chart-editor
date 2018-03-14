@@ -2,7 +2,7 @@ import Fold from './Fold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectUpdateMenuToLayout, localize} from 'lib';
+import {connectUpdateMenuToLayout, localize, capitalize} from 'lib';
 
 const UpdateMenuFold = connectUpdateMenuToLayout(Fold);
 
@@ -13,15 +13,22 @@ class UpdateMenuAccordion extends Component {
 
     const content =
       updatemenus.length > 0 &&
-      updatemenus.map((sli, i) => (
-        <UpdateMenuFold
-          key={i}
-          updateMenuIndex={i}
-          name={_('Update Menu') + ` ${i + 1}`}
-        >
-          {children}
-        </UpdateMenuFold>
-      ));
+      updatemenus.map((upd, i) => {
+        const updateMenuType = capitalize(upd.type) || 'Dropdown';
+        const activeElementLabel = upd.buttons.filter(
+          b => b.index === upd.active
+        )[0].label;
+
+        return (
+          <UpdateMenuFold
+            key={i}
+            updateMenuIndex={i}
+            name={updateMenuType + ': ' + activeElementLabel}
+          >
+            {children}
+          </UpdateMenuFold>
+        );
+      });
 
     return (
       <TraceRequiredPanel
