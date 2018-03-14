@@ -12,7 +12,7 @@ const Nav = props => (
         value={props.currentMockIndex}
         name="mock-dropdown"
         options={props.mocks.map((item, i) => ({
-          label: item.name,
+          label: item,
           value: i,
         }))}
         className="open-top"
