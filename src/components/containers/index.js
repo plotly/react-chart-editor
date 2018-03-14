@@ -1,6 +1,8 @@
 import AnnotationAccordion from './AnnotationAccordion';
 import ShapeAccordion from './ShapeAccordion';
+import SliderAccordion from './SliderAccordion';
 import ImageAccordion from './ImageAccordion';
+import UpdateMenuAccordion from './UpdateMenuAccordion';
 import AxesFold from './AxesFold';
 import Fold from './Fold';
 import MenuPanel from './MenuPanel';
@@ -18,7 +20,9 @@ import SectionHeader from './SectionHeader';
 export {
   AnnotationAccordion,
   ShapeAccordion,
+  SliderAccordion,
   ImageAccordion,
+  UpdateMenuAccordion,
   MenuPanel,
   Fold,
   Panel,

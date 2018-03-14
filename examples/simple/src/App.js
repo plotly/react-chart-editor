@@ -19,7 +19,7 @@ const config = {editable: true};
 class App extends Component {
   constructor() {
     super();
-    this.state = {data: [], layout: {}};
+    this.state = {data: [], layout: {}, frames: []};
   }
 
   render() {
@@ -29,10 +29,13 @@ class App extends Component {
           data={this.state.data}
           layout={this.state.layout}
           config={config}
+          frames={this.state.frames}
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}
-          onUpdate={(data, layout) => this.setState({data, layout})}
+          onUpdate={(data, layout, frames) =>
+            this.setState({data, layout, frames})
+          }
           useResizeHandler
           debug
           advancedTraceTypeSelector

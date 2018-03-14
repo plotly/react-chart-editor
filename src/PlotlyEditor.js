@@ -33,6 +33,7 @@ class PlotlyEditor extends Component {
           <this.PlotComponent
             data={this.props.data}
             layout={this.props.layout}
+            frames={this.props.frames}
             config={this.props.config}
             useResizeHandler={this.props.useResizeHandler}
             debug={this.props.debug}
@@ -53,6 +54,7 @@ PlotlyEditor.propTypes = {
   config: PropTypes.object,
   dataSourceOptions: PropTypes.array,
   dataSources: PropTypes.object,
+  frames: PropTypes.array,
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
   useResizeHandler: PropTypes.bool,

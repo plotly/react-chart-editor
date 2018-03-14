@@ -29,6 +29,7 @@ class App extends Component {
         },
       ],
       layout: {},
+      frames: [],
     };
   }
 
@@ -39,10 +40,13 @@ class App extends Component {
           data={this.state.data}
           layout={this.state.layout}
           config={config}
+          frames={this.state.frames}
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}
-          onUpdate={(data, layout) => this.setState({data, layout})}
+          onUpdate={(data, layout, frames) =>
+            this.setState({data, layout, frames})
+          }
           useResizeHandler
           debug
           advancedTraceTypeSelector

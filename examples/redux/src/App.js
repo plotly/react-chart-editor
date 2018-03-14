@@ -29,7 +29,14 @@ class App extends Component {
   }
 
   render() {
-    const {actions, dataSources, dataSourceOptions, data, layout} = this.props;
+    const {
+      actions,
+      dataSources,
+      dataSourceOptions,
+      data,
+      layout,
+      frames,
+    } = this.props;
 
     return (
       <div className="app">
@@ -37,6 +44,7 @@ class App extends Component {
           data={data}
           layout={layout}
           config={config}
+          frames={frames}
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}
@@ -56,6 +64,7 @@ App.propTypes = {
   dataSources: PropTypes.object,
   data: PropTypes.array,
   layout: PropTypes.object,
+  frames: PropTypes.array,
 };
 
 const mapStateToProps = state => ({
@@ -63,6 +72,7 @@ const mapStateToProps = state => ({
   dataSources: state.dataSources,
   data: state.data,
   layout: state.layout,
+  frames: state.frames,
 });
 
 const mapDispatchToProps = dispatch => ({

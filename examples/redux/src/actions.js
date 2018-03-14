@@ -14,9 +14,9 @@ export function dataSourceOptionsUpdate(payload) {
   };
 }
 
-export function editorUpdate(data, layout) {
+export function editorUpdate(data, layout, frames) {
   return {
     type: ACTIONS.EDITOR_UPDATE,
-    payload: {data, layout},
+    payload: {data, layout, frames},
   };
 }

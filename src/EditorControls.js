@@ -30,6 +30,7 @@ class EditorControls extends Component {
       dataSourceValueRenderer: this.props.dataSourceValueRenderer,
       dataSourceOptionRenderer: this.props.dataSourceOptionRenderer,
       dictionaries: this.props.dictionaries || {},
+      frames: gd._transitionData ? gd._transitionData._frames : [],
       fullData: gd._fullData,
       fullLayout: gd._fullLayout,
       graphDiv: gd,
@@ -98,7 +99,11 @@ class EditorControls extends Component {
           this.props.afterUpdateTraces(payload);
         }
         if (this.props.onUpdate) {
-          this.props.onUpdate(graphDiv.data.slice(), graphDiv.layout);
+          this.props.onUpdate(
+            graphDiv.data.slice(),
+            graphDiv.layout,
+            graphDiv._transitionData._frames
+          );
         }
         break;
 
@@ -278,6 +283,7 @@ EditorControls.childContextTypes = {
   dataSources: PropTypes.object,
   dataSourceValueRenderer: PropTypes.func,
   dictionaries: PropTypes.object,
+  frames: PropTypes.array,
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,
   graphDiv: PropTypes.any,

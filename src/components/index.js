@@ -37,12 +37,15 @@ import {
   TextEditor,
   TraceOrientation,
   TraceSelector,
+  UpdateMenuButtons,
 } from './fields';
 
 import {
   AnnotationAccordion,
   ShapeAccordion,
+  SliderAccordion,
   ImageAccordion,
+  UpdateMenuAccordion,
   AxesFold,
   Fold,
   LayoutPanel,
@@ -67,7 +70,9 @@ export {
   AxisOverlayDropdown,
   AxisSide,
   ShapeAccordion,
+  SliderAccordion,
   ImageAccordion,
+  UpdateMenuAccordion,
   AnnotationArrowRef,
   AnnotationRef,
   PositioningRef,
@@ -117,4 +122,5 @@ export {
   TraceSelector,
   TraceTypeSection,
   SectionHeader,
+  UpdateMenuButtons,
 };
