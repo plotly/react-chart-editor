@@ -5,6 +5,7 @@ const initialState = {
   dataSourceOptions: [],
   data: [],
   layout: {},
+  frames: [],
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +19,7 @@ export default (state = initialState, action) => {
         ...state,
         data: action.payload.data,
         layout: action.payload.layout,
+        frames: action.payload.frames,
       };
     default:
       return state;
