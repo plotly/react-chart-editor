@@ -13,6 +13,7 @@ import {
   StyleImagesPanel,
   StyleTracesPanel,
   StyleColorbarsPanel,
+  StyleUpdateMenusPanel,
 } from './default_panels';
 
 const DefaultEditor = ({localize: _}) => (
@@ -28,6 +29,7 @@ const DefaultEditor = ({localize: _}) => (
       <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
       <StyleImagesPanel group={_('Style')} name={_('Images')} />
       <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />
+      <StyleUpdateMenusPanel group={_('Style')} name={_('Update Menus')} />
     </PanelMenuWrapper>
   </Fragment>
 );

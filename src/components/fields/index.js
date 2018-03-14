@@ -14,6 +14,7 @@ import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
 import AxisCreator from './AxisCreator';
+import UpdateMenuButtons from './UpdateMenuButtons';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -77,4 +78,5 @@ export {
   AxisCreator,
   AxisOverlayDropdown,
   AxisSide,
+  UpdateMenuButtons,
 };

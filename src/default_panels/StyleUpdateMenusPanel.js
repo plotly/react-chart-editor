@@ -6,13 +6,14 @@ import {
   Numeric,
   Radio,
   Section,
-  SliderAccordion,
+  UpdateMenuAccordion,
+  UpdateMenuButtons,
 } from '../components';
 
 import {localize} from '../lib';
 
-const StyleSlidersPanel = ({localize: _}) => (
-  <SliderAccordion>
+const StyleUpdateMenusPanel = ({localize: _}) => (
+  <UpdateMenuAccordion>
     <Radio
       attr="visible"
       options={[
@@ -20,18 +21,20 @@ const StyleSlidersPanel = ({localize: _}) => (
         {label: _('Hide'), value: false},
       ]}
     />
+    <Section name={_('Button Labels')}>
+      <UpdateMenuButtons attr="buttons" />
+    </Section>
     <Section name={_('Background')}>
       <ColorPicker label={_('Color')} attr="bgcolor" />
-      <ColorPicker label={_('Active Color')} attr="activebgcolor" />
-    </Section>
-    <Section name={_('Border')}>
-      <Numeric label={_('Width')} attr="borderwidth" />
-      <ColorPicker label={_('Color')} attr="bordercolor" />
     </Section>
     <Section name={_('Font')}>
       <FontSelector label={_('Typeface')} attr="font.family" />
       <Numeric label={_('Size')} attr="font.size" />
       <ColorPicker label={_('Color')} attr="font.color" />
+    </Section>
+    <Section name={_('Border')}>
+      <Numeric label={_('Width')} attr="borderwidth" />
+      <ColorPicker label={_('Color')} attr="bordercolor" />
     </Section>
     <Section name={_('Padding')}>
       <Numeric label={_('Top')} attr="pad.t" showSlider />
@@ -39,16 +42,11 @@ const StyleSlidersPanel = ({localize: _}) => (
       <Numeric label={_('Left')} attr="pad.l" showSlider />
       <Numeric label={_('Right')} attr="pad.r" showSlider />
     </Section>
-    <Section name={_('Ticks')}>
-      <ColorPicker label={_('Color')} attr="tickcolor" />
-      <Numeric label={_('Legth')} attr="ticklen" />
-      <Numeric label={_('Width')} attr="tickwidth" />
-    </Section>
-  </SliderAccordion>
+  </UpdateMenuAccordion>
 );
 
-StyleSlidersPanel.propTypes = {
+StyleUpdateMenusPanel.propTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(StyleSlidersPanel);
+export default localize(StyleUpdateMenusPanel);

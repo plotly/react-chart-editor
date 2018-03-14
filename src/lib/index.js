@@ -3,6 +3,7 @@ import connectAnnotationToLayout from './connectAnnotationToLayout';
 import connectShapeToLayout from './connectShapeToLayout';
 import connectSliderToLayout from './connectSliderToLayout';
 import connectImageToLayout from './connectImageToLayout';
+import connectUpdateMenuToLayout from './connectUpdateMenuToLayout';
 import connectAxesToLayout from './connectAxesToLayout';
 import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
 import connectToContainer, {
@@ -75,6 +76,7 @@ export {
   connectAnnotationToLayout,
   connectShapeToLayout,
   connectSliderToLayout,
+  connectUpdateMenuToLayout,
   connectImageToLayout,
   connectAxesToLayout,
   connectLayoutToPlot,
