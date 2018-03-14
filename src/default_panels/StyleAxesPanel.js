@@ -9,6 +9,7 @@ import {
   Dropdown,
   FontSelector,
   Numeric,
+  NumericFraction,
   NumericFractionDomain,
   Radio,
   TextEditor,
@@ -16,7 +17,6 @@ import {
   Section,
   TraceRequiredPanel,
   AxesFold,
-  Fold,
   TraceTypeSection,
 } from '../components';
 
@@ -308,7 +308,7 @@ class StyleAxesPanel extends Component {
           </Section>
         </AxesFold>
 
-        <Fold name={_('Range Slider')}>
+        <AxesFold name={_('Range Slider')}>
           <Radio
             attr="rangeslider.visible"
             options={[
@@ -316,12 +316,7 @@ class StyleAxesPanel extends Component {
               {label: _('Hide'), value: false},
             ]}
           />
-          <Numeric
-            label={_('Height')}
-            attr="rangeslider.thickness"
-            units="%"
-            step={0.1}
-          />
+          <NumericFraction label={_('Height')} attr="rangeslider.thickness" />
           <ColorPicker
             label={_('Background Color')}
             attr="rangeslider.bgcolor"
@@ -335,7 +330,7 @@ class StyleAxesPanel extends Component {
             label={_('Border Color')}
             attr="rangeslider.bordercolor"
           />
-        </Fold>
+        </AxesFold>
 
         <AxesFold name={_('Zoom Interactivity')}>
           <Radio
