@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import {hot} from 'react-hot-loader';
 import plotly from 'plotly.js/dist/plotly';
 import '../src/styles/main.scss';
-import Nav from './Nav';
-import PlotlyEditor from '../src';
+import 'react-select/dist/react-select.css';
+import ReactJson from 'react-json-view';
+import Select from 'react-select';
+import PlotlyEditor, {DefaultEditor, Panel} from '../src';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
@@ -82,12 +84,43 @@ class App extends Component {
           useResizeHandler
           debug
           advancedTraceTypeSelector
-        />
-        <Nav
-          currentMockIndex={this.state.currentMockIndex}
-          loadMock={this.loadMock}
-          mocks={this.state.mocks}
-        />
+        >
+          {' '}
+          <DefaultEditor>
+            <Panel group="Dev" name="JSON">
+              <Select
+                clearable={true}
+                value={this.state.currentMockIndex}
+                name="mock-dropdown"
+                options={this.state.mocks.map((item, i) => ({
+                  label: item,
+                  value: i,
+                }))}
+                searchable={true}
+                searchPromptText="Search for a mock"
+                onChange={option => this.loadMock(option.value)}
+                noResultsText={'No Results'}
+                placeholder={'Search for a mock'}
+              />
+              <br />
+              <ReactJson
+                enableClipboard={false}
+                name={false}
+                displayDataTypes={false}
+                displayObjectSize={false}
+                indentWidth={2}
+                onAdd={({updated_src}) => this.setState(updated_src)}
+                onEdit={({updated_src}) => this.setState(updated_src)}
+                onDelete={({updated_src}) => this.setState(updated_src)}
+                src={{
+                  data: this.state.data,
+                  layout: this.state.layout,
+                  frames: this.state.frames,
+                }}
+              />
+            </Panel>
+          </DefaultEditor>
+        </PlotlyEditor>
       </div>
     );
   }
