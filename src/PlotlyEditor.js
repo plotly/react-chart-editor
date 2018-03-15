@@ -37,8 +37,8 @@ class PlotlyEditor extends Component {
             config={this.props.config}
             useResizeHandler={this.props.useResizeHandler}
             debug={this.props.debug}
-            onInitialized={graphDiv => this.setState({graphDiv})}
-            onUpdate={graphDiv => this.setState({graphDiv})}
+            onInitialized={(fig, graphDiv) => this.setState({graphDiv})}
+            onUpdate={(fig, graphDiv) => this.setState({graphDiv})}
             style={{width: '100%', height: '100%'}}
           />
         </div>
