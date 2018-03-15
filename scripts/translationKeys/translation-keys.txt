@@ -14,7 +14,7 @@ $                                                                               
 90                                                                                                           // /default_panels/StyleAxesPanel.js:199
 @                                                                                                            // /default_panels/StyleAxesPanel.js:252
 A                                                                                                            // /components/fields/derived.js:530
-Active Color                                                                                                 // /default_panels/StyleSlidersPanel.js:26
+Active Color                                                                                                 // /default_panels/StyleSlidersPanel.js:25
 Africa                                                                                                       // /components/fields/derived.js:441
 Aitoff                                                                                                       // /components/fields/derived.js:474
 Albers USA                                                                                                   // /components/fields/derived.js:483
@@ -42,14 +42,14 @@ Axis to Style                                                                   
 Azimuthal Equal Area                                                                                         // /components/fields/derived.js:463
 Azimuthal Equidistant                                                                                        // /components/fields/derived.js:464
 B                                                                                                            // /components/fields/derived.js:531
-Background                                                                                                   // /default_panels/StyleSlidersPanel.js:24
+Background                                                                                                   // /default_panels/StyleSlidersPanel.js:23
 Background Color                                                                                             // /default_panels/StyleAxesPanel.js:326
 Bar                                                                                                          // /lib/computeTraceOptionsFromSchema.js:19
 Bar Padding                                                                                                  // /default_panels/StyleTracesPanel.js:148
 Bar Width                                                                                                    // /default_panels/StyleTracesPanel.js:146
 Bars                                                                                                         // /components/containers/TraceMarkerSection.js:20
 Blank                                                                                                        // /default_panels/StyleTracesPanel.js:173
-Border                                                                                                       // /default_panels/StyleSlidersPanel.js:28
+Border                                                                                                       // /default_panels/StyleSlidersPanel.js:27
 Border Color                                                                                                 // /default_panels/StyleAxesPanel.js:335
 Border Width                                                                                                 // /default_panels/StyleAxesPanel.js:330
 Borders and Background                                                                                       // /default_panels/StyleColorbarsPanel.js:306
@@ -64,6 +64,7 @@ Box Width                                                                       
 Boxes                                                                                                        // /default_panels/StyleTracesPanel.js:384
 Button                                                                                                       // /components/fields/UpdateMenuButtons.js:18
 Button Labels                                                                                                // /default_panels/StyleUpdateMenusPanel.js:24
+Buttons                                                                                                      // /components/containers/UpdateMenuAccordion.js:19
 C                                                                                                            // /components/fields/derived.js:532
 Candlestick                                                                                                  // /lib/computeTraceOptionsFromSchema.js:115
 Canvas                                                                                                       // /default_panels/StyleLayoutPanel.js:19
@@ -114,6 +115,7 @@ Diffuse                                                                         
 Disable                                                                                                      // /default_panels/StyleAxesPanel.js:345
 Display                                                                                                      // /default_panels/StyleTracesPanel.js:96
 Distributions                                                                                                // /lib/traceTypes.js:21
+Dropdown                                                                                                     // /components/containers/UpdateMenuAccordion.js:18
 E+6                                                                                                          // /default_panels/StyleAxesPanel.js:212
 Eckert4                                                                                                      // /components/fields/derived.js:462
 Edit in HTML                                                                                                 // /components/widgets/text_editors/MultiFormat.js:35
@@ -148,7 +150,7 @@ First                                                                           
 Fixed Height                                                                                                 // /default_panels/StyleLayoutPanel.js:28
 Fixed Width                                                                                                  // /default_panels/StyleLayoutPanel.js:27
 Flatshading                                                                                                  // /default_panels/StyleTracesPanel.js:107
-Font                                                                                                         // /default_panels/StyleSlidersPanel.js:32
+Font                                                                                                         // /default_panels/StyleSlidersPanel.js:31
 Font Color                                                                                                   // /default_panels/GraphCreatePanel.js:87
 Font Size                                                                                                    // /default_panels/GraphCreatePanel.js:88
 Fraction of Plot                                                                                             // /default_panels/StyleColorbarsPanel.js:71
@@ -206,7 +208,7 @@ Layout                                                                          
 Left                                                                                                         // /components/fields/derived.js:89
 Legend                                                                                                       // /default_panels/StyleLegendPanel.js:19
 Legend Box                                                                                                   // /default_panels/StyleLegendPanel.js:32
-Legth                                                                                                        // /default_panels/StyleSlidersPanel.js:45
+Legth                                                                                                        // /default_panels/StyleSlidersPanel.js:44
 Length                                                                                                       // /default_panels/StyleAxesPanel.js:292
 Light Position                                                                                               // /default_panels/StyleTracesPanel.js:304
 Lighting                                                                                                     // /default_panels/StyleTracesPanel.js:288
@@ -338,7 +340,7 @@ Text Position                                                                   
 The anchor point determines which side of the annotation's positioning coordinates refer to.                 // /default_panels/StyleNotesPanel.js:52
 The positioning inputs are relative to the anchor points on the text box.                                    // /default_panels/StyleLegendPanel.js:46
 There are no sliders to style in your plot                                                                   // /components/containers/SliderAccordion.js:27
-There are no update menus to style in your plot                                                              // /components/containers/UpdateMenuAccordion.js:31
+There are no update menus to style in your plot                                                              // /components/containers/UpdateMenuAccordion.js:43
 Thickness                                                                                                    // /default_panels/StyleAxesPanel.js:122
 This input has multiple values associated with it. Changing this setting will override these custom inputs.  // /lib/constants.js:20
 This panel could not be displayed due to an error.                                                           // /components/containers/Panel.js:17
@@ -366,7 +368,6 @@ Typeface                                                                        
 URL                                                                                                          // /components/widgets/text_editors/RichText/LinkEditor.js:93
 USA                                                                                                          // /components/fields/derived.js:438
 USA State Abbreviations (e.g. NY)                                                                            // /default_panels/GraphCreatePanel.js:114
-Update Menu                                                                                                  // /components/containers/UpdateMenuAccordion.js:20
 Update Menus                                                                                                 // /DefaultEditor.js:32
 Value                                                                                                        // /components/fields/ErrorBars.js:107
 Value (-)                                                                                                    // /components/fields/ErrorBars.js:132
