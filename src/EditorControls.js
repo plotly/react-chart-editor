@@ -124,7 +124,8 @@ class EditorControls extends Component {
         if (this.props.onUpdate) {
           this.props.onUpdate(
             graphDiv.data,
-            Object.assign({}, graphDiv.layout)
+            Object.assign({}, graphDiv.layout),
+            graphDiv._transitionData._frames
           );
         }
         break;
@@ -138,7 +139,11 @@ class EditorControls extends Component {
           this.props.afterAddTrace(payload);
         }
         if (this.props.onUpdate) {
-          this.props.onUpdate(graphDiv.data.slice(), graphDiv.layout);
+          this.props.onUpdate(
+            graphDiv.data.slice(),
+            graphDiv.layout,
+            graphDiv._transitionData._frames
+          );
         }
         break;
 
@@ -152,7 +157,11 @@ class EditorControls extends Component {
             this.props.afterDeleteTrace(payload);
           }
           if (this.props.onUpdate) {
-            this.props.onUpdate(graphDiv.data.slice(), graphDiv.layout);
+            this.props.onUpdate(
+              graphDiv.data.slice(),
+              graphDiv.layout,
+              graphDiv._transitionData._frames
+            );
           }
         }
         break;
@@ -169,7 +178,8 @@ class EditorControls extends Component {
           if (this.props.onUpdate) {
             this.props.onUpdate(
               graphDiv.data,
-              Object.assign({}, graphDiv.layout)
+              Object.assign({}, graphDiv.layout),
+              graphDiv._transitionData._frames
             );
           }
         }
@@ -187,7 +197,8 @@ class EditorControls extends Component {
           if (this.props.onUpdate) {
             this.props.onUpdate(
               graphDiv.data,
-              Object.assign({}, graphDiv.layout)
+              Object.assign({}, graphDiv.layout),
+              graphDiv._transitionData._frames
             );
           }
         }
@@ -205,7 +216,8 @@ class EditorControls extends Component {
           if (this.props.onUpdate) {
             this.props.onUpdate(
               graphDiv.data,
-              Object.assign({}, graphDiv.layout)
+              Object.assign({}, graphDiv.layout),
+              graphDiv._transitionData._frames
             );
           }
         }
