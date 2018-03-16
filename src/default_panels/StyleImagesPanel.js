@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   ImageAccordion,
   Radio,
-  TextEditor,
+  Dropzone,
   PositioningNumeric,
   Section,
   PositioningRef,
@@ -22,7 +22,8 @@ const StyleImagesPanel = ({localize: _}) => (
         {label: _('Hide'), value: false},
       ]}
     />
-    <TextEditor attr="source" label={_('Source')} show />
+
+    <Dropzone attr="source" fileType="image" show />
 
     <Dropdown
       label={_('Aspect Ratio')}
@@ -32,6 +33,7 @@ const StyleImagesPanel = ({localize: _}) => (
         {label: _('Fill'), value: 'fill'},
         {label: _('Stretch'), value: 'stretch'},
       ]}
+      clearable={false}
     />
     <PositioningNumeric attr="sizex" label={_('Width')} />
     <PositioningNumeric attr="sizey" label={_('Height')} />

@@ -11,31 +11,35 @@ class TraceRequiredPanel extends Component {
 
   render() {
     const {localize: _, children, ...rest} = this.props;
-    const emptyPanelMessage = {
+    let showPanel = true;
+    const emptyPanelMessage = {heading: '', message: ''};
+
+    const noTraceMessage = {
       heading: _("Looks like there aren't any traces defined yet."),
       message: _("Go to the 'Create' tab to define traces."),
     };
 
-    let showPanel = false;
+    const conditions = [() => this.hasTrace()].concat(
+      this.props.extraConditions ? this.props.extraConditions : []
+    );
+
+    const messages = [noTraceMessage].concat(
+      this.props.extraEmptyPanelMessages
+        ? this.props.extraEmptyPanelMessages
+        : []
+    );
 
     if (this.props.visible) {
-      if (this.hasTrace()) {
-        showPanel = true;
-      }
-
-      if (this.props.extraConditions) {
-        this.props.extraConditions.forEach((condition, index) => {
-          if (!condition()) {
-            showPanel = false;
-            emptyPanelMessage.heading = this.props.extraEmptyPanelMessages[
-              index
-            ].heading;
-            emptyPanelMessage.message = this.props.extraEmptyPanelMessages[
-              index
-            ].message;
-          }
-        });
-      }
+      conditions.forEach((condition, index) => {
+        if (!showPanel) {
+          return;
+        }
+        if (!condition()) {
+          showPanel = false;
+          emptyPanelMessage.heading = messages[index].heading;
+          emptyPanelMessage.message = messages[index].message;
+        }
+      });
 
       if (showPanel) {
         return <LayoutPanel {...rest}>{children}</LayoutPanel>;

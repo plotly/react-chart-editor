@@ -3,6 +3,7 @@ import AxesSelector from './AxesSelector';
 import ColorPicker from './Color';
 import ColorscalePicker from './Colorscale';
 import Dropdown from './Dropdown';
+import Dropzone from './Dropzone';
 import FontSelector from './FontSelector';
 import Flaglist from './Flaglist';
 import Info from './Info';
@@ -79,4 +80,5 @@ export {
   AxisOverlayDropdown,
   AxisSide,
   UpdateMenuButtons,
+  Dropzone,
 };

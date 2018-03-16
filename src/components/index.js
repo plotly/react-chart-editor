@@ -38,6 +38,7 @@ import {
   TraceOrientation,
   TraceSelector,
   UpdateMenuButtons,
+  Dropzone,
 } from './fields';
 
 import {
@@ -123,4 +124,5 @@ export {
   TraceTypeSection,
   SectionHeader,
   UpdateMenuButtons,
+  Dropzone,
 };
