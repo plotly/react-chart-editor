@@ -18,6 +18,7 @@ import {
   TraceRequiredPanel,
   AxesFold,
   TraceTypeSection,
+  RangesliderVisible,
 } from '../components';
 
 import {localize} from '../lib';
@@ -309,7 +310,7 @@ class StyleAxesPanel extends Component {
         </AxesFold>
 
         <AxesFold name={_('Range Slider')}>
-          <Radio
+          <RangesliderVisible
             attr="rangeslider.visible"
             options={[
               {label: _('Show'), value: true},
