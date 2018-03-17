@@ -1,3 +1,4 @@
+ to upload here or click to choose a file from your computer.                                                // /components/widgets/Dropzone.js:54
 #                                                                                                            // /default_panels/StyleAxesPanel.js:251
 $                                                                                                            // /default_panels/StyleAxesPanel.js:250
 %                                                                                                            // /components/fields/ErrorBars.js:101
@@ -22,7 +23,7 @@ All                                                                             
 All Traces                                                                                                   // /components/containers/TraceAccordion.js:83
 Ambient                                                                                                      // /default_panels/StyleTracesPanel.js:289
 Anchor                                                                                                       // /default_panels/StyleAxesPanel.js:74
-Anchor Point                                                                                                 // /default_panels/StyleImagesPanel.js:40
+Anchor Point                                                                                                 // /default_panels/StyleImagesPanel.js:42
 Anchor To                                                                                                    // /default_panels/StyleAxesPanel.js:76
 Angle                                                                                                        // /default_panels/StyleAxesPanel.js:193
 Annotation                                                                                                   // /components/containers/AnnotationAccordion.js:28
@@ -30,7 +31,7 @@ Area                                                                            
 Arrow                                                                                                        // /default_panels/StyleNotesPanel.js:30
 Arrowhead                                                                                                    // /default_panels/StyleNotesPanel.js:40
 Asia                                                                                                         // /components/fields/derived.js:440
-Aspect Ratio                                                                                                 // /default_panels/StyleImagesPanel.js:28
+Aspect Ratio                                                                                                 // /default_panels/StyleImagesPanel.js:29
 Asymmetric                                                                                                   // /components/fields/ErrorBars.js:81
 Atlas Map                                                                                                    // /lib/computeTraceOptionsFromSchema.js:67
 Auto                                                                                                         // /default_panels/StyleAxesPanel.js:89
@@ -91,7 +92,7 @@ Conic Equidistant                                                               
 Connect                                                                                                      // /default_panels/StyleTracesPanel.js:172
 Connect Gaps                                                                                                 // /default_panels/StyleTracesPanel.js:169
 Constant                                                                                                     // /components/fields/ErrorBars.js:102
-Contain                                                                                                      // /default_panels/StyleImagesPanel.js:31
+Contain                                                                                                      // /default_panels/StyleImagesPanel.js:32
 Container                                                                                                    // /default_panels/StyleColorbarsPanel.js:320
 Continue                                                                                                     // /components/widgets/text_editors/MultiFormat.js:205
 Continuing will convert your LaTeX expression into raw text.                                                 // /components/widgets/text_editors/MultiFormat.js:122
@@ -115,6 +116,7 @@ Diffuse                                                                         
 Disable                                                                                                      // /default_panels/StyleAxesPanel.js:345
 Display                                                                                                      // /default_panels/StyleTracesPanel.js:96
 Distributions                                                                                                // /lib/traceTypes.js:21
+Drop the                                                                                                     // /components/widgets/Dropzone.js:52
 Dropdown                                                                                                     // /components/containers/UpdateMenuAccordion.js:18
 E+6                                                                                                          // /default_panels/StyleAxesPanel.js:212
 Eckert4                                                                                                      // /components/fields/derived.js:462
@@ -140,7 +142,8 @@ Expand All                                                                      
 Exponents                                                                                                    // /default_panels/StyleAxesPanel.js:206
 Face Normal                                                                                                  // /default_panels/StyleTracesPanel.js:299
 Facecolor                                                                                                    // /default_panels/GraphCreatePanel.js:104
-Fill                                                                                                         // /default_panels/StyleImagesPanel.js:32
+File loaded!                                                                                                 // /components/widgets/Dropzone.js:36
+Fill                                                                                                         // /default_panels/StyleImagesPanel.js:33
 Fill Color                                                                                                   // /default_panels/GraphCreatePanel.js:86
 Fill to                                                                                                      // /default_panels/StyleTracesPanel.js:116
 Filled Area                                                                                                  // /default_panels/StyleTracesPanel.js:115
@@ -160,7 +163,7 @@ Gaps in Data                                                                    
 Global Font                                                                                                  // /default_panels/StyleLayoutPanel.js:51
 Gnomonic                                                                                                     // /components/fields/derived.js:468
 Go back                                                                                                      // /components/widgets/text_editors/MultiFormat.js:198
-Go to the 'Create' tab to define traces.                                                                     // /components/containers/TraceRequiredPanel.js:16
+Go to the 'Create' tab to define traces.                                                                     // /components/containers/TraceRequiredPanel.js:19
 Graph                                                                                                        // /DefaultEditor.js:22
 Grid Lines                                                                                                   // /default_panels/StyleAxesPanel.js:144
 Hammer                                                                                                       // /components/fields/derived.js:471
@@ -217,11 +220,12 @@ Line Color                                                                      
 Line Width                                                                                                   // /default_panels/StyleNotesPanel.js:38
 Linear                                                                                                       // /default_panels/StyleAxesPanel.js:98
 Lines                                                                                                        // /default_panels/StyleAxesPanel.js:113
+Loading...                                                                                                   // /components/widgets/Dropzone.js:136
 Location                                                                                                     // /components/fields/derived.js:502
 Location Format                                                                                              // /default_panels/GraphCreatePanel.js:107
 Locations                                                                                                    // /default_panels/GraphCreatePanel.js:28
 Longitude                                                                                                    // /components/fields/derived.js:511
-Looks like there aren't any traces defined yet.                                                              // /components/containers/TraceRequiredPanel.js:15
+Looks like there aren't any traces defined yet.                                                              // /components/containers/TraceRequiredPanel.js:18
 Low                                                                                                          // /default_panels/GraphCreatePanel.js:60
 Map Region                                                                                                   // /default_panels/GraphCreatePanel.js:120
 Maps                                                                                                         // /lib/traceTypes.js:25
@@ -286,7 +290,7 @@ Projection                                                                      
 Range                                                                                                        // /default_panels/StyleAxesPanel.js:84
 Range Slider                                                                                                 // /default_panels/StyleAxesPanel.js:311
 Rectangle                                                                                                    // /default_panels/StyleShapesPanel.js:30
-Relative To                                                                                                  // /default_panels/StyleImagesPanel.js:51
+Relative To                                                                                                  // /default_panels/StyleImagesPanel.js:53
 Relative to                                                                                                  // /default_panels/StyleShapesPanel.js:36
 Reversed                                                                                                     // /default_panels/StyleLegendPanel.js:97
 Rich Text                                                                                                    // /components/widgets/text_editors/MultiFormat.js:25
@@ -314,7 +318,6 @@ Size and Positioning                                                            
 Size and Spacing                                                                                             // /default_panels/StyleTracesPanel.js:145
 Slider                                                                                                       // /components/containers/SliderAccordion.js:17
 Sliders                                                                                                      // /DefaultEditor.js:31
-Source                                                                                                       // /default_panels/StyleImagesPanel.js:25
 South America                                                                                                // /components/fields/derived.js:443
 Specialized                                                                                                  // /lib/traceTypes.js:29
 Specular                                                                                                     // /default_panels/StyleTracesPanel.js:291
@@ -324,10 +327,11 @@ Start Position                                                                  
 Step Offset                                                                                                  // /default_panels/StyleAxesPanel.js:277
 Step Size                                                                                                    // /default_panels/StyleAxesPanel.js:278
 Stereographic                                                                                                // /components/fields/derived.js:469
-Stretch                                                                                                      // /default_panels/StyleImagesPanel.js:33
+Stretch                                                                                                      // /default_panels/StyleImagesPanel.js:34
 Style                                                                                                        // /DefaultEditor.js:23
 Suffix                                                                                                       // /default_panels/StyleAxesPanel.js:233
 Sum                                                                                                          // /default_panels/GraphCreatePanel.js:131
+Supported formats are:                                                                                       // /components/widgets/Dropzone.js:59
 Surface                                                                                                      // /lib/computeTraceOptionsFromSchema.js:59
 Symbol                                                                                                       // /default_panels/StyleTracesPanel.js:140
 Symmetric                                                                                                    // /components/fields/ErrorBars.js:80
@@ -354,6 +358,7 @@ Title and Fonts                                                                 
 Titles                                                                                                       // /default_panels/StyleAxesPanel.js:53
 To Next                                                                                                      // /components/fields/derived.js:562
 To Self                                                                                                      // /components/fields/derived.js:561
+To upload multiple files, create multiple files and upload them individually.                                // /components/widgets/Dropzone.js:127
 Top                                                                                                          // /components/fields/derived.js:101
 Top Center                                                                                                   // /default_panels/StyleTracesPanel.js:195
 Top Left                                                                                                     // /default_panels/StyleTracesPanel.js:194
@@ -363,11 +368,15 @@ Trace Order                                                                     
 Traces                                                                                                       // /DefaultEditor.js:23
 Transpose                                                                                                    // /default_panels/GraphCreatePanel.js:135
 Transverse Mercator                                                                                          // /components/fields/derived.js:472
+Try again with a                                                                                             // /components/widgets/Dropzone.js:111
+Try again with a supported file format:                                                                      // /components/widgets/Dropzone.js:76
+Try again.                                                                                                   // /components/widgets/Dropzone.js:79
 Type                                                                                                         // /default_panels/GraphCreatePanel.js:23
 Typeface                                                                                                     // /default_panels/StyleAxesPanel.js:55
 URL                                                                                                          // /components/widgets/text_editors/RichText/LinkEditor.js:93
 USA                                                                                                          // /components/fields/derived.js:438
 USA State Abbreviations (e.g. NY)                                                                            // /default_panels/GraphCreatePanel.js:114
+Unsupported file format!                                                                                     // /components/widgets/Dropzone.js:117
 Update Menus                                                                                                 // /DefaultEditor.js:32
 Value                                                                                                        // /components/fields/ErrorBars.js:107
 Value (-)                                                                                                    // /components/fields/ErrorBars.js:132
@@ -399,6 +408,9 @@ Y Position                                                                      
 Y Values                                                                                                     // /default_panels/GraphCreatePanel.js:41
 Y Vector                                                                                                     // /default_panels/StyleNotesPanel.js:45
 Yes                                                                                                          // /default_panels/GraphCreatePanel.js:139
+Yikes! An error occurred while parsing this file.                                                            // /components/widgets/Dropzone.js:73
+Yikes! This doesn't look like a valid                                                                        // /components/widgets/Dropzone.js:106
+Yikes! You can only upload one file at a time.                                                               // /components/widgets/Dropzone.js:124
 You can style and position your axes in the Style > Axes Panel                                               // /components/fields/AxisCreator.js:167
 Your plot does not have any axes to style.                                                                   // /default_panels/StyleAxesPanel.js:48
 Z                                                                                                            // /components/fields/derived.js:497
@@ -408,10 +420,12 @@ Zoom Interactivity                                                              
 ^                                                                                                            // /default_panels/StyleAxesPanel.js:262
 custom                                                                                                       // /default_panels/StyleAxesPanel.js:253
 e+6                                                                                                          // /default_panels/StyleAxesPanel.js:211
+jpeg/jpg, svg, png, gif, bmp, webp                                                                           // /components/widgets/Dropzone.js:16
 k/M/B                                                                                                        // /default_panels/StyleAxesPanel.js:215
 k/M/G                                                                                                        // /default_panels/StyleAxesPanel.js:214
 log                                                                                                          // /default_panels/StyleAxesPanel.js:99
 new text                                                                                                     // /components/containers/AnnotationAccordion.js:38
+to us.                                                                                                       // /components/widgets/Dropzone.js:107
 x                                                                                                            // /default_panels/StyleAxesPanel.js:249
 x10^6                                                                                                        // /default_panels/StyleAxesPanel.js:213
 √                                                                                                            // /components/fields/ErrorBars.js:103

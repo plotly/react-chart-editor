@@ -49,9 +49,11 @@ class Dropzone extends Component {
       content: (
         <div className="dropzone-container__message">
           <p>
-            {_('Drop ') +
-              (this.props.fileType ? this.props.fileType : 'file') +
-              _(' to upload.')}
+            {_('Drop the ') +
+              (this.props.fileType ? this.props.fileType : _('file')) +
+              _(
+                ' to upload here or click to choose a file from your computer.'
+              )}
           </p>
 
           {this.props.fileType === 'image' ? (
@@ -103,11 +105,9 @@ class Dropzone extends Component {
     const invalidFileTypeMessage = this.props.fileType ? (
       <div className="dropzone-container__message">
         <p>
-          {_(
-            `Yikes! This doesn't look like a valid ${
-              this.props.fileType
-            } to us. `
-          )}
+          {_("Yikes! This doesn't look like a valid ") +
+            this.props.fileType +
+            _('to us. ')}
         </p>
         <p>
           {_('Try again with a ') +
@@ -159,7 +159,6 @@ class Dropzone extends Component {
       <Drop
         ref="dzone"
         onDrop={this.onDrop}
-        disableClick={true}
         className="dropzone-container"
         activeClassName="dropzone-container--active"
       >

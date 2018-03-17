@@ -23,7 +23,7 @@ const StyleImagesPanel = ({localize: _}) => (
       ]}
     />
 
-    <Dropzone attr="source" fileType="image" show />
+    <Dropzone attr="source" fileType={_('image')} show />
 
     <Dropdown
       label={_('Aspect Ratio')}
