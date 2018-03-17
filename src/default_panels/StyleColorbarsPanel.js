@@ -34,7 +34,7 @@ const StyleColorBarsPanel = ({localize: _}) => {
       })}
       {['', 'marker.'].map(prefix => {
         return (
-          <Panel showExpandCollapse={false}>
+          <Panel showExpandCollapse={false} key={prefix + ' panel'}>
             <Fold name={_('Title')}>
               <TextEditor attr={prefix + 'colorbar.title'} />
 

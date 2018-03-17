@@ -81,6 +81,7 @@ All Fields except `<Info />` accept an `attr` property to bind them to a key in 
 * `<Numeric />`: renders as a text field with arrows and units, useful for numeric values
 * `<Radio />`: renders as a button group, useful for mutually-exclusive low-cardinality enumerable values
 * `<Dropdown />`: renders as a dropdown menu useful for mutually-exclusive high-cardinality enumerable values
+* `<Dropzone/>`: renders a dropzone component to drag and drop files to load
 * `<ColorPicker />`: renders as a popup color-picker, useful for CSS color hex value strings
 * `<ColorscalePicker />`: npm module [react-colorscales](https://github.com/plotly/react-colorscales)
 * `<Flaglist />`: renders as a list of checkboxes, useful for `+`-joined flag lists like `data[].mode`
