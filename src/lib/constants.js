@@ -35,6 +35,7 @@ export const EDITOR_ACTIONS = {
   UPDATE_LAYOUT: 'plotly-editor-update-layout',
   DELETE_ANNOTATION: 'plotly-editor-delete-annotation',
   DELETE_SHAPE: 'plotly-editor-delete-shape',
+  DELETE_SHAPEFILE: 'plotly-editor-delete-shapefile',
   DELETE_IMAGE: 'plotly-editor-delete-image',
 };
 

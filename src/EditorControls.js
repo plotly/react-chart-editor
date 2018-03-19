@@ -204,6 +204,24 @@ class EditorControls extends Component {
         }
         break;
 
+      case EDITOR_ACTIONS.DELETE_SHAPEFILE:
+        if (isNumeric(payload.shapefileIndex)) {
+          if (this.props.beforeDeleteShapefile) {
+            this.props.beforeDeleteShapefile(payload);
+          }
+          graphDiv.layout.mapbox.layers.splice(payload.shapefileIndex, 1);
+          if (this.props.afterDeleteShapefile) {
+            this.props.afterDeleteShapefile(payload);
+          }
+          if (this.props.onUpdate) {
+            this.props.onUpdate(
+              graphDiv.data,
+              Object.assign({}, graphDiv.layout)
+            );
+          }
+        }
+        break;
+
       case EDITOR_ACTIONS.DELETE_IMAGE:
         if (isNumeric(payload.imageIndex)) {
           if (this.props.beforeDeleteImage) {
@@ -252,6 +270,7 @@ EditorControls.propTypes = {
   afterAddTrace: PropTypes.func,
   afterDeleteAnnotation: PropTypes.func,
   afterDeleteShape: PropTypes.func,
+  afterDeleteShapefile: PropTypes.func,
   afterDeleteImage: PropTypes.func,
   afterDeleteTrace: PropTypes.func,
   afterUpdateLayout: PropTypes.func,
@@ -259,6 +278,7 @@ EditorControls.propTypes = {
   beforeAddTrace: PropTypes.func,
   beforeDeleteAnnotation: PropTypes.func,
   beforeDeleteShape: PropTypes.func,
+  beforeDeleteShapefile: PropTypes.func,
   beforeDeleteImage: PropTypes.func,
   beforeDeleteTrace: PropTypes.func,
   beforeUpdateLayout: PropTypes.func,

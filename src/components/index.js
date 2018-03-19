@@ -45,6 +45,7 @@ import {
   AnnotationAccordion,
   ShapeAccordion,
   SliderAccordion,
+  ShapefileAccordion,
   ImageAccordion,
   UpdateMenuAccordion,
   AxesFold,
@@ -125,4 +126,5 @@ export {
   SectionHeader,
   UpdateMenuButtons,
   Dropzone,
+  ShapefileAccordion,
 };

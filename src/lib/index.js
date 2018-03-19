@@ -1,6 +1,7 @@
 import bem from './bem';
 import connectAnnotationToLayout from './connectAnnotationToLayout';
 import connectShapeToLayout from './connectShapeToLayout';
+import connectShapefileToLayout from './connectShapefileToLayout';
 import connectSliderToLayout from './connectSliderToLayout';
 import connectImageToLayout from './connectImageToLayout';
 import connectUpdateMenuToLayout from './connectUpdateMenuToLayout';
@@ -75,6 +76,7 @@ export {
   clamp,
   connectAnnotationToLayout,
   connectShapeToLayout,
+  connectShapefileToLayout,
   connectSliderToLayout,
   connectUpdateMenuToLayout,
   connectImageToLayout,
