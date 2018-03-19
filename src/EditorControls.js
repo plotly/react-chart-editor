@@ -223,6 +223,22 @@ class EditorControls extends Component {
         }
         break;
 
+      case EDITOR_ACTIONS.DELETE_RANGESELECTOR:
+        if (isNumeric(payload.rangeselectorIndex)) {
+          graphDiv.layout[payload.axisId].rangeselector.buttons.splice(
+            payload.rangeselectorIndex,
+            1
+          );
+          if (this.props.onUpdate) {
+            this.props.onUpdate(
+              graphDiv.data,
+              Object.assign({}, graphDiv.layout),
+              graphDiv._transitionData._frames
+            );
+          }
+        }
+        break;
+
       default:
         throw new Error('must specify an action type to handleEditorUpdate');
     }

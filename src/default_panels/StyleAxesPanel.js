@@ -20,6 +20,7 @@ import {
   TraceTypeSection,
   RangesliderVisible,
   RangeselectorVisible,
+  RangeSelectorAccordion,
   Info,
 } from '../components';
 
@@ -348,36 +349,67 @@ class StyleAxesPanel extends Component {
             ]}
           />
 
-          <FontSelector
-            label={_('Typeface')}
-            attr="rangeselector.font.family"
-          />
-          <Numeric
-            label={_('Font Size')}
-            attr="rangeselector.font.size"
-            units="px"
-          />
-          <ColorPicker
-            label={_('Font Color')}
-            attr="rangeselector.font.color"
-          />
-          <ColorPicker
-            label={_('Background Color')}
-            attr="rangeselector.bgcolor"
-          />
-          <ColorPicker
-            label={_('Active Color')}
-            attr="rangeselector.activecolor"
-          />
-          <Numeric
-            label={_('Border Width')}
-            attr="rangeselector.borderwidth"
-            units="px"
-          />
-          <ColorPicker
-            label={_('Border Color')}
-            attr="rangeselector.bordercolor"
-          />
+          <RangeSelectorAccordion>
+            <TextEditor attr="label" label={_('Label')} show />
+            <Numeric label={_('Count')} attr="count" />
+            <Dropdown
+              label={_('Step')}
+              attr="step"
+              clearable={false}
+              options={[
+                {label: _('Year'), value: 'year'},
+                {label: _('Month'), value: 'month'},
+                {label: _('Day'), value: 'day'},
+                {label: _('Hour'), value: 'hour'},
+                {label: _('Minute'), value: 'minute'},
+                {label: _('Second'), value: 'second'},
+                {label: _('All'), value: 'all'},
+              ]}
+            />
+            <Dropdown
+              label={_('Stepmode')}
+              attr="stepmode"
+              clearable={false}
+              options={[
+                {label: _('To Date'), value: 'todate'},
+                {label: _('Backward'), value: 'backward'},
+              ]}
+            />
+          </RangeSelectorAccordion>
+          <Section name={_('Text')}>
+            <FontSelector
+              label={_('Typeface')}
+              attr="rangeselector.font.family"
+            />
+            <Numeric
+              label={_('Font Size')}
+              attr="rangeselector.font.size"
+              units="px"
+            />
+            <ColorPicker
+              label={_('Font Color')}
+              attr="rangeselector.font.color"
+            />
+          </Section>
+          <Section name={_('Style')}>
+            <ColorPicker
+              label={_('Background Color')}
+              attr="rangeselector.bgcolor"
+            />
+            <ColorPicker
+              label={_('Active Color')}
+              attr="rangeselector.activecolor"
+            />
+            <Numeric
+              label={_('Border Width')}
+              attr="rangeselector.borderwidth"
+              units="px"
+            />
+            <ColorPicker
+              label={_('Border Color')}
+              attr="rangeselector.bordercolor"
+            />
+          </Section>
           <Section name={_('Positioning')}>
             <MenuPanel>
               <Section name={_('Anchor Point')}>

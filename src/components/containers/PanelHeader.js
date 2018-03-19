@@ -57,6 +57,7 @@ class PanelHeader extends Component {
 
 PanelHeader.contextTypes = {
   layout: PropTypes.object,
+  fullContainer: PropTypes.func,
   onUpdate: PropTypes.func,
   updateContainer: PropTypes.func,
 };
