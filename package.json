@@ -25,6 +25,7 @@
     "react-rangeslider": "^2.2.0",
     "react-select": "^1.0.0-rc.10",
     "react-tabs": "^2.2.1",
+    "shpjs": "^3.4.2",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {

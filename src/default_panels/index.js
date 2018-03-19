@@ -9,6 +9,7 @@ import StyleImagesPanel from './StyleImagesPanel';
 import StyleTracesPanel from './StyleTracesPanel';
 import StyleColorbarsPanel from './StyleColorbarsPanel';
 import StyleUpdateMenusPanel from './StyleUpdateMenusPanel';
+import StyleShapefilePanel from './StyleShapefilePanel';
 
 export {
   GraphCreatePanel,
@@ -22,4 +23,5 @@ export {
   StyleTracesPanel,
   StyleColorbarsPanel,
   StyleUpdateMenusPanel,
+  StyleShapefilePanel,
 };
