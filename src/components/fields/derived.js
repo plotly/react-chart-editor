@@ -91,6 +91,20 @@ export const RangesliderVisible = connectToContainer(UnconnectedRadio, {
   },
 });
 
+export const RangeselectorVisible = connectToContainer(UnconnectedRadio, {
+  modifyPlotProps: (props, context, plotProps) => {
+    if (
+      !plotProps.isVisible &&
+      context.fullContainer._id &&
+      context.fullContainer._id.startsWith('x') &&
+      context.fullContainer.type === 'date'
+    ) {
+      plotProps.isVisible = true;
+      return;
+    }
+  },
+});
+
 export const AxisSide = connectToContainer(UnconnectedRadio, {
   modifyPlotProps: (props, context, plotProps) => {
     const _ = props.localize;
