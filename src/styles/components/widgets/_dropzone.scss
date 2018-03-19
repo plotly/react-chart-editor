@@ -27,12 +27,16 @@
   &__image {
     width: 100%;
     height: 100%;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     position: relative;
   }
 
   &--active {
     border-color: var(--color-dodger);
+  }
+
+  &--rejected {
+    border-color: red;
   }
 }
