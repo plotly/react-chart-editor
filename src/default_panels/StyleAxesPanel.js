@@ -276,7 +276,7 @@ class StyleAxesPanel extends Component {
             />
           </Section>
 
-          <Section name={_('Placement')} attr="dtick">
+          <Section name={_('Spacing')} attr="dtick">
             <Radio
               attr="tickmode"
               options={[
@@ -304,7 +304,7 @@ class StyleAxesPanel extends Component {
             <Numeric label={_('Width')} attr="tickwidth" units="px" />
             <ColorPicker label={_('Tick Color')} attr="tickcolor" />
           </Section>
-          <Section name={_('Placement')}>
+          <Section name={_('Spacing')}>
             <Radio
               attr="tickmode"
               options={[

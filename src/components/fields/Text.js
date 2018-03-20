@@ -27,7 +27,7 @@ export class UnconnectedText extends Component {
 }
 
 UnconnectedText.propTypes = {
-  defaultValue: PropTypes.number,
+  defaultValue: PropTypes.string,
   fullValue: PropTypes.any,
   multiValued: PropTypes.bool,
   updatePlot: PropTypes.func,
