@@ -33,7 +33,7 @@ export class UnconnectedNumeric extends Component {
 }
 
 UnconnectedNumeric.propTypes = {
-  defaultValue: PropTypes.number,
+  defaultValue: PropTypes.any,
   fullValue: PropTypes.any,
   min: PropTypes.number,
   max: PropTypes.number,
