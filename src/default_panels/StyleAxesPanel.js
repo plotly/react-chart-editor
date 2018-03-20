@@ -5,7 +5,8 @@ import {
   AxisOverlayDropdown,
   AxisSide,
   AxesRange,
-  AxisRangeValue,
+  DTicks,
+  NTicks,
   ColorPicker,
   Dropdown,
   FontSelector,
@@ -88,9 +89,10 @@ class StyleAxesPanel extends Component {
 
         <AxesFold name={_('Range')}>
           <Section name={_('Range')} attr="autorange">
-            <Radio
+            <Dropdown
               attr="type"
               label={_('Type')}
+              clearable={false}
               options={[
                 {label: _('Linear'), value: 'linear'},
                 {label: _('Log'), value: 'log'},
@@ -274,18 +276,18 @@ class StyleAxesPanel extends Component {
             />
           </Section>
 
-          <Section name={_('Number of Labels')} attr="dtick">
+          <Section name={_('Placement')} attr="dtick">
             <Radio
               attr="tickmode"
               options={[
-                {label: _('Linear'), value: 'linear'},
-                {label: _('Custom'), value: 'auto'},
+                {label: _('Auto'), value: 'auto'},
+                {label: _('Custom'), value: 'linear'},
               ]}
             />
 
-            <AxisRangeValue label={_('Step Offset')} attr="tick0" />
-            <AxisRangeValue label={_('Step Size')} attr="dtick" />
-            <Numeric label={_('Max Number of Labels')} attr="nticks" />
+            <DTicks label={_('Step Offset')} attr="tick0" />
+            <DTicks label={_('Step Size')} attr="dtick" />
+            <NTicks label={_('Max Number of Labels')} attr="nticks" />
           </Section>
         </AxesFold>
         <AxesFold name={_('Tick Markers')}>
@@ -302,18 +304,18 @@ class StyleAxesPanel extends Component {
             <Numeric label={_('Width')} attr="tickwidth" units="px" />
             <ColorPicker label={_('Tick Color')} attr="tickcolor" />
           </Section>
-          <Section name={_('Number of Markers')}>
+          <Section name={_('Placement')}>
             <Radio
               attr="tickmode"
               options={[
-                {label: _('Linear'), value: 'linear'},
-                {label: _('Custom'), value: 'auto'},
+                {label: _('Auto'), value: 'auto'},
+                {label: _('Custom'), value: 'linear'},
               ]}
             />
 
-            <AxisRangeValue label={_('Step Offset')} attr="tick0" />
-            <AxisRangeValue label={_('Step Size')} attr="dtick" />
-            <Numeric label={_('Max Number of Markers')} attr="nticks" />
+            <DTicks label={_('Step Offset')} attr="tick0" />
+            <DTicks label={_('Step Size')} attr="dtick" />
+            <NTicks label={_('Max Number of Markers')} attr="nticks" />
           </Section>
         </AxesFold>
 

@@ -235,6 +235,34 @@ export const AxesRange = connectToContainer(UnconnectedAxisRangeValue, {
   },
 });
 
+export const NTicks = connectToContainer(UnconnectedNumeric, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {fullContainer} = plotProps;
+    if (
+      plotProps.isVisible &&
+      fullContainer &&
+      fullContainer.tickmode !== 'auto'
+    ) {
+      plotProps.isVisible = false;
+    }
+    return plotProps;
+  },
+});
+
+export const DTicks = connectToContainer(UnconnectedAxisRangeValue, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {fullContainer} = plotProps;
+    if (
+      plotProps.isVisible &&
+      fullContainer &&
+      fullContainer.tickmode !== 'linear'
+    ) {
+      plotProps.isVisible = false;
+    }
+    return plotProps;
+  },
+});
+
 class UnconnectedNumericFraction extends UnconnectedNumeric {}
 UnconnectedNumericFraction.propTypes = UnconnectedNumeric.propTypes;
 UnconnectedNumericFraction.defaultProps = {
