@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal from 'components/containers/Modal';
-import {traceTypeToPlotlyInitFigure, localize, renderTraceIcon} from 'lib';
+import {
+  traceTypeToPlotlyInitFigure,
+  localize,
+  renderTraceIcon,
+  plotlyTraceToCustomTrace,
+} from 'lib';
 
 const actions = ({value}) => [
   {
@@ -127,14 +132,15 @@ class TraceTypeButton extends React.Component {
   render() {
     const {
       handleClick,
-      fullValue,
+      container,
       localize: _,
       traceTypesConfig: {traces},
     } = this.props;
 
-    const {label, icon, value} =
-      traces(_).find(type => type.value === fullValue) ||
-      traces(_).find(type => type.value === 'scatter');
+    const inferredType = plotlyTraceToCustomTrace(container);
+    const {label, icon, value} = traces(_).find(
+      type => type.value === inferredType
+    );
 
     const Icon = renderTraceIcon(icon ? icon : value);
 
@@ -159,7 +165,7 @@ TraceTypeSelector.propTypes = {
 };
 TraceTypeButton.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  fullValue: PropTypes.string,
+  container: PropTypes.object,
   localize: PropTypes.func.isRequired,
   traceTypesConfig: PropTypes.object.isRequired,
 };
