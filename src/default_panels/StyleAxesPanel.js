@@ -5,6 +5,7 @@ import {
   AxisOverlayDropdown,
   AxisSide,
   AxesRange,
+  AxisRangeValue,
   ColorPicker,
   Dropdown,
   FontSelector,
@@ -282,8 +283,8 @@ class StyleAxesPanel extends Component {
               ]}
             />
 
-            <Numeric label={_('Step Offset')} attr="tick0" />
-            <Numeric label={_('Step Size')} attr="dtick" />
+            <AxisRangeValue label={_('Step Offset')} attr="tick0" />
+            <AxisRangeValue label={_('Step Size')} attr="dtick" />
             <Numeric label={_('Max Number of Labels')} attr="nticks" />
           </Section>
         </AxesFold>
@@ -310,8 +311,8 @@ class StyleAxesPanel extends Component {
               ]}
             />
 
-            <Numeric label={_('Step Offset')} attr="tick0" />
-            <Numeric label={_('Step Size')} attr="dtick" />
+            <AxisRangeValue label={_('Step Offset')} attr="tick0" />
+            <AxisRangeValue label={_('Step Size')} attr="dtick" />
             <Numeric label={_('Max Number of Markers')} attr="nticks" />
           </Section>
         </AxesFold>

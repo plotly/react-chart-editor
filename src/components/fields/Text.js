@@ -1,10 +1,10 @@
 import Field from './Field';
-import NumericInput from '../widgets/NumericInput';
+import TextInput from '../widgets/TextInput';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 
-export class UnconnectedNumeric extends Component {
+export class UnconnectedText extends Component {
   render() {
     let fullValue = this.props.fullValue;
     let placeholder;
@@ -15,33 +15,23 @@ export class UnconnectedNumeric extends Component {
 
     return (
       <Field {...this.props}>
-        <NumericInput
+        <TextInput
           value={fullValue}
           defaultValue={this.props.defaultValue}
           placeholder={placeholder}
-          step={this.props.step}
-          min={this.props.min}
-          max={this.props.max}
           onUpdate={this.props.updatePlot}
-          showArrows={!this.props.hideArrows}
-          showSlider={this.props.showSlider}
         />
       </Field>
     );
   }
 }
 
-UnconnectedNumeric.propTypes = {
+UnconnectedText.propTypes = {
   defaultValue: PropTypes.number,
   fullValue: PropTypes.any,
-  min: PropTypes.number,
-  max: PropTypes.number,
   multiValued: PropTypes.bool,
-  hideArrows: PropTypes.bool,
-  showSlider: PropTypes.bool,
-  step: PropTypes.number,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };
 
-export default connectToContainer(UnconnectedNumeric);
+export default connectToContainer(UnconnectedText);

@@ -11,6 +11,8 @@ import Radio from './Radio';
 import TextEditor from './TextEditor';
 import DataSelector from './DataSelector';
 import Numeric from './Numeric';
+import AxisRangeValue from './AxisRangeValue';
+import Text from './Text';
 import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
@@ -73,6 +75,8 @@ export {
   LineDashSelector,
   LineShapeSelector,
   Numeric,
+  AxisRangeValue,
+  Text,
   Radio,
   SymbolSelector,
   RangesliderVisible,

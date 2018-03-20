@@ -2,6 +2,7 @@ import isNumeric from 'fast-isnumeric';
 import {UnconnectedDropdown} from './Dropdown';
 import {UnconnectedFlaglist} from './Flaglist';
 import {UnconnectedNumeric} from './Numeric';
+import {UnconnectedAxisRangeValue} from './AxisRangeValue';
 import {UnconnectedRadio} from './Radio';
 import {
   connectLayoutToPlot,
@@ -224,7 +225,7 @@ export const TraceOrientation = connectToContainer(UnconnectedRadio, {
   },
 });
 
-export const AxesRange = connectToContainer(UnconnectedNumeric, {
+export const AxesRange = connectToContainer(UnconnectedAxisRangeValue, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;
     if (plotProps.isVisible && fullContainer && fullContainer.autorange) {
