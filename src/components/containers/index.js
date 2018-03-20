@@ -3,6 +3,7 @@ import ShapeAccordion from './ShapeAccordion';
 import SliderAccordion from './SliderAccordion';
 import ImageAccordion from './ImageAccordion';
 import UpdateMenuAccordion from './UpdateMenuAccordion';
+import RangeSelectorAccordion from './RangeSelectorAccordion';
 import AxesFold from './AxesFold';
 import Fold from './Fold';
 import MenuPanel from './MenuPanel';
@@ -23,6 +24,7 @@ export {
   SliderAccordion,
   ImageAccordion,
   UpdateMenuAccordion,
+  RangeSelectorAccordion,
   MenuPanel,
   Fold,
   Panel,

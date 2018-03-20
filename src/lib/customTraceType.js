@@ -1,17 +1,18 @@
 export function plotlyTraceToCustomTrace(trace) {
+  const type = trace.type || 'scatter';
   if (
-    trace.type === 'scatter' &&
+    type === 'scatter' &&
     ['tozeroy', 'tozerox', 'tonexty', 'tonextx', 'toself', 'tonext'].includes(
       trace.fill
     )
   ) {
     return 'area';
   } else if (
-    trace.type === 'scatter' &&
+    type === 'scatter' &&
     (trace.mode === 'lines' || trace.mode === 'lines+markers')
   ) {
     return 'line';
-  } else if (trace.type === 'scatter3d' && trace.mode === 'lines') {
+  } else if (type === 'scatter3d' && trace.mode === 'lines') {
     return 'line3d';
   }
   return trace.type;

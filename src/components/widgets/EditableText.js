@@ -9,7 +9,7 @@ class EditableText extends Component {
   constructor(props) {
     super(props);
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleFocus = this.handleFocus.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -22,7 +22,7 @@ class EditableText extends Component {
   }
 
   // Selects/highlights all of the text in the filename input
-  handleClick(event) {
+  handleFocus(event) {
     event.target.select();
   }
 
@@ -73,7 +73,7 @@ class EditableText extends Component {
         type={type}
         className={className || ''}
         value={text}
-        onClick={this.handleClick}
+        onFocus={this.handleFocus}
         onChange={this.handleChange}
         onBlur={this.handleUpdate}
         disabled={disable}

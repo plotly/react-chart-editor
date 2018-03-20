@@ -5,10 +5,13 @@ import {
   AxisOverlayDropdown,
   AxisSide,
   AxesRange,
+  DTicks,
+  NTicks,
   ColorPicker,
   Dropdown,
   FontSelector,
   Numeric,
+  NumericFraction,
   NumericFractionDomain,
   Radio,
   TextEditor,
@@ -16,8 +19,11 @@ import {
   Section,
   TraceRequiredPanel,
   AxesFold,
-  Fold,
   TraceTypeSection,
+  RangesliderVisible,
+  RangeselectorVisible,
+  RangeSelectorAccordion,
+  Info,
 } from '../components';
 
 import {localize} from '../lib';
@@ -82,9 +88,21 @@ class StyleAxesPanel extends Component {
         </AxesFold>
 
         <AxesFold name={_('Range')}>
-          <Section name={_('Selection')} attr="autorange">
+          <Section name={_('Range')} attr="autorange">
+            <Dropdown
+              attr="type"
+              label={_('Type')}
+              clearable={false}
+              options={[
+                {label: _('Linear'), value: 'linear'},
+                {label: _('Log'), value: 'log'},
+                {label: _('Date'), value: 'date'},
+                {label: _('Categorical'), value: 'category'},
+              ]}
+            />
             <Radio
               attr="autorange"
+              label={_('Range')}
               options={[
                 {label: _('Auto'), value: true},
                 {label: _('Custom'), value: false},
@@ -92,16 +110,9 @@ class StyleAxesPanel extends Component {
             />
             <AxesRange label={_('Min')} attr="range[0]" />
             <AxesRange label={_('Max')} attr="range[1]" />
-            <Radio
-              attr="type"
-              options={[
-                {label: _('Linear'), value: 'linear'},
-                {label: _('log'), value: 'log'},
-              ]}
-            />
           </Section>
           <TraceTypeSection
-            name={_('Selection')}
+            name={_('Range')}
             traceTypes={['choropleth', 'scattergeo']}
             attr="range"
           >
@@ -265,18 +276,18 @@ class StyleAxesPanel extends Component {
             />
           </Section>
 
-          <Section name={_('Number of Labels')} attr="dtick">
+          <Section name={_('Spacing')} attr="dtick">
             <Radio
               attr="tickmode"
               options={[
-                {label: _('Linear'), value: 'linear'},
-                {label: _('Custom'), value: 'auto'},
+                {label: _('Auto'), value: 'auto'},
+                {label: _('Custom'), value: 'linear'},
               ]}
             />
 
-            <Numeric label={_('Step Offset')} attr="tick0" />
-            <Numeric label={_('Step Size')} attr="dtick" />
-            <Numeric label={_('Max Number of Labels')} attr="nticks" />
+            <DTicks label={_('Step Offset')} attr="tick0" />
+            <DTicks label={_('Step Size')} attr="dtick" />
+            <NTicks label={_('Max Number of Labels')} attr="nticks" />
           </Section>
         </AxesFold>
         <AxesFold name={_('Tick Markers')}>
@@ -293,35 +304,30 @@ class StyleAxesPanel extends Component {
             <Numeric label={_('Width')} attr="tickwidth" units="px" />
             <ColorPicker label={_('Tick Color')} attr="tickcolor" />
           </Section>
-          <Section name={_('Number of Markers')}>
+          <Section name={_('Spacing')}>
             <Radio
               attr="tickmode"
               options={[
-                {label: _('Linear'), value: 'linear'},
-                {label: _('Custom'), value: 'auto'},
+                {label: _('Auto'), value: 'auto'},
+                {label: _('Custom'), value: 'linear'},
               ]}
             />
 
-            <Numeric label={_('Step Offset')} attr="tick0" />
-            <Numeric label={_('Step Size')} attr="dtick" />
-            <Numeric label={_('Max Number of Markers')} attr="nticks" />
+            <DTicks label={_('Step Offset')} attr="tick0" />
+            <DTicks label={_('Step Size')} attr="dtick" />
+            <NTicks label={_('Max Number of Markers')} attr="nticks" />
           </Section>
         </AxesFold>
 
-        <Fold name={_('Range Slider')}>
-          <Radio
+        <AxesFold name={_('Range Slider')}>
+          <RangesliderVisible
             attr="rangeslider.visible"
             options={[
               {label: _('Show'), value: true},
               {label: _('Hide'), value: false},
             ]}
           />
-          <Numeric
-            label={_('Height')}
-            attr="rangeslider.thickness"
-            units="%"
-            step={0.1}
-          />
+          <NumericFraction label={_('Height')} attr="rangeslider.thickness" />
           <ColorPicker
             label={_('Background Color')}
             attr="rangeslider.bgcolor"
@@ -335,7 +341,120 @@ class StyleAxesPanel extends Component {
             label={_('Border Color')}
             attr="rangeslider.bordercolor"
           />
-        </Fold>
+        </AxesFold>
+
+        <AxesFold name={_('Timescale Buttons')}>
+          <RangeselectorVisible
+            attr="rangeselector.visible"
+            options={[
+              {label: _('Show'), value: true},
+              {label: _('Hide'), value: false},
+            ]}
+          />
+
+          <RangeSelectorAccordion>
+            <TextEditor attr="label" label={_('Label')} show />
+            <Numeric label={_('Count')} attr="count" />
+            <Dropdown
+              label={_('Step')}
+              attr="step"
+              clearable={false}
+              options={[
+                {label: _('Year'), value: 'year'},
+                {label: _('Month'), value: 'month'},
+                {label: _('Day'), value: 'day'},
+                {label: _('Hour'), value: 'hour'},
+                {label: _('Minute'), value: 'minute'},
+                {label: _('Second'), value: 'second'},
+                {label: _('All'), value: 'all'},
+              ]}
+            />
+            <Dropdown
+              label={_('Stepmode')}
+              attr="stepmode"
+              clearable={false}
+              options={[
+                {label: _('To Date'), value: 'todate'},
+                {label: _('Backward'), value: 'backward'},
+              ]}
+            />
+          </RangeSelectorAccordion>
+          <Section name={_('Text')}>
+            <FontSelector
+              label={_('Typeface')}
+              attr="rangeselector.font.family"
+            />
+            <Numeric
+              label={_('Font Size')}
+              attr="rangeselector.font.size"
+              units="px"
+            />
+            <ColorPicker
+              label={_('Font Color')}
+              attr="rangeselector.font.color"
+            />
+          </Section>
+          <Section name={_('Style')}>
+            <ColorPicker
+              label={_('Background Color')}
+              attr="rangeselector.bgcolor"
+            />
+            <ColorPicker
+              label={_('Active Color')}
+              attr="rangeselector.activecolor"
+            />
+            <Numeric
+              label={_('Border Width')}
+              attr="rangeselector.borderwidth"
+              units="px"
+            />
+            <ColorPicker
+              label={_('Border Color')}
+              attr="rangeselector.bordercolor"
+            />
+          </Section>
+          <Section name={_('Positioning')}>
+            <MenuPanel>
+              <Section name={_('Anchor Point')}>
+                <Info>
+                  {_(
+                    'The positioning inputs are relative to the ' +
+                      'anchor points on the text box.'
+                  )}
+                </Info>
+                <Radio
+                  attr="rangeselector.xanchor"
+                  options={[
+                    {label: _('Auto'), value: 'auto'},
+                    {label: _('Left'), value: 'left'},
+                    {label: _('Center'), value: 'center'},
+                    {label: _('Right'), value: 'right'},
+                  ]}
+                />
+                <Radio
+                  attr="rangeselector.yanchor"
+                  options={[
+                    {label: _('Auto'), value: 'auto'},
+                    {label: _('Top'), value: 'top'},
+                    {label: _('Middle'), value: 'middle'},
+                    {label: _('Bottom'), value: 'bottom'},
+                  ]}
+                />
+              </Section>
+            </MenuPanel>
+            <Numeric
+              label={_('X Position')}
+              step={0.02}
+              attr="rangeselector.x"
+            />
+
+            <Numeric
+              label={_('Y Position')}
+              step={0.02}
+              attr="rangeselector.y"
+            />
+          </Section>
+        </AxesFold>
 
         <AxesFold name={_('Zoom Interactivity')}>
           <Radio

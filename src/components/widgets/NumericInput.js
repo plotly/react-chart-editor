@@ -166,7 +166,7 @@ export default class NumericInput extends Component {
 }
 
 NumericInput.propTypes = {
-  defaultValue: PropTypes.number,
+  defaultValue: PropTypes.any,
   editableClassName: PropTypes.string,
   integerOnly: PropTypes.bool,
   max: PropTypes.number,

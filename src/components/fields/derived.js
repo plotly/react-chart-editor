@@ -2,6 +2,7 @@ import isNumeric from 'fast-isnumeric';
 import {UnconnectedDropdown} from './Dropdown';
 import {UnconnectedFlaglist} from './Flaglist';
 import {UnconnectedNumeric} from './Numeric';
+import {UnconnectedAxisRangeValue} from './AxisRangeValue';
 import {UnconnectedRadio} from './Radio';
 import {
   connectLayoutToPlot,
@@ -75,6 +76,33 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
     );
 
     plotProps.clearable = true;
+  },
+});
+
+export const RangesliderVisible = connectToContainer(UnconnectedRadio, {
+  modifyPlotProps: (props, context, plotProps) => {
+    if (
+      !plotProps.isVisible &&
+      context.fullContainer._id &&
+      context.fullContainer._id.startsWith('x')
+    ) {
+      plotProps.isVisible = true;
+      return;
+    }
+  },
+});
+
+export const RangeselectorVisible = connectToContainer(UnconnectedRadio, {
+  modifyPlotProps: (props, context, plotProps) => {
+    if (
+      !plotProps.isVisible &&
+      context.fullContainer._id &&
+      context.fullContainer._id.startsWith('x') &&
+      context.fullContainer.type === 'date'
+    ) {
+      plotProps.isVisible = true;
+      return;
+    }
   },
 });
 
@@ -197,10 +225,38 @@ export const TraceOrientation = connectToContainer(UnconnectedRadio, {
   },
 });
 
-export const AxesRange = connectToContainer(UnconnectedNumeric, {
+export const AxesRange = connectToContainer(UnconnectedAxisRangeValue, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;
     if (plotProps.isVisible && fullContainer && fullContainer.autorange) {
+      plotProps.isVisible = false;
+    }
+    return plotProps;
+  },
+});
+
+export const NTicks = connectToContainer(UnconnectedNumeric, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {fullContainer} = plotProps;
+    if (
+      plotProps.isVisible &&
+      fullContainer &&
+      fullContainer.tickmode !== 'auto'
+    ) {
+      plotProps.isVisible = false;
+    }
+    return plotProps;
+  },
+});
+
+export const DTicks = connectToContainer(UnconnectedAxisRangeValue, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {fullContainer} = plotProps;
+    if (
+      plotProps.isVisible &&
+      fullContainer &&
+      fullContainer.tickmode !== 'linear'
+    ) {
       plotProps.isVisible = false;
     }
     return plotProps;

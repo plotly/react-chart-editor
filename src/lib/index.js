@@ -4,6 +4,7 @@ import connectShapeToLayout from './connectShapeToLayout';
 import connectSliderToLayout from './connectSliderToLayout';
 import connectImageToLayout from './connectImageToLayout';
 import connectUpdateMenuToLayout from './connectUpdateMenuToLayout';
+import connectRangeSelectorToAxis from './connectRangeSelectorToAxis';
 import connectAxesToLayout from './connectAxesToLayout';
 import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
 import connectToContainer, {
@@ -81,6 +82,7 @@ export {
   connectAxesToLayout,
   connectLayoutToPlot,
   connectToContainer,
+  connectRangeSelectorToAxis,
   connectTraceToPlot,
   containerConnectedContextTypes,
   computeTraceOptionsFromSchema,

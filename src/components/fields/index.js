@@ -11,6 +11,8 @@ import Radio from './Radio';
 import TextEditor from './TextEditor';
 import DataSelector from './DataSelector';
 import Numeric from './Numeric';
+import AxisRangeValue from './AxisRangeValue';
+import Text from './Text';
 import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
@@ -21,6 +23,8 @@ import {
   AnnotationRef,
   PositioningRef,
   AxesRange,
+  NTicks,
+  DTicks,
   AxisAnchorDropdown,
   CanvasSize,
   ContourNumeric,
@@ -34,6 +38,8 @@ import {
   NumericFractionInverse,
   LayoutNumericFraction,
   LayoutNumericFractionInverse,
+  RangesliderVisible,
+  RangeselectorVisible,
   TraceOrientation,
   AxisOverlayDropdown,
   AxisSide,
@@ -47,6 +53,8 @@ export {
   PositioningRef,
   ArrowSelector,
   AxesRange,
+  NTicks,
+  DTicks,
   AxesSelector,
   CanvasSize,
   ColorPicker,
@@ -71,8 +79,12 @@ export {
   LineDashSelector,
   LineShapeSelector,
   Numeric,
+  AxisRangeValue,
+  Text,
   Radio,
   SymbolSelector,
+  RangesliderVisible,
+  RangeselectorVisible,
   TextEditor,
   TraceOrientation,
   TraceSelector,

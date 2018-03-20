@@ -68,6 +68,7 @@ class TraceSelector extends Component {
       container &&
       container.uid &&
       !container.mode &&
+      fullContainer._fullInput &&
       fullContainer._fullInput.type === 'scatter'
     ) {
       updateContainer({
