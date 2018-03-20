@@ -11,6 +11,7 @@ class RangeSelectorAccordion extends Component {
     if (
       !this.context.fullContainer.rangeselector ||
       !this.context.fullContainer.rangeselector.visible ||
+      // next line checks for "all" case
       this.context.fullContainer._axisGroup === 0
     ) {
       return null;
