@@ -30,7 +30,7 @@ export default class TextInput extends Component {
 }
 
 TextInput.propTypes = {
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.any,
   editableClassName: PropTypes.string,
   onUpdate: PropTypes.func.isRequired,
   placeholder: PropTypes.string,

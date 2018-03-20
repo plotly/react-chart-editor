@@ -7,9 +7,8 @@ import {connectToContainer} from 'lib';
 
 export class UnconnectedAxisRangeValue extends Component {
   render() {
-    return !this.props.multiValued &&
-      this.props.fullContainer &&
-      this.props.fullContainer.type === 'date' ? (
+    return this.props.multiValued ||
+      (this.props.fullContainer && this.props.fullContainer.type === 'date') ? (
       <UnconnectedText {...this.props} />
     ) : (
       <UnconnectedNumeric {...this.props} />

@@ -22,6 +22,7 @@ export class UnconnectedNumeric extends Component {
           step={this.props.step}
           min={this.props.min}
           max={this.props.max}
+          onChange={this.props.updatePlot}
           onUpdate={this.props.updatePlot}
           showArrows={!this.props.hideArrows}
           showSlider={this.props.showSlider}
