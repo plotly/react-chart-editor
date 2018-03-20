@@ -132,9 +132,9 @@ class TraceTypeButton extends React.Component {
       traceTypesConfig: {traces},
     } = this.props;
 
-    const {label, icon, value} = traces(_).find(
-      type => type.value === fullValue
-    );
+    const {label, icon, value} =
+      traces(_).find(type => type.value === fullValue) ||
+      traces(_).find(type => type.value === 'scatter');
 
     const Icon = renderTraceIcon(icon ? icon : value);
 
@@ -159,7 +159,7 @@ TraceTypeSelector.propTypes = {
 };
 TraceTypeButton.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  fullValue: PropTypes.string.isRequired,
+  fullValue: PropTypes.string,
   localize: PropTypes.func.isRequired,
   traceTypesConfig: PropTypes.object.isRequired,
 };

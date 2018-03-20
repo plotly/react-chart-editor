@@ -8,12 +8,15 @@ const RangeSelectorFold = connectRangeSelectorToAxis(Fold);
 
 class RangeSelectorAccordion extends Component {
   render() {
-    const {
-      fullContainer: {rangeselector: {visible, buttons = []}},
-    } = this.context;
-    if (!visible) {
+    if (
+      !this.context.fullContainer.rangeselector ||
+      !this.context.fullContainer.rangeselector.visible ||
+      this.context.fullContainer._axisGroup === 0
+    ) {
       return null;
     }
+
+    const {fullContainer: {rangeselector: {buttons = []}}} = this.context;
     const {children, localize: _} = this.props;
 
     const content =
