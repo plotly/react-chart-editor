@@ -17,6 +17,7 @@
     display: block;
   }
   .rangeslider__handle {
+    outline: 0;
     background: #fff;
     border: 1px solid var(--color-border-default);
     cursor: pointer;

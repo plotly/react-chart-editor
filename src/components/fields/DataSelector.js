@@ -39,7 +39,9 @@ export class UnconnectedDataSelector extends Component {
 
     this.is2D =
       (props.attr === 'z' &&
-        ['contour', 'heatmap', 'surface'].includes(props.container.type)) ||
+        ['contour', 'heatmap', 'surface', 'heatmapgl'].includes(
+          props.container.type
+        )) ||
       (props.container.type === 'table' && props.attr !== 'columnorder');
   }
 

@@ -29,7 +29,7 @@ const DefaultEditor = ({children, localize: _}) => (
       <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
       <StyleImagesPanel group={_('Style')} name={_('Images')} />
       <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />
-      <StyleUpdateMenusPanel group={_('Style')} name={_('Update Menus')} />
+      <StyleUpdateMenusPanel group={_('Style')} name={_('Menus')} />
       {children ? children : null}
     </PanelMenuWrapper>
   </Fragment>

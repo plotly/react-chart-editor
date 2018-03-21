@@ -131,12 +131,7 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
       return;
     }
 
-    plotProps.options = [
-      {label: _('Left'), value: 'left'},
-      {label: _('Right'), value: 'right'},
-      {label: _('Bottom'), value: 'bottom'},
-      {label: _('Top'), value: 'top'},
-    ];
+    plotProps.options = [{label: _('Mixed Values'), value: 'mixed values'}];
   },
 });
 
