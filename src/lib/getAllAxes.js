@@ -60,6 +60,10 @@ export function traceTypeToAxisType(traceType) {
     return null;
   }
 
+  if (traceType === 'table') {
+    return null;
+  }
+
   throw new Error(`Sorry, could not find ${traceType} in any category.`);
 }
 
