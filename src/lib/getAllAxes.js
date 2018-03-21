@@ -68,7 +68,7 @@ export function axisIdToAxisName(id) {
 }
 
 function getSubplotNumber(axis) {
-  const splitSubplot = axis._subplot.split(axis._axisGroup);
+  const splitSubplot = axis._subplot ? axis._subplot.split(axis._axisGroup) : [];
   return splitSubplot[1] ? Number(splitSubplot[1]) : 0;
 }
 

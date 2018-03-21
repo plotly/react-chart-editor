@@ -27,7 +27,7 @@ describe('<AnnotationRef>', () => {
     const options = drop.first().prop('options');
     expect(options.length).toBe(3);
     expect(options[0]).toEqual({label: 'Canvas', value: 'paper'});
-    expect(options[1]).toEqual({label: 'Y', value: 'y'});
+    expect(options[1]).toEqual({label: 'Y Axis 1', value: 'y'});
     expect(options[2]).toEqual({label: 'Y Axis: yaxis2 title', value: 'y2'});
   });
 
@@ -114,7 +114,7 @@ describe('<AnnotationArrowRef>', () => {
     const options = drop.first().prop('options');
     expect(options.length).toBe(3);
     expect(options[0]).toEqual({label: 'in pixels', value: 'pixel'});
-    expect(options[1]).toEqual({label: 'Y', value: 'y'});
+    expect(options[1]).toEqual({label: 'Y Axis 1', value: 'y'});
     expect(options[2]).toEqual({label: 'Y Axis: yaxis2 title', value: 'y2'});
   });
 });
