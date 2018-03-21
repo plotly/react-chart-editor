@@ -270,6 +270,12 @@ UnconnectedNumericFraction.defaultProps = {
   showSlider: true,
 };
 
+class UnconnectedNumericSlider extends UnconnectedNumeric {}
+UnconnectedNumericSlider.propTypes = UnconnectedNumeric.propTypes;
+UnconnectedNumericSlider.defaultProps = {
+  showSlider: true,
+};
+
 const numericFractionModifyPlotProps = (props, context, plotProps) => {
   const {attrMeta, fullValue, updatePlot} = plotProps;
   const min = attrMeta.min || 0;
@@ -309,6 +315,12 @@ export const LayoutNumericFraction = connectLayoutToPlot(
   connectToContainer(UnconnectedNumericFraction, {
     supplyPlotProps: supplyLayoutPlotProps,
     modifyPlotProps: numericFractionModifyPlotProps,
+  })
+);
+
+export const LayoutNumericSlider = connectLayoutToPlot(
+  connectToContainer(UnconnectedNumericSlider, {
+    supplyPlotProps: supplyLayoutPlotProps,
   })
 );
 
@@ -593,6 +605,15 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
 
     if (context.container.type === 'table') {
       plotProps.isVisible = false;
+    }
+
+    if (['scatterpolar', 'scatterpolargl'].includes(context.container.type)) {
+      options = [
+        {label: _('R'), value: 'r'},
+        {label: _('Theta'), value: 'theta'},
+        {label: _('Text'), value: 'text'},
+        {label: _('Name'), value: 'name'},
+      ];
     }
 
     plotProps.options = options;

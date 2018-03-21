@@ -52,9 +52,11 @@ export const CONTROL_KEY = 'Control';
 export const TRACE_TO_AXIS = {
   cartesian: [
     'scatter',
+    'scattergl',
     'box',
     'bar',
     'heatmap',
+    'heatmapgl',
     'contour',
     'ohlc',
     'candlestick',
@@ -63,4 +65,5 @@ export const TRACE_TO_AXIS = {
   gl3d: ['scatter3d', 'surface', 'mesh3d'],
   geo: ['scattergeo', 'choropleth'],
   mapbox: ['scattermapbox'],
+  polar: ['scatterpolar', 'scatterpolargl'],
 };

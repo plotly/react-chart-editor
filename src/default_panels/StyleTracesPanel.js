@@ -39,7 +39,6 @@ const StyleTracesPanel = ({localize: _}) => (
         {label: _('Horizontal'), value: 'h'},
       ]}
     />
-
     <NumericFraction label={_('Opacity')} attr="opacity" />
     <ColorPicker label={_('Color')} attr="color" />
 
@@ -159,12 +158,36 @@ const StyleTracesPanel = ({localize: _}) => (
 
     <TraceTypeSection
       name={_('Lines')}
-      traceTypes={['scatter', 'contour', 'scatterternary']}
+      traceTypes={[
+        'scatter',
+        'contour',
+        'scatterternary',
+        'scatterpolar',
+        'scatterpolargl',
+        'scatter3d',
+        'scattergl',
+      ]}
     >
       <Numeric label={_('Width')} attr="line.width" />
       <ColorPicker label={_('Line Color')} attr="line.color" />
+      <Radio
+        label={_('Color Bar')}
+        attr="line.showscale"
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
+      />
+      <ColorscalePicker label={_('Colorscale')} attr="line.colorscale" />
       <LineDashSelector label={_('Type')} attr="line.dash" />
       <LineShapeSelector label={_('Shape')} attr="line.shape" />
+      <Numeric
+        label={_('Smoothing')}
+        attr="line.smoothing"
+        showSlider
+        min={0}
+        max={1.3}
+      />
       <Radio
         label={_('Connect Gaps')}
         attr="connectgaps"
@@ -175,14 +198,10 @@ const StyleTracesPanel = ({localize: _}) => (
       />
     </TraceTypeSection>
 
-    <TraceTypeSection name={_('Lines')} traceTypes={['scatter3d']}>
-      <Numeric label={_('Width')} attr="line.width" />
-      <ColorPicker label={_('Line Color')} attr="line.color" />
-      <LineDashSelector label={_('Type')} attr="line.dash" />
-      <LineShapeSelector label={_('Shape')} attr="line.shape" />
-    </TraceTypeSection>
-
-    <TraceTypeSection name={_('Text')} traceTypes={['scatter']}>
+    <TraceTypeSection
+      name={_('Text')}
+      traceTypes={['scatter', 'scatterpolar', 'scatterpolargl']}
+    >
       <FontSelector label={_('Typeface')} attr="textfont.family" />
       <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
       <ColorPicker label={_('Font Color')} attr="textfont.color" />
@@ -233,6 +252,7 @@ const StyleTracesPanel = ({localize: _}) => (
         ]}
       />
     </Section>
+
     <Section name={_('Heatmap')}>
       <Numeric label={_('Horizontal Gaps')} attr="xgap" />
       <Numeric label={_('Vertical Gaps')} attr="ygap" />
@@ -240,7 +260,7 @@ const StyleTracesPanel = ({localize: _}) => (
 
     <TraceTypeSection
       name={_('Gaps in Data')}
-      traceTypes={['heatmap', 'contour']}
+      traceTypes={['heatmap', 'contour', 'heatmapgl']}
     >
       <Radio
         label={_('Interpolate Gaps')}
@@ -389,7 +409,12 @@ const StyleTracesPanel = ({localize: _}) => (
 
     <TraceTypeSection
       name={_('Hover Action')}
-      traceTypes={['scatter', 'scatterternary']}
+      traceTypes={[
+        'scatter',
+        'scatterternary',
+        'scatterpolar',
+        'scatterpolargl',
+      ]}
     >
       <Flaglist
         attr="hoveron"

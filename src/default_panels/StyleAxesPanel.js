@@ -62,6 +62,15 @@ class StyleAxesPanel extends Component {
         </AxesFold>
 
         <AxesFold name={_('Layout')}>
+          <Dropdown
+            label={_('Direction')}
+            attr="direction"
+            options={[
+              {label: _('Clockwise'), value: 'clockwise'},
+              {label: _('Counter Clockwise'), value: 'counterclockwise'},
+            ]}
+            clearable={false}
+          />
           <Section name={_('Boundaries')} attr="domain[0]">
             <AxisOverlayDropdown
               label={_('Overlay')}
@@ -75,14 +84,17 @@ class StyleAxesPanel extends Component {
             <NumericFractionDomain label={_('End Position')} attr="domain[1]" />
           </Section>
 
-          <Section name={_('Anchor')}>
+          <TraceTypeSection
+            name={_('Anchor')}
+            traceTypes={['scatter', 'scattergl']}
+          >
             <AxisAnchorDropdown
               label={_('Anchor To')}
               attr="anchor"
               localize={_}
             />
             <AxisSide label={_('Side')} attr="side" localize={_} />
-          </Section>
+          </TraceTypeSection>
         </AxesFold>
 
         <AxesFold name={_('Range')}>
@@ -111,7 +123,12 @@ class StyleAxesPanel extends Component {
           </Section>
           <TraceTypeSection
             name={_('Range')}
-            traceTypes={['choropleth', 'scattergeo']}
+            traceTypes={[
+              'choropleth',
+              'scattergeo',
+              'scatterpolar',
+              'scatterpolargl',
+            ]}
             attr="range"
           >
             <AxesRange label={_('Min')} attr="range[0]" />
@@ -197,7 +214,15 @@ class StyleAxesPanel extends Component {
             <FontSelector label={_('Typeface')} attr="tickfont.family" />
             <Numeric label={_('Font Size')} attr="tickfont.size" units="px" />
             <ColorPicker label={_('Font Color')} attr="tickfont.color" />
-
+            <Dropdown
+              label={_('Direction')}
+              attr="side"
+              options={[
+                {label: _('Clockwise'), value: 'clockwise'},
+                {label: _('Counter Clockwise'), value: 'counterclockwise'},
+              ]}
+              clearable={false}
+            />
             <Dropdown
               label={_('Angle')}
               attr="tickangle"
@@ -285,6 +310,14 @@ class StyleAxesPanel extends Component {
           </Section>
         </AxesFold>
         <AxesFold name={_('Tick Markers')}>
+          <Radio
+            label={_('Separate Thousands')}
+            attr="separatethousands"
+            options={[
+              {label: _('True'), value: true},
+              {label: _('False'), value: false},
+            ]}
+          />
           <Section name={_('Tick Markers')} attr="ticks">
             <Radio
               attr="ticks"
