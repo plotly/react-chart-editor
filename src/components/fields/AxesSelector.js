@@ -19,16 +19,9 @@ class AxesSelector extends Component {
   render() {
     const {axesTargetHandler, axesOptions, axesTarget} = this.context;
     const {localize: _} = this.props;
-    const hasSecondaryAxis =
-      axesOptions &&
-      axesOptions.some(option => {
-        return (
-          option.axisGroup &&
-          this.context.fullLayout._subplots[option.axisGroup].length > 1
-        );
-      });
+    const maxOptions = axesOptions.length > 4; // eslint-disable-line
 
-    if (hasSecondaryAxis) {
+    if (maxOptions) {
       return (
         <Field {...this.props} label={_('Axis to Style')}>
           <Dropdown

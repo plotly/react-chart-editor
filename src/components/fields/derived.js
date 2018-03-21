@@ -41,7 +41,6 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
     }
     options.push({label: _('Free'), value: 'free'});
     plotProps.options = options;
-    plotProps.clearable = false;
   },
 });
 
@@ -131,12 +130,7 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
       return;
     }
 
-    plotProps.options = [
-      {label: _('Left'), value: 'left'},
-      {label: _('Right'), value: 'right'},
-      {label: _('Bottom'), value: 'bottom'},
-      {label: _('Top'), value: 'top'},
-    ];
+    plotProps.isVisible = false;
   },
 });
 
@@ -309,6 +303,12 @@ export const LayoutNumericFraction = connectLayoutToPlot(
   connectToContainer(UnconnectedNumericFraction, {
     supplyPlotProps: supplyLayoutPlotProps,
     modifyPlotProps: numericFractionModifyPlotProps,
+  })
+);
+
+export const LayoutNumeric = connectLayoutToPlot(
+  connectToContainer(UnconnectedNumeric, {
+    supplyPlotProps: supplyLayoutPlotProps,
   })
 );
 
@@ -593,6 +593,15 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
 
     if (context.container.type === 'table') {
       plotProps.isVisible = false;
+    }
+
+    if (['scatterpolar', 'scatterpolargl'].includes(context.container.type)) {
+      options = [
+        {label: _('R'), value: 'r'},
+        {label: _('Theta'), value: 'theta'},
+        {label: _('Text'), value: 'text'},
+        {label: _('Name'), value: 'name'},
+      ];
     }
 
     plotProps.options = options;

@@ -49,12 +49,16 @@ export const ESCAPE_KEY = 'Escape';
 export const COMMAND_KEY = 'Meta';
 export const CONTROL_KEY = 'Control';
 
+// matches gd._fullLayout._subplots categories except for xaxis & yaxis which
+// are in fact cartesian types
 export const TRACE_TO_AXIS = {
   cartesian: [
     'scatter',
+    'scattergl',
     'box',
     'bar',
     'heatmap',
+    'heatmapgl',
     'contour',
     'ohlc',
     'candlestick',
@@ -63,4 +67,5 @@ export const TRACE_TO_AXIS = {
   gl3d: ['scatter3d', 'surface', 'mesh3d'],
   geo: ['scattergeo', 'choropleth'],
   mapbox: ['scattermapbox'],
+  polar: ['scatterpolar', 'scatterpolargl'],
 };

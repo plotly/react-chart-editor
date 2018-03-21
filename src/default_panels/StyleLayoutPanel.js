@@ -27,6 +27,7 @@ const StyleLayoutPanel = ({localize: _}) => (
       <CanvasSize label={_('Fixed Width')} attr="width" units="px" />
       <CanvasSize label={_('Fixed Height')} attr="height" units="px" />
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
+      <ColorPicker label={_('Plot Background')} attr="polar.bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
       <Radio
         label="Hover Interaction"

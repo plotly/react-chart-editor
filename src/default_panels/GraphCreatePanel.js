@@ -13,6 +13,8 @@ import {
   TraceSelector,
   TextEditor,
   Numeric,
+  TraceTypeSection,
+  LayoutNumeric,
 } from '../components';
 import {localize} from '../lib';
 
@@ -65,6 +67,38 @@ const GraphCreatePanel = ({localize: _}) => {
         <DataSelector label={_('Headers')} attr="header.values" />
         <DataSelector label={_('Columns')} attr="cells.values" />
       </Section>
+
+      <TraceTypeSection
+        name={_('Data')}
+        traceTypes={['scatterpolar', 'scatterpolargl']}
+      >
+        <DataSelector label={_('Radius')} attr="r" />
+        <DataSelector label={_('Theta')} attr="theta" />
+        <Dropdown
+          label={_('Theta Unit')}
+          options={[
+            {label: _('Radians'), value: 'radians'},
+            {label: _('Degrees'), value: 'degrees'},
+            {label: _('Gradians'), value: 'gradians'},
+          ]}
+          attr="thetaunit"
+          clearable={false}
+        />
+        <LayoutNumeric
+          attr="polar.sector[0]"
+          label={_('Theta Start')}
+          min={0}
+          max={360}
+          showSlider
+        />
+        <LayoutNumeric
+          attr="polar.sector[1]"
+          label={_('Theta End')}
+          min={0}
+          max={360}
+          showSlider
+        />
+      </TraceTypeSection>
 
       <Section name={_('Axes to Use')}>
         <AxisCreator attr="fake_attr" localize={_} />

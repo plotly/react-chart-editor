@@ -8,13 +8,23 @@ import {connectLayoutToPlot, containerConnectedContextTypes} from 'lib';
 const LayoutPanel = connectLayoutToPlot(Panel);
 
 const TraceTypeSection = (props, context) => {
-  const {fullContainer} = context;
-  if (
+  const {fullContainer, fullData} = context;
+
+  const ifConnectedToTrace =
     fullContainer &&
     ((fullContainer._fullInput &&
       props.traceTypes.includes(fullContainer._fullInput.type)) ||
-      props.traceTypes.includes(fullContainer.type))
-  ) {
+      props.traceTypes.includes(fullContainer.type));
+
+  const ifConnectedToLayout =
+    fullData &&
+    fullData.some(
+      t =>
+        props.traceTypes.includes(t._fullInput.type) ||
+        fullData.some(t => props.traceTypes.includes(t.type))
+    );
+
+  if (ifConnectedToTrace || ifConnectedToLayout) {
     return <Section {...props} />;
   }
 

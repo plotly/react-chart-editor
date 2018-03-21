@@ -171,11 +171,11 @@ export const traceTypes = _ => [
   //   label: _('Carpet'),
   //   category: chartCategory(_).SPECIALIZED,
   // },
-  // {
-  //   value: 'scatterpolar',
-  //   label: _('Polar Scatter'),
-  //   category: chartCategory(_).SPECIALIZED,
-  // },
+  {
+    value: 'scatterpolar',
+    label: _('Polar Scatter'),
+    category: chartCategory(_).SPECIALIZED,
+  },
   {
     value: 'scatterternary',
     label: _('Ternary Scatter'),
@@ -192,16 +192,16 @@ export const traceTypes = _ => [
     label: _('Scatter GL'),
     category: chartCategory(_).WEB_GL,
   },
-  // {
-  //   value: 'scatterpolarghl',
-  //   icon: 'scatterpolar',
-  //   label: _('Scatter Polar GL'),
-  //   category: chartCategory(_).WEB_GL,
-  // },
-  // {
-  //   value: 'heatmapgl',
-  //   icon: 'heatmap',
-  //   label: _('Heatmap GL'),
-  //   category: chartCategory(_).WEB_GL,
-  // },
+  {
+    value: 'scatterpolargl',
+    icon: 'scatterpolar',
+    label: _('Scatter Polar GL'),
+    category: chartCategory(_).WEB_GL,
+  },
+  {
+    value: 'heatmapgl',
+    icon: 'heatmap',
+    label: _('Heatmap GL'),
+    category: chartCategory(_).WEB_GL,
+  },
 ];
