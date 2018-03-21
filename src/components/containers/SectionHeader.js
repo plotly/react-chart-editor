@@ -6,7 +6,6 @@ export default class SectionHeader extends Component {
     return (
       <div className="section__heading">
         <div className="section__heading__text">{this.props.name}</div>
-        {this.props.menuPanel}
       </div>
     );
   }
@@ -14,5 +13,4 @@ export default class SectionHeader extends Component {
 
 SectionHeader.propTypes = {
   name: PropTypes.string,
-  menuPanel: PropTypes.node,
 };

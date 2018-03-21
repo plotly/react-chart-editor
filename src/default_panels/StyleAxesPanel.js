@@ -15,7 +15,6 @@ import {
   NumericFractionDomain,
   Radio,
   TextEditor,
-  MenuPanel,
   Section,
   TraceRequiredPanel,
   AxesFold,
@@ -23,7 +22,6 @@ import {
   RangesliderVisible,
   RangeselectorVisible,
   RangeSelectorAccordion,
-  Info,
 } from '../components';
 
 import {localize} from '../lib';
@@ -228,31 +226,7 @@ class StyleAxesPanel extends Component {
             />
           </Section>
 
-          <Section name={_('Label Formatting')}>
-            <MenuPanel>
-              <Section name={_('Prefix')}>
-                <Radio
-                  attr="showtickprefix"
-                  options={[
-                    {label: _('Every'), value: 'all'},
-                    {label: _('First'), value: 'first'},
-                    {label: _('Last'), value: 'last'},
-                    {label: _('None'), value: 'none'},
-                  ]}
-                />
-              </Section>
-              <Section name={_('Suffix')}>
-                <Radio
-                  attr="showticksuffix"
-                  options={[
-                    {label: _('Every'), value: 'all'},
-                    {label: _('First'), value: 'first'},
-                    {label: _('Last'), value: 'last'},
-                    {label: _('None'), value: 'none'},
-                  ]}
-                />
-              </Section>
-            </MenuPanel>
+          <Section name={_('Label Prefix')}>
             <Dropdown
               label={_('Prefix')}
               attr="tickprefix"
@@ -264,6 +238,17 @@ class StyleAxesPanel extends Component {
                 {label: _('custom'), value: 'custom'},
               ]}
             />
+            <Radio
+              attr="showtickprefix"
+              options={[
+                {label: _('Every'), value: 'all'},
+                {label: _('First'), value: 'first'},
+                {label: _('Last'), value: 'last'},
+                {label: _('None'), value: 'none'},
+              ]}
+            />
+          </Section>
+          <Section name={_('Label Suffix')}>
             <Dropdown
               label={_('Suffix')}
               attr="ticksuffix"
@@ -272,6 +257,15 @@ class StyleAxesPanel extends Component {
                 {label: _('%'), value: '%'},
                 {label: _('^'), value: '^'},
                 {label: _('custom'), value: 'custom'},
+              ]}
+            />
+            <Radio
+              attr="showticksuffix"
+              options={[
+                {label: _('Every'), value: 'all'},
+                {label: _('First'), value: 'first'},
+                {label: _('Last'), value: 'last'},
+                {label: _('None'), value: 'none'},
               ]}
             />
           </Section>
@@ -413,46 +407,33 @@ class StyleAxesPanel extends Component {
               attr="rangeselector.bordercolor"
             />
           </Section>
-          <Section name={_('Positioning')}>
-            <MenuPanel>
-              <Section name={_('Anchor Point')}>
-                <Info>
-                  {_(
-                    'The positioning inputs are relative to the ' +
-                      'anchor points on the text box.'
-                  )}
-                </Info>
-                <Radio
-                  attr="rangeselector.xanchor"
-                  options={[
-                    {label: _('Auto'), value: 'auto'},
-                    {label: _('Left'), value: 'left'},
-                    {label: _('Center'), value: 'center'},
-                    {label: _('Right'), value: 'right'},
-                  ]}
-                />
-                <Radio
-                  attr="rangeselector.yanchor"
-                  options={[
-                    {label: _('Auto'), value: 'auto'},
-                    {label: _('Top'), value: 'top'},
-                    {label: _('Middle'), value: 'middle'},
-                    {label: _('Bottom'), value: 'bottom'},
-                  ]}
-                />
-              </Section>
-            </MenuPanel>
-            <Numeric
-              label={_('X Position')}
-              step={0.02}
-              attr="rangeselector.x"
+          <Section name={_('Horizontal Positioning')}>
+            <Dropdown
+              label={_('Anchor Point')}
+              clearable={false}
+              attr="rangeselector.xanchor"
+              options={[
+                {label: _('Auto'), value: 'auto'},
+                {label: _('Left'), value: 'left'},
+                {label: _('Center'), value: 'center'},
+                {label: _('Right'), value: 'right'},
+              ]}
             />
-
-            <Numeric
-              label={_('Y Position')}
-              step={0.02}
-              attr="rangeselector.y"
+            <Numeric label={_('Position')} step={0.02} attr="rangeselector.x" />
+          </Section>
+          <Section name={_('Vertical Positioning')}>
+            <Dropdown
+              label={_('Anchor Point')}
+              clearable={false}
+              attr="rangeselector.yanchor"
+              options={[
+                {label: _('Auto'), value: 'auto'},
+                {label: _('Top'), value: 'top'},
+                {label: _('Middle'), value: 'middle'},
+                {label: _('Bottom'), value: 'bottom'},
+              ]}
             />
+            <Numeric label={_('Position')} step={0.02} attr="rangeselector.y" />
           </Section>
         </AxesFold>
 

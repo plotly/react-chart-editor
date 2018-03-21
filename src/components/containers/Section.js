@@ -12,7 +12,6 @@ class Section extends Component {
     super(props, context);
 
     this.children = null;
-    this.menuPanel = null;
     this.sectionVisible = false;
 
     this.processAndSetChildren(props, context);
@@ -27,15 +26,6 @@ class Section extends Component {
     this.sectionVisible = isVisible === true;
 
     this.children = React.Children.map(nextProps.children, child => {
-      if ((child.type.plotly_editor_traits || {}).is_menu_panel) {
-        // Process the first menuPanel. Ignore the rest. MenuPanel does
-        // not affect visibility.
-        if (!this.menuPanel) {
-          this.menuPanel = child;
-        }
-        return null;
-      }
-
       if (child.props.attr) {
         let plotProps;
         if (child.type.supplyPlotProps) {
@@ -69,7 +59,7 @@ class Section extends Component {
     }
     return (
       <div className="section">
-        <SectionHeader name={this.props.name} menuPanel={this.menuPanel} />
+        <SectionHeader name={this.props.name} />
         {this.children}
       </div>
     );

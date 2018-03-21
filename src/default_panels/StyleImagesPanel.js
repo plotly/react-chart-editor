@@ -8,7 +8,6 @@ import {
   Section,
   PositioningRef,
   Dropdown,
-  MenuPanel,
 } from '../components';
 
 import {localize} from '../lib';
@@ -38,37 +37,33 @@ const StyleImagesPanel = ({localize: _}) => (
     <PositioningNumeric attr="sizex" label={_('Width')} />
     <PositioningNumeric attr="sizey" label={_('Height')} />
     <Section name={_('Horizontal Positioning')}>
-      <MenuPanel>
-        <Section name={_('Anchor Point')}>
-          <Radio
-            attr="xanchor"
-            options={[
-              {label: _('Left'), value: 'left'},
-              {label: _('Center'), value: 'center'},
-              {label: _('Right'), value: 'right'},
-            ]}
-          />
-        </Section>
-      </MenuPanel>
-      <PositioningRef label={_('Relative To')} attr="xref" />
+      <Dropdown
+        label={_('Anchor Point')}
+        clearable={false}
+        attr="xanchor"
+        options={[
+          {label: _('Left'), value: 'left'},
+          {label: _('Center'), value: 'center'},
+          {label: _('Right'), value: 'right'},
+        ]}
+      />
       <PositioningNumeric label={_('Position')} attr="x" />
+      <PositioningRef label={_('Relative To')} attr="xref" />
     </Section>
 
     <Section name={_('Vertical Positioning')}>
-      <MenuPanel>
-        <Section name={_('Anchor Point')}>
-          <Radio
-            attr="yanchor"
-            options={[
-              {label: _('Top'), value: 'top'},
-              {label: _('Middle'), value: 'middle'},
-              {label: _('Bottom'), value: 'bottom'},
-            ]}
-          />
-        </Section>
-      </MenuPanel>
-      <PositioningRef label={_('Relative To')} attr="yref" />
+      <Dropdown
+        label={_('Anchor Point')}
+        clearable={false}
+        attr="yanchor"
+        options={[
+          {label: _('Top'), value: 'top'},
+          {label: _('Middle'), value: 'middle'},
+          {label: _('Bottom'), value: 'bottom'},
+        ]}
+      />
       <PositioningNumeric label={_('Position')} attr="y" />
+      <PositioningRef label={_('Relative To')} attr="yref" />
     </Section>
   </ImageAccordion>
 );
