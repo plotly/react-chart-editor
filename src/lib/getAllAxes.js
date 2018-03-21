@@ -67,9 +67,16 @@ export function axisIdToAxisName(id) {
   return id.charAt(0) + 'axis' + id.slice(1);
 }
 
+function getSubplotNumber(axis) {
+  const splitSubplot = axis._subplot.split(axis._axisGroup);
+  return splitSubplot[1] ? Number(splitSubplot[1]) : 0;
+}
+
 export function getAxisTitle(axis) {
   const axisType = capitalize(axis._name.split('axis')[0]);
+  const subplotNb = getSubplotNumber(axis);
+
   return axis._input && axis._input.title
     ? striptags(`${axisType} Axis: ${axis._input.title}`)
-    : capitalize(axis._id);
+    : striptags(`${axisType} Axis ${subplotNb === 0 ? 1 : subplotNb}`);
 }
