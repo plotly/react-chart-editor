@@ -1,7 +1,6 @@
 import React from 'react';
 import Section from '../Section';
 import {TraceTypeSection} from '../derived';
-import MenuPanel from '../MenuPanel';
 import {Flaglist, Info, Numeric} from '../../fields';
 import {TestEditor, fixtures} from 'lib/test-utils';
 import {connectTraceToPlot} from 'lib';
@@ -57,44 +56,6 @@ describe('Section', () => {
     ).find(Section);
 
     expect(wrapper.find(Numeric).exists()).toBe(false);
-  });
-
-  it('will render first menuPanel', () => {
-    const TraceSection = connectTraceToPlot(Section);
-    const wrapper = mount(
-      <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection name="test-section" traceIndexes={[0]}>
-          <Numeric attr="opacity" traceIndexes={[0]} />
-          <MenuPanel show>
-            <Info>INFO</Info>
-          </MenuPanel>
-          <MenuPanel show>
-            <Info>MISINFORMATION</Info>
-          </MenuPanel>
-        </TraceSection>
-      </TestEditor>
-    ).find(Section);
-
-    expect(wrapper.find(MenuPanel).length).toBe(1);
-    expect(wrapper.find(Info).length).toBe(1);
-    expect(wrapper.find(Info).text()).toBe('INFO');
-  });
-
-  it('will hide with MenuPanel children when attrs not defined', () => {
-    const TraceSection = connectTraceToPlot(Section);
-    const wrapper = mount(
-      <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection name="test-section" traceIndexes={[0]}>
-          <Numeric attr="badattr" traceIndexes={[0]} />
-          <MenuPanel show>
-            <Info>INFO</Info>
-          </MenuPanel>
-        </TraceSection>
-      </TestEditor>
-    ).find(Section);
-
-    expect(wrapper.find(MenuPanel).length).toBe(0);
-    expect(wrapper.find(Info).length).toBe(0);
   });
 
   it('will hide with Info children when attrs not defined', () => {

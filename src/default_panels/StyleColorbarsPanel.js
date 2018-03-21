@@ -12,7 +12,6 @@ import {
   Dropdown,
   FontSelector,
   ColorPicker,
-  MenuPanel,
 } from '..';
 
 import {localize} from '../lib';
@@ -187,31 +186,7 @@ const StyleColorBarsPanel = ({localize: _}) => {
                   {label: _('k/M/B'), value: 'B'},
                 ]}
               />
-              <Section name={_('Label Formatting')}>
-                <MenuPanel>
-                  <Section name={_('Prefix')}>
-                    <Radio
-                      attr={prefix + 'colorbar.showtickprefix'}
-                      options={[
-                        {label: _('Every'), value: 'all'},
-                        {label: _('First'), value: 'first'},
-                        {label: _('Last'), value: 'last'},
-                        {label: _('None'), value: 'none'},
-                      ]}
-                    />
-                  </Section>
-                  <Section name={_('Suffix')}>
-                    <Radio
-                      attr={prefix + 'colorbar.showticksuffix'}
-                      options={[
-                        {label: _('Every'), value: 'all'},
-                        {label: _('First'), value: 'first'},
-                        {label: _('Last'), value: 'last'},
-                        {label: _('None'), value: 'none'},
-                      ]}
-                    />
-                  </Section>
-                </MenuPanel>
+              <Section name={_('Label Prefix')}>
                 <Dropdown
                   label={_('Prefix')}
                   attr={prefix + 'colorbar.tickprefix'}
@@ -223,6 +198,17 @@ const StyleColorBarsPanel = ({localize: _}) => {
                     {label: _('custom'), value: 'custom'},
                   ]}
                 />
+                <Radio
+                  attr={prefix + 'colorbar.showtickprefix'}
+                  options={[
+                    {label: _('Every'), value: 'all'},
+                    {label: _('First'), value: 'first'},
+                    {label: _('Last'), value: 'last'},
+                    {label: _('None'), value: 'none'},
+                  ]}
+                />
+              </Section>
+              <Section name={_('Label Suffix')}>
                 <Dropdown
                   label={_('Suffix')}
                   attr={prefix + 'colorbar.ticksuffix'}
@@ -231,6 +217,15 @@ const StyleColorBarsPanel = ({localize: _}) => {
                     {label: _('%'), value: '%'},
                     {label: _('^'), value: '^'},
                     {label: _('custom'), value: 'custom'},
+                  ]}
+                />
+                <Radio
+                  attr={prefix + 'colorbar.showticksuffix'}
+                  options={[
+                    {label: _('Every'), value: 'all'},
+                    {label: _('First'), value: 'first'},
+                    {label: _('Last'), value: 'last'},
+                    {label: _('None'), value: 'none'},
                   ]}
                 />
               </Section>

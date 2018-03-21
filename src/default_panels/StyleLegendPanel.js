@@ -4,11 +4,10 @@ import {
   ColorPicker,
   FontSelector,
   Fold,
-  Info,
   Numeric,
   Radio,
   Section,
-  MenuPanel,
+  Dropdown,
   TraceRequiredPanel,
 } from '../components';
 
@@ -38,47 +37,33 @@ const StyleLegendPanel = ({localize: _}) => (
         <ColorPicker label={_('Border Color')} attr="legend.bordercolor" />
         <ColorPicker label={_('Background Color')} attr="legend.bgcolor" />
       </Section>
-      <Section name={_('Positioning')}>
-        <MenuPanel>
-          <Section name={_('Anchor Point')}>
-            <Info>
-              {_(
-                'The positioning inputs are relative to the ' +
-                  'anchor points on the text box.'
-              )}
-            </Info>
-            <Radio
-              attr="legend.xanchor"
-              options={[
-                {label: _('Auto'), value: 'auto'},
-                {label: _('Left'), value: 'left'},
-                {label: _('Center'), value: 'center'},
-                {label: _('Right'), value: 'right'},
-              ]}
-            />
-            <Radio
-              attr="legend.yanchor"
-              options={[
-                {label: _('Auto'), value: 'auto'},
-                {label: _('Top'), value: 'top'},
-                {label: _('Middle'), value: 'middle'},
-                {label: _('Bottom'), value: 'bottom'},
-              ]}
-            />
-          </Section>
-        </MenuPanel>
-        <Numeric
-          label={_('X Position')}
-          showSlider
-          step={0.02}
-          attr="legend.x"
+      <Section name={_('Horizontal Positioning')}>
+        <Dropdown
+          label={_('Anchor Point')}
+          clearable={false}
+          attr="legend.xanchor"
+          options={[
+            {label: _('Auto'), value: 'auto'},
+            {label: _('Left'), value: 'left'},
+            {label: _('Center'), value: 'center'},
+            {label: _('Right'), value: 'right'},
+          ]}
         />
-        <Numeric
-          label={_('Y Position')}
-          showSlider
-          step={0.02}
-          attr="legend.y"
+        <Numeric label={_('Position')} showSlider step={0.02} attr="legend.x" />
+      </Section>
+      <Section name={_('Vertical Positioning')}>
+        <Dropdown
+          label={_('Anchor Point')}
+          clearable={false}
+          attr="legend.yanchor"
+          options={[
+            {label: _('Auto'), value: 'auto'},
+            {label: _('Top'), value: 'top'},
+            {label: _('Middle'), value: 'middle'},
+            {label: _('Bottom'), value: 'bottom'},
+          ]}
         />
+        <Numeric label={_('Position')} showSlider step={0.02} attr="legend.y" />
       </Section>
       <Section name={_('Orientation')}>
         <Radio

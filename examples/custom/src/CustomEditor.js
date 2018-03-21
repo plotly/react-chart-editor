@@ -12,7 +12,6 @@ import {
   Section,
   Numeric,
   LayoutPanel,
-  MenuPanel,
   Button,
   SingleSidebarItem,
   TraceAccordion,
@@ -44,9 +43,6 @@ export default class CustomEditor extends Component {
               </p>
             </Info>
             <Section name="Section">
-              <MenuPanel>
-                <Info> MenuPanel </Info>
-              </MenuPanel>
               <Numeric label="Numeric" attr="width" show units="units" />
               <Dropdown
                 label="Dropdown"
