@@ -27,8 +27,8 @@ describe('<AnnotationRef>', () => {
     const options = drop.first().prop('options');
     expect(options.length).toBe(3);
     expect(options[0]).toEqual({label: 'Canvas', value: 'paper'});
-    expect(options[1]).toEqual({label: 'Y Axis 1', value: 'y'});
-    expect(options[2]).toEqual({label: 'Y Axis: yaxis2 title', value: 'y2'});
+    expect(options[1]).toEqual({label: 'Y 1', value: 'y'});
+    expect(options[2]).toEqual({label: 'Y: yaxis2 title', value: 'y2'});
   });
 
   it('sends update for a[x|y]ref attr on [x|y]ref change', () => {
@@ -114,7 +114,7 @@ describe('<AnnotationArrowRef>', () => {
     const options = drop.first().prop('options');
     expect(options.length).toBe(3);
     expect(options[0]).toEqual({label: 'in pixels', value: 'pixel'});
-    expect(options[1]).toEqual({label: 'Y Axis 1', value: 'y'});
-    expect(options[2]).toEqual({label: 'Y Axis: yaxis2 title', value: 'y2'});
+    expect(options[1]).toEqual({label: 'Y 1', value: 'y'});
+    expect(options[2]).toEqual({label: 'Y: yaxis2 title', value: 'y2'});
   });
 });

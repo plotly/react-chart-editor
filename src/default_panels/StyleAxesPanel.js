@@ -25,6 +25,7 @@ import {
 } from '../components';
 
 import {localize} from '../lib';
+import {TRACE_TO_AXIS} from '../lib/constants';
 
 class StyleAxesPanel extends Component {
   constructor(props, context) {
@@ -86,7 +87,7 @@ class StyleAxesPanel extends Component {
 
           <TraceTypeSection
             name={_('Anchor')}
-            traceTypes={['scatter', 'scattergl']}
+            traceTypes={TRACE_TO_AXIS.cartesian}
           >
             <AxisAnchorDropdown
               label={_('Anchor To')}

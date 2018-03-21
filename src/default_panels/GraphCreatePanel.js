@@ -14,7 +14,7 @@ import {
   TextEditor,
   Numeric,
   TraceTypeSection,
-  LayoutNumericSlider,
+  LayoutNumeric,
 } from '../components';
 import {localize} from '../lib';
 
@@ -84,14 +84,14 @@ const GraphCreatePanel = ({localize: _}) => {
           attr="thetaunit"
           clearable={false}
         />
-        <LayoutNumericSlider
+        <LayoutNumeric
           attr="polar.sector[0]"
           label={_('Theta Start')}
           min={0}
           max={360}
           showSlider
         />
-        <LayoutNumericSlider
+        <LayoutNumeric
           attr="polar.sector[1]"
           label={_('Theta End')}
           min={0}

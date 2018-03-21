@@ -9,25 +9,22 @@ const LayoutPanel = connectLayoutToPlot(Panel);
 
 const TraceTypeSection = (props, context) => {
   const {fullContainer, fullData} = context;
-  // when TraceTypeSection is used in a connectedToTrace context
-  if (
+
+  const ifConnectedToTrace =
     fullContainer &&
     ((fullContainer._fullInput &&
       props.traceTypes.includes(fullContainer._fullInput.type)) ||
-      props.traceTypes.includes(fullContainer.type))
-  ) {
-    return <Section {...props} />;
-  }
+      props.traceTypes.includes(fullContainer.type));
 
-  // when TraceTypeSection is used in a connectedToLayout context
-  if (
+  const ifConnectedToLayout =
     fullData &&
     fullData.some(
       t =>
         props.traceTypes.includes(t._fullInput.type) ||
         fullData.some(t => props.traceTypes.includes(t.type))
-    )
-  ) {
+    );
+
+  if (ifConnectedToTrace || ifConnectedToLayout) {
     return <Section {...props} />;
   }
 

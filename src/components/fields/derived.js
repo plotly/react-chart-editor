@@ -41,7 +41,6 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
     }
     options.push({label: _('Free'), value: 'free'});
     plotProps.options = options;
-    plotProps.clearable = false;
   },
 });
 
@@ -131,7 +130,7 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
       return;
     }
 
-    plotProps.options = [{label: _('Mixed Values'), value: 'mixed values'}];
+    plotProps.isVisible = false;
   },
 });
 
@@ -265,12 +264,6 @@ UnconnectedNumericFraction.defaultProps = {
   showSlider: true,
 };
 
-class UnconnectedNumericSlider extends UnconnectedNumeric {}
-UnconnectedNumericSlider.propTypes = UnconnectedNumeric.propTypes;
-UnconnectedNumericSlider.defaultProps = {
-  showSlider: true,
-};
-
 const numericFractionModifyPlotProps = (props, context, plotProps) => {
   const {attrMeta, fullValue, updatePlot} = plotProps;
   const min = attrMeta.min || 0;
@@ -313,8 +306,8 @@ export const LayoutNumericFraction = connectLayoutToPlot(
   })
 );
 
-export const LayoutNumericSlider = connectLayoutToPlot(
-  connectToContainer(UnconnectedNumericSlider, {
+export const LayoutNumeric = connectLayoutToPlot(
+  connectToContainer(UnconnectedNumeric, {
     supplyPlotProps: supplyLayoutPlotProps,
   })
 );
