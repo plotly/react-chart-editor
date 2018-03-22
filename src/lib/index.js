@@ -13,7 +13,6 @@ import connectToContainer, {
 import {computeTraceOptionsFromSchema} from './computeTraceOptionsFromSchema';
 import connectTraceToPlot from './connectTraceToPlot';
 import dereference from './dereference';
-import findFullTraceIndex from './findFullTraceIndex';
 import getAllAxes, {
   axisIdToAxisName,
   traceTypeToAxisType,
@@ -88,7 +87,6 @@ export {
   computeTraceOptionsFromSchema,
   traceTypeToPlotlyInitFigure,
   dereference,
-  findFullTraceIndex,
   getAllAxes,
   getAxisTitle,
   getDisplayName,

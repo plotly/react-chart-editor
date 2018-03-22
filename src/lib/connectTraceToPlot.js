@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {
-  findFullTraceIndex,
   getDisplayName,
   plotlyTraceToCustomTrace,
   renderTraceIcon,
@@ -29,29 +28,23 @@ export default function connectTraceToPlot(WrappedComponent) {
       const {data, fullData, plotly} = context;
 
       const trace = traceIndexes.length > 0 ? data[traceIndexes[0]] : {};
-      const fullTraceIndex =
-        traceIndexes.length > 0
-          ? findFullTraceIndex(fullData, traceIndexes[0])
-          : findFullTraceIndex(fullData, 0);
-      const fullTrace = fullData[fullTraceIndex] || {};
 
-      let getValObject;
-      if (plotly && fullTrace._fullInput) {
-        /*
-         * Since fullTrace._fullInput contains the _module.attributes key:
-         * https://github.com/plotly/plotly.js/blob/70f3f70ec5b306cf74630355676f5e318f685824/src/plot_api/plot_schema.js#L241
-         * this will work for all chart types. This needed to be adjusted as financial charts
-         * do not contain their 'true' attributes, but rather attributes of the trace types that are used to compose them
-        */
-        getValObject = attr =>
-          plotly.PlotSchema.getTraceValObject(
-            fullTrace._fullInput,
-            nestedProperty({}, attr).parts
-          );
+      let fullTrace = {};
+      for (let i = 0; i < fullData.length; i++) {
+        if (trace.uid === fullData[i]._fullInput.uid) {
+          fullTrace = fullData[i]._fullInput;
+          break;
+        }
       }
 
       this.childContext = {
-        getValObject,
+        getValObject: attr =>
+          plotly
+            ? plotly.PlotSchema.getTraceValObject(
+                fullTrace,
+                nestedProperty({}, attr).parts
+              )
+            : null,
         updateContainer: this.updateTrace,
         deleteContainer: this.deleteTrace,
         container: trace,
