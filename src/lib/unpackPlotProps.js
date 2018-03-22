@@ -14,21 +14,7 @@ export default function unpackPlotProps(props, context) {
     attrMeta = context.getValObject(props.attr) || {};
   }
 
-  /*
-   * This needed to be adjusted as financial charts
-   * do not contain their 'true' attributes, but rather attributes of the trace
-   * types that are used to compose them. Financial chart attributes are found in
-   * fullContainer._fullInput
-   */
-  let fullContainer = context.fullContainer;
-  if (
-    fullContainer &&
-    fullContainer._fullInput &&
-    (fullContainer._fullInput.type === 'ohlc' ||
-      fullContainer._fullInput.type === 'candlestick')
-  ) {
-    fullContainer = fullContainer._fullInput;
-  }
+  const fullContainer = context.fullContainer;
 
   const fullProperty = nestedProperty(fullContainer, props.attr);
   let fullValue = fullProperty.get();

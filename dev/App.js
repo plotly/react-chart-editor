@@ -11,12 +11,13 @@ import PlotlyEditor, {DefaultEditor, Panel} from '../src';
 import ACCESS_TOKENS from '../accessTokens';
 
 const dataSources = {
-  col1: ['Jan', 'Feb', 'Mar'], // eslint-disable-line no-magic-numbers
-  col2: [1, 2, 3],
-  col3: [4, 3, 2], // eslint-disable-line no-magic-numbers
-  col4: [17, 13, 9], // eslint-disable-line no-magic-numbers
-  col5: ['blue'],
-  col6: ['yellow', 'green', 'yellow'],
+  ints: [1, 2, 3, 4, 5], // eslint-disable-line no-magic-numbers
+  'jagged ints': [2, 1, 3, 5, 4], // eslint-disable-line no-magic-numbers
+  'big ints': [1000, 10100, 10000, 20000, 100000], // eslint-disable-line no-magic-numbers
+  dates: ['2010-01-01', '2010-07-01', '2011-01-01', '2011-07-01', '2012-01-01'],
+  months: ['January', 'February', 'March', 'April', 'May'],
+  colors: ['red', 'orange', 'yellow', 'green', 'blue'],
+  justblue: ['blue'],
 };
 const dataSourceOptions = Object.keys(dataSources).map(name => ({
   value: name,
