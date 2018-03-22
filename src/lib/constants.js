@@ -36,6 +36,7 @@ export const EDITOR_ACTIONS = {
   DELETE_ANNOTATION: 'plotly-editor-delete-annotation',
   DELETE_SHAPE: 'plotly-editor-delete-shape',
   DELETE_IMAGE: 'plotly-editor-delete-image',
+  DELETE_RANGESELECTOR: 'plotly-editor-delete-rangeselector',
 };
 
 export const DEFAULT_FONTS = [
