@@ -3,9 +3,13 @@ import {hot} from 'react-hot-loader';
 import plotly from 'plotly.js/dist/plotly';
 import '../src/styles/main.scss';
 import 'react-select/dist/react-select.css';
-import ReactJson from 'react-json-view';
+import brace from 'brace'; // eslint-disable-line no-unused-vars
+import AceEditor from 'react-ace';
 import Select from 'react-select';
 import PlotlyEditor, {DefaultEditor, Panel} from '../src';
+import Inspector from 'react-inspector';
+import 'brace/mode/json';
+import 'brace/theme/textmate';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
@@ -39,6 +43,8 @@ class App extends Component {
     };
 
     this.loadMock = this.loadMock.bind(this);
+    this.loadJSON = this.loadJSON.bind(this);
+    this.updateState = this.updateState.bind(this);
   }
 
   componentWillMount() {
@@ -59,13 +65,30 @@ class App extends Component {
     )
       .then(response => response.json())
       .then(figure => {
-        this.setState({
-          currentMockIndex: mockIndex,
-          data: figure.data,
-          layout: figure.layout,
-          frames: figure.frames,
-        });
+        const {data, layout, frames} = figure;
+        this.updateState(data, layout, frames, mockIndex);
       });
+  }
+
+  updateState(data, layout, frames, currentMockIndex) {
+    this.setState({
+      data,
+      layout,
+      frames,
+      currentMockIndex,
+      full: 'hit refresh',
+      json_error: false,
+      json_string: JSON.stringify({data, layout, frames}, null, 2),
+    });
+  }
+
+  loadJSON() {
+    try {
+      const {data, layout, frames} = JSON.parse(this.state.json_string);
+      this.updateState(data, layout, frames);
+    } catch (e) {
+      this.setState({json_error: true});
+    }
   }
 
   render() {
@@ -79,46 +102,80 @@ class App extends Component {
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}
-          onUpdate={(data, layout, frames) =>
-            this.setState({data, layout, frames})
-          }
+          onUpdate={this.updateState}
+          divId="gd"
           useResizeHandler
           debug
           advancedTraceTypeSelector
         >
-          {' '}
           <DefaultEditor>
             <Panel group="Dev" name="JSON">
-              <Select
-                clearable={true}
-                value={this.state.currentMockIndex}
-                name="mock-dropdown"
-                options={this.state.mocks.map((item, i) => ({
-                  label: item,
-                  value: i,
-                }))}
-                searchable={true}
-                searchPromptText="Search for a mock"
-                onChange={option => this.loadMock(option.value)}
-                noResultsText={'No Results'}
-                placeholder={'Search for a mock'}
-              />
+              <div className="mocks">
+                <Select
+                  clearable={false}
+                  value={this.state.currentMockIndex}
+                  name="mock-dropdown"
+                  options={this.state.mocks.map((item, i) => ({
+                    label: item,
+                    value: i,
+                  }))}
+                  searchable={true}
+                  searchPromptText="Search for a mock"
+                  onChange={option => this.loadMock(option.value)}
+                  noResultsText={'No Results'}
+                  placeholder={'Search for a mock'}
+                />
+              </div>
               <br />
-              <ReactJson
-                enableClipboard={false}
-                name={false}
-                displayDataTypes={false}
-                displayObjectSize={false}
-                indentWidth={2}
-                onAdd={({updated_src}) => this.setState(updated_src)}
-                onEdit={({updated_src}) => this.setState(updated_src)}
-                onDelete={({updated_src}) => this.setState(updated_src)}
-                src={{
-                  data: this.state.data,
-                  layout: this.state.layout,
-                  frames: this.state.frames,
+              <button
+                onClick={this.loadJSON}
+                style={{background: this.state.json_error ? 'pink' : 'white'}}
+              >
+                Save
+              </button>
+              <br />
+              <AceEditor
+                mode="json"
+                theme="textmate"
+                onChange={json_string => this.setState({json_string})}
+                value={this.state.json_string}
+                name="UNIQUE_ID_OF_DIV"
+                style={{height: '80vh'}}
+                setOptions={{
+                  showLineNumbers: false,
+                  tabSize: 2,
                 }}
+                commands={[
+                  {
+                    name: 'save',
+                    bindKey: {win: 'Ctrl-s', mac: 'Command-s'},
+                    exec: this.loadJSON,
+                  },
+                ]}
               />
+            </Panel>
+            <Panel group="Dev" name="Inspector">
+              <button
+                onClick={() => {
+                  const gd = document.getElementById('gd') || {};
+                  this.setState({
+                    full: {
+                      _fullData: gd._fullData || [],
+                      _fullLayout: gd._fullLayout || {},
+                    },
+                  });
+                }}
+              >
+                Refresh
+              </button>
+              <br />
+              <div style={{height: '80vh'}}>
+                <Inspector
+                  data={{_full: this.state.full}}
+                  expandLevel={2}
+                  sortObjectKeys={true}
+                />
+              </div>
             </Panel>
           </DefaultEditor>
         </PlotlyEditor>
