@@ -13,29 +13,8 @@ import {
 function computeAxesOptions(axes, props) {
   const _ = props.localize;
   let filteredAxes = axes;
-
-  if (props.name === 'Range Slider') {
-    filteredAxes = axes.filter(axis => axis._subplot.includes('xaxis'));
-  }
-
-  if (props.name === 'Timescale Buttons') {
-    filteredAxes = axes.filter(
-      axis => axis._subplot.includes('xaxis') && axis.type === 'date'
-    );
-  }
-
-  if (props.name === 'Titles') {
-    filteredAxes = axes.filter(axis => !axis._name.includes('angular'));
-  }
-
-  if (['Zoom Interactivity', 'Hover Projections'].includes(props.name)) {
-    filteredAxes = axes.filter(
-      axis => !axis._name.includes('angular') && !axis._name.includes('radial')
-    );
-  }
-
-  if (props.name === 'Layout') {
-    filteredAxes = axes.filter(axis => !axis._name.includes('radial'));
+  if (props.axisFilter) {
+    filteredAxes = axes.filter(props.axisFilter);
   }
 
   const options = [];

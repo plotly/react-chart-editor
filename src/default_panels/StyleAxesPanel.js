@@ -55,14 +55,20 @@ class StyleAxesPanel extends Component {
           },
         ]}
       >
-        <AxesFold name={_('Titles')}>
+        <AxesFold
+          name={_('Titles')}
+          axisFilter={axis => !axis._name.includes('angular')}
+        >
           <TextEditor attr="title" />
           <FontSelector label={_('Typeface')} attr="titlefont.family" />
           <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
           <ColorPicker label={_('Font Color')} attr="titlefont.color" />
         </AxesFold>
 
-        <AxesFold name={_('Layout')}>
+        <AxesFold
+          name={_('Layout')}
+          axisFilter={axis => !axis._name.includes('radial')}
+        >
           <Dropdown
             label={_('Direction')}
             attr="direction"
@@ -347,7 +353,10 @@ class StyleAxesPanel extends Component {
           </Section>
         </AxesFold>
 
-        <AxesFold name={_('Range Slider')}>
+        <AxesFold
+          name={_('Range Slider')}
+          axisFilter={axis => axis._subplot.includes('xaxis')}
+        >
           <RangesliderVisible
             attr="rangeslider.visible"
             options={[
@@ -371,7 +380,12 @@ class StyleAxesPanel extends Component {
           />
         </AxesFold>
 
-        <AxesFold name={_('Timescale Buttons')}>
+        <AxesFold
+          name={_('Timescale Buttons')}
+          axisFilter={axis =>
+            axis._subplot.includes('xaxis') && axis.type === 'date'
+          }
+        >
           <RangeselectorVisible
             attr="rangeselector.visible"
             options={[
@@ -471,7 +485,12 @@ class StyleAxesPanel extends Component {
           </Section>
         </AxesFold>
 
-        <AxesFold name={_('Zoom Interactivity')}>
+        <AxesFold
+          name={_('Zoom Interactivity')}
+          axisFilter={axis =>
+            !axis._name.includes('angular') && !axis._name.includes('radial')
+          }
+        >
           <Radio
             attr="fixedrange"
             options={[
@@ -481,7 +500,12 @@ class StyleAxesPanel extends Component {
           />
         </AxesFold>
 
-        <AxesFold name={_('Hover Projections')}>
+        <AxesFold
+          name={_('Hover Projections')}
+          axisFilter={axis =>
+            !axis._name.includes('angular') && !axis._name.includes('radial')
+          }
+        >
           <Radio
             attr="showspikes"
             options={[
