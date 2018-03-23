@@ -23,7 +23,7 @@
     "react-dropzone": "^4.2.9",
     "react-plotly.js": "^2.0.0",
     "react-rangeslider": "^2.2.0",
-    "react-select": "^1.0.0-rc.10",
+    "react-select": "^1.2.0",
     "react-tabs": "^2.2.1",
     "tinycolor2": "^1.4.1"
   },
