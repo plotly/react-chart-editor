@@ -78,7 +78,9 @@
   },
   "homepage": "https://plotly.github.io/react-chart-editor/",
   "jest": {
-    "roots": ["<rootDir>/src/"],
+    "roots": [
+      "<rootDir>/src/"
+    ],
     "moduleNameMapper": {
       "^.+\\.css$": "<rootDir>/config/CSSStub.js"
     }
@@ -103,25 +105,18 @@
   "scripts": {
     "lint": "prettier --write \"src/**/*.js\"",
     "make:arrows": "node scripts/makeArrows.js",
-    "make:combined-translation-keys":
-      "npm run make:translation-keys && node scripts/combineTranslationKeys.js",
-    "make:lib":
-      "mkdirp lib && npm run make:lib:js && npm run make:lib:css && npm run make:combined-translation-keys",
-    "make:lib:css":
-      "mkdirp lib && babel-node scripts/styles.js && SASS_ENV=ie babel-node scripts/styles.js && babel-node scripts/postcss.js && SASS_ENV=ie babel-node scripts/postcss.js",
-    "make:lib:js":
-      "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps",
+    "make:combined-translation-keys": "npm run make:translation-keys && node scripts/combineTranslationKeys.js",
+    "make:lib": "mkdirp lib && npm run make:lib:js && npm run make:lib:css && npm run make:combined-translation-keys",
+    "make:lib:css": "mkdirp lib && babel-node scripts/styles.js && SASS_ENV=ie babel-node scripts/styles.js && babel-node scripts/postcss.js && SASS_ENV=ie babel-node scripts/postcss.js",
+    "make:lib:js": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps",
     "make:translation-keys": "node scripts/findTranslationKeys.js",
     "prepublishOnly": "npm run make:lib",
     "start": "webpack-dev-server --hot",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill",
-    "test:lint":
-      "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:pretty":
-      "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "watch":
-      "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
+    "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
     "watch-test": "jest --watch"
   }
 }

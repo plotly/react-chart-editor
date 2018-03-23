@@ -154,7 +154,7 @@ class App extends Component {
                 ]}
               />
             </Panel>
-            <Panel group="Dev" name="_fullJSON">
+            <Panel group="Dev" name="Inspector">
               <button
                 onClick={() => {
                   const gd = document.getElementById('gd') || {};
