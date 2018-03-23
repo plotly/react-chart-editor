@@ -20,7 +20,6 @@ import {
   AxesFold,
   TraceTypeSection,
   RangesliderVisible,
-  RangeselectorVisible,
   RangeSelectorAccordion,
 } from '../components';
 
@@ -386,7 +385,7 @@ class StyleAxesPanel extends Component {
             axis._subplot.includes('xaxis') && axis.type === 'date'
           }
         >
-          <RangeselectorVisible
+          <Radio
             attr="rangeselector.visible"
             options={[
               {label: _('Show'), value: true},

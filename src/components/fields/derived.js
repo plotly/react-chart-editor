@@ -85,27 +85,9 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
 
 export const RangesliderVisible = connectToContainer(UnconnectedRadio, {
   modifyPlotProps: (props, context, plotProps) => {
-    if (
-      !plotProps.isVisible &&
-      context.fullContainer &&
-      context.fullContainer._id &&
-      context.fullContainer._id.startsWith('x')
-    ) {
-      plotProps.isVisible = true;
-      return;
-    }
-  },
-});
-
-export const RangeselectorVisible = connectToContainer(UnconnectedRadio, {
-  modifyPlotProps: (props, context, plotProps) => {
-    if (
-      !plotProps.isVisible &&
-      context.fullContainer &&
-      context.fullContainer._id &&
-      context.fullContainer._id.startsWith('x') &&
-      context.fullContainer.type === 'date'
-    ) {
+    if (!plotProps.fullValue) {
+      plotProps.fullValue = false;
+      plotProps.visible = false;
       plotProps.isVisible = true;
       return;
     }
