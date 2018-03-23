@@ -110,21 +110,22 @@ class App extends Component {
         >
           <DefaultEditor>
             <Panel group="Dev" name="JSON">
-              <Select
-                clearable={false}
-                value={this.state.currentMockIndex}
-                name="mock-dropdown"
-                options={this.state.mocks.map((item, i) => ({
-                  label: item,
-                  value: i,
-                }))}
-                searchable={true}
-                searchPromptText="Search for a mock"
-                onChange={option => this.loadMock(option.value)}
-                noResultsText={'No Results'}
-                placeholder={'Search for a mock'}
-                className="mocks"
-              />
+              <div className="mocks">
+                <Select
+                  clearable={false}
+                  value={this.state.currentMockIndex}
+                  name="mock-dropdown"
+                  options={this.state.mocks.map((item, i) => ({
+                    label: item,
+                    value: i,
+                  }))}
+                  searchable={true}
+                  searchPromptText="Search for a mock"
+                  onChange={option => this.loadMock(option.value)}
+                  noResultsText={'No Results'}
+                  placeholder={'Search for a mock'}
+                />
+              </div>
               <br />
               <button
                 onClick={this.loadJSON}
