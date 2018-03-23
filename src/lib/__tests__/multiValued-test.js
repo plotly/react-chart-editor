@@ -15,20 +15,14 @@ describe('multiValued Numeric', () => {
 
     const rangeInputs = mount(
       <TestEditor {...{...fixtureProps, onUpdate: jest.fn(), plotly}}>
-        <AxesNumeric attr="range[0]" defaultAxesTarget="xaxis" />
-        <AxesNumeric attr="range[0]" defaultAxesTarget="yaxis" />
-        <AxesNumeric attr="range[0]" defaultAxesTarget="allaxes" />
+        <AxesNumeric attr="range[0]" />
       </TestEditor>
     ).find(NumericInput);
 
-    expect(rangeInputs.length).toBe(3);
+    expect(rangeInputs.length).toBe(1);
 
-    const xaxisRangeInput = rangeInputs.at(0);
-    const yaxisRangeInput = rangeInputs.at(1);
-    const allaxisRangeInput = rangeInputs.at(2);
+    const allaxisRangeInput = rangeInputs.at(0);
 
-    expect(xaxisRangeInput.prop('value')).toBe(0);
-    expect(yaxisRangeInput.prop('value')).toBe(-1);
     expect(allaxisRangeInput.prop('value')).toBe('');
     expect(allaxisRangeInput.prop('placeholder')).toBe(
       MULTI_VALUED_PLACEHOLDER
@@ -45,7 +39,7 @@ describe('multiValued Numeric', () => {
 
     mount(
       <TestEditor {...{...fixtureProps, beforeUpdateLayout, plotly}}>
-        <AxesNumeric attr="range[0]" defaultAxesTarget="allaxes" />
+        <AxesNumeric attr="range[0]" />
       </TestEditor>
     )
       .find('.js-numeric-increase')
