@@ -41,6 +41,7 @@ This module's entry point is a React component called `<PlotlyEditor />` which c
 This repo contains a [dev app](https://github.com/plotly/react-chart-editor/tree/master/dev) that depends on the components locally and is configured for hot reloading, for easy local development. A `jest`-based test suite is also included.
 
 ```
+cp accessTokens.tpl.js accessTokens.js # and edit to taste
 npm install
 npm start
 # hacking happens here
