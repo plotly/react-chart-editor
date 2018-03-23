@@ -31,7 +31,7 @@ describe('Plot Connection', () => {
     expect(beforeUpdateLayout).toBeCalled();
     const payload = beforeUpdateLayout.mock.calls[0][0];
     expect(payload).toEqual({
-      update: {'xaxis.range[0]': 0, 'yaxis.range[0]': 0, 'yaxis2.range[0]': 0},
+      update: {'xaxis.range[0]': 1},
     });
   });
 
