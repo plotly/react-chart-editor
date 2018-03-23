@@ -48,9 +48,16 @@ export default function connectAxesToLayout(WrappedComponent) {
 
       this.axes = getAllAxes(context.fullContainer);
       this.axesOptions = computeAxesOptions(this.axes, props, context);
-      const defaultAxesTarget = this.axesOptions.length
-        ? this.axesOptions[0].value
-        : null;
+
+      // this.axesOptions can be an empty array when we have a filter on an AxesFold
+      // and no axes correspond to the condition
+      let defaultAxesTarget = null;
+      if (this.axesOptions.length === 1) {
+        defaultAxesTarget = this.axesOptions[0].value;
+      }
+      if (this.axesOptions.length > 1) {
+        defaultAxesTarget = this.axesOptions[1].value;
+      }
 
       this.state = {
         axesTarget: defaultAxesTarget,
