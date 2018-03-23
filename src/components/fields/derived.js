@@ -19,6 +19,7 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
     let options = [];
 
     if (
+      plotProps.fullContainer &&
       plotProps.fullContainer._subplot &&
       plotProps.fullContainer._subplot.includes('xaxis')
     ) {
@@ -29,6 +30,7 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
         };
       });
     } else if (
+      plotProps.fullContainer &&
       plotProps.fullContainer._subplot &&
       plotProps.fullContainer._subplot.includes('yaxis')
     ) {
@@ -48,6 +50,7 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
     let options = [];
     if (
+      plotProps.fullContainer &&
       plotProps.fullContainer._subplot &&
       plotProps.fullContainer._subplot.includes('xaxis')
     ) {
@@ -58,6 +61,7 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
         };
       });
     } else if (
+      plotProps.fullContainer &&
       plotProps.fullContainer._subplot &&
       plotProps.fullContainer._subplot.includes('yaxis')
     ) {
@@ -71,7 +75,8 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
 
     // filter out the current axisID, can't overlay over itself
     plotProps.options = options.filter(
-      option => context.fullContainer._id !== option.value
+      option =>
+        context.fullContainer && context.fullContainer._id !== option.value
     );
 
     plotProps.clearable = true;
@@ -80,25 +85,9 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
 
 export const RangesliderVisible = connectToContainer(UnconnectedRadio, {
   modifyPlotProps: (props, context, plotProps) => {
-    if (
-      !plotProps.isVisible &&
-      context.fullContainer._id &&
-      context.fullContainer._id.startsWith('x')
-    ) {
-      plotProps.isVisible = true;
-      return;
-    }
-  },
-});
-
-export const RangeselectorVisible = connectToContainer(UnconnectedRadio, {
-  modifyPlotProps: (props, context, plotProps) => {
-    if (
-      !plotProps.isVisible &&
-      context.fullContainer._id &&
-      context.fullContainer._id.startsWith('x') &&
-      context.fullContainer.type === 'date'
-    ) {
+    if (!plotProps.fullValue) {
+      plotProps.fullValue = false;
+      plotProps.visible = false;
       plotProps.isVisible = true;
       return;
     }
@@ -109,6 +98,7 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
   modifyPlotProps: (props, context, plotProps) => {
     const _ = props.localize;
     if (
+      context.fullContainer &&
       context.fullContainer._id &&
       context.fullContainer._id.startsWith('y')
     ) {
@@ -120,6 +110,7 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
     }
 
     if (
+      context.fullContainer &&
       context.fullContainer._id &&
       context.fullContainer._id.startsWith('x')
     ) {

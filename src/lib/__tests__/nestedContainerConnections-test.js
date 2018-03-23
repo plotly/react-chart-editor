@@ -20,11 +20,7 @@ describe('Plot Connection', () => {
     );
     mount(
       <TestEditor {...{...fixtureProps, beforeUpdateLayout}}>
-        <LayoutAxesNumeric
-          label="Min"
-          attr="range[0]"
-          defaultAxesTarget="xaxis"
-        />
+        <LayoutAxesNumeric label="Min" attr="range[0]" />
       </TestEditor>
     )
       .find('[attr="range[0]"]')
@@ -34,7 +30,9 @@ describe('Plot Connection', () => {
 
     expect(beforeUpdateLayout).toBeCalled();
     const payload = beforeUpdateLayout.mock.calls[0][0];
-    expect(payload).toEqual({update: {'xaxis.range[0]': 1}});
+    expect(payload).toEqual({
+      update: {'xaxis.range[0]': 1},
+    });
   });
 
   it('can connect to layout when connected within trace context', () => {

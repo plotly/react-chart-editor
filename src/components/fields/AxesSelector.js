@@ -17,8 +17,8 @@ class AxesSelector extends Component {
   }
 
   render() {
-    const {axesTargetHandler, axesOptions, axesTarget} = this.context;
-    const {localize: _} = this.props;
+    const {axesTargetHandler, axesTarget} = this.context;
+    const {localize: _, axesOptions} = this.props;
     const maxOptions = axesOptions.length > 4; // eslint-disable-line
 
     if (maxOptions) {
@@ -57,13 +57,13 @@ class AxesSelector extends Component {
 
 AxesSelector.contextTypes = {
   axesTargetHandler: PropTypes.func,
-  axesOptions: PropTypes.array,
   axesTarget: PropTypes.string,
   fullLayout: PropTypes.object,
 };
 
 AxesSelector.propTypes = {
   localize: PropTypes.func,
+  axesOptions: PropTypes.array,
 };
 
 export default localize(AxesSelector);
