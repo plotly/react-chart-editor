@@ -126,14 +126,13 @@ class App extends Component {
                   placeholder={'Search for a mock'}
                 />
               </div>
-              <br />
               <button
+                className="devbtn"
                 onClick={this.loadJSON}
                 style={{background: this.state.json_error ? 'pink' : 'white'}}
               >
                 Save
               </button>
-              <br />
               <AceEditor
                 mode="json"
                 theme="textmate"
@@ -156,6 +155,7 @@ class App extends Component {
             </Panel>
             <Panel group="Dev" name="Inspector">
               <button
+                className="devbtn"
                 onClick={() => {
                   const gd = document.getElementById('gd') || {};
                   this.setState({
@@ -168,7 +168,6 @@ class App extends Component {
               >
                 Refresh
               </button>
-              <br />
               <div style={{height: '80vh'}}>
                 <Inspector
                   data={{_full: this.state.full}}
