@@ -10,10 +10,37 @@ import {
   getAxisTitle,
 } from '../lib';
 
-function computeAxesOptions(axes, _) {
-  const options = [{label: _('All'), value: 'allaxes'}];
-  for (let i = 0; i < axes.length; i++) {
-    const ax = axes[i];
+function computeAxesOptions(axes, props) {
+  const _ = props.localize;
+  let filteredAxes = axes;
+
+  if (props.name === 'Range Slider') {
+    filteredAxes = axes.filter(axis => axis._subplot.includes('xaxis'));
+  }
+
+  if (props.name === 'Timescale Buttons') {
+    filteredAxes = axes.filter(
+      axis => axis._subplot.includes('xaxis') && axis.type === 'date'
+    );
+  }
+
+  if (props.name === 'Titles') {
+    filteredAxes = axes.filter(axis => !axis._name.includes('angular'));
+  }
+
+  if (['Zoom Interactivity', 'Hover Projections'].includes(props.name)) {
+    filteredAxes = axes.filter(
+      axis => !axis._name.includes('angular') && !axis._name.includes('radial')
+    );
+  }
+
+  if (props.name === 'Layout') {
+    filteredAxes = axes.filter(axis => !axis._name.includes('radial'));
+  }
+
+  const options = [];
+  for (let i = 0; i < filteredAxes.length; i++) {
+    const ax = filteredAxes[i];
     const label = capitalize(ax._name.split('axis')[0]);
     const value = (ax._subplot &&
     !ax._subplot.includes('xaxis') &&
@@ -22,7 +49,7 @@ function computeAxesOptions(axes, _) {
       : ax._subplot
     ).trim();
 
-    options[i + 1] = {
+    options[i] = {
       label,
       value,
       axisGroup: ax._axisGroup,
@@ -30,7 +57,9 @@ function computeAxesOptions(axes, _) {
     };
   }
 
-  return options;
+  return options.length > 1
+    ? [{label: _('All'), value: 'allaxes'}].concat(options)
+    : options;
 }
 
 export default function connectAxesToLayout(WrappedComponent) {
@@ -38,7 +67,16 @@ export default function connectAxesToLayout(WrappedComponent) {
     constructor(props, context) {
       super(props, context);
 
-      this.state = {axesTarget: this.props.defaultAxesTarget};
+      this.axes = getAllAxes(context.fullContainer);
+      this.axesOptions = computeAxesOptions(this.axes, props, context);
+      const defaultAxesTarget = this.axesOptions.length
+        ? this.axesOptions[0].value
+        : null;
+
+      this.state = {
+        axesTarget: defaultAxesTarget,
+      };
+
       this.axesTargetHandler = this.axesTargetHandler.bind(this);
       this.updateContainer = this.updateContainer.bind(this);
 
@@ -46,6 +84,8 @@ export default function connectAxesToLayout(WrappedComponent) {
     }
 
     componentWillUpdate(nextProps, nextState, nextContext) {
+      this.axes = getAllAxes(nextContext.fullContainer);
+      this.axesOptions = computeAxesOptions(this.axes, nextProps, nextContext);
       // This is not enough, what if plotly.js adds new axes...
       this.setLocals(nextProps, nextState, nextContext);
     }
@@ -53,9 +93,6 @@ export default function connectAxesToLayout(WrappedComponent) {
     setLocals(nextProps, nextState, nextContext) {
       const {container, fullContainer} = nextContext;
       const {axesTarget} = nextState;
-
-      this.axes = getAllAxes(fullContainer);
-      this.axesOptions = computeAxesOptions(this.axes, nextProps.localize);
 
       if (axesTarget === 'allaxes') {
         const multiValuedContainer = deepCopyPublic(this.axes[0]);
@@ -69,7 +106,7 @@ export default function connectAxesToLayout(WrappedComponent) {
         this.fullContainer = multiValuedContainer;
         this.defaultContainer = this.axes[0];
         this.container = {};
-      } else {
+      } else if (axesTarget) {
         this.fullContainer = nestedProperty(fullContainer, axesTarget).get();
         this.container = this.container =
           nestedProperty(container, axesTarget).get() || {};
@@ -125,7 +162,7 @@ export default function connectAxesToLayout(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return <WrappedComponent {...this.props} options={this.axesOptions} />;
     }
   }
 
@@ -134,12 +171,7 @@ export default function connectAxesToLayout(WrappedComponent) {
   )}`;
 
   AxesConnectedComponent.propTypes = {
-    defaultAxesTarget: PropTypes.string,
     localize: PropTypes.func,
-  };
-
-  AxesConnectedComponent.defaultProps = {
-    defaultAxesTarget: 'allaxes',
   };
 
   AxesConnectedComponent.contextTypes = {

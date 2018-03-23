@@ -9,6 +9,7 @@ const RangeSelectorFold = connectRangeSelectorToAxis(Fold);
 class RangeSelectorAccordion extends Component {
   render() {
     if (
+      !this.context.fullContainer ||
       !this.context.fullContainer.rangeselector ||
       !this.context.fullContainer.rangeselector.visible ||
       // next line checks for "all" case
@@ -59,6 +60,10 @@ RangeSelectorAccordion.contextTypes = {
 RangeSelectorAccordion.propTypes = {
   children: PropTypes.node,
   localize: PropTypes.func,
+};
+
+RangeSelectorAccordion.plotly_editor_traits = {
+  no_visibility_forcing: true,
 };
 
 export default localize(RangeSelectorAccordion);
