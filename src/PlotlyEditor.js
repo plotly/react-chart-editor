@@ -40,6 +40,7 @@ class PlotlyEditor extends Component {
             onInitialized={(fig, graphDiv) => this.setState({graphDiv})}
             onUpdate={(fig, graphDiv) => this.setState({graphDiv})}
             style={{width: '100%', height: '100%'}}
+            divId={this.props.divId}
           />
         </div>
       </div>
@@ -63,6 +64,7 @@ PlotlyEditor.propTypes = {
   locale: PropTypes.string,
   traceTypesConfig: PropTypes.object,
   dictionaries: PropTypes.object,
+  divId: PropTypes.string,
 };
 
 export default PlotlyEditor;

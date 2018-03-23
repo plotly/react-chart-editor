@@ -9,3 +9,6 @@ body {
   max-height: 100vh;
 }
 
+.mocks * {
+  z-index: 100;
+}

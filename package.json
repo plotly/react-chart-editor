@@ -62,9 +62,10 @@
     "postcss-remove-root": "^0.0.2",
     "prettier": "^1.9.2",
     "react": "^16.0.0",
+    "react-ace": "^5.9.0",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^4.0.0-beta.21",
-    "react-json-view": "^1.16.1",
+    "react-inspector": "^2.2.2",
     "react-test-renderer": "^16.2.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.19.1",
@@ -77,9 +78,7 @@
   },
   "homepage": "https://plotly.github.io/react-chart-editor/",
   "jest": {
-    "roots": [
-      "<rootDir>/src/"
-    ],
+    "roots": ["<rootDir>/src/"],
     "moduleNameMapper": {
       "^.+\\.css$": "<rootDir>/config/CSSStub.js"
     }
@@ -104,18 +103,25 @@
   "scripts": {
     "lint": "prettier --write \"src/**/*.js\"",
     "make:arrows": "node scripts/makeArrows.js",
-    "make:combined-translation-keys": "npm run make:translation-keys && node scripts/combineTranslationKeys.js",
-    "make:lib": "mkdirp lib && npm run make:lib:js && npm run make:lib:css && npm run make:combined-translation-keys",
-    "make:lib:css": "mkdirp lib && babel-node scripts/styles.js && SASS_ENV=ie babel-node scripts/styles.js && babel-node scripts/postcss.js && SASS_ENV=ie babel-node scripts/postcss.js",
-    "make:lib:js": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps",
+    "make:combined-translation-keys":
+      "npm run make:translation-keys && node scripts/combineTranslationKeys.js",
+    "make:lib":
+      "mkdirp lib && npm run make:lib:js && npm run make:lib:css && npm run make:combined-translation-keys",
+    "make:lib:css":
+      "mkdirp lib && babel-node scripts/styles.js && SASS_ENV=ie babel-node scripts/styles.js && babel-node scripts/postcss.js && SASS_ENV=ie babel-node scripts/postcss.js",
+    "make:lib:js":
+      "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps",
     "make:translation-keys": "node scripts/findTranslationKeys.js",
     "prepublishOnly": "npm run make:lib",
     "start": "webpack-dev-server --hot",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill",
-    "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
+    "test:lint":
+      "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:pretty":
+      "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "watch":
+      "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
     "watch-test": "jest --watch"
   }
 }
