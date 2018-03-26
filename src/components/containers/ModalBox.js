@@ -4,9 +4,10 @@ import classnames from 'classnames';
 
 export default class ModalBox extends Component {
   render() {
-    const {backgroundDark, children, onClose} = this.props;
+    const {backgroundDark, children, onClose, relative} = this.props;
     const modalboxClass = classnames('modalbox', {
       'modalbox--dark': backgroundDark,
+      'modalbox--relative': relative,
     });
     return (
       <div className={modalboxClass}>
@@ -19,6 +20,7 @@ export default class ModalBox extends Component {
 
 ModalBox.propTypes = {
   backgroundDark: PropTypes.bool,
+  relative: PropTypes.bool,
   children: PropTypes.node,
   onClose: PropTypes.func,
 };

@@ -239,6 +239,24 @@ class EditorControls extends Component {
         }
         break;
 
+      case EDITOR_ACTIONS.DELETE_TRANSFORM:
+        if (isNumeric(payload.transformIndex)) {
+          for (let i = 0; i < graphDiv.data.length; i++) {
+            if ((graphDiv.data[i].uid === payload.traceUid) !== -1) {
+              graphDiv.data[i].transforms.splice(payload.transformIndex, 1);
+              if (this.props.onUpdate) {
+                this.props.onUpdate(
+                  graphDiv.data,
+                  Object.assign({}, graphDiv.layout),
+                  graphDiv._transitionData._frames
+                );
+              }
+              break;
+            }
+          }
+        }
+        break;
+
       default:
         throw new Error('must specify an action type to handleEditorUpdate');
     }

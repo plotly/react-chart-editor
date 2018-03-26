@@ -24,18 +24,10 @@ export class UnconnectedDataSelector extends Component {
   setLocals(props, context) {
     this.dataSources = context.dataSources || {};
     this.dataSourceOptions = context.dataSourceOptions || [];
-    this.dataSrcExists = false;
-    if (attributeIsData(props.attrMeta)) {
-      this.dataSrcExists = true;
-      this.srcAttr = props.attr + 'src';
-      this.srcProperty = nestedProperty(props.container, this.srcAttr);
-    }
 
-    if (this.dataSrcExists) {
-      this.fullValue = this.srcProperty.get();
-    } else {
-      this.fullValue = this.props.fullValue;
-    }
+    this.srcAttr = props.attr + 'src';
+    this.srcProperty = nestedProperty(props.container, this.srcAttr);
+    this.fullValue = this.srcProperty.get();
 
     this.is2D =
       (props.attr === 'z' &&
@@ -77,11 +69,10 @@ export class UnconnectedDataSelector extends Component {
       ) {
         update[this.props.attr] = update[this.props.attr][0];
       }
-      update[this.srcAttr] = value;
     } else {
-      update[this.srcAttr] = value;
       update[this.props.attr] = this.dataSources[value] || null;
     }
+    update[this.srcAttr] = value;
 
     this.props.updateContainer(update);
   }

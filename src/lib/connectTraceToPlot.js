@@ -31,7 +31,7 @@ export default function connectTraceToPlot(WrappedComponent) {
 
       let fullTrace = {};
       for (let i = 0; i < fullData.length; i++) {
-        if (trace.uid === fullData[i]._fullInput.uid) {
+        if (trace.uid === fullData[i]._fullInput._input.uid) {
           fullTrace = fullData[i]._fullInput;
           break;
         }
