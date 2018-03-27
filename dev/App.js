@@ -6,7 +6,7 @@ import 'react-select/dist/react-select.css';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
-import PlotlyEditor, {DefaultEditor, Panel} from '../src';
+import PlotlyEditor, {DefaultEditor, Panel, GraphTransformsPanel} from '../src';
 import Inspector from 'react-inspector';
 import 'brace/mode/json';
 import 'brace/theme/textmate';
@@ -118,6 +118,7 @@ class App extends Component {
           advancedTraceTypeSelector
         >
           <DefaultEditor>
+            <GraphTransformsPanel group="Dev" name="Transforms" />
             <Panel group="Dev" name="JSON">
               <div className="mocks">
                 <Select

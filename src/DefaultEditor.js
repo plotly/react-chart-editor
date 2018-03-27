@@ -4,7 +4,6 @@ import {PanelMenuWrapper} from './components';
 import {localize} from './lib';
 import {
   GraphCreatePanel,
-  GraphTransformsPanel,
   StyleLayoutPanel,
   StyleAxesPanel,
   StyleLegendPanel,
@@ -21,7 +20,6 @@ const DefaultEditor = ({children, localize: _}) => (
   <Fragment>
     <PanelMenuWrapper>
       <GraphCreatePanel group={_('Graph')} name={_('Create')} />
-      <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />
       <StyleTracesPanel group={_('Style')} name={_('Traces')} />
       <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
       <StyleNotesPanel group={_('Style')} name={_('Notes')} />

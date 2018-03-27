@@ -77,6 +77,7 @@ import {
 import {
   GraphCreatePanel,
   StyleAxesPanel,
+  GraphTransformsPanel,
   StyleColorbarsPanel,
   StyleLayoutPanel,
   StyleLegendPanel,
@@ -136,6 +137,7 @@ export {
   Radio,
   Section,
   SingleSidebarItem,
+  GraphTransformsPanel,
   StyleAxesPanel,
   StyleColorbarsPanel,
   StyleLayoutPanel,
