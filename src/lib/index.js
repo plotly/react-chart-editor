@@ -5,6 +5,8 @@ import connectSliderToLayout from './connectSliderToLayout';
 import connectImageToLayout from './connectImageToLayout';
 import connectUpdateMenuToLayout from './connectUpdateMenuToLayout';
 import connectRangeSelectorToAxis from './connectRangeSelectorToAxis';
+import connectTransformToTrace from './connectTransformToTrace';
+import connectAggregationToTransform from './connectAggregationToTransform';
 import connectAxesToLayout from './connectAxesToLayout';
 import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
 import connectToContainer, {
@@ -82,6 +84,8 @@ export {
   connectLayoutToPlot,
   connectToContainer,
   connectRangeSelectorToAxis,
+  connectTransformToTrace,
+  connectAggregationToTransform,
   connectTraceToPlot,
   containerConnectedContextTypes,
   computeTraceOptionsFromSchema,

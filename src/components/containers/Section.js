@@ -59,7 +59,7 @@ class Section extends Component {
     }
     return (
       <div className="section">
-        <SectionHeader name={this.props.name} />
+        {this.props.name && <SectionHeader name={this.props.name} />}
         {this.children}
       </div>
     );

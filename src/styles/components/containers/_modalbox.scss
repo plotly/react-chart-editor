@@ -9,7 +9,7 @@
   box-shadow: var(--box-shadow-base);
   left: calc(var(--spacing-quarter-unit) * -1);
   width: calc(100% + var(--spacing-half-unit));
-  top:calc(100% + var(--spacing-quarter-unit));
+  top: calc(100% + var(--spacing-quarter-unit));
   background-color: var(--color-background-top);
   @include z-index('cloud');
 
@@ -24,5 +24,9 @@
 
   &--dark {
     background-color: var(--color-background-inverse);
+  }
+
+  &--relative {
+    position: relative;
   }
 }

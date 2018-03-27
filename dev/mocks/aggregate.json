@@ -1,0 +1,44 @@
+{
+  "data": [
+    {
+      "type": "scatter",
+      "x": [
+        "Moe",
+        "Larry",
+        "Curly",
+        "Moe",
+        "Larry",
+        "Curly",
+        "Moe",
+        "Larry",
+        "Curly",
+        "Moe",
+        "Larry",
+        "Curly"
+      ],
+      "y": [1, 6, 2, 8, 2, 9, 4, 5, 1, 5, 2, 8],
+      "mode": "markers",
+      "transforms": [
+        {
+          "enabled" :true,
+          "type": "aggregate",
+          "groups": [
+            "Moe",
+            "Larry",
+            "Curly",
+            "Moe",
+            "Larry",
+            "Curly",
+            "Moe",
+            "Larry",
+            "Curly",
+            "Moe",
+            "Larry",
+            "Curly"
+          ],
+          "aggregations": [{"target": "y", "func": "avg", "enabled": true}]
+        }
+      ]
+    }
+  ]
+}

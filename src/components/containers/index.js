@@ -10,6 +10,7 @@ import MenuPanel from './MenuPanel';
 import Panel from './Panel';
 import Section from './Section';
 import TraceAccordion from './TraceAccordion';
+import TransformAccordion from './TransformAccordion';
 import TraceMarkerSection from './TraceMarkerSection';
 import {LayoutPanel, TraceTypeSection} from './derived';
 import TraceRequiredPanel from './TraceRequiredPanel';
@@ -30,6 +31,7 @@ export {
   Panel,
   Section,
   TraceAccordion,
+  TransformAccordion,
   TraceMarkerSection,
   TraceRequiredPanel,
   LayoutPanel,

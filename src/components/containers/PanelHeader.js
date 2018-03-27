@@ -3,8 +3,20 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {PlusIcon, ResizeUpIcon, ResizeDownIcon} from 'plotly-icons';
 import {localize} from 'lib';
+import ModalBox from './ModalBox';
 
 class PanelHeader extends Component {
+  constructor() {
+    super();
+    this.state = {addPanelOpen: false};
+
+    this.togglePanel = this.togglePanel.bind(this);
+  }
+
+  togglePanel() {
+    this.setState({addPanelOpen: !this.state.addPanelOpen});
+  }
+
   render() {
     const {
       children,
@@ -43,10 +55,29 @@ class PanelHeader extends Component {
               <Button
                 variant="primary"
                 className="js-add-button"
-                onClick={() => addAction.handler(this.context)}
+                onClick={
+                  Array.isArray(addAction.handler)
+                    ? this.togglePanel
+                    : () => addAction.handler(this.context)
+                }
                 icon={icon}
                 label={addAction.label}
-              />{' '}
+              />
+              {this.state.addPanelOpen && (
+                <ModalBox onClose={this.togglePanel} relative>
+                  {addAction.handler.map(({label, handler}) => (
+                    <p
+                      key={label}
+                      onClick={() => {
+                        handler(this.context);
+                        this.togglePanel();
+                      }}
+                    >
+                      {label}
+                    </p>
+                  ))}
+                </ModalBox>
+              )}
             </div>
           ) : null}
         </div>

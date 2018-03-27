@@ -1,4 +1,5 @@
 import GraphCreatePanel from './GraphCreatePanel';
+import GraphTransformsPanel from './GraphTransformsPanel';
 import StyleLayoutPanel from './StyleLayoutPanel';
 import StyleAxesPanel from './StyleAxesPanel';
 import StyleLegendPanel from './StyleLegendPanel';
@@ -12,6 +13,7 @@ import StyleUpdateMenusPanel from './StyleUpdateMenusPanel';
 
 export {
   GraphCreatePanel,
+  GraphTransformsPanel,
   StyleLayoutPanel,
   StyleAxesPanel,
   StyleLegendPanel,

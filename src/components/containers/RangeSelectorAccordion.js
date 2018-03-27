@@ -27,7 +27,6 @@ class RangeSelectorAccordion extends Component {
         <RangeSelectorFold
           key={i}
           rangeselectorIndex={i}
-          buttonIndex={i}
           name={btn.label}
           canDelete={true}
         >
@@ -40,11 +39,15 @@ class RangeSelectorAccordion extends Component {
       handler: context => {
         const {fullContainer, updateContainer} = context;
         if (updateContainer) {
-          const shapeIndex = Array.isArray(fullContainer.rangeselector.buttons)
+          const rangeselectorIndex = Array.isArray(
+            fullContainer.rangeselector.buttons
+          )
             ? fullContainer.rangeselector.buttons.length
             : 0;
 
-          updateContainer({[`rangeselector.buttons[${shapeIndex}]`]: {}});
+          updateContainer({
+            [`rangeselector.buttons[${rangeselectorIndex}]`]: {},
+          });
         }
       },
     };

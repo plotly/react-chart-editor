@@ -6,7 +6,7 @@ import 'react-select/dist/react-select.css';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
-import PlotlyEditor, {DefaultEditor, Panel} from '../src';
+import PlotlyEditor, {DefaultEditor, Panel, GraphTransformsPanel} from '../src';
 import Inspector from 'react-inspector';
 import 'brace/mode/json';
 import 'brace/theme/textmate';
@@ -15,13 +15,21 @@ import 'brace/theme/textmate';
 import ACCESS_TOKENS from '../accessTokens';
 
 const dataSources = {
-  ints: [1, 2, 3, 4, 5], // eslint-disable-line no-magic-numbers
-  'jagged ints': [2, 1, 3, 5, 4], // eslint-disable-line no-magic-numbers
+  ints: [1, 2, 3, 4, 5, 6], // eslint-disable-line no-magic-numbers
+  'jagged ints': [2, 1, 3, 5, 4, 6], // eslint-disable-line no-magic-numbers
+  'toggle ints': [1, -1, 1, -1, 1, -1], // eslint-disable-line no-magic-numbers
   'big ints': [1000, 10100, 10000, 20000, 100000], // eslint-disable-line no-magic-numbers
-  dates: ['2010-01-01', '2010-07-01', '2011-01-01', '2011-07-01', '2012-01-01'],
-  months: ['January', 'February', 'March', 'April', 'May'],
-  colors: ['red', 'orange', 'yellow', 'green', 'blue'],
-  justblue: ['blue'],
+  dates: [
+    '2010-01-01',
+    '2010-07-01',
+    '2011-01-01',
+    '2011-07-01',
+    '2012-01-01',
+    '2012-06-01',
+  ],
+  months: ['January', 'February', 'March', 'April', 'May', 'June'],
+  colors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo'],
+  'blue and red': ['blue', 'red'],
 };
 const dataSourceOptions = Object.keys(dataSources).map(name => ({
   value: name,
@@ -56,13 +64,14 @@ class App extends Component {
   }
 
   loadMock(mockIndex) {
-    fetch(
-      'https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks/' +
-        this.state.mocks[mockIndex],
-      {
-        headers: new Headers({Accept: 'application/vnd.github.v3.raw'}),
-      }
-    )
+    const mockName = this.state.mocks[mockIndex];
+    const prefix =
+      mockName[0] === '/'
+        ? ''
+        : 'https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks/';
+    fetch(prefix + mockName, {
+      headers: new Headers({Accept: 'application/vnd.github.v3.raw'}),
+    })
       .then(response => response.json())
       .then(figure => {
         const {data, layout, frames} = figure;
@@ -109,6 +118,7 @@ class App extends Component {
           advancedTraceTypeSelector
         >
           <DefaultEditor>
+            <GraphTransformsPanel group="Dev" name="Transforms" />
             <Panel group="Dev" name="JSON">
               <div className="mocks">
                 <Select
@@ -126,14 +136,13 @@ class App extends Component {
                   placeholder={'Search for a mock'}
                 />
               </div>
-              <br />
               <button
+                className="devbtn"
                 onClick={this.loadJSON}
                 style={{background: this.state.json_error ? 'pink' : 'white'}}
               >
                 Save
               </button>
-              <br />
               <AceEditor
                 mode="json"
                 theme="textmate"
@@ -152,10 +161,12 @@ class App extends Component {
                     exec: this.loadJSON,
                   },
                 ]}
+                editorProps={{$blockScrolling: true}}
               />
             </Panel>
             <Panel group="Dev" name="Inspector">
               <button
+                className="devbtn"
                 onClick={() => {
                   const gd = document.getElementById('gd') || {};
                   this.setState({
@@ -168,7 +179,6 @@ class App extends Component {
               >
                 Refresh
               </button>
-              <br />
               <div style={{height: '80vh'}}>
                 <Inspector
                   data={{_full: this.state.full}}
