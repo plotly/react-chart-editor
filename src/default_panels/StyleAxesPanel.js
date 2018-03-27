@@ -23,8 +23,10 @@ import {
   RangeSelectorAccordion,
 } from '../components';
 
-import {localize} from '../lib';
+import {localize, connectLayoutToPlot} from '../lib';
 import {TRACE_TO_AXIS} from '../lib/constants';
+
+const LayoutSection = connectLayoutToPlot(Section);
 
 class StyleAxesPanel extends Component {
   constructor(props, context) {
@@ -66,17 +68,10 @@ class StyleAxesPanel extends Component {
 
         <AxesFold
           name={_('Layout')}
-          axisFilter={axis => !axis._name.includes('radial')}
+          axisFilter={axis =>
+            !axis._name.includes('radial') && !axis._name.includes('angular')
+          }
         >
-          <Dropdown
-            label={_('Direction')}
-            attr="direction"
-            options={[
-              {label: _('Clockwise'), value: 'clockwise'},
-              {label: _('Counter Clockwise'), value: 'counterclockwise'},
-            ]}
-            clearable={false}
-          />
           <Section name={_('Boundaries')} attr="domain[0]">
             <AxisOverlayDropdown
               label={_('Overlay')}
@@ -103,7 +98,50 @@ class StyleAxesPanel extends Component {
           </TraceTypeSection>
         </AxesFold>
 
-        <AxesFold name={_('Range')}>
+        <AxesFold
+          name={_('Angular Range')}
+          axisFilter={axis => axis._name.includes('angular')}
+        >
+          <Dropdown
+            attr="type"
+            label={_('Type')}
+            clearable={false}
+            options={[
+              {label: _('Linear'), value: 'linear'},
+              {label: _('Categorical'), value: 'category'},
+            ]}
+          />
+          <Dropdown
+            label={_('Direction')}
+            attr="direction"
+            options={[
+              {label: _('Clockwise'), value: 'clockwise'},
+              {label: _('Counter Clockwise'), value: 'counterclockwise'},
+            ]}
+            clearable={false}
+          />
+          <LayoutSection>
+            <Numeric
+              attr="polar.sector[0]"
+              label={_('Theta Start')}
+              min={0}
+              max={360}
+              showSlider
+            />
+            <Numeric
+              attr="polar.sector[1]"
+              label={_('Theta End')}
+              min={0}
+              max={360}
+              showSlider
+            />
+          </LayoutSection>
+        </AxesFold>
+
+        <AxesFold
+          name={_('Range')}
+          axisFilter={axis => !axis._name.includes('angular')}
+        >
           <Section name={_('Range')} attr="autorange">
             <Dropdown
               attr="type"
@@ -129,12 +167,7 @@ class StyleAxesPanel extends Component {
           </Section>
           <TraceTypeSection
             name={_('Range')}
-            traceTypes={[
-              'choropleth',
-              'scattergeo',
-              'scatterpolar',
-              'scatterpolargl',
-            ]}
+            traceTypes={['choropleth', 'scattergeo']}
             attr="range"
           >
             <AxesRange label={_('Min')} attr="range[0]" />

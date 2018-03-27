@@ -5,12 +5,11 @@ import {
   ColorPicker,
   Flaglist,
   ContourNumeric,
-  LayoutNumericFraction,
-  LayoutNumericFractionInverse,
   LineDashSelector,
   LineShapeSelector,
   Numeric,
   NumericFraction,
+  NumericFractionInverse,
   Radio,
   TextEditor,
   Section,
@@ -26,7 +25,9 @@ import {
   FontSelector,
 } from '../components';
 
-import {localize} from '../lib';
+import {localize, connectLayoutToPlot} from '../lib';
+
+const LayoutSection = connectLayoutToPlot(Section);
 
 const StyleTracesPanel = ({localize: _}) => (
   <TraceAccordion canGroup>
@@ -141,12 +142,12 @@ const StyleTracesPanel = ({localize: _}) => (
       <ColorPicker label={_('Border Color')} attr="marker.line.color" />
     </TraceMarkerSection>
 
-    <Section name={_('Size and Spacing')}>
-      <LayoutNumericFractionInverse label={_('Bar Width')} attr="bargap" />
-      <LayoutNumericFractionInverse label={_('Box Width')} attr="boxgap" />
-      <LayoutNumericFraction label={_('Bar Padding')} attr="bargroupgap" />
-      <LayoutNumericFraction label={_('Box Padding')} attr="boxgroupgap" />
-    </Section>
+    <LayoutSection name={_('Size and Spacing')}>
+      <NumericFractionInverse label={_('Bar Width')} attr="bargap" />
+      <NumericFractionInverse label={_('Box Width')} attr="boxgap" />
+      <NumericFraction label={_('Bar Padding')} attr="bargroupgap" />
+      <NumericFraction label={_('Box Padding')} attr="boxgroupgap" />
+    </LayoutSection>
 
     <Section name={_('Ticks')}>
       <Numeric label={_('Width')} attr="tickwidth" />

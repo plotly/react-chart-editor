@@ -5,12 +5,10 @@ import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedAxisRangeValue} from './AxisRangeValue';
 import {UnconnectedRadio} from './Radio';
 import {
-  connectLayoutToPlot,
   connectToContainer,
   getAllAxes,
   getAxisTitle,
   axisIdToAxisName,
-  supplyLayoutPlotProps,
 } from 'lib';
 
 export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
@@ -283,29 +281,16 @@ export const NumericFractionDomain = connectToContainer(
   {
     modifyPlotProps: (props, context, plotProps) => {
       numericFractionModifyPlotProps(props, context, plotProps);
-      if (context.container.overlaying) {
+      if (context.container && context.container.overlaying) {
         plotProps.isVisible = null;
       }
     },
   }
 );
 
-export const LayoutNumericFraction = connectLayoutToPlot(
-  connectToContainer(UnconnectedNumericFraction, {
-    supplyPlotProps: supplyLayoutPlotProps,
-    modifyPlotProps: numericFractionModifyPlotProps,
-  })
-);
-
-export const LayoutNumeric = connectLayoutToPlot(
-  connectToContainer(UnconnectedNumeric, {
-    supplyPlotProps: supplyLayoutPlotProps,
-  })
-);
-
-export const LayoutNumericFractionInverse = connectLayoutToPlot(
-  connectToContainer(UnconnectedNumericFraction, {
-    supplyPlotProps: supplyLayoutPlotProps,
+export const NumericFractionInverse = connectToContainer(
+  UnconnectedNumericFraction,
+  {
     modifyPlotProps: (props, context, plotProps) => {
       const {attrMeta, fullValue, updatePlot} = plotProps;
       if (isNumeric(fullValue)) {
@@ -331,7 +316,7 @@ export const LayoutNumericFractionInverse = connectLayoutToPlot(
         }
       }
     },
-  })
+  }
 );
 
 export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
@@ -475,65 +460,6 @@ function computeAxesRefOptions(axes, propsAttr) {
 
   return options;
 }
-
-export const GeoScope = connectLayoutToPlot(
-  connectToContainer(UnconnectedDropdown, {
-    supplyPlotProps: (props, context) => {
-      const {localize: _} = props;
-      const options = [
-        {label: _('World'), value: 'world'},
-        {label: _('USA'), value: 'usa'},
-        {label: _('Europe'), value: 'europe'},
-        {label: _('Asia'), value: 'asia'},
-        {label: _('Africa'), value: 'africa'},
-        {label: _('North America'), value: 'north america'},
-        {label: _('South America'), value: 'south america'},
-      ];
-      return {...supplyLayoutPlotProps(props, context), options};
-    },
-  })
-);
-
-export const GeoProjections = connectLayoutToPlot(
-  connectToContainer(UnconnectedDropdown, {
-    supplyPlotProps: (props, context) => {
-      const {localize: _} = props;
-      let options = [
-        {label: _('Equirectangular'), value: 'equirectangular'},
-        {label: _('Mercator'), value: 'mercator'},
-        {label: _('Orthographic'), value: 'orthographic'},
-        {label: _('Natural Earth'), value: 'naturalEarth'},
-        {label: _('Kavrayskiy7'), value: 'kavrayskiy7'},
-        {label: _('Miller'), value: 'miller'},
-        {label: _('Robinson'), value: 'robinson'},
-        {label: _('Eckert4'), value: 'eckert4'},
-        {label: _('Azimuthal Equal Area'), value: 'azimuthalEqualArea'},
-        {label: _('Azimuthal Equidistant'), value: 'azimuthalEquidistant'},
-        {label: _('Conic Equal Area'), value: 'conicEqualArea'},
-        {label: _('Conic Conformal'), value: 'conicConformal'},
-        {label: _('Conic Equidistant'), value: 'conicEquidistant'},
-        {label: _('Gnomonic'), value: 'gnomonic'},
-        {label: _('Stereographic'), value: 'stereographic'},
-        {label: _('Mollweide'), value: 'mollweide'},
-        {label: _('Hammer'), value: 'hammer'},
-        {label: _('Transverse Mercator'), value: 'transverseMercator'},
-        {label: _('Winkel Tripel'), value: 'winkel3'},
-        {label: _('Aitoff'), value: 'aitoff'},
-        {label: _('Sinusoidal'), value: 'sinusoidal'},
-      ];
-
-      if (
-        context.fullLayout &&
-        context.fullLayout.geo &&
-        context.fullLayout.geo.scope === 'usa'
-      ) {
-        options = [{label: _('Albers USA'), value: 'albers usa'}];
-      }
-
-      return {...supplyLayoutPlotProps(props, context), options};
-    },
-  })
-);
 
 export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
   modifyPlotProps: (props, context, plotProps) => {
