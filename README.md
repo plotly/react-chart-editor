@@ -66,11 +66,11 @@ The [custom editor example](https://github.com/plotly/react-chart-editor/tree/ma
 
 ### General-purpose Containers
 
-* `<Panel />`: renders as a generic rectangular container with special handling for collapsing/expanding child `<Fold />`s and optionally an 'add' button for creating them
 * `<PanelMenuWrapper />`: renders as a sidebar selector menu for `<Panel />`s
-* `<Fold />`: collapsable container within a `<Panel />`
-* `<Section />`: uncollapsable container within a `<Panel />` or `<Fold />`
-* `<SectionHeader/>`: a `SectionHeader` to use separately with custom layouts.
+* `<PlotlyPanel />`: renders as a generic rectangular container with special handling for collapsing/expanding child `<Fold />`s and optionally an 'add' button for creating them, has special [visibility rules](https://github.com/plotly/react-chart-editor/tree/master/src/components/containers/_tests_/ConnectedContainersVisibility-test.js) that depend on plotly figure
+* `<PlotlyFold />`: collapsable container within a `<Panel />`, has special [visibility rules](https://github.com/plotly/react-chart-editor/tree/master/src/components/containers/_tests_/ConnectedContainersVisibility-test.js) that depend on plotly figure
+* `<PlotlySection />`: uncollapsable container within a `<Panel />` or `<Fold />`, has special [visibility rules](https://github.com/plotly/react-chart-editor/tree/master/src/components/containers/_tests_/ConnectedContainersVisibility-test.js) that depend on plotly figure
+* `<Panel/>`, `<Fold/>`, `<Section/>`: same as `PlotlyPanel`, `PlotlyFold`, `PlotlySection`, but there are no special visibility rules, those containers [always show, and always show their children](https://github.com/plotly/react-chart-editor/tree/master/src/components/containers/_tests_/UnconnectedContainersVisibility-test.js)
 * `<SingleSidebarItem/>`: wraps any item you would like to see appear in the sidebar menu.
 
 ### General-purpose Fields

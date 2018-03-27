@@ -25,6 +25,11 @@ class PlotlyFold extends Component {
   determineVisibility(nextProps, nextContext) {
     this.foldVisible = false;
 
+    if (this.props.forceVisibility) {
+      this.foldVisible = true;
+      return;
+    }
+
     React.Children.forEach(nextProps.children, child => {
       if (!child || this.foldVisible) {
         return;
@@ -149,6 +154,7 @@ PlotlyFold.propTypes = {
   messageIfEmpty: PropTypes.string,
   localize: PropTypes.func,
   name: PropTypes.string,
+  forceVisibility: PropTypes.bool,
 };
 
 PlotlyFold.contextTypes = Object.assign(
@@ -160,8 +166,7 @@ PlotlyFold.contextTypes = Object.assign(
 
 export default localize(PlotlyFold);
 
-// just to keep naming consistent
 export class Fold extends PlotlyFold {}
-Fold.plotly_editor_traits = {
-  foldable: true,
+Fold.defaultProps = {
+  forceVisibility: true,
 };
