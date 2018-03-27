@@ -1,12 +1,16 @@
 import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
 import connectTraceToPlot from '../connectTraceToPlot';
-import {Fold, Panel, Section} from '../../components/containers';
+import {
+  PlotlyFold,
+  PlotlyPanel,
+  PlotlySection,
+} from '../../components/containers';
 import {Numeric} from '../../components/fields';
 import {TestEditor, fixtures, plotly} from '../test-utils';
 import {mount} from 'enzyme';
 
-const Traces = [Panel, Fold, Section].map(connectTraceToPlot);
+const Traces = [PlotlyPanel, PlotlyFold, PlotlySection].map(connectTraceToPlot);
 const Editor = props => (
   <TestEditor {...{plotly, onUpdate: jest.fn(), ...props}} />
 );
@@ -18,11 +22,11 @@ Traces.forEach(Trace => {
     it('wraps container with fullValue pointing to gd._fullData[i]', () => {
       const wrapper = mount(
         <Editor {...fixtures.scatter()}>
-          <Panel>
+          <PlotlyPanel>
             <Trace traceIndexes={[0]}>
               <Numeric label="Marker Size" attr="marker.size" />
             </Trace>
-          </Panel>
+          </PlotlyPanel>
         </Editor>
       )
         .find('[attr="marker.size"]')
@@ -35,11 +39,11 @@ Traces.forEach(Trace => {
       const beforeUpdateTraces = jest.fn();
       const wrapper = mount(
         <Editor beforeUpdateTraces={beforeUpdateTraces} {...fixtures.scatter()}>
-          <Panel>
+          <PlotlyPanel>
             <Trace traceIndexes={[0]}>
               <Numeric label="Marker Size" attr="marker.size" />
             </Trace>
-          </Panel>
+          </PlotlyPanel>
         </Editor>
       )
         .find('[attr="marker.size"]')
@@ -57,11 +61,11 @@ Traces.forEach(Trace => {
     it('automatically computes min and max defaults', () => {
       const wrapper = mount(
         <Editor {...fixtures.scatter()}>
-          <Panel>
+          <PlotlyPanel>
             <Trace traceIndexes={[0]}>
               <Numeric label="marker size" attr="marker.size" />
             </Trace>
-          </Panel>
+          </PlotlyPanel>
         </Editor>
       )
         .find('[attr="marker.size"]')
@@ -75,9 +79,9 @@ Traces.forEach(Trace => {
       const name = 'Voldemort';
       const wrapper = mount(
         <Editor {...fixtures.scatter({data: [{name}]})}>
-          <Panel>
+          <PlotlyPanel>
             <Trace traceIndexes={[0]} />
-          </Panel>
+          </PlotlyPanel>
         </Editor>
       )
         .find(Trace)

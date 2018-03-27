@@ -1,10 +1,10 @@
-import Fold from './Fold';
+import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectShapeToLayout, localize} from 'lib';
 
-const ShapeFold = connectShapeToLayout(Fold);
+const ShapeFold = connectShapeToLayout(PlotlyFold);
 
 class ShapeAccordion extends Component {
   render() {

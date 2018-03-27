@@ -12,21 +12,21 @@ import {
   PositioningNumeric,
   Radio,
   TextEditor,
-  Section,
+  PlotlySection,
 } from '../components';
 
 import {localize} from '../lib';
 
 const StyleNotesPanel = ({localize: _}) => (
   <AnnotationAccordion canAdd>
-    <Section name={_('Note Text')} attr="text">
+    <PlotlySection name={_('Note Text')} attr="text">
       <TextEditor attr="text" />
       <FontSelector label={_('Typeface')} attr="font.family" />
       <Numeric label={_('Font Size')} attr="font.size" units="px" />
       <ColorPicker label={_('Font Color')} attr="font.color" />
       <Numeric label={_('Angle')} attr="textangle" units="°" />
-    </Section>
-    <Section name={_('Arrow')}>
+    </PlotlySection>
+    <PlotlySection name={_('Arrow')}>
       <Radio
         attr="showarrow"
         options={[
@@ -42,8 +42,8 @@ const StyleNotesPanel = ({localize: _}) => (
       <AnnotationArrowRef label="Y Offset" attr="ayref" />
       <Numeric label={_('X Vector')} attr="ax" />
       <Numeric label={_('Y Vector')} attr="ay" />
-    </Section>
-    <Section name={_('Horizontal Positioning')}>
+    </PlotlySection>
+    <PlotlySection name={_('Horizontal Positioning')}>
       <Dropdown
         label={_('Anchor Point')}
         clearable={false}
@@ -57,8 +57,8 @@ const StyleNotesPanel = ({localize: _}) => (
       />
       <PositioningNumeric label={_('Position')} attr="x" />
       <AnnotationRef label={_('Relative To')} attr="xref" />
-    </Section>
-    <Section name={_('Vertical Positioning')}>
+    </PlotlySection>
+    <PlotlySection name={_('Vertical Positioning')}>
       <Dropdown
         label={_('Anchor Point')}
         clearable={false}
@@ -72,7 +72,7 @@ const StyleNotesPanel = ({localize: _}) => (
       />
       <PositioningNumeric label={_('Position')} attr="y" />
       <AnnotationRef label={_('Relative To')} attr="yref" />
-    </Section>
+    </PlotlySection>
   </AnnotationAccordion>
 );
 

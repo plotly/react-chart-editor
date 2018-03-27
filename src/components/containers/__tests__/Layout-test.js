@@ -1,12 +1,14 @@
 import {Numeric} from '../../fields';
-import {Fold, Panel, Section} from '..';
+import {PlotlyFold, PlotlyPanel, PlotlySection} from '..';
 import NumericInput from '../../widgets/NumericInput';
 import React from 'react';
 import {TestEditor, fixtures} from 'lib/test-utils';
 import {connectLayoutToPlot} from 'lib';
 import {mount} from 'enzyme';
 
-const Layouts = [Panel, Fold, Section].map(connectLayoutToPlot);
+const Layouts = [PlotlyPanel, PlotlyFold, PlotlySection].map(
+  connectLayoutToPlot
+);
 const Editor = props => <TestEditor {...{onUpdate: jest.fn(), ...props}} />;
 
 Layouts.forEach(Layout => {
@@ -14,11 +16,11 @@ Layouts.forEach(Layout => {
     it(`wraps container with fullValue pointing to gd._fullLayout`, () => {
       const wrapper = mount(
         <Editor {...fixtures.scatter({layout: {width: 100}})}>
-          <Panel>
+          <PlotlyPanel>
             <Layout>
               <Numeric label="Width" min={100} step={10} attr="width" />
             </Layout>
-          </Panel>
+          </PlotlyPanel>
         </Editor>
       )
         .find('[attr="width"]')
@@ -34,11 +36,11 @@ Layouts.forEach(Layout => {
           beforeUpdateLayout={beforeUpdateLayout}
           {...fixtures.scatter({layout: {width: 100}})}
         >
-          <Panel>
+          <PlotlyPanel>
             <Layout>
               <Numeric label="Width" min={100} step={10} attr="width" />
             </Layout>
-          </Panel>
+          </PlotlyPanel>
         </Editor>
       )
         .find('[attr="width"]')

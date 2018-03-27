@@ -26,7 +26,7 @@ PanelErrorImpl.propTypes = {
 
 const PanelError = localize(PanelErrorImpl);
 
-class Panel extends Component {
+class PlotlyPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -123,23 +123,29 @@ class Panel extends Component {
   }
 }
 
-Panel.plotly_editor_traits = {no_visibility_forcing: true};
+PlotlyPanel.plotly_editor_traits = {no_visibility_forcing: true};
 
-Panel.propTypes = {
+PlotlyPanel.propTypes = {
   children: PropTypes.node,
   addAction: PropTypes.object,
   showExpandCollapse: PropTypes.bool,
   noPadding: PropTypes.bool,
 };
 
-Panel.defaultProps = {
+PlotlyPanel.defaultProps = {
   showExpandCollapse: true,
 };
 
-Panel.contextTypes = {
+PlotlyPanel.contextTypes = {
   layout: PropTypes.object,
   onUpdate: PropTypes.func,
   updateContainer: PropTypes.func,
 };
 
-export default Panel;
+export default PlotlyPanel;
+
+export class Panel extends PlotlyPanel {}
+
+Panel.plotly_editor_traits = {
+  no_visibility_forcing: false,
+};

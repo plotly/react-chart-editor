@@ -10,7 +10,7 @@ import {
   striptags,
 } from 'lib';
 
-class Fold extends Component {
+class PlotlyFold extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -136,9 +136,9 @@ class Fold extends Component {
   }
 }
 
-Fold.plotly_editor_traits = {foldable: true};
+PlotlyFold.plotly_editor_traits = {foldable: true};
 
-Fold.propTypes = {
+PlotlyFold.propTypes = {
   canDelete: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
@@ -151,11 +151,17 @@ Fold.propTypes = {
   name: PropTypes.string,
 };
 
-Fold.contextTypes = Object.assign(
+PlotlyFold.contextTypes = Object.assign(
   {
     deleteContainer: PropTypes.func,
   },
   containerConnectedContextTypes
 );
 
-export default localize(Fold);
+export default localize(PlotlyFold);
+
+// just to keep naming consistent
+export class Fold extends PlotlyFold {}
+Fold.plotly_editor_traits = {
+  foldable: true,
+};

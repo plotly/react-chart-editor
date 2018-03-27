@@ -1,4 +1,4 @@
-import PlotlyEditor, {Fold} from '..';
+import PlotlyEditor, {PlotlyFold} from '..';
 import {configure, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React, {Component} from 'react';
@@ -54,7 +54,7 @@ describe('<TestApp>', () => {
   });
 
   it('Can create and delete traces', done => {
-    expect(app.find(Fold).length).toEqual(0);
+    expect(app.find(PlotlyFold).length).toEqual(0);
 
     app
       .find('.js-add-button')

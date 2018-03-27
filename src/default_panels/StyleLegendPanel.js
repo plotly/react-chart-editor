@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import {
   ColorPicker,
   FontSelector,
-  Fold,
+  PlotlyFold,
   Numeric,
   Radio,
-  Section,
+  PlotlySection,
   Dropdown,
   TraceRequiredPanel,
 } from '../components';
@@ -15,7 +15,7 @@ import {localize} from '../lib';
 
 const StyleLegendPanel = ({localize: _}) => (
   <TraceRequiredPanel>
-    <Fold name={_('Legend')}>
+    <PlotlyFold name={_('Legend')}>
       <Radio
         attr="showlegend"
         options={[
@@ -23,12 +23,12 @@ const StyleLegendPanel = ({localize: _}) => (
           {label: _('Hide'), value: false},
         ]}
       />
-      <Section name={_('Text')}>
+      <PlotlySection name={_('Text')}>
         <FontSelector label={_('Typeface')} attr="legend.font.family" />
         <Numeric label={_('Size')} attr="legend.font.size" units="px" />
         <ColorPicker label={_('Color')} attr="legend.font.color" />
-      </Section>
-      <Section name={_('Legend Box')}>
+      </PlotlySection>
+      <PlotlySection name={_('Legend Box')}>
         <Numeric
           label={_('Border Width')}
           attr="legend.borderwidth"
@@ -36,8 +36,8 @@ const StyleLegendPanel = ({localize: _}) => (
         />
         <ColorPicker label={_('Border Color')} attr="legend.bordercolor" />
         <ColorPicker label={_('Background Color')} attr="legend.bgcolor" />
-      </Section>
-      <Section name={_('Horizontal Positioning')}>
+      </PlotlySection>
+      <PlotlySection name={_('Horizontal Positioning')}>
         <Dropdown
           label={_('Anchor Point')}
           clearable={false}
@@ -50,8 +50,8 @@ const StyleLegendPanel = ({localize: _}) => (
           ]}
         />
         <Numeric label={_('Position')} showSlider step={0.02} attr="legend.x" />
-      </Section>
-      <Section name={_('Vertical Positioning')}>
+      </PlotlySection>
+      <PlotlySection name={_('Vertical Positioning')}>
         <Dropdown
           label={_('Anchor Point')}
           clearable={false}
@@ -64,8 +64,8 @@ const StyleLegendPanel = ({localize: _}) => (
           ]}
         />
         <Numeric label={_('Position')} showSlider step={0.02} attr="legend.y" />
-      </Section>
-      <Section name={_('Orientation')}>
+      </PlotlySection>
+      <PlotlySection name={_('Orientation')}>
         <Radio
           attr="legend.orientation"
           options={[
@@ -73,8 +73,8 @@ const StyleLegendPanel = ({localize: _}) => (
             {label: _('Horizontal'), value: 'h'},
           ]}
         />
-      </Section>
-      <Section name={_('Trace Order')}>
+      </PlotlySection>
+      <PlotlySection name={_('Trace Order')}>
         <Radio
           attr="legend.traceorder"
           options={[
@@ -82,8 +82,8 @@ const StyleLegendPanel = ({localize: _}) => (
             {label: _('Reversed'), value: 'reversed'},
           ]}
         />
-      </Section>
-    </Fold>
+      </PlotlySection>
+    </PlotlyFold>
   </TraceRequiredPanel>
 );
 

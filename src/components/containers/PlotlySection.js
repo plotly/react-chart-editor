@@ -5,9 +5,28 @@ import {
   localize,
   unpackPlotProps,
 } from '../../lib';
-import SectionHeader from './SectionHeader';
 
-class Section extends Component {
+export class Section extends Component {
+  render() {
+    return (
+      <div className="section">
+        <div className="section__heading">
+          <div className="section__heading__text">{this.props.name}</div>
+        </div>
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+Section.plotly_editor_traits = {no_visibility_forcing: false};
+Section.propTypes = {
+  children: PropTypes.node,
+  name: PropTypes.string,
+  attr: PropTypes.string,
+};
+
+class PlotlySection extends Section {
   constructor(props, context) {
     super(props, context);
 
@@ -52,20 +71,24 @@ class Section extends Component {
     }
     return (
       <div className="section">
-        {this.props.name && <SectionHeader name={this.props.name} />}
+        {this.props.name ? (
+          <div className="section__heading">
+            <div className="section__heading__text">{this.props.name}</div>
+          </div>
+        ) : null}
         {this.props.children}
       </div>
     );
   }
 }
 
-Section.plotly_editor_traits = {no_visibility_forcing: true};
+PlotlySection.plotly_editor_traits = {no_visibility_forcing: true};
 
-Section.propTypes = {
+PlotlySection.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
   attr: PropTypes.string,
 };
 
-Section.contextTypes = containerConnectedContextTypes;
-export default localize(Section);
+PlotlySection.contextTypes = containerConnectedContextTypes;
+export default localize(PlotlySection);

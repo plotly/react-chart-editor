@@ -1,5 +1,5 @@
 import AxesSelector from '../fields/AxesSelector';
-import Fold from './Fold';
+import PlotlyFold from './PlotlyFold';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectAxesToLayout} from 'lib';
@@ -8,10 +8,10 @@ class AxesFold extends Component {
   render() {
     const {children, options} = this.props;
     return options.length && children ? (
-      <Fold {...this.props}>
+      <PlotlyFold {...this.props}>
         {options.length === 1 ? null : <AxesSelector axesOptions={options} />}
         {children}
-      </Fold>
+      </PlotlyFold>
     ) : null;
   }
 }

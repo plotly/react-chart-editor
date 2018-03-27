@@ -5,7 +5,7 @@ import {
   FontSelector,
   Numeric,
   Radio,
-  Section,
+  PlotlySection,
   SliderAccordion,
 } from '../components';
 
@@ -20,30 +20,30 @@ const StyleSlidersPanel = ({localize: _}) => (
         {label: _('Hide'), value: false},
       ]}
     />
-    <Section name={_('Background')}>
+    <PlotlySection name={_('Background')}>
       <ColorPicker label={_('Color')} attr="bgcolor" />
       <ColorPicker label={_('Active Color')} attr="activebgcolor" />
-    </Section>
-    <Section name={_('Border')}>
+    </PlotlySection>
+    <PlotlySection name={_('Border')}>
       <Numeric label={_('Width')} attr="borderwidth" />
       <ColorPicker label={_('Color')} attr="bordercolor" />
-    </Section>
-    <Section name={_('Font')}>
+    </PlotlySection>
+    <PlotlySection name={_('Font')}>
       <FontSelector label={_('Typeface')} attr="font.family" />
       <Numeric label={_('Size')} attr="font.size" />
       <ColorPicker label={_('Color')} attr="font.color" />
-    </Section>
-    <Section name={_('Padding')}>
+    </PlotlySection>
+    <PlotlySection name={_('Padding')}>
       <Numeric label={_('Top')} attr="pad.t" showSlider />
       <Numeric label={_('Bottom')} attr="pad.b" showSlider />
       <Numeric label={_('Left')} attr="pad.l" showSlider />
       <Numeric label={_('Right')} attr="pad.r" showSlider />
-    </Section>
-    <Section name={_('Ticks')}>
+    </PlotlySection>
+    <PlotlySection name={_('Ticks')}>
       <ColorPicker label={_('Color')} attr="tickcolor" />
       <Numeric label={_('Legth')} attr="ticklen" />
       <Numeric label={_('Width')} attr="tickwidth" />
-    </Section>
+    </PlotlySection>
   </SliderAccordion>
 );
 

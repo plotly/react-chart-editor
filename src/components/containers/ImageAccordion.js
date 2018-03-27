@@ -1,10 +1,10 @@
-import Fold from './Fold';
+import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectImageToLayout, localize} from 'lib';
 
-const ImageFold = connectImageToLayout(Fold);
+const ImageFold = connectImageToLayout(PlotlyFold);
 
 class ImageAccordion extends Component {
   render() {

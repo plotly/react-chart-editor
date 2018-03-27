@@ -1,22 +1,23 @@
 import {Numeric} from '../../fields';
-import {LayoutPanel, Fold, Section} from '..';
+import {LayoutPanel, PlotlyFold, PlotlySection, Panel, Fold, Section} from '..';
+import Field from '../../fields/Field';
 import React from 'react';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';
 
-// Basic Section visibility rules (in a panel for context)
-describe('Panel > Section', () => {
+// Basic PlotlySection visibility rules (in a panel for context)
+describe('PlotlyPanel > PlotlySection', () => {
   describe('div', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Section>
+          <PlotlySection>
             <div id="thediv"> ok </div>
-          </Section>
+          </PlotlySection>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('shows Section', () =>
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('shows div', () => expect(wrapper.find('#thediv').length).toEqual(1));
   });
@@ -25,13 +26,13 @@ describe('Panel > Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Section>
+          <PlotlySection>
             <Numeric attr="title" />
-          </Section>
+          </PlotlySection>
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows Section', () =>
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('shows Field', () => expect(wrapper.find('input').length).toEqual(1));
   });
@@ -40,33 +41,106 @@ describe('Panel > Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Section>
+          <PlotlySection>
             <Numeric attr="not_an_attr" />
-          </Section>
+          </PlotlySection>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('HIDES Section', () =>
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
 
-// Basic Fold visibility rules
-describe('Panel > Fold', () => {
-  describe('div', () => {
+// Basic Section visibility rules
+describe('PlotlyPanel > Section', () => {
+  describe('Field-with-invisible-attr', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
-            <div id="thediv"> ok </div>
-          </Fold>
+          <Section name="custom section">
+            <Numeric attr="not_an_attr" />
+          </Section>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+    it('SHOWS Section', () =>
+      expect(wrapper.find('div.section').length).toEqual(1));
+    it('SHOWS custom title', () => {
+      expect(wrapper.find('.section__heading__text').text()).toEqual(
+        'custom section'
+      );
+    });
+    it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
+  });
+
+  describe('Field-with-custom-component', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <LayoutPanel>
+          <PlotlyFold>
+            <Section name="custom section">
+              <Field>
+                <div id="theDiv" />
+              </Field>
+            </Section>
+          </PlotlyFold>
+        </LayoutPanel>
+      </TestEditor>
+    );
+
+    it('SHOWS Section', () =>
+      expect(wrapper.find('div.section').length).toEqual(1));
+    it('SHOWS custom title', () => {
+      expect(wrapper.find('.section__heading__text').text()).toEqual(
+        'custom section'
+      );
+    });
+    it('SHOWS div', () => expect(wrapper.find('#theDiv').length).toEqual(1));
+    it('SHOWS PlotlyFold', () =>
+      expect(wrapper.find(PlotlyFold).length).toEqual(1));
+  });
+});
+
+describe('Panel > Fold ', () => {
+  describe('unconnected Panel and Fold', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <Panel>
+          <Fold>
+            <div id="theDiv" />
+          </Fold>
+        </Panel>
+      </TestEditor>
+    );
+
+    it('SHOWS Fold', () => expect(wrapper.find(Fold).length).toEqual(1));
+    it('behaves as PlotlyFold', () => {
+      expect(wrapper.find(Fold).props().folded).toEqual(false);
+      expect(typeof wrapper.find(Fold).props().toggleFold).toEqual('function');
+    });
+    it('SHOWS div', () => expect(wrapper.find('#theDiv').length).toEqual(1));
+  });
+});
+
+// Basic PlotlyFold visibility rules
+describe('PlotlyPanel > PlotlyFold', () => {
+  describe('div', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <LayoutPanel>
+          <PlotlyFold>
+            <div id="thediv"> ok </div>
+          </PlotlyFold>
+        </LayoutPanel>
+      </TestEditor>
+    );
+
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
     it('shows div', () => expect(wrapper.find('#thediv').length).toEqual(1));
   });
 
@@ -74,13 +148,14 @@ describe('Panel > Fold', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <Numeric attr="title" />
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
     it('shows Field', () => expect(wrapper.find('input').length).toEqual(1));
   });
 
@@ -88,34 +163,52 @@ describe('Panel > Fold', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <Numeric attr="not_an_attr" />
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
+  });
+
+  describe('PlotlyPanel > PlotlyFold > Panel', () => {
+    const wrapper = mount(
+      <TestEditor {...fixtures.scatter()}>
+        <LayoutPanel>
+          <PlotlyFold>
+            <Panel />
+          </PlotlyFold>
+        </LayoutPanel>
+      </TestEditor>
+    );
+
+    it('SHOWS PlotlyFold', () =>
+      expect(wrapper.find(PlotlyFold).length).toEqual(1));
+    it('SHOWS Panel', () => expect(wrapper.find(Panel).length).toEqual(1));
   });
 });
 
-// Section alone can't force a Fold to show itself at the moment
-describe('Panel > Fold > Section', () => {
+// Section alone can't force a PlotlyFold to show itself at the moment
+describe('PlotlyPanel > PlotlyFold > PlotlySection', () => {
   describe('div', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
-            <Section>
+          <PlotlyFold>
+            <PlotlySection>
               <div id="thediv"> ok </div>
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES div', () => expect(wrapper.find('#thediv').length).toEqual(0));
   });
@@ -124,16 +217,17 @@ describe('Panel > Fold > Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
-            <Section>
+          <PlotlyFold>
+            <PlotlySection>
               <Numeric attr="title" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
@@ -142,39 +236,41 @@ describe('Panel > Fold > Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
-            <Section>
+          <PlotlyFold>
+            <PlotlySection>
               <Numeric attr="not_an_attr" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
 
-// p forces Fold open, then normal Section rules apply
-describe('Panel > Fold > p & Section', () => {
+// p forces PlotlyFold open, then normal PlotlySection rules apply
+describe('PlotlyPanel > PlotlyFold > p & PlotlySection', () => {
   describe('div', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <p>I force visibility of the fold</p>
-            <Section>
+            <PlotlySection>
               <div id="thediv"> ok </div>
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
-    it('shows Section', () =>
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('shows div', () => expect(wrapper.find('#thediv').length).toEqual(1));
   });
@@ -183,17 +279,18 @@ describe('Panel > Fold > p & Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <p>I force visibility of the fold</p>
-            <Section>
+            <PlotlySection>
               <Numeric attr="title" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
-    it('shows Section', () =>
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('shows Field', () => expect(wrapper.find('input').length).toEqual(1));
   });
@@ -202,40 +299,42 @@ describe('Panel > Fold > p & Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <p>I force visibility of the fold</p>
-            <Section>
+            <PlotlySection>
               <Numeric attr="not_an_attr" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
-    it('HIDES Section', () =>
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
 
-// Field forces Fold open, then normal Section rules apply
-describe('Panel > Fold > Field-with-visible-attr & Section', () => {
+// Field forces PlotlyFold open, then normal PlotlySection rules apply
+describe('PlotlyPanel > PlotlyFold > Field-with-visible-attr & PlotlySection', () => {
   describe('div', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <Numeric attr="width" />
-            <Section>
+            <PlotlySection>
               <div id="thediv"> ok </div>
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
-    it('shows Section', () =>
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('shows div', () => expect(wrapper.find('#thediv').length).toEqual(1));
   });
@@ -244,19 +343,20 @@ describe('Panel > Fold > Field-with-visible-attr & Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <Numeric attr="width" />
-            <Section>
+            <PlotlySection>
               <Numeric attr="title" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
-    it('shows Section', () =>
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
-    it('shows Field in Section', () =>
+    it('shows Field in PlotlySection', () =>
       expect(wrapper.find('input').length).toEqual(2));
   });
 
@@ -264,41 +364,43 @@ describe('Panel > Fold > Field-with-visible-attr & Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <Numeric attr="width" />
-            <Section>
+            <PlotlySection>
               <Numeric attr="not_an_attr" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
-    it('HIDES Section', () =>
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
-    it('HIDES Field in Section', () =>
+    it('HIDES Field in PlotlySection', () =>
       expect(wrapper.find('input').length).toEqual(1));
   });
 });
 
-// invisible Field doesn't forces Fold open
-describe('Panel > Fold > Field-with-invisible-attr & Section', () => {
+// invisible Field doesn't forces PlotlyFold open
+describe('PlotlyPanel > PlotlyFold > Field-with-invisible-attr & PlotlySection', () => {
   describe('div', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <Numeric attr="not_an_attr" />
-            <Section>
+            <PlotlySection>
               <div id="thediv"> ok </div>
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES div', () => expect(wrapper.find('#thediv').length).toEqual(0));
   });
@@ -307,17 +409,18 @@ describe('Panel > Fold > Field-with-invisible-attr & Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <Numeric attr="not_an_attr" />
-            <Section>
+            <PlotlySection>
               <Numeric attr="title" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
@@ -326,38 +429,40 @@ describe('Panel > Fold > Field-with-invisible-attr & Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <Numeric attr="not_an_attr" />
-            <Section>
+            <PlotlySection>
               <Numeric attr="not_an_attr" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
 
-// visible attr on Section forces Fold open
-describe('Panel > Fold > Section-with-visible-attr', () => {
+// visible attr on PlotlySection forces PlotlyFold open
+describe('PlotlyPanel > PlotlyFold > PlotlySection-with-visible-attr', () => {
   describe('div', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
-            <Section attr="title">
+          <PlotlyFold>
+            <PlotlySection attr="title">
               <div id="thediv"> ok </div>
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
-    it('shows Section', () =>
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('shows div', () => expect(wrapper.find('#thediv').length).toEqual(1));
   });
@@ -366,16 +471,17 @@ describe('Panel > Fold > Section-with-visible-attr', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
-            <Section attr="title">
+          <PlotlyFold>
+            <PlotlySection attr="title">
               <Numeric attr="title" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
-    it('shows Section', () =>
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('shows Field', () => expect(wrapper.find('input').length).toEqual(1));
   });
@@ -384,38 +490,40 @@ describe('Panel > Fold > Section-with-visible-attr', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
-            <Section attr="title">
+          <PlotlyFold>
+            <PlotlySection attr="title">
               <Numeric attr="not_an_attr" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('shows Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
-    it('shows Section', () =>
+    it('shows PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
 
-// invisible attr on Section doesn't force Fold open
-describe('Panel > Fold > Section-with-invisible-attr', () => {
+// invisible attr on Section doesn't force PlotlyFold open
+describe('PlotlyPanel > PlotlyFold > PlotlySection-with-invisible-attr', () => {
   describe('div', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
-            <Section attr="not_an_attr">
+          <PlotlyFold>
+            <PlotlySection attr="not_an_attr">
               <div id="thediv"> ok </div>
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES div', () => expect(wrapper.find('#thediv').length).toEqual(0));
   });
@@ -424,16 +532,17 @@ describe('Panel > Fold > Section-with-invisible-attr', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
-            <Section attr="not_an_attr">
+          <PlotlyFold>
+            <PlotlySection attr="not_an_attr">
               <Numeric attr="title" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
@@ -442,40 +551,42 @@ describe('Panel > Fold > Section-with-invisible-attr', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
-            <Section attr="not_an_attr">
+          <PlotlyFold>
+            <PlotlySection attr="not_an_attr">
               <Numeric attr="not_an_attr" />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
 
-// nothing in the lower level Fold can force the upper one open
-describe('Panel > Fold > Panel > Fold', () => {
+// nothing in the lower level PlotlyFold can force the upper one open
+describe('PlotlyPanel > PlotlyFold > PlotlyPanel > PlotlyFold', () => {
   describe('div', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <LayoutPanel>
-              <Fold>
+              <PlotlyFold>
                 <div id="thediv"> ok </div>
-              </Fold>
+              </PlotlyFold>
             </LayoutPanel>
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
     it('HIDES div', () => expect(wrapper.find('#thediv').length).toEqual(0));
   });
 
@@ -483,17 +594,18 @@ describe('Panel > Fold > Panel > Fold', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <LayoutPanel>
-              <Fold>
+              <PlotlyFold>
                 <Numeric attr="title" />
-              </Fold>
+              </PlotlyFold>
             </LayoutPanel>
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 
@@ -501,44 +613,46 @@ describe('Panel > Fold > Panel > Fold', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <LayoutPanel>
-              <Fold>
+              <PlotlyFold>
                 <Numeric attr="not_an_attr" />
-              </Fold>
+              </PlotlyFold>
             </LayoutPanel>
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
 
-// nothing in the lower level Fold can force the upper one open
+// nothing in the lower level PlotlyFold can force the upper one open
 
-describe('Panel > Fold > Panel > Fold > Section', () => {
+describe('PlotlyPanel > PlotlyFold > PlotlyPanel > PlotlyFold > PlotlySection', () => {
   describe('div', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <LayoutPanel>
-              <Fold>
-                <Section>
+              <PlotlyFold>
+                <PlotlySection>
                   <div id="thediv"> ok </div>
-                </Section>
-              </Fold>
+                </PlotlySection>
+              </PlotlyFold>
             </LayoutPanel>
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES div', () => expect(wrapper.find('#thediv').length).toEqual(0));
   });
@@ -547,20 +661,21 @@ describe('Panel > Fold > Panel > Fold > Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <LayoutPanel>
-              <Fold>
-                <Section>
+              <PlotlyFold>
+                <PlotlySection>
                   <Numeric attr="title" />
-                </Section>
-              </Fold>
+                </PlotlySection>
+              </PlotlyFold>
             </LayoutPanel>
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
@@ -569,50 +684,51 @@ describe('Panel > Fold > Panel > Fold > Section', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <LayoutPanel>
-              <Fold>
-                <Section>
+              <PlotlyFold>
+                <PlotlySection>
                   <Numeric attr="not_an_attr" />
-                </Section>
-              </Fold>
+                </PlotlySection>
+              </PlotlyFold>
             </LayoutPanel>
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('HIDES Fold', () => expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES Section', () =>
+    it('HIDES PlotlyFold', () =>
+      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
 
-// Lower level Panel with visible attr forces the upper Fold open, and visible
-// attr on Section forces the lower Fold open
+// Lower level PlotlyPanel with visible attr forces the upper PlotlyFold open, and visible
+// attr on PlotlySection forces the lower PlotlyFold open
 
-describe('Panel > Fold > Panel-with-visible-attr > Fold > Section-with-visible-attr', () => {
+describe('PlotlyPanel > PlotlyFold > PlotlyPanel-with-visible-attr > PlotlyFold > PlotlySection-with-visible-attr', () => {
   describe('div', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <LayoutPanel attr="title">
-              <Fold>
-                <Section attr="title">
+              <PlotlyFold>
+                <PlotlySection attr="title">
                   <div id="thediv"> ok </div>
-                </Section>
-              </Fold>
+                </PlotlySection>
+              </PlotlyFold>
             </LayoutPanel>
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('shows 2 Folds', () =>
+    it('shows 2 PlotlyFolds', () =>
       expect(wrapper.find('div.fold').length).toEqual(2));
-    it('shows Section', () =>
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('shows div', () => expect(wrapper.find('#thediv').length).toEqual(1));
   });
@@ -621,21 +737,21 @@ describe('Panel > Fold > Panel-with-visible-attr > Fold > Section-with-visible-a
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <LayoutPanel attr="title">
-              <Fold>
-                <Section attr="title">
+              <PlotlyFold>
+                <PlotlySection attr="title">
                   <Numeric attr="title" />
-                </Section>
-              </Fold>
+                </PlotlySection>
+              </PlotlyFold>
             </LayoutPanel>
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows 2 Folds', () =>
+    it('shows 2 PlotlyFolds', () =>
       expect(wrapper.find('div.fold').length).toEqual(2));
-    it('shows Section', () =>
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('shows Field', () => expect(wrapper.find('input').length).toEqual(1));
   });
@@ -644,22 +760,22 @@ describe('Panel > Fold > Panel-with-visible-attr > Fold > Section-with-visible-a
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <LayoutPanel>
-          <Fold>
+          <PlotlyFold>
             <LayoutPanel attr="title">
-              <Fold>
-                <Section attr="title">
+              <PlotlyFold>
+                <PlotlySection attr="title">
                   <Numeric attr="not_an_attr" />
-                </Section>
-              </Fold>
+                </PlotlySection>
+              </PlotlyFold>
             </LayoutPanel>
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     );
 
-    it('shows 2 Folds', () =>
+    it('shows 2 PlotlyFolds', () =>
       expect(wrapper.find('div.fold').length).toEqual(2));
-    it('shows Section', () =>
+    it('shows PlotlySection', () =>
       expect(wrapper.find('div.section').length).toEqual(1));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });

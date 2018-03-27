@@ -1,10 +1,10 @@
-import Fold from './Fold';
+import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectSliderToLayout, localize} from 'lib';
 
-const SliderFold = connectSliderToLayout(Fold);
+const SliderFold = connectSliderToLayout(PlotlyFold);
 
 class SliderAccordion extends Component {
   render() {

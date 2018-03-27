@@ -5,7 +5,7 @@ import {
   Radio,
   Dropzone,
   PositioningNumeric,
-  Section,
+  PlotlySection,
   PositioningRef,
   Dropdown,
 } from '../components';
@@ -36,7 +36,7 @@ const StyleImagesPanel = ({localize: _}) => (
     />
     <PositioningNumeric attr="sizex" label={_('Width')} />
     <PositioningNumeric attr="sizey" label={_('Height')} />
-    <Section name={_('Horizontal Positioning')}>
+    <PlotlySection name={_('Horizontal Positioning')}>
       <Dropdown
         label={_('Anchor Point')}
         clearable={false}
@@ -49,9 +49,9 @@ const StyleImagesPanel = ({localize: _}) => (
       />
       <PositioningNumeric label={_('Position')} attr="x" />
       <PositioningRef label={_('Relative To')} attr="xref" />
-    </Section>
+    </PlotlySection>
 
-    <Section name={_('Vertical Positioning')}>
+    <PlotlySection name={_('Vertical Positioning')}>
       <Dropdown
         label={_('Anchor Point')}
         clearable={false}
@@ -64,7 +64,7 @@ const StyleImagesPanel = ({localize: _}) => (
       />
       <PositioningNumeric label={_('Position')} attr="y" />
       <PositioningRef label={_('Relative To')} attr="yref" />
-    </Section>
+    </PlotlySection>
   </ImageAccordion>
 );
 

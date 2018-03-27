@@ -6,9 +6,9 @@ import {
   TextEditor,
   TraceAccordion,
   Numeric,
-  Fold,
-  Panel,
-  Section,
+  PlotlyFold,
+  PlotlyPanel,
+  PlotlySection,
   Dropdown,
   FontSelector,
   ColorPicker,
@@ -33,8 +33,8 @@ const StyleColorBarsPanel = ({localize: _}) => {
       })}
       {['', 'marker.'].map(prefix => {
         return (
-          <Panel showExpandCollapse={false} key={prefix + ' panel'}>
-            <Fold name={_('Title')}>
+          <PlotlyPanel showExpandCollapse={false} key={prefix + ' panel'}>
+            <PlotlyFold name={_('Title')}>
               <TextEditor attr={prefix + 'colorbar.title'} />
 
               <Dropdown
@@ -59,9 +59,9 @@ const StyleColorBarsPanel = ({localize: _}) => {
                 label={_('Font Color')}
                 attr={prefix + 'colorbar.titlefont.color'}
               />
-            </Fold>
-            <Fold name={_('Size and Positioning')}>
-              <Section name={_('Size')} attr={prefix + 'colorbar.len'}>
+            </PlotlyFold>
+            <PlotlyFold name={_('Size and Positioning')}>
+              <PlotlySection name={_('Size')} attr={prefix + 'colorbar.len'}>
                 <Numeric label={_('Height')} attr={prefix + 'colorbar.len'} />
 
                 <Radio
@@ -84,8 +84,8 @@ const StyleColorBarsPanel = ({localize: _}) => {
                     {label: _('Pixels'), value: 'pixels'},
                   ]}
                 />
-              </Section>
-              <Section
+              </PlotlySection>
+              <PlotlySection
                 name={_('Horizontal Positioning')}
                 attr={prefix + 'colorbar.x'}
               >
@@ -105,8 +105,8 @@ const StyleColorBarsPanel = ({localize: _}) => {
                     {label: _('Right'), value: 'right'},
                   ]}
                 />
-              </Section>
-              <Section
+              </PlotlySection>
+              <PlotlySection
                 name={_('Vertical Positioning')}
                 attr={prefix + 'colorbar.y'}
               >
@@ -126,8 +126,11 @@ const StyleColorBarsPanel = ({localize: _}) => {
                     {label: _('Bottom'), value: 'bottom'},
                   ]}
                 />
-              </Section>
-              <Section name={_('Padding')} attr={prefix + 'colorbar.xpad'}>
+              </PlotlySection>
+              <PlotlySection
+                name={_('Padding')}
+                attr={prefix + 'colorbar.xpad'}
+              >
                 <Numeric
                   label={_('Vertical Padding')}
                   attr={prefix + 'colorbar.ypad'}
@@ -138,9 +141,9 @@ const StyleColorBarsPanel = ({localize: _}) => {
                   attr={prefix + 'colorbar.xpad'}
                   units="px"
                 />
-              </Section>
-            </Fold>
-            <Fold name={_('Labels')}>
+              </PlotlySection>
+            </PlotlyFold>
+            <PlotlyFold name={_('Labels')}>
               <Radio
                 attr={prefix + 'colorbar.showticklabels'}
                 options={[
@@ -186,7 +189,7 @@ const StyleColorBarsPanel = ({localize: _}) => {
                   {label: _('k/M/B'), value: 'B'},
                 ]}
               />
-              <Section name={_('Label Prefix')}>
+              <PlotlySection name={_('Label Prefix')}>
                 <Dropdown
                   label={_('Prefix')}
                   attr={prefix + 'colorbar.tickprefix'}
@@ -207,8 +210,8 @@ const StyleColorBarsPanel = ({localize: _}) => {
                     {label: _('None'), value: 'none'},
                   ]}
                 />
-              </Section>
-              <Section name={_('Label Suffix')}>
+              </PlotlySection>
+              <PlotlySection name={_('Label Suffix')}>
                 <Dropdown
                   label={_('Suffix')}
                   attr={prefix + 'colorbar.ticksuffix'}
@@ -228,8 +231,8 @@ const StyleColorBarsPanel = ({localize: _}) => {
                     {label: _('None'), value: 'none'},
                   ]}
                 />
-              </Section>
-              <Section name={_('Number of Labels')}>
+              </PlotlySection>
+              <PlotlySection name={_('Number of Labels')}>
                 <Radio
                   attr={prefix + 'colorbar.tickmode'}
                   options={[
@@ -250,9 +253,9 @@ const StyleColorBarsPanel = ({localize: _}) => {
                   label={_('Max Number of Labels')}
                   attr={prefix + 'colorbar.nticks'}
                 />
-              </Section>
-            </Fold>
-            <Fold name={_('Ticks')}>
+              </PlotlySection>
+            </PlotlyFold>
+            <PlotlyFold name={_('Ticks')}>
               <Radio
                 attr={prefix + 'colorbar.ticks'}
                 options={[
@@ -275,7 +278,7 @@ const StyleColorBarsPanel = ({localize: _}) => {
                 label={_('Tick Color')}
                 attr={prefix + 'colorbar.tickcolor'}
               />
-              <Section name={_('Number of Markers')}>
+              <PlotlySection name={_('Number of Markers')}>
                 <Radio
                   attr={prefix + 'colorbar.tickmode'}
                   options={[
@@ -296,10 +299,10 @@ const StyleColorBarsPanel = ({localize: _}) => {
                   label={_('Max Number of Markers')}
                   attr={prefix + 'colorbar.nticks'}
                 />
-              </Section>
-            </Fold>
-            <Fold name={_('Borders and Background')}>
-              <Section
+              </PlotlySection>
+            </PlotlyFold>
+            <PlotlyFold name={_('Borders and Background')}>
+              <PlotlySection
                 name={_('Color Bar')}
                 attr={prefix + 'colorbar.outlinewidth'}
               >
@@ -311,8 +314,11 @@ const StyleColorBarsPanel = ({localize: _}) => {
                   label={_('Border Color')}
                   attr={prefix + 'colorbar.outlinecolor'}
                 />
-              </Section>
-              <Section name={_('Container')} attr={prefix + 'colorbar.bgcolor'}>
+              </PlotlySection>
+              <PlotlySection
+                name={_('Container')}
+                attr={prefix + 'colorbar.bgcolor'}
+              >
                 <ColorPicker
                   label={_('Background Color')}
                   attr={prefix + 'colorbar.bgcolor'}
@@ -325,9 +331,9 @@ const StyleColorBarsPanel = ({localize: _}) => {
                   label={_('Border Color')}
                   attr={prefix + 'colorbar.bordercolor'}
                 />
-              </Section>
-            </Fold>
-          </Panel>
+              </PlotlySection>
+            </PlotlyFold>
+          </PlotlyPanel>
         );
       })}
     </TraceAccordion>

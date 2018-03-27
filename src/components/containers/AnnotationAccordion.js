@@ -1,10 +1,10 @@
-import Fold from './Fold';
+import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectAnnotationToLayout, localize} from 'lib';
 
-const AnnotationFold = connectAnnotationToLayout(Fold);
+const AnnotationFold = connectAnnotationToLayout(PlotlyFold);
 
 class AnnotationAccordion extends Component {
   render() {

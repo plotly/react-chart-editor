@@ -1,13 +1,13 @@
-import Fold from './Fold';
+import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
-import Panel from './Panel';
+import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import {connectTraceToPlot, localize, plotlyTraceToCustomTrace} from 'lib';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 
-const TraceFold = connectTraceToPlot(Fold);
+const TraceFold = connectTraceToPlot(PlotlyFold);
 
 class TraceAccordion extends Component {
   render() {
@@ -47,9 +47,9 @@ class TraceAccordion extends Component {
         },
       };
       return (
-        <Panel addAction={addAction}>
+        <PlotlyPanel addAction={addAction}>
           {individualTraces ? individualTraces : null}
-        </Panel>
+        </PlotlyPanel>
       );
     }
     const tracesByGroup = data.reduce((allTraces, nextTrace, index) => {
@@ -84,10 +84,12 @@ class TraceAccordion extends Component {
               <Tab>{_('Individual')}</Tab>
             </TabList>
             <TabPanel>
-              <Panel>{groupedTraces ? groupedTraces : null}</Panel>
+              <PlotlyPanel>{groupedTraces ? groupedTraces : null}</PlotlyPanel>
             </TabPanel>
             <TabPanel>
-              <Panel>{individualTraces ? individualTraces : null}</Panel>
+              <PlotlyPanel>
+                {individualTraces ? individualTraces : null}
+              </PlotlyPanel>
             </TabPanel>
           </Tabs>
         </TraceRequiredPanel>

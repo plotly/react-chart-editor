@@ -1,10 +1,10 @@
-import Fold from './Fold';
-import Panel from './Panel';
+import PlotlyFold from './PlotlyFold';
+import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectRangeSelectorToAxis, localize} from 'lib';
 
-const RangeSelectorFold = connectRangeSelectorToAxis(Fold);
+const RangeSelectorFold = connectRangeSelectorToAxis(PlotlyFold);
 
 class RangeSelectorAccordion extends Component {
   render() {
@@ -52,7 +52,11 @@ class RangeSelectorAccordion extends Component {
       },
     };
 
-    return <Panel addAction={addAction}>{content ? content : null}</Panel>;
+    return (
+      <PlotlyPanel addAction={addAction}>
+        {content ? content : null}
+      </PlotlyPanel>
+    );
   }
 }
 
