@@ -4,6 +4,7 @@ import EditorControls from './EditorControls';
 import {
   connectAnnotationToLayout,
   connectShapeToLayout,
+  connectAggregationToTransform,
   connectImageToLayout,
   connectAxesToLayout,
   connectTransformToTrace,
@@ -96,6 +97,7 @@ export {
   ArrowSelector,
   TransformAccordion,
   AxesFold,
+  connectAggregationToTransform,
   AxesRange,
   NTicks,
   DTicks,
