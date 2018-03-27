@@ -242,12 +242,12 @@ class EditorControls extends Component {
       case EDITOR_ACTIONS.DELETE_TRANSFORM:
         if (isNumeric(payload.transformIndex)) {
           for (let i = 0; i < graphDiv.data.length; i++) {
-            if ((graphDiv.data[i].uid === payload.traceUid) !== -1) {
+            if (graphDiv.data[i].uid === payload.traceUid) {
               graphDiv.data[i].transforms.splice(payload.transformIndex, 1);
               if (this.props.onUpdate) {
                 this.props.onUpdate(
-                  graphDiv.data,
-                  Object.assign({}, graphDiv.layout),
+                  graphDiv.data.slice(),
+                  graphDiv.layout,
                   graphDiv._transitionData._frames
                 );
               }
