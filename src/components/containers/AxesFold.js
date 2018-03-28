@@ -5,18 +5,12 @@ import React, {Component} from 'react';
 import {connectAxesToLayout} from 'lib';
 
 class AxesFold extends Component {
-  renderAxesSelector() {
-    if (this.props.options.length > 1) {
-      return <AxesSelector axesOptions={this.props.options} />;
-    }
-    return null;
-  }
-
   render() {
-    return this.props.children ? (
+    const {children, options} = this.props;
+    return options.length && children ? (
       <Fold {...this.props}>
-        {this.renderAxesSelector()}
-        {this.props.children}
+        {options.length === 1 ? null : <AxesSelector axesOptions={options} />}
+        {children}
       </Fold>
     ) : null;
   }
