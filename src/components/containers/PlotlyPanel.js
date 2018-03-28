@@ -136,8 +136,10 @@ UnlocalizedPanel.defaultProps = {
 
 export const Panel = localize(UnlocalizedPanel);
 
-export default class PlotlyPanel extends UnlocalizedPanel {}
+class PlotlyPanel extends UnlocalizedPanel {}
 
 PlotlyPanel.plotly_editor_traits = {
   no_visibility_forcing: true,
 };
+
+export default localize(PlotlyPanel);
