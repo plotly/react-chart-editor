@@ -185,8 +185,7 @@ const StyleTracesPanel = ({localize: _}) => (
         label={_('Smoothing')}
         attr="line.smoothing"
         showSlider
-        min={0}
-        max={1.3}
+        step={0.1}
       />
       <Radio
         label={_('Connect Gaps')}
