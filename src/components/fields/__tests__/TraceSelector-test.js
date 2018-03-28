@@ -14,6 +14,7 @@ describe('TraceSelector', () => {
       ...fixtures.scatter({data: [{mode: null, xsrc: null, ysrc: null}]}),
       onUpdate: jest.fn(),
     };
+
     const wrapper = mount(
       <TestEditor {...editorProps} plotly={plotly}>
         <TraceSection traceIndexes={[0]}>
@@ -23,8 +24,6 @@ describe('TraceSelector', () => {
     ).find(TraceSelector);
 
     const innerDropdown = wrapper.find(Dropdown);
-
-    expect(wrapper.props().plotProps.container.mode).toBe('markers');
     expect(innerDropdown.prop('value')).toEqual('scatter');
   });
 
@@ -44,7 +43,6 @@ describe('TraceSelector', () => {
     ).find(TraceSelector);
 
     const innerDropdown = wrapper.find(Dropdown);
-
     expect(innerDropdown.prop('value')).toEqual('line');
   });
 
@@ -66,7 +64,6 @@ describe('TraceSelector', () => {
     ).find(TraceSelector);
 
     const innerDropdown = wrapper.find(Dropdown);
-    expect(wrapper.props().plotProps.container.mode).toBe('lines+markers');
     expect(innerDropdown.prop('value')).toEqual('line');
   });
 

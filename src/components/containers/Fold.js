@@ -26,25 +26,18 @@ class Fold extends Component {
     this.foldVisible = false;
 
     React.Children.forEach(nextProps.children, child => {
-      if (!child) {
+      if (!child || this.foldVisible) {
         return;
       }
 
       if (child.props.attr) {
         // attr components force fold open if they are visible
-        let plotProps;
-        if (child.type.supplyPlotProps) {
-          plotProps = child.type.supplyPlotProps(child.props, nextContext);
-          if (child.type.modifyPlotProps) {
-            child.type.modifyPlotProps(child.props, nextContext, plotProps);
-          }
-        } else {
-          plotProps = unpackPlotProps(child.props, nextContext);
+        const plotProps = unpackPlotProps(child.props, nextContext);
+        if (child.type.modifyPlotProps) {
+          child.type.modifyPlotProps(child.props, nextContext, plotProps);
         }
 
-        if (plotProps.isVisible) {
-          this.foldVisible = true;
-        }
+        this.foldVisible = this.foldVisible || plotProps.isVisible;
         return;
       }
 

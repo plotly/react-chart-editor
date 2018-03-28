@@ -10,7 +10,6 @@ import {
   traceTypeToAxisType,
   getAxisTitle,
   axisIdToAxisName,
-  unpackPlotProps,
 } from 'lib';
 
 class UnconnectedNewAxisCreator extends Component {
@@ -184,7 +183,6 @@ AxisCreator.contextTypes = {
 };
 
 export default connectToContainer(AxisCreator, {
-  supplyPlotProps: (props, context) => unpackPlotProps(props, {...context}),
   modifyPlotProps: (props, context, plotProps) => {
     const {data} = context;
     const {fullContainer} = plotProps;

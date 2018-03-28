@@ -274,6 +274,14 @@ class StyleAxesPanel extends Component {
               ]}
             />
 
+            <Radio
+              label={_('Separate Thousands')}
+              attr="separatethousands"
+              options={[
+                {label: _('True'), value: true},
+                {label: _('False'), value: false},
+              ]}
+            />
             <Dropdown
               label={_('Exponents')}
               attr="exponentformat"
@@ -348,14 +356,6 @@ class StyleAxesPanel extends Component {
           </Section>
         </AxesFold>
         <AxesFold name={_('Tick Markers')}>
-          <Radio
-            label={_('Separate Thousands')}
-            attr="separatethousands"
-            options={[
-              {label: _('True'), value: true},
-              {label: _('False'), value: false},
-            ]}
-          />
           <Section name={_('Tick Markers')} attr="ticks">
             <Radio
               attr="ticks"

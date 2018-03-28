@@ -1,4 +1,4 @@
-import React, {Component, cloneElement} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
   containerConnectedContextTypes,
@@ -11,45 +11,38 @@ class Section extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.children = null;
     this.sectionVisible = false;
 
-    this.processAndSetChildren(props, context);
+    this.determineVisibility(props, context);
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    this.processAndSetChildren(nextProps, nextContext);
+    this.determineVisibility(nextProps, nextContext);
   }
 
-  processAndSetChildren(nextProps, nextContext) {
+  determineVisibility(nextProps, nextContext) {
     const {isVisible} = unpackPlotProps(nextProps, nextContext);
-    this.sectionVisible = isVisible === true;
+    this.sectionVisible = Boolean(isVisible);
 
-    this.children = React.Children.map(nextProps.children, child => {
+    React.Children.forEach(nextProps.children, child => {
+      if (!child || this.foldVisible) {
+        return;
+      }
+
       if (child.props.attr) {
-        let plotProps;
-        if (child.type.supplyPlotProps) {
-          plotProps = child.type.supplyPlotProps(child.props, nextContext);
-          if (child.type.modifyPlotProps) {
-            child.type.modifyPlotProps(child.props, nextContext, plotProps);
-          }
-        } else {
-          plotProps = unpackPlotProps(child.props, nextContext);
+        const plotProps = unpackPlotProps(child.props, nextContext);
+        if (child.type.modifyPlotProps) {
+          child.type.modifyPlotProps(child.props, nextContext, plotProps);
         }
-
-        // assign plotProps as a prop of children. If they are connectedToContainer
-        // it will see plotProps and skip recomputing them.
         this.sectionVisible = this.sectionVisible || plotProps.isVisible;
-        return cloneElement(child, {plotProps});
+        return;
       }
 
       if (!(child.type.plotly_editor_traits || {}).no_visibility_forcing) {
         // non-attr components force visibility (unless they don't via traits)
         this.sectionVisible = true;
-        return child;
+        return;
       }
-
-      return child;
     });
   }
 
@@ -60,7 +53,7 @@ class Section extends Component {
     return (
       <div className="section">
         {this.props.name && <SectionHeader name={this.props.name} />}
-        {this.children}
+        {this.props.children}
       </div>
     );
   }
