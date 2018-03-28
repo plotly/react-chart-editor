@@ -4,17 +4,15 @@ import {
   DataSelector,
   Dropdown,
   ErrorBars,
-  GeoProjections,
-  GeoScope,
   Radio,
   Section,
+  LayoutSection,
   AxisCreator,
   TraceAccordion,
   TraceSelector,
   TextEditor,
   Numeric,
   TraceTypeSection,
-  LayoutNumeric,
 } from '../components';
 import {localize} from '../lib';
 
@@ -84,20 +82,6 @@ const GraphCreatePanel = ({localize: _}) => {
           attr="thetaunit"
           clearable={false}
         />
-        <LayoutNumeric
-          attr="polar.sector[0]"
-          label={_('Theta Start')}
-          min={0}
-          max={360}
-          showSlider
-        />
-        <LayoutNumeric
-          attr="polar.sector[1]"
-          label={_('Theta End')}
-          min={0}
-          max={360}
-          showSlider
-        />
       </TraceTypeSection>
 
       <Section name={_('Axes to Use')}>
@@ -150,18 +134,54 @@ const GraphCreatePanel = ({localize: _}) => {
             },
           ]}
         />
-        <GeoScope
-          label={_('Map Region')}
-          attr="geo.scope"
-          clearable={false}
-          localize={_}
-        />
-        <GeoProjections
-          label={_('Projection')}
-          attr="geo.projection.type"
-          clearable={false}
-          localize={_}
-        />
+        <LayoutSection>
+          <Dropdown
+            label={_('Map Region')}
+            attr="geo.scope"
+            options={[
+              {label: _('World'), value: 'world'},
+              {label: _('USA'), value: 'usa'},
+              {label: _('Europe'), value: 'europe'},
+              {label: _('Asia'), value: 'asia'},
+              {label: _('Africa'), value: 'africa'},
+              {label: _('North America'), value: 'north america'},
+              {label: _('South America'), value: 'south america'},
+            ]}
+            clearable={false}
+          />
+          <Dropdown
+            label={_('Projection')}
+            attr="geo.projection.type"
+            clearable={false}
+            options={[
+              {label: _('Equirectangular'), value: 'equirectangular'},
+              {label: _('Mercator'), value: 'mercator'},
+              {label: _('Orthographic'), value: 'orthographic'},
+              {label: _('Natural Earth'), value: 'natural earth'},
+              {label: _('Albers USA'), value: 'albers usa'},
+              {label: _('Winkel Tripel'), value: 'winkel tripel'},
+              {label: _('Robinson'), value: 'robinson'},
+              {label: _('Miller'), value: 'miller'},
+              {label: _('Kavrayskiy 7'), value: 'kavrayskiy7'},
+              {label: _('Eckert 4'), value: 'eckert4'},
+              {label: _('Azimuthal Equal Area'), value: 'azimuthal equal area'},
+              {
+                label: _('Azimuthal Equidistant'),
+                value: 'azimuthal equidistant',
+              },
+              {label: _('Conic Equal Area'), value: 'conic equal area'},
+              {label: _('Conic Conformal'), value: 'conic conformal'},
+              {label: _('Conic Equidistant'), value: 'conic equidistant'},
+              {label: _('Gnomonic'), value: 'gnomonic'},
+              {label: _('Stereographic'), value: 'stereographic'},
+              {label: _('Mollweide'), value: 'mollweide'},
+              {label: _('Hammer'), value: 'hammer'},
+              {label: _('Transverse Mercator'), value: 'transverse mercator'},
+              {label: _('Aitoff'), value: 'aitoff'},
+              {label: _('Sinusoidal'), value: 'sinusoidal'},
+            ]}
+          />
+        </LayoutSection>
         <Numeric label={_('Sum')} step={10} attr="sum" />
         <DataSelector label={_('Text')} attr="text" />
         <DataSelector label={_('Color')} attr="marker.color" />

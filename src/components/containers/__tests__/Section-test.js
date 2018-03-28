@@ -27,8 +27,6 @@ describe('Section', () => {
     ).find(Section);
 
     expect(wrapper.children().length).toBe(1);
-    expect(wrapper.find(Flaglist).props().plotProps.isVisible).toBe(true);
-    expect(wrapper.find(Numeric).props().plotProps.isVisible).toBe(false);
   });
 
   it('is visible if it contains any non attr children', () => {

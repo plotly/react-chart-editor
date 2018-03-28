@@ -101,6 +101,7 @@ Simple component that takes in props and renders.
 
 * `<TraceAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to traces via `connectTraceToPlot()`.
 * `<LayoutPanel />`: `<Panel />` whose children are connected to the `layout` figure key
+* `<LayoutSection />`: `<Section />` whose children are connected to the `layout` figure key
 * `<TraceRequiredPanel />`: `<LayoutPanel />` renders `<PanelEmpty />` if no trace data is set, can add extra conditions (i.e. an array of functions that will be run) with the `extraConditions` prop and a matching array with extraEmptyPanelMessages to show when those conditions are not met.
 * `<AnnotationAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to annotations via `connectAnnotationToLayout()`. For use in a `<LayoutPanel />`.
 * `<ShapeAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to shapes via `connectShapeToLayout()`. For use in a `<LayoutPanel />`.
@@ -117,7 +118,6 @@ For use in containers bound to traces e.g. as children of `<TraceAccordion />`:
 * `<LineDashSelector />`: renders as a `<Dropdown />` useful for `data[].line.dash`
 * `<LineShapeSelector />`: renders as a `<Dropdown />` useful for `data[].line.shape`
 * `<SymbolSelector />`: renders as a `<Dropdown />` useful for `data[].marker.symbol`
-* `<LayoutNumericFraction />` and `<LayoutNumericFractionInverse />`: renders as a `<Numeric />` for use in trace-connected containers where normal `<Numerics />` would be bound to the `data` key instead of the `layout` key in the figure e.g. `layout.bargap` or `layout.barwidth`.
 * `<PositioningRef />`: renders as a `<Dropdown />` useful for `layout.*.xref/yref` where the allowable values are `paper|[axis]`
 * `<ErrorBars/>`: renders a set of controls that control a trace's error bars (`visibility`, `type`, `value`, `valueminus`, `array`, `arrayminus`)
 

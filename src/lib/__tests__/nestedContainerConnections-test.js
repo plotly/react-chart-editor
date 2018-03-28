@@ -7,8 +7,6 @@ import {
   connectLayoutToPlot,
   connectToContainer,
   connectTraceToPlot,
-  getLayoutContext,
-  unpackPlotProps,
 } from '..';
 
 describe('Plot Connection', () => {
@@ -89,70 +87,24 @@ describe('Plot Connection', () => {
     expect(wrapper.length).toBe(0);
   });
 
-  it('can supplyPlotProps within <Section> and nested Layout and Trace', () => {
-    const beforeUpdateLayout = jest.fn();
+  it('can modify plotProps with <Trace><Section><LayoutComp>', () => {
     const fixtureProps = fixtures.scatter({layout: {width: 10}});
     const TracePanel = connectTraceToPlot(Panel);
-    const LayoutConnectedNumeric = connectLayoutToPlot(
-      connectToContainer(Numeric, {
-        supplyPlotProps: (props, context) => {
-          return unpackPlotProps(props, {
-            ...context,
-            ...getLayoutContext(context),
-          });
-        },
-      })
-    );
-
-    mount(
-      <TestEditor {...{...fixtureProps, beforeUpdateLayout}}>
-        <TracePanel traceIndexes={[0]}>
-          <Section name="Canvas">
-            <LayoutConnectedNumeric
-              traceIndexes={[0]}
-              label="Width"
-              attr="width"
-            />
-          </Section>
-        </TracePanel>
-      </TestEditor>
-    )
-      .find('[attr="width"]')
-      .find(NumericInput)
-      .find('.js-numeric-increase')
-      .simulate('click');
-
-    expect(beforeUpdateLayout).toBeCalled();
-    const payload = beforeUpdateLayout.mock.calls[0][0];
-    expect(payload).toEqual({update: {width: 11}});
-  });
-
-  it('can supply and modify plotProps with <Trace><Section><LayoutComp>', () => {
-    const fixtureProps = fixtures.scatter({layout: {width: 10}});
-    const TracePanel = connectTraceToPlot(Panel);
-    const supplyLayoutPlotProps = (props, context) => {
-      return unpackPlotProps(props, {
-        ...context,
-        ...getLayoutContext(context),
-      });
-    };
 
     const MAXWIDTH = 1000;
-    const LayoutWidth = connectLayoutToPlot(
-      connectToContainer(Numeric, {
-        supplyPlotProps: supplyLayoutPlotProps,
-        modifyPlotProps: (props, context, plotProps) => {
-          plotProps.max = MAXWIDTH;
-        },
-      })
-    );
+    const LayoutSection = connectLayoutToPlot(Section);
+    const ModifiedNumeric = connectToContainer(Numeric, {
+      modifyPlotProps: (props, context, plotProps) => {
+        plotProps.max = MAXWIDTH;
+      },
+    });
 
     const wrapper = mount(
       <TestEditor {...{...fixtureProps}}>
         <TracePanel traceIndexes={[0]}>
-          <Section name="Canvas">
-            <LayoutWidth traceIndexes={[0]} label="Width" attr="width" />
-          </Section>
+          <LayoutSection name="Canvas">
+            <ModifiedNumeric traceIndexes={[0]} label="Width" attr="width" />
+          </LayoutSection>
         </TracePanel>
       </TestEditor>
     )

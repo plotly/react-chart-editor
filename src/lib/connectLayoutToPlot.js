@@ -1,66 +1,41 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {getDisplayName, unpackPlotProps} from '../lib';
+import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
 
-export const getLayoutContext = context => {
-  const {layout, fullLayout, plotly, onUpdate} = context;
-
-  const updateContainer = update => {
-    if (!onUpdate) {
-      return;
-    }
-    onUpdate({
-      type: EDITOR_ACTIONS.UPDATE_LAYOUT,
-      payload: {
-        update,
-      },
-    });
-  };
-
-  let getValObject;
-  if (plotly) {
-    getValObject = attr =>
-      plotly.PlotSchema.getLayoutValObject(
-        fullLayout,
-        nestedProperty({}, attr).parts
-      );
-  }
-
-  return {
-    getValObject,
-    updateContainer,
-    container: layout,
-    fullContainer: fullLayout,
-  };
-};
-
-export default function connectLayoutToPlot(WrappedComponent, config = {}) {
+export default function connectLayoutToPlot(WrappedComponent) {
   class LayoutConnectedComponent extends Component {
-    static supplyPlotProps(props, context) {
-      if (config.supplyPlotProps) {
-        return config.supplyPlotProps(props, context);
-      }
-      if (WrappedComponent.supplyPlotProps) {
-        return WrappedComponent.supplyPlotProps(props, context);
-      }
-      return unpackPlotProps(props, context);
-    }
-
-    // Run the inner modifications first and allow more recent modifyPlotProp
-    // config function to modify last.
-    static modifyPlotProps(props, context, plotProps) {
-      if (WrappedComponent.modifyPlotProps) {
-        WrappedComponent.modifyPlotProps(props, context, plotProps);
-      }
-      if (config.modifyPlotProps) {
-        config.modifyPlotProps(props, context, plotProps);
-      }
-    }
-
     getChildContext() {
-      return getLayoutContext(this.context);
+      const {layout, fullLayout, plotly, onUpdate} = this.context;
+
+      const updateContainer = update => {
+        if (!onUpdate) {
+          return;
+        }
+        onUpdate({
+          type: EDITOR_ACTIONS.UPDATE_LAYOUT,
+          payload: {
+            update,
+          },
+        });
+      };
+
+      let getValObject;
+      if (plotly) {
+        getValObject = attr =>
+          plotly.PlotSchema.getLayoutValObject(
+            fullLayout,
+            nestedProperty({}, attr).parts
+          );
+      }
+
+      return {
+        getValObject,
+        updateContainer,
+        container: layout,
+        fullContainer: fullLayout,
+      };
     }
 
     render() {

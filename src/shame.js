@@ -9,7 +9,7 @@ import nestedProperty from 'plotly.js/src/lib/nested_property';
 // We should be able to remove this once the plotly.react method has
 // been integrated into react-plotly.js and released:
 // https://github.com/plotly/react-plotly.js/issues/2
-export const maybeClearAxisTypes = (graphDiv, traceIndexes, update) => {
+export const shamefullyClearAxisTypes = (graphDiv, {traceIndexes, update}) => {
   if (!Array.isArray(graphDiv._fullData)) {
     return;
   }
@@ -43,3 +43,42 @@ function clearAxisTypes(gd, traces) {
     }
   }
 }
+
+export const shamefullyAdjustAxisRef = (graphDiv, payload) => {
+  if (payload.tracesNeedingAxisAdjustment) {
+    payload.tracesNeedingAxisAdjustment.forEach(trace => {
+      const axis = trace[payload.axisAttrToAdjust].charAt(0);
+      const currentAxisIdNumber = Number(
+        trace[payload.axisAttrToAdjust].slice(1)
+      );
+      const adjustedAxisIdNumber = currentAxisIdNumber - 1;
+
+      const currentAxisLayoutProperties = {
+        ...graphDiv.layout[payload.axisAttrToAdjust + currentAxisIdNumber],
+      };
+
+      // for cases when we're adjusting x2 => x, so that it becomes x not x1
+      graphDiv.data[trace.index][payload.axisAttrToAdjust] =
+        adjustedAxisIdNumber === 1 ? axis : axis + adjustedAxisIdNumber;
+
+      graphDiv.layout[
+        payload.axisAttrToAdjust + adjustedAxisIdNumber
+      ] = currentAxisLayoutProperties;
+    });
+  }
+};
+
+export const shamefullyAdjustGeo = ({layout: {geo = {}}}, {update}) => {
+  if (update['geo.scope']) {
+    update['geo.projection'] = {};
+    update['geo.center'] = {};
+  }
+  if (
+    // requesting projection change
+    update['geo.projection.type'] &&
+    (update['geo.projection.type'] === 'albers usa' || geo.scope === 'usa')
+  ) {
+    update['geo.scope'] = {};
+    update['geo.center'] = {};
+  }
+};

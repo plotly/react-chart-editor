@@ -8,7 +8,7 @@ import connectRangeSelectorToAxis from './connectRangeSelectorToAxis';
 import connectTransformToTrace from './connectTransformToTrace';
 import connectAggregationToTransform from './connectAggregationToTransform';
 import connectAxesToLayout from './connectAxesToLayout';
-import connectLayoutToPlot, {getLayoutContext} from './connectLayoutToPlot';
+import connectLayoutToPlot from './connectLayoutToPlot';
 import connectToContainer, {
   containerConnectedContextTypes,
 } from './connectToContainer';
@@ -29,7 +29,6 @@ import {
   plotlyTraceToCustomTrace,
 } from './customTraceType';
 import * as PlotlyIcons from 'plotly-icons';
-import supplyLayoutPlotProps from './supplyLayoutPlotProps';
 import striptags from './striptags';
 import {
   capitalize,
@@ -94,7 +93,6 @@ export {
   getAllAxes,
   getAxisTitle,
   getDisplayName,
-  getLayoutContext,
   isPlainObject,
   localize,
   localizeString,
@@ -102,7 +100,6 @@ export {
   renderTraceIcon,
   unpackPlotProps,
   walkObject,
-  supplyLayoutPlotProps,
   tooLight,
   striptags,
   traceTypeToAxisType,

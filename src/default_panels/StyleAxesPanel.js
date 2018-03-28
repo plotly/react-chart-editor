@@ -66,17 +66,10 @@ class StyleAxesPanel extends Component {
 
         <AxesFold
           name={_('Layout')}
-          axisFilter={axis => !axis._name.includes('radial')}
+          axisFilter={axis =>
+            !axis._name.includes('radial') && !axis._name.includes('angular')
+          }
         >
-          <Dropdown
-            label={_('Direction')}
-            attr="direction"
-            options={[
-              {label: _('Clockwise'), value: 'clockwise'},
-              {label: _('Counter Clockwise'), value: 'counterclockwise'},
-            ]}
-            clearable={false}
-          />
           <Section name={_('Boundaries')} attr="domain[0]">
             <AxisOverlayDropdown
               label={_('Overlay')}
@@ -129,17 +122,21 @@ class StyleAxesPanel extends Component {
           </Section>
           <TraceTypeSection
             name={_('Range')}
-            traceTypes={[
-              'choropleth',
-              'scattergeo',
-              'scatterpolar',
-              'scatterpolargl',
-            ]}
+            traceTypes={['choropleth', 'scattergeo']}
             attr="range"
           >
             <AxesRange label={_('Min')} attr="range[0]" />
             <AxesRange label={_('Max')} attr="range[1]" />
           </TraceTypeSection>
+          <Dropdown
+            label={_('Direction')}
+            attr="direction"
+            options={[
+              {label: _('Clockwise'), value: 'clockwise'},
+              {label: _('Counter Clockwise'), value: 'counterclockwise'},
+            ]}
+            clearable={false}
+          />
         </AxesFold>
 
         <AxesFold name={_('Lines')}>
@@ -217,6 +214,14 @@ class StyleAxesPanel extends Component {
                 {label: _('Hide'), value: false},
               ]}
             />
+            <Radio
+              label={_('Auto margins')}
+              attr="automargin"
+              options={[
+                {label: _('True'), value: true},
+                {label: _('False'), value: false},
+              ]}
+            />
             <FontSelector label={_('Typeface')} attr="tickfont.family" />
             <Numeric label={_('Font Size')} attr="tickfont.size" units="px" />
             <ColorPicker label={_('Font Color')} attr="tickfont.color" />
@@ -242,6 +247,14 @@ class StyleAxesPanel extends Component {
               ]}
             />
 
+            <Radio
+              label={_('Separate Thousands')}
+              attr="separatethousands"
+              options={[
+                {label: _('True'), value: true},
+                {label: _('False'), value: false},
+              ]}
+            />
             <Dropdown
               label={_('Exponents')}
               attr="exponentformat"
@@ -316,14 +329,6 @@ class StyleAxesPanel extends Component {
           </Section>
         </AxesFold>
         <AxesFold name={_('Tick Markers')}>
-          <Radio
-            label={_('Separate Thousands')}
-            attr="separatethousands"
-            options={[
-              {label: _('True'), value: true},
-              {label: _('False'), value: false},
-            ]}
-          />
           <Section name={_('Tick Markers')} attr="ticks">
             <Radio
               attr="ticks"

@@ -18,6 +18,7 @@ const StyleLayoutPanel = ({localize: _}) => (
   <TraceRequiredPanel>
     <Fold name={_('Canvas')}>
       <Radio
+        label={_('Size')}
         attr="autosize"
         options={[
           {label: _('Auto'), value: true},

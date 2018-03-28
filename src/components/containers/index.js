@@ -12,7 +12,7 @@ import Section from './Section';
 import TraceAccordion from './TraceAccordion';
 import TransformAccordion from './TransformAccordion';
 import TraceMarkerSection from './TraceMarkerSection';
-import {LayoutPanel, TraceTypeSection} from './derived';
+import {LayoutPanel, LayoutSection, TraceTypeSection} from './derived';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import SingleSidebarItem from './SingleSidebarItem';
 import ModalProvider from './ModalProvider';
@@ -35,6 +35,7 @@ export {
   TraceMarkerSection,
   TraceRequiredPanel,
   LayoutPanel,
+  LayoutSection,
   AxesFold,
   SingleSidebarItem,
   TraceTypeSection,
