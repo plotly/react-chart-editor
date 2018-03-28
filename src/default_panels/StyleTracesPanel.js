@@ -12,7 +12,6 @@ import {
   NumericFractionInverse,
   Radio,
   TextEditor,
-  Section,
   PlotlySection,
   LayoutSection,
   SymbolSelector,

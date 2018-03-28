@@ -55,21 +55,6 @@ describe('Basic PlotlyPanel rules', () => {
     it('HIDES Field because it needs context from PlotlyPanel', () =>
       expect(wrapper.find('input').length).toEqual(0));
   });
-
-  // describe('no PlotlyPanel, no context for Folds, not usable', () => {
-  //   expect(() => {
-  //     mount(
-  //       <TestEditor {...fixtures.scatter()}>
-  //         <div>
-  //           <PlotlyFold>
-  //             <div id="thediv"> ok </div>
-  //             <Numeric attr="title" />
-  //           </PlotlyFold>
-  //         </div>
-  //       </TestEditor>
-  //     );
-  //   }).toThrow();
-  // });
 });
 
 describe('Basic PlotlySection rules', () => {
@@ -299,7 +284,8 @@ describe('Basic PlotlyFold rules', () => {
 
         it('HIDES PlotlyFold', () =>
           expect(wrapper.find('div.fold').length).toEqual(0));
-        it('HIDES Info', () => expect(wrapper.find(Info).length).toEqual(0));
+        it('HIDES Info', () =>
+          expect(wrapper.find('.js-test-info').length).toEqual(0));
         it('HIDES Field', () =>
           expect(wrapper.find('input').length).toEqual(0));
       });

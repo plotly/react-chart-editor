@@ -6,11 +6,11 @@ import {
   TraceAccordion,
   DataSelector,
   Dropdown,
-  Section,
+  PlotlySection,
 } from '../components';
 import {connectAggregationToTransform, localize} from '../lib';
 
-const AggregationSection = connectAggregationToTransform(Section);
+const AggregationSection = connectAggregationToTransform(PlotlySection);
 
 class UnlocalizedAggregations extends Component {
   render() {
@@ -69,9 +69,9 @@ const GraphTransformsPanel = ({localize: _}) => {
 
         <DataSelector label={_('By')} attr="groups" />
 
-        <Section name={_('Aggregations')} attr="aggregations">
+        <PlotlySection name={_('Aggregations')} attr="aggregations">
           <Aggregations />
-        </Section>
+        </PlotlySection>
       </TransformAccordion>
     </TraceAccordion>
   );

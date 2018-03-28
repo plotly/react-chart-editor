@@ -3,7 +3,11 @@ import React, {Component} from 'react';
 
 export default class Info extends Component {
   render() {
-    return <Field {...this.props}>{this.props.children}</Field>;
+    return (
+      <Field {...this.props}>
+        <div className="js-test-info">{this.props.children}</div>
+      </Field>
+    );
   }
 }
 

@@ -87,7 +87,7 @@ describe('Plot Connection', () => {
     expect(wrapper.length).toBe(0);
   });
 
-  it('can modify plotProps with <Trace><Section><LayoutComp>', () => {
+  it('can modify plotProps with <Trace><PlotlySection><LayoutComp>', () => {
     const fixtureProps = fixtures.scatter({layout: {width: 10}});
     const TracePanel = connectTraceToPlot(PlotlyPanel);
 

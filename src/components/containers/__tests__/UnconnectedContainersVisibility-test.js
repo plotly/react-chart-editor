@@ -27,42 +27,47 @@ describe('Basic Panel rules', () => {
     const wrapper = mount(
       <TestEditor {...fixtures.scatter()}>
         <Panel>
+          <Section>
+            <div id="thediv"> ok </div>
+            <Numeric attr="title" />
+          </Section>
           <Fold>
-            <Section>
-              <div id="thediv"> ok </div>
-              <Numeric attr="title" />
-            </Section>
             <div id="theseconddiv" />
+          </Fold>
+          <Fold>
+            <Info />
           </Fold>
         </Panel>
       </TestEditor>
     );
 
-    it('SHOWS Section, Fold, #thediv, #theseconddiv', () => {
+    it('SHOWS Section, Fold, #thediv, #theseconddiv, Info', () => {
       expect(wrapper.find('div.section').length).toEqual(1);
-      expect(wrapper.find('div.fold').length).toEqual(1);
+      expect(wrapper.find('div.fold').length).toEqual(2);
       expect(wrapper.find('#thediv').length).toEqual(1);
       expect(wrapper.find('#theseconddiv').length).toEqual(1);
+      expect(wrapper.find('.js-test-info').length).toEqual(1);
     });
 
     it('HIDES Field because it needs context', () =>
       expect(wrapper.find('input').length).toEqual(0));
-  });
 
-  // describe('no Panel, no context for Folds, not usable', () => {
-  //   expect(() => {
-  //     mount(
-  //       <TestEditor {...fixtures.scatter()}>
-  //         <div>
-  //           <Fold>
-  //             <div id="thediv"> ok </div>
-  //             <Numeric attr="title" />
-  //           </Fold>
-  //         </div>
-  //       </TestEditor>
-  //     );
-  //   }).toThrow();
-  // });
+    it('PANEL shows collapse functionality, FOLD is foldable', () => {
+      expect(wrapper.find('.panel__header__collapse').length).toEqual(1);
+      expect(
+        wrapper
+          .find(Fold)
+          .first()
+          .props().folded
+      ).toBe(false);
+      expect(
+        typeof wrapper
+          .find(Fold)
+          .first()
+          .props().toggleFold
+      ).toBe('function');
+    });
+  });
 });
 
 describe('Basic Section rules', () => {
@@ -98,6 +103,22 @@ describe('Basic Section rules', () => {
       it('SHOWS Section because it always shows itself', () =>
         expect(wrapper.find('div.section').length).toEqual(1));
       it('SHOWS Field', () => expect(wrapper.find('input').length).toEqual(1));
+    });
+
+    describe('PlotlyPanel > Section > Field-with-invisible-attr', () => {
+      const wrapper = mount(
+        <TestEditor {...fixtures.scatter()}>
+          <LayoutPanel>
+            <Section>
+              <Numeric attr="not_an_attr" />
+            </Section>
+          </LayoutPanel>
+        </TestEditor>
+      );
+
+      it('SHOWS Section because it always shows itself', () =>
+        expect(wrapper.find('div.section').length).toEqual(1));
+      it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
     });
 
     describe('Panel > Section > div', () => {
@@ -265,9 +286,9 @@ describe('Basic Fold rules', () => {
 
         it('SHOWS Fold', () =>
           expect(wrapper.find('div.fold').length).toEqual(1));
-        it('HIDES PlotlyPanel', () =>
+        it('SHOWS PlotlyPanel', () =>
           expect(wrapper.find('div.panel').length).toEqual(2));
-        it('HIDES Field', () =>
+        it('SHOWS Field', () =>
           expect(wrapper.find('input').length).toEqual(1));
       });
     });
@@ -278,9 +299,7 @@ describe('Basic Fold rules', () => {
           <TestEditor {...fixtures.scatter()}>
             <LayoutPanel>
               <Fold>
-                <Info>
-                  <Numeric attr="title" />
-                </Info>
+                <Info>ok</Info>
               </Fold>
             </LayoutPanel>
           </TestEditor>
@@ -288,9 +307,8 @@ describe('Basic Fold rules', () => {
 
         it('SHOWS Fold', () =>
           expect(wrapper.find('div.fold').length).toEqual(1));
-        it('SHOWS Info', () => expect(wrapper.find(Info).length).toEqual(1));
-        it('SHOWS Field', () =>
-          expect(wrapper.find('input').length).toEqual(1));
+        it('SHOWS Info', () =>
+          expect(wrapper.find('.js-test-info').length).toEqual(1));
       });
     });
   });

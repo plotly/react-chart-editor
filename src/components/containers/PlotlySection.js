@@ -10,9 +10,11 @@ export class Section extends Component {
   render() {
     return (
       <div className="section">
-        <div className="section__heading">
-          <div className="section__heading__text">{this.props.name}</div>
-        </div>
+        {this.props.name ? (
+          <div className="section__heading">
+            <div className="section__heading__text">{this.props.name}</div>
+          </div>
+        ) : null}
         {this.props.children}
       </div>
     );

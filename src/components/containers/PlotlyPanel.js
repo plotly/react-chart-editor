@@ -101,6 +101,7 @@ class PlotlyPanel extends Component {
             toggleFold: () => this.toggleFold(index),
           });
         }
+
         return child;
       }
     );
@@ -134,12 +135,6 @@ PlotlyPanel.propTypes = {
 
 PlotlyPanel.defaultProps = {
   showExpandCollapse: true,
-};
-
-PlotlyPanel.contextTypes = {
-  layout: PropTypes.object,
-  onUpdate: PropTypes.func,
-  updateContainer: PropTypes.func,
 };
 
 export default PlotlyPanel;
