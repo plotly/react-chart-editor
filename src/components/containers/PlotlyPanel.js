@@ -26,7 +26,7 @@ PanelErrorImpl.propTypes = {
 
 const PanelError = localize(PanelErrorImpl);
 
-export class Panel extends Component {
+class UnlocalizedPanel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -123,18 +123,20 @@ export class Panel extends Component {
   }
 }
 
-Panel.propTypes = {
+UnlocalizedPanel.propTypes = {
   children: PropTypes.node,
   addAction: PropTypes.object,
   showExpandCollapse: PropTypes.bool,
   noPadding: PropTypes.bool,
 };
 
-Panel.defaultProps = {
+UnlocalizedPanel.defaultProps = {
   showExpandCollapse: true,
 };
 
-export default class PlotlyPanel extends Panel {}
+export const Panel = localize(UnlocalizedPanel);
+
+export default class PlotlyPanel extends UnlocalizedPanel {}
 
 PlotlyPanel.plotly_editor_traits = {
   no_visibility_forcing: true,

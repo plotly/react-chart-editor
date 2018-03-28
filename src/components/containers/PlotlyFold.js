@@ -10,7 +10,7 @@ import {
   striptags,
 } from 'lib';
 
-export class Fold extends Component {
+class UnlocalizedFold extends Component {
   constructor() {
     super();
     this.foldVisible = true;
@@ -103,14 +103,14 @@ export class Fold extends Component {
   }
 }
 
-Fold.plotly_editor_traits = {foldable: true};
+UnlocalizedFold.plotly_editor_traits = {foldable: true};
 
-Fold.propTypes = {
+UnlocalizedFold.propTypes = {
   canDelete: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  folded: PropTypes.bool,
-  toggleFold: PropTypes.func,
+  folded: PropTypes.bool.isRequired,
+  toggleFold: PropTypes.func.isRequired,
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   messageIfEmpty: PropTypes.string,
@@ -118,7 +118,9 @@ Fold.propTypes = {
   name: PropTypes.string,
 };
 
-class PlotlyFold extends Fold {
+export const Fold = localize(UnlocalizedFold);
+
+class PlotlyFold extends UnlocalizedFold {
   constructor(props, context) {
     super(props, context);
 

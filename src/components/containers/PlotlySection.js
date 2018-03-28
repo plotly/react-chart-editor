@@ -6,7 +6,7 @@ import {
   unpackPlotProps,
 } from '../../lib';
 
-export class Section extends Component {
+class UnlocalizedSection extends Component {
   constructor() {
     super();
     this.sectionVisible = true;
@@ -30,14 +30,16 @@ export class Section extends Component {
   }
 }
 
-Section.plotly_editor_traits = {no_visibility_forcing: false};
-Section.propTypes = {
+UnlocalizedSection.plotly_editor_traits = {no_visibility_forcing: false};
+UnlocalizedSection.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
   attr: PropTypes.string,
 };
 
-class PlotlySection extends Section {
+export const Section = localize(UnlocalizedSection);
+
+class PlotlySection extends UnlocalizedSection {
   constructor(props, context) {
     super(props, context);
     this.determineVisibility(props, context);
