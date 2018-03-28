@@ -17,7 +17,6 @@ import {
   TextEditor,
   Section,
   TraceRequiredPanel,
-  LayoutSection,
   AxesFold,
   TraceTypeSection,
   RangesliderVisible,
@@ -97,50 +96,7 @@ class StyleAxesPanel extends Component {
           </TraceTypeSection>
         </AxesFold>
 
-        <AxesFold
-          name={_('Angular Range')}
-          axisFilter={axis => axis._name.includes('angular')}
-        >
-          <Dropdown
-            attr="type"
-            label={_('Type')}
-            clearable={false}
-            options={[
-              {label: _('Linear'), value: 'linear'},
-              {label: _('Categorical'), value: 'category'},
-            ]}
-          />
-          <Dropdown
-            label={_('Direction')}
-            attr="direction"
-            options={[
-              {label: _('Clockwise'), value: 'clockwise'},
-              {label: _('Counter Clockwise'), value: 'counterclockwise'},
-            ]}
-            clearable={false}
-          />
-          <LayoutSection>
-            <Numeric
-              attr="polar.sector[0]"
-              label={_('Theta Start')}
-              min={0}
-              max={360}
-              showSlider
-            />
-            <Numeric
-              attr="polar.sector[1]"
-              label={_('Theta End')}
-              min={0}
-              max={360}
-              showSlider
-            />
-          </LayoutSection>
-        </AxesFold>
-
-        <AxesFold
-          name={_('Range')}
-          axisFilter={axis => !axis._name.includes('angular')}
-        >
+        <AxesFold name={_('Range')}>
           <Section name={_('Range')} attr="autorange">
             <Dropdown
               attr="type"
@@ -172,6 +128,15 @@ class StyleAxesPanel extends Component {
             <AxesRange label={_('Min')} attr="range[0]" />
             <AxesRange label={_('Max')} attr="range[1]" />
           </TraceTypeSection>
+          <Dropdown
+            label={_('Direction')}
+            attr="direction"
+            options={[
+              {label: _('Clockwise'), value: 'clockwise'},
+              {label: _('Counter Clockwise'), value: 'counterclockwise'},
+            ]}
+            clearable={false}
+          />
         </AxesFold>
 
         <AxesFold name={_('Lines')}>
@@ -247,6 +212,14 @@ class StyleAxesPanel extends Component {
               options={[
                 {label: _('Show'), value: true},
                 {label: _('Hide'), value: false},
+              ]}
+            />
+            <Radio
+              label={_('Auto margins')}
+              attr="automargin"
+              options={[
+                {label: _('True'), value: true},
+                {label: _('False'), value: false},
               ]}
             />
             <FontSelector label={_('Typeface')} attr="tickfont.family" />
