@@ -2,7 +2,11 @@ import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {bem} from './lib';
-import {maybeClearAxisTypes} from './shame';
+import {
+  shamefullyClearAxisTypes,
+  shamefullyAdjustAxisRef,
+  shamefullyAdjustGeo,
+} from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
@@ -43,31 +47,6 @@ class EditorControls extends Component {
     };
   }
 
-  maybeAdjustAxisRef(payload) {
-    const {graphDiv} = this.props;
-    if (payload.tracesNeedingAxisAdjustment) {
-      payload.tracesNeedingAxisAdjustment.forEach(trace => {
-        const axis = trace[payload.axisAttrToAdjust].charAt(0);
-        const currentAxisIdNumber = Number(
-          trace[payload.axisAttrToAdjust].slice(1)
-        );
-        const adjustedAxisIdNumber = currentAxisIdNumber - 1;
-
-        const currentAxisLayoutProperties = {
-          ...graphDiv.layout[payload.axisAttrToAdjust + currentAxisIdNumber],
-        };
-
-        // for cases when we're adjusting x2 => x, so that it becomes x not x1
-        graphDiv.data[trace.index][payload.axisAttrToAdjust] =
-          adjustedAxisIdNumber === 1 ? axis : axis + adjustedAxisIdNumber;
-
-        graphDiv.layout[
-          payload.axisAttrToAdjust + adjustedAxisIdNumber
-        ] = currentAxisLayoutProperties;
-      });
-    }
-  }
-
   handleUpdate({type, payload}) {
     const {graphDiv} = this.props;
 
@@ -77,11 +56,8 @@ class EditorControls extends Component {
           this.props.beforeUpdateTraces(payload);
         }
 
-        // until we start utilizing Plotly.react in `react-plotly.js`
-        // force clear axes types when a `src` has changed.
-        maybeClearAxisTypes(graphDiv, payload.traceIndexes, payload.update);
-
-        this.maybeAdjustAxisRef(payload);
+        shamefullyClearAxisTypes(graphDiv, payload);
+        shamefullyAdjustAxisRef(graphDiv, payload);
 
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {
@@ -108,6 +84,8 @@ class EditorControls extends Component {
         break;
 
       case EDITOR_ACTIONS.UPDATE_LAYOUT:
+        shamefullyAdjustGeo(graphDiv, payload);
+
         if (this.props.beforeUpdateLayout) {
           this.props.beforeUpdateLayout(payload);
         }

@@ -17,16 +17,15 @@ import {
   TextEditor,
   Section,
   TraceRequiredPanel,
+  LayoutSection,
   AxesFold,
   TraceTypeSection,
   RangesliderVisible,
   RangeSelectorAccordion,
 } from '../components';
 
-import {localize, connectLayoutToPlot} from '../lib';
+import {localize} from '../lib';
 import {TRACE_TO_AXIS} from '../lib/constants';
-
-const LayoutSection = connectLayoutToPlot(Section);
 
 class StyleAxesPanel extends Component {
   constructor(props, context) {

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {connectLayoutToPlot, containerConnectedContextTypes} from 'lib';
 
 const LayoutPanel = connectLayoutToPlot(Panel);
+const LayoutSection = connectLayoutToPlot(Section);
 
 const TraceTypeSection = (props, context) => {
   const {fullContainer, fullData} = context;
@@ -34,4 +35,4 @@ TraceTypeSection.defaultProps = {
   traceTypes: [],
 };
 
-export {LayoutPanel, TraceTypeSection};
+export {LayoutPanel, LayoutSection, TraceTypeSection};

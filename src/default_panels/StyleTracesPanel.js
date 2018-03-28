@@ -13,6 +13,7 @@ import {
   Radio,
   TextEditor,
   Section,
+  LayoutSection,
   SymbolSelector,
   TraceAccordion,
   TraceTypeSection,
@@ -25,9 +26,7 @@ import {
   FontSelector,
 } from '../components';
 
-import {localize, connectLayoutToPlot} from '../lib';
-
-const LayoutSection = connectLayoutToPlot(Section);
+import {localize} from '../lib';
 
 const StyleTracesPanel = ({localize: _}) => (
   <TraceAccordion canGroup>

@@ -6,6 +6,7 @@ import {
   ErrorBars,
   Radio,
   Section,
+  LayoutSection,
   AxisCreator,
   TraceAccordion,
   TraceSelector,
@@ -13,9 +14,7 @@ import {
   Numeric,
   TraceTypeSection,
 } from '../components';
-import {localize, connectLayoutToPlot} from '../lib';
-
-const LayoutSection = connectLayoutToPlot(Section);
+import {localize} from '../lib';
 
 const GraphCreatePanel = ({localize: _}) => {
   return (
@@ -159,10 +158,12 @@ const GraphCreatePanel = ({localize: _}) => {
               {label: _('Mercator'), value: 'mercator'},
               {label: _('Orthographic'), value: 'orthographic'},
               {label: _('Natural Earth'), value: 'natural earth'},
-              {label: _('Kavrayskiy7'), value: 'kavrayskiy7'},
-              {label: _('Miller'), value: 'miller'},
+              {label: _('Albers USA'), value: 'albers usa'},
+              {label: _('Winkel Tripel'), value: 'winkel tripel'},
               {label: _('Robinson'), value: 'robinson'},
-              {label: _('Eckert4'), value: 'eckert4'},
+              {label: _('Miller'), value: 'miller'},
+              {label: _('Kavrayskiy 7'), value: 'kavrayskiy7'},
+              {label: _('Eckert 4'), value: 'eckert4'},
               {label: _('Azimuthal Equal Area'), value: 'azimuthal equal area'},
               {
                 label: _('Azimuthal Equidistant'),
@@ -176,10 +177,8 @@ const GraphCreatePanel = ({localize: _}) => {
               {label: _('Mollweide'), value: 'mollweide'},
               {label: _('Hammer'), value: 'hammer'},
               {label: _('Transverse Mercator'), value: 'transverse mercator'},
-              {label: _('Winkel Tripel'), value: 'winkel3'},
               {label: _('Aitoff'), value: 'aitoff'},
               {label: _('Sinusoidal'), value: 'sinusoidal'},
-              {label: _('Albers USA'), value: 'albers usa'},
             ]}
           />
         </LayoutSection>

@@ -101,6 +101,7 @@ Simple component that takes in props and renders.
 
 * `<TraceAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to traces via `connectTraceToPlot()`.
 * `<LayoutPanel />`: `<Panel />` whose children are connected to the `layout` figure key
+* `<LayoutSection />`: `<Section />` whose children are connected to the `layout` figure key
 * `<TraceRequiredPanel />`: `<LayoutPanel />` renders `<PanelEmpty />` if no trace data is set, can add extra conditions (i.e. an array of functions that will be run) with the `extraConditions` prop and a matching array with extraEmptyPanelMessages to show when those conditions are not met.
 * `<AnnotationAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to annotations via `connectAnnotationToLayout()`. For use in a `<LayoutPanel />`.
 * `<ShapeAccordion />`: `<Panel />` whose children are replicated into `<Folds />` connected to shapes via `connectShapeToLayout()`. For use in a `<LayoutPanel />`.
