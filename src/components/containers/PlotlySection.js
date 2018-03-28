@@ -7,7 +7,16 @@ import {
 } from '../../lib';
 
 export class Section extends Component {
+  constructor() {
+    super();
+    this.sectionVisible = true;
+  }
+
   render() {
+    if (!this.sectionVisible) {
+      return null;
+    }
+
     return (
       <div className="section">
         {this.props.name ? (
@@ -31,9 +40,6 @@ Section.propTypes = {
 class PlotlySection extends Section {
   constructor(props, context) {
     super(props, context);
-
-    this.sectionVisible = false;
-
     this.determineVisibility(props, context);
   }
 
@@ -46,7 +52,7 @@ class PlotlySection extends Section {
     this.sectionVisible = Boolean(isVisible);
 
     React.Children.forEach(nextProps.children, child => {
-      if (!child || this.foldVisible) {
+      if (!child || this.sectionVisible) {
         return;
       }
 
@@ -66,31 +72,8 @@ class PlotlySection extends Section {
       }
     });
   }
-
-  render() {
-    if (!this.sectionVisible) {
-      return null;
-    }
-    return (
-      <div className="section">
-        {this.props.name ? (
-          <div className="section__heading">
-            <div className="section__heading__text">{this.props.name}</div>
-          </div>
-        ) : null}
-        {this.props.children}
-      </div>
-    );
-  }
 }
 
 PlotlySection.plotly_editor_traits = {no_visibility_forcing: true};
-
-PlotlySection.propTypes = {
-  children: PropTypes.node,
-  name: PropTypes.string,
-  attr: PropTypes.string,
-};
-
 PlotlySection.contextTypes = containerConnectedContextTypes;
 export default localize(PlotlySection);

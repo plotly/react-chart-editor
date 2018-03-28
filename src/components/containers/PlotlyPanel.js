@@ -26,7 +26,7 @@ PanelErrorImpl.propTypes = {
 
 const PanelError = localize(PanelErrorImpl);
 
-class PlotlyPanel extends Component {
+export class Panel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -101,7 +101,6 @@ class PlotlyPanel extends Component {
             toggleFold: () => this.toggleFold(index),
           });
         }
-
         return child;
       }
     );
@@ -124,23 +123,19 @@ class PlotlyPanel extends Component {
   }
 }
 
-PlotlyPanel.plotly_editor_traits = {no_visibility_forcing: true};
-
-PlotlyPanel.propTypes = {
+Panel.propTypes = {
   children: PropTypes.node,
   addAction: PropTypes.object,
   showExpandCollapse: PropTypes.bool,
   noPadding: PropTypes.bool,
 };
 
-PlotlyPanel.defaultProps = {
+Panel.defaultProps = {
   showExpandCollapse: true,
 };
 
-export default PlotlyPanel;
+export default class PlotlyPanel extends Panel {}
 
-export class Panel extends PlotlyPanel {}
-
-Panel.plotly_editor_traits = {
-  no_visibility_forcing: false,
+PlotlyPanel.plotly_editor_traits = {
+  no_visibility_forcing: true,
 };

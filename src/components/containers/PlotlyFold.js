@@ -10,48 +10,10 @@ import {
   striptags,
 } from 'lib';
 
-class PlotlyFold extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.foldVisible = false;
-    this.determineVisibility(props, context);
-  }
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.determineVisibility(nextProps, nextContext);
-  }
-
-  determineVisibility(nextProps, nextContext) {
-    this.foldVisible = false;
-
-    if (nextProps.forceVisibility) {
-      this.foldVisible = true;
-      return;
-    }
-
-    React.Children.forEach(nextProps.children, child => {
-      if (!child || this.foldVisible) {
-        return;
-      }
-
-      if (child.props.attr) {
-        // attr components force fold open if they are visible
-        const plotProps = unpackPlotProps(child.props, nextContext);
-        if (child.type.modifyPlotProps) {
-          child.type.modifyPlotProps(child.props, nextContext, plotProps);
-        }
-
-        this.foldVisible = this.foldVisible || plotProps.isVisible;
-        return;
-      }
-
-      if (!(child.type.plotly_editor_traits || {}).no_visibility_forcing) {
-        // non-attr components force visibility (unless they don't via traits)
-        this.foldVisible = true;
-        return;
-      }
-    });
+export class Fold extends Component {
+  constructor() {
+    super();
+    this.foldVisible = true;
   }
 
   render() {
@@ -141,20 +103,63 @@ class PlotlyFold extends Component {
   }
 }
 
-PlotlyFold.plotly_editor_traits = {foldable: true};
+Fold.plotly_editor_traits = {foldable: true};
 
-PlotlyFold.propTypes = {
+Fold.propTypes = {
   canDelete: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  folded: PropTypes.bool.isRequired,
-  toggleFold: PropTypes.func.isRequired,
+  folded: PropTypes.bool,
+  toggleFold: PropTypes.func,
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   messageIfEmpty: PropTypes.string,
   localize: PropTypes.func,
   name: PropTypes.string,
-  forceVisibility: PropTypes.bool,
+};
+
+class PlotlyFold extends Fold {
+  constructor(props, context) {
+    super(props, context);
+
+    this.foldVisible = false;
+    this.determineVisibility(props, context);
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.determineVisibility(nextProps, nextContext);
+  }
+
+  determineVisibility(nextProps, nextContext) {
+    this.foldVisible = false;
+
+    React.Children.forEach(nextProps.children, child => {
+      if (!child || this.foldVisible) {
+        return;
+      }
+
+      if (child.props.attr) {
+        // attr components force fold open if they are visible
+        const plotProps = unpackPlotProps(child.props, nextContext);
+        if (child.type.modifyPlotProps) {
+          child.type.modifyPlotProps(child.props, nextContext, plotProps);
+        }
+
+        this.foldVisible = this.foldVisible || plotProps.isVisible;
+        return;
+      }
+
+      if (!(child.type.plotly_editor_traits || {}).no_visibility_forcing) {
+        // non-attr components force visibility (unless they don't via traits)
+        this.foldVisible = true;
+        return;
+      }
+    });
+  }
+}
+
+PlotlyFold.plotly_editor_traits = {
+  foldable: true,
 };
 
 PlotlyFold.contextTypes = Object.assign(
@@ -165,26 +170,3 @@ PlotlyFold.contextTypes = Object.assign(
 );
 
 export default localize(PlotlyFold);
-
-export class Fold extends PlotlyFold {}
-
-Fold.plotly_editor_traits = {
-  foldable: true,
-};
-
-Fold.defaultProps = {
-  forceVisibility: true,
-};
-
-Fold.propTypes = {
-  children: PropTypes.node,
-  className: PropTypes.string,
-  folded: PropTypes.bool,
-  toggleFold: PropTypes.func,
-  hideHeader: PropTypes.bool,
-  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
-  messageIfEmpty: PropTypes.string,
-  localize: PropTypes.func,
-  name: PropTypes.string,
-  forceVisibility: PropTypes.bool,
-};
