@@ -4,11 +4,11 @@ import {
   CanvasSize,
   ColorPicker,
   FontSelector,
-  Fold,
+  PlotlyFold,
   Numeric,
   Radio,
   TextEditor,
-  Section,
+  PlotlySection,
   TraceRequiredPanel,
 } from '../components';
 
@@ -16,7 +16,7 @@ import {localize} from '../lib';
 
 const StyleLayoutPanel = ({localize: _}) => (
   <TraceRequiredPanel>
-    <Fold name={_('Canvas')}>
+    <PlotlyFold name={_('Canvas')}>
       <Radio
         label={_('Size')}
         attr="autosize"
@@ -38,9 +38,9 @@ const StyleLayoutPanel = ({localize: _}) => (
           {label: _('Disable'), value: false},
         ]}
       />
-    </Fold>
-    <Fold name={_('Title and Fonts')}>
-      <Section name={_('Title')} attr="title">
+    </PlotlyFold>
+    <PlotlyFold name={_('Title and Fonts')}>
+      <PlotlySection name={_('Title')} attr="title">
         <TextEditor attr="title" />
         <FontSelector
           label={_('Typeface')}
@@ -49,8 +49,8 @@ const StyleLayoutPanel = ({localize: _}) => (
         />
         <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
         <ColorPicker label={_('Font Color')} attr="titlefont.color" />
-      </Section>
-      <Section name={_('Global Font')}>
+      </PlotlySection>
+      <PlotlySection name={_('Global Font')}>
         <FontSelector
           label={_('Typeface')}
           attr="font.family"
@@ -58,15 +58,15 @@ const StyleLayoutPanel = ({localize: _}) => (
         />
         <Numeric label={_('Font Size')} attr="font.size" units="px" />
         <ColorPicker label={_('Font Color')} attr="font.color" />
-      </Section>
-    </Fold>
-    <Fold name={_('Margins and Padding')}>
+      </PlotlySection>
+    </PlotlyFold>
+    <PlotlyFold name={_('Margins and Padding')}>
       <Numeric label={_('Top')} attr="margin.t" units="px" />
       <Numeric label={_('Bottom')} attr="margin.b" units="px" />
       <Numeric label={_('Left')} attr="margin.l" units="px" />
       <Numeric label={_('Right')} attr="margin.r" units="px" />
       <Numeric label={_('Padding')} attr="margin.pad" units="px" />
-    </Fold>
+    </PlotlyFold>
   </TraceRequiredPanel>
 );
 

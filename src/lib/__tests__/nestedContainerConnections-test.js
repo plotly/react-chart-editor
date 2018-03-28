@@ -1,6 +1,6 @@
 import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
-import {Numeric, Section, Panel} from '../../components';
+import {Numeric, PlotlySection, PlotlyPanel} from '../../components';
 import {TestEditor, fixtures, mount} from '../test-utils';
 import {
   connectAxesToLayout,
@@ -55,7 +55,7 @@ describe('Plot Connection', () => {
   });
 
   // see https://github.com/plotly/react-chart-editor/issues/58#issuecomment-345492794
-  it("can't find correct Container when Section divides Trace and Layout", () => {
+  it("can't find correct Container when PlotlySection divides Trace and Layout", () => {
     const fixtureProps = fixtures.scatter({layout: {width: 10}});
     const DeeplyConnectedNumeric = connectTraceToPlot(
       connectLayoutToPlot(
@@ -69,30 +69,30 @@ describe('Plot Connection', () => {
 
     const wrapper = mount(
       <TestEditor {...{...fixtureProps}}>
-        <Section name="Canvas">
+        <PlotlySection name="Canvas">
           <DeeplyConnectedNumeric
             traceIndexes={[0]}
             label="Width"
             attr="width"
           />
-        </Section>
+        </PlotlySection>
       </TestEditor>
     )
       .find('[attr="width"]')
       .find(Numeric);
 
-    // It is 0 because Section is passing _its_ context to unpackPlotProps.
-    // The context of Section is Trace not layout and width isn't defined
+    // It is 0 because PlotlySection is passing _its_ context to unpackPlotProps.
+    // The context of PlotlySection is Trace not layout and width isn't defined
     // in Trace. See next test for workaround.
     expect(wrapper.length).toBe(0);
   });
 
-  it('can modify plotProps with <Trace><Section><LayoutComp>', () => {
+  it('can modify plotProps with <Trace><PlotlySection><LayoutComp>', () => {
     const fixtureProps = fixtures.scatter({layout: {width: 10}});
-    const TracePanel = connectTraceToPlot(Panel);
+    const TracePanel = connectTraceToPlot(PlotlyPanel);
 
     const MAXWIDTH = 1000;
-    const LayoutSection = connectLayoutToPlot(Section);
+    const LayoutSection = connectLayoutToPlot(PlotlySection);
     const ModifiedNumeric = connectToContainer(Numeric, {
       modifyPlotProps: (props, context, plotProps) => {
         plotProps.max = MAXWIDTH;

@@ -1,4 +1,4 @@
-import Section from './Section';
+import PlotlySection from './PlotlySection';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import localize from 'lib/localize';
@@ -24,7 +24,9 @@ class TraceMarkerSection extends Component {
   }
 
   render() {
-    return <Section name={this.name}>{this.props.children}</Section>;
+    return (
+      <PlotlySection name={this.name}>{this.props.children}</PlotlySection>
+    );
   }
 }
 

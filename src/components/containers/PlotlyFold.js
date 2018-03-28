@@ -10,43 +10,10 @@ import {
   striptags,
 } from 'lib';
 
-class Fold extends Component {
-  constructor(props, context) {
-    super(props, context);
-
-    this.foldVisible = false;
-    this.determineVisibility(props, context);
-  }
-
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.determineVisibility(nextProps, nextContext);
-  }
-
-  determineVisibility(nextProps, nextContext) {
-    this.foldVisible = false;
-
-    React.Children.forEach(nextProps.children, child => {
-      if (!child || this.foldVisible) {
-        return;
-      }
-
-      if (child.props.attr) {
-        // attr components force fold open if they are visible
-        const plotProps = unpackPlotProps(child.props, nextContext);
-        if (child.type.modifyPlotProps) {
-          child.type.modifyPlotProps(child.props, nextContext, plotProps);
-        }
-
-        this.foldVisible = this.foldVisible || plotProps.isVisible;
-        return;
-      }
-
-      if (!(child.type.plotly_editor_traits || {}).no_visibility_forcing) {
-        // non-attr components force visibility (unless they don't via traits)
-        this.foldVisible = true;
-        return;
-      }
-    });
+class UnlocalizedFold extends Component {
+  constructor() {
+    super();
+    this.foldVisible = true;
   }
 
   render() {
@@ -136,9 +103,9 @@ class Fold extends Component {
   }
 }
 
-Fold.plotly_editor_traits = {foldable: true};
+UnlocalizedFold.plotly_editor_traits = {foldable: true};
 
-Fold.propTypes = {
+UnlocalizedFold.propTypes = {
   canDelete: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
@@ -151,11 +118,57 @@ Fold.propTypes = {
   name: PropTypes.string,
 };
 
-Fold.contextTypes = Object.assign(
+export const Fold = localize(UnlocalizedFold);
+
+class PlotlyFold extends UnlocalizedFold {
+  constructor(props, context) {
+    super(props, context);
+
+    this.foldVisible = false;
+    this.determineVisibility(props, context);
+  }
+
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.determineVisibility(nextProps, nextContext);
+  }
+
+  determineVisibility(nextProps, nextContext) {
+    this.foldVisible = false;
+
+    React.Children.forEach(nextProps.children, child => {
+      if (!child || this.foldVisible) {
+        return;
+      }
+
+      if (child.props.attr) {
+        // attr components force fold open if they are visible
+        const plotProps = unpackPlotProps(child.props, nextContext);
+        if (child.type.modifyPlotProps) {
+          child.type.modifyPlotProps(child.props, nextContext, plotProps);
+        }
+
+        this.foldVisible = this.foldVisible || plotProps.isVisible;
+        return;
+      }
+
+      if (!(child.type.plotly_editor_traits || {}).no_visibility_forcing) {
+        // non-attr components force visibility (unless they don't via traits)
+        this.foldVisible = true;
+        return;
+      }
+    });
+  }
+}
+
+PlotlyFold.plotly_editor_traits = {
+  foldable: true,
+};
+
+PlotlyFold.contextTypes = Object.assign(
   {
     deleteContainer: PropTypes.func,
   },
   containerConnectedContextTypes
 );
 
-export default localize(Fold);
+export default localize(PlotlyFold);

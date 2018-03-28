@@ -1,10 +1,10 @@
 import React from 'react';
-import {TraceAccordion, Fold, LayoutPanel} from '..';
+import {TraceAccordion, PlotlyFold, LayoutPanel} from '..';
 import {TextEditor} from '../../fields';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';
 
 describe('<TraceAccordion>', () => {
-  it('generates trace Folds with name == text', () => {
+  it('generates trace PlotlyFolds with name == text', () => {
     const fixture = fixtures.scatter({data: [{name: 'hodor'}]});
 
     const folds = mount(
@@ -15,7 +15,7 @@ describe('<TraceAccordion>', () => {
           </TraceAccordion>
         </LayoutPanel>
       </TestEditor>
-    ).find(Fold);
+    ).find(PlotlyFold);
 
     expect(folds.at(0).prop('name')).toBe('hodor');
   });

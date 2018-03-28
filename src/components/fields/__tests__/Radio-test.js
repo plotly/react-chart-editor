@@ -1,12 +1,12 @@
 import React from 'react';
 import Field from '../Field';
 import Radio from '../Radio';
-import {Section} from '../../containers';
+import {PlotlySection} from '../../containers';
 import {TestEditor, fixtures, plotly} from 'lib/test-utils';
 import {connectTraceToPlot} from 'lib';
 import {mount} from 'enzyme';
 
-const Trace = connectTraceToPlot(Section);
+const Trace = connectTraceToPlot(PlotlySection);
 
 describe('<Radio>', () => {
   it('enables <Field> centering by default', () => {

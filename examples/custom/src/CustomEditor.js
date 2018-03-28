@@ -3,13 +3,13 @@ import {
   Flaglist,
   ColorPicker,
   ColorscalePicker,
-  Fold,
+  PlotlyFold,
   PanelMenuWrapper,
   TextEditor,
   Radio,
   Dropdown,
   Info,
-  Section,
+  PlotlySection,
   Numeric,
   LayoutPanel,
   Button,
@@ -22,16 +22,16 @@ export default class CustomEditor extends Component {
     return (
       <PanelMenuWrapper>
         <TraceAccordion group="Traces" name="Style">
-          <Section name="Colorscale" attr="marker.colorscale">
+          <PlotlySection name="Colorscale" attr="marker.colorscale">
             <ColorscalePicker label="Colorscale" attr="marker.colorscale" />
-          </Section>
+          </PlotlySection>
         </TraceAccordion>
 
         <LayoutPanel group="Layout" name="Style">
-          <Fold name="Fold">
+          <PlotlyFold name="PlotlyFold">
             {
-              // At least one of the direct children of Fold must have an attr prop
-              // for the Fold to display itself
+              // At least one of the direct children of PlotlyFold must have an attr prop
+              // for the PlotlyFold to display itself
             }
             <Info attr="title">
               <p>
@@ -42,7 +42,7 @@ export default class CustomEditor extends Component {
                 This is an <code>Info</code> component.
               </p>
             </Info>
-            <Section name="Section">
+            <PlotlySection name="PlotlySection">
               <Numeric label="Numeric" attr="width" show units="units" />
               <Dropdown
                 label="Dropdown"
@@ -80,8 +80,8 @@ export default class CustomEditor extends Component {
               />
               <TextEditor attr="title" label="TextEditor htmlOnly" htmlOnly />
               <TextEditor attr="title" label="TextEditor latexOnly" latexOnly />
-            </Section>
-          </Fold>
+            </PlotlySection>
+          </PlotlyFold>
         </LayoutPanel>
         <SingleSidebarItem>
           <Button

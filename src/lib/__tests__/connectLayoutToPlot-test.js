@@ -1,12 +1,18 @@
 import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
 import connectLayoutToPlot from '../connectLayoutToPlot';
-import {Fold, Panel, Section} from '../../components/containers';
+import {
+  PlotlyFold,
+  PlotlyPanel,
+  PlotlySection,
+} from '../../components/containers';
 import {Numeric} from '../../components/fields';
 import {TestEditor, fixtures, plotly} from '../test-utils';
 import {mount} from 'enzyme';
 
-const Layouts = [Panel, Fold, Section].map(connectLayoutToPlot);
+const Layouts = [PlotlyPanel, PlotlyFold, PlotlySection].map(
+  connectLayoutToPlot
+);
 const Editor = props => (
   <TestEditor {...{plotly, onUpdate: jest.fn(), ...props}} />
 );
@@ -16,11 +22,11 @@ Layouts.forEach(Layout => {
     it(`wraps container with fullValue pointing to gd._fullLayout`, () => {
       const wrapper = mount(
         <Editor {...fixtures.scatter({layout: {width: 100}})}>
-          <Panel>
+          <PlotlyPanel>
             <Layout>
               <Numeric label="Width" step={10} attr="width" />
             </Layout>
-          </Panel>
+          </PlotlyPanel>
         </Editor>
       )
         .find('[attr="width"]')
@@ -36,11 +42,11 @@ Layouts.forEach(Layout => {
           beforeUpdateLayout={beforeUpdateLayout}
           {...fixtures.scatter({layout: {width: 100}})}
         >
-          <Panel>
+          <PlotlyPanel>
             <Layout>
               <Numeric label="Width" step={10} attr="width" />
             </Layout>
-          </Panel>
+          </PlotlyPanel>
         </Editor>
       )
         .find('[attr="width"]')
@@ -59,11 +65,11 @@ Layouts.forEach(Layout => {
           onUpdate={onUpdate}
           {...fixtures.scatter({layout: {showlegend: true}})}
         >
-          <Panel>
+          <PlotlyPanel>
             <Layout>
               <Numeric label="Position x" step={0.01} attr="legend.x" />
             </Layout>
-          </Panel>
+          </PlotlyPanel>
         </Editor>
       )
         .find('[attr="legend.x"]')

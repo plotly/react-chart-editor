@@ -1,21 +1,21 @@
 import React from 'react';
 import {connectLayoutToPlot} from 'lib';
-import {Panel, Fold} from '../../';
+import {PlotlyPanel, PlotlyFold} from '../../';
 import {TestEditor, fixtures} from 'lib/test-utils';
 import {mount} from 'enzyme';
 import {CanvasSize} from '../';
 
 describe('CanvasSize', () => {
-  const LayoutPanel = connectLayoutToPlot(Panel);
+  const LayoutPanel = connectLayoutToPlot(PlotlyPanel);
 
   it('is hidden when autosize is true', () => {
     const fixtureProps = fixtures.scatter({layout: {autosize: true}});
     const wrapper = mount(
       <TestEditor {...{...fixtureProps}}>
         <LayoutPanel name="Layout">
-          <Fold name="Canvas">
+          <PlotlyFold name="Canvas">
             <CanvasSize attr="width" />
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     ).find(CanvasSize);
@@ -28,9 +28,9 @@ describe('CanvasSize', () => {
     const wrapper = mount(
       <TestEditor {...{...fixtureProps}}>
         <LayoutPanel name="Layout">
-          <Fold name="Canvas">
+          <PlotlyFold name="Canvas">
             <CanvasSize attr="width" />
-          </Fold>
+          </PlotlyFold>
         </LayoutPanel>
       </TestEditor>
     ).find(CanvasSize);

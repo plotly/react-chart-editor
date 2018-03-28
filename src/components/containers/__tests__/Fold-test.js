@@ -1,31 +1,31 @@
 import {Numeric} from '../../fields';
-import {Fold, Panel} from '..';
+import {PlotlyFold, PlotlyPanel} from '..';
 import React from 'react';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';
 import {connectTraceToPlot} from 'lib';
 
-const TraceFold = connectTraceToPlot(Fold);
+const TraceFold = connectTraceToPlot(PlotlyFold);
 
-describe('<Fold>', () => {
+describe('<PlotlyFold>', () => {
   it('shows deleteContainer button when deleteContainer function present and canDelete is true', () => {
     const withoutDelete = mount(
       <TestEditor {...fixtures.scatter()}>
-        <Panel>
-          <Fold>
+        <PlotlyPanel>
+          <PlotlyFold>
             <Numeric attr="opacity" />
-          </Fold>
-        </Panel>
+          </PlotlyFold>
+        </PlotlyPanel>
       </TestEditor>
     ).find('.js-fold__delete');
     expect(withoutDelete.exists()).toBe(false);
 
     const withDelete = mount(
       <TestEditor {...fixtures.scatter()}>
-        <Panel>
+        <PlotlyPanel>
           <TraceFold traceIndexes={[0]} canDelete={true}>
             <Numeric attr="opacity" />
           </TraceFold>
-        </Panel>
+        </PlotlyPanel>
       </TestEditor>
     ).find('.js-fold__delete');
     expect(withDelete.exists()).toBe(true);
@@ -35,11 +35,11 @@ describe('<Fold>', () => {
     const beforeDeleteTrace = jest.fn();
     mount(
       <TestEditor {...fixtures.scatter()} beforeDeleteTrace={beforeDeleteTrace}>
-        <Panel>
+        <PlotlyPanel>
           <TraceFold traceIndexes={[0]} canDelete={true}>
             <Numeric attr="opacity" />
           </TraceFold>
-        </Panel>
+        </PlotlyPanel>
       </TestEditor>
     )
       .find('.js-fold__delete')

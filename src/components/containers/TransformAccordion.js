@@ -1,10 +1,10 @@
-import Fold from './Fold';
-import Panel from './Panel';
+import PlotlyFold from './PlotlyFold';
+import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectTransformToTrace, localize} from 'lib';
 
-const TransformFold = connectTransformToTrace(Fold);
+const TransformFold = connectTransformToTrace(PlotlyFold);
 
 class TransformAccordion extends Component {
   render() {
@@ -50,7 +50,11 @@ class TransformAccordion extends Component {
       }),
     };
 
-    return <Panel addAction={addAction}>{content ? content : null}</Panel>;
+    return (
+      <PlotlyPanel addAction={addAction}>
+        {content ? content : null}
+      </PlotlyPanel>
+    );
   }
 }
 

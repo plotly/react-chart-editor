@@ -1,10 +1,10 @@
-import Fold from './Fold';
+import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectUpdateMenuToLayout, localize} from 'lib';
 
-const UpdateMenuFold = connectUpdateMenuToLayout(Fold);
+const UpdateMenuFold = connectUpdateMenuToLayout(PlotlyFold);
 
 class UpdateMenuAccordion extends Component {
   render() {

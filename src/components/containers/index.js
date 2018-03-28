@@ -5,10 +5,10 @@ import ImageAccordion from './ImageAccordion';
 import UpdateMenuAccordion from './UpdateMenuAccordion';
 import RangeSelectorAccordion from './RangeSelectorAccordion';
 import AxesFold from './AxesFold';
-import Fold from './Fold';
+import PlotlyFold, {Fold} from './PlotlyFold';
 import MenuPanel from './MenuPanel';
-import Panel from './Panel';
-import Section from './Section';
+import PlotlyPanel, {Panel} from './PlotlyPanel';
+import PlotlySection, {Section} from './PlotlySection';
 import TraceAccordion from './TraceAccordion';
 import TransformAccordion from './TransformAccordion';
 import TraceMarkerSection from './TraceMarkerSection';
@@ -17,7 +17,6 @@ import TraceRequiredPanel from './TraceRequiredPanel';
 import SingleSidebarItem from './SingleSidebarItem';
 import ModalProvider from './ModalProvider';
 import Modal from './Modal';
-import SectionHeader from './SectionHeader';
 
 export {
   AnnotationAccordion,
@@ -27,8 +26,11 @@ export {
   UpdateMenuAccordion,
   RangeSelectorAccordion,
   MenuPanel,
+  PlotlyFold,
   Fold,
+  PlotlyPanel,
   Panel,
+  PlotlySection,
   Section,
   TraceAccordion,
   TransformAccordion,
@@ -41,5 +43,4 @@ export {
   TraceTypeSection,
   Modal,
   ModalProvider,
-  SectionHeader,
 };

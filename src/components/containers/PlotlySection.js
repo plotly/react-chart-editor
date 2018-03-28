@@ -5,14 +5,43 @@ import {
   localize,
   unpackPlotProps,
 } from '../../lib';
-import SectionHeader from './SectionHeader';
 
-class Section extends Component {
+class UnlocalizedSection extends Component {
+  constructor() {
+    super();
+    this.sectionVisible = true;
+  }
+
+  render() {
+    if (!this.sectionVisible) {
+      return null;
+    }
+
+    return (
+      <div className="section">
+        {this.props.name ? (
+          <div className="section__heading">
+            <div className="section__heading__text">{this.props.name}</div>
+          </div>
+        ) : null}
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+UnlocalizedSection.plotly_editor_traits = {no_visibility_forcing: false};
+UnlocalizedSection.propTypes = {
+  children: PropTypes.node,
+  name: PropTypes.string,
+  attr: PropTypes.string,
+};
+
+export const Section = localize(UnlocalizedSection);
+
+class PlotlySection extends UnlocalizedSection {
   constructor(props, context) {
     super(props, context);
-
-    this.sectionVisible = false;
-
     this.determineVisibility(props, context);
   }
 
@@ -25,7 +54,7 @@ class Section extends Component {
     this.sectionVisible = Boolean(isVisible);
 
     React.Children.forEach(nextProps.children, child => {
-      if (!child || this.foldVisible) {
+      if (!child || this.sectionVisible) {
         return;
       }
 
@@ -45,27 +74,8 @@ class Section extends Component {
       }
     });
   }
-
-  render() {
-    if (!this.sectionVisible) {
-      return null;
-    }
-    return (
-      <div className="section">
-        {this.props.name && <SectionHeader name={this.props.name} />}
-        {this.props.children}
-      </div>
-    );
-  }
 }
 
-Section.plotly_editor_traits = {no_visibility_forcing: true};
-
-Section.propTypes = {
-  children: PropTypes.node,
-  name: PropTypes.string,
-  attr: PropTypes.string,
-};
-
-Section.contextTypes = containerConnectedContextTypes;
-export default localize(Section);
+PlotlySection.plotly_editor_traits = {no_visibility_forcing: true};
+PlotlySection.contextTypes = containerConnectedContextTypes;
+export default localize(PlotlySection);

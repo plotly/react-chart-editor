@@ -1,13 +1,13 @@
 import React from 'react';
-import {AnnotationAccordion, Panel, Fold} from '..';
+import {AnnotationAccordion, PlotlyPanel, PlotlyFold} from '..';
 import {Numeric} from '../../fields';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';
 import {connectLayoutToPlot} from 'lib';
 
-const LayoutPanel = connectLayoutToPlot(Panel);
+const LayoutPanel = connectLayoutToPlot(PlotlyPanel);
 
 describe('<AnnotationAccordion>', () => {
-  it('generates annotation Folds with name == text', () => {
+  it('generates annotation PlotlyFolds with name == text', () => {
     const fixture = fixtures.scatter({
       layout: {annotations: [{text: 'hodor'}, {text: 'rodoh'}]},
     });
@@ -20,7 +20,7 @@ describe('<AnnotationAccordion>', () => {
           </AnnotationAccordion>
         </LayoutPanel>
       </TestEditor>
-    ).find(Fold);
+    ).find(PlotlyFold);
 
     expect(folds.length).toBe(2);
     expect(folds.at(0).prop('name')).toBe('hodor');

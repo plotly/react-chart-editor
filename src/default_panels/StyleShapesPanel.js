@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
   ShapeAccordion,
   Radio,
-  Section,
+  PlotlySection,
   PositioningRef,
   PositioningNumeric,
   Numeric,
@@ -32,26 +32,26 @@ const StyleShapesPanel = ({localize: _}) => (
       ]}
     />
 
-    <Section name={_('Horizontal Boundaries')}>
+    <PlotlySection name={_('Horizontal Boundaries')}>
       <PositioningRef label={_('Relative to')} attr="xref" />
       <PositioningNumeric label={_('Start Point')} attr="x0" />
       <PositioningNumeric label={_('End Point')} attr="x1" />
-    </Section>
+    </PlotlySection>
 
-    <Section name={_('Vertical Boundaries')}>
+    <PlotlySection name={_('Vertical Boundaries')}>
       <PositioningRef label={_('Relative to')} attr="yref" />
       <PositioningNumeric label={_('Start Point')} attr="y0" />
       <PositioningNumeric label={_('End Point')} attr="y1" />
-    </Section>
-    <Section name={_('Lines')}>
+    </PlotlySection>
+    <PlotlySection name={_('Lines')}>
       <Numeric label={_('Width')} attr="line.width" />
       <ColorPicker label={_('Line Color')} attr="line.color" />
       <LineDashSelector label={_('Type')} attr="line.dash" />
-    </Section>
-    <Section name={_('Fill')}>
+    </PlotlySection>
+    <PlotlySection name={_('Fill')}>
       <ColorPicker label={_('Color')} attr="fillcolor" />
       <NumericFraction label={_('Opacity')} attr="opacity" />
-    </Section>
+    </PlotlySection>
   </ShapeAccordion>
 );
 

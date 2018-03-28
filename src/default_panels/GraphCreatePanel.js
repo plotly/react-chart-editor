@@ -5,7 +5,7 @@ import {
   Dropdown,
   ErrorBars,
   Radio,
-  Section,
+  PlotlySection,
   LayoutSection,
   AxisCreator,
   TraceAccordion,
@@ -22,7 +22,7 @@ const GraphCreatePanel = ({localize: _}) => {
       <TextEditor label={_('Name')} attr="name" richTextOnly />
       <TraceSelector label={_('Type')} attr="type" show />
 
-      <Section name={_('Data')}>
+      <PlotlySection name={_('Data')}>
         <DataSelector label={_('Labels')} attr="labels" />
         <DataSelector label={_('Values')} attr="values" />
         <DataSelector label={_('Locations')} attr="locations" />
@@ -64,7 +64,7 @@ const GraphCreatePanel = ({localize: _}) => {
         <DataSelector label={_('C')} attr="c" />
         <DataSelector label={_('Headers')} attr="header.values" />
         <DataSelector label={_('Columns')} attr="cells.values" />
-      </Section>
+      </PlotlySection>
 
       <TraceTypeSection
         name={_('Data')}
@@ -84,40 +84,40 @@ const GraphCreatePanel = ({localize: _}) => {
         />
       </TraceTypeSection>
 
-      <Section name={_('Axes to Use')}>
+      <PlotlySection name={_('Axes to Use')}>
         <AxisCreator attr="fake_attr" localize={_} />
-      </Section>
+      </PlotlySection>
 
-      <Section name={_('Error Bars X')}>
+      <PlotlySection name={_('Error Bars X')}>
         <ErrorBars localize={_} attr="error_x" />
-      </Section>
+      </PlotlySection>
 
-      <Section name={_('Error Bars Y')}>
+      <PlotlySection name={_('Error Bars Y')}>
         <ErrorBars localize={_} attr="error_y" />
-      </Section>
+      </PlotlySection>
 
-      <Section name={_('Error Bars Z')}>
+      <PlotlySection name={_('Error Bars Z')}>
         <ErrorBars localize={_} attr="error_z" />
-      </Section>
+      </PlotlySection>
 
-      <Section name={_('Header Options')}>
+      <PlotlySection name={_('Header Options')}>
         <DataSelector label={_('Fill Color')} attr="header.fill.color" />
         <DataSelector label={_('Font Color')} attr="header.font.color" />
         <DataSelector label={_('Font Size')} attr="header.font.size" />
-      </Section>
+      </PlotlySection>
 
-      <Section name={_('Cell Options')}>
+      <PlotlySection name={_('Cell Options')}>
         <DataSelector label={_('Fill Color')} attr="cells.fill.color" />
         <DataSelector label={_('Font Color')} attr="cells.font.color" />
         <DataSelector label={_('Font Size')} attr="cells.font.size" />
-      </Section>
+      </PlotlySection>
 
-      <Section name={_('Column Options')}>
+      <PlotlySection name={_('Column Options')}>
         <DataSelector label={_('Width')} attr="columnwidth" />
         <DataSelector label={_('Order')} attr="columnorder" />
-      </Section>
+      </PlotlySection>
 
-      <Section name={_('Options')}>
+      <PlotlySection name={_('Options')}>
         <DataSelector label={_('Intensity')} attr="intensity" />
         <DataSelector label={_('Facecolor')} attr="facecolor" />
         <DataSelector label={_('Vertexcolor')} attr="vertexcolor" />
@@ -193,7 +193,7 @@ const GraphCreatePanel = ({localize: _}) => {
             {label: _('Yes'), value: true},
           ]}
         />
-      </Section>
+      </PlotlySection>
     </TraceAccordion>
   );
 };
