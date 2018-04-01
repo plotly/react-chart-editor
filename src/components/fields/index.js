@@ -38,6 +38,7 @@ import {
   TraceOrientation,
   AxisOverlayDropdown,
   AxisSide,
+  TextPosition,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './lineSelectors';
 
@@ -83,4 +84,5 @@ export {
   AxisSide,
   UpdateMenuButtons,
   Dropzone,
+  TextPosition,
 };

@@ -461,14 +461,62 @@ function computeAxesRefOptions(axes, propsAttr) {
   return options;
 }
 
+export const TextPosition = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = props;
+    let options = [
+      {label: _('Top Left'), value: 'top left'},
+      {label: _('Top Center'), value: 'top center'},
+      {label: _('Top Right'), value: 'top right'},
+      {label: _('Middle Left'), value: 'middle left'},
+      {label: _('Middle Center'), value: 'middle center'},
+      {label: _('Middle Right'), value: 'middle right'},
+      {label: _('Bottom Left'), value: 'bottom left'},
+      {label: _('Bottom Center'), value: 'bottom center'},
+      {label: _('Bottom Right'), value: 'bottom right'},
+    ];
+    if (context.container.type === 'pie') {
+      options = [
+        {label: _('Inside'), value: 'inside'},
+        {label: _('Outside'), value: 'outside'},
+        {label: _('Auto'), value: 'auto'},
+        {label: _('None'), value: 'none'},
+      ];
+    }
+    plotProps.options = options;
+    plotProps.clearable = false;
+  },
+});
+
 export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _} = props;
     let options = [
       {label: _('X'), value: 'x'},
       {label: _('Y'), value: 'y'},
-      {label: _('Z'), value: 'z'},
+      {label: _('Name'), value: 'name'},
     ];
+
+    if (
+      [
+        'heatmap',
+        'heatmapgl',
+        'histogram2d',
+        'histogram2dcontour',
+        'contour',
+        'contourcarpet',
+        'scatter3d',
+        'surface',
+        'mesh3d',
+      ].includes(context.container.type)
+    ) {
+      options = [
+        {label: _('X'), value: 'x'},
+        {label: _('Y'), value: 'y'},
+        {label: _('Z'), value: 'z'},
+        {label: _('Name'), value: 'name'},
+      ];
+    }
 
     if (context.container.type === 'choropleth') {
       options = [
@@ -516,6 +564,16 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       options = [
         {label: _('R'), value: 'r'},
         {label: _('Theta'), value: 'theta'},
+        {label: _('Text'), value: 'text'},
+        {label: _('Name'), value: 'name'},
+      ];
+    }
+
+    if (context.container.type === 'pie') {
+      options = [
+        {label: _('Label'), value: 'label'},
+        {label: _('Value'), value: 'value'},
+        {label: _('Percent'), value: 'percent'},
         {label: _('Text'), value: 'text'},
         {label: _('Name'), value: 'name'},
       ];

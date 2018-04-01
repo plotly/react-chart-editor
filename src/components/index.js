@@ -40,6 +40,7 @@ import {
   TraceSelector,
   UpdateMenuButtons,
   Dropzone,
+  TextPosition,
 } from './fields';
 
 import {
@@ -135,4 +136,5 @@ export {
   TraceTypeSection,
   UpdateMenuButtons,
   Dropzone,
+  TextPosition,
 };
