@@ -12,9 +12,7 @@ import {
   LineDashSelector,
 } from '../components';
 
-import {localize} from '../lib';
-
-const StyleShapesPanel = ({localize: _}) => (
+const StyleShapesPanel = (props, {localize: _}) => (
   <ShapeAccordion canAdd>
     <Radio
       attr="visible"
@@ -55,8 +53,8 @@ const StyleShapesPanel = ({localize: _}) => (
   </ShapeAccordion>
 );
 
-StyleShapesPanel.propTypes = {
+StyleShapesPanel.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(StyleShapesPanel);
+export default StyleShapesPanel;

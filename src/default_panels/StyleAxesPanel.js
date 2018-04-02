@@ -23,7 +23,6 @@ import {
   RangeSelectorAccordion,
 } from '../components';
 
-import {localize} from '../lib';
 import {TRACE_TO_AXIS} from '../lib/constants';
 
 class StyleAxesPanel extends Component {
@@ -43,7 +42,7 @@ class StyleAxesPanel extends Component {
   }
 
   render() {
-    const {localize: _} = this.props;
+    const {localize: _} = this.context;
     return (
       <TraceRequiredPanel
         extraConditions={[this.hasAxes]}
@@ -71,11 +70,7 @@ class StyleAxesPanel extends Component {
           }
         >
           <PlotlySection name={_('Boundaries')} attr="domain[0]">
-            <AxisOverlayDropdown
-              label={_('Overlay')}
-              attr="overlaying"
-              localize={_}
-            />
+            <AxisOverlayDropdown label={_('Overlay')} attr="overlaying" />
             <NumericFractionDomain
               label={_('Start Position')}
               attr="domain[0]"
@@ -87,12 +82,8 @@ class StyleAxesPanel extends Component {
             name={_('Anchor')}
             traceTypes={TRACE_TO_AXIS.cartesian}
           >
-            <AxisAnchorDropdown
-              label={_('Anchor To')}
-              attr="anchor"
-              localize={_}
-            />
-            <AxisSide label={_('Side')} attr="side" localize={_} />
+            <AxisAnchorDropdown label={_('Anchor To')} attr="anchor" />
+            <AxisSide label={_('Side')} attr="side" />
           </TraceTypeSection>
         </AxesFold>
 
@@ -534,12 +525,9 @@ class StyleAxesPanel extends Component {
   }
 }
 
-StyleAxesPanel.propTypes = {
+StyleAxesPanel.contextTypes = {
+  fullLayout: PropTypes.object,
   localize: PropTypes.func,
 };
 
-StyleAxesPanel.contextTypes = {
-  fullLayout: PropTypes.object,
-};
-
-export default localize(StyleAxesPanel);
+export default StyleAxesPanel;

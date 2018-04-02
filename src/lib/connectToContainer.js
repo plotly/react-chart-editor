@@ -4,6 +4,7 @@ import unpackPlotProps from './unpackPlotProps';
 import {getDisplayName} from '../lib';
 
 export const containerConnectedContextTypes = {
+  localize: PropTypes.func,
   container: PropTypes.object,
   data: PropTypes.array,
   defaultContainer: PropTypes.object,

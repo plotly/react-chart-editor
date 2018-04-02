@@ -2,14 +2,14 @@ import PlotlyFold from './PlotlyFold';
 import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectTransformToTrace, localize} from 'lib';
+import {connectTransformToTrace} from 'lib';
 
 const TransformFold = connectTransformToTrace(PlotlyFold);
 
 class TransformAccordion extends Component {
   render() {
-    const {fullContainer: {transforms = []}} = this.context;
-    const {children, localize: _} = this.props;
+    const {fullContainer: {transforms = []}, localize: _} = this.context;
+    const {children} = this.props;
 
     const transformTypes = [
       {label: _('Filter'), type: 'filter'},
@@ -60,11 +60,11 @@ class TransformAccordion extends Component {
 
 TransformAccordion.contextTypes = {
   fullContainer: PropTypes.object,
+  localize: PropTypes.func,
 };
 
 TransformAccordion.propTypes = {
   children: PropTypes.node,
-  localize: PropTypes.func,
 };
 
-export default localize(TransformAccordion);
+export default TransformAccordion;

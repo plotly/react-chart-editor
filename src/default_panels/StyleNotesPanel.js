@@ -15,9 +15,7 @@ import {
   PlotlySection,
 } from '../components';
 
-import {localize} from '../lib';
-
-const StyleNotesPanel = ({localize: _}) => (
+const StyleNotesPanel = (props, {localize: _}) => (
   <AnnotationAccordion canAdd>
     <PlotlySection name={_('Note Text')} attr="text">
       <TextEditor attr="text" />
@@ -76,8 +74,8 @@ const StyleNotesPanel = ({localize: _}) => (
   </AnnotationAccordion>
 );
 
-StyleNotesPanel.propTypes = {
+StyleNotesPanel.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(StyleNotesPanel);
+export default StyleNotesPanel;

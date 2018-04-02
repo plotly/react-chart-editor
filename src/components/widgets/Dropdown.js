@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Select from 'react-select';
 import classnames from 'classnames';
-import {localize} from 'lib';
 
 class Dropdown extends Component {
   constructor(props) {
@@ -40,8 +39,9 @@ class Dropdown extends Component {
       disabled,
       className,
       width,
-      localize: _,
     } = this.props;
+
+    const {localize: _} = this.context;
 
     const dropdownStyle = {minWidth};
     if (width) {
@@ -109,7 +109,10 @@ Dropdown.propTypes = {
   disabled: PropTypes.bool,
   className: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+};
+
+Dropdown.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(Dropdown);
+export default Dropdown;

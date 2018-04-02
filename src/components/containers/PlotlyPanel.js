@@ -3,12 +3,12 @@ import PanelEmpty from './PanelEmpty';
 import PropTypes from 'prop-types';
 import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
-import {bem, localize} from 'lib';
+import {bem} from 'lib';
 import {EmbedIconIcon} from 'plotly-icons';
 
 class PanelErrorImpl extends Component {
   render() {
-    const {localize: _} = this.props;
+    const {localize: _} = this.context;
 
     return (
       <PanelEmpty
@@ -20,13 +20,13 @@ class PanelErrorImpl extends Component {
   }
 }
 
-PanelErrorImpl.propTypes = {
+PanelErrorImpl.contextTypes = {
   localize: PropTypes.func,
 };
 
-const PanelError = localize(PanelErrorImpl);
+const PanelError = PanelErrorImpl;
 
-class UnlocalizedPanel extends Component {
+export class Panel extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -123,23 +123,25 @@ class UnlocalizedPanel extends Component {
   }
 }
 
-UnlocalizedPanel.propTypes = {
+Panel.propTypes = {
   children: PropTypes.node,
   addAction: PropTypes.object,
   showExpandCollapse: PropTypes.bool,
   noPadding: PropTypes.bool,
 };
 
-UnlocalizedPanel.defaultProps = {
+Panel.defaultProps = {
   showExpandCollapse: true,
 };
 
-export const Panel = localize(UnlocalizedPanel);
+Panel.contextTypes = {
+  localize: PropTypes.func,
+};
 
-class PlotlyPanel extends UnlocalizedPanel {}
+class PlotlyPanel extends Panel {}
 
 PlotlyPanel.plotly_editor_traits = {
   no_visibility_forcing: true,
 };
 
-export default localize(PlotlyPanel);
+export default PlotlyPanel;

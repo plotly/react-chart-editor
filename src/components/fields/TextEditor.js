@@ -1,7 +1,7 @@
 import Field from './Field';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {connectToContainer, localize} from 'lib';
+import {connectToContainer} from 'lib';
 import LaTeX from '../widgets/text_editors/LaTeX';
 import RichText from '../widgets/text_editors/RichText';
 import MultiFormat from '../widgets/text_editors/MultiFormat';
@@ -14,11 +14,12 @@ class UnconnectedTextEditor extends Component {
       container,
       htmlOnly,
       latexOnly,
-      localize: _,
       multiValued,
       richTextOnly,
       updatePlot,
     } = this.props;
+
+    const {localize: _} = this.context;
 
     let fullValue = this.props.fullValue;
 
@@ -83,9 +84,7 @@ UnconnectedTextEditor.propTypes = {
   updatePlot: PropTypes.func,
 };
 
-export const LocalizedTextEditor = localize(UnconnectedTextEditor);
-
-export default connectToContainer(LocalizedTextEditor, {
+export default connectToContainer(UnconnectedTextEditor, {
   modifyPlotProps: (props, context, plotProps) => {
     if (plotProps.isVisible && plotProps.multiValued) {
       plotProps.isVisible = false;

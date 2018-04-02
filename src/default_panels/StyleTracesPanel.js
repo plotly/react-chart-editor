@@ -24,13 +24,21 @@ import {
   Dropdown,
   FillDropdown,
   FontSelector,
+  TextPosition,
+  DataSelector,
 } from '../components';
 
-import {localize} from '../lib';
-
-const StyleTracesPanel = ({localize: _}) => (
+const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
+    <Radio
+      label="Show in Legend"
+      attr="showlegend"
+      options={[
+        {label: _('Show'), value: true},
+        {label: _('Hide'), value: false},
+      ]}
+    />
     <TraceOrientation
       label={_('Orientation')}
       attr="orientation"
@@ -41,7 +49,7 @@ const StyleTracesPanel = ({localize: _}) => (
     />
     <NumericFraction label={_('Opacity')} attr="opacity" />
     <ColorPicker label={_('Color')} attr="color" />
-
+    <Numeric showSlider step={0.1} attr="hole" label={_('Hole')} />
     <PlotlySection name={_('Text Attributes')}>
       <Flaglist
         attr="textinfo"
@@ -53,7 +61,6 @@ const StyleTracesPanel = ({localize: _}) => (
         ]}
       />
     </PlotlySection>
-
     <PlotlySection name={_('Header')}>
       <Numeric label={_('Height')} attr="header.height" />
       <ColorPicker label={_('Fill Color')} attr="header.fill.color" />
@@ -72,7 +79,6 @@ const StyleTracesPanel = ({localize: _}) => (
       <Numeric label={_('Border Width')} attr="header.line.width" />
       <ColorPicker label={_('Border Color')} attr="header.line.color" />
     </PlotlySection>
-
     <PlotlySection name={_('Cells')}>
       <Numeric label={_('Height')} attr="cells.height" />
       <ColorPicker label={_('Fill Color')} attr="cells.fill.color" />
@@ -91,7 +97,6 @@ const StyleTracesPanel = ({localize: _}) => (
       <Numeric label={_('Border Width')} attr="cells.line.width" />
       <ColorPicker label={_('Border Color')} attr="cells.line.color" />
     </PlotlySection>
-
     <PlotlySection name={_('Display')}>
       <Flaglist
         attr="mode"
@@ -110,13 +115,19 @@ const StyleTracesPanel = ({localize: _}) => (
         ]}
       />
     </PlotlySection>
-
     <PlotlySection name={_('Filled Area')}>
-      <FillDropdown attr="fill" label={_('Fill to')} localize={_} />
+      <FillDropdown attr="fill" label={_('Fill to')} />
       <ColorPicker label={_('Color')} attr="fillcolor" />
     </PlotlySection>
-
     <TraceMarkerSection>
+      <Radio
+        label="Order"
+        attr="sort"
+        options={[
+          {label: _('Sorted'), value: true},
+          {label: _('Unsorted'), value: false},
+        ]}
+      />
       <Radio
         attr="boxpoints"
         options={[
@@ -134,28 +145,25 @@ const StyleTracesPanel = ({localize: _}) => (
       />
       <ColorscalePicker label={_('Colorscale')} attr="marker.colorscale" />
       <ColorPicker label={_('Color')} attr="marker.color" />
+      <DataSelector label={'Colors'} attr="marker.colors" />
       <NumericFraction label={_('Opacity')} attr="marker.opacity" />
       <Numeric label={_('Size')} attr="marker.size" />
       <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
       <Numeric label={_('Border Width')} attr="marker.line.width" />
       <ColorPicker label={_('Border Color')} attr="marker.line.color" />
     </TraceMarkerSection>
-
     <LayoutSection name={_('Size and Spacing')}>
       <NumericFractionInverse label={_('Bar Width')} attr="bargap" />
       <NumericFractionInverse label={_('Box Width')} attr="boxgap" />
       <NumericFraction label={_('Bar Padding')} attr="bargroupgap" />
       <NumericFraction label={_('Box Padding')} attr="boxgroupgap" />
     </LayoutSection>
-
     <PlotlySection name={_('Ticks')}>
       <Numeric label={_('Width')} attr="tickwidth" />
     </PlotlySection>
-
     <PlotlySection name={_('Whiskers')}>
       <Numeric label={_('Width')} attr="whiskerwidth" />
     </PlotlySection>
-
     <TraceTypeSection
       name={_('Lines')}
       traceTypes={[
@@ -196,32 +204,15 @@ const StyleTracesPanel = ({localize: _}) => (
         ]}
       />
     </TraceTypeSection>
-
     <TraceTypeSection
       name={_('Text')}
-      traceTypes={['scatter', 'scatterpolar', 'scatterpolargl']}
+      traceTypes={['scatter', 'scatterpolar', 'scatterpolargl', 'pie']}
     >
       <FontSelector label={_('Typeface')} attr="textfont.family" />
       <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
       <ColorPicker label={_('Font Color')} attr="textfont.color" />
-      <Dropdown
-        label={_('Text Position')}
-        attr="textposition"
-        clearable={false}
-        options={[
-          {label: _('Top Left'), value: 'top left'},
-          {label: _('Top Center'), value: 'top center'},
-          {label: _('Top Right'), value: 'top right'},
-          {label: _('Middle Left'), value: 'middle left'},
-          {label: _('Middle Center'), value: 'middle center'},
-          {label: _('Middle Right'), value: 'middle right'},
-          {label: _('Bottom Left'), value: 'bottom left'},
-          {label: _('Bottom Center'), value: 'bottom center'},
-          {label: _('Bottom Right'), value: 'bottom right'},
-        ]}
-      />
+      <TextPosition label={_('Text Position')} attr="textposition" />
     </TraceTypeSection>
-
     <PlotlySection name={_('Colorscale')}>
       <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
       <Radio
@@ -251,12 +242,10 @@ const StyleTracesPanel = ({localize: _}) => (
         ]}
       />
     </PlotlySection>
-
     <PlotlySection name={_('Heatmap')}>
       <Numeric label={_('Horizontal Gaps')} attr="xgap" />
       <Numeric label={_('Vertical Gaps')} attr="ygap" />
     </PlotlySection>
-
     <TraceTypeSection
       name={_('Gaps in Data')}
       traceTypes={['heatmap', 'contour', 'heatmapgl']}
@@ -270,7 +259,6 @@ const StyleTracesPanel = ({localize: _}) => (
         ]}
       />
     </TraceTypeSection>
-
     <PlotlySection name={_('Contours')}>
       <Radio
         label={_('Coloring')}
@@ -303,7 +291,6 @@ const StyleTracesPanel = ({localize: _}) => (
       <ContourNumeric label={_('Min Contour')} attr="contours.start" />
       <ContourNumeric label={_('Max Contour')} attr="contours.end" />
     </PlotlySection>
-
     <PlotlySection name={_('Lighting')}>
       <NumericFraction label={_('Ambient')} attr="lighting.ambient" />
       <NumericFraction label={_('Diffuse')} attr="lighting.diffuse" />
@@ -319,13 +306,11 @@ const StyleTracesPanel = ({localize: _}) => (
         attr="lighting.facenormalsepsilon"
       />
     </PlotlySection>
-
     <PlotlySection name={_('Light Position')}>
       <NumericFraction label={_('X')} attr="lightposition.x" />
       <NumericFraction label={_('Y')} attr="lightposition.y" />
       <NumericFraction label={_('Z')} attr="lightposition.z" />
     </PlotlySection>
-
     <PlotlySection name={_('Increasing Trace Styles')}>
       <TextEditor label={_('Name')} attr="increasing.name" richTextOnly />
       <Numeric label={_('Width')} attr="increasing.line.width" />
@@ -341,7 +326,6 @@ const StyleTracesPanel = ({localize: _}) => (
         ]}
       />
     </PlotlySection>
-
     <PlotlySection name={_('Decreasing Trace Styles')}>
       <TextEditor label={_('Name')} attr="decreasing.name" richTextOnly />
       <Numeric label={_('Width')} attr="decreasing.line.width" />
@@ -357,7 +341,6 @@ const StyleTracesPanel = ({localize: _}) => (
         ]}
       />
     </PlotlySection>
-
     <PlotlySection name={_('Highlight')}>
       <Radio
         attr="boxmean"
@@ -376,13 +359,8 @@ const StyleTracesPanel = ({localize: _}) => (
         ]}
       />
     </PlotlySection>
-
     <PlotlySection name={_('On Hover')}>
-      <HoverInfo
-        attr="hoverinfo"
-        label={_('Values Shown On Hover')}
-        localize={_}
-      />
+      <HoverInfo attr="hoverinfo" label={_('Values Shown On Hover')} />
       <Radio
         label={_('Show Contour')}
         attr="contour.show"
@@ -394,7 +372,6 @@ const StyleTracesPanel = ({localize: _}) => (
       <ColorPicker label={_('Contour Color')} attr="contour.color" />
       <Numeric label={_('Contour Width')} attr="contour.width" />
     </PlotlySection>
-
     <TraceTypeSection name={_('Hover Action')} traceTypes={['box']}>
       <Flaglist
         attr="hoveron"
@@ -405,7 +382,6 @@ const StyleTracesPanel = ({localize: _}) => (
         ]}
       />
     </TraceTypeSection>
-
     <TraceTypeSection
       name={_('Hover Action')}
       traceTypes={[
@@ -427,8 +403,8 @@ const StyleTracesPanel = ({localize: _}) => (
   </TraceAccordion>
 );
 
-StyleTracesPanel.propTypes = {
+StyleTracesPanel.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(StyleTracesPanel);
+export default StyleTracesPanel;

@@ -2,16 +2,10 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
-import {
-  capitalize,
-  getAllAxes,
-  getDisplayName,
-  localize,
-  getAxisTitle,
-} from '../lib';
+import {capitalize, getAllAxes, getDisplayName, getAxisTitle} from '../lib';
 
-function computeAxesOptions(axes, props) {
-  const _ = props.localize;
+function computeAxesOptions(axes, props, context) {
+  const _ = context.localize;
   let filteredAxes = axes;
   if (props.axisFilter) {
     filteredAxes = axes.filter(props.axisFilter);
@@ -156,14 +150,11 @@ export default function connectAxesToLayout(WrappedComponent) {
     WrappedComponent
   )}`;
 
-  AxesConnectedComponent.propTypes = {
-    localize: PropTypes.func,
-  };
-
   AxesConnectedComponent.contextTypes = {
     container: PropTypes.object.isRequired,
     fullContainer: PropTypes.object.isRequired,
     updateContainer: PropTypes.func,
+    localize: PropTypes.func,
   };
 
   AxesConnectedComponent.childContextTypes = {
@@ -179,5 +170,5 @@ export default function connectAxesToLayout(WrappedComponent) {
   const {plotly_editor_traits} = WrappedComponent;
   AxesConnectedComponent.plotly_editor_traits = plotly_editor_traits;
 
-  return localize(AxesConnectedComponent);
+  return AxesConnectedComponent;
 }

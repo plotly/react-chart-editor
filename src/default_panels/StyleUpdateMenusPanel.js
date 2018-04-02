@@ -10,9 +10,7 @@ import {
   UpdateMenuButtons,
 } from '../components';
 
-import {localize} from '../lib';
-
-const StyleUpdateMenusPanel = ({localize: _}) => (
+const StyleUpdateMenusPanel = (props, {localize: _}) => (
   <UpdateMenuAccordion>
     <Radio
       attr="visible"
@@ -45,8 +43,8 @@ const StyleUpdateMenusPanel = ({localize: _}) => (
   </UpdateMenuAccordion>
 );
 
-StyleUpdateMenusPanel.propTypes = {
+StyleUpdateMenusPanel.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(StyleUpdateMenusPanel);
+export default StyleUpdateMenusPanel;

@@ -2,14 +2,14 @@ import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectImageToLayout, localize} from 'lib';
+import {connectImageToLayout} from 'lib';
 
 const ImageFold = connectImageToLayout(PlotlyFold);
 
 class ImageAccordion extends Component {
   render() {
-    const {layout: {images = []}} = this.context;
-    const {canAdd, children, localize: _} = this.props;
+    const {layout: {images = []}, localize: _} = this.context;
+    const {canAdd, children} = this.props;
 
     const content =
       images.length &&
@@ -54,12 +54,12 @@ class ImageAccordion extends Component {
 
 ImageAccordion.contextTypes = {
   layout: PropTypes.object,
+  localize: PropTypes.func,
 };
 
 ImageAccordion.propTypes = {
   children: PropTypes.node,
   canAdd: PropTypes.bool,
-  localize: PropTypes.func,
 };
 
-export default localize(ImageAccordion);
+export default ImageAccordion;

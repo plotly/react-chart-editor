@@ -2,14 +2,14 @@ import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectAnnotationToLayout, localize} from 'lib';
+import {connectAnnotationToLayout} from 'lib';
 
 const AnnotationFold = connectAnnotationToLayout(PlotlyFold);
 
 class AnnotationAccordion extends Component {
   render() {
-    const {layout: {annotations = []}} = this.context;
-    const {canAdd, children, localize: _} = this.props;
+    const {layout: {annotations = []}, localize: _} = this.context;
+    const {canAdd, children} = this.props;
 
     const content =
       annotations.length &&
@@ -53,12 +53,12 @@ class AnnotationAccordion extends Component {
 
 AnnotationAccordion.contextTypes = {
   layout: PropTypes.object,
+  localize: PropTypes.func,
 };
 
 AnnotationAccordion.propTypes = {
   children: PropTypes.node,
   canAdd: PropTypes.bool,
-  localize: PropTypes.func,
 };
 
-export default localize(AnnotationAccordion);
+export default AnnotationAccordion;

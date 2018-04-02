@@ -1,7 +1,7 @@
 import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem} from './lib';
+import {bem, localizeString} from './lib';
 import {
   shamefullyClearAxisTypes,
   shamefullyAdjustAxisRef,
@@ -34,6 +34,8 @@ class EditorControls extends Component {
       dataSourceValueRenderer: this.props.dataSourceValueRenderer,
       dataSourceOptionRenderer: this.props.dataSourceOptionRenderer,
       dictionaries: this.props.dictionaries || {},
+      localize: key =>
+        localizeString(this.props.dictionaries || {}, this.props.locale, key),
       frames: gd._transitionData ? gd._transitionData._frames : [],
       fullData: gd._fullData,
       fullLayout: gd._fullLayout,
@@ -313,6 +315,7 @@ EditorControls.childContextTypes = {
   graphDiv: PropTypes.any,
   layout: PropTypes.object,
   locale: PropTypes.string,
+  localize: PropTypes.func,
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
   plotSchema: PropTypes.object,

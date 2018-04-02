@@ -10,7 +10,6 @@ import {
   Checkboard,
 } from 'react-color/lib/components/common';
 import {CustomPicker as customPicker} from 'react-color';
-import {localize} from 'lib';
 
 /* eslint-disable no-inline-comments */
 const defaultColors = [
@@ -35,31 +34,31 @@ const extractRGB = c => c.rgb || c;
 const getColorSource = c => (c.source === 'hex' ? c.hex : extractRGB(c));
 const toTinyColor = c => tinycolor(getColorSource(c));
 
-const CustomColorPicker = localize(
-  customPicker(function(props) {
-    const {rgb, onChangeComplete} = props;
+class Custom extends Component {
+  render() {
+    const {rgb, onChangeComplete} = this.props;
     const {r, g, b, a} = rgb;
 
     const activeColor = {
       backgroundColor: `rgba(${r}, ${g}, ${b}, ${a})`,
     };
 
-    const _ = props.localize;
+    const _ = this.context.localize;
 
     return (
       <div>
         <div>
           <p className="colorpicker__title">{_('Custom Color')}</p>
           <div className="colorpicker__saturation">
-            <Saturation {...props} />
+            <Saturation {...this.props} />
           </div>
           <div className="colorpicker__controls +flex">
             <div className="colorpicker__sliders">
               <div className="colorpicker__slider">
-                <Hue {...props} />
+                <Hue {...this.props} />
               </div>
               <div className="colorpicker__slider">
-                <Alpha {...props} />
+                <Alpha {...this.props} />
               </div>
             </div>
             <div className="colorpicker__active">
@@ -68,7 +67,7 @@ const CustomColorPicker = localize(
             </div>
           </div>
           <div className="colorpicker__custom-input">
-            <Fields {...props} onChange={onChangeComplete} />
+            <Fields {...this.props} onChange={onChangeComplete} />
           </div>
         </div>
         <div>
@@ -79,8 +78,19 @@ const CustomColorPicker = localize(
         </div>
       </div>
     );
-  })
-);
+  }
+}
+
+Custom.contextTypes = {
+  localize: PropTypes.func,
+};
+
+Custom.propTypes = {
+  rgb: PropTypes.object,
+  onChangeComplete: PropTypes.func,
+};
+
+const CustomColorPicker = customPicker(Custom);
 
 class ColorPicker extends Component {
   constructor(props) {

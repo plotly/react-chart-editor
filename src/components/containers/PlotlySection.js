@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {
-  containerConnectedContextTypes,
-  localize,
-  unpackPlotProps,
-} from '../../lib';
+import {containerConnectedContextTypes, unpackPlotProps} from '../../lib';
 
-class UnlocalizedSection extends Component {
+export class Section extends Component {
   constructor() {
     super();
     this.sectionVisible = true;
@@ -30,16 +26,14 @@ class UnlocalizedSection extends Component {
   }
 }
 
-UnlocalizedSection.plotly_editor_traits = {no_visibility_forcing: false};
-UnlocalizedSection.propTypes = {
+Section.plotly_editor_traits = {no_visibility_forcing: false};
+Section.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
   attr: PropTypes.string,
 };
 
-export const Section = localize(UnlocalizedSection);
-
-class PlotlySection extends UnlocalizedSection {
+export default class PlotlySection extends Section {
   constructor(props, context) {
     super(props, context);
     this.determineVisibility(props, context);
@@ -78,4 +72,3 @@ class PlotlySection extends UnlocalizedSection {
 
 PlotlySection.plotly_editor_traits = {no_visibility_forcing: true};
 PlotlySection.contextTypes = containerConnectedContextTypes;
-export default localize(PlotlySection);

@@ -1,7 +1,6 @@
 import PlotlySection from './PlotlySection';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import localize from 'lib/localize';
 
 class TraceMarkerSection extends Component {
   constructor(props, context) {
@@ -14,10 +13,12 @@ class TraceMarkerSection extends Component {
   }
 
   setLocals(context) {
-    const _ = this.props.localize;
+    const _ = this.context.localize;
     const traceType = context.fullContainer.type;
     if (['bar', 'histogram'].includes(traceType)) {
       this.name = _('Bars');
+    } else if (traceType === 'pie') {
+      this.name = _('Segments');
     } else {
       this.name = _('Points');
     }
@@ -32,12 +33,12 @@ class TraceMarkerSection extends Component {
 
 TraceMarkerSection.propTypes = {
   children: PropTypes.node,
-  localize: PropTypes.func,
   name: PropTypes.string,
 };
 
 TraceMarkerSection.contextTypes = {
   fullContainer: PropTypes.object,
+  localize: PropTypes.func,
 };
 
-export default localize(TraceMarkerSection);
+export default TraceMarkerSection;

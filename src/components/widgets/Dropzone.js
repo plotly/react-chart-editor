@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Drop from 'react-dropzone';
-import {localize} from 'lib';
 
 class Dropzone extends Component {
-  constructor(props) {
-    super(props);
-    const _ = props.localize;
+  constructor(props, context) {
+    super(props, context);
+    const _ = context.localize;
 
     this.state = {
       content: '',
@@ -23,7 +22,7 @@ class Dropzone extends Component {
   }
 
   renderSuccess(value) {
-    const _ = this.props.localize;
+    const _ = this.context.localize;
 
     if (this.props.fileType === 'image') {
       return (
@@ -40,7 +39,7 @@ class Dropzone extends Component {
   }
 
   componentWillMount() {
-    const _ = this.props.localize;
+    const _ = this.context.localize;
 
     if (this.props.value && this.props.value !== '') {
       this.setState({content: this.renderSuccess(this.props.value)});
@@ -73,7 +72,7 @@ class Dropzone extends Component {
   }
 
   onLoad(e) {
-    const _ = this.props.localize;
+    const _ = this.context.localize;
     const supportedFileTypes =
       this.props.fileType === 'image'
         ? this.validFiletypes[this.props.fileType].split('image/').join('')
@@ -106,7 +105,7 @@ class Dropzone extends Component {
   }
 
   onDrop(accepted, rejected) {
-    const _ = this.props.localize;
+    const _ = this.context.localize;
     const reader = new FileReader();
 
     if (accepted.length) {
@@ -169,10 +168,13 @@ class Dropzone extends Component {
 }
 
 Dropzone.propTypes = {
-  localize: PropTypes.func,
   fileType: PropTypes.string.isRequired,
   onUpdate: PropTypes.func,
   value: PropTypes.any,
 };
 
-export default localize(Dropzone);
+Dropzone.contextTypes = {
+  localize: PropTypes.func,
+};
+
+export default Dropzone;

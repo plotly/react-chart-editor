@@ -29,7 +29,6 @@ class PanelEmpty extends Component {
 PanelEmpty.propTypes = {
   heading: PropTypes.string,
   message: PropTypes.any,
-  localize: PropTypes.func,
   children: PropTypes.node,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };

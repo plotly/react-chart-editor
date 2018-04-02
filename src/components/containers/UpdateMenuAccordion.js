@@ -2,14 +2,14 @@ import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectUpdateMenuToLayout, localize} from 'lib';
+import {connectUpdateMenuToLayout} from 'lib';
 
 const UpdateMenuFold = connectUpdateMenuToLayout(PlotlyFold);
 
 class UpdateMenuAccordion extends Component {
   render() {
-    const {layout: {updatemenus = []}} = this.context;
-    const {children, localize: _} = this.props;
+    const {layout: {updatemenus = []}, localize: _} = this.context;
+    const {children} = this.props;
 
     const content =
       updatemenus.length > 0 &&
@@ -53,11 +53,11 @@ class UpdateMenuAccordion extends Component {
 
 UpdateMenuAccordion.contextTypes = {
   layout: PropTypes.object,
+  localize: PropTypes.func,
 };
 
 UpdateMenuAccordion.propTypes = {
   children: PropTypes.node,
-  localize: PropTypes.func,
 };
 
-export default localize(UpdateMenuAccordion);
+export default UpdateMenuAccordion;
