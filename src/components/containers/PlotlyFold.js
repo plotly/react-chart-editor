@@ -3,14 +3,9 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
-import {
-  unpackPlotProps,
-  localize,
-  containerConnectedContextTypes,
-  striptags,
-} from 'lib';
+import {unpackPlotProps, containerConnectedContextTypes, striptags} from 'lib';
 
-class UnlocalizedFold extends Component {
+export class Fold extends Component {
   constructor() {
     super();
     this.foldVisible = true;
@@ -103,9 +98,9 @@ class UnlocalizedFold extends Component {
   }
 }
 
-UnlocalizedFold.plotly_editor_traits = {foldable: true};
+Fold.plotly_editor_traits = {foldable: true};
 
-UnlocalizedFold.propTypes = {
+Fold.propTypes = {
   canDelete: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
@@ -114,13 +109,10 @@ UnlocalizedFold.propTypes = {
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   messageIfEmpty: PropTypes.string,
-  localize: PropTypes.func,
   name: PropTypes.string,
 };
 
-export const Fold = localize(UnlocalizedFold);
-
-class PlotlyFold extends UnlocalizedFold {
+class PlotlyFold extends Fold {
   constructor(props, context) {
     super(props, context);
 
@@ -171,4 +163,4 @@ PlotlyFold.contextTypes = Object.assign(
   containerConnectedContextTypes
 );
 
-export default localize(PlotlyFold);
+export default PlotlyFold;

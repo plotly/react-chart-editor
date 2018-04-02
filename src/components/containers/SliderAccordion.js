@@ -2,14 +2,14 @@ import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectSliderToLayout, localize} from 'lib';
+import {connectSliderToLayout} from 'lib';
 
 const SliderFold = connectSliderToLayout(PlotlyFold);
 
 class SliderAccordion extends Component {
   render() {
-    const {layout: {sliders = []}} = this.context;
-    const {children, localize: _} = this.props;
+    const {layout: {sliders = []}, localize: _} = this.context;
+    const {children} = this.props;
 
     const content =
       sliders.length > 0 &&
@@ -37,11 +37,11 @@ class SliderAccordion extends Component {
 
 SliderAccordion.contextTypes = {
   layout: PropTypes.object,
+  localize: PropTypes.func,
 };
 
 SliderAccordion.propTypes = {
   children: PropTypes.node,
-  localize: PropTypes.func,
 };
 
-export default localize(SliderAccordion);
+export default SliderAccordion;

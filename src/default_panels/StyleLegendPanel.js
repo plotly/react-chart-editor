@@ -11,9 +11,7 @@ import {
   TraceRequiredPanel,
 } from '../components';
 
-import {localize} from '../lib';
-
-const StyleLegendPanel = ({localize: _}) => (
+const StyleLegendPanel = (props, {localize: _}) => (
   <TraceRequiredPanel>
     <PlotlyFold name={_('Legend')}>
       <Radio
@@ -87,8 +85,8 @@ const StyleLegendPanel = ({localize: _}) => (
   </TraceRequiredPanel>
 );
 
-StyleLegendPanel.propTypes = {
+StyleLegendPanel.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(StyleLegendPanel);
+export default StyleLegendPanel;

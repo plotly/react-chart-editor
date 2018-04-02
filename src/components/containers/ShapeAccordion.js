@@ -2,14 +2,14 @@ import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectShapeToLayout, localize} from 'lib';
+import {connectShapeToLayout} from 'lib';
 
 const ShapeFold = connectShapeToLayout(PlotlyFold);
 
 class ShapeAccordion extends Component {
   render() {
-    const {layout: {shapes = []}} = this.context;
-    const {canAdd, children, localize: _} = this.props;
+    const {layout: {shapes = []}, localize: _} = this.context;
+    const {canAdd, children} = this.props;
 
     const content =
       shapes.length &&
@@ -53,12 +53,12 @@ class ShapeAccordion extends Component {
 
 ShapeAccordion.contextTypes = {
   layout: PropTypes.object,
+  localize: PropTypes.func,
 };
 
 ShapeAccordion.propTypes = {
   children: PropTypes.node,
   canAdd: PropTypes.bool,
-  localize: PropTypes.func,
 };
 
-export default localize(ShapeAccordion);
+export default ShapeAccordion;

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {Dropdown, TextEditor} from '../index';
 import Field from './Field';
-import {connectToContainer, localize} from 'lib';
+import {connectToContainer} from 'lib';
 
 class UpdateMenuButtons extends Component {
   constructor(props, context) {
@@ -13,7 +13,7 @@ class UpdateMenuButtons extends Component {
   }
 
   renderDropdown() {
-    const _ = this.props.localize;
+    const _ = this.context.localize;
     const options = this.props.fullValue.map((button, index) => {
       return {label: _('Button') + ` ${index + 1}`, value: index};
     });
@@ -44,9 +44,8 @@ class UpdateMenuButtons extends Component {
 
 UpdateMenuButtons.propTypes = {
   attr: PropTypes.string,
-  localize: PropTypes.func,
   fullValue: PropTypes.array,
   updatePlot: PropTypes.func,
 };
 
-export default connectToContainer(localize(UpdateMenuButtons));
+export default connectToContainer(UpdateMenuButtons);

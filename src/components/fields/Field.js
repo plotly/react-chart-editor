@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import MenuPanel from '../containers/MenuPanel';
 import classnames from 'classnames';
-import {bem, localize} from 'lib';
+import {bem} from 'lib';
 import {getMultiValueText} from 'lib/constants';
 import {CloseIcon} from 'plotly-icons';
 
@@ -23,11 +23,12 @@ class Field extends Component {
       center,
       children,
       label,
-      localize: _,
       multiValued,
       units,
       extraComponent,
     } = this.props;
+
+    const {localize: _} = this.context;
 
     let fieldClass;
     if (!label) {
@@ -72,12 +73,15 @@ class Field extends Component {
 
 Field.propTypes = {
   center: PropTypes.bool,
-  label: PropTypes.string,
-  localize: PropTypes.func,
+  label: PropTypes.any,
   units: PropTypes.string,
   multiValued: PropTypes.bool,
   children: PropTypes.node,
   extraComponent: PropTypes.any,
+};
+
+Field.contextTypes = {
+  localize: PropTypes.func,
 };
 
 Field.defaultProps = {
@@ -88,4 +92,4 @@ Field.defaultProps = {
 FieldDelete.propTypes = {
   onClick: PropTypes.func,
 };
-export default localize(Field);
+export default Field;

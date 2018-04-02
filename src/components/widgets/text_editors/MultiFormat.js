@@ -3,7 +3,6 @@ import LaTeXEditor from './LaTeX';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import RichTextEditor from './RichText';
-import localize from 'lib/localize';
 import {
   isLaTeXExpr,
   htmlToLaTeX,
@@ -14,10 +13,10 @@ import classnames from 'classnames';
 import Button from 'components/widgets/Button';
 
 class MultiFormatTextEditor extends Component {
-  constructor(props) {
-    super(props);
+  constructor(props, context) {
+    super(props, context);
 
-    const _ = props.localize;
+    const _ = context.localize;
 
     const editors = [
       {
@@ -83,7 +82,8 @@ class MultiFormatTextEditor extends Component {
   }
 
   onModeChange(nextTab) {
-    const {defaultValuePattern, value, onChange, localize: _} = this.props;
+    const {localize: _} = this.context;
+    const {defaultValuePattern, value, onChange} = this.props;
     const {currentTab} = this.state;
     const trimmedValue = value.trim();
     const trimmedValueLength = trimmedValue.length;
@@ -150,7 +150,7 @@ class MultiFormatTextEditor extends Component {
       return null;
     }
 
-    const {localize: _} = this.props;
+    const {localize: _} = this.context;
     const {messages} = this.state;
 
     const onCancel = () => {
@@ -213,8 +213,8 @@ class MultiFormatTextEditor extends Component {
     if (!render) {
       return null;
     }
-
-    const {onChange, localize: _, placeholder, value} = this.props;
+    const {localize: _} = this.context;
+    const {onChange, placeholder, value} = this.props;
 
     const {currentTab} = this.state;
 
@@ -305,7 +305,6 @@ class MultiFormatTextEditor extends Component {
 
 MultiFormatTextEditor.propTypes = {
   defaultValuePattern: PropTypes.instanceOf(RegExp),
-  localize: PropTypes.func,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   value: PropTypes.string,
@@ -317,4 +316,8 @@ MultiFormatTextEditor.defaultProps = {
   value: '',
 };
 
-export default localize(MultiFormatTextEditor);
+MultiFormatTextEditor.contextTypes = {
+  localize: PropTypes.func,
+};
+
+export default MultiFormatTextEditor;

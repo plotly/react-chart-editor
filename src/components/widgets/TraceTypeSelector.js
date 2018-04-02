@@ -4,7 +4,6 @@ import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal from 'components/containers/Modal';
 import {
   traceTypeToPlotlyInitFigure,
-  localize,
   renderTraceIcon,
   plotlyTraceToCustomTrace,
 } from 'lib';
@@ -82,8 +81,11 @@ class TraceTypeSelector extends Component {
   }
 
   renderCategories() {
-    const {fullValue, localize: _} = this.props;
-    const {traces, categories, complex} = this.context.traceTypesConfig;
+    const {fullValue} = this.props;
+    const {
+      traceTypesConfig: {traces, categories, complex},
+      localize: _,
+    } = this.context;
 
     return categories(_).map((category, i) => {
       const items = traces(_).filter(
@@ -128,14 +130,11 @@ class TraceTypeSelector extends Component {
   }
 }
 
-class TraceTypeButton extends React.Component {
+export class TraceTypeSelectorButton extends Component {
   render() {
-    const {
-      handleClick,
-      container,
-      localize: _,
-      traceTypesConfig: {traces},
-    } = this.props;
+    const {handleClick, container, traceTypesConfig: {traces}} = this.props;
+
+    const {localize: _} = this.context;
 
     const inferredType = plotlyTraceToCustomTrace(container);
     const {label, icon, value} = traces(_).find(
@@ -161,17 +160,19 @@ class TraceTypeButton extends React.Component {
 TraceTypeSelector.propTypes = {
   updateContainer: PropTypes.func,
   fullValue: PropTypes.string,
-  localize: PropTypes.func,
-};
-TraceTypeButton.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  container: PropTypes.object,
-  localize: PropTypes.func.isRequired,
-  traceTypesConfig: PropTypes.object.isRequired,
 };
 TraceTypeSelector.contextTypes = {
   traceTypesConfig: PropTypes.object,
   handleClose: PropTypes.func,
+  localize: PropTypes.func,
+};
+TraceTypeSelectorButton.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+  container: PropTypes.object,
+  traceTypesConfig: PropTypes.object.isRequired,
+};
+TraceTypeSelectorButton.contextTypes = {
+  localize: PropTypes.func,
 };
 Item.propTypes = {
   item: PropTypes.object,
@@ -182,6 +183,4 @@ Item.propTypes = {
   showActions: PropTypes.bool,
 };
 
-export default localize(TraceTypeSelector);
-
-export const TraceTypeSelectorButton = localize(TraceTypeButton);
+export default TraceTypeSelector;

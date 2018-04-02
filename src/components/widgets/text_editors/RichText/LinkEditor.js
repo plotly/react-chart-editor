@@ -6,7 +6,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {RETURN_KEY, ESCAPE_KEY} from 'lib/constants';
-import localize from 'lib/localize';
 import {findDOMNode} from 'react-dom';
 
 class LinkEditor extends Component {
@@ -87,8 +86,9 @@ class LinkEditor extends Component {
   }
 
   render() {
+    const {localize: _} = this.context;
     const {position} = this.state;
-    const {onBlur, onFocus, linkURL, localize: _} = this.props;
+    const {onBlur, onFocus, linkURL} = this.props;
     const placeholderText = _('Enter Link URL');
     const urlText = _('URL');
     // TODO: add close button
@@ -114,7 +114,6 @@ class LinkEditor extends Component {
 }
 
 LinkEditor.propTypes = {
-  localize: PropTypes.func.isRequired,
   linkID: PropTypes.string.isRequired,
   linkURL: PropTypes.string.isRequired,
   onBlur: PropTypes.func.isRequired,
@@ -135,4 +134,8 @@ LinkEditor.defaultProps = {
   },
 };
 
-export default localize(LinkEditor);
+LinkEditor.contextTypes = {
+  localize: PropTypes.func.isRequired,
+};
+
+export default LinkEditor;

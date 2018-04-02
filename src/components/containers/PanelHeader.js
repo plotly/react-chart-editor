@@ -2,7 +2,6 @@ import Button from 'components/widgets/Button';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {PlusIcon, ResizeUpIcon, ResizeDownIcon} from 'plotly-icons';
-import {localize} from 'lib';
 import ModalBox from './ModalBox';
 
 class PanelHeader extends Component {
@@ -18,13 +17,13 @@ class PanelHeader extends Component {
   }
 
   render() {
+    const {localize: _} = this.context;
     const {
       children,
       addAction,
       allowCollapse,
       toggleFolds,
       hasOpen,
-      localize: _,
     } = this.props;
 
     const icon = <PlusIcon />;
@@ -91,6 +90,7 @@ PanelHeader.contextTypes = {
   fullContainer: PropTypes.object,
   onUpdate: PropTypes.func,
   updateContainer: PropTypes.func,
+  localize: PropTypes.func,
 };
 
 PanelHeader.propTypes = {
@@ -98,8 +98,7 @@ PanelHeader.propTypes = {
   allowCollapse: PropTypes.bool,
   children: PropTypes.node,
   hasOpen: PropTypes.bool,
-  localize: PropTypes.func,
   toggleFolds: PropTypes.func,
 };
 
-export default localize(PanelHeader);
+export default PanelHeader;

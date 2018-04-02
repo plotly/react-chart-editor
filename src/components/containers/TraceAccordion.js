@@ -4,21 +4,15 @@ import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
-import {connectTraceToPlot, localize, plotlyTraceToCustomTrace} from 'lib';
+import {connectTraceToPlot, plotlyTraceToCustomTrace} from 'lib';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 
 const TraceFold = connectTraceToPlot(PlotlyFold);
 
 class TraceAccordion extends Component {
   render() {
-    const {data = []} = this.context;
-    const {
-      canAdd,
-      canGroup,
-      children,
-      messageIfEmptyFold,
-      localize: _,
-    } = this.props;
+    const {data = [], localize: _} = this.context;
+    const {canAdd, canGroup, children, messageIfEmptyFold} = this.props;
 
     const individualTraces =
       data.length &&
@@ -106,14 +100,14 @@ class TraceAccordion extends Component {
 TraceAccordion.contextTypes = {
   fullData: PropTypes.array,
   data: PropTypes.array,
+  localize: PropTypes.func,
 };
 
 TraceAccordion.propTypes = {
-  localize: PropTypes.func,
   children: PropTypes.node,
   canAdd: PropTypes.bool,
   canGroup: PropTypes.bool,
   messageIfEmptyFold: PropTypes.string,
 };
 
-export default localize(TraceAccordion);
+export default TraceAccordion;

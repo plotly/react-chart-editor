@@ -14,9 +14,8 @@ import {
   Numeric,
   TraceTypeSection,
 } from '../components';
-import {localize} from '../lib';
 
-const GraphCreatePanel = ({localize: _}) => {
+const GraphCreatePanel = (props, {localize: _}) => {
   return (
     <TraceAccordion canAdd>
       <TextEditor label={_('Name')} attr="name" richTextOnly />
@@ -198,8 +197,7 @@ const GraphCreatePanel = ({localize: _}) => {
   );
 };
 
-GraphCreatePanel.propTypes = {
+export default GraphCreatePanel;
+GraphCreatePanel.contextTypes = {
   localize: PropTypes.func,
 };
-
-export default localize(GraphCreatePanel);

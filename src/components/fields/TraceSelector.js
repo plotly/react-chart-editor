@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import {
   connectToContainer,
   traceTypeToPlotlyInitFigure,
-  localize,
   plotlyTraceToCustomTrace,
   computeTraceOptionsFromSchema,
 } from 'lib';
@@ -44,7 +43,7 @@ class TraceSelector extends Component {
   }
 
   setLocals(props, context) {
-    const _ = props.localize;
+    const _ = context.localize;
     if (props.traceOptions) {
       this.traceOptions = props.traceOptions;
     } else if (context.traceTypesConfig) {
@@ -121,6 +120,7 @@ TraceSelector.contextTypes = {
   traceTypesConfig: PropTypes.object,
   plotSchema: PropTypes.object,
   config: PropTypes.object,
+  localize: PropTypes.func,
 };
 
 TraceSelector.propTypes = {
@@ -128,8 +128,7 @@ TraceSelector.propTypes = {
   container: PropTypes.object.isRequired,
   fullContainer: PropTypes.object.isRequired,
   fullValue: PropTypes.any,
-  localize: PropTypes.func,
   updateContainer: PropTypes.func,
 };
 
-export default connectToContainer(localize(TraceSelector));
+export default connectToContainer(TraceSelector);

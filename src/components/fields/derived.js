@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import isNumeric from 'fast-isnumeric';
 import {UnconnectedDropdown} from './Dropdown';
 import {UnconnectedFlaglist} from './Flaglist';

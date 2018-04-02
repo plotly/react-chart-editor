@@ -23,7 +23,6 @@ import {
   RangeSelectorAccordion,
 } from '../components';
 
-import {localize} from '../lib';
 import {TRACE_TO_AXIS} from '../lib/constants';
 
 class StyleAxesPanel extends Component {
@@ -43,7 +42,7 @@ class StyleAxesPanel extends Component {
   }
 
   render() {
-    const {localize: _} = this.props;
+    const {localize: _} = this.context;
     return (
       <TraceRequiredPanel
         extraConditions={[this.hasAxes]}
@@ -526,12 +525,9 @@ class StyleAxesPanel extends Component {
   }
 }
 
-StyleAxesPanel.propTypes = {
+StyleAxesPanel.contextTypes = {
+  fullLayout: PropTypes.object,
   localize: PropTypes.func,
 };
 
-StyleAxesPanel.contextTypes = {
-  fullLayout: PropTypes.object,
-};
-
-export default localize(StyleAxesPanel);
+export default StyleAxesPanel;

@@ -28,9 +28,7 @@ import {
   DataSelector,
 } from '../components';
 
-import {localize} from '../lib';
-
-const StyleTracesPanel = ({localize: _}) => (
+const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
     <Radio
@@ -405,8 +403,8 @@ const StyleTracesPanel = ({localize: _}) => (
   </TraceAccordion>
 );
 
-StyleTracesPanel.propTypes = {
+StyleTracesPanel.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(StyleTracesPanel);
+export default StyleTracesPanel;

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Dropdown from '../widgets/Dropdown';
 import RadioBlocks from '../widgets/RadioBlocks';
 import React, {Component} from 'react';
-import {localize} from 'lib';
 
 class AxesSelector extends Component {
   constructor(props, context) {
@@ -17,8 +16,8 @@ class AxesSelector extends Component {
   }
 
   render() {
-    const {axesTargetHandler, axesTarget} = this.context;
-    const {localize: _, axesOptions} = this.props;
+    const {axesTargetHandler, axesTarget, localize: _} = this.context;
+    const {axesOptions} = this.props;
     const maxOptions = axesOptions.length > 4; // eslint-disable-line
 
     if (maxOptions) {
@@ -59,11 +58,11 @@ AxesSelector.contextTypes = {
   axesTargetHandler: PropTypes.func,
   axesTarget: PropTypes.string,
   fullLayout: PropTypes.object,
+  localize: PropTypes.func,
 };
 
 AxesSelector.propTypes = {
-  localize: PropTypes.func,
   axesOptions: PropTypes.array,
 };
 
-export default localize(AxesSelector);
+export default AxesSelector;

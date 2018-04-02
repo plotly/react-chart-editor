@@ -2,7 +2,6 @@ import PanelEmpty from './PanelEmpty';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {LayoutPanel} from './derived';
-import {localize} from 'lib';
 
 class TraceRequiredPanel extends Component {
   hasTrace() {
@@ -10,7 +9,8 @@ class TraceRequiredPanel extends Component {
   }
 
   render() {
-    const {localize: _, children, ...rest} = this.props;
+    const {localize: _} = this.context;
+    const {children, ...rest} = this.props;
     let showPanel = true;
     const emptyPanelMessage = {heading: '', message: ''};
 
@@ -58,7 +58,6 @@ class TraceRequiredPanel extends Component {
 
 TraceRequiredPanel.propTypes = {
   children: PropTypes.node,
-  localize: PropTypes.func,
   visible: PropTypes.bool,
   extraConditions: PropTypes.array,
   extraEmptyPanelMessages: PropTypes.array,
@@ -70,6 +69,7 @@ TraceRequiredPanel.defaultProps = {
 
 TraceRequiredPanel.contextTypes = {
   fullData: PropTypes.array,
+  localize: PropTypes.func,
 };
 
-export default localize(TraceRequiredPanel);
+export default TraceRequiredPanel;

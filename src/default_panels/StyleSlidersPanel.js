@@ -9,9 +9,7 @@ import {
   SliderAccordion,
 } from '../components';
 
-import {localize} from '../lib';
-
-const StyleSlidersPanel = ({localize: _}) => (
+const StyleSlidersPanel = (props, {localize: _}) => (
   <SliderAccordion>
     <Radio
       attr="visible"
@@ -47,8 +45,8 @@ const StyleSlidersPanel = ({localize: _}) => (
   </SliderAccordion>
 );
 
-StyleSlidersPanel.propTypes = {
+StyleSlidersPanel.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(StyleSlidersPanel);
+export default StyleSlidersPanel;

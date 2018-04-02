@@ -10,9 +10,7 @@ import {
   Dropdown,
 } from '../components';
 
-import {localize} from '../lib';
-
-const StyleImagesPanel = ({localize: _}) => (
+const StyleImagesPanel = (props, {localize: _}) => (
   <ImageAccordion canAdd>
     <Radio
       attr="visible"
@@ -68,8 +66,8 @@ const StyleImagesPanel = ({localize: _}) => (
   </ImageAccordion>
 );
 
-StyleImagesPanel.propTypes = {
+StyleImagesPanel.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(StyleImagesPanel);
+export default StyleImagesPanel;

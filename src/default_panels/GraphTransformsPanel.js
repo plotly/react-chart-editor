@@ -8,14 +8,14 @@ import {
   Dropdown,
   PlotlySection,
 } from '../components';
-import {connectAggregationToTransform, localize} from '../lib';
+import {connectAggregationToTransform} from '../lib';
 
 const AggregationSection = connectAggregationToTransform(PlotlySection);
 
-class UnlocalizedAggregations extends Component {
+export class Aggregations extends Component {
   render() {
     const {fullContainer: {aggregations = []}} = this.context;
-    const {localize: _} = this.props;
+    const {localize: _} = this.context;
     if (aggregations.length === 0) {
       return null;
     }
@@ -45,17 +45,12 @@ class UnlocalizedAggregations extends Component {
   }
 }
 
-UnlocalizedAggregations.contextTypes = {
+Aggregations.contextTypes = {
   fullContainer: PropTypes.object,
-};
-
-UnlocalizedAggregations.propTypes = {
   localize: PropTypes.func,
 };
 
-const Aggregations = localize(UnlocalizedAggregations);
-
-const GraphTransformsPanel = ({localize: _}) => {
+const GraphTransformsPanel = (props, {localize: _}) => {
   return (
     <TraceAccordion>
       <TransformAccordion>
@@ -77,8 +72,8 @@ const GraphTransformsPanel = ({localize: _}) => {
   );
 };
 
-GraphTransformsPanel.propTypes = {
+GraphTransformsPanel.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(GraphTransformsPanel);
+export default GraphTransformsPanel;

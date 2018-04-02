@@ -133,8 +133,7 @@ class AxisCreator extends Component {
       return null;
     }
 
-    const {localize: _} = this.context;
-    const {fullLayout} = this.context;
+    const {fullLayout, localize: _} = this.context;
     const axisType = traceTypeToAxisType(this.props.container.type);
     const controls = [];
 

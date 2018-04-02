@@ -14,9 +14,7 @@ import {
   ColorPicker,
 } from '..';
 
-import {localize} from '../lib';
-
-const StyleColorBarsPanel = ({localize: _}) => {
+const StyleColorBarsPanel = (props, {localize: _}) => {
   return (
     <TraceAccordion messageIfEmptyFold="Need a color scale for a colorbar!">
       {['', 'marker.'].map(prefix => {
@@ -340,8 +338,8 @@ const StyleColorBarsPanel = ({localize: _}) => {
   );
 };
 
-StyleColorBarsPanel.propTypes = {
+StyleColorBarsPanel.contextTypes = {
   localize: PropTypes.func,
 };
 
-export default localize(StyleColorBarsPanel);
+export default StyleColorBarsPanel;

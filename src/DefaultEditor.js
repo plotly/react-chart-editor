@@ -1,7 +1,6 @@
-import React, {Fragment} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {PanelMenuWrapper} from './components';
-import {localize} from './lib';
 import {
   GraphCreatePanel,
   StyleLayoutPanel,
@@ -16,28 +15,34 @@ import {
   StyleUpdateMenusPanel,
 } from './default_panels';
 
-const DefaultEditor = ({children, localize: _}) => (
-  <Fragment>
-    <PanelMenuWrapper>
-      <GraphCreatePanel group={_('Graph')} name={_('Create')} />
-      <StyleTracesPanel group={_('Style')} name={_('Traces')} />
-      <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
-      <StyleNotesPanel group={_('Style')} name={_('Notes')} />
-      <StyleAxesPanel group={_('Style')} name={_('Axes')} />
-      <StyleLegendPanel group={_('Style')} name={_('Legend')} />
-      <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />
-      <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
-      <StyleImagesPanel group={_('Style')} name={_('Images')} />
-      <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />
-      <StyleUpdateMenusPanel group={_('Style')} name={_('Menus')} />
-      {children ? children : null}
-    </PanelMenuWrapper>
-  </Fragment>
-);
+class DefaultEditor extends Component {
+  render() {
+    const _ = this.context.localize;
+    return (
+      <PanelMenuWrapper>
+        <GraphCreatePanel group={_('Graph')} name={_('Create')} />
+        <StyleTracesPanel group={_('Style')} name={_('Traces')} />
+        <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
+        <StyleNotesPanel group={_('Style')} name={_('Notes')} />
+        <StyleAxesPanel group={_('Style')} name={_('Axes')} />
+        <StyleLegendPanel group={_('Style')} name={_('Legend')} />
+        <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />
+        <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
+        <StyleImagesPanel group={_('Style')} name={_('Images')} />
+        <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />
+        <StyleUpdateMenusPanel group={_('Style')} name={_('Menus')} />
+        {this.props.children ? this.props.children : null}
+      </PanelMenuWrapper>
+    );
+  }
+}
 
 DefaultEditor.propTypes = {
-  localize: PropTypes.func,
   children: PropTypes.node,
 };
 
-export default localize(DefaultEditor);
+DefaultEditor.contextTypes = {
+  localize: PropTypes.func,
+};
+
+export default DefaultEditor;
