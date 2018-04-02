@@ -2,7 +2,7 @@ import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectImageToLayout, localize} from 'lib';
+import {connectImageToLayout} from 'lib';
 
 const ImageFold = connectImageToLayout(PlotlyFold);
 
