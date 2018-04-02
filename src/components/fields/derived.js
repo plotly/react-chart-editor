@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import isNumeric from 'fast-isnumeric';
 import {UnconnectedDropdown} from './Dropdown';
 import {UnconnectedFlaglist} from './Flaglist';
@@ -13,7 +14,7 @@ import {
 
 export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {localize: _} = props;
+    const {localize: _} = context;
     let options = [];
 
     if (
@@ -94,7 +95,7 @@ export const RangesliderVisible = connectToContainer(UnconnectedRadio, {
 
 export const AxisSide = connectToContainer(UnconnectedRadio, {
   modifyPlotProps: (props, context, plotProps) => {
-    const _ = props.localize;
+    const _ = context.localize;
     if (
       context.fullContainer &&
       context.fullContainer._id &&
@@ -463,7 +464,7 @@ function computeAxesRefOptions(axes, propsAttr) {
 
 export const TextPosition = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {localize: _} = props;
+    const {localize: _} = context;
     let options = [
       {label: _('Top Left'), value: 'top left'},
       {label: _('Top Center'), value: 'top center'},
@@ -490,7 +491,7 @@ export const TextPosition = connectToContainer(UnconnectedDropdown, {
 
 export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {localize: _} = props;
+    const {localize: _} = context;
     let options = [
       {label: _('X'), value: 'x'},
       {label: _('Y'), value: 'y'},
@@ -585,7 +586,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
 
 export const FillDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {localize: _} = props;
+    const {localize: _} = context;
 
     let options = [
       {label: _('None'), value: 'none'},

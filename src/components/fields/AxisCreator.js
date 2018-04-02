@@ -133,7 +133,7 @@ class AxisCreator extends Component {
       return null;
     }
 
-    const {localize: _} = this.props;
+    const {localize: _} = this.context;
     const {fullLayout} = this.context;
     const axisType = traceTypeToAxisType(this.props.container.type);
     const controls = [];
@@ -171,7 +171,6 @@ class AxisCreator extends Component {
 }
 
 AxisCreator.propTypes = {
-  localize: PropTypes.func,
   container: PropTypes.object,
   fullContainer: PropTypes.object,
 };
@@ -180,6 +179,7 @@ AxisCreator.contextTypes = {
   data: PropTypes.array,
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,
+  localize: PropTypes.func,
 };
 
 export default connectToContainer(AxisCreator, {

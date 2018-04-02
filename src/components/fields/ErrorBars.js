@@ -68,7 +68,7 @@ class ErrorBars extends Component {
   }
 
   renderModeSelector() {
-    const {localize: _} = this.props;
+    const {localize: _} = this.context;
 
     return (
       <Field>
@@ -87,7 +87,7 @@ class ErrorBars extends Component {
   }
 
   renderErrorBarControls() {
-    const {localize: _} = this.props;
+    const {localize: _} = this.context;
     const mode = this.getMode();
     const showCustomDataControl = this.props.fullValue.type === 'data';
 
@@ -163,9 +163,12 @@ class ErrorBars extends Component {
 
 ErrorBars.propTypes = {
   attr: PropTypes.string,
-  localize: PropTypes.func,
   fullValue: PropTypes.object,
   updatePlot: PropTypes.func,
+};
+
+ErrorBars.contextTypes = {
+  localize: PropTypes.func,
 };
 
 export default connectToContainer(ErrorBars);

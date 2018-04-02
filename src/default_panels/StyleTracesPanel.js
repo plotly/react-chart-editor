@@ -51,14 +51,7 @@ const StyleTracesPanel = ({localize: _}) => (
     />
     <NumericFraction label={_('Opacity')} attr="opacity" />
     <ColorPicker label={_('Color')} attr="color" />
-    <Numeric
-      showSlider
-      min={0}
-      max={1}
-      step={0.1}
-      attr="hole"
-      label={_('Hole')}
-    />
+    <Numeric showSlider step={0.1} attr="hole" label={_('Hole')} />
     <PlotlySection name={_('Text Attributes')}>
       <Flaglist
         attr="textinfo"
@@ -125,7 +118,7 @@ const StyleTracesPanel = ({localize: _}) => (
       />
     </PlotlySection>
     <PlotlySection name={_('Filled Area')}>
-      <FillDropdown attr="fill" label={_('Fill to')} localize={_} />
+      <FillDropdown attr="fill" label={_('Fill to')} />
       <ColorPicker label={_('Color')} attr="fillcolor" />
     </PlotlySection>
     <TraceMarkerSection>
@@ -220,11 +213,7 @@ const StyleTracesPanel = ({localize: _}) => (
       <FontSelector label={_('Typeface')} attr="textfont.family" />
       <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
       <ColorPicker label={_('Font Color')} attr="textfont.color" />
-      <TextPosition
-        label={_('Text Position')}
-        attr="textposition"
-        localize={_}
-      />
+      <TextPosition label={_('Text Position')} attr="textposition" />
     </TraceTypeSection>
     <PlotlySection name={_('Colorscale')}>
       <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
@@ -373,11 +362,7 @@ const StyleTracesPanel = ({localize: _}) => (
       />
     </PlotlySection>
     <PlotlySection name={_('On Hover')}>
-      <HoverInfo
-        attr="hoverinfo"
-        label={_('Values Shown On Hover')}
-        localize={_}
-      />
+      <HoverInfo attr="hoverinfo" label={_('Values Shown On Hover')} />
       <Radio
         label={_('Show Contour')}
         attr="contour.show"

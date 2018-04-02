@@ -85,19 +85,19 @@ const GraphCreatePanel = ({localize: _}) => {
       </TraceTypeSection>
 
       <PlotlySection name={_('Axes to Use')}>
-        <AxisCreator attr="fake_attr" localize={_} />
+        <AxisCreator attr="fake_attr" />
       </PlotlySection>
 
       <PlotlySection name={_('Error Bars X')}>
-        <ErrorBars localize={_} attr="error_x" />
+        <ErrorBars attr="error_x" />
       </PlotlySection>
 
       <PlotlySection name={_('Error Bars Y')}>
-        <ErrorBars localize={_} attr="error_y" />
+        <ErrorBars attr="error_y" />
       </PlotlySection>
 
       <PlotlySection name={_('Error Bars Z')}>
-        <ErrorBars localize={_} attr="error_z" />
+        <ErrorBars attr="error_z" />
       </PlotlySection>
 
       <PlotlySection name={_('Header Options')}>

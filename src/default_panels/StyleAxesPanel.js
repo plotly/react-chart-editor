@@ -71,11 +71,7 @@ class StyleAxesPanel extends Component {
           }
         >
           <PlotlySection name={_('Boundaries')} attr="domain[0]">
-            <AxisOverlayDropdown
-              label={_('Overlay')}
-              attr="overlaying"
-              localize={_}
-            />
+            <AxisOverlayDropdown label={_('Overlay')} attr="overlaying" />
             <NumericFractionDomain
               label={_('Start Position')}
               attr="domain[0]"
@@ -87,12 +83,8 @@ class StyleAxesPanel extends Component {
             name={_('Anchor')}
             traceTypes={TRACE_TO_AXIS.cartesian}
           >
-            <AxisAnchorDropdown
-              label={_('Anchor To')}
-              attr="anchor"
-              localize={_}
-            />
-            <AxisSide label={_('Side')} attr="side" localize={_} />
+            <AxisAnchorDropdown label={_('Anchor To')} attr="anchor" />
+            <AxisSide label={_('Side')} attr="side" />
           </TraceTypeSection>
         </AxesFold>
 
