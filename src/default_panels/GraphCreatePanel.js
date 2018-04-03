@@ -184,6 +184,7 @@ const GraphCreatePanel = (props, {localize: _}) => {
         <Numeric label={_('Sum')} step={10} attr="sum" />
         <DataSelector label={_('Text')} attr="text" />
         <DataSelector label={_('Color')} attr="marker.color" />
+        <DataSelector label={'Colors'} attr="marker.colors" />
         <Radio
           label={_('Transpose')}
           attr="transpose"

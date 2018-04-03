@@ -8,7 +8,7 @@ const UpdateMenuFold = connectUpdateMenuToLayout(PlotlyFold);
 
 class UpdateMenuAccordion extends Component {
   render() {
-    const {layout: {updatemenus = []}, localize: _} = this.context;
+    const {fullLayout: {updatemenus = []}, localize: _} = this.context;
     const {children} = this.props;
 
     const content =
@@ -21,7 +21,7 @@ class UpdateMenuAccordion extends Component {
         const updateMenuType =
           localizedType[upd.type] || localizedType.dropdown;
         const activeElementLabel = upd.buttons.filter(
-          b => b.index === upd.active
+          b => b._index === upd.active
         )[0].label;
 
         return (
@@ -52,7 +52,7 @@ class UpdateMenuAccordion extends Component {
 }
 
 UpdateMenuAccordion.contextTypes = {
-  layout: PropTypes.object,
+  fullLayout: PropTypes.object,
   localize: PropTypes.func,
 };
 

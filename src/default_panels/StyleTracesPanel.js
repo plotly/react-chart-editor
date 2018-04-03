@@ -25,7 +25,6 @@ import {
   FillDropdown,
   FontSelector,
   TextPosition,
-  DataSelector,
 } from '../components';
 
 const StyleTracesPanel = (props, {localize: _}) => (
@@ -145,7 +144,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
       <ColorscalePicker label={_('Colorscale')} attr="marker.colorscale" />
       <ColorPicker label={_('Color')} attr="marker.color" />
-      <DataSelector label={'Colors'} attr="marker.colors" />
       <NumericFraction label={_('Opacity')} attr="marker.opacity" />
       <Numeric label={_('Size')} attr="marker.size" />
       <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
