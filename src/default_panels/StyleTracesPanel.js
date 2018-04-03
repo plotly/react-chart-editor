@@ -25,7 +25,6 @@ import {
   FillDropdown,
   FontSelector,
   TextPosition,
-  DataSelector,
 } from '../components';
 
 const StyleTracesPanel = (props, {localize: _}) => (
