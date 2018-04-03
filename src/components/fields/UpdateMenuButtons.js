@@ -48,4 +48,8 @@ UpdateMenuButtons.propTypes = {
   updatePlot: PropTypes.func,
 };
 
+UpdateMenuButtons.contextTypes = {
+  localize: PropTypes.func,
+};
+
 export default connectToContainer(UpdateMenuButtons);
