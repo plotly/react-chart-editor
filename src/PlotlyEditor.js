@@ -6,7 +6,10 @@ import PropTypes from 'prop-types';
 class PlotlyEditor extends Component {
   constructor(props) {
     super();
-    this.state = {graphDiv: {}};
+    this.state = {
+      graphDiv: {},
+      editorControlsVisible: true
+    };
     this.PlotComponent = createPlotComponent(props.plotly);
   }
 
@@ -23,6 +26,7 @@ class PlotlyEditor extends Component {
           locale={this.props.locale}
           traceTypesConfig={this.props.traceTypesConfig}
           dictionaries={this.props.dictionaries}
+          visible={this.state.editorControlsVisible}
         >
           {this.props.children}
         </EditorControls>
