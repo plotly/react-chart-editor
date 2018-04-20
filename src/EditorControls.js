@@ -22,9 +22,6 @@ class EditorControls extends Component {
       this.plotSchema = this.props.plotly.PlotSchema.get();
     }
 
-    this.state = {
-      visible: this.props.visible
-    }
   }
 
   getChildContext() {
@@ -254,7 +251,7 @@ class EditorControls extends Component {
           ' plotly-editor--theme-provider' +
           `${this.props.className ? ` ${this.props.className}` : ''}`
         }
-        style={{display: this.state.visible ? 'unset': 'none'}}
+        style={{display: (this.props.visible === undefined || this.props.visible) ? 'unset': 'none'}}
       >
         <ModalProvider>
           {this.props.graphDiv &&
