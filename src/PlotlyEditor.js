@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 class PlotlyEditor extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {graphDiv: {}};
     this.PlotComponent = createPlotComponent(props.plotly);
   }

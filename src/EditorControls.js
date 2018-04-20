@@ -21,7 +21,6 @@ class EditorControls extends Component {
     if (this.props.plotly) {
       this.plotSchema = this.props.plotly.PlotSchema.get();
     }
-
   }
 
   getChildContext() {
