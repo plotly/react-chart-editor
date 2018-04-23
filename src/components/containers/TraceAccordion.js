@@ -55,19 +55,17 @@ class TraceAccordion extends Component {
       return allTraces;
     }, {});
 
-    const groupedTraces = Object.keys(tracesByGroup)
-      .filter(traceType => !['ohlc', 'candlestick'].includes(traceType))
-      .map((traceType, index) => {
-        return (
-          <TraceFold
-            key={index}
-            traceIndexes={tracesByGroup[traceType]}
-            name={traceType}
-          >
-            {this.props.children}
-          </TraceFold>
-        );
-      });
+    const groupedTraces = Object.keys(tracesByGroup).map((traceType, index) => {
+      return (
+        <TraceFold
+          key={index}
+          traceIndexes={tracesByGroup[traceType]}
+          name={traceType}
+        >
+          {this.props.children}
+        </TraceFold>
+      );
+    });
 
     if (canGroup && data.length > 1 && groupedTraces.length > 0) {
       return (
