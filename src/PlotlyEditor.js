@@ -13,7 +13,7 @@ class PlotlyEditor extends Component {
   render() {
     return (
       <div className="plotly_editor">
-        {(this.props.controlsVisible === undefined || this.props.controlsVisible) &&
+        {!this.props.hideControls &&
           <EditorControls
             graphDiv={this.state.graphDiv}
             dataSources={this.props.dataSources}
@@ -67,6 +67,11 @@ PlotlyEditor.propTypes = {
   traceTypesConfig: PropTypes.object,
   dictionaries: PropTypes.object,
   divId: PropTypes.string,
+  hideControls: PropTypes.bool,
+};
+
+PlotlyEditor.defaultProps = {
+  hideControls: false,
 };
 
 export default PlotlyEditor;
