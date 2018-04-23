@@ -250,7 +250,6 @@ class EditorControls extends Component {
           ' plotly-editor--theme-provider' +
           `${this.props.className ? ` ${this.props.className}` : ''}`
         }
-        style={{display: (this.props.visible === undefined || this.props.visible) ? 'unset': 'none'}}
       >
         <ModalProvider>
           {this.props.graphDiv &&

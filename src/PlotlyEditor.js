@@ -13,20 +13,21 @@ class PlotlyEditor extends Component {
   render() {
     return (
       <div className="plotly_editor">
-        <EditorControls
-          graphDiv={this.state.graphDiv}
-          dataSources={this.props.dataSources}
-          dataSourceOptions={this.props.dataSourceOptions}
-          plotly={this.props.plotly}
-          onUpdate={this.props.onUpdate}
-          advancedTraceTypeSelector={this.props.advancedTraceTypeSelector}
-          locale={this.props.locale}
-          traceTypesConfig={this.props.traceTypesConfig}
-          dictionaries={this.props.dictionaries}
-          visible={this.props.controlsVisible}
-        >
-          {this.props.children}
-        </EditorControls>
+        {(this.props.controlsVisible === undefined || this.props.controlsVisible) &&
+          <EditorControls
+            graphDiv={this.state.graphDiv}
+            dataSources={this.props.dataSources}
+            dataSourceOptions={this.props.dataSourceOptions}
+            plotly={this.props.plotly}
+            onUpdate={this.props.onUpdate}
+            advancedTraceTypeSelector={this.props.advancedTraceTypeSelector}
+            locale={this.props.locale}
+            traceTypesConfig={this.props.traceTypesConfig}
+            dictionaries={this.props.dictionaries}
+          >
+            {this.props.children}
+          </EditorControls>
+        }
         <div
           className="plotly_editor_plot"
           style={{width: '100%', height: '100%'}}
