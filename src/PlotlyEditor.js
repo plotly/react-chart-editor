@@ -13,7 +13,7 @@ class PlotlyEditor extends Component {
   render() {
     return (
       <div className="plotly_editor">
-        {!this.props.hideControls &&
+        {!this.props.hideControls && (
           <EditorControls
             graphDiv={this.state.graphDiv}
             dataSources={this.props.dataSources}
@@ -27,7 +27,7 @@ class PlotlyEditor extends Component {
           >
             {this.props.children}
           </EditorControls>
-        }
+        )}
         <div
           className="plotly_editor_plot"
           style={{width: '100%', height: '100%'}}
