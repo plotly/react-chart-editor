@@ -40,9 +40,9 @@ export const categoryLayout = _ => [
   chartCategory(_).SIMPLE,
   chartCategory(_).WEB_GL,
   chartCategory(_).DISTRIBUTIONS,
-  chartCategory(_).FINANCIAL,
-  chartCategory(_).MAPS,
   chartCategory(_).SPECIALIZED,
+  chartCategory(_).MAPS,
+  chartCategory(_).FINANCIAL,
 ];
 
 export const traceTypes = _ => [
@@ -195,13 +195,13 @@ export const traceTypes = _ => [
   {
     value: 'scatterpolargl',
     icon: 'scatterpolar',
-    label: _('Scatter Polar GL'),
+    label: _('Polar Scatter GL'),
     category: chartCategory(_).WEB_GL,
   },
-  {
-    value: 'heatmapgl',
-    icon: 'heatmap',
-    label: _('Heatmap GL'),
-    category: chartCategory(_).WEB_GL,
-  },
+  // {
+  //   value: 'heatmapgl',
+  //   icon: 'heatmap',
+  //   label: _('Heatmap GL'),
+  //   category: chartCategory(_).WEB_GL,
+  // },
 ];

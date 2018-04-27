@@ -122,8 +122,9 @@ class TraceTypeSelector extends Component {
   }
 
   render() {
+    const {localize: _} = this.context;
     return (
-      <Modal title="Select Chart Type">
+      <Modal title={_('Select Trace Type')}>
         <div className="trace-grid">{this.renderCategories()}</div>
       </Modal>
     );
