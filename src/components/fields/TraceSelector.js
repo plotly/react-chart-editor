@@ -18,22 +18,6 @@ class TraceSelector extends Component {
 
     this.updatePlot = this.updatePlot.bind(this);
 
-    let fillMeta;
-    if (props.getValObject) {
-      fillMeta = props.getValObject('fill');
-    }
-    if (fillMeta) {
-      this.fillTypes = fillMeta.values.filter(v => v !== 'none');
-    } else {
-      this.fillTypes = [
-        'tozeroy',
-        'tozerox',
-        'tonexty',
-        'tonextx',
-        'toself',
-        'tonext',
-      ];
-    }
     this.setTraceDefaults(
       props.container,
       props.fullContainer,
@@ -124,7 +108,6 @@ TraceSelector.contextTypes = {
 };
 
 TraceSelector.propTypes = {
-  getValObject: PropTypes.func,
   container: PropTypes.object.isRequired,
   fullContainer: PropTypes.object.isRequired,
   fullValue: PropTypes.any,

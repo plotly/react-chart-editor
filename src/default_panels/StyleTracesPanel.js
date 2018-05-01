@@ -48,7 +48,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
     />
     <NumericFraction label={_('Opacity')} attr="opacity" />
     <ColorPicker label={_('Color')} attr="color" />
-    <Numeric showSlider step={0.1} attr="hole" label={_('Hole')} />
+    <NumericFraction attr="hole" label={_('Hole Size')} />
     <PlotlySection name={_('Text Attributes')}>
       <Flaglist
         attr="textinfo"

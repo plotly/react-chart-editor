@@ -33,6 +33,10 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
 
     getChildContext() {
       return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`rangeselector.buttons[].${attr}`),
         updateContainer: this.updateRangeselector,
         deleteContainer: this.deleteRangeselector,
         container: this.container,
@@ -81,6 +85,7 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
     data: PropTypes.array,
     onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
+    getValObject: PropTypes.func,
   };
 
   RangeSelectorConnectedComponent.childContextTypes = {
@@ -88,6 +93,7 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
     deleteContainer: PropTypes.func,
     container: PropTypes.object,
     fullContainer: PropTypes.object,
+    getValObject: PropTypes.func,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

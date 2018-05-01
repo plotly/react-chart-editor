@@ -26,6 +26,10 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`updatemenus[].${attr}`),
         updateContainer: this.updateUpdateMenu,
         container: this.container,
         fullContainer: this.fullContainer,
@@ -60,12 +64,14 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
     fullContainer: PropTypes.object,
     onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
+    getValObject: PropTypes.func,
   };
 
   UpdateMenuConnectedComponent.childContextTypes = {
     updateContainer: PropTypes.func,
     container: PropTypes.object,
     fullContainer: PropTypes.object,
+    getValObject: PropTypes.func,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

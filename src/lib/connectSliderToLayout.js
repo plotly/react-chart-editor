@@ -26,6 +26,10 @@ export default function connectSliderToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`sliders[].${attr}`),
         updateContainer: this.updateSlider,
         container: this.container,
         fullContainer: this.fullContainer,
@@ -60,12 +64,14 @@ export default function connectSliderToLayout(WrappedComponent) {
     fullContainer: PropTypes.object,
     onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
+    getValObject: PropTypes.func,
   };
 
   SliderConnectedComponent.childContextTypes = {
     updateContainer: PropTypes.func,
     container: PropTypes.object,
     fullContainer: PropTypes.object,
+    getValObject: PropTypes.func,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

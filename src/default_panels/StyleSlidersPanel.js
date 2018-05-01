@@ -32,10 +32,10 @@ const StyleSlidersPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Color')} attr="font.color" />
     </PlotlySection>
     <PlotlySection name={_('Padding')}>
-      <Numeric label={_('Top')} attr="pad.t" showSlider />
-      <Numeric label={_('Bottom')} attr="pad.b" showSlider />
-      <Numeric label={_('Left')} attr="pad.l" showSlider />
-      <Numeric label={_('Right')} attr="pad.r" showSlider />
+      <Numeric label={_('Top')} attr="pad.t" units="px" />
+      <Numeric label={_('Bottom')} attr="pad.b" units="px" />
+      <Numeric label={_('Left')} attr="pad.l" units="px" />
+      <Numeric label={_('Right')} attr="pad.r" units="px" />
     </PlotlySection>
     <PlotlySection name={_('Ticks')}>
       <ColorPicker label={_('Color')} attr="tickcolor" />

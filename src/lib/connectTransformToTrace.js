@@ -29,6 +29,10 @@ export default function connectTransformToTrace(WrappedComponent) {
 
     getChildContext() {
       return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`transforms[].${attr}`),
         updateContainer: this.updateTransform,
         deleteContainer: this.deleteTransform,
         container: this.container,
@@ -77,6 +81,7 @@ export default function connectTransformToTrace(WrappedComponent) {
     data: PropTypes.array,
     onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
+    getValObject: PropTypes.func,
   };
 
   TransformConnectedComponent.childContextTypes = {
@@ -84,6 +89,7 @@ export default function connectTransformToTrace(WrappedComponent) {
     deleteContainer: PropTypes.func,
     container: PropTypes.object,
     fullContainer: PropTypes.object,
+    getValObject: PropTypes.func,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

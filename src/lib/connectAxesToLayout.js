@@ -95,6 +95,10 @@ export default function connectAxesToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`${this.state.axesTarget}.${attr}`),
         axesOptions: this.axesOptions,
         axesTarget: this.state.axesTarget,
         axesTargetHandler: this.axesTargetHandler,
@@ -155,6 +159,7 @@ export default function connectAxesToLayout(WrappedComponent) {
     fullContainer: PropTypes.object.isRequired,
     updateContainer: PropTypes.func,
     localize: PropTypes.func,
+    getValObject: PropTypes.func,
   };
 
   AxesConnectedComponent.childContextTypes = {
@@ -165,6 +170,7 @@ export default function connectAxesToLayout(WrappedComponent) {
     defaultContainer: PropTypes.object,
     fullContainer: PropTypes.object,
     updateContainer: PropTypes.func,
+    getValObject: PropTypes.func,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

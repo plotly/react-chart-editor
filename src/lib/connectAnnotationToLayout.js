@@ -29,6 +29,10 @@ export default function connectAnnotationToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`annotations[].${attr}`),
         updateContainer: this.updateAnnotation,
         deleteContainer: this.deleteAnnotation,
         container: this.container,
@@ -74,6 +78,7 @@ export default function connectAnnotationToLayout(WrappedComponent) {
     data: PropTypes.array,
     onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
+    getValObject: PropTypes.func,
   };
 
   AnnotationConnectedComponent.childContextTypes = {
@@ -81,6 +86,7 @@ export default function connectAnnotationToLayout(WrappedComponent) {
     deleteContainer: PropTypes.func,
     container: PropTypes.object,
     fullContainer: PropTypes.object,
+    getValObject: PropTypes.func,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

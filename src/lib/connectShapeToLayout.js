@@ -29,6 +29,10 @@ export default function connectShapeToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`shapes[].${attr}`),
         updateContainer: this.updateShape,
         deleteContainer: this.deleteShape,
         container: this.container,
@@ -74,6 +78,7 @@ export default function connectShapeToLayout(WrappedComponent) {
     data: PropTypes.array,
     onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
+    getValObject: PropTypes.func,
   };
 
   ShapeConnectedComponent.childContextTypes = {
@@ -81,6 +86,7 @@ export default function connectShapeToLayout(WrappedComponent) {
     deleteContainer: PropTypes.func,
     container: PropTypes.object,
     fullContainer: PropTypes.object,
+    getValObject: PropTypes.func,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

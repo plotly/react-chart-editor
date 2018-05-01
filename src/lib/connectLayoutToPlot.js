@@ -21,17 +21,14 @@ export default function connectLayoutToPlot(WrappedComponent) {
         });
       };
 
-      let getValObject;
-      if (plotly) {
-        getValObject = attr =>
-          plotly.PlotSchema.getLayoutValObject(
-            fullLayout,
-            nestedProperty({}, attr).parts
-          );
-      }
-
       return {
-        getValObject,
+        getValObject: attr =>
+          !plotly
+            ? null
+            : plotly.PlotSchema.getLayoutValObject(
+                fullLayout,
+                nestedProperty({}, attr).parts
+              ),
         updateContainer,
         container: layout,
         fullContainer: fullLayout,

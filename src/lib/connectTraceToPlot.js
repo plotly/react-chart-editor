@@ -39,12 +39,12 @@ export default function connectTraceToPlot(WrappedComponent) {
 
       this.childContext = {
         getValObject: attr =>
-          plotly
-            ? plotly.PlotSchema.getTraceValObject(
+          !plotly
+            ? null
+            : plotly.PlotSchema.getTraceValObject(
                 fullTrace,
                 nestedProperty({}, attr).parts
-              )
-            : null,
+              ),
         updateContainer: this.updateTrace,
         deleteContainer: this.deleteTrace,
         container: trace,
