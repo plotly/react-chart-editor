@@ -24,6 +24,7 @@ class PlotlyEditor extends Component {
             locale={this.props.locale}
             traceTypesConfig={this.props.traceTypesConfig}
             dictionaries={this.props.dictionaries}
+            showFieldTooltips={this.props.showFieldTooltips}
           >
             {this.props.children}
           </EditorControls>
@@ -68,10 +69,12 @@ PlotlyEditor.propTypes = {
   dictionaries: PropTypes.object,
   divId: PropTypes.string,
   hideControls: PropTypes.bool,
+  showFieldTooltips: PropTypes.bool,
 };
 
 PlotlyEditor.defaultProps = {
   hideControls: false,
+  showFieldTooltips: false,
 };
 
 export default PlotlyEditor;

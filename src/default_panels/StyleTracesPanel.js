@@ -134,14 +134,8 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Hide'), value: false},
         ]}
       />
-      <Numeric label={_('Jitter')} attr="jitter" min={0} max={1} step={0.1} />
-      <Numeric
-        label={_('Position')}
-        attr="pointpos"
-        min={-2}
-        max={2}
-        step={0.1}
-      />
+      <NumericFraction label={_('Jitter')} attr="jitter" />
+      <Numeric label={_('Position')} attr="pointpos" step={0.1} showSlider />
       <ColorscalePicker label={_('Colorscale')} attr="marker.colorscale" />
       <ColorPicker label={_('Color')} attr="marker.color" />
       <NumericFraction label={_('Opacity')} attr="marker.opacity" />

@@ -41,11 +41,29 @@ class Field extends Component {
       });
     }
 
+    let tooltip = this.context.attr;
+    if (this.context.description) {
+      tooltip +=
+        ' – ' + this.context.description.replace(/`/g, '"').replace(/\*/g, '"');
+    }
+
     return (
       <div className={bem('field')}>
         {label ? (
           <div className={bem('field', 'title')}>
-            <div className={bem('field', 'title-text')}>{label}</div>
+            {this.context.showFieldTooltips ? (
+              <div
+                className={bem('field', 'title-text')}
+                aria-label={tooltip}
+                data-microtip-position="bottom-right"
+                data-microtip-size="large"
+                role="tooltip"
+              >
+                {label}
+              </div>
+            ) : (
+              <div className={bem('field', 'title-text')}>{label}</div>
+            )}
           </div>
         ) : null}
         <div className={fieldClass}>
@@ -82,6 +100,9 @@ Field.propTypes = {
 
 Field.contextTypes = {
   localize: PropTypes.func,
+  description: PropTypes.string,
+  attr: PropTypes.string,
+  showFieldTooltips: PropTypes.bool,
 };
 
 Field.defaultProps = {

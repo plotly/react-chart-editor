@@ -38,7 +38,7 @@ export default function unpackPlotProps(props, context) {
     defaultValue = nestedProperty(defaultContainer, props.attr).get();
   }
 
-  let min, max;
+  let min, max, description;
   if (attrMeta) {
     if (isNumeric(attrMeta.max)) {
       max = attrMeta.max;
@@ -46,6 +46,8 @@ export default function unpackPlotProps(props, context) {
     if (isNumeric(attrMeta.min)) {
       min = attrMeta.min;
     }
+
+    description = attrMeta.description;
   }
 
   const updatePlot = v => {
@@ -64,6 +66,7 @@ export default function unpackPlotProps(props, context) {
     isVisible,
     max,
     min,
+    description,
     multiValued,
     updateContainer,
     updatePlot,

@@ -44,11 +44,19 @@ export default function connectToContainer(WrappedComponent, config = {}) {
 
     setLocals(props, context) {
       this.plotProps = unpackPlotProps(props, context);
+      this.attr = props.attr;
       ContainerConnectedComponent.modifyPlotProps(
         props,
         context,
         this.plotProps
       );
+    }
+
+    getChildContext() {
+      return {
+        description: this.plotProps.description,
+        attr: this.attr,
+      };
     }
 
     render() {
@@ -74,6 +82,10 @@ export default function connectToContainer(WrappedComponent, config = {}) {
   )}`;
 
   ContainerConnectedComponent.contextTypes = containerConnectedContextTypes;
+  ContainerConnectedComponent.childContextTypes = {
+    description: PropTypes.string,
+    attr: PropTypes.string,
+  };
 
   const {plotly_editor_traits} = WrappedComponent;
   ContainerConnectedComponent.plotly_editor_traits = plotly_editor_traits;

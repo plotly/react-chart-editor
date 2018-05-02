@@ -46,6 +46,7 @@ class EditorControls extends Component {
       plotSchema: this.plotSchema,
       plotly: this.props.plotly,
       traceTypesConfig: this.props.traceTypesConfig,
+      showFieldTooltips: this.props.showFieldTooltips,
     };
   }
 
@@ -289,9 +290,11 @@ EditorControls.propTypes = {
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
   traceTypesConfig: PropTypes.object,
+  showFieldTooltips: PropTypes.bool,
 };
 
 EditorControls.defaultProps = {
+  showFieldTooltips: false,
   locale: 'en',
   traceTypesConfig: {
     categories: _ => categoryLayout(_),
@@ -320,6 +323,7 @@ EditorControls.childContextTypes = {
   plotly: PropTypes.object,
   plotSchema: PropTypes.object,
   traceTypesConfig: PropTypes.object,
+  showFieldTooltips: PropTypes.bool,
 };
 
 export default EditorControls;
