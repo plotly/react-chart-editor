@@ -19,7 +19,7 @@ export default function connectAggregationToTransform(WrappedComponent) {
       const {aggregationIndex} = props;
       const {container, fullContainer} = context;
 
-      const aggregations = container.aggregations || [];
+      const aggregations = (container && container.aggregations) || [];
       const fullAggregations = fullContainer.aggregations || [];
       this.container = aggregations[aggregationIndex];
       this.fullContainer = fullAggregations[aggregationIndex];
