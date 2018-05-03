@@ -10,12 +10,17 @@ export default function dereference(container, dataSources) {
 
     const srcRef = parent[key];
     const data = dataSources[srcRef];
+    const dataKey = key.replace(SRC_ATTR_PATTERN, '');
 
     if (!Array.isArray(data)) {
+      if (Object.keys(dataSources).length === 0) {
+        delete parent[dataKey];
+        delete parent[key];
+      }
+
       return;
     }
 
-    const dataKey = key.replace(SRC_ATTR_PATTERN, '');
     parent[dataKey] = data;
   };
 
