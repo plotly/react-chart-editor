@@ -92,3 +92,10 @@
     padding: 0;
   }
 }
+
+.fold {
+  .panel {
+    overflow-y: initial;
+    overflow-x: initial;
+  }
+}

@@ -26,6 +26,7 @@
   transform: translate3d(0, 0, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+  display: none;
   will-change: transform;
   opacity: 0;
   pointer-events: none;
@@ -62,6 +63,7 @@
 [aria-label][role~='tooltip']:focus::after {
   opacity: 1;
   pointer-events: auto;
+  display: block;
 }
 
 /* ------------------------------------------------
@@ -143,7 +145,7 @@
 [role~='tooltip'][data-microtip-position|='bottom']::before {
   transform: translate3d(-50%, -10px, 0);
   bottom: auto;
-  left: 50%;
+  left: 10px;
   top: 100%;
 }
 
@@ -153,8 +155,8 @@
 
 [role~='tooltip'][data-microtip-position|='bottom']::after {
   transform: translate3d(-50%, -10px, 0);
+  left: 10px;
   top: 100%;
-  left: 50%;
 }
 
 [role~='tooltip'][data-microtip-position='bottom']:hover::after {
@@ -254,7 +256,7 @@
 
 [role~='tooltip'][data-microtip-size='medium']::after {
   white-space: initial;
-  width: 150px;
+  width: 140px;
 }
 
 [role~='tooltip'][data-microtip-size='large']::after {

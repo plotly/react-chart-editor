@@ -29,12 +29,15 @@ export class UnconnectedDataSelector extends Component {
     this.srcProperty = nestedProperty(props.container, this.srcAttr);
     this.fullValue = this.srcProperty.get();
 
-    this.is2D =
-      (props.attr === 'z' &&
-        ['contour', 'heatmap', 'surface', 'heatmapgl'].includes(
-          props.container.type
-        )) ||
-      (props.container.type === 'table' && props.attr !== 'columnorder');
+    this.is2D = false;
+    if (props.container) {
+      this.is2D =
+        (props.attr === 'z' &&
+          ['contour', 'heatmap', 'surface', 'heatmapgl'].includes(
+            props.container.type
+          )) ||
+        (props.container.type === 'table' && props.attr !== 'columnorder');
+    }
   }
 
   updatePlot(value) {
