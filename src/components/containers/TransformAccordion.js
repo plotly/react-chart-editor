@@ -48,7 +48,7 @@ class TransformAccordion extends Component {
     });
 
     const addAction = {
-      label: _('Transform'),
+      label: _('Aggregation'),
       handler: handlers[2].handler,
     };
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {PanelMenuWrapper} from './components';
 import {
   GraphCreatePanel,
+  GraphTransformsPanel,
   StyleLayoutPanel,
   StyleAxesPanel,
   StyleLegendPanel,
@@ -21,6 +22,7 @@ class DefaultEditor extends Component {
     return (
       <PanelMenuWrapper>
         <GraphCreatePanel group={_('Graph')} name={_('Create')} />
+        <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
         <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
         <StyleNotesPanel group={_('Style')} name={_('Notes')} />
