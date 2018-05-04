@@ -15,12 +15,16 @@ import {
   StyleColorbarsPanel,
   StyleUpdateMenusPanel,
 } from './default_panels';
+import Logo from './components/widgets/Logo';
 
 class DefaultEditor extends Component {
   render() {
     const _ = this.context.localize;
+    const logo = this.props.logoSrc && <Logo src={this.props.logoSrc} />;
+
     return (
       <PanelMenuWrapper>
+        {logo ? logo : null}
         <GraphCreatePanel group={_('Graph')} name={_('Create')} />
         <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
@@ -41,6 +45,7 @@ class DefaultEditor extends Component {
 
 DefaultEditor.propTypes = {
   children: PropTypes.node,
+  logoSrc: PropTypes.string,
 };
 
 DefaultEditor.contextTypes = {

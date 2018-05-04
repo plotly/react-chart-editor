@@ -10,8 +10,8 @@ class PanelsWithSidebar extends Component {
     const opts = this.computeMenuOptions(props);
 
     this.state = {
-      group: opts[0].name,
-      panel: opts[0].panels[0],
+      group: opts[1].name,
+      panel: opts[1].panels[0],
     };
 
     this.setPanel = this.setPanel.bind(this);

@@ -39,7 +39,7 @@ Auto                                                                            
 Auto margins                                                                                                // react-chart-editor: /default_panels/StyleAxesPanel.js:209
 Autoscale                                                                                                   // plotly.js: components/modebar/buttons.js:137
 Average                                                                                                     // react-chart-editor: /default_panels/GraphTransformsPanel.js:31
-Axes                                                                                                        // react-chart-editor: /DefaultEditor.js:29
+Axes                                                                                                        // react-chart-editor: /DefaultEditor.js:33
 Axes to Use                                                                                                 // react-chart-editor: /default_panels/GraphCreatePanel.js:86
 Axis Background                                                                                             // react-chart-editor: /default_panels/StyleAxesPanel.js:187
 Axis Line                                                                                                   // react-chart-editor: /default_panels/StyleAxesPanel.js:134
@@ -84,20 +84,20 @@ Cell Options                                                                    
 Cells                                                                                                       // react-chart-editor: /default_panels/StyleTracesPanel.js:81
 Center                                                                                                      // react-chart-editor: /default_panels/StyleAxesPanel.js:461
 Choropleth                                                                                                  // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:71
-Click to enter Colorscale title                                                                             // plotly.js: plots/plots.js:317
-Click to enter Component A title                                                                            // plotly.js: plots/ternary/ternary.js:394
-Click to enter Component B title                                                                            // plotly.js: plots/ternary/ternary.js:409
-Click to enter Component C title                                                                            // plotly.js: plots/ternary/ternary.js:420
-Click to enter Plot title                                                                                   // plotly.js: plot_api/plot_api.js:598
-Click to enter X axis title                                                                                 // plotly.js: plots/plots.js:315
-Click to enter Y axis title                                                                                 // plotly.js: plots/plots.js:316
-Click to enter radial axis title                                                                            // plotly.js: plots/polar/polar.js:376
+Click to enter Colorscale title                                                                             // plotly.js: plots/plots.js:326
+Click to enter Component A title                                                                            // plotly.js: plots/ternary/ternary.js:390
+Click to enter Component B title                                                                            // plotly.js: plots/ternary/ternary.js:405
+Click to enter Component C title                                                                            // plotly.js: plots/ternary/ternary.js:416
+Click to enter Plot title                                                                                   // plotly.js: plot_api/plot_api.js:514
+Click to enter X axis title                                                                                 // plotly.js: plots/plots.js:324
+Click to enter Y axis title                                                                                 // plotly.js: plots/plots.js:325
+Click to enter radial axis title                                                                            // plotly.js: plots/polar/polar.js:377
 Clockwise                                                                                                   // react-chart-editor: /default_panels/StyleAxesPanel.js:126
 Close                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:60
 Collapse All                                                                                                // react-chart-editor: /components/containers/PanelHeader.js:41
 Color                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:186
 Color Bar                                                                                                   // react-chart-editor: /default_panels/StyleColorbarsPanel.js:304
-Color Bars                                                                                                  // react-chart-editor: /DefaultEditor.js:31
+Color Bars                                                                                                  // react-chart-editor: /DefaultEditor.js:35
 Coloring                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:256
 Colorscale                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:139
 Column Options                                                                                              // react-chart-editor: /default_panels/GraphCreatePanel.js:114
@@ -125,7 +125,7 @@ Count                                                                           
 Counter Clockwise                                                                                           // react-chart-editor: /default_panels/StyleAxesPanel.js:127
 Country Abbreviations (ISO-3)                                                                               // react-chart-editor: /default_panels/GraphCreatePanel.js:129
 Country Names                                                                                               // react-chart-editor: /default_panels/GraphCreatePanel.js:128
-Create                                                                                                      // react-chart-editor: /DefaultEditor.js:24
+Create                                                                                                      // react-chart-editor: /DefaultEditor.js:28
 Custom                                                                                                      // react-chart-editor: /default_panels/StyleAxesPanel.js:108
 Custom Color                                                                                                // react-chart-editor: /components/widgets/ColorPicker.js:51
 Custom Data                                                                                                 // react-chart-editor: /components/fields/ErrorBars.js:110
@@ -142,7 +142,7 @@ Disabled                                                                        
 Display                                                                                                     // react-chart-editor: /default_panels/StyleTracesPanel.js:99
 Distributions                                                                                               // react-chart-editor: /lib/traceTypes.js:21
 Double-click on legend to isolate one trace                                                                 // plotly.js: components/legend/handle_click.js:89
-Double-click to zoom back out                                                                               // plotly.js: plots/cartesian/dragbox.js:969
+Double-click to zoom back out                                                                               // plotly.js: plots/cartesian/dragbox.js:1005
 Download plot as a png                                                                                      // plotly.js: components/modebar/buttons.js:50
 Drop the                                                                                                    // react-chart-editor: /components/widgets/Dropzone.js:53
 Dropdown                                                                                                    // react-chart-editor: /components/containers/UpdateMenuAccordion.js:18
@@ -197,7 +197,7 @@ Gnomonic                                                                        
 Go back                                                                                                     // react-chart-editor: /components/widgets/text_editors/MultiFormat.js:198
 Go to the 'Create' tab to define traces.                                                                    // react-chart-editor: /components/containers/TraceRequiredPanel.js:19
 Gradians                                                                                                    // react-chart-editor: /default_panels/GraphCreatePanel.js:79
-Graph                                                                                                       // react-chart-editor: /DefaultEditor.js:24
+Graph                                                                                                       // react-chart-editor: /DefaultEditor.js:28
 Grid Lines                                                                                                  // react-chart-editor: /default_panels/StyleAxesPanel.js:164
 Hammer                                                                                                      // react-chart-editor: /default_panels/GraphCreatePanel.js:177
 Header                                                                                                      // react-chart-editor: /default_panels/StyleTracesPanel.js:63
@@ -226,7 +226,7 @@ Hover on                                                                        
 I (Optional)                                                                                                // react-chart-editor: /default_panels/GraphCreatePanel.js:54
 IE only supports svg.  Changing format to svg.                                                              // plotly.js: components/modebar/buttons.js:58
 Image                                                                                                       // react-chart-editor: /components/containers/ImageAccordion.js:23
-Images                                                                                                      // react-chart-editor: /DefaultEditor.js:33
+Images                                                                                                      // react-chart-editor: /DefaultEditor.js:37
 Increasing Trace Styles                                                                                     // react-chart-editor: /default_panels/StyleTracesPanel.js:306
 Individual                                                                                                  // react-chart-editor: /components/containers/TraceAccordion.js:76
 Inside                                                                                                      // react-chart-editor: /components/fields/derived.js:480
@@ -277,7 +277,7 @@ Max Number of Labels                                                            
 Max Number of Markers                                                                                       // react-chart-editor: /default_panels/StyleAxesPanel.js:347
 Mean                                                                                                        // react-chart-editor: /default_panels/StyleTracesPanel.js:339
 Median                                                                                                      // react-chart-editor: /default_panels/GraphTransformsPanel.js:32
-Menus                                                                                                       // react-chart-editor: /DefaultEditor.js:35
+Menus                                                                                                       // react-chart-editor: /DefaultEditor.js:39
 Mercator                                                                                                    // react-chart-editor: /default_panels/GraphCreatePanel.js:157
 Middle                                                                                                      // react-chart-editor: /default_panels/StyleAxesPanel.js:475
 Middle Center                                                                                               // react-chart-editor: /components/fields/derived.js:472
@@ -300,7 +300,7 @@ None                                                                            
 Normal                                                                                                      // react-chart-editor: /default_panels/StyleLegendPanel.js:79
 North America                                                                                               // react-chart-editor: /default_panels/GraphCreatePanel.js:146
 Note Text                                                                                                   // react-chart-editor: /default_panels/StyleNotesPanel.js:20
-Notes                                                                                                       // react-chart-editor: /DefaultEditor.js:28
+Notes                                                                                                       // react-chart-editor: /DefaultEditor.js:32
 Number of Contours                                                                                          // react-chart-editor: /default_panels/StyleTracesPanel.js:273
 Number of Labels                                                                                            // react-chart-editor: /default_panels/StyleColorbarsPanel.js:233
 Number of Markers                                                                                           // react-chart-editor: /default_panels/StyleColorbarsPanel.js:279
@@ -333,7 +333,7 @@ Positioning Anchor                                                              
 Prefix                                                                                                      // react-chart-editor: /default_panels/StyleAxesPanel.js:266
 Previous X                                                                                                  // react-chart-editor: /components/fields/derived.js:595
 Previous Y                                                                                                  // react-chart-editor: /components/fields/derived.js:594
-Produced with Plotly                                                                                        // plotly.js: components/modebar/modebar.js:256
+Produced with Plotly                                                                                        // plotly.js: components/modebar/modebar.js:259
 Projection                                                                                                  // react-chart-editor: /default_panels/GraphCreatePanel.js:152
 R                                                                                                           // react-chart-editor: /components/fields/derived.js:565
 RMS                                                                                                         // react-chart-editor: /default_panels/GraphTransformsPanel.js:34
@@ -367,7 +367,7 @@ Select Trace Type                                                               
 Select an Option                                                                                            // react-chart-editor: /components/widgets/Dropdown.js:66
 Separate Thousands                                                                                          // react-chart-editor: /default_panels/StyleAxesPanel.js:242
 Shape                                                                                                       // react-chart-editor: /components/containers/ShapeAccordion.js:23
-Shapes                                                                                                      // react-chart-editor: /DefaultEditor.js:32
+Shapes                                                                                                      // react-chart-editor: /DefaultEditor.js:36
 Show                                                                                                        // react-chart-editor: /default_panels/StyleAxesPanel.js:138
 Show Contour                                                                                                // react-chart-editor: /default_panels/StyleTracesPanel.js:357
 Show Sides                                                                                                  // react-chart-editor: /default_panels/StyleAxesPanel.js:513
@@ -379,7 +379,7 @@ Size                                                                            
 Size and Positioning                                                                                        // react-chart-editor: /default_panels/StyleColorbarsPanel.js:61
 Size and Spacing                                                                                            // react-chart-editor: /default_panels/StyleTracesPanel.js:147
 Slider                                                                                                      // react-chart-editor: /components/containers/SliderAccordion.js:17
-Sliders                                                                                                     // react-chart-editor: /DefaultEditor.js:34
+Sliders                                                                                                     // react-chart-editor: /DefaultEditor.js:38
 Smoothing                                                                                                   // react-chart-editor: /default_panels/StyleTracesPanel.js:185
 Snapshot succeeded                                                                                          // plotly.js: components/modebar/buttons.js:64
 Sorry, there was a problem downloading your snapshot!                                                       // plotly.js: components/modebar/buttons.js:67
@@ -440,8 +440,8 @@ Top Left                                                                        
 Top Right                                                                                                   // react-chart-editor: /components/fields/derived.js:470
 Trace                                                                                                       // react-chart-editor: /components/containers/TraceAccordion.js:34
 Trace Order                                                                                                 // react-chart-editor: /default_panels/StyleLegendPanel.js:75
-Traces                                                                                                      // react-chart-editor: /DefaultEditor.js:26
-Transforms                                                                                                  // react-chart-editor: /DefaultEditor.js:25
+Traces                                                                                                      // react-chart-editor: /DefaultEditor.js:30
+Transforms                                                                                                  // react-chart-editor: /DefaultEditor.js:29
 Transpose                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:189
 Transverse Mercator                                                                                         // react-chart-editor: /default_panels/GraphCreatePanel.js:178
 True                                                                                                        // react-chart-editor: /default_panels/StyleAxesPanel.js:212
@@ -496,10 +496,10 @@ Zoom Interactivity                                                              
 Zoom in                                                                                                     // plotly.js: components/modebar/buttons.js:119
 Zoom out                                                                                                    // plotly.js: components/modebar/buttons.js:128
 ^                                                                                                           // react-chart-editor: /default_panels/StyleAxesPanel.js:293
-close:                                                                                                      // plotly.js: traces/ohlc/transform.js:139
+close:                                                                                                      // plotly.js: traces/ohlc/calc.js:104
 custom                                                                                                      // react-chart-editor: /default_panels/StyleAxesPanel.js:273
 e+6                                                                                                         // react-chart-editor: /default_panels/StyleAxesPanel.js:255
-high:                                                                                                       // plotly.js: traces/ohlc/transform.js:137
+high:                                                                                                       // plotly.js: traces/ohlc/calc.js:102
 image                                                                                                       // react-chart-editor: /default_panels/StyleImagesPanel.js:23
 image/jpeg, image/jpg, image/svg, image/png, image/gif, image/bmp, image/webp                               // react-chart-editor: /components/widgets/Dropzone.js:16
 incoming flow count:                                                                                        // plotly.js: traces/sankey/plot.js:142
@@ -508,24 +508,24 @@ k/M/G                                                                           
 kde:                                                                                                        // plotly.js: traces/violin/calc.js:73
 lat:                                                                                                        // plotly.js: traces/scattergeo/calc.js:48
 lon:                                                                                                        // plotly.js: traces/scattergeo/calc.js:49
-low:                                                                                                        // plotly.js: traces/ohlc/transform.js:138
-lower fence:                                                                                                // plotly.js: traces/box/calc.js:141
-max:                                                                                                        // plotly.js: traces/box/calc.js:139
-mean ± σ:                                                                                                   // plotly.js: traces/box/calc.js:140
-mean:                                                                                                       // plotly.js: traces/box/calc.js:140
-median:                                                                                                     // plotly.js: traces/box/calc.js:135
-min:                                                                                                        // plotly.js: traces/box/calc.js:136
-new text                                                                                                    // plotly.js: plots/plots.js:318 && react-chart-editor: /components/containers/AnnotationAccordion.js:38
-open:                                                                                                       // plotly.js: traces/ohlc/transform.js:136
+low:                                                                                                        // plotly.js: traces/ohlc/calc.js:103
+lower fence:                                                                                                // plotly.js: traces/box/calc.js:140
+max:                                                                                                        // plotly.js: traces/box/calc.js:138
+mean ± σ:                                                                                                   // plotly.js: traces/box/calc.js:139
+mean:                                                                                                       // plotly.js: traces/box/calc.js:139
+median:                                                                                                     // plotly.js: traces/box/calc.js:134
+min:                                                                                                        // plotly.js: traces/box/calc.js:135
+new text                                                                                                    // plotly.js: plots/plots.js:327 && react-chart-editor: /components/containers/AnnotationAccordion.js:38
+open:                                                                                                       // plotly.js: traces/ohlc/calc.js:101
 outgoing flow count:                                                                                        // plotly.js: traces/sankey/plot.js:143
-q1:                                                                                                         // plotly.js: traces/box/calc.js:137
-q3:                                                                                                         // plotly.js: traces/box/calc.js:138
+q1:                                                                                                         // plotly.js: traces/box/calc.js:136
+q3:                                                                                                         // plotly.js: traces/box/calc.js:137
 source:                                                                                                     // plotly.js: traces/sankey/plot.js:140
 target:                                                                                                     // plotly.js: traces/sankey/plot.js:141
 to upload here or click to choose a file from your computer.                                                // react-chart-editor: /components/widgets/Dropzone.js:56
 to us.                                                                                                      // react-chart-editor: /components/widgets/Dropzone.js:146
-trace                                                                                                       // plotly.js: plots/plots.js:320
-upper fence:                                                                                                // plotly.js: traces/box/calc.js:142
+trace                                                                                                       // plotly.js: plots/plots.js:329
+upper fence:                                                                                                // plotly.js: traces/box/calc.js:141
 x                                                                                                           // react-chart-editor: /default_panels/StyleAxesPanel.js:269
 x10^6                                                                                                       // react-chart-editor: /default_panels/StyleAxesPanel.js:257
 √                                                                                                           // react-chart-editor: /components/fields/ErrorBars.js:103
