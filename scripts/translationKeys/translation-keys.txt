@@ -40,7 +40,7 @@ Atlas Map                                                                       
 Auto                                                                                                         // /components/fields/derived.js:482
 Auto margins                                                                                                 // /default_panels/StyleAxesPanel.js:209
 Average                                                                                                      // /default_panels/GraphTransformsPanel.js:31
-Axes                                                                                                         // /DefaultEditor.js:29
+Axes                                                                                                         // /DefaultEditor.js:33
 Axes to Use                                                                                                  // /default_panels/GraphCreatePanel.js:86
 Axis Background                                                                                              // /default_panels/StyleAxesPanel.js:187
 Axis Line                                                                                                    // /default_panels/StyleAxesPanel.js:134
@@ -89,7 +89,7 @@ Close                                                                           
 Collapse All                                                                                                 // /components/containers/PanelHeader.js:41
 Color                                                                                                        // /default_panels/GraphCreatePanel.js:186
 Color Bar                                                                                                    // /default_panels/StyleColorbarsPanel.js:304
-Color Bars                                                                                                   // /DefaultEditor.js:31
+Color Bars                                                                                                   // /DefaultEditor.js:35
 Coloring                                                                                                     // /default_panels/StyleTracesPanel.js:256
 Colorscale                                                                                                   // /default_panels/StyleTracesPanel.js:139
 Column Options                                                                                               // /default_panels/GraphCreatePanel.js:114
@@ -116,7 +116,7 @@ Count                                                                           
 Counter Clockwise                                                                                            // /default_panels/StyleAxesPanel.js:127
 Country Abbreviations (ISO-3)                                                                                // /default_panels/GraphCreatePanel.js:129
 Country Names                                                                                                // /default_panels/GraphCreatePanel.js:128
-Create                                                                                                       // /DefaultEditor.js:24
+Create                                                                                                       // /DefaultEditor.js:28
 Custom                                                                                                       // /default_panels/StyleAxesPanel.js:108
 Custom Color                                                                                                 // /components/widgets/ColorPicker.js:51
 Custom Data                                                                                                  // /components/fields/ErrorBars.js:110
@@ -184,7 +184,7 @@ Gnomonic                                                                        
 Go back                                                                                                      // /components/widgets/text_editors/MultiFormat.js:198
 Go to the 'Create' tab to define traces.                                                                     // /components/containers/TraceRequiredPanel.js:19
 Gradians                                                                                                     // /default_panels/GraphCreatePanel.js:79
-Graph                                                                                                        // /DefaultEditor.js:24
+Graph                                                                                                        // /DefaultEditor.js:28
 Grid Lines                                                                                                   // /default_panels/StyleAxesPanel.js:164
 Hammer                                                                                                       // /default_panels/GraphCreatePanel.js:177
 Header                                                                                                       // /default_panels/StyleTracesPanel.js:63
@@ -212,7 +212,7 @@ Hover Projections                                                               
 Hover on                                                                                                     // /default_panels/StyleTracesPanel.js:370
 I (Optional)                                                                                                 // /default_panels/GraphCreatePanel.js:54
 Image                                                                                                        // /components/containers/ImageAccordion.js:23
-Images                                                                                                       // /DefaultEditor.js:33
+Images                                                                                                       // /DefaultEditor.js:37
 Increasing Trace Styles                                                                                      // /default_panels/StyleTracesPanel.js:306
 Individual                                                                                                   // /components/containers/TraceAccordion.js:76
 Inside                                                                                                       // /components/fields/derived.js:480
@@ -262,7 +262,7 @@ Max Number of Labels                                                            
 Max Number of Markers                                                                                        // /default_panels/StyleAxesPanel.js:347
 Mean                                                                                                         // /default_panels/StyleTracesPanel.js:339
 Median                                                                                                       // /default_panels/GraphTransformsPanel.js:32
-Menus                                                                                                        // /DefaultEditor.js:35
+Menus                                                                                                        // /DefaultEditor.js:39
 Mercator                                                                                                     // /default_panels/GraphCreatePanel.js:157
 Middle                                                                                                       // /default_panels/StyleAxesPanel.js:475
 Middle Center                                                                                                // /components/fields/derived.js:472
@@ -285,7 +285,7 @@ None                                                                            
 Normal                                                                                                       // /default_panels/StyleLegendPanel.js:79
 North America                                                                                                // /default_panels/GraphCreatePanel.js:146
 Note Text                                                                                                    // /default_panels/StyleNotesPanel.js:20
-Notes                                                                                                        // /DefaultEditor.js:28
+Notes                                                                                                        // /DefaultEditor.js:32
 Number of Contours                                                                                           // /default_panels/StyleTracesPanel.js:273
 Number of Labels                                                                                             // /default_panels/StyleColorbarsPanel.js:233
 Number of Markers                                                                                            // /default_panels/StyleColorbarsPanel.js:279
@@ -343,7 +343,7 @@ Select Trace Type                                                               
 Select an Option                                                                                             // /components/widgets/Dropdown.js:66
 Separate Thousands                                                                                           // /default_panels/StyleAxesPanel.js:242
 Shape                                                                                                        // /components/containers/ShapeAccordion.js:23
-Shapes                                                                                                       // /DefaultEditor.js:32
+Shapes                                                                                                       // /DefaultEditor.js:36
 Show                                                                                                         // /default_panels/StyleAxesPanel.js:138
 Show Contour                                                                                                 // /default_panels/StyleTracesPanel.js:357
 Show Sides                                                                                                   // /default_panels/StyleAxesPanel.js:513
@@ -354,7 +354,7 @@ Size                                                                            
 Size and Positioning                                                                                         // /default_panels/StyleColorbarsPanel.js:61
 Size and Spacing                                                                                             // /default_panels/StyleTracesPanel.js:147
 Slider                                                                                                       // /components/containers/SliderAccordion.js:17
-Sliders                                                                                                      // /DefaultEditor.js:34
+Sliders                                                                                                      // /DefaultEditor.js:38
 Smoothing                                                                                                    // /default_panels/StyleTracesPanel.js:185
 Sorted                                                                                                       // /default_panels/StyleTracesPanel.js:126
 South America                                                                                                // /default_panels/GraphCreatePanel.js:147
@@ -410,8 +410,8 @@ Top Left                                                                        
 Top Right                                                                                                    // /components/fields/derived.js:470
 Trace                                                                                                        // /components/containers/TraceAccordion.js:34
 Trace Order                                                                                                  // /default_panels/StyleLegendPanel.js:75
-Traces                                                                                                       // /DefaultEditor.js:26
-Transforms                                                                                                   // /DefaultEditor.js:25
+Traces                                                                                                       // /DefaultEditor.js:30
+Transforms                                                                                                   // /DefaultEditor.js:29
 Transpose                                                                                                    // /default_panels/GraphCreatePanel.js:189
 Transverse Mercator                                                                                          // /default_panels/GraphCreatePanel.js:178
 True                                                                                                         // /default_panels/StyleAxesPanel.js:212
