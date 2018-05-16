@@ -110,6 +110,7 @@
     "make:lib:css": "mkdirp lib && babel-node scripts/styles.js && SASS_ENV=ie babel-node scripts/styles.js && babel-node scripts/postcss.js && SASS_ENV=ie babel-node scripts/postcss.js",
     "make:lib:js": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps",
     "make:translation-keys": "node scripts/findTranslationKeys.js",
+    "postinstall": "npm rebuild node-sass",
     "prepublishOnly": "npm run make:lib",
     "start": "webpack-dev-server --hot",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
