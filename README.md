@@ -160,7 +160,7 @@ Once you have your tokens, you can provide it as a config prop to the `<PlotlyEd
 
 ## License
 
-&copy; 2017 Plotly, Inc. MIT License.
+&copy; 2018 Plotly, Inc. MIT License.
 
 ## Sponsors
 
