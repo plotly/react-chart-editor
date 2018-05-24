@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Field from './Field';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {connectToContainer} from 'lib';
+import {connectToContainer, maybeAdjustSrc, maybeTransposeData} from 'lib';
 
 export function attributeIsData(meta = {}) {
   return meta.valType === 'data_array' || meta.arrayOk;
@@ -33,10 +33,25 @@ export class UnconnectedDataSelector extends Component {
     if (props.container) {
       this.is2D =
         (props.attr === 'z' &&
-          ['contour', 'heatmap', 'surface', 'heatmapgl'].includes(
-            props.container.type
-          )) ||
+          [
+            'contour',
+            'contourgl',
+            'heatmap',
+            'heatmapgl',
+            'surface',
+            'carpet',
+            'contourcarpet',
+          ].includes(props.container.type)) ||
         (props.container.type === 'table' && props.attr !== 'columnorder');
+    }
+
+    if (
+      this.is2D &&
+      this.fullValue &&
+      this.fullValue.length &&
+      this.context.customSrcHandling
+    ) {
+      this.fullValue = this.context.customSrcHandling.splitSrcs(this.fullValue);
     }
   }
 
@@ -44,39 +59,33 @@ export class UnconnectedDataSelector extends Component {
     if (!this.props.updateContainer) {
       return;
     }
+
     const update = {};
+    let data;
 
     if (Array.isArray(value)) {
-      update[this.props.attr] = value
+      data = value
         .filter(v => Array.isArray(this.dataSources[v]))
         .map(v => this.dataSources[v]);
-
-      // Table traces have many configuration options,
-      // The below attributes can be 2d or 1d and will affect the plot differently
-      // EX:
-      // header.values = ['Jan', 'Feb', 'Mar'] => will put data in a row
-      // header.values = [['Jan', 1], ['Feb', 2], ['Mar', 3]] => will create 3 columns
-      // 1d arrays affect columns
-      // 2d arrays affect rows within each column
-
-      if (
-        this.props.container.type === 'table' &&
-        value.length === 1 &&
-        [
-          'header.values',
-          'header.font.color',
-          'header.font.size',
-          'header.fill.color',
-          'columnwidth',
-        ].includes(this.props.attr)
-      ) {
-        update[this.props.attr] = update[this.props.attr][0];
-      }
     } else {
-      update[this.props.attr] = this.dataSources[value] || null;
+      data = this.dataSources[value] || null;
     }
-    update[this.srcAttr] = value;
 
+    update[this.props.attr] = maybeTransposeData(
+      data,
+      this.srcAttr,
+      this.props.container.type
+    );
+    update[this.srcAttr] = maybeAdjustSrc(
+      value,
+      this.srcAttr,
+      this.props.container.type,
+      {
+        joinSrcs: this.context.customSrcHandling
+          ? this.context.customSrcHandling.joinSrcs
+          : null,
+      }
+    );
     this.props.updateContainer(update);
   }
 
@@ -122,6 +131,7 @@ UnconnectedDataSelector.contextTypes = {
   dataSourceOptions: PropTypes.array,
   dataSourceValueRenderer: PropTypes.func,
   dataSourceOptionRenderer: PropTypes.func,
+  customSrcHandling: PropTypes.object,
 };
 
 function modifyPlotProps(props, context, plotProps) {
