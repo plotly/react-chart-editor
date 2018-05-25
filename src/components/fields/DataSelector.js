@@ -27,11 +27,8 @@ export class UnconnectedDataSelector extends Component {
 
     this.srcAttr = props.attr + 'src';
     this.srcProperty = nestedProperty(props.container, this.srcAttr).get();
-    this.fullValue = this.context.customSrcHandling
-      ? this.context.customSrcHandling.toSrc(
-          this.srcProperty,
-          props.container.type
-        )
+    this.fullValue = this.context.srcConverters
+      ? this.context.srcConverters.toSrc(this.srcProperty, props.container.type)
       : this.srcProperty;
 
     this.is2D = false;
@@ -77,8 +74,8 @@ export class UnconnectedDataSelector extends Component {
       this.srcAttr,
       this.props.container.type,
       {
-        fromSrc: this.context.customSrcHandling
-          ? this.context.customSrcHandling.fromSrc
+        fromSrc: this.context.srcConverters
+          ? this.context.srcConverters.fromSrc
           : null,
       }
     );
@@ -127,9 +124,9 @@ UnconnectedDataSelector.contextTypes = {
   dataSourceOptions: PropTypes.array,
   dataSourceValueRenderer: PropTypes.func,
   dataSourceOptionRenderer: PropTypes.func,
-  customSrcHandling: PropTypes.shape({
-    toSrc: PropTypes.func,
-    fromSrc: PropTypes.func,
+  srcConverters: PropTypes.shape({
+    toSrc: PropTypes.func.isRequired,
+    fromSrc: PropTypes.func.isRequired,
   }),
 };
 
