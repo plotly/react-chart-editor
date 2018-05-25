@@ -8,7 +8,10 @@ const ShapeFold = connectShapeToLayout(PlotlyFold);
 
 class ShapeAccordion extends Component {
   render() {
-    const {layout: {shapes = []}, localize: _} = this.context;
+    const {
+      layout: {shapes = []},
+      localize: _,
+    } = this.context;
     const {canAdd, children} = this.props;
 
     const content =

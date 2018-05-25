@@ -8,7 +8,10 @@ const TransformFold = connectTransformToTrace(PlotlyFold);
 
 class TransformAccordion extends Component {
   render() {
-    const {fullContainer: {transforms = []}, localize: _} = this.context;
+    const {
+      fullContainer: {transforms = []},
+      localize: _,
+    } = this.context;
     const {children} = this.props;
 
     const transformTypes = [

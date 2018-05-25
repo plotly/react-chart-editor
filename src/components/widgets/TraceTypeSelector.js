@@ -133,7 +133,11 @@ class TraceTypeSelector extends Component {
 
 export class TraceTypeSelectorButton extends Component {
   render() {
-    const {handleClick, container, traceTypesConfig: {traces}} = this.props;
+    const {
+      handleClick,
+      container,
+      traceTypesConfig: {traces},
+    } = this.props;
 
     const {localize: _} = this.context;
 

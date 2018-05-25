@@ -19,7 +19,9 @@ class RangeSelectorAccordion extends Component {
     }
 
     const {
-      fullContainer: {rangeselector: {buttons = []}},
+      fullContainer: {
+        rangeselector: {buttons = []},
+      },
       localize: _,
     } = this.context;
     const {children} = this.props;

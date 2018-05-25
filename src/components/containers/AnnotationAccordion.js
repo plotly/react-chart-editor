@@ -8,7 +8,10 @@ const AnnotationFold = connectAnnotationToLayout(PlotlyFold);
 
 class AnnotationAccordion extends Component {
   render() {
-    const {layout: {annotations = []}, localize: _} = this.context;
+    const {
+      layout: {annotations = []},
+      localize: _,
+    } = this.context;
     const {canAdd, children} = this.props;
 
     const content =

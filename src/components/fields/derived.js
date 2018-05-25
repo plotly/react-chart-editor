@@ -324,7 +324,9 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
     if (!context.fullContainer) {
       return;
     }
-    const {fullContainer: {xref, yref}} = context;
+    const {
+      fullContainer: {xref, yref},
+    } = context;
 
     let currentAxisRef;
     if (props.attr === 'axref') {
@@ -363,7 +365,9 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
     if (!context.fullContainer) {
       return;
     }
-    const {fullContainer: {axref, ayref}} = context;
+    const {
+      fullContainer: {axref, ayref},
+    } = context;
 
     let currentOffsetRef;
     if (props.attr === 'xref') {
