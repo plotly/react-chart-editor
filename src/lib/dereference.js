@@ -16,12 +16,12 @@ export default function dereference(
     const dataKey = key.replace(SRC_ATTR_PATTERN, '');
     const traceType = parent.type;
 
+    let srcRef = config.toSrc ? config.toSrc(parent[key]) : parent[key];
+
     // making this into an array to more easily lookup 1d and 2d srcs in dataSourceOptions
-    const srcRef = config.splitSrcs
-      ? config.splitSrcs(parent[key])
-      : Array.isArray(parent[key])
-        ? parent[key]
-        : [parent[key]];
+    if (!Array.isArray(srcRef)) {
+      srcRef = [srcRef];
+    }
 
     let data = srcRef.map(ref => {
       if (config.deleteKeys && !(ref in dataSources)) {

@@ -281,7 +281,10 @@ EditorControls.propTypes = {
   beforeUpdateTraces: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
-  customSrcHandling: PropTypes.object,
+  customSrcHandling: PropTypes.shape({
+    toSrc: PropTypes.func,
+    fromSrc: PropTypes.func,
+  }),
   dataSourceOptionRenderer: PropTypes.func,
   dataSourceOptions: PropTypes.array,
   dataSources: PropTypes.object,
@@ -308,7 +311,10 @@ EditorControls.defaultProps = {
 EditorControls.childContextTypes = {
   advancedTraceTypeSelector: PropTypes.bool,
   config: PropTypes.object,
-  customSrcHandling: PropTypes.object,
+  customSrcHandling: PropTypes.shape({
+    toSrc: PropTypes.func,
+    fromSrc: PropTypes.func,
+  }),
   data: PropTypes.array,
   dataSourceOptionRenderer: PropTypes.func,
   dataSourceOptions: PropTypes.array,

@@ -26,8 +26,13 @@ export class UnconnectedDataSelector extends Component {
     this.dataSourceOptions = context.dataSourceOptions || [];
 
     this.srcAttr = props.attr + 'src';
-    this.srcProperty = nestedProperty(props.container, this.srcAttr);
-    this.fullValue = this.srcProperty.get();
+    this.srcProperty = nestedProperty(props.container, this.srcAttr).get();
+    this.fullValue = this.context.customSrcHandling
+      ? this.context.customSrcHandling.toSrc(
+          this.srcProperty,
+          props.container.type
+        )
+      : this.srcProperty;
 
     this.is2D = false;
     if (props.container) {
@@ -43,15 +48,6 @@ export class UnconnectedDataSelector extends Component {
             'contourcarpet',
           ].includes(props.container.type)) ||
         (props.container.type === 'table' && props.attr !== 'columnorder');
-    }
-
-    if (
-      this.is2D &&
-      this.fullValue &&
-      this.fullValue.length &&
-      this.context.customSrcHandling
-    ) {
-      this.fullValue = this.context.customSrcHandling.splitSrcs(this.fullValue);
     }
   }
 
@@ -81,8 +77,8 @@ export class UnconnectedDataSelector extends Component {
       this.srcAttr,
       this.props.container.type,
       {
-        joinSrcs: this.context.customSrcHandling
-          ? this.context.customSrcHandling.joinSrcs
+        fromSrc: this.context.customSrcHandling
+          ? this.context.customSrcHandling.fromSrc
           : null,
       }
     );
@@ -131,7 +127,10 @@ UnconnectedDataSelector.contextTypes = {
   dataSourceOptions: PropTypes.array,
   dataSourceValueRenderer: PropTypes.func,
   dataSourceOptionRenderer: PropTypes.func,
-  customSrcHandling: PropTypes.object,
+  customSrcHandling: PropTypes.shape({
+    toSrc: PropTypes.func,
+    fromSrc: PropTypes.func,
+  }),
 };
 
 function modifyPlotProps(props, context, plotProps) {

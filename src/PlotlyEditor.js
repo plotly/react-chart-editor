@@ -71,7 +71,10 @@ PlotlyEditor.propTypes = {
   divId: PropTypes.string,
   hideControls: PropTypes.bool,
   showFieldTooltips: PropTypes.bool,
-  customSrcHandling: PropTypes.object,
+  customSrcHandling: PropTypes.shape({
+    toSrc: PropTypes.func,
+    fromSrc: PropTypes.func,
+  }),
 };
 
 PlotlyEditor.defaultProps = {

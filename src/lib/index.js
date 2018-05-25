@@ -164,20 +164,11 @@ function maybeAdjustSrc(src, srcAttributePath, traceType, config) {
     return null;
   }
 
-  if (Array.isArray(src)) {
-    if (src.length > 1 && config && config.joinSrcs) {
-      return config.joinSrcs(src, traceType);
-    }
-
-    if (
-      (specialTableCase(traceType, srcAttributePath) && src.length === 1) ||
-      src.length === 1
-    ) {
-      return src[0];
-    }
+  if (specialTableCase(traceType, srcAttributePath) && src.length === 1) {
+    return src[0];
   }
 
-  return src;
+  return config && config.fromSrc ? config.fromSrc(src, traceType) : src;
 }
 
 export {

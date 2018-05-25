@@ -54,7 +54,7 @@ describe('dereference', () => {
     dereference(
       container,
       {z1: [1, 2, 3], z2: [2, 2, 2]},
-      {splitSrcs: customParsing}
+      {toSrc: customParsing}
     );
 
     // contents should have been transposed
