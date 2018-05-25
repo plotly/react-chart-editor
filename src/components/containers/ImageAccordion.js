@@ -8,7 +8,10 @@ const ImageFold = connectImageToLayout(PlotlyFold);
 
 class ImageAccordion extends Component {
   render() {
-    const {layout: {images = []}, localize: _} = this.context;
+    const {
+      layout: {images = []},
+      localize: _,
+    } = this.context;
     const {canAdd, children} = this.props;
 
     const content =

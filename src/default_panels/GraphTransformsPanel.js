@@ -14,7 +14,9 @@ const AggregationSection = connectAggregationToTransform(PlotlySection);
 
 export class Aggregations extends Component {
   render() {
-    const {fullContainer: {aggregations = []}} = this.context;
+    const {
+      fullContainer: {aggregations = []},
+    } = this.context;
     const {localize: _} = this.context;
     if (aggregations.length === 0) {
       return null;

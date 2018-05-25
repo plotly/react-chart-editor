@@ -8,7 +8,10 @@ const UpdateMenuFold = connectUpdateMenuToLayout(PlotlyFold);
 
 class UpdateMenuAccordion extends Component {
   render() {
-    const {fullLayout: {updatemenus = []}, localize: _} = this.context;
+    const {
+      fullLayout: {updatemenus = []},
+      localize: _,
+    } = this.context;
     const {children} = this.props;
 
     const content =

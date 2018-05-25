@@ -8,7 +8,10 @@ const SliderFold = connectSliderToLayout(PlotlyFold);
 
 class SliderAccordion extends Component {
   render() {
-    const {layout: {sliders = []}, localize: _} = this.context;
+    const {
+      layout: {sliders = []},
+      localize: _,
+    } = this.context;
     const {children} = this.props;
 
     const content =
