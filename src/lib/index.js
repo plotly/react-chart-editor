@@ -64,6 +64,113 @@ function renderTraceIcon(trace, prefix = 'Plot') {
     : PlotlyIcons.PlotLineIcon;
 }
 
+function transpose(originalArray) {
+  // if we want to transpose a uni dimensional array
+  if (originalArray.every(a => !Array.isArray(a))) {
+    return originalArray.map(a => [a]);
+  }
+
+  let longestArrayItem = Array.isArray(originalArray[0])
+    ? originalArray[0].length
+    : 1;
+
+  originalArray.forEach(a => {
+    // if it's not an array, it's a string
+    const length = Array.isArray(a) ? a.length : 1;
+    if (length > longestArrayItem) {
+      longestArrayItem = length;
+    }
+  });
+
+  const newArray = new Array(longestArrayItem);
+
+  for (let outerIndex = 0; outerIndex < originalArray.length; outerIndex++) {
+    if (!Array.isArray(originalArray[outerIndex])) {
+      originalArray[outerIndex] = [originalArray[outerIndex]];
+    }
+
+    for (let innerIndex = 0; innerIndex < longestArrayItem; innerIndex++) {
+      // ensure we have an array to push to
+      if (!Array.isArray(newArray[innerIndex])) {
+        newArray[innerIndex] = [];
+      }
+
+      const value = originalArray[outerIndex][innerIndex]
+        ? originalArray[outerIndex][innerIndex]
+        : null;
+      newArray[innerIndex].push(value);
+    }
+  }
+
+  return newArray;
+}
+
+const specialTableCase = (traceType, srcAttributePath) => {
+  /* Just more user friendly
+   * Table traces have many configuration options,
+   * The below attributes can be 2d or 1d and will affect the plot differently
+   * EX:
+   * header.values = ['Jan', 'Feb', 'Mar'] => will put data in a row
+   * header.values = [['Jan', 1], ['Feb', 2], ['Mar', 3]] => will create 3 columns
+   * 1d arrays affect columns
+   * 2d arrays affect rows within each column
+   */
+  return (
+    traceType === 'table' &&
+    [
+      'header.valuessrc',
+      'header.font.colorsrc',
+      'header.font.sizesrc',
+      'header.fill.colorsrc',
+      'columnwidthsrc',
+    ].some(a => srcAttributePath.endsWith(a))
+  );
+};
+
+function maybeTransposeData(data, srcAttributePath, traceType) {
+  if (!data || (Array.isArray(data) && data.length === 0)) {
+    return null;
+  }
+
+  const isTransposable2DArray =
+    srcAttributePath.endsWith('zsrc') &&
+    [
+      'contour',
+      'contourgl',
+      'heatmap',
+      'heatmapgl',
+      'surface',
+      'carpet',
+      'contourcarpet',
+    ].includes(traceType);
+
+  if (isTransposable2DArray) {
+    return transpose(data);
+  }
+
+  if (
+    specialTableCase(traceType, srcAttributePath) &&
+    Array.isArray(data[0]) &&
+    data.length === 1
+  ) {
+    return data[0];
+  }
+
+  return data;
+}
+
+function maybeAdjustSrc(src, srcAttributePath, traceType, config) {
+  if (!src || (Array.isArray(src) && src.length === 0)) {
+    return null;
+  }
+
+  if (specialTableCase(traceType, srcAttributePath) && src.length === 1) {
+    return src[0];
+  }
+
+  return config && config.fromSrc ? config.fromSrc(src, traceType) : src;
+}
+
 export {
   axisIdToAxisName,
   bem,
@@ -96,6 +203,8 @@ export {
   isPlainObject,
   localize,
   localizeString,
+  maybeAdjustSrc,
+  maybeTransposeData,
   plotlyTraceToCustomTrace,
   renderTraceIcon,
   unpackPlotProps,
@@ -103,4 +212,5 @@ export {
   tooLight,
   striptags,
   traceTypeToAxisType,
+  transpose,
 };

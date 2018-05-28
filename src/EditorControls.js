@@ -28,6 +28,7 @@ class EditorControls extends Component {
     return {
       advancedTraceTypeSelector: this.props.advancedTraceTypeSelector,
       config: gd._context,
+      srcConverters: this.props.srcConverters,
       data: gd.data,
       dataSources: this.props.dataSources,
       dataSourceOptions: this.props.dataSourceOptions,
@@ -280,6 +281,10 @@ EditorControls.propTypes = {
   beforeUpdateTraces: PropTypes.func,
   children: PropTypes.node,
   className: PropTypes.string,
+  srcConverters: PropTypes.shape({
+    toSrc: PropTypes.func.isRequired,
+    fromSrc: PropTypes.func.isRequired,
+  }),
   dataSourceOptionRenderer: PropTypes.func,
   dataSourceOptions: PropTypes.array,
   dataSources: PropTypes.object,
@@ -289,8 +294,8 @@ EditorControls.propTypes = {
   locale: PropTypes.string,
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
-  traceTypesConfig: PropTypes.object,
   showFieldTooltips: PropTypes.bool,
+  traceTypesConfig: PropTypes.object,
 };
 
 EditorControls.defaultProps = {
@@ -306,6 +311,10 @@ EditorControls.defaultProps = {
 EditorControls.childContextTypes = {
   advancedTraceTypeSelector: PropTypes.bool,
   config: PropTypes.object,
+  srcConverters: PropTypes.shape({
+    toSrc: PropTypes.func.isRequired,
+    fromSrc: PropTypes.func.isRequired,
+  }),
   data: PropTypes.array,
   dataSourceOptionRenderer: PropTypes.func,
   dataSourceOptions: PropTypes.array,
