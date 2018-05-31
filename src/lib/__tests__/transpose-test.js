@@ -18,7 +18,7 @@ describe('transpose', () => {
   });
 
   it('correctly transposes 2d arrays', () => {
-    const originalArray = [[1, 2, 3], [9, 8, 7]];
+    const originalArray = [[1, 2, 3], [9, 8, 0]];
     const transposedArray = transpose(originalArray);
 
     expect(transposedArray.length).toBe(3);
@@ -32,7 +32,7 @@ describe('transpose', () => {
     expect(transposedArray[1][0]).toBe(2);
     expect(transposedArray[1][1]).toBe(8);
     expect(transposedArray[2][0]).toBe(3);
-    expect(transposedArray[2][1]).toBe(7);
+    expect(transposedArray[2][1]).toBe(0);
   });
 
   it('correctly fills non symmetrical 2d arrays', () => {
