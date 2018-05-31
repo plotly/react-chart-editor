@@ -95,9 +95,10 @@ function transpose(originalArray) {
         newArray[innerIndex] = [];
       }
 
-      const value = originalArray[outerIndex][innerIndex]
-        ? originalArray[outerIndex][innerIndex]
-        : null;
+      const value =
+        typeof originalArray[outerIndex][innerIndex] !== 'undefined'
+          ? originalArray[outerIndex][innerIndex]
+          : null;
       newArray[innerIndex].push(value);
     }
   }
