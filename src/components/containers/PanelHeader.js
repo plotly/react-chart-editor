@@ -63,9 +63,10 @@ class PanelHeader extends Component {
                 label={addAction.label}
               />
               {this.state.addPanelOpen && (
-                <ModalBox onClose={this.togglePanel} relative>
+                <div className="Select"><div className="Select-menu-outer"><div className="Select-menu">
                   {addAction.handler.map(({label, handler}) => (
-                    <p
+                    <div
+                      className="Select-option"
                       key={label}
                       onClick={() => {
                         handler(this.context);
@@ -73,9 +74,9 @@ class PanelHeader extends Component {
                       }}
                     >
                       {label}
-                    </p>
+                  </div>
                   ))}
-                </ModalBox>
+                </div></div></div>
               )}
             </div>
           ) : null}

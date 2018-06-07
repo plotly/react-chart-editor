@@ -34,25 +34,25 @@ class TransformAccordion extends Component {
         </TransformFold>
       ));
 
-    const handlers = transformTypes.map(({label, type}) => {
-      return {
-        label,
-        handler: context => {
-          const {fullContainer, updateContainer} = context;
-          if (updateContainer) {
-            const transformIndex = Array.isArray(fullContainer.transforms)
-              ? fullContainer.transforms.length
-              : 0;
-            const key = `transforms[${transformIndex}]`;
-            updateContainer({[key]: {type}});
-          }
-        },
-      };
-    });
+
 
     const addAction = {
-      label: _('Aggregation'),
-      handler: handlers[2].handler,
+      label: _('Transform'),
+      handler: transformTypes.map(({label, type}) => {
+        return {
+          label,
+          handler: context => {
+            const {fullContainer, updateContainer} = context;
+            if (updateContainer) {
+              const transformIndex = Array.isArray(fullContainer.transforms)
+                ? fullContainer.transforms.length
+                : 0;
+              const key = `transforms[${transformIndex}]`;
+              updateContainer({[key]: {type}});
+            }
+          },
+        };
+      }),
     };
 
     return (

@@ -26,7 +26,7 @@ class DefaultEditor extends Component {
       <PanelMenuWrapper>
         {logo ? logo : null}
         <GraphCreatePanel group={_('Graph')} name={_('Create')} />
-        <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />
+        <GraphTransformsPanel group='Graph' name="Transforms" />
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
         <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
         <StyleNotesPanel group={_('Style')} name={_('Notes')} />

@@ -158,6 +158,12 @@
       border-width: 1px 1px 1px 1px;
     }
   }
+
+  // if the panel is within a fold, allow overflow for dropdown, etc.
+  .panel {
+    overflow-x: visible;
+    overflow-y: visible;
+  }
 }
 
 .fold + .fold {

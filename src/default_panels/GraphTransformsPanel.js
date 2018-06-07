@@ -47,6 +47,7 @@ export class Aggregations extends Component {
   }
 }
 
+Aggregations.plotly_editor_traits = {no_visibility_forcing: true};
 Aggregations.contextTypes = {
   fullContainer: PropTypes.object,
   localize: PropTypes.func,
@@ -66,7 +67,9 @@ const GraphTransformsPanel = (props, {localize: _}) => {
 
         <DataSelector label={_('By')} attr="groups" />
 
-        <Aggregations />
+        <PlotlySection name={_('Aggregations')} attr="aggregations">
+          <Aggregations />
+        </PlotlySection>
       </TransformAccordion>
     </TraceAccordion>
   );
