@@ -47,7 +47,9 @@ class CheckboxGroup extends Component {
               </div>
             )}
           </div>
-          <div className="checkbox__label">{option.label}</div>
+          <div className="checkbox__label" onClick={() => this.handleChange(i)}>
+            {option.label}
+          </div>
         </div>
       );
     });
