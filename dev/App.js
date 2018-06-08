@@ -6,13 +6,13 @@ import 'react-select/dist/react-select.css';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
-import PlotlyEditor, {DefaultEditor, Panel, DetachedDataSelector} from '../src';
+import PlotlyEditor, {DefaultEditor, Panel} from '../src';
 import Inspector from 'react-inspector';
 import 'brace/mode/json';
 import 'brace/theme/textmate';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
-//import ACCESS_TOKENS from '../accessTokens';
+import ACCESS_TOKENS from '../accessTokens';
 
 const dataSources = {
   ints: [1, 2, 3, 4, 5, 6], // eslint-disable-line no-magic-numbers
@@ -36,7 +36,7 @@ const dataSourceOptions = Object.keys(dataSources).map(name => ({
   label: name,
 }));
 
-const config = {/*mapboxAccessToken: ACCESS_TOKENS.MAPBOX,*/ editable: true};
+const config = {mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true};
 
 class App extends Component {
   constructor() {
@@ -100,25 +100,7 @@ class App extends Component {
     }
   }
 
-
-  myOnChange(value){
-    console.log(value);
-  }
-
   render() {
-
-    let myDataSources = {
-      option_one: 1,
-      option_two: 2,
-      option_three: 3,
-      option_four: 4,
-    };
-    const myDataSourceOptions = Object.keys(myDataSources).map(name => ({
-      value: name,
-      label: name,
-    }));
-
-
     return (
       <div className="app">
         <PlotlyEditor
@@ -137,14 +119,6 @@ class App extends Component {
           showFieldTooltips
         >
           <DefaultEditor>
-          <Panel group="Dev" name="Test">
-            <DetachedDataSelector
-                  options={myDataSourceOptions}
-                  value={{ value: 'one', label: 'One' }}
-                  onChange={this.myOnChange}
-                  multi={false}
-            />
-          </Panel>
             <Panel group="Dev" name="JSON">
               <div className="mocks">
                 <Select

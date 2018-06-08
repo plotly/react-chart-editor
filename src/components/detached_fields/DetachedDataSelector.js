@@ -16,7 +16,7 @@ export class DetachedDataSelector extends Component {
           value={this.props.value}
           onChange={this.props.onChange}
           multi={this.props.multi}
-          clearable={true}
+          clearable={this.props.clearable}
         />
       </Field>
     );
@@ -27,7 +27,8 @@ DetachedDataSelector.defaultProps = {
   options: null,
   value: '',
   onChange: null,
-  multi: false
+  multi: false,
+  clearable: true
 };
 
 
