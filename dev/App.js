@@ -6,7 +6,7 @@ import 'react-select/dist/react-select.css';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
-import PlotlyEditor, {DefaultEditor, Panel} from '../src';
+import PlotlyEditor, {DefaultEditor, Panel, DetachedDataSelector} from '../src';
 import Inspector from 'react-inspector';
 import 'brace/mode/json';
 import 'brace/theme/textmate';
@@ -100,7 +100,25 @@ class App extends Component {
     }
   }
 
+
+  myOnChange(value){
+    console.log(value);
+  }
+
   render() {
+
+    let myDataSources = {
+      option_one: 1,
+      option_two: 2,
+      option_three: 3,
+      option_four: 4,
+    };
+    const myDataSourceOptions = Object.keys(myDataSources).map(name => ({
+      value: name,
+      label: name,
+    }));
+
+
     return (
       <div className="app">
         <PlotlyEditor
@@ -119,6 +137,14 @@ class App extends Component {
           showFieldTooltips
         >
           <DefaultEditor>
+          <Panel group="Dev" name="Test">
+            <DetachedDataSelector
+                  options={myDataSourceOptions}
+                  value={{ value: 'one', label: 'One' }}
+                  onChange={this.myOnChange}
+                  multi={false}
+            />
+          </Panel>
             <Panel group="Dev" name="JSON">
               <div className="mocks">
                 <Select

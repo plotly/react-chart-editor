@@ -72,6 +72,7 @@ import {
   TraceMarkerSection,
   TraceRequiredPanel,
   TraceSelector,
+  DetachedDataSelector,
 } from './components';
 
 import {
@@ -167,6 +168,7 @@ export {
   walkObject,
   EditorControls,
   DefaultEditor,
+  DetachedDataSelector,
 };
 
 export default PlotlyEditor;
