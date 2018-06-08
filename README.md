@@ -50,7 +50,7 @@ npm test
 
 ## Built-in Components
 
-This module provides a number of nestable _containers_ which are intended to contain _fields_ that render _widgets_ that have been connected to individual values in the figure via _connector functions_. Containers can also be connected to parts of the figure tree (e.g. `layout` or specific traces in `data`) such that their child fields map to the appropriate leaf values. A field must have a connected container as an ancestor in order to be bound to the figure. The `<PlotlyEditor />` and connector functions use the React [`context` API]() to push configuration information to child components.
+This module provides a number of nestable _containers_ which are intended to contain _fields_ that render _widgets_ that have been connected to individual values in the figure via _connector functions_. Containers can also be connected to parts of the figure tree (e.g. `layout` or specific traces in `data`) such that their child fields map to the appropriate leaf values. A field must have a connected container as an ancestor in order to be bound to the figure. The `<PlotlyEditor />` and connector functions use the React [`context` API](https://reactjs.org/docs/legacy-context.html) to push configuration information to child components.
 
 At a pseudo-code level it looks like this:
 
