@@ -12,7 +12,7 @@ import 'brace/mode/json';
 import 'brace/theme/textmate';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
-import ACCESS_TOKENS from '../accessTokens';
+//import ACCESS_TOKENS from '../accessTokens';
 
 const dataSources = {
   ints: [1, 2, 3, 4, 5, 6], // eslint-disable-line no-magic-numbers
@@ -36,7 +36,7 @@ const dataSourceOptions = Object.keys(dataSources).map(name => ({
   label: name,
 }));
 
-const config = {mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true};
+const config = {/*mapboxAccessToken: ACCESS_TOKENS.MAPBOX,*/ editable: true};
 
 class App extends Component {
   constructor() {
