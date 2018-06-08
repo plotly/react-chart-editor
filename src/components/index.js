@@ -1,4 +1,8 @@
 import {
+  DetachedDataSelector,
+} from './detached_fields';
+
+import {
   AnnotationArrowRef,
   AnnotationRef,
   AxisAnchorDropdown,
@@ -137,4 +141,5 @@ export {
   UpdateMenuButtons,
   Dropzone,
   TextPosition,
+  DetachedDataSelector,
 };
