@@ -2,7 +2,7 @@ import ArrowSelector from './ArrowSelector';
 import AxesSelector from './AxesSelector';
 import ColorPicker from './Color';
 import ColorscalePicker from './Colorscale';
-import Dropdown from './Dropdown';
+import Dropdown, {UnconnectedDropdown} from './Dropdown';
 import Dropzone from './Dropzone';
 import FontSelector from './FontSelector';
 import Flaglist from './Flaglist';
@@ -58,6 +58,7 @@ export {
   ContourNumeric,
   DataSelector,
   Dropdown,
+  UnconnectedDropdown,
   ErrorBars,
   FillDropdown,
   Flaglist,
