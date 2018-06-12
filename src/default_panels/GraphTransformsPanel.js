@@ -67,9 +67,7 @@ const GraphTransformsPanel = (props, {localize: _}) => {
 
         <DataSelector label={_('By')} attr="groups" />
 
-        <PlotlySection name={_('Aggregations')} attr="aggregations">
-          <Aggregations />
-        </PlotlySection>
+        <Aggregations />
       </TransformAccordion>
     </TraceAccordion>
   );
