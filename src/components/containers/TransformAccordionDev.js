@@ -20,6 +20,18 @@ class TransformAccordion extends Component {
       {label: _('Aggregate'), type: 'aggregate'},
     ];
 
+    const transformBy =
+      this.context.container.transforms &&
+      this.context.container.transforms.map(tr => {
+        let retValue = '';
+        if (tr.groupssrc) {
+          retValue = `: ${tr.groupssrc}`;
+        } else if (tr.targetsrc) {
+          retValue = `: ${tr.targetsrc}`;
+        }
+        return retValue;
+      });
+
     const filteredTransforms = transforms.filter(({type}) => Boolean(type));
     const content =
       filteredTransforms.length &&
@@ -27,7 +39,9 @@ class TransformAccordion extends Component {
         <TransformFold
           key={i}
           transformIndex={i}
-          name={transformTypes.filter(({type}) => type === tr.type)[0].label}
+          name={`${
+            transformTypes.filter(({type}) => type === tr.type)[0].label
+          }${transformBy[i]}`}
           canDelete={true}
         >
           {children}
@@ -64,6 +78,7 @@ class TransformAccordion extends Component {
 TransformAccordion.contextTypes = {
   fullContainer: PropTypes.object,
   localize: PropTypes.func,
+  container: PropTypes.object,
 };
 
 TransformAccordion.propTypes = {

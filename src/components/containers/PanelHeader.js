@@ -2,7 +2,6 @@ import Button from 'components/widgets/Button';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {PlusIcon, ResizeUpIcon, ResizeDownIcon} from 'plotly-icons';
-import ModalBox from './ModalBox';
 
 class PanelHeader extends Component {
   constructor() {
@@ -63,20 +62,24 @@ class PanelHeader extends Component {
                 label={addAction.label}
               />
               {this.state.addPanelOpen && (
-                <div className="Select"><div className="Select-menu-outer"><div className="Select-menu">
-                  {addAction.handler.map(({label, handler}) => (
-                    <div
-                      className="Select-option"
-                      key={label}
-                      onClick={() => {
-                        handler(this.context);
-                        this.togglePanel();
-                      }}
-                    >
-                      {label}
+                <div className="Select">
+                  <div className="Select-menu-outer">
+                    <div className="Select-menu">
+                      {addAction.handler.map(({label, handler}) => (
+                        <div
+                          className="Select-option"
+                          key={label}
+                          onClick={() => {
+                            handler(this.context);
+                            this.togglePanel();
+                          }}
+                        >
+                          {label}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                  ))}
-                </div></div></div>
+                </div>
               )}
             </div>
           ) : null}

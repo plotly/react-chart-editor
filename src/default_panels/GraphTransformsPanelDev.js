@@ -25,7 +25,7 @@ export class Aggregations extends Component {
     }
 
     return aggregations
-      .filter(aggr => aggr.target.match(/transforms\[\d*\]\.groups/g) === null)
+      .filter(aggr => aggr.target.match(/transforms\[\d*\]\./gi) === null)
       .map(({target}, i) => (
         <AggregationSection show key={i} aggregationIndex={i}>
           <Dropdown
@@ -58,7 +58,6 @@ Aggregations.contextTypes = {
 };
 
 const GraphTransformsPanel = (props, {localize: _}) => {
-  console.log('fullValue', props);
   return (
     <TraceAccordion>
       <TransformAccordion>
