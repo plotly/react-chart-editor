@@ -11,6 +11,8 @@ class TransformAccordion extends Component {
     const {
       fullContainer: {transforms = []},
       localize: _,
+      container,
+      dataSourceOptions,
     } = this.context;
     const {children} = this.props;
 
@@ -21,13 +23,17 @@ class TransformAccordion extends Component {
     ];
 
     const transformBy =
-      this.context.container.transforms &&
-      this.context.container.transforms.map(tr => {
+      container.transforms &&
+      container.transforms.map(tr => {
         let retValue = '';
         if (tr.groupssrc) {
-          retValue = `: ${tr.groupssrc}`;
+          retValue = `: ${
+            dataSourceOptions.find(d => d.value === tr.groupssrc).label
+          }`;
         } else if (tr.targetsrc) {
-          retValue = `: ${tr.targetsrc}`;
+          retValue = `: ${
+            dataSourceOptions.find(d => d.value === tr.targetsrc).label
+          }`;
         }
         return retValue;
       });
@@ -79,6 +85,7 @@ TransformAccordion.contextTypes = {
   fullContainer: PropTypes.object,
   localize: PropTypes.func,
   container: PropTypes.object,
+  dataSourceOptions: PropTypes.array,
 };
 
 TransformAccordion.propTypes = {
