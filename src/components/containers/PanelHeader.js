@@ -25,6 +25,7 @@ class PanelHeader extends Component {
       hasOpen,
     } = this.props;
 
+    // dropdown is styled with same styles as react-select component - see _dropdown.scss
     const icon = <PlusIcon />;
     return !children && !addAction && !allowCollapse ? null : (
       <div className="panel__header">
@@ -49,7 +50,7 @@ class PanelHeader extends Component {
           ) : null}
 
           {addAction ? (
-            <div className="panel__header__action">
+            <div className="panel__header__action dropdown-container">
               <Button
                 variant="primary"
                 className="js-add-button"
