@@ -54,7 +54,7 @@
     }
 
     &__title {
-      margin-left: var(--spacing-half-unit)/3;
+      margin-left: var(--spacing-half-unit) / 3;
       font-size: var(--font-size-medium);
       line-height: var(--font-size-medium);
       font-weight: var(--font-weight-semibold);
@@ -157,12 +157,6 @@
     &--noheader {
       border-width: 1px 1px 1px 1px;
     }
-  }
-
-  // if the panel is within a fold, allow overflow for dropdown, etc.
-  .panel {
-    overflow-x: visible;
-    overflow-y: visible;
   }
 }
 

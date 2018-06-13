@@ -92,3 +92,11 @@
     padding: 0;
   }
 }
+
+// if the panel is within a fold, allow overflow for dropdown, etc.
+.fold {
+  .panel {
+    overflow-x: visible;
+    overflow-y: visible;
+  }
+}
