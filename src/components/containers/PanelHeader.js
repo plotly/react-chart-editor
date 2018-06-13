@@ -2,7 +2,6 @@ import Button from 'components/widgets/Button';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {PlusIcon, ResizeUpIcon, ResizeDownIcon} from 'plotly-icons';
-import ModalBox from './ModalBox';
 
 class PanelHeader extends Component {
   constructor() {
@@ -26,6 +25,7 @@ class PanelHeader extends Component {
       hasOpen,
     } = this.props;
 
+    // dropdown is styled with same styles as react-select component - see _dropdown.scss
     const icon = <PlusIcon />;
     return !children && !addAction && !allowCollapse ? null : (
       <div className="panel__header">
@@ -50,7 +50,7 @@ class PanelHeader extends Component {
           ) : null}
 
           {addAction ? (
-            <div className="panel__header__action">
+            <div className="panel__header__action dropdown-container">
               <Button
                 variant="primary"
                 className="js-add-button"
@@ -63,19 +63,24 @@ class PanelHeader extends Component {
                 label={addAction.label}
               />
               {this.state.addPanelOpen && (
-                <ModalBox onClose={this.togglePanel} relative>
-                  {addAction.handler.map(({label, handler}) => (
-                    <p
-                      key={label}
-                      onClick={() => {
-                        handler(this.context);
-                        this.togglePanel();
-                      }}
-                    >
-                      {label}
-                    </p>
-                  ))}
-                </ModalBox>
+                <div className="Select">
+                  <div className="Select-menu-outer">
+                    <div className="Select-menu">
+                      {addAction.handler.map(({label, handler}) => (
+                        <div
+                          className="Select-option"
+                          key={label}
+                          onClick={() => {
+                            handler(this.context);
+                            this.togglePanel();
+                          }}
+                        >
+                          {label}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
           ) : null}
