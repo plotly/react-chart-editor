@@ -153,13 +153,13 @@ class UnconnectedFilterValue extends Component {
 
   render() {
     const {localize: _} = this.context;
-    const {fullValue, fullContainer, attr, defaultValue} = this.props;
+    const {fullValue, attr, defaultValue} = this.props;
 
     return (
       <div>
         <Field
           {...this.props}
-          label={!this.isRange() ? fullContainer.target : _('Lower Bound')}
+          label={!this.isRange() ? _('Value') : _('Lower Bound')}
         >
           <TextInput
             value={Array.isArray(fullValue) ? fullValue[0] : fullValue}

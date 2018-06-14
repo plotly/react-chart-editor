@@ -66,7 +66,16 @@ class TransformAccordion extends Component {
                 ? fullContainer.transforms.length
                 : 0;
               const key = `transforms[${transformIndex}]`;
-              updateContainer({[key]: {type}});
+
+              const payload = {type};
+              const firstDataSrouce = dataSourceOptions[0].value;
+              if (type === 'filter') {
+                payload.targetsrc = firstDataSrouce;
+              } else {
+                payload.groupssrc = firstDataSrouce;
+              }
+
+              updateContainer({[key]: payload});
             }
           },
         };

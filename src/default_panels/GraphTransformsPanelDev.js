@@ -72,6 +72,7 @@ const GraphTransformsPanel = (props, {localize: _}) => {
 
         <DataSelector label={_('By')} attr="groups" />
 
+        <DataSelector label={_('Target')} attr="target" />
         <FilterOperation label={_('Operator')} attr="operation" />
         <FilterValue label={_('Value')} attr="value" />
 
