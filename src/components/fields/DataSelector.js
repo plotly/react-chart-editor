@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import Field from './Field';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {connectToContainer, maybeAdjustSrc, maybeTransposeData} from 'lib';
+import {TRANSFORMS_LIST} from 'lib/constants';
 
 export function attributeIsData(meta = {}) {
   return meta.valType === 'data_array' || meta.arrayOk;
@@ -131,7 +132,11 @@ UnconnectedDataSelector.contextTypes = {
 };
 
 function modifyPlotProps(props, context, plotProps) {
-  if (attributeIsData(plotProps.attrMeta)) {
+  if (
+    attributeIsData(plotProps.attrMeta) &&
+    (context.container &&
+      TRANSFORMS_LIST.indexOf(context.container.type) === -1)
+  ) {
     plotProps.isVisible = true;
   }
 }
