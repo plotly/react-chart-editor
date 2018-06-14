@@ -18,6 +18,7 @@ import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
 import AxisCreator from './AxisCreator';
 import UpdateMenuButtons from './UpdateMenuButtons';
+import {FilterOperation, FilterValue} from './FilterOperation';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -60,6 +61,8 @@ export {
   Dropdown,
   ErrorBars,
   FillDropdown,
+  FilterOperation,
+  FilterValue,
   Flaglist,
   FontSelector,
   HoverInfo,
