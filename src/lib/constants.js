@@ -71,3 +71,5 @@ export const TRACE_TO_AXIS = {
   mapbox: ['scattermapbox'],
   polar: ['scatterpolar', 'scatterpolargl'],
 };
+
+export const TRANSFORMS_LIST = ['filter', 'groupby', 'aggregate'];
