@@ -2,6 +2,10 @@
   @import 'node_modules/react-select/scss/default';
   flex-grow: 1;
 
+  &:not(:last-child) {
+    margin-bottom: var(--spacing-quarter-unit);
+  }
+
   .Select {
     &.is-focused {
       & > .Select-control {

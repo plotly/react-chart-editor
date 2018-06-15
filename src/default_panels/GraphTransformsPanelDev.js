@@ -7,7 +7,8 @@ import {
   DataSelector,
   Dropdown,
   PlotlySection,
-  Numeric,
+  FilterOperation,
+  FilterValue,
 } from '../components';
 import TransformAccordion from '../components/containers/TransformAccordionDev';
 import {connectAggregationToTransform} from '../lib';
@@ -71,21 +72,9 @@ const GraphTransformsPanel = (props, {localize: _}) => {
 
         <DataSelector label={_('By')} attr="groups" />
 
-        <DataSelector label={_('Filter')} attr="target" />
-
-        <Dropdown
-          attr="operation"
-          label={_('Operation')}
-          options={[
-            {label: _('<'), value: '<'},
-            {label: _('≤'), value: '<='},
-            {label: _('>'), value: '>'},
-            {label: _('≥'), value: '>='},
-          ]}
-          clearable={false}
-        />
-
-        <Numeric attr="value" />
+        <DataSelector label={_('Target')} attr="target" />
+        <FilterOperation label={_('Operator')} attr="operation" />
+        <FilterValue label={_('Value')} attr="value" />
 
         <PlotlySection name={_('Aggregations')} attr="aggregations">
           <Aggregations />
