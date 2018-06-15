@@ -9,6 +9,7 @@ import Select from 'react-select';
 import PlotlyEditor, {DefaultEditor, Panel} from '../src';
 import GraphTransformsPanel from '../src/default_panels/GraphTransformsPanelDev';
 import Inspector from 'react-inspector';
+import tips from './tips';
 import 'brace/mode/json';
 import 'brace/theme/textmate';
 
@@ -31,6 +32,7 @@ const dataSources = {
   months: ['January', 'February', 'March', 'April', 'May', 'June'],
   colors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo'],
   'blue and red': ['blue', 'red'],
+  ...tips,
 };
 const dataSourceOptions = Object.keys(dataSources).map(name => ({
   value: name,
