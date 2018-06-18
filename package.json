@@ -7,9 +7,9 @@
     "url": "https://github.com/plotly/react-chart-editor/issues"
   },
   "dependencies": {
+    "@plotly/draft-js-export-html": "1.2.0",
     "classnames": "^2.2.5",
     "draft-js": "^0.10.4",
-    "@plotly/draft-js-export-html": "1.2.0",
     "draft-js-import-html": "^1.2.1",
     "draft-js-utils": "^1.2.0",
     "fast-isnumeric": "^1.1.1",
@@ -28,6 +28,7 @@
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
+    "@percy/react": "^0.4.3",
     "autoprefixer": "^7.2.3",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -48,6 +49,7 @@
     "eslint-config-prettier": "^2.7.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-react-percy": "^0.2.1",
     "fs": "^0.0.1-security",
     "gl": "^4.0.4",
     "glob": "^7.1.2",
@@ -115,6 +117,8 @@
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill",
     "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:percy": "react-percy",
+    "test:percy-local": "react-percy --debug",
     "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
     "watch-test": "jest --watch"
   }

@@ -1,0 +1,256 @@
+{
+  "data": [
+    {
+      "x": [
+        1,
+        2,
+        3
+      ],
+      "y": [
+        2,
+        3,
+        4
+      ],
+      "name": "yaxis data",
+      "type": "scatter",
+      "transforms": [
+        {
+          "type": "aggregate",
+          "groups": [
+            1,
+            2,
+            3
+          ],
+          "groupssrc": "x1",
+          "aggregations": [
+            {
+              "func": "count",
+              "target": "x",
+              "enabled": true
+            }
+          ]
+        }
+      ],
+      "marker": {
+        "color": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "colorsrc": "ints",
+        "cmin": 1,
+        "cmax": 6,
+        "cauto": true,
+        "colorscale": [
+          [
+            0,
+            "rgb(220,220,220)"
+          ],
+          [
+            0.2,
+            "rgb(245,195,157)"
+          ],
+          [
+            0.4,
+            "rgb(245,160,105)"
+          ],
+          [
+            1,
+            "rgb(178,10,28)"
+          ]
+        ],
+        "autocolorscale": false,
+        "showscale": true,
+        "colorbar": {
+          "ticks": "inside"
+        }
+      }
+    },
+    {
+      "x": [
+        1,
+        2,
+        3
+      ],
+      "y": [
+        20,
+        30,
+        40
+      ],
+      "xsrc": "x1",
+      "ysrc": "y2",
+      "name": "yaxis2 data",
+      "yaxis": "y2",
+      "type": "scatter",
+      "error_x": {
+        "visible": true,
+        "type": "percent",
+        "symmetric": true,
+        "value": 10,
+        "valueminus": 10,
+        "copy_ystyle": true
+      },
+      "error_y": {
+        "visible": true,
+        "type": "percent",
+        "symmetric": false,
+        "value": 10,
+        "color": "#1f77b4",
+        "thickness": 2,
+        "width": 4
+      }
+    }
+  ],
+  "layout": {
+    "title": "Double Y Axis Example",
+    "yaxis2": {
+      "title": "yaxis2 title",
+      "titlefont": {
+        "color": "rgb(148, 103, 189)"
+      },
+      "tickfont": {
+        "color": "rgb(148, 103, 189)"
+      },
+      "overlaying": "y",
+      "side": "right"
+    },
+    "annotations": [
+      {
+        "text": "hodor"
+      },
+      {
+        "text": "rodoh"
+      }
+    ],
+    "xaxis": {
+      "type": "linear",
+      "range": [
+        0.6919103739269605,
+        6.3080896260730395
+      ],
+      "autorange": true,
+      "showline": true,
+      "automargin": false,
+      "side": "clockwise",
+      "ticks": "inside",
+      "rangeslider": {
+        "visible": true,
+        "yaxis": {
+          "rangemode": "match"
+        },
+        "autorange": true,
+        "range": [
+          0.6919103739269605,
+          6.3080896260730395
+        ]
+      },
+      "showspikes": true
+    },
+    "yaxis": {
+      "range": [
+        -0.32971827474445276,
+        5.329718274744453
+      ],
+      "autorange": true
+    },
+    "autosize": true,
+    "shapes": [
+      {
+        "text": "Shape 0",
+        "line": {
+          "color": "#444444"
+        },
+        "fillcolor": "#7F7F7F",
+        "opacity": 0.3,
+        "visible": true
+      }
+    ],
+    "images": [
+      {
+        "text": "Image 1",
+        "sizex": 0.1,
+        "sizey": 0.1,
+        "x": 0.5,
+        "y": 0.5,
+        "source": "data:image/bmp;base64,Qk12AAAAAAAAADYAAAAoAAAABAAAAPz///8BACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/w=="
+      }
+    ],
+    "sliders": [
+      {
+        "active": 2,
+        "steps": [
+          {
+            "label": "red",
+            "method": "restyle",
+            "args": [
+              {
+                "line.color": "red"
+              }
+            ]
+          },
+          {
+            "label": "orange",
+            "method": "restyle",
+            "args": [
+              {
+                "line.color": "orange"
+              }
+            ]
+          }
+        ],
+        "visible": true,
+        "x": 0.5,
+        "len": 0.5,
+        "xanchor": "right",
+        "y": -0.1,
+        "yanchor": "top",
+        "currentvalue": {
+          "visible": false
+        },
+        "transition": {
+          "duration": 150,
+          "easing": "cubic-in-out"
+        },
+        "pad": {
+          "r": 20,
+          "t": 60
+        },
+        "font": {}
+      }
+    ],
+    "updatemenus": [
+      {
+        "buttons": [
+          {
+            "method": "restyle",
+            "args": [
+              "line.color",
+              "red"
+            ],
+            "label": "<span style='color:red'>red</span><br>color"
+          },
+          {
+            "method": "restyle",
+            "args": [
+              "line.color",
+              "blue"
+            ],
+            "label": "<span style='color:blue'>blue</span><br>color"
+          },
+          {
+            "method": "restyle",
+            "args": [
+              "line.color",
+              "green"
+            ],
+            "label": "<span style='color:green'>green</span><br>trace<br>color"
+          }
+        ],
+        "active": 1
+      }
+    ]
+  }
+}

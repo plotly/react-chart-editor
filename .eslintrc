@@ -29,7 +29,18 @@
   },
   "plugins": [
     "react",
-    "import"
+    "import",
+    "react-percy"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "**/*.percy.{js,jsx}"
+      ],
+      "env": {
+        "react-percy/globals": true
+      }
+    }
   ],
   "rules": {
     "accessor-pairs": ["error"],
