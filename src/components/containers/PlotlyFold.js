@@ -21,6 +21,7 @@ export class Fold extends Component {
       children,
       className,
       folded,
+      foldInfo,
       toggleFold,
       hideHeader,
       icon: Icon,
@@ -56,7 +57,7 @@ export class Fold extends Component {
           className="fold__top__delete js-fold__delete"
           onClick={e => {
             e.stopPropagation();
-            deleteContainer(e);
+            deleteContainer(foldInfo);
           }}
         >
           <CloseIcon />
@@ -105,11 +106,16 @@ Fold.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   folded: PropTypes.bool,
+  foldInfo: PropTypes.object,
   toggleFold: PropTypes.func,
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   messageIfEmpty: PropTypes.string,
   name: PropTypes.string,
+};
+
+Fold.contextTypes = {
+  deleteContainer: PropTypes.func,
 };
 
 class PlotlyFold extends Fold {
