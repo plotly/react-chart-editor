@@ -11,6 +11,12 @@ export class Fold extends Component {
     this.foldVisible = true;
   }
 
+  getChildContext() {
+    return {
+      foldInfo: this.props.foldInfo ? this.props.foldInfo : null,
+    };
+  }
+
   render() {
     if (!this.foldVisible && !this.props.messageIfEmpty) {
       return null;
@@ -116,6 +122,10 @@ Fold.propTypes = {
 
 Fold.contextTypes = {
   deleteContainer: PropTypes.func,
+};
+
+Fold.childContextTypes = {
+  foldInfo: PropTypes.object,
 };
 
 class PlotlyFold extends Fold {
