@@ -24,7 +24,6 @@ class StyleButtonGroup extends Component {
         {styles.map(({label, value}) => (
           <StyleButton
             key={value}
-            ref={value}
             active={isActive(currentStyle, value)}
             label={label}
             onToggle={onToggle}

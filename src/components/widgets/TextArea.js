@@ -31,7 +31,6 @@ export default class TextArea extends Component {
     return (
       <span>
         <textarea
-          ref="textinput"
           value={this.state.value}
           rows={this.props.visibleRows}
           cols={this.props.areaWidth}
