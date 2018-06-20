@@ -63,7 +63,6 @@ export default class LaTeX extends TextArea {
     const editorClassNames = className ? className : 'text-editor__latex';
     return (
       <textarea
-        ref="textinput"
         value={this.state.value}
         placeholder={this.props.placeholder}
         onChange={this.onChange}

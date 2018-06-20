@@ -8,7 +8,6 @@ class HTML extends TextArea {
     const editorClassNames = className ? className : 'text-editor__html';
     return (
       <textarea
-        ref="textinput"
         value={this.state.value}
         placeholder={this.props.placeholder}
         onChange={this.onChange}

@@ -163,7 +163,7 @@ class RichText extends Component {
   }
 
   focus() {
-    this.refs.editor.focus();
+    this.editorInput.focus();
   }
 
   // Used to properly calculate user selection coordinates.
@@ -349,7 +349,7 @@ class RichText extends Component {
             onFocus={this.onFocus}
             placeholder={this.props.placeholder}
             spellCheck={false}
-            ref="editor"
+            ref={input => (this.editorInput = input)}
           />
         </div>
         {this.renderLinkEditor(selectedLinkID)}

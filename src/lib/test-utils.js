@@ -151,4 +151,11 @@ function setupGraphDiv(figure) {
   return gd;
 }
 
-export {fixtures, plotly, EditorControls as TestEditor, mount, shallow};
+export {
+  fixtures,
+  plotly,
+  EditorControls as TestEditor,
+  mount,
+  shallow,
+  setupGraphDiv,
+};
