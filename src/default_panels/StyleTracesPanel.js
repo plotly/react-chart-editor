@@ -18,7 +18,6 @@ import {
   TraceAccordion,
   TraceTypeSection,
   TraceMarkerSection,
-  TraceOrientation,
   ColorscalePicker,
   HoverInfo,
   Dropdown,
@@ -26,6 +25,7 @@ import {
   FontSelector,
   TextPosition,
 } from '../components';
+import {BinningNumeric, BinningDropdown} from '../components/fields/derived';
 
 const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
@@ -38,17 +38,48 @@ const StyleTracesPanel = (props, {localize: _}) => (
         {label: _('Hide'), value: false},
       ]}
     />
-    <TraceOrientation
-      label={_('Orientation')}
-      attr="orientation"
-      options={[
-        {label: _('Vertical'), value: 'v'},
-        {label: _('Horizontal'), value: 'h'},
-      ]}
-    />
     <NumericFraction label={_('Opacity')} attr="opacity" />
     <ColorPicker label={_('Color')} attr="color" />
-    <NumericFraction attr="hole" label={_('Hole Size')} />
+    <NumericFraction label={_('Hole Size')} attr="hole" />
+    <Dropdown
+      label={_('Histogram Normalization')}
+      options={[
+        {label: _('Number of Occurences'), value: ''},
+        {label: _('Percent'), value: 'percent'},
+        {label: _('Probability'), value: 'probability'},
+        {label: _('Density'), value: 'density'},
+        {label: _('Probability Density'), value: 'probability density'},
+      ]}
+      attr="histnorm"
+    />
+    <PlotlySection name={_('Cumulative')}>
+      <Radio
+        label={_('Cumulative')}
+        attr="cumulative.enabled"
+        options={[
+          {label: _('Enabled'), value: true},
+          {label: _('Disabled'), value: false},
+        ]}
+      />
+      <Radio
+        label={_('Direction')}
+        attr="cumulative.direction"
+        options={[
+          {label: _('Increasing'), value: 'increasing'},
+          {label: _('Decreasing'), value: 'decreasing'},
+        ]}
+      />
+      <Radio
+        label={_('Current Bin')}
+        attr="cumulative.currentbin"
+        options={[
+          {label: _('Include'), value: 'include'},
+          {label: _('Exclude'), value: 'exclude'},
+          {label: _('Half'), value: 'half'},
+        ]}
+      />
+    </PlotlySection>
+
     <PlotlySection name={_('Text Attributes')}>
       <Flaglist
         attr="textinfo"
@@ -117,6 +148,37 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Filled Area')}>
       <FillDropdown attr="fill" label={_('Fill to')} />
       <ColorPicker label={_('Color')} attr="fillcolor" />
+    </PlotlySection>
+    <PlotlySection name={_('Binning')}>
+      <BinningDropdown label={_('Binning Function')} attr="histfunc" />
+      <Radio
+        label={_('X Binning')}
+        attr="autobinx"
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
+      />
+      <BinningNumeric label={_('X Bin Start')} attr="xbins.start" axis="x" />
+      <BinningNumeric label={_('X Bin End')} attr="xbins.end" axis="x" />
+      <BinningNumeric label={_('X Bin Size')} attr="xbins.size" axis="x" />
+      <Numeric label={_('Max X Bins')} attr="nbinsx" />
+      <Radio
+        label={_('Y Binning')}
+        attr="autobiny"
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
+      />
+      <BinningNumeric label={_('Y Bin Start')} attr="ybins.start" axis="y" />
+      <BinningNumeric label={_('Y Bin End')} attr="ybins.end" axis="y" />
+      <BinningNumeric label={_('Y Bin Size')} attr="ybins.size" axis="y" />
+      <Numeric label={_('Max Y Bins')} attr="nbinsy" />
+    </PlotlySection>
+    <PlotlySection name={_('Gaps Between Cells')}>
+      <Numeric label={_('Horizontal Gap')} attr="xgap" />
+      <Numeric label={_('Vertical Gap')} attr="ygap" />
     </PlotlySection>
     <TraceMarkerSection>
       <Radio

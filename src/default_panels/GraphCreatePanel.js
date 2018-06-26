@@ -14,6 +14,10 @@ import {
   Numeric,
   TraceTypeSection,
 } from '../components';
+import {
+  HistogramInfoVertical,
+  HistogramInfoHorizontal,
+} from '../components/fields/derived';
 
 const GraphCreatePanel = (props, {localize: _}) => {
   return (
@@ -27,6 +31,15 @@ const GraphCreatePanel = (props, {localize: _}) => {
         <DataSelector label={_('Locations')} attr="locations" />
         <DataSelector label={_('Latitude')} attr="lat" />
         <DataSelector label={_('Longitude')} attr="lon" />
+        <Radio
+          label={_('Orientation')}
+          attr="orientation"
+          options={[
+            {label: _('Vertical'), value: 'v'},
+            {label: _('Horizontal'), value: 'h'},
+          ]}
+        />
+
         <DataSelector
           label={{
             histogram2d: _('X Values'),
@@ -51,6 +64,16 @@ const GraphCreatePanel = (props, {localize: _}) => {
           }}
           attr="z"
         />
+        <HistogramInfoVertical>
+          {_(
+            'Note: in vertical orientation, X values are used for bins and Y values for weights.'
+          )}
+        </HistogramInfoVertical>
+        <HistogramInfoHorizontal>
+          {_(
+            'Note: in horizontal orientation, Y Values are used for bins and X values for weights.'
+          )}
+        </HistogramInfoHorizontal>
         <DataSelector label={_('I (Optional)')} attr="i" />
         <DataSelector label={_('J (Optional)')} attr="j" />
         <DataSelector label={_('K (Optional)')} attr="k" />

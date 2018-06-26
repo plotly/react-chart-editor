@@ -1,0 +1,61 @@
+{
+  "data": [
+    {
+      "type": "histogram2d",
+      "mode": "markers",
+      "uid": "7cb332",
+      "x": [
+        1,
+        2,
+        3
+      ],
+      "xsrc": "ints",
+      "y": [
+        1,
+        2,
+        3
+      ],
+      "ysrc": "ints",
+      "autobinx": false,
+      "xbins": {
+        "start": 0.5,
+        "end": 9.5,
+        "size": 5,
+        "_dataSpan": 5
+      },
+      "autobiny": true,
+      "ybins": {
+        "start": -0.5,
+        "end": 9.5,
+        "size": 10,
+        "_dataSpan": 5
+      },
+      "zmin": 2,
+      "zmax": 4,
+      "zauto": true,
+      "cumulative": {
+        "enabled": true
+      }
+    }
+  ],
+  "layout": {
+    "xaxis": {
+      "type": "linear",
+      "range": [
+        -0.5,
+        9.5
+      ],
+      "autorange": true
+    },
+    "yaxis": {
+      "type": "linear",
+      "range": [
+        -0.5,
+        9.5
+      ],
+      "autorange": true
+    },
+    "autosize": true
+  },
+  "frames": []
+}

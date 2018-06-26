@@ -1,0 +1,69 @@
+{
+  "data": [
+    {
+      "type": "histogram",
+      "mode": "markers",
+      "uid": "dcb598",
+      "x": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "xsrc": "ints",
+      "autobinx": true,
+      "xbins": {
+        "start": -0.5,
+        "end": 7.5,
+        "size": 2
+      },
+      "y": [
+        2,
+        1,
+        3,
+        5,
+        4,
+        6
+      ],
+      "ysrc": "jagged ints",
+      "error_x": {
+        "visible": true,
+        "symmetric": true
+      },
+      "error_y": {
+        "visible": true,
+        "symmetric": false
+      },
+      "orientation": "v",
+      "autobiny": true,
+      "ybins": {
+        "start": -0.5,
+        "end": 7.5,
+        "size": 2
+      }
+    }
+  ],
+  "layout": {
+    "plot_bgcolor": "rgb(255, 0, 0)",
+    "xaxis": {
+      "range": [
+        0,
+        2.3157894736842106
+      ],
+      "autorange": true,
+      "type": "linear"
+    },
+    "yaxis": {
+      "range": [
+        -0.5,
+        7.552631578947369
+      ],
+      "autorange": true,
+      "type": "linear"
+    },
+    "autosize": true
+  },
+  "frames": []
+}
