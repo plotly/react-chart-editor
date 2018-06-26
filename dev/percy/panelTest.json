@@ -126,7 +126,7 @@
       }
     ],
     "xaxis": {
-      "type": "linear",
+      "type": "date",
       "range": [
         0.6919103739269605,
         6.3080896260730395
@@ -145,6 +145,19 @@
         "range": [
           0.6919103739269605,
           6.3080896260730395
+        ]
+      },
+      "rangeselector": {
+        "visible": true,
+        "buttons": [
+          {
+            "label": "b1",
+            "step": "year"
+          },
+          {
+            "label": "b2",
+            "step": "month"
+          }
         ]
       },
       "showspikes": true

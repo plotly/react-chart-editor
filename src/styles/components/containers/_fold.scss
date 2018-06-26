@@ -160,6 +160,10 @@
   }
 }
 
-.fold + .fold {
-  margin-top: var(--spacing-half-unit);
+.fold {
+  margin-bottom: var(--spacing-half-unit);
+}
+
+.fold .fold:last-child {
+  margin-bottom: 0;
 }

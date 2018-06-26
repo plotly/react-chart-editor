@@ -4,6 +4,7 @@ import {UnconnectedFlaglist} from './Flaglist';
 import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedAxisRangeValue} from './AxisRangeValue';
 import {UnconnectedRadio} from './Radio';
+import Info from './Info';
 import {
   connectToContainer,
   getAllAxes,
@@ -144,67 +145,55 @@ export const ContourNumeric = connectToContainer(UnconnectedNumeric, {
   },
 });
 
-export const TraceOrientation = connectToContainer(UnconnectedRadio, {
+export const BinningNumeric = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
+    const {fullContainer} = plotProps;
     if (
-      context.container.type === 'box' &&
-      plotProps.fullValue === 'h' &&
-      context.container.y &&
-      context.container.y.length !== 0
+      plotProps.isVisible &&
+      fullContainer &&
+      fullContainer[`autobin${props.axis}`]
     ) {
-      context.updateContainer({
-        y: null,
-        ysrc: null,
-        x: context.container.y,
-        xsrc: context.container.ysrc,
-      });
+      plotProps.isVisible = false;
     }
+  },
+});
 
-    if (
-      context.container.type === 'box' &&
-      plotProps.fullValue === 'v' &&
-      context.container.x &&
-      context.container.x.length !== 0
-    ) {
-      context.updateContainer({
-        x: null,
-        xsrc: null,
-        y: context.container.x,
-        ysrc: context.container.xsrc,
-      });
-    }
+export const BinningDropdown = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = context;
+    plotProps.options =
+      plotProps.fullContainer.orientation === 'v'
+        ? [
+            {label: _('Count X'), value: 'count'},
+            {label: _('Sum Y'), value: 'sum'},
+            {label: _('Average Y'), value: 'avg'},
+            {label: _('Minimum Y'), value: 'min'},
+            {label: _('Maximum Y'), value: 'max'},
+          ]
+        : [
+            {label: _('Count Y'), value: 'count'},
+            {label: _('Sum X'), value: 'sum'},
+            {label: _('Average X'), value: 'avg'},
+            {label: _('Minimum X'), value: 'min'},
+            {label: _('Maximum X'), value: 'max'},
+          ];
+  },
+});
 
-    if (
-      context.container.type === 'histogram' &&
-      plotProps.fullValue === 'v' &&
-      context.container.y &&
-      context.container.y.length !== 0
-    ) {
-      context.updateContainer({
-        y: null,
-        ysrc: null,
-        ybins: null,
-        x: context.container.y,
-        xsrc: context.container.ysrc,
-        xbins: context.container.ybins,
-      });
-    }
-
-    if (
-      context.container.type === 'histogram' &&
-      plotProps.fullValue === 'h' &&
-      context.container.x &&
-      context.container.x.length !== 0
-    ) {
-      context.updateContainer({
-        x: null,
-        xsrc: null,
-        xbins: null,
-        y: context.container.x,
-        ysrc: context.container.xsrc,
-        ybins: context.container.xbins,
-      });
-    }
+export const HistogramInfoVertical = connectToContainer(Info, {
+  modifyPlotProps: (props, context, plotProps) => {
+    plotProps.isVisible =
+      context.fullContainer.type === 'histogram' &&
+      context.fullContainer.orientation === 'v';
+    return plotProps;
+  },
+});
+export const HistogramInfoHorizontal = connectToContainer(Info, {
+  modifyPlotProps: (props, context, plotProps) => {
+    plotProps.isVisible =
+      context.fullContainer.type === 'histogram' &&
+      context.fullContainer.orientation === 'h';
+    return plotProps;
   },
 });
 
