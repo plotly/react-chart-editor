@@ -82,3 +82,21 @@ export const shamefullyAdjustGeo = ({layout: {geo = {}}}, {update}) => {
     update['geo.center'] = {};
   }
 };
+
+export const shamefullyAddTableColumns = (graphDiv, {traceIndexes, update}) => {
+  if (
+    update['cells.values'] &&
+    (!graphDiv.data[traceIndexes[0]].header ||
+      !graphDiv.data[traceIndexes[0]].header.valuessrc)
+  ) {
+    update['header.values'] = update['cells.valuessrc'];
+  } else if (update['header.values'] === null) {
+    update['header.values'] =
+      graphDiv.data[traceIndexes[0]].cells.valuessrc || null;
+  } else if (
+    update['cells.values'] === null &&
+    !graphDiv.data[traceIndexes[0]].header.valuessrc
+  ) {
+    update['header.values'] = null;
+  }
+};
