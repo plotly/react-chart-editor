@@ -3,12 +3,15 @@ import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectTransformToTrace} from 'lib';
+import FoldEmpty from './FoldEmpty';
+import {PlotScatterIcon} from 'plotly-icons';
 
 const TransformFold = connectTransformToTrace(PlotlyFold);
 
 class TransformAccordion extends Component {
   render() {
     const {
+      fullContainer,
       fullContainer: {transforms = []},
       localize: _,
     } = this.context;
@@ -19,6 +22,15 @@ class TransformAccordion extends Component {
       {label: _('Split'), type: 'groupby'},
       {label: _('Aggregate'), type: 'aggregate'},
     ];
+
+    if (['scatter', 'bar', 'scattergl'].indexOf(fullContainer.type) === -1) {
+      return (
+        <FoldEmpty
+          icon={PlotScatterIcon}
+          messagePrimary={_('No transforms available for this trace type')}
+        />
+      );
+    }
 
     const filteredTransforms = transforms.filter(({type}) => Boolean(type));
     const content =
