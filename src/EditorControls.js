@@ -6,6 +6,7 @@ import {
   shamefullyClearAxisTypes,
   shamefullyAdjustAxisRef,
   shamefullyAdjustGeo,
+  shamefullyAddTableColumns,
 } from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
@@ -62,6 +63,7 @@ class EditorControls extends Component {
 
         shamefullyClearAxisTypes(graphDiv, payload);
         shamefullyAdjustAxisRef(graphDiv, payload);
+        shamefullyAddTableColumns(graphDiv, payload);
 
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {
