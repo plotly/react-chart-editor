@@ -21,7 +21,7 @@
     "react-color": "^2.13.8",
     "react-colorscales": "^0.4.2",
     "react-dropzone": "^4.2.9",
-    "react-plotly.js": "^2.0.0",
+    "react-plotly.js": "^2.2.0",
     "react-rangeslider": "^2.2.0",
     "react-select": "^1.2.0",
     "react-tabs": "^2.2.1",
