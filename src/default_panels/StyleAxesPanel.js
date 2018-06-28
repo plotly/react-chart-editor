@@ -498,7 +498,10 @@ class StyleAxesPanel extends Component {
         <AxesFold
           name={_('Hover Projections')}
           axisFilter={axis =>
-            !axis._name.includes('angular') && !axis._name.includes('radial')
+            !(
+              axis._subplot.includes('ternary') ||
+              axis._subplot.includes('polar')
+            )
           }
         >
           <Radio
