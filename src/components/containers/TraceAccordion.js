@@ -12,25 +12,11 @@ const TraceFold = connectTraceToPlot(PlotlyFold);
 class TraceAccordion extends Component {
   render() {
     const {data = [], localize: _} = this.context;
-    const {
-      canAdd,
-      canGroup,
-      children,
-      messageIfEmptyFold,
-      excludeFits,
-    } = this.props;
-
-    // we don't want to include analysis transforms when we're in the create panel
-    const filteredData = data.filter(t => {
-      if (excludeFits) {
-        return !(t.transforms && t.transforms.every(tr => tr.type === 'fit'));
-      }
-      return true;
-    });
+    const {canAdd, canGroup, children, messageIfEmptyFold} = this.props;
 
     const individualTraces =
-      filteredData.length &&
-      filteredData.map((d, i) => {
+      data.length &&
+      data.map((d, i) => {
         return (
           <TraceFold
             key={i}
@@ -60,7 +46,7 @@ class TraceAccordion extends Component {
         </PlotlyPanel>
       );
     }
-    const tracesByGroup = filteredData.reduce((allTraces, nextTrace, index) => {
+    const tracesByGroup = data.reduce((allTraces, nextTrace, index) => {
       const traceType = plotlyTraceToCustomTrace(nextTrace);
       if (!allTraces[traceType]) {
         allTraces[traceType] = [];
@@ -81,7 +67,7 @@ class TraceAccordion extends Component {
       );
     });
 
-    if (canGroup && filteredData.length > 1 && groupedTraces.length > 0) {
+    if (canGroup && data.length > 1 && groupedTraces.length > 0) {
       return (
         <TraceRequiredPanel noPadding>
           <Tabs>
@@ -116,10 +102,9 @@ TraceAccordion.contextTypes = {
 };
 
 TraceAccordion.propTypes = {
+  children: PropTypes.node,
   canAdd: PropTypes.bool,
   canGroup: PropTypes.bool,
-  children: PropTypes.node,
-  excludeFits: PropTypes.bool,
   messageIfEmptyFold: PropTypes.string,
 };
 
