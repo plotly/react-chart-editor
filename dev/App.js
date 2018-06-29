@@ -156,8 +156,8 @@ class App extends Component {
           debug
           advancedTraceTypeSelector
           showFieldTooltips
-          traceTypesConfig={traceTypesConfig}
-          useAsDefaultTrace={{type: 'scattergl'}}
+          // traceTypesConfig={traceTypesConfig}
+          // useAsDefaultTrace={{type: 'scattergl', mode: 'markers'}}
         >
           <DefaultEditor>
             <GraphTransformsPanel group="Dev" name="Transforms" />
