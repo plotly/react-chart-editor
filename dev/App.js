@@ -12,6 +12,7 @@ import Inspector from 'react-inspector';
 import tips from './tips';
 import 'brace/mode/json';
 import 'brace/theme/textmate';
+import {categoryLayout, traceTypes, chartCategory} from 'lib/traceTypes';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
@@ -40,6 +41,41 @@ const dataSourceOptions = Object.keys(dataSources).map(name => ({
 }));
 
 const config = {mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true};
+
+const traceTypesConfig = {
+    traces: _ => ([
+        {
+          value: 'scattergl',
+          icon: 'scatter',
+          label: _('Scatter'),
+        },
+        {
+          value: 'bar',
+          label: _('Bar'),
+        },
+        {
+          value: 'histogram',
+          label: _('Histogram'),
+        },
+        {
+          value: 'table',
+          label: _('Table'),
+        },
+        {
+          value: 'pie',
+          label: _('Pie'),
+        },
+        {
+          value: 'box',
+          label: _('Box'),
+        },
+        {
+          value: 'histogram2d',
+          label: _('Histogram 2D'),
+        },
+    ]),
+    complex: true
+};
 
 class App extends Component {
   constructor() {
@@ -120,6 +156,8 @@ class App extends Component {
           debug
           advancedTraceTypeSelector
           showFieldTooltips
+          traceTypesConfig={traceTypesConfig}
+          useAsDefaultTrace={{type: 'scattergl'}}
         >
           <DefaultEditor>
             <GraphTransformsPanel group="Dev" name="Transforms" />

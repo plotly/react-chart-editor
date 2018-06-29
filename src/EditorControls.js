@@ -118,7 +118,9 @@ class EditorControls extends Component {
         if (this.props.beforeAddTrace) {
           this.props.beforeAddTrace(payload);
         }
-        graphDiv.data.push({type: 'scatter', mode: 'markers'});
+
+        graphDiv.data.push(this.props.useAsDefaultTrace);
+
         if (this.props.afterAddTrace) {
           this.props.afterAddTrace(payload);
         }
@@ -298,6 +300,7 @@ EditorControls.propTypes = {
   plotly: PropTypes.object,
   showFieldTooltips: PropTypes.bool,
   traceTypesConfig: PropTypes.object,
+  useAsDefaultTrace: PropTypes.object,
 };
 
 EditorControls.defaultProps = {
@@ -308,6 +311,7 @@ EditorControls.defaultProps = {
     traces: _ => traceTypes(_),
     complex: true,
   },
+  useAsDefaultTrace: {type: 'scatter', mode: 'markers'},
 };
 
 EditorControls.childContextTypes = {
