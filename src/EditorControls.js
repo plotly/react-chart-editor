@@ -119,11 +119,7 @@ class EditorControls extends Component {
           this.props.beforeAddTrace(payload);
         }
 
-        graphDiv.data.push(
-          this.props.useAsDefaultTrace
-            ? this.props.useAsDefaultTrace
-            : {type: 'scatter', mode: 'markers'}
-        );
+        graphDiv.data.push(this.props.useAsDefaultTrace);
 
         if (this.props.afterAddTrace) {
           this.props.afterAddTrace(payload);
@@ -315,6 +311,7 @@ EditorControls.defaultProps = {
     traces: _ => traceTypes(_),
     complex: true,
   },
+  useAsDefaultTrace: {type: 'scatter', mode: 'markers'},
 };
 
 EditorControls.childContextTypes = {
