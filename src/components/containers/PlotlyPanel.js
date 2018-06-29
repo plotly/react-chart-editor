@@ -37,12 +37,6 @@ export class Panel extends Component {
     this.toggleFold = this.toggleFold.bind(this);
   }
 
-  getChildContext() {
-    return {
-      deleteContainer: this.props.deleteAction ? this.props.deleteAction : null,
-    };
-  }
-
   componentDidCatch() {
     this.setState({hasError: true});
   }
@@ -130,11 +124,10 @@ export class Panel extends Component {
 }
 
 Panel.propTypes = {
-  addAction: PropTypes.object,
   children: PropTypes.node,
-  deleteAction: PropTypes.func,
-  noPadding: PropTypes.bool,
+  addAction: PropTypes.object,
   showExpandCollapse: PropTypes.bool,
+  noPadding: PropTypes.bool,
 };
 
 Panel.defaultProps = {
@@ -143,10 +136,6 @@ Panel.defaultProps = {
 
 Panel.contextTypes = {
   localize: PropTypes.func,
-};
-
-Panel.childContextTypes = {
-  deleteContainer: PropTypes.func,
 };
 
 class PlotlyPanel extends Panel {}
