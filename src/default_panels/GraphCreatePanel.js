@@ -21,7 +21,7 @@ import {
 
 const GraphCreatePanel = (props, {localize: _}) => {
   return (
-    <TraceAccordion canAdd>
+    <TraceAccordion canAdd excludeFits>
       <TextEditor label={_('Name')} attr="name" richTextOnly />
       <TraceSelector label={_('Type')} attr="type" show />
 
