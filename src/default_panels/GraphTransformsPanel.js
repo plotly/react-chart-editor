@@ -7,6 +7,8 @@ import {
   DataSelector,
   Dropdown,
   PlotlySection,
+  FilterOperation,
+  FilterValue,
 } from '../components';
 import {connectAggregationToTransform} from '../lib';
 
@@ -22,28 +24,30 @@ export class Aggregations extends Component {
       return null;
     }
 
-    return aggregations.map(({target}, i) => (
-      <AggregationSection show key={i} aggregationIndex={i}>
-        <Dropdown
-          attr="func"
-          label={target}
-          options={[
-            {label: _('Count'), value: 'count'},
-            {label: _('Sum'), value: 'sum'},
-            {label: _('Average'), value: 'avg'},
-            {label: _('Median'), value: 'median'},
-            {label: _('Mode'), value: 'mode'},
-            {label: _('RMS'), value: 'rms'},
-            {label: _('Standard Deviation'), value: 'stddev'},
-            {label: _('Min'), value: 'min'},
-            {label: _('Max'), value: 'max'},
-            {label: _('First'), value: 'first'},
-            {label: _('Last'), value: 'last'},
-          ]}
-          clearable={false}
-        />
-      </AggregationSection>
-    ));
+    return aggregations
+      .filter(aggr => aggr.target.match(/transforms\[\d*\]\./gi) === null)
+      .map(({target}, i) => (
+        <AggregationSection show key={i} aggregationIndex={i}>
+          <Dropdown
+            attr="func"
+            label={target}
+            options={[
+              {label: _('Count'), value: 'count'},
+              {label: _('Sum'), value: 'sum'},
+              {label: _('Average'), value: 'avg'},
+              {label: _('Median'), value: 'median'},
+              {label: _('Mode'), value: 'mode'},
+              {label: _('RMS'), value: 'rms'},
+              {label: _('Standard Deviation'), value: 'stddev'},
+              {label: _('Min'), value: 'min'},
+              {label: _('Max'), value: 'max'},
+              {label: _('First'), value: 'first'},
+              {label: _('Last'), value: 'last'},
+            ]}
+            clearable={false}
+          />
+        </AggregationSection>
+      ));
   }
 }
 
@@ -67,7 +71,13 @@ const GraphTransformsPanel = (props, {localize: _}) => {
 
         <DataSelector label={_('By')} attr="groups" />
 
-        <Aggregations />
+        <DataSelector label={_('Target')} attr="target" />
+        <FilterOperation label={_('Operator')} attr="operation" />
+        <FilterValue label={_('Value')} attr="value" />
+
+        <PlotlySection name={_('Aggregations')} attr="aggregations">
+          <Aggregations />
+        </PlotlySection>
       </TransformAccordion>
     </TraceAccordion>
   );

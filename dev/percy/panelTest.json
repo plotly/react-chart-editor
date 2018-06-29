@@ -101,7 +101,22 @@
         "color": "#1f77b4",
         "thickness": 2,
         "width": 4
-      }
+      },
+      "transforms": [
+        {
+          "type": "groupby",
+          "groupssrc": "ints"
+        },
+        {
+          "type": "filter",
+          "targetsrc": "ints",
+          "operation": "[]",
+          "value": [
+            "0",
+            ""
+          ]
+        }
+      ]
     }
   ],
   "layout": {

@@ -14,6 +14,8 @@ class TransformAccordion extends Component {
       fullContainer,
       fullContainer: {transforms = []},
       localize: _,
+      container,
+      dataSourceOptions,
     } = this.context;
     const {children} = this.props;
 
@@ -23,7 +25,9 @@ class TransformAccordion extends Component {
       {label: _('Aggregate'), type: 'aggregate'},
     ];
 
-    if (['scatter', 'bar', 'scattergl'].indexOf(fullContainer.type) === -1) {
+    const transformableCharts = ['scatter', 'bar', 'scattergl'];
+
+    if (!transformableCharts.includes(fullContainer.type)) {
       return (
         <FoldEmpty
           icon={PlotScatterIcon}
@@ -32,6 +36,28 @@ class TransformAccordion extends Component {
       );
     }
 
+    const transformBy =
+      container.transforms &&
+      container.transforms.map(tr => {
+        let foldNameSuffix = '';
+        if (tr.groupssrc) {
+          const groupssrc =
+            dataSourceOptions &&
+            dataSourceOptions.find(d => d.value === tr.groupssrc);
+          foldNameSuffix = `: ${
+            groupssrc && groupssrc.label ? groupssrc.label : tr.groupssrc
+          }`;
+        } else if (tr.targetsrc) {
+          const targetsrc =
+            dataSourceOptions &&
+            dataSourceOptions.find(d => d.value === tr.targetsrc);
+          foldNameSuffix = `: ${
+            targetsrc && targetsrc.label ? targetsrc.label : tr.targetsrc
+          }`;
+        }
+        return foldNameSuffix;
+      });
+
     const filteredTransforms = transforms.filter(({type}) => Boolean(type));
     const content =
       filteredTransforms.length &&
@@ -39,32 +65,41 @@ class TransformAccordion extends Component {
         <TransformFold
           key={i}
           transformIndex={i}
-          name={transformTypes.filter(({type}) => type === tr.type)[0].label}
+          name={`${
+            transformTypes.filter(({type}) => type === tr.type)[0].label
+          }${transformBy[i]}`}
           canDelete={true}
         >
           {children}
         </TransformFold>
       ));
 
-    const handlers = transformTypes.map(({label, type}) => {
-      return {
-        label,
-        handler: context => {
-          const {fullContainer, updateContainer} = context;
-          if (updateContainer) {
-            const transformIndex = Array.isArray(fullContainer.transforms)
-              ? fullContainer.transforms.length
-              : 0;
-            const key = `transforms[${transformIndex}]`;
-            updateContainer({[key]: {type}});
-          }
-        },
-      };
-    });
-
     const addAction = {
-      label: _('Aggregation'),
-      handler: handlers[2].handler,
+      label: _('Transform'),
+      handler: transformTypes.map(({label, type}) => {
+        return {
+          label,
+          handler: context => {
+            const {fullContainer, updateContainer} = context;
+            if (updateContainer) {
+              const transformIndex = Array.isArray(fullContainer.transforms)
+                ? fullContainer.transforms.length
+                : 0;
+              const key = `transforms[${transformIndex}]`;
+
+              const payload = {type};
+              const firstDataSource = dataSourceOptions[0].value;
+              if (type === 'filter') {
+                payload.targetsrc = firstDataSource;
+              } else {
+                payload.groupssrc = firstDataSource;
+              }
+
+              updateContainer({[key]: payload});
+            }
+          },
+        };
+      }),
     };
 
     return (
@@ -78,6 +113,8 @@ class TransformAccordion extends Component {
 TransformAccordion.contextTypes = {
   fullContainer: PropTypes.object,
   localize: PropTypes.func,
+  container: PropTypes.object,
+  dataSourceOptions: PropTypes.array,
 };
 
 TransformAccordion.propTypes = {

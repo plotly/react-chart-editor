@@ -1,6 +1,8 @@
 [
   "/mocks/aggregate.json",
   "/percy/panelTest.json",
+  "/percy/histogram.json",
+  "/percy/histogram2d.json",
   "0.json",
   "1.json",
   "10.json",

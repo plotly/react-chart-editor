@@ -160,10 +160,11 @@ class UnconnectedFilterValue extends Component {
   }
 
   render() {
-    const {
-      localize: _,
-      container: {operation},
-    } = this.context;
+    const {localize: _, container} = this.context;
+
+    const operation =
+      container && container.operation ? container.operation : '=';
+
     const {fullValue, attr, defaultValue} = this.props;
     const op = findOperation(operation);
 
