@@ -121,11 +121,53 @@ class TraceTypeSelector extends Component {
     });
   }
 
+  renderGrid() {
+    return <div className="trace-grid">{this.renderCategories()}</div>;
+  }
+
+  renderSingleBlock() {
+    const {fullValue} = this.props;
+    const {
+      traceTypesConfig: {traces, complex},
+      localize: _,
+    } = this.context;
+
+    const items = traces(_).map(item => (
+      <Item
+        key={item.value}
+        complex={complex}
+        active={fullValue === item.value}
+        item={item}
+        actions={actions}
+        showActions={false}
+        handleClick={() => this.selectAndClose(item.value)}
+        style={{display: 'inline-block'}}
+      />
+    ));
+
+    return (
+      <div
+        style={{
+          maxWidth: '460px',
+          display: 'flex',
+          flexFlow: 'wrap',
+          padding: '5px',
+        }}
+      >
+        {items}
+      </div>
+    );
+  }
+
   render() {
-    const {localize: _} = this.context;
+    const {
+      traceTypesConfig: {categories},
+      localize: _,
+    } = this.context;
+
     return (
       <Modal title={_('Select Trace Type')}>
-        <div className="trace-grid">{this.renderCategories()}</div>
+        {categories ? this.renderGrid() : this.renderSingleBlock()}
       </Modal>
     );
   }
