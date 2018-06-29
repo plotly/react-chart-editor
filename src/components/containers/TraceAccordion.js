@@ -12,15 +12,18 @@ const TraceFold = connectTraceToPlot(PlotlyFold);
 class TraceAccordion extends Component {
   render() {
     const {data = [], localize: _} = this.context;
-    const {canAdd, canGroup, children, messageIfEmptyFold, excludeFits} = this.props;
+    const {
+      canAdd,
+      canGroup,
+      children,
+      messageIfEmptyFold,
+      excludeFits,
+    } = this.props;
 
     // we don't want to include analysis transforms when we're in the create panel
     const filteredData = data.filter(t => {
       if (excludeFits) {
-        return !(
-          t.transforms &&
-          t.transforms.every(tr => tr.type === 'fit')
-        );
+        return !(t.transforms && t.transforms.every(tr => tr.type === 'fit'));
       }
       return true;
     });
