@@ -371,7 +371,7 @@ Scatter                                                                         
 Scatter GL                                                                                                   // /lib/computeTraceOptionsFromSchema.js:75
 Second                                                                                                       // /default_panels/StyleAxesPanel.js:405
 Segments                                                                                                     // /components/containers/TraceMarkerSection.js:21
-Select Trace Type                                                                                            // /components/widgets/TraceTypeSelector.js:127
+Select Trace Type                                                                                            // /components/widgets/TraceTypeSelector.js:169
 Select an Option                                                                                             // /components/widgets/Dropdown.js:66
 Separate Thousands                                                                                           // /default_panels/StyleAxesPanel.js:242
 Shape                                                                                                        // /components/containers/ShapeAccordion.js:26
