@@ -395,7 +395,7 @@ Scatter                                                                         
 Scatter GL                                                                                                  // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:75
 Second                                                                                                      // react-chart-editor: /default_panels/StyleAxesPanel.js:405
 Segments                                                                                                    // react-chart-editor: /components/containers/TraceMarkerSection.js:21
-Select Trace Type                                                                                           // react-chart-editor: /components/widgets/TraceTypeSelector.js:127
+Select Trace Type                                                                                           // react-chart-editor: /components/widgets/TraceTypeSelector.js:169
 Select an Option                                                                                            // react-chart-editor: /components/widgets/Dropdown.js:66
 Separate Thousands                                                                                          // react-chart-editor: /default_panels/StyleAxesPanel.js:242
 Shape                                                                                                       // react-chart-editor: /components/containers/ShapeAccordion.js:26
