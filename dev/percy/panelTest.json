@@ -16,6 +16,7 @@
       "transforms": [
         {
           "type": "aggregate",
+          "enabled": true,
           "groups": [
             1,
             2,
@@ -105,15 +106,19 @@
       "transforms": [
         {
           "type": "groupby",
-          "groupssrc": "ints"
+          "groupssrc": "ints",
+          "groups": [],
+          "enabled": true
         },
         {
+          "enabled": true,
           "type": "filter",
+          "target": "x",
           "targetsrc": "ints",
           "operation": "[]",
           "value": [
             "0",
-            ""
+            "1"
           ]
         }
       ]

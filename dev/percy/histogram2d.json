@@ -9,13 +9,13 @@
         2,
         3
       ],
-      "xsrc": "ints",
+      "xsrc": "x1",
       "y": [
-        1,
         2,
-        3
+        3,
+        4
       ],
-      "ysrc": "ints",
+      "ysrc": "y1",
       "autobinx": false,
       "xbins": {
         "start": 0.5,
