@@ -49,6 +49,13 @@ export function traceTypeToPlotlyInitFigure(traceType) {
         type: 'box',
         boxpoints: false,
       };
+    case 'violin':
+      return {
+        type: 'violin',
+        box: {visible: false},
+        meanline: {visible: false},
+        bandwidth: 0,
+      };
     case 'line3d':
       return {
         type: 'scatter3d',

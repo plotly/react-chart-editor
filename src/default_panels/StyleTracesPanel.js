@@ -395,6 +395,27 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
       />
     </PlotlySection>
+    <PlotlySection name={_('Scaling')}>
+      <Numeric label={_('Bandwidth')} attr="bandwidth" />
+      <Radio
+        label="Scale Mode"
+        attr="scalemode"
+        options={[
+          {label: _('Width'), value: 'width'},
+          {label: _('Count'), value: 'count'},
+        ]}
+      />
+      <Radio
+        label="Span Mode"
+        attr="spanmode"
+        options={[
+          {label: _('Soft'), value: 'soft'},
+          {label: _('Hard'), value: 'hard'},
+          {label: _('Manual'), value: 'manual'},
+        ]}
+      />
+      <Numeric label={_('Span')} attr="span" />
+    </PlotlySection>
     <PlotlySection name={_('Highlight')}>
       <Radio
         attr="boxmean"
@@ -410,6 +431,37 @@ const StyleTracesPanel = (props, {localize: _}) => (
         options={[
           {label: _('Show'), value: 'sd'},
           {label: _('Hide'), value: false},
+        ]}
+      />
+      <Radio
+        attr="box.visible"
+        label={_('Box Visible')}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
+      />
+      <NumericFraction label={_('Box Width')} attr="box.width" />
+      <ColorPicker label={_('Box Fill Color')} attr="box.color" />
+      <NumericFraction label={_('Box Line Width')} attr="box.line.width" />
+      <ColorPicker label={_('Box Line Color')} attr="box.line.color" />
+      <Radio
+        attr="meanline.visible"
+        label={_('Meanline Visible')}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
+      />
+      <NumericFraction label={_('Meanline Width')} attr="meanline.width" />
+      <ColorPicker label={_('Meanline Color')} attr="meanline.color" />
+      <Radio
+        attr="side"
+        label={_('Density Function Side')}
+        options={[
+          {label: _('Both'), value: 'both'},
+          {label: _('Positive'), value: 'positive'},
+          {label: _('Negative'), value: 'negative'},
         ]}
       />
     </PlotlySection>
