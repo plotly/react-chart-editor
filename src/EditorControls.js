@@ -119,7 +119,9 @@ class EditorControls extends Component {
           this.props.beforeAddTrace(payload);
         }
 
-        graphDiv.data.push(this.props.useAsDefaultTrace);
+        // can't use default prop because plotly.js mutates it:
+        // https://github.com/plotly/react-chart-editor/issues/509
+        graphDiv.data.push(this.props.makeDefaultTrace());
 
         if (this.props.afterAddTrace) {
           this.props.afterAddTrace(payload);
@@ -300,18 +302,18 @@ EditorControls.propTypes = {
   plotly: PropTypes.object,
   showFieldTooltips: PropTypes.bool,
   traceTypesConfig: PropTypes.object,
-  useAsDefaultTrace: PropTypes.object,
+  makeDefaultTrace: PropTypes.func,
 };
 
 EditorControls.defaultProps = {
   showFieldTooltips: false,
   locale: 'en',
+  makeDefaultTrace: () => ({type: 'scatter', mode: 'markers'}),
   traceTypesConfig: {
     categories: _ => categoryLayout(_),
     traces: _ => traceTypes(_),
     complex: true,
   },
-  useAsDefaultTrace: {type: 'scatter', mode: 'markers'},
 };
 
 EditorControls.childContextTypes = {
