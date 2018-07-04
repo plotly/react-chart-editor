@@ -16,6 +16,7 @@
       "transforms": [
         {
           "type": "aggregate",
+          "enabled": true,
           "groups": [
             1,
             2,
@@ -101,7 +102,26 @@
         "color": "#1f77b4",
         "thickness": 2,
         "width": 4
-      }
+      },
+      "transforms": [
+        {
+          "type": "groupby",
+          "groupssrc": "ints",
+          "groups": [],
+          "enabled": true
+        },
+        {
+          "enabled": true,
+          "type": "filter",
+          "target": "x",
+          "targetsrc": "ints",
+          "operation": "[]",
+          "value": [
+            "0",
+            "1"
+          ]
+        }
+      ]
     }
   ],
   "layout": {

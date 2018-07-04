@@ -7,12 +7,9 @@
       "x": [
         1,
         2,
-        3,
-        4,
-        5,
-        6
+        3
       ],
-      "xsrc": "ints",
+      "xsrc": "x1",
       "autobinx": true,
       "xbins": {
         "start": -0.5,
@@ -21,13 +18,10 @@
       },
       "y": [
         2,
-        1,
         3,
-        5,
-        4,
-        6
+        4
       ],
-      "ysrc": "jagged ints",
+      "ysrc": "y1",
       "error_x": {
         "visible": true,
         "symmetric": true

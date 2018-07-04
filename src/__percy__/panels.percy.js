@@ -1,5 +1,4 @@
-import React from 'react';
-import {TestEditor, plotly, setupGraphDiv} from 'lib/test-utils';
+import {TestEditor, setupGraphDiv, fixtures, plotly} from 'lib/test-utils';
 
 import {PanelMenuWrapper} from '../components';
 
@@ -19,10 +18,25 @@ const panelsToTest = {
   histogram2d: ['GraphCreatePanel', 'StyleTracesPanel'],
 };
 
-const panelFixture = (Panel, group, name, data) => {
+window.URL.createObjectURL = function() {
+  return null;
+};
+
+const panelFixture = (Panel, group, name, figure) => {
+  const gd = setupGraphDiv(figure);
+  gd._context = plotly.setPlotConfig();
+  gd._context.setBackground = () => {
+    return null;
+  };
+
   return (
     <div className="plotly_editor">
-      <TestEditor plotly={plotly} graphDiv={setupGraphDiv(data)}>
+      <TestEditor
+        plotly={plotly}
+        graphDiv={gd}
+        dataSources={fixtures.scatter().dataSources}
+        dataSourceOptions={fixtures.scatter().dataSourceOptions}
+      >
         <PanelMenuWrapper>
           <Panel group={group} name={name} />
         </PanelMenuWrapper>

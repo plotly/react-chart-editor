@@ -7,7 +7,6 @@ import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
 import PlotlyEditor, {DefaultEditor, Panel} from '../src';
-import GraphTransformsPanel from '../src/default_panels/GraphTransformsPanelDev';
 import Inspector from 'react-inspector';
 import tips from './tips';
 import 'brace/mode/json';
@@ -43,38 +42,38 @@ const dataSourceOptions = Object.keys(dataSources).map(name => ({
 const config = {mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true};
 
 const traceTypesConfig = {
-    traces: _ => ([
-        {
-          value: 'scattergl',
-          icon: 'scatter',
-          label: _('Scatter'),
-        },
-        {
-          value: 'bar',
-          label: _('Bar'),
-        },
-        {
-          value: 'histogram',
-          label: _('Histogram'),
-        },
-        {
-          value: 'table',
-          label: _('Table'),
-        },
-        {
-          value: 'pie',
-          label: _('Pie'),
-        },
-        {
-          value: 'box',
-          label: _('Box'),
-        },
-        {
-          value: 'histogram2d',
-          label: _('Histogram 2D'),
-        },
-    ]),
-    complex: true
+  traces: _ => [
+    {
+      value: 'scattergl',
+      icon: 'scatter',
+      label: _('Scatter'),
+    },
+    {
+      value: 'bar',
+      label: _('Bar'),
+    },
+    {
+      value: 'histogram',
+      label: _('Histogram'),
+    },
+    {
+      value: 'table',
+      label: _('Table'),
+    },
+    {
+      value: 'pie',
+      label: _('Pie'),
+    },
+    {
+      value: 'box',
+      label: _('Box'),
+    },
+    {
+      value: 'histogram2d',
+      label: _('Histogram 2D'),
+    },
+  ],
+  complex: true,
 };
 
 class App extends Component {
@@ -160,7 +159,6 @@ class App extends Component {
           // makeDefaultTrace={() => ({type: 'scattergl', mode: 'markers'})}
         >
           <DefaultEditor>
-            <GraphTransformsPanel group="Dev" name="Transforms" />
             <Panel group="Dev" name="JSON">
               <div className="mocks">
                 <Select
