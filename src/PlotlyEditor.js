@@ -26,7 +26,7 @@ class PlotlyEditor extends Component {
             dictionaries={this.props.dictionaries}
             showFieldTooltips={this.props.showFieldTooltips}
             srcConverters={this.props.srcConverters}
-            useAsDefaultTrace={this.props.useAsDefaultTrace}
+            makeDefaultTrace={this.props.makeDefaultTrace}
           >
             {this.props.children}
           </EditorControls>
@@ -76,7 +76,7 @@ PlotlyEditor.propTypes = {
     toSrc: PropTypes.func.isRequired,
     fromSrc: PropTypes.func.isRequired,
   }),
-  useAsDefaultTrace: PropTypes.object,
+  makeDefaultTrace: PropTypes.func,
 };
 
 PlotlyEditor.defaultProps = {
