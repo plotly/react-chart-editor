@@ -11,6 +11,12 @@ export class Fold extends Component {
     this.foldVisible = true;
   }
 
+  getChildContext() {
+    return {
+      foldInfo: this.props.foldInfo ? this.props.foldInfo : null,
+    };
+  }
+
   render() {
     if (!this.foldVisible && !this.props.messageIfEmpty) {
       return null;
@@ -21,6 +27,7 @@ export class Fold extends Component {
       children,
       className,
       folded,
+      foldInfo,
       toggleFold,
       hideHeader,
       icon: Icon,
@@ -56,7 +63,7 @@ export class Fold extends Component {
           className="fold__top__delete js-fold__delete"
           onClick={e => {
             e.stopPropagation();
-            deleteContainer(e);
+            deleteContainer(foldInfo);
           }}
         >
           <CloseIcon />
@@ -105,11 +112,20 @@ Fold.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   folded: PropTypes.bool,
+  foldInfo: PropTypes.object,
   toggleFold: PropTypes.func,
   hideHeader: PropTypes.bool,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   messageIfEmpty: PropTypes.string,
   name: PropTypes.string,
+};
+
+Fold.contextTypes = {
+  deleteContainer: PropTypes.func,
+};
+
+Fold.childContextTypes = {
+  foldInfo: PropTypes.object,
 };
 
 class PlotlyFold extends Fold {

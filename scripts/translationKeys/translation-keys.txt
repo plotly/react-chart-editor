@@ -24,7 +24,7 @@ Aggregations                                                                    
 Aitoff                                                                                                       // /default_panels/GraphCreatePanel.js:202
 Albers USA                                                                                                   // /default_panels/GraphCreatePanel.js:183
 All                                                                                                          // /default_panels/StyleAxesPanel.js:406
-All Traces                                                                                                   // /components/containers/TraceAccordion.js:75
+All Traces                                                                                                   // /components/containers/TraceAccordion.js:89
 Ambient                                                                                                      // /default_panels/StyleTracesPanel.js:349
 Anchor                                                                                                       // /default_panels/StyleAxesPanel.js:82
 Anchor Point                                                                                                 // /default_panels/StyleAxesPanel.js:455
@@ -232,7 +232,7 @@ Images                                                                          
 Include                                                                                                      // /default_panels/StyleTracesPanel.js:76
 Increasing                                                                                                   // /default_panels/StyleTracesPanel.js:68
 Increasing Trace Styles                                                                                      // /default_panels/StyleTracesPanel.js:368
-Individual                                                                                                   // /components/containers/TraceAccordion.js:76
+Individual                                                                                                   // /components/containers/TraceAccordion.js:90
 Inside                                                                                                       // /components/fields/derived.js:473
 Intensity                                                                                                    // /default_panels/GraphCreatePanel.js:143
 Interpolate Gaps                                                                                             // /default_panels/StyleTracesPanel.js:308
@@ -443,7 +443,7 @@ Top                                                                             
 Top Center                                                                                                   // /components/fields/derived.js:462
 Top Left                                                                                                     // /components/fields/derived.js:461
 Top Right                                                                                                    // /components/fields/derived.js:463
-Trace                                                                                                        // /components/containers/TraceAccordion.js:34
+Trace                                                                                                        // /components/containers/TraceAccordion.js:48
 Trace Order                                                                                                  // /default_panels/StyleLegendPanel.js:75
 Traces                                                                                                       // /DefaultEditor.js:30
 Transform                                                                                                    // /components/containers/TransformAccordionDev.js:84
