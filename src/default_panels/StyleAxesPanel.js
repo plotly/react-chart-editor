@@ -66,7 +66,10 @@ class StyleAxesPanel extends Component {
         <AxesFold
           name={_('Layout')}
           axisFilter={axis =>
-            !axis._name.includes('radial') && !axis._name.includes('angular')
+            !(
+              axis._subplot.includes('polar') ||
+              axis._subplot.includes('ternary')
+            )
           }
         >
           <PlotlySection name={_('Boundaries')} attr="domain[0]">
@@ -119,6 +122,15 @@ class StyleAxesPanel extends Component {
             <AxesRange label={_('Min')} attr="range[0]" />
             <AxesRange label={_('Max')} attr="range[1]" />
           </TraceTypeSection>
+          <PlotlySection name={_('Zoom Interactivity')} attr="fixedrange">
+            <Radio
+              attr="fixedrange"
+              options={[
+                {label: _('Enable'), value: false},
+                {label: _('Disable'), value: true},
+              ]}
+            />
+          </PlotlySection>
           <Dropdown
             label={_('Direction')}
             attr="direction"
@@ -481,24 +493,12 @@ class StyleAxesPanel extends Component {
         </AxesFold>
 
         <AxesFold
-          name={_('Zoom Interactivity')}
-          axisFilter={axis =>
-            !axis._name.includes('angular') && !axis._name.includes('radial')
-          }
-        >
-          <Radio
-            attr="fixedrange"
-            options={[
-              {label: _('Enable'), value: false},
-              {label: _('Disable'), value: true},
-            ]}
-          />
-        </AxesFold>
-
-        <AxesFold
           name={_('Hover Projections')}
           axisFilter={axis =>
-            !axis._name.includes('angular') && !axis._name.includes('radial')
+            !(
+              axis._subplot.includes('ternary') ||
+              axis._subplot.includes('polar')
+            )
           }
         >
           <Radio
