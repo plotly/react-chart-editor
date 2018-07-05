@@ -189,12 +189,25 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Unsorted'), value: false},
         ]}
       />
-      <Radio
-        attr="boxpoints"
+      <Dropdown
         options={[
-          {label: _('Show'), value: 'all'},
+          {label: _('Show All'), value: 'all'},
+          {label: _('Outliers'), value: 'outliers'},
+          {label: _('Suspected Outliers'), value: 'suspectedoutliers'},
           {label: _('Hide'), value: false},
         ]}
+        attr="boxpoints"
+        clearable={false}
+      />
+      <Dropdown
+        options={[
+          {label: _('Show All'), value: 'all'},
+          {label: _('Outliers'), value: 'outliers'},
+          {label: _('Suspected Outliers'), value: 'suspectedoutliers'},
+          {label: _('Hide'), value: false},
+        ]}
+        attr="points"
+        clearable={false}
       />
       <NumericFraction label={_('Jitter')} attr="jitter" />
       <Numeric label={_('Position')} attr="pointpos" step={0.1} showSlider />
