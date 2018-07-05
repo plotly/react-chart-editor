@@ -168,7 +168,7 @@ class UnconnectedFilterValue extends Component {
     const {fullValue, attr, defaultValue} = this.props;
     const op = findOperation(operation);
 
-    let label1 = _('Target');
+    let label1 = _('Reference');
     if (op === 'inrange' || op === 'exrange') {
       label1 = _('Lower Bound');
     } else if (op === 'inset' || op === 'exset') {
