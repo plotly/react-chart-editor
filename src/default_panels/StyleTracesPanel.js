@@ -261,12 +261,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
       <NumericFractionInverse label={_('Violin Width')} attr="violingap" />
       <NumericFraction label={_('Violin Padding')} attr="violingroupgap" />
+      <Numeric label={_('Whisker Width')} attr="whiskerwidth" />
     </LayoutSection>
     <PlotlySection name={_('Ticks')}>
       <Numeric label={_('Width')} attr="tickwidth" />
-    </PlotlySection>
-    <PlotlySection name={_('Whiskers')}>
-      <Numeric label={_('Width')} attr="whiskerwidth" />
     </PlotlySection>
     <TraceTypeSection
       name={_('Lines')}
