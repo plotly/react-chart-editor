@@ -12,10 +12,10 @@ export const chartCategory = _ => {
       value: 'CHARTS_3D',
       label: _('3D charts'),
     },
-    FINANCIAL: {
-      value: 'FINANCIAL',
-      label: _('Finance'),
-    },
+    // FINANCIAL: {
+    //   value: 'FINANCIAL',
+    //   label: _('Finance'),
+    // },
     DISTRIBUTIONS: {
       value: 'DISTRIBUTIONS',
       label: _('Distributions'),
@@ -42,7 +42,7 @@ export const categoryLayout = _ => [
   chartCategory(_).DISTRIBUTIONS,
   chartCategory(_).SPECIALIZED,
   chartCategory(_).MAPS,
-  chartCategory(_).FINANCIAL,
+  // chartCategory(_).FINANCIAL,
 ];
 
 export const traceTypes = _ => [
@@ -146,16 +146,6 @@ export const traceTypes = _ => [
     label: _('Atlas Map'),
     category: chartCategory(_).MAPS,
   },
-  {
-    value: 'candlestick',
-    label: _('Candlestick'),
-    category: chartCategory(_).FINANCIAL,
-  },
-  {
-    value: 'ohlc',
-    label: _('OHLC'),
-    category: chartCategory(_).FINANCIAL,
-  },
   // {
   //   value: 'parcoords',
   //   label: _('Parallel Coordinates'),
@@ -179,6 +169,16 @@ export const traceTypes = _ => [
   {
     value: 'scatterternary',
     label: _('Ternary Scatter'),
+    category: chartCategory(_).SPECIALIZED,
+  },
+  {
+    value: 'candlestick',
+    label: _('Candlestick'),
+    category: chartCategory(_).SPECIALIZED,
+  },
+  {
+    value: 'ohlc',
+    label: _('OHLC'),
     category: chartCategory(_).SPECIALIZED,
   },
   // {
