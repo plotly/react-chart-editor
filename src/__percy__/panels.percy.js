@@ -16,7 +16,7 @@ import './percy.css';
 const panelsToTest = {
   bar: ['GraphCreatePanel', 'StyleTracesPanel'],
   box: ['GraphCreatePanel', 'StyleTracesPanel'],
-  histogram: ['GraphCreatePanel'],
+  histogram: ['GraphCreatePanel', 'StyleTracesPanel'],
   histogram2d: ['GraphCreatePanel', 'StyleTracesPanel'],
   violin: ['GraphCreatePanel', 'StyleTracesPanel'],
 };

@@ -230,7 +230,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
       <NumericFractionInverse label={_('Box Width')} attr="boxgap" />
       <NumericFraction label={_('Box Padding')} attr="boxgroupgap" />
-      <Radio
+      <Dropdown
         label={_('Bar Mode')}
         attr="barmode"
         options={[
@@ -239,15 +239,17 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Stack'), value: 'stack'},
           {label: _('Relative'), value: 'relative'},
         ]}
+        clearable={false}
       />
-      <Radio
-        label={_('Bar Normalization')}
+      <Dropdown
+        label={_('Normalization')}
         attr="barnorm"
         options={[
           {label: _('None'), value: ''},
           {label: _('Fraction'), value: 'fraction'},
           {label: _('Percent'), value: 'percent'},
         ]}
+        clearable={false}
       />
       <NumericFractionInverse label={_('Bar Width')} attr="bargap" />
       <NumericFraction label={_('Bar Padding')} attr="bargroupgap" />
@@ -463,8 +465,17 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
       />
       <Numeric label={_('Span')} attr="span" />
+      <Radio
+        attr="side"
+        label={_('Visible Sides')}
+        options={[
+          {label: _('Both'), value: 'both'},
+          {label: _('Positive'), value: 'positive'},
+          {label: _('Negative'), value: 'negative'},
+        ]}
+      />
     </PlotlySection>
-    <PlotlySection name={_('Highlight')}>
+    <PlotlySection name={_('Box Mean')}>
       <Radio
         attr="boxmean"
         options={[
@@ -473,9 +484,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('None'), value: false},
         ]}
       />
+    </PlotlySection>
+    <PlotlySection name={_('Box')}>
       <Radio
         attr="box.visible"
-        label={_('Box Visible')}
         options={[
           {label: _('Show'), value: true},
           {label: _('Hide'), value: false},
@@ -485,9 +497,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Box Fill Color')} attr="box.color" />
       <NumericFraction label={_('Box Line Width')} attr="box.line.width" />
       <ColorPicker label={_('Box Line Color')} attr="box.line.color" />
+    </PlotlySection>
+    <PlotlySection name={_('Meanline')}>
       <Radio
         attr="meanline.visible"
-        label={_('Meanline Visible')}
         options={[
           {label: _('Show'), value: true},
           {label: _('Hide'), value: false},
@@ -495,15 +508,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
       <NumericFraction label={_('Meanline Width')} attr="meanline.width" />
       <ColorPicker label={_('Meanline Color')} attr="meanline.color" />
-      <Radio
-        attr="side"
-        label={_('Density Function Side')}
-        options={[
-          {label: _('Both'), value: 'both'},
-          {label: _('Positive'), value: 'positive'},
-          {label: _('Negative'), value: 'negative'},
-        ]}
-      />
     </PlotlySection>
     <PlotlySection name={_('On Hover')}>
       <HoverInfo attr="hoverinfo" label={_('Values Shown On Hover')} />
