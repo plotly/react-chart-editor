@@ -467,18 +467,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Highlight')}>
       <Radio
         attr="boxmean"
-        label={_('Mean')}
         options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
-      />
-      <Radio
-        attr="boxmean"
-        label={_('Standard Deviation')}
-        options={[
-          {label: _('Show'), value: 'sd'},
-          {label: _('Hide'), value: false},
+          {label: _('Mean'), value: true},
+          {label: _('Mean & SD'), value: 'sd'},
+          {label: _('None'), value: false},
         ]}
       />
       <Radio
