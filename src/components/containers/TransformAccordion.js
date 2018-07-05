@@ -15,6 +15,7 @@ class TransformAccordion extends Component {
       fullContainer: {transforms = []},
       localize: _,
       container,
+      dataSources,
       dataSourceOptions,
     } = this.context;
     const {children} = this.props;
@@ -93,6 +94,7 @@ class TransformAccordion extends Component {
                 payload.targetsrc = firstDataSource;
               } else {
                 payload.groupssrc = firstDataSource;
+                payload.groups = dataSources[firstDataSource];
               }
 
               updateContainer({[key]: payload});
@@ -115,6 +117,7 @@ TransformAccordion.contextTypes = {
   localize: PropTypes.func,
   container: PropTypes.object,
   dataSourceOptions: PropTypes.array,
+  dataSources: PropTypes.object,
 };
 
 TransformAccordion.propTypes = {
