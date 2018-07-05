@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "type": "violin",
+      "mode": "markers",
+      "uid": "91db56",
+      "box": {
+        "visible": true
+      },
+      "meanline": {
+        "visible": true
+      },
+      "bandwidth": 0,
+      "x": [
+        1,
+        2,
+        3
+      ],
+      "xsrc": "x1"
+    }
+  ],
+  "layout": {
+    "xaxis": {},
+    "yaxis": {},
+    "autosize": true
+  },
+  "frames": []
+}

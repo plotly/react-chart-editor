@@ -16,6 +16,7 @@ import './percy.css';
 const panelsToTest = {
   histogram: ['GraphCreatePanel'],
   histogram2d: ['GraphCreatePanel', 'StyleTracesPanel'],
+  violin: ['GraphCreatePanel', 'StyleTracesPanel'],
 };
 
 window.URL.createObjectURL = function() {
