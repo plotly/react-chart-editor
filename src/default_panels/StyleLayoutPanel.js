@@ -10,7 +10,6 @@ import {
   TextEditor,
   PlotlySection,
   TraceRequiredPanel,
-  NumericFraction,
 } from '../components';
 
 const StyleLayoutPanel = (props, {localize: _}) => (
@@ -37,64 +36,6 @@ const StyleLayoutPanel = (props, {localize: _}) => (
           {label: _('Disable'), value: false},
         ]}
       />
-
-      <PlotlySection name={_('Box Display Options')} attr="boxmode">
-        <Radio
-          label={_('Mode')}
-          attr="boxmode"
-          options={[
-            {label: _('Overlay'), value: 'overlay'},
-            {label: _('Group'), value: 'group'},
-          ]}
-        />
-        <NumericFraction label={_('Gap Between Boxes')} attr="boxgap" />
-        <NumericFraction
-          label={_('Gap Between Boxes of Same Group')}
-          attr="boxgroupgap"
-        />
-      </PlotlySection>
-
-      <PlotlySection name={_('Bar Display Options')} attr="barmode">
-        <Radio
-          label={_('Mode')}
-          attr="barmode"
-          options={[
-            {label: _('Overlay'), value: 'overlay'},
-            {label: _('Group'), value: 'group'},
-            {label: _('Stack'), value: 'stack'},
-            {label: _('Relative'), value: 'relative'},
-          ]}
-        />
-        <Radio
-          label={_('Normalization for Bar Traces')}
-          attr="barnorm"
-          options={[
-            {label: _('None'), value: ''},
-            {label: _('Fraction'), value: 'fraction'},
-            {label: _('Percent'), value: 'percent'},
-          ]}
-        />
-        <NumericFraction label={_('Gap Between Bars')} attr="bargap" />
-        <NumericFraction
-          label={_('Gap Between Bars of Same Group')}
-          attr="bargroupgap"
-        />
-      </PlotlySection>
-      <PlotlySection name={_('Violin Display Options')} attr="violinmode">
-        <Radio
-          label={_('Mode')}
-          attr="violinmode"
-          options={[
-            {label: _('Overlay'), value: 'overlay'},
-            {label: _('Group'), value: 'group'},
-          ]}
-        />
-        <NumericFraction label={_('Gap Between Violins')} attr="violingap" />
-        <NumericFraction
-          label={_('Gap Between Violins of Same Group')}
-          attr="violingroupgap"
-        />
-      </PlotlySection>
     </PlotlyFold>
     <PlotlyFold name={_('Title and Fonts')}>
       <PlotlySection name={_('Title')} attr="title">

@@ -220,10 +220,47 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Border Color')} attr="marker.line.color" />
     </TraceMarkerSection>
     <LayoutSection name={_('Size and Spacing')}>
-      <NumericFractionInverse label={_('Bar Width')} attr="bargap" />
+      <Radio
+        label={_('Box Mode')}
+        attr="boxmode"
+        options={[
+          {label: _('Overlay'), value: 'overlay'},
+          {label: _('Group'), value: 'group'},
+        ]}
+      />
       <NumericFractionInverse label={_('Box Width')} attr="boxgap" />
-      <NumericFraction label={_('Bar Padding')} attr="bargroupgap" />
       <NumericFraction label={_('Box Padding')} attr="boxgroupgap" />
+      <Radio
+        label={_('Bar Mode')}
+        attr="barmode"
+        options={[
+          {label: _('Overlay'), value: 'overlay'},
+          {label: _('Group'), value: 'group'},
+          {label: _('Stack'), value: 'stack'},
+          {label: _('Relative'), value: 'relative'},
+        ]}
+      />
+      <Radio
+        label={_('Bar Normalization')}
+        attr="barnorm"
+        options={[
+          {label: _('None'), value: ''},
+          {label: _('Fraction'), value: 'fraction'},
+          {label: _('Percent'), value: 'percent'},
+        ]}
+      />
+      <NumericFractionInverse label={_('Bar Width')} attr="bargap" />
+      <NumericFraction label={_('Bar Padding')} attr="bargroupgap" />
+      <Radio
+        label={_('Violin Mode')}
+        attr="violinmode"
+        options={[
+          {label: _('Overlay'), value: 'overlay'},
+          {label: _('Group'), value: 'group'},
+        ]}
+      />
+      <NumericFractionInverse label={_('Violin Width')} attr="violingap" />
+      <NumericFraction label={_('Violin Padding')} attr="violingroupgap" />
     </LayoutSection>
     <PlotlySection name={_('Ticks')}>
       <Numeric label={_('Width')} attr="tickwidth" />
