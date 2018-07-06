@@ -76,7 +76,7 @@ class TransformAccordion extends Component {
           transformIndex={i}
           name={`${
             transformTypes.filter(({type}) => type === tr.type)[0].label
-          }${transformBy[i]}`}
+          }${transformBy && transformBy[i]}`}
           canDelete={true}
         >
           {children}
