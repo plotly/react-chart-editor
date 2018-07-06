@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   CanvasSize,
   ColorPicker,
+  Dropdown,
   FontSelector,
   PlotlyFold,
   Numeric,
@@ -28,13 +29,16 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
       <ColorPicker label={_('Plot Background')} attr="polar.bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
-      <Radio
+      <Dropdown
         label="Hover Interaction"
         attr="hovermode"
         options={[
-          {label: _('Enable'), value: 'closest'},
+          {label: _('Closest'), value: 'closest'},
+          {label: _('X Axis'), value: 'x'},
+          {label: _('Y Axis'), value: 'y'},
           {label: _('Disable'), value: false},
         ]}
+        clearable={false}
       />
     </PlotlyFold>
     <PlotlyFold name={_('Title and Fonts')}>

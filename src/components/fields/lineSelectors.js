@@ -35,7 +35,10 @@ const strokeShapes = [
 ];
 
 const strokeStyle = {fill: 'none', strokeWidth: '4px'};
-const computeOptions = (strokeData, stroke) =>
+
+const mutedBlue = '#1f77b4';
+
+const computeOptions = (strokeData, stroke = mutedBlue) =>
   strokeData.map(({value, strokeDasharray, d = 'M0,8h100'}) => ({
     label: <path d={d} style={{...strokeStyle, stroke, strokeDasharray}} />,
     value,
