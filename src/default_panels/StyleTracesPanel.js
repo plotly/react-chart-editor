@@ -189,12 +189,25 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Unsorted'), value: false},
         ]}
       />
-      <Radio
-        attr="boxpoints"
+      <Dropdown
         options={[
-          {label: _('Show'), value: 'all'},
+          {label: _('Show All'), value: 'all'},
+          {label: _('Outliers'), value: 'outliers'},
+          {label: _('Suspected Outliers'), value: 'suspectedoutliers'},
           {label: _('Hide'), value: false},
         ]}
+        attr="boxpoints"
+        clearable={false}
+      />
+      <Dropdown
+        options={[
+          {label: _('Show All'), value: 'all'},
+          {label: _('Outliers'), value: 'outliers'},
+          {label: _('Suspected Outliers'), value: 'suspectedoutliers'},
+          {label: _('Hide'), value: false},
+        ]}
+        attr="points"
+        clearable={false}
       />
       <NumericFraction label={_('Jitter')} attr="jitter" />
       <Numeric label={_('Position')} attr="pointpos" step={0.1} showSlider />
@@ -207,16 +220,53 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Border Color')} attr="marker.line.color" />
     </TraceMarkerSection>
     <LayoutSection name={_('Size and Spacing')}>
-      <NumericFractionInverse label={_('Bar Width')} attr="bargap" />
+      <Radio
+        label={_('Box Mode')}
+        attr="boxmode"
+        options={[
+          {label: _('Overlay'), value: 'overlay'},
+          {label: _('Group'), value: 'group'},
+        ]}
+      />
       <NumericFractionInverse label={_('Box Width')} attr="boxgap" />
-      <NumericFraction label={_('Bar Padding')} attr="bargroupgap" />
       <NumericFraction label={_('Box Padding')} attr="boxgroupgap" />
+      <Dropdown
+        label={_('Bar Mode')}
+        attr="barmode"
+        options={[
+          {label: _('Overlay'), value: 'overlay'},
+          {label: _('Group'), value: 'group'},
+          {label: _('Stack'), value: 'stack'},
+          {label: _('Relative'), value: 'relative'},
+        ]}
+        clearable={false}
+      />
+      <Dropdown
+        label={_('Normalization')}
+        attr="barnorm"
+        options={[
+          {label: _('None'), value: ''},
+          {label: _('Fraction'), value: 'fraction'},
+          {label: _('Percent'), value: 'percent'},
+        ]}
+        clearable={false}
+      />
+      <NumericFractionInverse label={_('Bar Width')} attr="bargap" />
+      <NumericFraction label={_('Bar Padding')} attr="bargroupgap" />
+      <Radio
+        label={_('Violin Mode')}
+        attr="violinmode"
+        options={[
+          {label: _('Overlay'), value: 'overlay'},
+          {label: _('Group'), value: 'group'},
+        ]}
+      />
+      <NumericFractionInverse label={_('Violin Width')} attr="violingap" />
+      <NumericFraction label={_('Violin Padding')} attr="violingroupgap" />
     </LayoutSection>
+    <NumericFraction label={_('Whisker Width')} attr="whiskerwidth" />
     <PlotlySection name={_('Ticks')}>
       <Numeric label={_('Width')} attr="tickwidth" />
-    </PlotlySection>
-    <PlotlySection name={_('Whiskers')}>
-      <Numeric label={_('Width')} attr="whiskerwidth" />
     </PlotlySection>
     <TraceTypeSection
       name={_('Lines')}
@@ -395,23 +445,69 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
       />
     </PlotlySection>
-    <PlotlySection name={_('Highlight')}>
+    <PlotlySection name={_('Scaling')}>
+      <Numeric label={_('Bandwidth')} attr="bandwidth" />
+      <Radio
+        label="Scale Mode"
+        attr="scalemode"
+        options={[
+          {label: _('Width'), value: 'width'},
+          {label: _('Count'), value: 'count'},
+        ]}
+      />
+      <Radio
+        label="Span Mode"
+        attr="spanmode"
+        options={[
+          {label: _('Soft'), value: 'soft'},
+          {label: _('Hard'), value: 'hard'},
+          {label: _('Manual'), value: 'manual'},
+        ]}
+      />
+      <Numeric label={_('Span')} attr="span" />
+      <Radio
+        attr="side"
+        label={_('Visible Sides')}
+        options={[
+          {label: _('Both'), value: 'both'},
+          {label: _('Positive'), value: 'positive'},
+          {label: _('Negative'), value: 'negative'},
+        ]}
+      />
+    </PlotlySection>
+    <PlotlySection name={_('Box Mean')}>
       <Radio
         attr="boxmean"
-        label={_('Mean')}
+        options={[
+          {label: _('Mean'), value: true},
+          {label: _('Mean & SD'), value: 'sd'},
+          {label: _('None'), value: false},
+        ]}
+      />
+    </PlotlySection>
+    <PlotlySection name={_('Box')}>
+      <Radio
+        attr="box.visible"
         options={[
           {label: _('Show'), value: true},
           {label: _('Hide'), value: false},
         ]}
       />
+      <NumericFraction label={_('Box Width')} attr="box.width" />
+      <ColorPicker label={_('Box Fill Color')} attr="box.color" />
+      <NumericFraction label={_('Box Line Width')} attr="box.line.width" />
+      <ColorPicker label={_('Box Line Color')} attr="box.line.color" />
+    </PlotlySection>
+    <PlotlySection name={_('Meanline')}>
       <Radio
-        attr="boxmean"
-        label={_('Standard Deviation')}
+        attr="meanline.visible"
         options={[
-          {label: _('Show'), value: 'sd'},
+          {label: _('Show'), value: true},
           {label: _('Hide'), value: false},
         ]}
       />
+      <NumericFraction label={_('Meanline Width')} attr="meanline.width" />
+      <ColorPicker label={_('Meanline Color')} attr="meanline.color" />
     </PlotlySection>
     <PlotlySection name={_('On Hover')}>
       <HoverInfo attr="hoverinfo" label={_('Values Shown On Hover')} />

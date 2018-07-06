@@ -58,6 +58,7 @@ export const TRACE_TO_AXIS = {
     'scatter',
     'scattergl',
     'box',
+    'violin',
     'bar',
     'heatmap',
     'heatmapgl',

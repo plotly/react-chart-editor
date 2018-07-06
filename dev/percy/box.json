@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "type": "box",
+      "mode": "markers",
+      "uid": "43d2ef",
+      "boxpoints": "all",
+      "x": [
+        1,
+        2,
+        3
+      ],
+      "xsrc": "x1",
+      "boxmean": true
+    }
+  ],
+  "layout": {
+    "xaxis": {
+      "type": "linear",
+      "range": [
+        0.7222222222222222,
+        6.277777777777778
+      ],
+      "autorange": true
+    },
+    "yaxis": {
+      "type": "category",
+      "range": [
+        -0.696,
+        0.5
+      ],
+      "autorange": true
+    },
+    "autosize": true,
+    "boxmode": "overlay"
+  },
+  "frames": []
+}

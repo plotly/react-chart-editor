@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "type": "bar",
+      "mode": "markers",
+      "uid": "040729",
+      "x": [
+        1,
+        2,
+        3
+      ],
+      "xsrc": "x1",
+      "error_x": {
+        "visible": true,
+        "symmetric": true
+      },
+      "error_y": {
+        "visible": true,
+        "symmetric": false
+      }
+    }
+  ],
+  "layout": {
+    "xaxis": {
+      "type": "linear",
+      "range": [
+        0,
+        115.78947368421052
+      ],
+      "autorange": true
+    },
+    "yaxis": {
+      "range": [
+        -0.5,
+        5.815789473684211
+      ],
+      "autorange": true
+    },
+    "autosize": true,
+    "barmode": "group",
+    "barnorm": "percent",
+    "bargroupgap": 0.28
+  },
+  "frames": []
+}
