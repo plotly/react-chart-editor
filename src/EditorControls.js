@@ -228,19 +228,20 @@ class EditorControls extends Component {
         break;
 
       case EDITOR_ACTIONS.DELETE_TRANSFORM:
-        if (isNumeric(payload.transformIndex)) {
-          for (let i = 0; i < graphDiv.data.length; i++) {
-            if (graphDiv.data[i].uid === payload.traceUid) {
-              graphDiv.data[i].transforms.splice(payload.transformIndex, 1);
-              if (this.props.onUpdate) {
-                this.props.onUpdate(
-                  graphDiv.data.slice(),
-                  graphDiv.layout,
-                  graphDiv._transitionData._frames
-                );
-              }
-              break;
-            }
+        if (
+          isNumeric(payload.transformIndex) &&
+          payload.traceIndex < graphDiv.data.length
+        ) {
+          graphDiv.data[payload.traceIndex].transforms.splice(
+            payload.transformIndex,
+            1
+          );
+          if (this.props.onUpdate) {
+            this.props.onUpdate(
+              graphDiv.data.slice(),
+              graphDiv.layout,
+              graphDiv._transitionData._frames
+            );
           }
         }
         break;
