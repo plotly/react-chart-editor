@@ -31,7 +31,7 @@ export default function connectTraceToPlot(WrappedComponent) {
 
       let fullTrace = {};
       for (let i = 0; i < fullData.length; i++) {
-        if (trace.uid === fullData[i]._fullInput._input.uid) {
+        if (traceIndexes[0] === fullData[i]._fullInput.index) {
           /*
            * Fit transforms are custom transforms in our custom plotly.js bundle,
            * they are different from others as they create an extra trace in the
