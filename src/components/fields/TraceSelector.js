@@ -47,12 +47,7 @@ class TraceSelector extends Component {
   }
 
   setTraceDefaults(container, fullContainer, updateContainer) {
-    if (
-      container &&
-      container.uid &&
-      !container.mode &&
-      fullContainer.type === 'scatter'
-    ) {
+    if (container && !container.mode && fullContainer.type === 'scatter') {
       updateContainer({
         type: 'scatter',
         mode: fullContainer.mode || 'markers',

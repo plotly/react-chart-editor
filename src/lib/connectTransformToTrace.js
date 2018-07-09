@@ -55,7 +55,7 @@ export default function connectTransformToTrace(WrappedComponent) {
         this.context.onUpdate({
           type: EDITOR_ACTIONS.DELETE_TRANSFORM,
           payload: {
-            traceUid: this.context.fullContainer._input.uid,
+            traceIndex: this.context.fullContainer.index,
             transformIndex: this.props.transformIndex,
           },
         });
