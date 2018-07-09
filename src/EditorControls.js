@@ -232,10 +232,14 @@ class EditorControls extends Component {
           isNumeric(payload.transformIndex) &&
           payload.traceIndex < graphDiv.data.length
         ) {
-          graphDiv.data[payload.traceIndex].transforms.splice(
-            payload.transformIndex,
-            1
-          );
+          if (graphDiv.data[payload.traceIndex].transforms.length === 1) {
+            delete graphDiv.data[payload.traceIndex].transforms;
+          } else {
+            graphDiv.data[payload.traceIndex].transforms.splice(
+              payload.transformIndex,
+              1
+            );
+          }
           if (this.props.onUpdate) {
             this.props.onUpdate(
               graphDiv.data.slice(),
