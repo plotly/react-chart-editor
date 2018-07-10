@@ -46,6 +46,8 @@ export class Aggregations extends Component {
               {label: _('Max'), value: 'max'},
               {label: _('First'), value: 'first'},
               {label: _('Last'), value: 'last'},
+              {label: _('Change'), value: 'change'},
+              {label: _('Range'), value: 'range'},
             ]}
             clearable={false}
           />
