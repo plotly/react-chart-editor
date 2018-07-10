@@ -26,7 +26,15 @@ class TransformAccordion extends Component {
       {label: _('Aggregate'), type: 'aggregate'},
     ];
 
-    const transformableCharts = ['scatter', 'bar', 'scattergl'];
+    const transformableCharts = [
+      'scatter',
+      'bar',
+      'scattergl',
+      'histogram',
+      'histogram2d',
+      'box',
+      'violin',
+    ];
 
     if (!transformableCharts.includes(fullContainer.type)) {
       return (
@@ -68,7 +76,7 @@ class TransformAccordion extends Component {
           transformIndex={i}
           name={`${
             transformTypes.filter(({type}) => type === tr.type)[0].label
-          }${transformBy[i]}`}
+          }${transformBy && transformBy[i]}`}
           canDelete={true}
         >
           {children}
