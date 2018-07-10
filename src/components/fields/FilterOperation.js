@@ -30,6 +30,7 @@ const operators = [
 
 const operations = {
   inequality: [
+    {value: '!=', label: 'Target ≠ Reference'},
     {value: '<', label: 'Target < Reference'},
     {value: '<=', label: 'Target ≤ Reference'},
     {value: '=', label: 'Target = Reference'},
