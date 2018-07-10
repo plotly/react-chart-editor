@@ -1,8 +1,8 @@
 version: 2
+
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/node:8.9
 
     working_directory: ~/react-chart-editor
@@ -22,4 +22,16 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: npm test
+
+  percy:
+    docker:
+      - image: circleci/node:8.9
+
+    working_directory: ~/react-chart-editor
+
+    branches:
+      # only from canonical repository, not pull requests from forks
+      only: /^(?!pull\/).*$/
+        
+    steps:
       - run: npm run test:percy
