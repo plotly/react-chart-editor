@@ -19,6 +19,7 @@ import ErrorBars from './ErrorBars';
 import AxisCreator from './AxisCreator';
 import UpdateMenuButtons from './UpdateMenuButtons';
 import {FilterOperation, FilterValue} from './FilterOperation';
+import MarkerSize from './MarkerSize';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -88,4 +89,5 @@ export {
   UpdateMenuButtons,
   Dropzone,
   TextPosition,
+  MarkerSize,
 };

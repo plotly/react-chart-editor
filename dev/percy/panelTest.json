@@ -36,14 +36,11 @@
         "color": [
           1,
           2,
-          3,
-          4,
-          5,
-          6
+          3
         ],
-        "colorsrc": "ints",
+        "colorsrc": "x1",
         "cmin": 1,
-        "cmax": 6,
+        "cmax": 3,
         "cauto": true,
         "colorscale": [
           [
@@ -67,8 +64,24 @@
         "showscale": true,
         "colorbar": {
           "ticks": "inside"
-        }
-      }
+        },
+        "size": [
+          1,
+          2,
+          3
+        ],
+        "sizesrc": "x1",
+        "sizemode": "diameter"
+      },
+      "fill": "tozerox",
+      "mode": "lines+markers+text",
+      "line": {
+        "dash": "solid",
+        "shape": "spline",
+        "color": "rgb(31, 119, 180)"
+      },
+      "hoveron": "fills+points",
+      "uid": "3102ee"
     },
     {
       "x": [
@@ -106,7 +119,7 @@
       "transforms": [
         {
           "type": "groupby",
-          "groupssrc": "ints",
+          "groupssrc": "x1",
           "groups": [],
           "enabled": true
         },
@@ -114,14 +127,26 @@
           "enabled": true,
           "type": "filter",
           "target": "x",
-          "targetsrc": "ints",
+          "targetsrc": "x1",
           "operation": "[]",
           "value": [
             "0",
             "1"
           ]
         }
-      ]
+      ],
+      "fill": "tozerox",
+      "mode": "lines+markers+text",
+      "marker": {
+        "sizemode": "diameter"
+      },
+      "line": {
+        "dash": "solid",
+        "shape": "spline",
+        "color": "rgb(31, 119, 180)"
+      },
+      "hoveron": "fills+points",
+      "uid": "f4d7ad"
     }
   ],
   "layout": {
@@ -135,7 +160,13 @@
         "color": "rgb(148, 103, 189)"
       },
       "overlaying": "y",
-      "side": "right"
+      "side": "right",
+      "type": "linear",
+      "range": [
+        17.77777777777778,
+        22.22222222222222
+      ],
+      "autorange": true
     },
     "annotations": [
       {
@@ -148,8 +179,8 @@
     "xaxis": {
       "type": "date",
       "range": [
-        0.6919103739269605,
-        6.3080896260730395
+        "1969-12-31 19:00:00.001",
+        "1969-12-31 19:00:00.0011"
       ],
       "autorange": true,
       "showline": true,
@@ -163,9 +194,12 @@
         },
         "autorange": true,
         "range": [
-          0.6919103739269605,
-          6.3080896260730395
-        ]
+          "1969-12-31 19:00:00.001",
+          "1969-12-31 19:00:00.0011"
+        ],
+        "yaxis2": {
+          "rangemode": "match"
+        }
       },
       "rangeselector": {
         "visible": true,
@@ -184,10 +218,11 @@
     },
     "yaxis": {
       "range": [
-        -0.32971827474445276,
-        5.329718274744453
+        1.9863013698630136,
+        4.013698630136986
       ],
-      "autorange": true
+      "autorange": true,
+      "type": "linear"
     },
     "autosize": true,
     "shapes": [
@@ -285,5 +320,6 @@
         "active": 1
       }
     ]
-  }
+  },
+  "frames": []
 }

@@ -308,6 +308,26 @@ export const NumericFractionInverse = connectToContainer(
   }
 );
 
+export const NumericReciprocal = connectToContainer(UnconnectedNumeric, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {fullValue, updatePlot} = plotProps;
+
+    if (isNumeric(fullValue)) {
+      plotProps.fullValue = Math.round(1 / fullValue);
+    }
+
+    plotProps.updatePlot = v => {
+      if (isNumeric(v)) {
+        updatePlot(1 / v);
+      } else {
+        updatePlot(v);
+      }
+    };
+
+    plotProps.min = 1;
+  },
+});
+
 export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
     if (!context.fullContainer) {
@@ -489,6 +509,10 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       {label: _('Y'), value: 'y'},
       {label: _('Name'), value: 'name'},
     ];
+
+    if (context.container.text && context.container.text.length > 0) {
+      options.push({label: _('Text'), value: 'text'});
+    }
 
     if (
       [

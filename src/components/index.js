@@ -43,6 +43,7 @@ import {
   UpdateMenuButtons,
   Dropzone,
   TextPosition,
+  MarkerSize,
 } from './fields';
 
 import {
@@ -141,4 +142,5 @@ export {
   UpdateMenuButtons,
   Dropzone,
   TextPosition,
+  MarkerSize,
 };

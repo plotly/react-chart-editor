@@ -1,0 +1,47 @@
+{
+  "data": [
+    {
+      "type": "pie",
+      "mode": "markers",
+      "uid": "3e343a",
+      "labels": [
+        1,
+        2,
+        3
+      ],
+      "labelssrc": "x1",
+      "values": [
+        1,
+        2,
+        3
+      ],
+      "valuessrc": "x1",
+      "text": [
+        1,
+        2,
+        3
+      ],
+      "textsrc": "x1"
+    }
+  ],
+  "layout": {
+    "xaxis": {
+      "range": [
+        0.5699530516431925,
+        6.917370892018779
+      ],
+      "autorange": true,
+      "type": "linear"
+    },
+    "yaxis": {
+      "range": [
+        -0.3055555555555556,
+        5.805555555555555
+      ],
+      "autorange": true
+    },
+    "autosize": true,
+    "hovermode": "closest"
+  },
+  "frames": []
+}
