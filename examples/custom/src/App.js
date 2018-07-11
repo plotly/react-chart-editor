@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import plotly from 'plotly.js/dist/plotly';
 import PlotlyEditor from 'react-chart-editor';
 import CustomEditor from './CustomEditor';
+import {localizeString} from 'react-chart-editor/lib';
 import 'react-chart-editor/lib/react-chart-editor.css';
 
 const dataSources = {
@@ -33,6 +35,12 @@ class App extends Component {
     };
   }
 
+  getChildContext() {
+    return {
+      localize: key => localizeString({}, 'en', key),
+    };
+  }
+
   render() {
     return (
       <div className="app">
@@ -57,5 +65,9 @@ class App extends Component {
     );
   }
 }
+
+App.childContextTypes = {
+  localize: PropTypes.func,
+};
 
 export default App;

@@ -84,6 +84,10 @@ UnconnectedTextEditor.propTypes = {
   updatePlot: PropTypes.func,
 };
 
+UnconnectedTextEditor.contextTypes = {
+  localize: PropTypes.func,
+};
+
 export default connectToContainer(UnconnectedTextEditor, {
   modifyPlotProps: (props, context, plotProps) => {
     if (plotProps.isVisible && plotProps.multiValued) {
