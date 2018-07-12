@@ -1,31 +1,37 @@
 export function plotlyTraceToCustomTrace(trace) {
-  const type = trace.type || 'scatter';
+  const gl = 'gl';
+  const type = trace.type.endsWith(gl)
+    ? trace.type.slice(0, -gl.length)
+    : trace.type || 'scatter';
+
   if (
-    type === 'scatter' &&
+    (type === 'scatter' || type === 'scattergl') &&
     ['tozeroy', 'tozerox', 'tonexty', 'tonextx', 'toself', 'tonext'].includes(
       trace.fill
     )
   ) {
     return 'area';
   } else if (
-    type === 'scatter' &&
+    (type === 'scatter' || type === 'scattergl') &&
     (trace.mode === 'lines' || trace.mode === 'lines+markers')
   ) {
     return 'line';
   } else if (type === 'scatter3d' && trace.mode === 'lines') {
     return 'line3d';
   }
-  return trace.type;
+  return type;
 }
 
-export function traceTypeToPlotlyInitFigure(traceType) {
+export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
   switch (traceType) {
     case 'line':
-      return {type: 'scatter', mode: 'lines', fill: 'none'};
+      return {type: 'scatter' + gl, mode: 'lines', fill: 'none'};
     case 'scatter':
-      return {type: 'scatter', mode: 'markers', fill: 'none'};
+      return {type: 'scatter' + gl, mode: 'markers', fill: 'none'};
     case 'area':
-      return {type: 'scatter', fill: 'tozeroy'};
+      return {type: 'scatter' + gl, fill: 'tozeroy'};
+    case 'scatterpolar':
+      return {type: 'scatterpolar' + gl};
     case 'ohlc':
       return {
         type: 'ohlc',

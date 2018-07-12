@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal from 'components/containers/Modal';
+import {glAvailable} from 'components/fields/TraceSelector';
 import {
   traceTypeToPlotlyInitFigure,
   renderTraceIcon,
@@ -75,8 +76,20 @@ const Item = ({item, active, handleClick, actions, showActions, complex}) => {
 
 class TraceTypeSelector extends Component {
   selectAndClose(value) {
+    const {
+      updateContainer,
+      glByDefault,
+      fullContainer: {type},
+    } = this.props;
     const computedValue = traceTypeToPlotlyInitFigure(value);
-    this.props.updateContainer(computedValue);
+    if (
+      (type.endsWith('gl') || (!glAvailable(type) && glByDefault)) &&
+      glAvailable(computedValue.type) &&
+      !computedValue.type.endsWith('gl')
+    ) {
+      computedValue.type = computedValue.type + 'gl';
+    }
+    updateContainer(computedValue);
     this.context.handleClose();
   }
 
@@ -207,6 +220,8 @@ export class TraceTypeSelectorButton extends Component {
 TraceTypeSelector.propTypes = {
   updateContainer: PropTypes.func,
   fullValue: PropTypes.string,
+  fullContainer: PropTypes.object,
+  glByDefault: PropTypes.bool,
 };
 TraceTypeSelector.contextTypes = {
   traceTypesConfig: PropTypes.object,

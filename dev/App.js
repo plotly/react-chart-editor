@@ -44,9 +44,17 @@ const config = {mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true};
 const traceTypesConfig = {
   traces: _ => [
     {
-      value: 'scattergl',
+      value: 'scatter',
       icon: 'scatter',
       label: _('Scatter'),
+    },
+    {
+      value: 'line',
+      label: _('Line'),
+    },
+    {
+      value: 'area',
+      label: _('Area'),
     },
     {
       value: 'bar',
@@ -155,6 +163,7 @@ class App extends Component {
           debug
           advancedTraceTypeSelector
           showFieldTooltips
+          // glByDefault
           // traceTypesConfig={traceTypesConfig}
           // makeDefaultTrace={() => ({type: 'scattergl', mode: 'markers'})}
         >
