@@ -101,9 +101,9 @@ class TraceTypeSelector extends Component {
     } = this.context;
 
     return categories(_).map((category, i) => {
-      const items = traces(_).filter(
-        ({category: {value}}) => value === category.value
-      );
+      const items = traces(_)
+        .filter(({category: {value}}) => value === category.value)
+        .filter(i => i.value !== 'scattergl' && i.value !== 'scatterpolargl');
 
       const MAX_ITEMS = 4;
 
