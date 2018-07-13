@@ -28,6 +28,9 @@ class PlotlyEditor extends Component {
             srcConverters={this.props.srcConverters}
             makeDefaultTrace={this.props.makeDefaultTrace}
             glByDefault={this.props.glByDefault}
+            mapBoxAccess={Boolean(
+              this.props.config && this.props.config.mapboxAccessToken
+            )}
           >
             {this.props.children}
           </EditorControls>

@@ -97,13 +97,18 @@ class TraceTypeSelector extends Component {
     const {fullValue} = this.props;
     const {
       traceTypesConfig: {traces, categories, complex},
+      mapBoxAccess,
       localize: _,
     } = this.context;
 
     return categories(_).map((category, i) => {
-      const items = traces(_)
+      let items = traces(_)
         .filter(({category: {value}}) => value === category.value)
         .filter(i => i.value !== 'scattergl' && i.value !== 'scatterpolargl');
+
+      if (!mapBoxAccess) {
+        items = items.filter(i => i.value !== 'scattermapbox');
+      }
 
       const MAX_ITEMS = 4;
 
@@ -227,6 +232,7 @@ TraceTypeSelector.contextTypes = {
   traceTypesConfig: PropTypes.object,
   handleClose: PropTypes.func,
   localize: PropTypes.func,
+  mapBoxAccess: PropTypes.bool,
 };
 TraceTypeSelectorButton.propTypes = {
   handleClick: PropTypes.func.isRequired,

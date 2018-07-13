@@ -50,6 +50,7 @@ class EditorControls extends Component {
       traceTypesConfig: this.props.traceTypesConfig,
       showFieldTooltips: this.props.showFieldTooltips,
       glByDefault: this.props.glByDefault,
+      mapBoxAccess: this.props.mapBoxAccess,
     };
   }
 
@@ -317,6 +318,7 @@ EditorControls.propTypes = {
   traceTypesConfig: PropTypes.object,
   makeDefaultTrace: PropTypes.func,
   glByDefault: PropTypes.bool,
+  mapBoxAccess: PropTypes.bool,
 };
 
 EditorControls.defaultProps = {
@@ -355,6 +357,7 @@ EditorControls.childContextTypes = {
   traceTypesConfig: PropTypes.object,
   showFieldTooltips: PropTypes.bool,
   glByDefault: PropTypes.bool,
+  mapBoxAccess: PropTypes.bool,
 };
 
 export default EditorControls;
