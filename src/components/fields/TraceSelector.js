@@ -112,7 +112,7 @@ class TraceSelector extends Component {
 
     const options = [
       {label: _('SVG'), value: ''},
-      {label: _('WebGl'), value: 'gl'},
+      {label: _('WebGL'), value: 'gl'},
     ];
 
     // Check and see if the advanced selector prop is true
