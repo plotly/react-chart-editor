@@ -58,7 +58,10 @@ function renderTraceIcon(trace, prefix = 'Plot') {
   if (!trace) {
     return null;
   }
-  const componentName = `${prefix}${pascalCase(trace)}Icon`;
+  const gl = 'gl';
+  const componentName = `${prefix}${pascalCase(
+    trace.endsWith(gl) ? trace.slice(0, -gl.length) : trace
+  )}Icon`;
   return PlotlyIcons[componentName]
     ? PlotlyIcons[componentName]
     : PlotlyIcons.PlotLineIcon;

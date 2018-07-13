@@ -21,6 +21,26 @@ const ModalContent = ({children}) => (
 );
 
 class Modal extends Component {
+  constructor(props) {
+    super(props);
+    this.escFunction = this.escFunction.bind(this);
+  }
+
+  escFunction(event) {
+    const escKeyCode = 27;
+    if (event.keyCode === escKeyCode) {
+      this.context.handleClose();
+    }
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.escFunction, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.escFunction, false);
+  }
+
   render() {
     const {children, title} = this.props;
     let classes = 'modal';

@@ -12,10 +12,10 @@ export const chartCategory = _ => {
       value: 'CHARTS_3D',
       label: _('3D charts'),
     },
-    // FINANCIAL: {
-    //   value: 'FINANCIAL',
-    //   label: _('Finance'),
-    // },
+    FINANCIAL: {
+      value: 'FINANCIAL',
+      label: _('Finance'),
+    },
     DISTRIBUTIONS: {
       value: 'DISTRIBUTIONS',
       label: _('Distributions'),
@@ -28,9 +28,9 @@ export const chartCategory = _ => {
       value: 'SPECIALIZED',
       label: _('Specialized'),
     },
-    WEB_GL: {
-      value: 'WEB_GL',
-      label: _('WebGL'),
+    THREE_D: {
+      value: '3D',
+      label: _('3D'),
     },
   };
 };
@@ -38,11 +38,11 @@ export const chartCategory = _ => {
 // Layout specification for TraceTypeSelector.js
 export const categoryLayout = _ => [
   chartCategory(_).SIMPLE,
-  chartCategory(_).WEB_GL,
   chartCategory(_).DISTRIBUTIONS,
-  chartCategory(_).SPECIALIZED,
+  chartCategory(_).THREE_D,
   chartCategory(_).MAPS,
-  // chartCategory(_).FINANCIAL,
+  chartCategory(_).FINANCIAL,
+  chartCategory(_).SPECIALIZED,
 ];
 
 export const traceTypes = _ => [
@@ -89,22 +89,22 @@ export const traceTypes = _ => [
   {
     value: 'scatter3d',
     label: _('3D Scatter'),
-    category: chartCategory(_).WEB_GL,
+    category: chartCategory(_).THREE_D,
   },
   {
     value: 'line3d',
     label: _('3D Line'),
-    category: chartCategory(_).WEB_GL,
+    category: chartCategory(_).THREE_D,
   },
   {
     value: 'surface',
     label: _('3D Surface'),
-    category: chartCategory(_).WEB_GL,
+    category: chartCategory(_).THREE_D,
   },
   {
     value: 'mesh3d',
     label: _('3D Mesh'),
-    category: chartCategory(_).WEB_GL,
+    category: chartCategory(_).THREE_D,
   },
   {
     value: 'box',
@@ -174,34 +174,34 @@ export const traceTypes = _ => [
   {
     value: 'candlestick',
     label: _('Candlestick'),
-    category: chartCategory(_).SPECIALIZED,
+    category: chartCategory(_).FINANCIAL,
   },
   {
     value: 'ohlc',
     label: _('OHLC'),
-    category: chartCategory(_).SPECIALIZED,
+    category: chartCategory(_).FINANCIAL,
   },
   // {
   //   value: 'pointcloud',
   //   label: _('Point Cloud'),
-  //   category: chartCategory(_).WEB_GL,
+  //   category: chartCategory(_).THREE_D,
   // },
   {
     value: 'scattergl',
     icon: 'scatter',
-    label: _('Scatter GL'),
-    category: chartCategory(_).WEB_GL,
+    label: _('Scatter'),
+    category: chartCategory(_).THREE_D,
   },
   {
     value: 'scatterpolargl',
     icon: 'scatterpolar',
-    label: _('Polar Scatter GL'),
-    category: chartCategory(_).WEB_GL,
+    label: _('Polar Scatter'),
+    category: chartCategory(_).THREE_D,
   },
   // {
   //   value: 'heatmapgl',
   //   icon: 'heatmap',
   //   label: _('Heatmap GL'),
-  //   category: chartCategory(_).WEB_GL,
+  //   category: chartCategory(_).THREE_D,
   // },
 ];

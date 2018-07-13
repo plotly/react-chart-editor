@@ -10,13 +10,24 @@ import {
 import TraceTypeSelector, {
   TraceTypeSelectorButton,
 } from 'components/widgets/TraceTypeSelector';
+import RadioBlocks from 'components/widgets/RadioBlocks';
+
 import Field from './Field';
+
+export const glAvailable = type => {
+  return ['scatter', 'scatterpolar', 'scattergl', 'scatterpolargl'].includes(
+    type
+  );
+};
 
 class TraceSelector extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.updatePlot = this.updatePlot.bind(this);
+    this.setGl = this.setGl.bind(this);
+    this.glEnabled = this.glEnabled.bind(this);
+    this.setTraceDefaults = this.setTraceDefaults.bind(this);
 
     this.setTraceDefaults(
       props.container,
@@ -24,6 +35,10 @@ class TraceSelector extends Component {
       props.updateContainer
     );
     this.setLocals(props, context);
+  }
+
+  glEnabled() {
+    return this.props.container.type.endsWith('gl') ? 'gl' : '';
   }
 
   setLocals(props, context) {
@@ -46,10 +61,11 @@ class TraceSelector extends Component {
     }
   }
 
-  setTraceDefaults(container, fullContainer, updateContainer) {
+  setTraceDefaults(container, fullContainer, updateContainer, gl) {
     if (container && !container.mode && fullContainer.type === 'scatter') {
       updateContainer({
-        type: 'scatter',
+        type:
+          'scatter' + (gl || this.context.glByDefault ? gl : this.glEnabled()),
         mode: fullContainer.mode || 'markers',
       });
     }
@@ -63,9 +79,26 @@ class TraceSelector extends Component {
 
   updatePlot(value) {
     const {updateContainer} = this.props;
+    const {glByDefault} = this.context;
     if (updateContainer) {
-      updateContainer(traceTypeToPlotlyInitFigure(value));
+      updateContainer(
+        traceTypeToPlotlyInitFigure(value, this.glEnabled() || glByDefault)
+      );
     }
+  }
+
+  setGl(value) {
+    const {container, fullContainer, updateContainer} = this.props;
+    const gl = 'gl';
+
+    this.setTraceDefaults(container, fullContainer, updateContainer, value);
+
+    const traceType =
+      this.fullValue.endsWith(gl) && value === ''
+        ? this.fullValue.slice(0, -gl.length)
+        : this.fullValue;
+
+    updateContainer(traceTypeToPlotlyInitFigure(traceType, value));
   }
 
   render() {
@@ -75,17 +108,41 @@ class TraceSelector extends Component {
       options: this.traceOptions,
       clearable: false,
     });
+    const {localize: _, advancedTraceTypeSelector} = this.context;
+
+    const options = [
+      {label: _('SVG'), value: ''},
+      {label: _('WebGl'), value: 'gl'},
+    ];
+
     // Check and see if the advanced selector prop is true
-    const {advancedTraceTypeSelector} = this.context;
     if (advancedTraceTypeSelector) {
       return (
-        <Field {...props}>
-          <TraceTypeSelectorButton
-            {...props}
-            traceTypesConfig={this.context.traceTypesConfig}
-            handleClick={() => this.context.openModal(TraceTypeSelector, props)}
-          />
-        </Field>
+        <div>
+          <Field {...props}>
+            <TraceTypeSelectorButton
+              {...props}
+              traceTypesConfig={this.context.traceTypesConfig}
+              handleClick={() =>
+                this.context.openModal(TraceTypeSelector, {
+                  ...props,
+                  glByDefault: this.context.glByDefault,
+                })
+              }
+            />
+          </Field>
+          {!glAvailable(this.props.container.type) ? (
+            ''
+          ) : (
+            <Field label={_('Rendering')}>
+              <RadioBlocks
+                options={options}
+                activeOption={this.glEnabled()}
+                onOptionChange={this.setGl}
+              />
+            </Field>
+          )}
+        </div>
       );
     }
 
@@ -100,6 +157,7 @@ TraceSelector.contextTypes = {
   plotSchema: PropTypes.object,
   config: PropTypes.object,
   localize: PropTypes.func,
+  glByDefault: PropTypes.bool,
 };
 
 TraceSelector.propTypes = {

@@ -49,6 +49,8 @@ class EditorControls extends Component {
       plotly: this.props.plotly,
       traceTypesConfig: this.props.traceTypesConfig,
       showFieldTooltips: this.props.showFieldTooltips,
+      glByDefault: this.props.glByDefault,
+      mapBoxAccess: this.props.mapBoxAccess,
     };
   }
 
@@ -121,7 +123,14 @@ class EditorControls extends Component {
 
         // can't use default prop because plotly.js mutates it:
         // https://github.com/plotly/react-chart-editor/issues/509
-        graphDiv.data.push(this.props.makeDefaultTrace());
+        graphDiv.data.push(
+          this.props.makeDefaultTrace
+            ? this.props.makeDefaultTrace()
+            : {
+                type: `scatter${this.props.glByDefault ? 'gl' : ''}`,
+                mode: 'markers',
+              }
+        );
 
         if (this.props.afterAddTrace) {
           this.props.afterAddTrace(payload);
@@ -308,12 +317,13 @@ EditorControls.propTypes = {
   showFieldTooltips: PropTypes.bool,
   traceTypesConfig: PropTypes.object,
   makeDefaultTrace: PropTypes.func,
+  glByDefault: PropTypes.bool,
+  mapBoxAccess: PropTypes.bool,
 };
 
 EditorControls.defaultProps = {
   showFieldTooltips: false,
   locale: 'en',
-  makeDefaultTrace: () => ({type: 'scatter', mode: 'markers'}),
   traceTypesConfig: {
     categories: _ => categoryLayout(_),
     traces: _ => traceTypes(_),
@@ -346,6 +356,8 @@ EditorControls.childContextTypes = {
   plotSchema: PropTypes.object,
   traceTypesConfig: PropTypes.object,
   showFieldTooltips: PropTypes.bool,
+  glByDefault: PropTypes.bool,
+  mapBoxAccess: PropTypes.bool,
 };
 
 export default EditorControls;
