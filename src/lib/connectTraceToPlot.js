@@ -75,17 +75,25 @@ export default function connectTraceToPlot(WrappedComponent) {
       };
 
       if (traceIndexes.length > 1) {
-        const multiValuedContainer = deepCopyPublic(fullTrace);
+        const multiValuedFullContainer = deepCopyPublic(fullTrace);
         fullData.forEach(t =>
+          Object.keys(t).forEach(key =>
+            setMultiValuedContainer(multiValuedFullContainer, t, key, {
+              searchArrays: true,
+            })
+          )
+        );
+        const multiValuedContainer = deepCopyPublic(trace);
+        data.forEach(t =>
           Object.keys(t).forEach(key =>
             setMultiValuedContainer(multiValuedContainer, t, key, {
               searchArrays: true,
             })
           )
         );
-        this.childContext.fullContainer = multiValuedContainer;
+        this.childContext.fullContainer = multiValuedFullContainer;
         this.childContext.defaultContainer = fullTrace;
-        this.childContext.container = {};
+        this.childContext.container = multiValuedContainer;
       }
 
       if (trace && fullTrace) {

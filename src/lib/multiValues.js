@@ -17,10 +17,8 @@ function deepCopyPublic(value) {
 }
 
 function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
-  var intoVal = intoObj[key],
-    fromVal = fromObj[key];
-
-  var searchArrays = config.searchArrays;
+  const intoVal = intoObj[key];
+  const fromVal = fromObj[key];
 
   // don't merge private attrs
   if (
@@ -51,12 +49,16 @@ function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
   } else if (Array.isArray(intoVal)) {
     // in data, other arrays are data, which we don't care about
     // for styling purposes
-    if (!searchArrays) {
+    if (!config.searchArrays) {
       return;
     }
-    // in layout though, we need to recurse into arrays
-    for (var i = 0; i < fromVal.length; i++) {
-      setMultiValuedContainer(intoVal, fromVal, i, searchArrays);
+    if (!Array.isArray(fromVal)) {
+      intoObj[key] = MULTI_VALUED;
+    } else {
+      // in layout though, we need to recurse into arrays
+      for (let i = 0; i < fromVal.length; i++) {
+        setMultiValuedContainer(intoVal, fromVal, i, config);
+      }
     }
   } else if (isPlainObject(fromVal)) {
     // recurse into objects
@@ -64,7 +66,7 @@ function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
       throw new Error('tried to merge object into non-object: ' + key);
     }
     Object.keys(fromVal).forEach(function(key2) {
-      setMultiValuedContainer(intoVal, fromVal, key2, searchArrays);
+      setMultiValuedContainer(intoVal, fromVal, key2, config);
     });
   } else if (isPlainObject(intoVal)) {
     throw new Error('tried to merge non-object into object: ' + key);

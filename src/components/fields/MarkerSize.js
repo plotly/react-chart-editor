@@ -5,14 +5,27 @@ import {connectToContainer} from 'lib';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Numeric from './Numeric';
 import DataSelector from './DataSelector';
-
-const getType = value => (Array.isArray(value) ? 'variable' : 'constant');
+import {MULTI_VALUED} from 'lib/constants';
 
 class UnconnectedMarkerSize extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const type = getType(props.fullValue);
+    let type = null;
+    if (
+      !props.container.marker ||
+      (props.container.marker && !props.container.marker.sizesrc)
+    ) {
+      type = 'constant';
+    } else if (
+      props.container.marker &&
+      Array.isArray(props.container.marker.size) &&
+      props.fullContainer.marker &&
+      Array.isArray(props.fullContainer.marker.size)
+    ) {
+      type = 'variable';
+    }
+
     this.state = {
       type,
       value: {
@@ -30,6 +43,11 @@ class UnconnectedMarkerSize extends Component {
     this.props.updatePlot(this.state.value[type]);
     if (type === 'constant') {
       this.context.updateContainer({['marker.sizesrc']: null});
+    } else {
+      this.context.updateContainer({
+        ['marker.size']: null,
+        ['marker.sizesrc']: null,
+      });
     }
   }
 
@@ -45,32 +63,37 @@ class UnconnectedMarkerSize extends Component {
   }
 
   render() {
-    const {attr} = this.props;
+    const {attr, fullValue} = this.props;
     const {localize: _} = this.context;
+    const {type, value} = this.state;
     const options = [
       {label: _('Constant'), value: 'constant'},
       {label: _('Variable'), value: 'variable'},
     ];
+    const multiValued =
+      this.props.multiValued ||
+      (Array.isArray(fullValue) && fullValue.includes(MULTI_VALUED));
 
     return (
       <div>
-        <Field {...this.props} attr={attr}>
+        <Field {...this.props} multiValued={multiValued} attr={attr}>
           <RadioBlocks
             options={options}
-            activeOption={this.state.type}
+            activeOption={type}
             onOptionChange={this.setType}
           />
-          {this.state.type === 'constant' ? (
+          {type === 'constant' ? (
             <Numeric
+              suppressMultiValuedMessage
               attr="marker.size"
               updatePlot={this.setValue}
-              fullValue={this.state.value.constant}
+              fullValue={value.constant}
             />
-          ) : (
+          ) : multiValued ? null : (
             <DataSelector
+              suppressMultiValuedMessage
               attr="marker.size"
               updatePlot={this.setValue}
-              fullValue={this.state.value.variable}
             />
           )}
         </Field>

@@ -24,6 +24,7 @@ class Field extends Component {
       children,
       label,
       multiValued,
+      suppressMultiValuedMessage,
       units,
       extraComponent,
     } = this.props;
@@ -68,7 +69,7 @@ class Field extends Component {
         ) : null}
         <div className={fieldClass}>
           {children}
-          {multiValued ? (
+          {multiValued && !suppressMultiValuedMessage ? (
             <MenuPanel label={getMultiValueText('title', _)} ownline question>
               <div className="info__title">{getMultiValueText('title', _)}</div>
               <div className="info__text">{getMultiValueText('text', _)}</div>
@@ -94,6 +95,7 @@ Field.propTypes = {
   label: PropTypes.any,
   units: PropTypes.string,
   multiValued: PropTypes.bool,
+  suppressMultiValuedMessage: PropTypes.bool,
   children: PropTypes.node,
   extraComponent: PropTypes.any,
 };
