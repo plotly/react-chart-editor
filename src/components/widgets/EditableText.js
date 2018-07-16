@@ -104,7 +104,7 @@ EditableText.propTypes = {
   text: PropTypes.any,
 
   // Input properties
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   className: PropTypes.string,
   disable: PropTypes.bool,
   autoFocus: PropTypes.bool,
