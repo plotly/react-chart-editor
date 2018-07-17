@@ -86,9 +86,9 @@ export default class NumericInput extends Component {
     let valueUpdate;
     if (isNumeric(value)) {
       if (direction === 'increase') {
-        valueUpdate = value + step;
+        valueUpdate = parseFloat(value) + step;
       } else {
-        valueUpdate = value - step;
+        valueUpdate = parseFloat(value) - step;
       }
     } else {
       // if we are multi-valued and the user is incrementing or decrementing
@@ -138,7 +138,7 @@ export default class NumericInput extends Component {
         min={this.props.min}
         max={this.props.max}
         step={this.props.step}
-        value={this.state.value}
+        value={parseFloat(this.state.value)}
         onChange={this.updateValue}
         tooltip={false}
       />
@@ -172,7 +172,7 @@ NumericInput.propTypes = {
   max: PropTypes.number,
   min: PropTypes.number,
   onUpdate: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   showArrows: PropTypes.bool,
   showSlider: PropTypes.bool,
   step: PropTypes.number,
