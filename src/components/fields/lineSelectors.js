@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {tooLight} from 'lib';
+import {COLORS} from 'lib/constants';
 
 /* eslint-disable react/prop-types */
 const styledRenderer = ({label}) => {
@@ -36,9 +37,7 @@ const strokeShapes = [
 
 const strokeStyle = {fill: 'none', strokeWidth: '4px'};
 
-const mutedBlue = '#1f77b4';
-
-const computeOptions = (strokeData, stroke = mutedBlue) =>
+const computeOptions = (strokeData, stroke = COLORS.mutedBlue) =>
   strokeData.map(({value, strokeDasharray, d = 'M0,8h100'}) => ({
     label: <path d={d} style={{...strokeStyle, stroke, strokeDasharray}} />,
     value,

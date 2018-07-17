@@ -1,3 +1,5 @@
+import {COLORS} from 'lib/constants';
+
 export function plotlyTraceToCustomTrace(trace) {
   const gl = 'gl';
   const type = trace.type
@@ -37,18 +39,18 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
     case 'ohlc':
       return {
         type: 'ohlc',
-        decreasing: {line: {color: '#7F7F7F'}},
-        increasing: {line: {color: '#17BECF'}},
+        decreasing: {line: {color: COLORS.middleGray}},
+        increasing: {line: {color: COLORS.blueTeal}},
       };
     case 'candlestick':
       return {
         type: 'candlestick',
         decreasing: {
-          line: {color: '#7F7F7F'},
+          line: {color: COLORS.middleGray},
           fillcolor: 'rgba(127, 127, 127, 0.5)',
         },
         increasing: {
-          line: {color: '#17BECF'},
+          line: {color: COLORS.blueTeal},
           fillcolor: 'rgba(23, 190, 207, 0.5)',
         },
       };

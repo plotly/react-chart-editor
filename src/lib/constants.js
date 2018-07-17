@@ -77,3 +77,35 @@ export const TRACE_TO_AXIS = {
 };
 
 export const TRANSFORMS_LIST = ['filter', 'groupby', 'aggregate'];
+
+export const COLORS = {
+  charcoal: '#444444',
+  white: '#ffffff',
+  mutedBlue: '#1f77b4',
+  safetyOrange: '#ff7f0e',
+  cookedAsparagusGreen: '#2ca02c',
+  brickRed: '#d62728',
+  mutedPurple: '#9467bd',
+  chestnutBrown: '#8c564b',
+  raspberryYogurtPink: '#e377c2',
+  middleGray: '#7f7f7f',
+  curryYellowGreen: '#bcbd22',
+  blueTeal: '#17becf',
+  editorLink: '#447bdc',
+  black: '#000000',
+};
+
+export const DEFAULT_COLORS = [
+  COLORS.charcoal,
+  COLORS.white,
+  COLORS.mutedBlue,
+  COLORS.safetyOrange,
+  COLORS.cookedAsparagusGreen,
+  COLORS.brickRed,
+  COLORS.mutedPurple,
+  COLORS.chestnutBrown,
+  COLORS.raspberryYogurtPink,
+  COLORS.middleGray,
+  COLORS.curryYellowGreen,
+  COLORS.blueTeal,
+];
