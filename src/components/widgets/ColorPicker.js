@@ -92,7 +92,6 @@ class ColorPicker extends Component {
     // We use our own toTinyColor because this value is a ColorPicker
     // color value which is an object that needs unpacking. We also handle
     // the case where a color string is passed in (just in case).
-
     const color = toTinyColor(newColor);
 
     // relayout call only wants a RGB String

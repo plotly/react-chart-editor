@@ -205,7 +205,6 @@ const GraphCreatePanel = (props, {localize: _}) => {
           />
         </LayoutSection>
         <Numeric label={_('Sum')} step={10} attr="sum" />
-        <DataSelector label={_('Color')} attr="marker.color" />
         <Radio
           label={_('Transpose')}
           attr="transpose"
