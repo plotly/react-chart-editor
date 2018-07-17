@@ -80,6 +80,14 @@ const GraphTransformsPanel = (props, {localize: _}) => {
         <FilterOperation label={_('Operator')} attr="operation" />
         <FilterValue label={_('Value')} attr="value" />
 
+        <Radio
+          attr="order"
+          options={[
+            {label: _('Ascending'), value: 'ascending'},
+            {label: _('Descending'), value: 'descending'},
+          ]}
+        />
+
         <PlotlySection name={_('Aggregations')} attr="aggregations">
           <Aggregations />
         </PlotlySection>

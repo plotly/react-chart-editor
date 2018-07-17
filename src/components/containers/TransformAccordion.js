@@ -23,6 +23,7 @@ class TransformAccordion extends Component {
       {label: _('Filter'), type: 'filter'},
       {label: _('Split'), type: 'groupby'},
       {label: _('Aggregate'), type: 'aggregate'},
+      {label: _('Sort'), type: 'sort'},
     ];
 
     const transformableCharts = [
