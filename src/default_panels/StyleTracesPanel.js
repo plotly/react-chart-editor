@@ -25,6 +25,7 @@ import {
   FontSelector,
   TextPosition,
   MarkerSize,
+  DataSelector,
 } from '../components';
 import {
   BinningNumeric,
@@ -135,8 +136,8 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Flaglist
         attr="mode"
         options={[
-          {label: _('Lines'), value: 'lines'},
           {label: _('Points'), value: 'markers'},
+          {label: _('Lines'), value: 'lines'},
           {label: _('Text'), value: 'text'},
         ]}
       />
@@ -148,10 +149,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Disable'), value: false},
         ]}
       />
-    </PlotlySection>
-    <PlotlySection name={_('Filled Area')}>
-      <FillDropdown attr="fill" label={_('Fill to')} />
-      <ColorPicker label={_('Color')} attr="fillcolor" />
     </PlotlySection>
     <PlotlySection name={_('Binning')}>
       <BinningDropdown label={_('Binning Function')} attr="histfunc" />
@@ -186,7 +183,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <TraceMarkerSection>
       <Radio
-        label="Order"
+        label={_('Order')}
         attr="sort"
         options={[
           {label: _('Sorted'), value: true},
@@ -194,7 +191,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
       />
       <Radio
-        label="Direction"
+        label={_('Direction')}
         attr="direction"
         options={[
           {label: _('Clockwise'), value: 'clockwise'},
@@ -333,10 +330,15 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
       />
     </TraceTypeSection>
+    <PlotlySection name={_('Filled Area')}>
+      <FillDropdown attr="fill" label={_('Fill to')} />
+      <ColorPicker label={_('Color')} attr="fillcolor" />
+    </PlotlySection>
     <TraceTypeSection
       name={_('Text')}
       traceTypes={['scatter', 'scatterpolar', 'scatterpolargl', 'pie']}
     >
+      <DataSelector label={_('Text')} attr="text" />
       <FontSelector label={_('Typeface')} attr="textfont.family" />
       <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
       <ColorPicker label={_('Font Color')} attr="textfont.color" />
