@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 import SymbolSelectorWidget from '../widgets/SymbolSelector';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {connectToContainer, tooLight} from 'lib';
-import {MULTI_VALUED} from '../../lib/constants';
+import {MULTI_VALUED, COLORS} from 'lib/constants';
 
 // TODO compute these from plotly.js
 const SYMBOLS = [
@@ -373,6 +373,9 @@ class SymbolSelector extends Component {
     if (this.markerColor === MULTI_VALUED) {
       this.markerColor = nestedProperty(defaultContainer, 'marker.color').get();
     }
+    this.markerColor = Array.isArray(this.markerColor)
+      ? COLORS.mutedBlue
+      : this.markerColor;
 
     this.borderColor = this.markerColor;
     if (this.borderWidth) {
@@ -387,6 +390,10 @@ class SymbolSelector extends Component {
         ).get();
       }
     }
+
+    this.borderColor = Array.isArray(this.borderColor)
+      ? COLORS.charcoal
+      : this.borderColor;
 
     if (this.props.is3D) {
       this.symbolOptions = SYMBOLS.filter(option => {
