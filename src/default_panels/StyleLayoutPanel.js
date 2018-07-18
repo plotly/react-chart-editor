@@ -70,6 +70,52 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <Numeric label={_('Padding')} attr="margin.pad" units="px" />
     </PlotlyFold>
     <PlotlyFold name={_('Geo Style')}>
+      <PlotlySection name={_('Country Borders')} attr="geo.showcountries">
+        <Radio
+          attr="geo.showcountries"
+          options={[
+            {label: _('Show'), value: true},
+            {label: _('Hide'), value: false},
+          ]}
+        />
+        <Numeric label={_('Border Width')} attr="geo.countrywidth" units="px" />
+        <ColorPicker label={_('Border Color')} attr="geo.countrycolor" />
+      </PlotlySection>
+      <PlotlySection
+        name={_('Sub-Country Unit Borders')}
+        attr="geo.showsubunits"
+      >
+        <Radio
+          attr="geo.showsubunits"
+          options={[
+            {label: _('Show'), value: true},
+            {label: _('Hide'), value: false},
+          ]}
+        />
+        <Numeric label={_('Border Width')} attr="geo.subunitwidth" units="px" />
+        <ColorPicker label={_('Border Color')} attr="geo.subunitcolor" />
+      </PlotlySection>
+      <PlotlySection name={_('Coastlines')} attr="geo.showcoastlines">
+        <Radio
+          attr="geo.showcoastlines"
+          options={[
+            {label: _('Show'), value: true},
+            {label: _('Hide'), value: false},
+          ]}
+        />
+        <Numeric label={_('Width')} attr="geo.coastlinewidth" units="px" />
+        <ColorPicker label={_('Color')} attr="geo.coastlinecolor" />
+      </PlotlySection>
+      <PlotlySection name={_('Oceans')} attr="geo.showocean">
+        <Radio
+          attr="geo.showocean"
+          options={[
+            {label: _('Show'), value: true},
+            {label: _('Hide'), value: false},
+          ]}
+        />
+        <ColorPicker label={_('Color')} attr="geo.oceancolor" />
+      </PlotlySection>
       <PlotlySection name={_('Land')} attr="geo.showland">
         <Radio
           attr="geo.showland"
@@ -101,39 +147,7 @@ const StyleLayoutPanel = (props, {localize: _}) => (
         <Numeric label={_('Width')} attr="geo.riverwidth" units="px" />
         <ColorPicker label={_('Color')} attr="geo.rivercolor" />
       </PlotlySection>
-      <PlotlySection name={_('Coastlines')} attr="geo.showcoastlines">
-        <Radio
-          attr="geo.showcoastlines"
-          options={[
-            {label: _('Show'), value: true},
-            {label: _('Hide'), value: false},
-          ]}
-        />
-        <Numeric label={_('Width')} attr="geo.coastlinewidth" units="px" />
-        <ColorPicker label={_('Color')} attr="geo.coastlinecolor" />
-      </PlotlySection>
-      <PlotlySection name={_('Oceans')} attr="geo.showocean">
-        <Radio
-          attr="geo.showocean"
-          options={[
-            {label: _('Show'), value: true},
-            {label: _('Hide'), value: false},
-          ]}
-        />
-        <ColorPicker label={_('Color')} attr="geo.oceancolor" />
-      </PlotlySection>
-      <PlotlySection name={_('Countries')} attr="geo.showcountries">
-        <Radio
-          attr="geo.showcountries"
-          options={[
-            {label: _('Show'), value: true},
-            {label: _('Hide'), value: false},
-          ]}
-        />
-        <Numeric label={_('Border Width')} attr="geo.countrywidth" units="px" />
-        <ColorPicker label={_('Border Color')} attr="geo.countrycolor" />
-      </PlotlySection>
-      <PlotlySection name={_('Frame')} attr="geo.showframe">
+      <PlotlySection name={_('Map Frame')} attr="geo.showframe">
         <Radio
           attr="geo.showframe"
           options={[
