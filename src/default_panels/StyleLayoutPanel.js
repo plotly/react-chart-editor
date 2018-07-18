@@ -16,16 +16,7 @@ import {
 const StyleLayoutPanel = (props, {localize: _}) => (
   <TraceRequiredPanel>
     <PlotlyFold name={_('Canvas')}>
-      <Radio
-        label={_('Size')}
-        attr="autosize"
-        options={[
-          {label: _('Auto'), value: true},
-          {label: _('Custom'), value: false},
-        ]}
-      />
-      <CanvasSize label={_('Fixed Width')} attr="width" units="px" />
-      <CanvasSize label={_('Fixed Height')} attr="height" units="px" />
+      <CanvasSize attr="autosize" />
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
       <ColorPicker label={_('Plot Background')} attr="polar.bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
