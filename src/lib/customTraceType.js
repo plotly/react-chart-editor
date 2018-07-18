@@ -1,8 +1,10 @@
 export function plotlyTraceToCustomTrace(trace) {
   const gl = 'gl';
-  const type = trace.type.endsWith(gl)
-    ? trace.type.slice(0, -gl.length)
-    : trace.type || 'scatter';
+  const type = trace.type
+    ? trace.type.endsWith(gl)
+      ? trace.type.slice(0, -gl.length)
+      : trace.type
+    : 'scatter';
 
   if (
     (type === 'scatter' || type === 'scattergl') &&
