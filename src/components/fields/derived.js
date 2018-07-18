@@ -124,18 +124,6 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
   },
 });
 
-export const CanvasSize = connectToContainer(UnconnectedNumeric, {
-  modifyPlotProps: (props, context, plotProps) => {
-    const {fullContainer, updateContainer, container} = plotProps;
-    if (plotProps.isVisible && fullContainer && fullContainer.autosize) {
-      plotProps.isVisible = false;
-      if (container[props.attr]) {
-        updateContainer({[props.attr]: {}});
-      }
-    }
-  },
-});
-
 export const ContourNumeric = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;
