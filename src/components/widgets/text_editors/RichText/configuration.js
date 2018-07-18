@@ -1,6 +1,7 @@
 import React from 'react';
 import {INLINE_STYLE} from 'draft-js-utils';
 import {LinkIcon} from 'plotly-icons';
+import {COLORS} from 'lib/constants';
 
 export const SUPERSCRIPT = 'SUPERSCRIPT';
 export const SUBSCRIPT = 'SUBSCRIPT';
@@ -46,7 +47,7 @@ export const STYLE_MAP = {
     top: '-5px',
   },
   [LINK]: {
-    color: '#447bdc',
+    color: COLORS.editorLink,
     linkDecoration: 'none',
     cursor: 'pointer',
   },

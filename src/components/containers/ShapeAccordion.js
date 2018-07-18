@@ -3,6 +3,7 @@ import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectShapeToLayout} from 'lib';
+import {COLORS} from 'lib/constants';
 
 const ShapeFold = connectShapeToLayout(PlotlyFold);
 
@@ -35,8 +36,8 @@ class ShapeAccordion extends Component {
         const key = `shapes[${shapeIndex}]`;
         const value = {
           text: `${_('Shape')} ${shapeIndex}`,
-          line: {color: '#444444'},
-          fillcolor: '#7F7F7F',
+          line: {color: COLORS.charcoal},
+          fillcolor: COLORS.middleGray,
           opacity: 0.3,
         };
 

@@ -77,3 +77,10 @@
     }
   }
 }
+
+.field .field {
+  border-top: none;
+  .field__no-title {
+    padding: 0;
+  }
+}

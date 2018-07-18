@@ -10,23 +10,7 @@ import {
   Checkboard,
 } from 'react-color/lib/components/common';
 import {CustomPicker as customPicker} from 'react-color';
-
-/* eslint-disable no-inline-comments */
-const defaultColors = [
-  '#444444',
-  '#ffffff',
-  '#1f77b4', // muted blue
-  '#ff7f0e', // safety orange
-  '#2ca02c', // cooked asparagus green
-  '#d62728', // brick red
-  '#9467bd', // muted purple
-  '#8c564b', // chestnut brown
-  '#e377c2', // raspberry yogurt pink
-  '#7f7f7f', // middle gray
-  '#bcbd22', // curry yellow-green
-  '#17becf', // blue-teal
-];
-/* eslint-enable no-inline-comments */
+import {DEFAULT_COLORS} from 'lib/constants';
 
 // Utility functions for converting ColorPicker color objects or raw strings
 // into TinyColor objects.
@@ -73,7 +57,7 @@ class Custom extends Component {
         <div>
           <p className="colorpicker__title">{_('Default Colors')}</p>
           <div className="colorpicker__preset-colors">
-            <PresetColors colors={defaultColors} onClick={onChangeComplete} />
+            <PresetColors colors={DEFAULT_COLORS} onClick={onChangeComplete} />
           </div>
         </div>
       </div>
@@ -108,7 +92,6 @@ class ColorPicker extends Component {
     // We use our own toTinyColor because this value is a ColorPicker
     // color value which is an object that needs unpacking. We also handle
     // the case where a color string is passed in (just in case).
-
     const color = toTinyColor(newColor);
 
     // relayout call only wants a RGB String

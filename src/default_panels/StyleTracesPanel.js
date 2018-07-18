@@ -32,6 +32,7 @@ import {
   BinningDropdown,
   NumericReciprocal,
 } from '../components/fields/derived';
+import MarkerColor from '../components/fields/MarkerColor';
 
 const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
@@ -223,8 +224,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
       <NumericFraction label={_('Jitter')} attr="jitter" />
       <Numeric label={_('Position')} attr="pointpos" step={0.1} showSlider />
-      <ColorscalePicker label={_('Colorscale')} attr="marker.colorscale" />
-      <ColorPicker label={_('Color')} attr="marker.color" />
+      <MarkerColor label={_('Color')} attr="marker.color" />
       <NumericFraction label={_('Opacity')} attr="marker.opacity" />
       <MarkerSize label={_('Size')} attr="marker.size" />
       <Radio
