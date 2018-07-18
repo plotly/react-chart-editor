@@ -75,29 +75,27 @@ class UnconnectedMarkerSize extends Component {
       (Array.isArray(fullValue) && fullValue.includes(MULTI_VALUED));
 
     return (
-      <div>
-        <Field {...this.props} multiValued={multiValued} attr={attr}>
-          <RadioBlocks
-            options={options}
-            activeOption={type}
-            onOptionChange={this.setType}
+      <Field {...this.props} multiValued={multiValued} attr={attr}>
+        <RadioBlocks
+          options={options}
+          activeOption={type}
+          onOptionChange={this.setType}
+        />
+        {type === 'constant' ? (
+          <Numeric
+            suppressMultiValuedMessage
+            attr="marker.size"
+            updatePlot={this.setValue}
+            fullValue={value.constant}
           />
-          {type === 'constant' ? (
-            <Numeric
-              suppressMultiValuedMessage
-              attr="marker.size"
-              updatePlot={this.setValue}
-              fullValue={value.constant}
-            />
-          ) : multiValued ? null : (
-            <DataSelector
-              suppressMultiValuedMessage
-              attr="marker.size"
-              updatePlot={this.setValue}
-            />
-          )}
-        </Field>
-      </div>
+        ) : multiValued ? null : (
+          <DataSelector
+            suppressMultiValuedMessage
+            attr="marker.size"
+            updatePlot={this.setValue}
+          />
+        )}
+      </Field>
     );
   }
 }

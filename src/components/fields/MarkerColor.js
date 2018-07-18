@@ -93,37 +93,35 @@ class UnconnectedMarkerColor extends Component {
         container.marker.color.includes(MULTI_VALUED));
 
     return (
-      <div>
-        <Field {...this.props} multiValued={multiValued} attr={attr}>
-          <RadioBlocks
-            options={options}
-            activeOption={type}
-            onOptionChange={this.setType}
+      <Field {...this.props} multiValued={multiValued} attr={attr}>
+        <RadioBlocks
+          options={options}
+          activeOption={type}
+          onOptionChange={this.setType}
+        />
+        {!type ? null : type === 'constant' ? (
+          <Color
+            suppressMultiValuedMessage
+            attr="marker.color"
+            updatePlot={this.setValue}
+            fullValue={value.constant}
           />
-          {!type ? null : type === 'constant' ? (
-            <Color
-              suppressMultiValuedMessage
-              attr="marker.color"
-              updatePlot={this.setValue}
-              fullValue={value.constant}
-            />
-          ) : container.marker &&
-          container.marker.colorsrc === MULTI_VALUED ? null : (
-            <div>
-              <DataSelector suppressMultiValuedMessage attr="marker.color" />
-              {container.marker &&
-              container.marker.colorscale === MULTI_VALUED ? null : (
-                <Colorscale
-                  suppressMultiValuedMessage
-                  attr="marker.colorscale"
-                  updatePlot={this.setColorScale}
-                  colorscale={colorscale}
-                />
-              )}
-            </div>
-          )}
-        </Field>
-      </div>
+        ) : container.marker &&
+        container.marker.colorsrc === MULTI_VALUED ? null : (
+          <div>
+            <DataSelector suppressMultiValuedMessage attr="marker.color" />
+            {container.marker &&
+            container.marker.colorscale === MULTI_VALUED ? null : (
+              <Colorscale
+                suppressMultiValuedMessage
+                attr="marker.colorscale"
+                updatePlot={this.setColorScale}
+                colorscale={colorscale}
+              />
+            )}
+          </div>
+        )}
+      </Field>
     );
   }
 }
