@@ -12,7 +12,7 @@ import {
   axisIdToAxisName,
 } from 'lib';
 
-class UnconnectedNewAxisCreator extends Component {
+class UnconnectedAxisCreator extends Component {
   canAddAxis() {
     const currentAxisId = this.props.fullContainer[this.props.attr];
     const currentTraceIndex = this.props.fullContainer.index;
@@ -104,7 +104,7 @@ class UnconnectedNewAxisCreator extends Component {
   }
 }
 
-UnconnectedNewAxisCreator.propTypes = {
+UnconnectedAxisCreator.propTypes = {
   attr: PropTypes.string,
   label: PropTypes.string,
   options: PropTypes.array,
@@ -114,16 +114,16 @@ UnconnectedNewAxisCreator.propTypes = {
   updateContainer: PropTypes.func,
 };
 
-UnconnectedNewAxisCreator.contextTypes = {
+UnconnectedAxisCreator.contextTypes = {
   fullLayout: PropTypes.object,
   data: PropTypes.array,
   fullData: PropTypes.array,
   onUpdate: PropTypes.func,
 };
 
-const ConnectedNewAxisCreator = connectToContainer(UnconnectedNewAxisCreator);
+const AxisCreator = connectToContainer(UnconnectedAxisCreator);
 
-class AxisCreator extends Component {
+class UnconnectedAxesCreator extends Component {
   render() {
     const isFirstTraceOfType =
       this.context.data.filter(d => d.type === this.props.container.type)
@@ -148,7 +148,7 @@ class AxisCreator extends Component {
     if (axisType === 'cartesian') {
       ['xaxis', 'yaxis'].forEach((type, index) => {
         controls.push(
-          <ConnectedNewAxisCreator
+          <AxisCreator
             key={index}
             attr={type}
             label={type.charAt(0).toUpperCase() + ' Axis'}
@@ -169,19 +169,19 @@ class AxisCreator extends Component {
   }
 }
 
-AxisCreator.propTypes = {
+UnconnectedAxesCreator.propTypes = {
   container: PropTypes.object,
   fullContainer: PropTypes.object,
 };
 
-AxisCreator.contextTypes = {
+UnconnectedAxesCreator.contextTypes = {
   data: PropTypes.array,
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,
   localize: PropTypes.func,
 };
 
-export default connectToContainer(AxisCreator, {
+export default connectToContainer(UnconnectedAxesCreator, {
   modifyPlotProps: (props, context, plotProps) => {
     const {data} = context;
     const {fullContainer} = plotProps;

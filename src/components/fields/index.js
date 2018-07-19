@@ -16,7 +16,7 @@ import Text from './Text';
 import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
-import AxisCreator from './AxisCreator';
+import AxesCreator from './AxesCreator';
 import UpdateMenuButtons from './UpdateMenuButtons';
 import {FilterOperation, FilterValue} from './FilterOperation';
 import MarkerSize from './MarkerSize';
@@ -83,7 +83,7 @@ export {
   TextEditor,
   TraceOrientation,
   TraceSelector,
-  AxisCreator,
+  AxesCreator,
   AxisOverlayDropdown,
   AxisSide,
   UpdateMenuButtons,
