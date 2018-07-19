@@ -47,6 +47,7 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
 
 export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = context;
     let options = [];
     if (
       plotProps.fullContainer &&
@@ -72,13 +73,15 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
       });
     }
 
+    options.unshift({label: _('None'), value: false});
+
     // filter out the current axisID, can't overlay over itself
     plotProps.options = options.filter(
       option =>
         context.fullContainer && context.fullContainer._id !== option.value
     );
 
-    plotProps.clearable = true;
+    plotProps.clearable = false;
   },
 });
 
