@@ -23,6 +23,7 @@ class AxesSelector extends Component {
       localize: _,
     } = this.context;
     const {axesOptions} = this.props;
+    const maxCharsThatFitInRadio = 27;
     const maxOptions = axesOptions.length > 4; // eslint-disable-line
 
     const multipleSublots =
@@ -42,7 +43,12 @@ class AxesSelector extends Component {
         )
       : axesOptions;
 
-    return maxOptions ? (
+    const totalCharsInOptions =
+      (options &&
+        options.map(o => o.label).reduce((acc, o) => acc + o.length, 0)) ||
+      0;
+
+    return maxOptions || totalCharsInOptions >= maxCharsThatFitInRadio ? (
       <Field {...this.props} label={_('Axis to Style')}>
         <Dropdown
           options={options}
