@@ -1,26 +1,37 @@
 .colorscalePickerContainer {
   position: relative;
-  width: 300px;
-  margin-left: -76px;
+  margin-left: -42px;
+  padding: 0;
+  resize: none;
+  border: none;
+  background: none;
+}
+
+.colorscalePickerContainer.fullWidth {
+  margin-left: 0;
 }
 
 .colorscalePickerContainer::-webkit-scrollbar {
   width: 5px;
 }
 
-.colorscale-selected {
+.colorscalePickerTopContainer {
   display: none;
 }
 
-.rc-slider {
-  width: 254px !important;
+.colorscaleDescription {
+  display: none;
 }
 
-.colorscaleControlPanel {
-  padding: 6px;
-  width: 94%;
+.colorscalePickerContainer input:focus {
+  outline: none;
 }
 
-.colorscale-block {
-  margin: 0 20px !important;
+.colorscalePickerInfo {
+  margin-left: -42px;
+  width: 295px;
+}
+
+.colorscalePickerInfo.fullWidth {
+  margin-left: 0;
 }

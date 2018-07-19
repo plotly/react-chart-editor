@@ -1,34 +1,66 @@
-import ColorscalePicker, {Colorscale} from 'react-colorscales';
+import ColorscalePicker, {COLOR_PICKER_CONSTANTS} from 'react-colorscales';
+import Dropdown from './Dropdown';
+import Info from '../fields/Info';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import classnames from 'classnames';
 
 class Scale extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+
     this.state = {
-      showColorscalePicker: false,
+      selectedColorscaleType: 'sequential',
     };
-    this.toggle = this.toggle.bind(this);
+
+    this.onChange = this.onChange.bind(this);
   }
 
-  toggle() {
-    this.setState({
-      showColorscalePicker: !this.state.showColorscalePicker,
-    });
+  onChange(selectedColorscaleType) {
+    this.setState({selectedColorscaleType});
   }
 
   render() {
-    const {selected, onColorscaleChange} = this.props;
+    const {onColorscaleChange, selected, fullWidth} = this.props;
+    const description =
+      COLOR_PICKER_CONSTANTS.COLORSCALE_DESCRIPTIONS[
+        this.state.selectedColorscaleType
+      ];
+    const _ = this.context.localize;
+
+    const infoClassnames = classnames('colorscalePickerInfo', {
+      fullWidth: fullWidth ? 'fullWidth' : '',
+    });
+    const colorPickerClassnames = classnames('', {
+      fullWidth: fullWidth ? 'fullWidth' : '',
+    });
+
     return (
-      <div>
-        <Colorscale colorscale={selected} onClick={this.toggle} />
-        {this.state.showColorscalePicker ? (
-          <ColorscalePicker
-            onChange={onColorscaleChange}
-            colorscale={selected}
-          />
+      <Fragment>
+        <Dropdown
+          options={COLOR_PICKER_CONSTANTS.COLORSCALE_TYPES.filter(
+            t => t !== 'custom'
+          )}
+          value={this.state.selectedColorscaleType}
+          onChange={this.onChange}
+          clearable={false}
+          searchable={false}
+          placeholder={_('Select a Colorscale')}
+        />
+        <ColorscalePicker
+          onChange={onColorscaleChange}
+          colorscale={selected}
+          width={295}
+          initialColorscaleType={COLOR_PICKER_CONSTANTS.COLORSCALE_TYPES[0]}
+          colorscaleType={this.state.selectedColorscaleType}
+          onColorscaleTypeChange={this.onColorscaleTypeChange}
+          disableSwatchControls
+          className={colorPickerClassnames}
+        />
+        {description && description.length ? (
+          <Info fieldContainerClassName={infoClassnames}>{description}</Info>
         ) : null}
-      </div>
+      </Fragment>
     );
   }
 }
@@ -36,6 +68,15 @@ class Scale extends Component {
 Scale.propTypes = {
   onColorscaleChange: PropTypes.func,
   selected: PropTypes.array,
+  fullWidth: PropTypes.bool,
+};
+
+Scale.contextTypes = {
+  localize: PropTypes.func,
+};
+
+Scale.contextTypes = {
+  localize: PropTypes.func,
 };
 
 export default Scale;
