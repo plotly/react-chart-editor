@@ -45,7 +45,8 @@ export class UnconnectedDataSelector extends Component {
             'carpet',
             'contourcarpet',
           ].includes(props.container.type)) ||
-        (props.container.type === 'table' && props.attr !== 'columnorder');
+        (props.container.type === 'table' && props.attr !== 'columnorder') ||
+        Array.isArray(this.fullValue);
     }
   }
 
