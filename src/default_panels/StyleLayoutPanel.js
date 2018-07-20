@@ -11,6 +11,7 @@ import {
   TextEditor,
   PlotlySection,
   TraceRequiredPanel,
+  AspectRatio,
 } from '../components';
 
 const StyleLayoutPanel = (props, {localize: _}) => (
@@ -31,7 +32,22 @@ const StyleLayoutPanel = (props, {localize: _}) => (
         ]}
         clearable={false}
       />
+      <Dropdown
+        label="Drag Interaction"
+        attr="dragmode"
+        options={[
+          {label: _('Orbit'), value: 'orbit'},
+          {label: _('Turntable'), value: 'turntable'},
+          {label: _('Zoom'), value: 'zoom'},
+          {label: _('Pan'), value: 'pan'},
+        ]}
+        clearable={false}
+      />
     </PlotlyFold>
+    <PlotlyFold name={_('Aspect Ratio')}>
+      <AspectRatio attr="scene.aspectmode" />
+    </PlotlyFold>
+
     <PlotlyFold name={_('Title and Fonts')}>
       <PlotlySection name={_('Title')} attr="title">
         <TextEditor attr="title" />

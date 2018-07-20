@@ -44,6 +44,7 @@ import {
   Dropzone,
   TextPosition,
   MarkerSize,
+  AspectRatio,
 } from './fields';
 
 import {
@@ -143,4 +144,5 @@ export {
   Dropzone,
   TextPosition,
   MarkerSize,
+  AspectRatio,
 };

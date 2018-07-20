@@ -21,6 +21,7 @@ import UpdateMenuButtons from './UpdateMenuButtons';
 import {FilterOperation, FilterValue} from './FilterOperation';
 import MarkerSize from './MarkerSize';
 import CanvasSize from './CanvasSize';
+import AspectRatio from './AspectRatio';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -90,4 +91,5 @@ export {
   Dropzone,
   TextPosition,
   MarkerSize,
+  AspectRatio,
 };
