@@ -68,7 +68,9 @@ class StyleAxesPanel extends Component {
           axisFilter={axis =>
             !(
               axis._subplot.includes('polar') ||
-              axis._subplot.includes('ternary')
+              axis._subplot.includes('ternary') ||
+              axis._subplot.includes('scene') ||
+              axis._subplot.includes('geo')
             )
           }
         >
