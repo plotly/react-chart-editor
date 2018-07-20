@@ -7,7 +7,7 @@ import {
   Radio,
   PlotlySection,
   LayoutSection,
-  AxisCreator,
+  AxesCreator,
   TraceAccordion,
   TraceSelector,
   TextEditor,
@@ -107,7 +107,7 @@ const GraphCreatePanel = (props, {localize: _}) => {
       </TraceTypeSection>
 
       <PlotlySection name={_('Axes to Use')}>
-        <AxisCreator attr="fake_attr" />
+        <AxesCreator attr="fake_attr" />
       </PlotlySection>
 
       <PlotlySection name={_('Error Bars X')}>
