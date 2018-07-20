@@ -32,6 +32,14 @@ const StyleImagesPanel = (props, {localize: _}) => (
       ]}
       clearable={false}
     />
+    <Radio
+      label={_('Relative to Grid')}
+      attr="layer"
+      options={[
+        {label: _('Below'), value: 'below'},
+        {label: _('Above'), value: 'above'},
+      ]}
+    />
     <PositioningNumeric attr="sizex" label={_('Width')} />
     <PositioningNumeric attr="sizey" label={_('Height')} />
     <PlotlySection name={_('Horizontal Positioning')}>
