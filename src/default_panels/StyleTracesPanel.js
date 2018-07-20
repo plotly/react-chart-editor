@@ -303,7 +303,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       ]}
     >
       <Numeric label={_('Width')} attr="line.width" />
-      <ColorPicker label={_('Line Color')} attr="line.color" />
+      <ColorPicker label={_('Color')} attr="line.color" />
       <Radio
         label={_('Color Bar')}
         attr="line.showscale"

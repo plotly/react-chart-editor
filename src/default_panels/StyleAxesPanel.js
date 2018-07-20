@@ -345,7 +345,7 @@ class StyleAxesPanel extends Component {
             />
             <Numeric label={_('Length')} attr="ticklen" units="px" />
             <Numeric label={_('Width')} attr="tickwidth" units="px" />
-            <ColorPicker label={_('Tick Color')} attr="tickcolor" />
+            <ColorPicker label={_('Color')} attr="tickcolor" />
           </PlotlySection>
           <PlotlySection name={_('Spacing')}>
             <Radio

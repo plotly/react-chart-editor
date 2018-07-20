@@ -43,7 +43,7 @@ const StyleShapesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <PlotlySection name={_('Lines')}>
       <Numeric label={_('Width')} attr="line.width" />
-      <ColorPicker label={_('Line Color')} attr="line.color" />
+      <ColorPicker label={_('Color')} attr="line.color" />
       <LineDashSelector label={_('Type')} attr="line.dash" />
     </PlotlySection>
     <PlotlySection name={_('Fill')}>
