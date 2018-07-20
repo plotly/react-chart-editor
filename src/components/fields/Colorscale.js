@@ -30,20 +30,11 @@ class Colorscale extends Component {
       ? fullValue.map(v => v[1])
       : null;
 
-    // removing label prop on colorscales, not enough space
-    const adjustedProps = {...this.props};
-    let fullWidth = false;
-    if (adjustedProps.label) {
-      fullWidth = true;
-      delete adjustedProps.label;
-    }
-
     return (
-      <Field {...adjustedProps}>
+      <Field {...this.props} label={false}>
         <ColorscalePicker
           selected={colorscale}
           onColorscaleChange={this.onUpdate}
-          fullWidth={fullWidth}
         />
       </Field>
     );

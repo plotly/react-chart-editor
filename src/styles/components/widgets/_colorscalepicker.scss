@@ -1,6 +1,6 @@
 .colorscalePickerContainer {
+  min-width: 250px;
   position: relative;
-  margin-left: -42px;
   padding: 0;
   resize: none;
   border: none;
@@ -25,11 +25,6 @@
 
 .colorscalePickerContainer input:focus {
   outline: none;
-}
-
-.colorscalePickerInfo {
-  margin-left: -42px;
-  width: 295px;
 }
 
 .colorscalePickerInfo.fullWidth {
