@@ -112,6 +112,11 @@ export const traceTypes = _ => [
     category: chartCategory(_).DISTRIBUTIONS,
   },
   {
+    value: 'violin',
+    label: _('Violin'),
+    category: chartCategory(_).DISTRIBUTIONS,
+  },
+  {
     value: 'histogram',
     label: _('Histogram'),
     category: chartCategory(_).DISTRIBUTIONS,
@@ -124,11 +129,6 @@ export const traceTypes = _ => [
   {
     value: 'histogram2dcontour',
     label: _('2D Contour Histogram'),
-    category: chartCategory(_).DISTRIBUTIONS,
-  },
-  {
-    value: 'violin',
-    label: _('Violin'),
     category: chartCategory(_).DISTRIBUTIONS,
   },
   {
