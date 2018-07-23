@@ -1,6 +1,6 @@
 import Field from './Field';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {connectToContainer} from 'lib';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Color from './Color';
@@ -108,7 +108,7 @@ class UnconnectedMarkerColor extends Component {
           />
         ) : container.marker &&
         container.marker.colorsrc === MULTI_VALUED ? null : (
-          <div>
+          <Fragment>
             <DataSelector suppressMultiValuedMessage attr="marker.color" />
             {container.marker &&
             container.marker.colorscale === MULTI_VALUED ? null : (
@@ -119,7 +119,7 @@ class UnconnectedMarkerColor extends Component {
                 colorscale={colorscale}
               />
             )}
-          </div>
+          </Fragment>
         )}
       </Field>
     );

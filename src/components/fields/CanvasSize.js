@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
 import Field from './Field';
@@ -46,7 +46,7 @@ class UnconnectedCanvasSize extends Component {
     const {auto, width, height} = this.state;
 
     return (
-      <div>
+      <Fragment>
         <Radio
           attr={attr}
           label={_('Size')}
@@ -60,7 +60,7 @@ class UnconnectedCanvasSize extends Component {
         {auto ? (
           ''
         ) : (
-          <div>
+          <Fragment>
             <Numeric
               label={_('Fixed Width')}
               suppressMultiValuedMessage
@@ -77,9 +77,9 @@ class UnconnectedCanvasSize extends Component {
               fullValue={height}
               units="px"
             />
-          </div>
+          </Fragment>
         )}
-      </div>
+      </Fragment>
     );
   }
 }

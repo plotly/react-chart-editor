@@ -25,14 +25,15 @@ import {
   FontSelector,
   TextPosition,
   MarkerSize,
+  MarkerColor,
   DataSelector,
+  VisibilitySelect,
 } from '../components';
 import {
   BinningNumeric,
   BinningDropdown,
   NumericReciprocal,
 } from '../components/fields/derived';
-import MarkerColor from '../components/fields/MarkerColor';
 
 const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
@@ -538,16 +539,19 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <PlotlySection name={_('On Hover')}>
       <HoverInfo attr="hoverinfo" label={_('Values Shown On Hover')} />
-      <Radio
-        label={_('Show Contour')}
+      <VisibilitySelect
         attr="contour.show"
+        label={_('Show Contour')}
         options={[
           {label: _('Show'), value: true},
           {label: _('Hide'), value: false},
         ]}
-      />
-      <ColorPicker label={_('Contour Color')} attr="contour.color" />
-      <Numeric label={_('Contour Width')} attr="contour.width" />
+        showOn={true}
+        defaultOpt={false}
+      >
+        <ColorPicker label={_('Contour Color')} attr="contour.color" />
+        <Numeric label={_('Contour Width')} attr="contour.width" />
+      </VisibilitySelect>
     </PlotlySection>
     <TraceTypeSection name={_('Hover Action')} traceTypes={['box']}>
       <Flaglist

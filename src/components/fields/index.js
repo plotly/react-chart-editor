@@ -20,8 +20,10 @@ import AxesCreator from './AxesCreator';
 import UpdateMenuButtons from './UpdateMenuButtons';
 import {FilterOperation, FilterValue} from './FilterOperation';
 import MarkerSize from './MarkerSize';
+import MarkerColor from './MarkerColor';
 import CanvasSize from './CanvasSize';
 import AspectRatio from './AspectRatio';
+import VisibilitySelect from './VisibilitySelect';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -91,5 +93,7 @@ export {
   Dropzone,
   TextPosition,
   MarkerSize,
+  MarkerColor,
   AspectRatio,
+  VisibilitySelect,
 };
