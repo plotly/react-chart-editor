@@ -373,6 +373,19 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Hide'), value: false},
         ]}
       />
+      <VisibilitySelect
+        label={_('Colorscale Range')}
+        attr="cauto"
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
+        showOn={false}
+        dafault={true}
+      >
+        <Numeric label={_('Min Value')} attr="cmin" />
+        <Numeric label={_('Max Value')} attr="cmax" />
+      </VisibilitySelect>
     </PlotlySection>
     <PlotlySection name={_('Heatmap')}>
       <Numeric label={_('Horizontal Gaps')} attr="xgap" />
