@@ -593,13 +593,15 @@ const StyleTracesPanel = (props, {localize: _}) => (
         'scatterpolargl',
       ]}
     >
-      <Flaglist
+      <Dropdown
         attr="hoveron"
         label={_('Hover on')}
         options={[
           {label: _('Fills'), value: 'fills'},
           {label: _('Points'), value: 'points'},
+          {label: _('Fills & Points'), value: 'fills+points'},
         ]}
+        clearable={false}
       />
     </TraceTypeSection>
   </TraceAccordion>
