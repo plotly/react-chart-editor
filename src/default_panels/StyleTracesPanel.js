@@ -337,7 +337,15 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <TraceTypeSection
       name={_('Text')}
-      traceTypes={['scatter', 'scatterpolar', 'scatterpolargl', 'pie']}
+      traceTypes={[
+        'scatter',
+        'scattergl',
+        'scatterpolar',
+        'scatterpolargl',
+        'pie',
+        'scatter3d',
+        'scatterternary',
+      ]}
     >
       <DataSelector label={_('Text')} attr="text" />
       <FontSelector label={_('Typeface')} attr="textfont.family" />
