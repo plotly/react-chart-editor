@@ -10,7 +10,6 @@ import {
   NTicks,
   DTicks,
   AxesSelector,
-  CanvasSize,
   ColorPicker,
   ColorscalePicker,
   ContourNumeric,
@@ -45,7 +44,6 @@ import {
   TextPosition,
   MarkerSize,
   MarkerColor,
-  AspectRatio,
   VisibilitySelect,
 } from './fields';
 
@@ -100,7 +98,6 @@ export {
   LayoutSection,
   AxesSelector,
   Button,
-  CanvasSize,
   ColorPicker,
   ColorscalePicker,
   ContourNumeric,
@@ -147,6 +144,5 @@ export {
   TextPosition,
   MarkerSize,
   MarkerColor,
-  AspectRatio,
   VisibilitySelect,
 };
