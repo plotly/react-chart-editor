@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  CanvasSize,
   ColorPicker,
   Dropdown,
   FontSelector,
@@ -11,12 +10,25 @@ import {
   TextEditor,
   PlotlySection,
   TraceRequiredPanel,
+  VisibilitySelect,
 } from '../components';
 
 const StyleLayoutPanel = (props, {localize: _}) => (
   <TraceRequiredPanel>
     <PlotlyFold name={_('Canvas')}>
-      <CanvasSize attr="autosize" />
+      <VisibilitySelect
+        attr="autosize"
+        label={_('Size')}
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
+        showOn={false}
+        defaultOpt={true}
+      >
+        <Numeric label={_('Fixed Width')} attr="width" units="px" />
+        <Numeric label={_('Fixed height')} attr="height" units="px" />
+      </VisibilitySelect>
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
       <ColorPicker label={_('Plot Background')} attr="polar.bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
@@ -31,6 +43,36 @@ const StyleLayoutPanel = (props, {localize: _}) => (
         ]}
         clearable={false}
       />
+      <Dropdown
+        label="Drag Interaction"
+        attr="dragmode"
+        options={[
+          {label: _('Orbit'), value: 'orbit'},
+          {label: _('Turntable'), value: 'turntable'},
+          {label: _('Zoom'), value: 'zoom'},
+          {label: _('Pan'), value: 'pan'},
+        ]}
+        clearable={false}
+      />
+    </PlotlyFold>
+    <PlotlyFold name={_('Aspect Ratio')}>
+      <VisibilitySelect
+        attr="scene.aspectmode"
+        options={[
+          {label: _('Auto'), value: 'mode'},
+          {label: _('Cube'), value: 'cube'},
+          {label: _('Data'), value: 'data'},
+          {label: _('Manual'), value: 'manual'},
+        ]}
+        dropdown={true}
+        clearable={false}
+        showOn="manual"
+        dafault="mode"
+      >
+        <Numeric label={_('X')} attr="scene.aspectratio.x" step={0.1} />
+        <Numeric label={_('Y')} attr="scene.aspectratio.y" step={0.1} />
+        <Numeric label={_('Z')} attr="scene.aspectratio.z" step={0.1} />
+      </VisibilitySelect>
     </PlotlyFold>
     <PlotlyFold name={_('Title and Fonts')}>
       <PlotlySection name={_('Title')} attr="title">

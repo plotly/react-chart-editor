@@ -25,14 +25,15 @@ import {
   FontSelector,
   TextPosition,
   MarkerSize,
+  MarkerColor,
   DataSelector,
+  VisibilitySelect,
 } from '../components';
 import {
   BinningNumeric,
   BinningDropdown,
   NumericReciprocal,
 } from '../components/fields/derived';
-import MarkerColor from '../components/fields/MarkerColor';
 
 const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
@@ -303,7 +304,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       ]}
     >
       <Numeric label={_('Width')} attr="line.width" />
-      <ColorPicker label={_('Line Color')} attr="line.color" />
+      <ColorPicker label={_('Color')} attr="line.color" />
       <Radio
         label={_('Color Bar')}
         attr="line.showscale"
@@ -336,7 +337,15 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <TraceTypeSection
       name={_('Text')}
-      traceTypes={['scatter', 'scatterpolar', 'scatterpolargl', 'pie']}
+      traceTypes={[
+        'scatter',
+        'scattergl',
+        'scatterpolar',
+        'scatterpolargl',
+        'pie',
+        'scatter3d',
+        'scatterternary',
+      ]}
     >
       <DataSelector label={_('Text')} attr="text" />
       <FontSelector label={_('Typeface')} attr="textfont.family" />
@@ -347,24 +356,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Colorscale')}>
       <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
       <Radio
-        label={_('Orientation')}
-        attr="reversescale"
-        options={[
-          {label: _('Normal'), value: false},
-          {label: _('Reversed'), value: true},
-        ]}
-      />
-      <Radio
-        label={_('Range')}
-        attr="zauto"
-        options={[
-          {label: _('Auto'), value: true},
-          {label: _('Custom'), value: false},
-        ]}
-      />
-      <Numeric label={_('Min')} attr="zmin" />
-      <Numeric label={_('Max')} attr="zmax" />
-      <Radio
         label={_('Color Bar')}
         attr="showscale"
         options={[
@@ -372,6 +363,40 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Hide'), value: false},
         ]}
       />
+      <Radio
+        label={_('Orientation')}
+        attr="reversescale"
+        options={[
+          {label: _('Normal'), value: false},
+          {label: _('Reversed'), value: true},
+        ]}
+      />
+      <VisibilitySelect
+        label={_('Range')}
+        attr="zauto"
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
+        showOn={false}
+        dafault={true}
+      >
+        <Numeric label={_('Min')} attr="zmin" />
+        <Numeric label={_('Max')} attr="zmax" />
+      </VisibilitySelect>
+      <VisibilitySelect
+        label={_('Range')}
+        attr="cauto"
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
+        showOn={false}
+        dafault={true}
+      >
+        <Numeric label={_('Min')} attr="cmin" />
+        <Numeric label={_('Max')} attr="cmax" />
+      </VisibilitySelect>
     </PlotlySection>
     <PlotlySection name={_('Heatmap')}>
       <Numeric label={_('Horizontal Gaps')} attr="xgap" />
@@ -538,16 +563,19 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <PlotlySection name={_('On Hover')}>
       <HoverInfo attr="hoverinfo" label={_('Values Shown On Hover')} />
-      <Radio
-        label={_('Show Contour')}
+      <VisibilitySelect
         attr="contour.show"
+        label={_('Show Contour')}
         options={[
           {label: _('Show'), value: true},
           {label: _('Hide'), value: false},
         ]}
-      />
-      <ColorPicker label={_('Contour Color')} attr="contour.color" />
-      <Numeric label={_('Contour Width')} attr="contour.width" />
+        showOn={true}
+        defaultOpt={false}
+      >
+        <ColorPicker label={_('Contour Color')} attr="contour.color" />
+        <Numeric label={_('Contour Width')} attr="contour.width" />
+      </VisibilitySelect>
     </PlotlySection>
     <TraceTypeSection name={_('Hover Action')} traceTypes={['box']}>
       <Flaglist
@@ -568,13 +596,15 @@ const StyleTracesPanel = (props, {localize: _}) => (
         'scatterpolargl',
       ]}
     >
-      <Flaglist
+      <Dropdown
         attr="hoveron"
         label={_('Hover on')}
         options={[
           {label: _('Fills'), value: 'fills'},
           {label: _('Points'), value: 'points'},
+          {label: _('Fills & Points'), value: 'fills+points'},
         ]}
+        clearable={false}
       />
     </TraceTypeSection>
   </TraceAccordion>

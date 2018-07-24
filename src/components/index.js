@@ -10,7 +10,6 @@ import {
   NTicks,
   DTicks,
   AxesSelector,
-  CanvasSize,
   ColorPicker,
   ColorscalePicker,
   ContourNumeric,
@@ -44,6 +43,8 @@ import {
   Dropzone,
   TextPosition,
   MarkerSize,
+  MarkerColor,
+  VisibilitySelect,
 } from './fields';
 
 import {
@@ -97,7 +98,6 @@ export {
   LayoutSection,
   AxesSelector,
   Button,
-  CanvasSize,
   ColorPicker,
   ColorscalePicker,
   ContourNumeric,
@@ -143,4 +143,6 @@ export {
   Dropzone,
   TextPosition,
   MarkerSize,
+  MarkerColor,
+  VisibilitySelect,
 };

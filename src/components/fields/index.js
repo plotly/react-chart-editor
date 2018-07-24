@@ -20,7 +20,8 @@ import AxesCreator from './AxesCreator';
 import UpdateMenuButtons from './UpdateMenuButtons';
 import {FilterOperation, FilterValue} from './FilterOperation';
 import MarkerSize from './MarkerSize';
-import CanvasSize from './CanvasSize';
+import MarkerColor from './MarkerColor';
+import VisibilitySelect from './VisibilitySelect';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -42,7 +43,7 @@ import {
   AxisSide,
   TextPosition,
 } from './derived';
-import {LineDashSelector, LineShapeSelector} from './lineSelectors';
+import {LineDashSelector, LineShapeSelector} from './LineSelectors';
 
 export {
   AnnotationArrowRef,
@@ -54,7 +55,6 @@ export {
   NTicks,
   DTicks,
   AxesSelector,
-  CanvasSize,
   ColorPicker,
   ColorscalePicker,
   ContourNumeric,
@@ -90,4 +90,6 @@ export {
   Dropzone,
   TextPosition,
   MarkerSize,
+  MarkerColor,
+  VisibilitySelect,
 };

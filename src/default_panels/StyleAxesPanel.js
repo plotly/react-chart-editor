@@ -68,7 +68,9 @@ class StyleAxesPanel extends Component {
           axisFilter={axis =>
             !(
               axis._subplot.includes('polar') ||
-              axis._subplot.includes('ternary')
+              axis._subplot.includes('ternary') ||
+              axis._subplot.includes('scene') ||
+              axis._subplot.includes('geo')
             )
           }
         >
@@ -343,7 +345,7 @@ class StyleAxesPanel extends Component {
             />
             <Numeric label={_('Length')} attr="ticklen" units="px" />
             <Numeric label={_('Width')} attr="tickwidth" units="px" />
-            <ColorPicker label={_('Tick Color')} attr="tickcolor" />
+            <ColorPicker label={_('Color')} attr="tickcolor" />
           </PlotlySection>
           <PlotlySection name={_('Spacing')}>
             <Radio

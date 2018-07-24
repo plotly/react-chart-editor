@@ -29,10 +29,10 @@ class DefaultEditor extends Component {
         <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
         <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
-        <StyleNotesPanel group={_('Style')} name={_('Notes')} />
         <StyleAxesPanel group={_('Style')} name={_('Axes')} />
         <StyleLegendPanel group={_('Style')} name={_('Legend')} />
         <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />
+        <StyleNotesPanel group={_('Style')} name={_('Annotations')} />
         <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
         <StyleImagesPanel group={_('Style')} name={_('Images')} />
         <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />

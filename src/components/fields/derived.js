@@ -494,16 +494,12 @@ export const TextPosition = connectToContainer(UnconnectedDropdown, {
 
 export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
   modifyPlotProps: (props, context, plotProps) => {
-    const {localize: _} = context;
+    const {localize: _, container} = context;
     let options = [
       {label: _('X'), value: 'x'},
       {label: _('Y'), value: 'y'},
       {label: _('Name'), value: 'name'},
     ];
-
-    if (context.container.text && context.container.text.length > 0) {
-      options.push({label: _('Text'), value: 'text'});
-    }
 
     if (
       [
@@ -516,7 +512,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         'scatter3d',
         'surface',
         'mesh3d',
-      ].includes(context.container.type)
+      ].includes(container.type)
     ) {
       options = [
         {label: _('X'), value: 'x'},
@@ -526,7 +522,11 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       ];
     }
 
-    if (context.container.type === 'choropleth') {
+    if (container.mode && container.mode.includes('text')) {
+      options.push({label: _('Text'), value: 'text'});
+    }
+
+    if (container.type === 'choropleth') {
       options = [
         {label: _('Location'), value: 'location'},
         {label: _('Values'), value: 'z'},
@@ -535,7 +535,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       ];
     }
 
-    if (context.container.type === 'scattergeo') {
+    if (container.type === 'scattergeo') {
       options = [
         {label: _('Longitude'), value: 'loc'},
         {label: _('Latitude'), value: 'lat'},
@@ -545,7 +545,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       ];
     }
 
-    if (context.container.type === 'scattermapbox') {
+    if (container.type === 'scattermapbox') {
       options = [
         {label: _('Longitude'), value: 'loc'},
         {label: _('Latitude'), value: 'lat'},
@@ -554,7 +554,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       ];
     }
 
-    if (context.container.type === 'scatterternary') {
+    if (container.type === 'scatterternary') {
       options = [
         {label: _('A'), value: 'a'},
         {label: _('B'), value: 'b'},
@@ -564,11 +564,11 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       ];
     }
 
-    if (context.container.type === 'table') {
+    if (container.type === 'table') {
       plotProps.isVisible = false;
     }
 
-    if (['scatterpolar', 'scatterpolargl'].includes(context.container.type)) {
+    if (['scatterpolar', 'scatterpolargl'].includes(container.type)) {
       options = [
         {label: _('R'), value: 'r'},
         {label: _('Theta'), value: 'theta'},
@@ -577,7 +577,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       ];
     }
 
-    if (context.container.type === 'pie') {
+    if (container.type === 'pie') {
       options = [
         {label: _('Label'), value: 'label'},
         {label: _('Value'), value: 'value'},

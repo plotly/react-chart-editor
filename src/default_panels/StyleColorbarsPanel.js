@@ -88,14 +88,13 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                 attr={prefix + 'colorbar.x'}
               >
                 <Numeric
-                  label={_('Horizontal Position')}
+                  label={_('Position')}
                   attr={prefix + 'colorbar.x'}
                   showSlider
                   step={0.02}
                 />
-
                 <Dropdown
-                  label={_('Positioning Anchor')}
+                  label={_('Anchor')}
                   attr={prefix + 'colorbar.xanchor'}
                   options={[
                     {label: _('Left'), value: 'left'},
@@ -109,14 +108,13 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                 attr={prefix + 'colorbar.y'}
               >
                 <Numeric
-                  label={_('Vertical Position')}
+                  label={_('Position')}
                   attr={prefix + 'colorbar.y'}
                   showSlider
                   step={0.02}
                 />
-
                 <Dropdown
-                  label={_('Positioning Anchor')}
+                  label={_('Anchor')}
                   attr={prefix + 'colorbar.yanchor'}
                   options={[
                     {label: _('Top'), value: 'top'},
@@ -130,12 +128,12 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                 attr={prefix + 'colorbar.xpad'}
               >
                 <Numeric
-                  label={_('Vertical Padding')}
+                  label={_('Vertical')}
                   attr={prefix + 'colorbar.ypad'}
                   units="px"
                 />
                 <Numeric
-                  label={_('Horizontal Padding')}
+                  label={_('Horizontal')}
                   attr={prefix + 'colorbar.xpad'}
                   units="px"
                 />
@@ -273,7 +271,7 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                 units="px"
               />
               <ColorPicker
-                label={_('Tick Color')}
+                label={_('Color')}
                 attr={prefix + 'colorbar.tickcolor'}
               />
               <PlotlySection name={_('Number of Markers')}>
@@ -314,7 +312,7 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                 />
               </PlotlySection>
               <PlotlySection
-                name={_('Container')}
+                name={_('Color Bar Container')}
                 attr={prefix + 'colorbar.bgcolor'}
               >
                 <ColorPicker
