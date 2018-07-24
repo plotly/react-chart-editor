@@ -37,7 +37,7 @@ class Scale extends Component {
       COLOR_PICKER_CONSTANTS.COLORSCALE_DESCRIPTIONS[selectedColorscaleType];
     const colorscaleOptions = COLOR_PICKER_CONSTANTS.COLORSCALE_TYPES.map(
       type => ({
-        label: type + ' scale',
+        label: type + ' scales',
         value: type,
       })
     );
