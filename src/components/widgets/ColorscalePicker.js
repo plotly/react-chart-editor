@@ -62,11 +62,11 @@ class Scale extends Component {
                 <ColorscalePicker
                   onChange={onColorscaleChange}
                   colorscale={selected}
-                  width={200}
+                  width={215}
                   colorscaleType={this.state.selectedColorscaleType}
                   onColorscaleTypeChange={this.onColorscaleTypeChange}
                   disableSwatchControls
-                  scaleLength={6}
+                  scaleLength={7}
                 />
                 <Info>{description}</Info>
               </Fragment>
