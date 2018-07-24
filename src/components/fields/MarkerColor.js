@@ -4,8 +4,11 @@ import React, {Component, Fragment} from 'react';
 import {connectToContainer} from 'lib';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Color from './Color';
-import DataSelector from './DataSelector';
 import Colorscale from './Colorscale';
+import Numeric from './Numeric';
+import Radio from './Radio';
+import DataSelector from './DataSelector';
+import VisibilitySelect from './VisibilitySelect';
 import {MULTI_VALUED, COLORS} from 'lib/constants';
 
 class UnconnectedMarkerColor extends Component {
@@ -93,35 +96,72 @@ class UnconnectedMarkerColor extends Component {
         container.marker.color.includes(MULTI_VALUED));
 
     return (
-      <Field {...this.props} multiValued={multiValued} attr={attr}>
-        <RadioBlocks
-          options={options}
-          activeOption={type}
-          onOptionChange={this.setType}
-        />
-        {!type ? null : type === 'constant' ? (
-          <Color
-            suppressMultiValuedMessage
-            attr="marker.color"
-            updatePlot={this.setValue}
-            fullValue={value.constant}
+      <Fragment>
+        <Field {...this.props} multiValued={multiValued} attr={attr}>
+          <RadioBlocks
+            options={options}
+            activeOption={type}
+            onOptionChange={this.setType}
           />
-        ) : container.marker &&
-        container.marker.colorsrc === MULTI_VALUED ? null : (
+          {!type ? null : type === 'constant' ? (
+            <Color
+              suppressMultiValuedMessage
+              attr="marker.color"
+              updatePlot={this.setValue}
+              fullValue={value.constant}
+            />
+          ) : container.marker &&
+          container.marker.colorsrc === MULTI_VALUED ? null : (
+            <Fragment>
+              <DataSelector suppressMultiValuedMessage attr="marker.color" />
+              {container.marker &&
+              container.marker.colorscale === MULTI_VALUED ? null : (
+                <Colorscale
+                  suppressMultiValuedMessage
+                  attr="marker.colorscale"
+                  updatePlot={this.setColorScale}
+                  colorscale={colorscale}
+                />
+              )}
+            </Fragment>
+          )}
+        </Field>
+        {type === 'constant' ? (
+          ''
+        ) : (
           <Fragment>
-            <DataSelector suppressMultiValuedMessage attr="marker.color" />
-            {container.marker &&
-            container.marker.colorscale === MULTI_VALUED ? null : (
-              <Colorscale
-                suppressMultiValuedMessage
-                attr="marker.colorscale"
-                updatePlot={this.setColorScale}
-                colorscale={colorscale}
-              />
-            )}
+            <Radio
+              label={_('Colorscale Direction')}
+              attr="marker.reversescale"
+              options={[
+                {label: _('Normal'), value: false},
+                {label: _('Reversed'), value: true},
+              ]}
+            />
+            <Radio
+              label={_('Color Bar')}
+              attr="marker.showscale"
+              options={[
+                {label: _('Show'), value: true},
+                {label: _('Hide'), value: false},
+              ]}
+            />
+            <VisibilitySelect
+              label={_('Colorscale Range')}
+              attr="marker.cauto"
+              options={[
+                {label: _('Auto'), value: true},
+                {label: _('Custom'), value: false},
+              ]}
+              showOn={false}
+              dafault={true}
+            >
+              <Numeric label={_('Min')} attr="marker.cmin" />
+              <Numeric label={_('Max')} attr="marker.cmax" />
+            </VisibilitySelect>
           </Fragment>
         )}
-      </Field>
+      </Fragment>
     );
   }
 }

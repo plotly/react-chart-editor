@@ -356,24 +356,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Colorscale')}>
       <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
       <Radio
-        label={_('Orientation')}
-        attr="reversescale"
-        options={[
-          {label: _('Normal'), value: false},
-          {label: _('Reversed'), value: true},
-        ]}
-      />
-      <Radio
-        label={_('Range')}
-        attr="zauto"
-        options={[
-          {label: _('Auto'), value: true},
-          {label: _('Custom'), value: false},
-        ]}
-      />
-      <Numeric label={_('Min')} attr="zmin" />
-      <Numeric label={_('Max')} attr="zmax" />
-      <Radio
         label={_('Color Bar')}
         attr="showscale"
         options={[
@@ -381,8 +363,29 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Hide'), value: false},
         ]}
       />
+      <Radio
+        label={_('Orientation')}
+        attr="reversescale"
+        options={[
+          {label: _('Normal'), value: false},
+          {label: _('Reversed'), value: true},
+        ]}
+      />
       <VisibilitySelect
-        label={_('Colorscale Range')}
+        label={_('Range')}
+        attr="zauto"
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
+        showOn={false}
+        dafault={true}
+      >
+        <Numeric label={_('Min')} attr="zmin" />
+        <Numeric label={_('Max')} attr="zmax" />
+      </VisibilitySelect>
+      <VisibilitySelect
+        label={_('Range')}
         attr="cauto"
         options={[
           {label: _('Auto'), value: true},
@@ -391,8 +394,8 @@ const StyleTracesPanel = (props, {localize: _}) => (
         showOn={false}
         dafault={true}
       >
-        <Numeric label={_('Min Value')} attr="cmin" />
-        <Numeric label={_('Max Value')} attr="cmax" />
+        <Numeric label={_('Min')} attr="cmin" />
+        <Numeric label={_('Max')} attr="cmax" />
       </VisibilitySelect>
     </PlotlySection>
     <PlotlySection name={_('Heatmap')}>
