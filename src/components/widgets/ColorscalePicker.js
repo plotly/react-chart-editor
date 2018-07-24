@@ -1,4 +1,7 @@
-import ColorscalePicker, {COLOR_PICKER_CONSTANTS} from 'react-colorscales';
+import ColorscalePicker, {
+  Colorscale,
+  COLOR_PICKER_CONSTANTS,
+} from 'react-colorscales';
 import Dropdown from './Dropdown';
 import Info from '../fields/Info';
 import PropTypes from 'prop-types';
@@ -9,10 +12,18 @@ class Scale extends Component {
     super();
 
     this.state = {
-      selectedColorscaleType: null,
+      selectedColorscaleType: 'sequential',
+      showColorscalePicker: false,
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick() {
+    this.setState({
+      showColorscalePicker: !this.state.showColorscalePicker,
+    });
   }
 
   onChange(selectedColorscaleType) {
@@ -21,34 +32,47 @@ class Scale extends Component {
 
   render() {
     const {onColorscaleChange, selected} = this.props;
-    const {selectedColorscaleType} = this.state;
+    const {selectedColorscaleType, showColorscalePicker} = this.state;
     const description =
       COLOR_PICKER_CONSTANTS.COLORSCALE_DESCRIPTIONS[selectedColorscaleType];
+    const colorscaleOptions = COLOR_PICKER_CONSTANTS.COLORSCALE_TYPES.map(
+      type => ({
+        label: type + ' scale',
+        value: type,
+      })
+    );
     const _ = this.context.localize;
 
     return (
       <Fragment>
-        <Dropdown
-          options={COLOR_PICKER_CONSTANTS.COLORSCALE_TYPES}
-          value={selectedColorscaleType}
-          onChange={this.onChange}
-          clearable={false}
-          searchable={false}
-          placeholder={_('Select a Colorscale Type')}
-        />
+        <Colorscale colorscale={selected} onClick={this.onClick} />
 
-        {selectedColorscaleType ? (
-          <ColorscalePicker
-            onChange={onColorscaleChange}
-            colorscale={selected}
-            width={250}
-            colorscaleType={this.state.selectedColorscaleType}
-            onColorscaleTypeChange={this.onColorscaleTypeChange}
-            disableSwatchControls
-          />
+        {showColorscalePicker ? (
+          <div className="customPickerContainer">
+            <Dropdown
+              options={colorscaleOptions}
+              value={selectedColorscaleType}
+              onChange={this.onChange}
+              clearable={false}
+              searchable={false}
+              placeholder={_('Select a Colorscale Type')}
+            />
+            {description ? (
+              <Fragment>
+                <ColorscalePicker
+                  onChange={onColorscaleChange}
+                  colorscale={selected}
+                  width={200}
+                  colorscaleType={this.state.selectedColorscaleType}
+                  onColorscaleTypeChange={this.onColorscaleTypeChange}
+                  disableSwatchControls
+                  scaleLength={6}
+                />
+                <Info>{description}</Info>
+              </Fragment>
+            ) : null}
+          </div>
         ) : null}
-
-        {description && description.length ? <Info>{description}</Info> : null}
       </Fragment>
     );
   }

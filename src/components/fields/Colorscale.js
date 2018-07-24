@@ -31,7 +31,7 @@ class Colorscale extends Component {
       : null;
 
     return (
-      <Field {...this.props} label={false}>
+      <Field {...this.props}>
         <ColorscalePicker
           selected={colorscale}
           onColorscaleChange={this.onUpdate}
