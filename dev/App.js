@@ -11,7 +11,6 @@ import Inspector from 'react-inspector';
 import tips from './tips';
 import 'brace/mode/json';
 import 'brace/theme/textmate';
-import {categoryLayout, traceTypes, chartCategory} from 'lib/traceTypes';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';

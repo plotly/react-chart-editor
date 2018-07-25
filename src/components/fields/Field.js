@@ -27,6 +27,7 @@ class Field extends Component {
       suppressMultiValuedMessage,
       units,
       extraComponent,
+      fieldContainerClassName,
     } = this.props;
 
     const {localize: _} = this.context;
@@ -48,8 +49,12 @@ class Field extends Component {
         ' – ' + this.context.description.replace(/`/g, '"').replace(/\*/g, '"');
     }
 
+    const containerClassName = classnames(bem('field'), {
+      [fieldContainerClassName]: Boolean(fieldContainerClassName),
+    });
+
     return (
-      <div className={bem('field')}>
+      <div className={containerClassName}>
         {label ? (
           <div className={bem('field', 'title')}>
             {this.context.showFieldTooltips ? (
@@ -98,6 +103,7 @@ Field.propTypes = {
   suppressMultiValuedMessage: PropTypes.bool,
   children: PropTypes.node,
   extraComponent: PropTypes.any,
+  fieldContainerClassName: PropTypes.string,
 };
 
 Field.contextTypes = {
