@@ -68,7 +68,10 @@ export class Panel extends Component {
     let numFolds = 0;
 
     React.Children.forEach(this.props.children, child => {
-      if ((child.type.plotly_editor_traits || {}).foldable) {
+      if (
+        ((child && child.type && child.type.plotly_editor_traits) || {})
+          .foldable
+      ) {
         numFolds++;
       }
     });
@@ -100,7 +103,10 @@ export class Panel extends Component {
     const newChildren = React.Children.map(
       this.props.children,
       (child, index) => {
-        if ((child.type.plotly_editor_traits || {}).foldable) {
+        if (
+          ((child && child.type && child.type.plotly_editor_traits) || {})
+            .foldable
+        ) {
           return cloneElement(child, {
             key: index,
             folded: individualFoldStates[index] || false,

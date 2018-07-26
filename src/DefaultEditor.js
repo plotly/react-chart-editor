@@ -4,6 +4,7 @@ import {PanelMenuWrapper} from './components';
 import {
   GraphCreatePanel,
   GraphTransformsPanel,
+  GraphSubplotsPanel,
   StyleLayoutPanel,
   StyleAxesPanel,
   StyleLegendPanel,
@@ -26,6 +27,7 @@ class DefaultEditor extends Component {
       <PanelMenuWrapper>
         {logo ? logo : null}
         <GraphCreatePanel group={_('Graph')} name={_('Create')} />
+        <GraphSubplotsPanel group={_('Graph')} name={_('Subplots')} />
         <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
         <StyleLayoutPanel group={_('Style')} name={_('Layout')} />

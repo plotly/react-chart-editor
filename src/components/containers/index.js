@@ -9,6 +9,7 @@ import PlotlyFold, {Fold} from './PlotlyFold';
 import MenuPanel from './MenuPanel';
 import PlotlyPanel, {Panel} from './PlotlyPanel';
 import PlotlySection, {Section} from './PlotlySection';
+import SubplotAccordion from './SubplotAccordion';
 import TraceAccordion from './TraceAccordion';
 import TransformAccordion from './TransformAccordion';
 import TraceMarkerSection from './TraceMarkerSection';
@@ -32,6 +33,7 @@ export {
   Panel,
   PlotlySection,
   Section,
+  SubplotAccordion,
   TraceAccordion,
   TransformAccordion,
   TraceMarkerSection,

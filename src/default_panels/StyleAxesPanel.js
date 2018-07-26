@@ -87,7 +87,11 @@ class StyleAxesPanel extends Component {
             name={_('Anchor')}
             traceTypes={TRACE_TO_AXIS.cartesian}
           >
-            <AxisAnchorDropdown label={_('Anchor To')} attr="anchor" />
+            <AxisAnchorDropdown
+              label={_('Anchor to')}
+              attr="anchor"
+              clearable={false}
+            />
             <AxisSide label={_('Side')} attr="side" />
           </TraceTypeSection>
         </AxesFold>

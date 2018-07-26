@@ -76,6 +76,15 @@ export const TRACE_TO_AXIS = {
   polar: ['scatterpolar', 'scatterpolargl'],
 };
 
+export const AXIS_TO_ATTR = {
+  cartesian: ['xaxis', 'yaxis'],
+  ternary: 'subplot',
+  gl3d: 'scene',
+  geo: 'geo',
+  mapbox: 'subplot',
+  polar: 'subplot',
+};
+
 export const TRANSFORMS_LIST = ['filter', 'groupby', 'aggregate'];
 
 export const COLORS = {

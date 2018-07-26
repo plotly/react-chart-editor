@@ -1,4 +1,6 @@
 import bem from './bem';
+import connectCartesianSubplotToLayout from './connectCartesianSubplotToLayout';
+import connectNonCartesianSubplotToLayout from './connectNonCartesianSubplotToLayout';
 import connectAnnotationToLayout from './connectAnnotationToLayout';
 import connectShapeToLayout from './connectShapeToLayout';
 import connectSliderToLayout from './connectSliderToLayout';
@@ -216,6 +218,8 @@ export {
   camelCase,
   pascalCase,
   clamp,
+  connectCartesianSubplotToLayout,
+  connectNonCartesianSubplotToLayout,
   connectAnnotationToLayout,
   connectShapeToLayout,
   connectSliderToLayout,

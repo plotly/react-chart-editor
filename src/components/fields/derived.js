@@ -235,8 +235,8 @@ UnconnectedNumericFraction.defaultProps = {
 
 const numericFractionModifyPlotProps = (props, context, plotProps) => {
   const {attrMeta, fullValue, updatePlot} = plotProps;
-  const min = attrMeta.min || 0;
-  const max = attrMeta.max || 1;
+  const min = (attrMeta && attrMeta.min) || 0;
+  const max = (attrMeta && attrMeta.max) || 1;
   if (isNumeric(fullValue)) {
     plotProps.fullValue = Math.round(100 * (fullValue - min) / (max - min));
   }
