@@ -7,9 +7,11 @@ import Color from './Color';
 import Colorscale from './Colorscale';
 import Numeric from './Numeric';
 import Radio from './Radio';
+import Info from './Info';
 import DataSelector from './DataSelector';
 import VisibilitySelect from './VisibilitySelect';
 import {MULTI_VALUED, COLORS} from 'lib/constants';
+import {getColorscale} from 'react-colorscales';
 
 class UnconnectedMarkerColor extends Component {
   constructor(props, context) {
@@ -36,11 +38,14 @@ class UnconnectedMarkerColor extends Component {
         constant: type === 'constant' ? props.fullValue : COLORS.mutedBlue,
         variable: type === 'variable' ? props.fullValue : null,
       },
+      constantSelectedOption:
+        type === 'constant' && props.multiValued ? 'multiple' : 'single',
     };
 
     this.setType = this.setType.bind(this);
     this.setValue = this.setValue.bind(this);
     this.setColorScale = this.setColorScale.bind(this);
+    this.setColors = this.setColors.bind(this);
   }
 
   setType(type) {
@@ -77,58 +82,141 @@ class UnconnectedMarkerColor extends Component {
     this.context.updateContainer({['marker.colorscale']: inputValue});
   }
 
+  isMultiValued() {
+    return (
+      this.props.multiValued ||
+      (Array.isArray(this.props.fullValue) &&
+        this.props.fullValue.includes(MULTI_VALUED)) ||
+      (this.props.container.marker &&
+        this.props.container.marker.colorscale === MULTI_VALUED) ||
+      (this.props.container.marker &&
+        this.props.container.marker.colorsrc === MULTI_VALUED) ||
+      (this.props.container.marker &&
+        this.props.container.marker.color &&
+        Array.isArray(this.props.container.marker.color) &&
+        this.props.container.marker.color.includes(MULTI_VALUED))
+    );
+  }
+
+  setColors(colorscale) {
+    const numberOfTraces = this.context.traceIndexes.length;
+    const adjustedScale = getColorscale(
+      colorscale.map(c => c[1]),
+      numberOfTraces
+    );
+    const updates = adjustedScale.map(color => ({
+      ['marker.color']: color,
+    }));
+    this.setState({
+      colorscale: adjustedScale,
+    });
+    this.context.updateContainer(updates);
+  }
+
+  renderConstantControls() {
+    const _ = this.context.localize;
+    const constantOptions = [
+      {label: _('Single'), value: 'single'},
+      {label: _('Multiple'), value: 'multiple'},
+    ];
+
+    if (this.context.traceIndexes.length > 1) {
+      return (
+        <div className="markercolor-constantcontrols__container">
+          <RadioBlocks
+            options={constantOptions}
+            activeOption={this.state.constantSelectedOption}
+            onOptionChange={value =>
+              this.setState({constantSelectedOption: value})
+            }
+          />
+          <Info>
+            {this.state.constantSelectedOption === 'single'
+              ? _('All traces will be colored in the the same color.')
+              : _(
+                  'Each trace will be colored according to the selected colorscale.'
+                )}
+          </Info>
+          {this.state.constantSelectedOption === 'single' ? (
+            <Color
+              attr="marker.color"
+              updatePlot={this.setValue}
+              fullValue={this.state.value.constant}
+            />
+          ) : (
+            <Colorscale
+              suppressMultiValuedMessage
+              attr="marker.color"
+              updatePlot={this.setColors}
+              colorscale={this.state.colorscale}
+            />
+          )}
+        </div>
+      );
+    }
+
+    return (
+      <Color
+        attr="marker.color"
+        updatePlot={this.setValue}
+        fullValue={this.state.value.constant}
+      />
+    );
+  }
+
+  renderVariableControls() {
+    const _ = this.context.localize;
+    return (
+      <Fragment>
+        <DataSelector
+          attr="marker.color"
+          placeholder={_('Select a Data Option')}
+        />
+        {this.props.container.marker &&
+        this.props.container.marker.colorscale === MULTI_VALUED ? null : (
+          <Colorscale
+            attr="marker.colorscale"
+            updatePlot={this.setColorScale}
+            colorscale={this.state.colorscale}
+          />
+        )}
+      </Fragment>
+    );
+  }
+
   render() {
-    const {attr, fullValue, container} = this.props;
+    const {attr} = this.props;
     const {localize: _} = this.context;
-    const {type, value, colorscale} = this.state;
+    const {type} = this.state;
     const options = [
       {label: _('Constant'), value: 'constant'},
       {label: _('Variable'), value: 'variable'},
     ];
-    const multiValued =
-      this.props.multiValued ||
-      (Array.isArray(fullValue) && fullValue.includes(MULTI_VALUED)) ||
-      (container.marker && container.marker.colorscale === MULTI_VALUED) ||
-      (container.marker && container.marker.colorsrc === MULTI_VALUED) ||
-      (container.marker &&
-        container.marker.color &&
-        Array.isArray(container.marker.color) &&
-        container.marker.color.includes(MULTI_VALUED));
 
     return (
       <Fragment>
-        <Field {...this.props} multiValued={multiValued} attr={attr}>
+        <Field {...this.props} multiValued={this.isMultiValued()} attr={attr}>
           <RadioBlocks
             options={options}
             activeOption={type}
             onOptionChange={this.setType}
           />
-          {!type ? null : type === 'constant' ? (
-            <Color
-              suppressMultiValuedMessage
-              attr="marker.color"
-              updatePlot={this.setValue}
-              fullValue={value.constant}
-            />
-          ) : container.marker &&
-          container.marker.colorsrc === MULTI_VALUED ? null : (
-            <Fragment>
-              <DataSelector suppressMultiValuedMessage attr="marker.color" />
-              {container.marker &&
-              container.marker.colorscale === MULTI_VALUED ? null : (
-                <Colorscale
-                  suppressMultiValuedMessage
-                  attr="marker.colorscale"
-                  updatePlot={this.setColorScale}
-                  colorscale={colorscale}
-                />
-              )}
-            </Fragment>
+
+          {!type ? null : (
+            <Info>
+              {type === 'constant'
+                ? _('All points in a trace are colored in the same color.')
+                : _('Each point in a trace is colored according to data.')}
+            </Info>
           )}
+
+          {!type
+            ? null
+            : type === 'constant'
+              ? this.renderConstantControls()
+              : this.renderVariableControls()}
         </Field>
-        {type === 'constant' ? (
-          ''
-        ) : (
+        {type === 'constant' ? null : (
           <Fragment>
             <Radio
               label={_('Colorscale Direction')}
@@ -175,6 +263,7 @@ UnconnectedMarkerColor.propTypes = {
 UnconnectedMarkerColor.contextTypes = {
   localize: PropTypes.func,
   updateContainer: PropTypes.func,
+  traceIndexes: PropTypes.array,
 };
 
 export default connectToContainer(UnconnectedMarkerColor);

@@ -22,7 +22,7 @@ $slider-picker-height: 10px;
   padding: var(--spacing-eighth-unit);
 
   &__popover {
-    left: -90px;
+    left: -60px;
     position: absolute;
     top: 100%;
     margin: var(--spacing-quarter-unit) 0 var(--spacing-base-unit);
@@ -71,13 +71,13 @@ $slider-picker-height: 10px;
   }
   &__custom-input {
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
-    input{
+    input {
       border: var(--border-default) !important;
       box-shadow: none !important;
       background-color: var(--color-background-inputs);
       color: var(--color-text-dark);
     }
-    input + span{
+    input + span {
       color: var(--color-text) !important;
     }
   }
@@ -117,9 +117,9 @@ $slider-picker-height: 10px;
 
   &__preset-colors {
     margin: 0 var(--spacing-half-unit);
-    & > div{
+    & > div {
       border-top: var(--border-light) !important; // inline style override
-      padding:var(--spacing-half-unit) !important;
+      padding: var(--spacing-half-unit) !important;
       padding-bottom: var(--spacing-quarter-unit) !important;
     }
   }

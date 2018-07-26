@@ -225,7 +225,11 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
       <NumericFraction label={_('Jitter')} attr="jitter" />
       <Numeric label={_('Position')} attr="pointpos" step={0.1} showSlider />
-      <MarkerColor label={_('Color')} attr="marker.color" />
+      <MarkerColor
+        suppressMultiValuedMessage
+        label={_('Color')}
+        attr="marker.color"
+      />
       <NumericFraction label={_('Opacity')} attr="marker.opacity" />
       <MarkerSize label={_('Size')} attr="marker.size" />
       <Radio

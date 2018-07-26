@@ -47,4 +47,14 @@ Colorscale.propTypes = {
   ...Field.propTypes,
 };
 
-export default connectToContainer(Colorscale);
+export default connectToContainer(Colorscale, {
+  modifyPlotProps: (props, context, plotProps) => {
+    if (plotProps.fullValue && typeof plotProps.fullValue === 'string') {
+      plotProps.fullValue =
+        context.fullData &&
+        context.fullData
+          .filter(t => context.traceIndexes.includes(t.index))
+          .map(t => [0, t.marker.color]);
+    }
+  },
+});

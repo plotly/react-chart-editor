@@ -88,8 +88,4 @@ Scale.contextTypes = {
   localize: PropTypes.func,
 };
 
-Scale.contextTypes = {
-  localize: PropTypes.func,
-};
-
 export default Scale;

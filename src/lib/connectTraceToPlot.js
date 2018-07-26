@@ -72,6 +72,7 @@ export default function connectTraceToPlot(WrappedComponent) {
         deleteContainer: this.deleteTrace,
         container: trace,
         fullContainer: fullTrace,
+        traceIndexes: this.props.traceIndexes,
       };
 
       if (traceIndexes.length > 1) {
@@ -108,13 +109,25 @@ export default function connectTraceToPlot(WrappedComponent) {
 
     updateTrace(update) {
       if (this.context.onUpdate) {
-        this.context.onUpdate({
-          type: EDITOR_ACTIONS.UPDATE_TRACES,
-          payload: {
-            update,
-            traceIndexes: this.props.traceIndexes,
-          },
-        });
+        if (Array.isArray(update)) {
+          update.forEach((u, i) => {
+            this.context.onUpdate({
+              type: EDITOR_ACTIONS.UPDATE_TRACES,
+              payload: {
+                update: u,
+                traceIndexes: [this.props.traceIndexes[i]],
+              },
+            });
+          });
+        } else {
+          this.context.onUpdate({
+            type: EDITOR_ACTIONS.UPDATE_TRACES,
+            payload: {
+              update,
+              traceIndexes: this.props.traceIndexes,
+            },
+          });
+        }
       }
     }
 
@@ -156,6 +169,7 @@ export default function connectTraceToPlot(WrappedComponent) {
     defaultContainer: PropTypes.object,
     container: PropTypes.object,
     fullContainer: PropTypes.object,
+    traceIndexes: PropTypes.array,
   };
 
   const {plotly_editor_traits} = WrappedComponent;
