@@ -23,7 +23,7 @@ import MarkerSize from './MarkerSize';
 import MarkerColor from './MarkerColor';
 import VisibilitySelect from './VisibilitySelect';
 import MultiColorPicker from './MultiColorPicker';
-
+import RectanglePositioner from './RectanglePositioner';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -95,4 +95,5 @@ export {
   MarkerColor,
   MultiColorPicker,
   VisibilitySelect,
+  RectanglePositioner,
 };
