@@ -166,21 +166,30 @@ class UnconnectedMarkerColor extends Component {
 
   renderVariableControls() {
     const _ = this.context.localize;
+    const multiValued =
+      (this.props.container &&
+        this.props.container.marker &&
+        (this.props.container.marker.colorscale &&
+          this.props.container.marker.colorscale === MULTI_VALUED)) ||
+      (this.props.container.marker.colorsrc &&
+        this.props.container.marker.colorsrc === MULTI_VALUED);
     return (
-      <Fragment>
+      <Field multiValued={multiValued}>
         <DataSelector
+          suppressMultiValuedMessage
           attr="marker.color"
           placeholder={_('Select a Data Option')}
         />
         {this.props.container.marker &&
         this.props.container.marker.colorscale === MULTI_VALUED ? null : (
           <Colorscale
+            suppressMultiValuedMessage
             attr="marker.colorscale"
             updatePlot={this.setColorScale}
             colorscale={this.state.colorscale}
           />
         )}
-      </Fragment>
+      </Field>
     );
   }
 
@@ -195,20 +204,22 @@ class UnconnectedMarkerColor extends Component {
 
     return (
       <Fragment>
-        <Field {...this.props} multiValued={this.isMultiValued()} attr={attr}>
-          <RadioBlocks
-            options={options}
-            activeOption={type}
-            onOptionChange={this.setType}
-          />
+        <Field {...this.props} attr={attr}>
+          <Field multiValued={this.isMultiValued() && !this.state.type}>
+            <RadioBlocks
+              options={options}
+              activeOption={type}
+              onOptionChange={this.setType}
+            />
 
-          {!type ? null : (
-            <Info>
-              {type === 'constant'
-                ? _('All points in a trace are colored in the same color.')
-                : _('Each point in a trace is colored according to data.')}
-            </Info>
-          )}
+            {!type ? null : (
+              <Info>
+                {type === 'constant'
+                  ? _('All points in a trace are colored in the same color.')
+                  : _('Each point in a trace is colored according to data.')}
+              </Info>
+            )}
+          </Field>
 
           {!type
             ? null
