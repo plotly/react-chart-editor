@@ -100,16 +100,21 @@ class UnconnectedMarkerColor extends Component {
 
   setColors(colorscale) {
     const numberOfTraces = this.context.traceIndexes.length;
-    const adjustedScale = getColorscale(
-      colorscale.map(c => c[1]),
-      numberOfTraces
-    );
-    const updates = adjustedScale.map(color => ({
+    const colors = colorscale.map(c => c[1]);
+
+    let adjustedColors = getColorscale(colors, numberOfTraces);
+    if (adjustedColors.every(c => c === adjustedColors[0])) {
+      adjustedColors = colors;
+    }
+
+    const updates = adjustedColors.map(color => ({
       ['marker.color']: color,
     }));
+
     this.setState({
-      colorscale: adjustedScale,
+      colorscale: adjustedColors,
     });
+
     this.context.updateContainer(updates);
   }
 
