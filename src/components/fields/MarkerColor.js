@@ -49,20 +49,22 @@ class UnconnectedMarkerColor extends Component {
   }
 
   setType(type) {
-    this.setState({type: type});
-    this.props.updatePlot(this.state.value[type]);
-    if (type === 'constant') {
-      this.context.updateContainer({
-        ['marker.colorsrc']: null,
-        ['marker.colorscale']: null,
-      });
-      this.setState({colorscale: null});
-    } else {
-      this.context.updateContainer({
-        ['marker.color']: null,
-        ['marker.colorsrc']: null,
-        ['marker.colorscale']: [],
-      });
+    if (this.state.type !== type) {
+      this.setState({type: type});
+      this.props.updatePlot(this.state.value[type]);
+      if (type === 'constant') {
+        this.context.updateContainer({
+          ['marker.colorsrc']: null,
+          ['marker.colorscale']: null,
+        });
+        this.setState({colorscale: null});
+      } else {
+        this.context.updateContainer({
+          ['marker.color']: null,
+          ['marker.colorsrc']: null,
+          ['marker.colorscale']: [],
+        });
+      }
     }
   }
 
