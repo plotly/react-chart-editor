@@ -35,6 +35,7 @@ class Colorscale extends Component {
         <ColorscalePicker
           selected={colorscale}
           onColorscaleChange={this.onUpdate}
+          initialCategory={this.props.initialCategory}
         />
       </Field>
     );
@@ -44,6 +45,7 @@ class Colorscale extends Component {
 Colorscale.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
+  initialCategory: PropTypes.string,
   ...Field.propTypes,
 };
 

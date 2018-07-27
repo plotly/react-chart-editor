@@ -8,11 +8,11 @@ import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
 
 class Scale extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      selectedColorscaleType: 'sequential',
+      selectedColorscaleType: props.initialCategory || 'sequential',
       showColorscalePicker: false,
     };
 
@@ -82,6 +82,7 @@ Scale.propTypes = {
   onColorscaleChange: PropTypes.func,
   selected: PropTypes.array,
   label: PropTypes.string,
+  initialCategory: PropTypes.string,
 };
 
 Scale.contextTypes = {

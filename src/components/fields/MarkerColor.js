@@ -149,6 +149,7 @@ class UnconnectedMarkerColor extends Component {
               attr="marker.color"
               updatePlot={this.setColors}
               colorscale={this.state.colorscale}
+              initialCategory={'categorical'}
             />
           )}
         </div>
