@@ -100,13 +100,33 @@ class UnconnectedMarkerColor extends Component {
     );
   }
 
-  setColors(colorscale) {
+  setColors(colorscale, colorscaleType) {
     const numberOfTraces = this.context.traceIndexes.length;
     const colors = colorscale.map(c => c[1]);
 
-    let adjustedColors = getColorscale(colors, numberOfTraces);
-    if (adjustedColors.every(c => c === adjustedColors[0])) {
-      adjustedColors = colors;
+    let adjustedColors = colors;
+
+    if (colorscaleType !== 'categorical') {
+      adjustedColors = getColorscale(
+        colors,
+        numberOfTraces,
+        null,
+        null,
+        colorscaleType
+      );
+    }
+
+    if (
+      adjustedColors.every(c => c === adjustedColors[0]) ||
+      colorscaleType === 'categorical'
+    ) {
+      const repetitions = Math.ceil(numberOfTraces / colors.length);
+      const newArray = new Array(repetitions).fill(colors);
+      adjustedColors = newArray
+        .reduce((a, b) => {
+          return a.concat(b);
+        }, [])
+        .slice(0, numberOfTraces);
     }
 
     const updates = adjustedColors.map(color => ({
