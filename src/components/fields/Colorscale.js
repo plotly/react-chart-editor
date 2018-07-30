@@ -10,7 +10,7 @@ class Colorscale extends Component {
     this.onUpdate = this.onUpdate.bind(this);
   }
 
-  onUpdate(colorscale) {
+  onUpdate(colorscale, colorscaleType) {
     if (Array.isArray(colorscale)) {
       this.props.updatePlot(
         colorscale.map((c, i) => {
@@ -19,7 +19,8 @@ class Colorscale extends Component {
             step = 0;
           }
           return [step, c];
-        })
+        }),
+        colorscaleType
       );
     }
   }
