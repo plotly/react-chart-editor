@@ -86,16 +86,16 @@ class TraceAccordion extends Component {
         <TraceRequiredPanel noPadding>
           <Tabs>
             <TabList>
-              <Tab>{_('All Traces')}</Tab>
-              <Tab>{_('Individual')}</Tab>
+              <Tab>{_('Individually')}</Tab>
+              <Tab>{_('By Type')}</Tab>
             </TabList>
-            <TabPanel>
-              <PlotlyPanel>{groupedTraces ? groupedTraces : null}</PlotlyPanel>
-            </TabPanel>
             <TabPanel>
               <PlotlyPanel>
                 {individualTraces ? individualTraces : null}
               </PlotlyPanel>
+            </TabPanel>
+            <TabPanel>
+              <PlotlyPanel>{groupedTraces ? groupedTraces : null}</PlotlyPanel>
             </TabPanel>
           </Tabs>
         </TraceRequiredPanel>

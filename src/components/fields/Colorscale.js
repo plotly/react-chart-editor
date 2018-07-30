@@ -35,6 +35,7 @@ class Colorscale extends Component {
         <ColorscalePicker
           selected={colorscale}
           onColorscaleChange={this.onUpdate}
+          initialCategory={this.props.initialCategory}
         />
       </Field>
     );
@@ -44,7 +45,24 @@ class Colorscale extends Component {
 Colorscale.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
+  initialCategory: PropTypes.string,
   ...Field.propTypes,
 };
 
-export default connectToContainer(Colorscale);
+export default connectToContainer(Colorscale, {
+  modifyPlotProps: (props, context, plotProps) => {
+    if (
+      props.attr === 'marker.color' &&
+      context.fullData
+        .filter(t => context.traceIndexes.includes(t.index))
+        .every(t => t.marker && t.marker.color) &&
+      (plotProps.fullValue && typeof plotProps.fullValue === 'string')
+    ) {
+      plotProps.fullValue =
+        context.fullData &&
+        context.fullData
+          .filter(t => context.traceIndexes.includes(t.index))
+          .map(t => [0, t.marker.color]);
+    }
+  },
+});

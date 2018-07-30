@@ -108,6 +108,7 @@ export class UnconnectedDataSelector extends Component {
           optionRenderer={this.context.dataSourceOptionRenderer}
           valueRenderer={this.context.dataSourceValueRenderer}
           clearable={true}
+          placeholder={this.props.placeholder}
         />
       </Field>
     );
@@ -118,6 +119,7 @@ UnconnectedDataSelector.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   container: PropTypes.object,
+  placeholder: PropTypes.string,
   ...Field.propTypes,
 };
 

@@ -17,6 +17,7 @@ export const containerConnectedContextTypes = {
   onUpdate: PropTypes.func,
   plotly: PropTypes.object,
   updateContainer: PropTypes.func,
+  traceIndexes: PropTypes.array,
 };
 
 export default function connectToContainer(WrappedComponent, config = {}) {
