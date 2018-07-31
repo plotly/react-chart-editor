@@ -106,14 +106,19 @@ class UnconnectedMarkerColor extends Component {
     let adjustedColors = colors;
 
     if (colorscaleType !== 'categorical') {
-      adjustedColors = adjustColorscale(colors, numberOfTraces);
+      adjustedColors = adjustColorscale(colors, numberOfTraces, colorscaleType);
     }
 
     if (
       adjustedColors.every(c => c === adjustedColors[0]) ||
       colorscaleType === 'categorical'
     ) {
-      adjustedColors = adjustColorscale(colors, numberOfTraces, {repeat: true});
+      adjustedColors = adjustColorscale(
+        colors,
+        numberOfTraces,
+        colorscaleType,
+        {repeat: true}
+      );
     }
 
     const updates = adjustedColors.map(color => ({

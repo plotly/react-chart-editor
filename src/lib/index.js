@@ -182,7 +182,11 @@ function adjustColorscale(
   colorscaleType,
   config
 ) {
-  if (config.repeat) {
+  if (config && config.repeat) {
+    if (numberOfNeededColors < colorscale.length) {
+      return colorscale.slice(0, numberOfNeededColors);
+    }
+
     const repetitions = Math.ceil(numberOfNeededColors / colorscale.length);
     const newArray = new Array(repetitions).fill(colorscale);
     return newArray
