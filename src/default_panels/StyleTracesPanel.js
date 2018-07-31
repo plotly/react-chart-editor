@@ -48,6 +48,11 @@ const StyleTracesPanel = (props, {localize: _}) => (
     />
     <NumericFraction label={_('Opacity')} attr="opacity" />
     <ColorPicker label={_('Color')} attr="color" />
+    <ColorscalePicker
+      label={_('Colors')}
+      attr="marker.colors"
+      initialCategory="categorical"
+    />
     <Dropdown
       label={_('Histogram Normalization')}
       options={[
