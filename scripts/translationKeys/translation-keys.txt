@@ -25,8 +25,8 @@ Aggregations                                                                    
 Aitoff                                                                                                       // /default_panels/GraphCreatePanel.js:212
 Albers USA                                                                                                   // /default_panels/GraphCreatePanel.js:193
 All                                                                                                          // /default_panels/StyleAxesPanel.js:420
-All points in a trace are colored in the same color.                                                         // /components/fields/MarkerColor.js:233
-All traces will be colored in the the same color.                                                            // /components/fields/MarkerColor.js:149
+All points in a trace are colored in the same color.                                                         // /components/fields/MarkerColor.js:238
+All traces will be colored in the the same color.                                                            // /components/fields/MarkerColor.js:154
 Ambient                                                                                                      // /default_panels/StyleTracesPanel.js:460
 Anchor                                                                                                       // /default_panels/StyleAxesPanel.js:87
 Anchor Point                                                                                                 // /default_panels/StyleAxesPanel.js:469
@@ -110,14 +110,14 @@ Closest                                                                         
 Coastlines                                                                                                   // /default_panels/StyleLayoutPanel.js:131
 Collapse All                                                                                                 // /components/containers/PanelHeader.js:41
 Color                                                                                                        // /default_panels/StyleAxesPanel.js:157
-Color Bar                                                                                                    // /components/fields/MarkerColor.js:256
+Color Bar                                                                                                    // /components/fields/MarkerColor.js:261
 Color Bar Container                                                                                          // /default_panels/StyleColorbarsPanel.js:315
 Color Bars                                                                                                   // /DefaultEditor.js:34
 Coloring                                                                                                     // /default_panels/StyleTracesPanel.js:429
 Colors                                                                                                       // /default_panels/StyleTracesPanel.js:52
 Colorscale                                                                                                   // /default_panels/StyleTracesPanel.js:325
-Colorscale Direction                                                                                         // /components/fields/MarkerColor.js:248
-Colorscale Range                                                                                             // /components/fields/MarkerColor.js:264
+Colorscale Direction                                                                                         // /components/fields/MarkerColor.js:253
+Colorscale Range                                                                                             // /components/fields/MarkerColor.js:269
 Column Options                                                                                               // /default_panels/GraphCreatePanel.js:137
 Columns                                                                                                      // /default_panels/GraphCreatePanel.js:88
 Common Case: An 'All' tab might display this message because the X and Y tabs contain different settings.    // /lib/constants.js:24
@@ -149,7 +149,7 @@ Create                                                                          
 Cube                                                                                                         // /default_panels/StyleLayoutPanel.js:63
 Cumulative                                                                                                   // /default_panels/StyleTracesPanel.js:67
 Current Bin                                                                                                  // /default_panels/StyleTracesPanel.js:85
-Custom                                                                                                       // /components/fields/MarkerColor.js:268
+Custom                                                                                                       // /components/fields/MarkerColor.js:273
 Custom Color                                                                                                 // /components/widgets/ColorPicker.js:35
 Custom Data                                                                                                  // /components/fields/ErrorBars.js:110
 Data                                                                                                         // /components/fields/ErrorBars.js:104
@@ -171,8 +171,8 @@ Distributions                                                                   
 Drop the                                                                                                     // /components/widgets/Dropzone.js:53
 Dropdown                                                                                                     // /components/containers/UpdateMenuAccordion.js:21
 E+6                                                                                                          // /default_panels/StyleAxesPanel.js:270
-Each point in a trace is colored according to data.                                                          // /components/fields/MarkerColor.js:234
-Each trace will be colored according to the selected colorscale.                                             // /components/fields/MarkerColor.js:151
+Each point in a trace is colored according to data.                                                          // /components/fields/MarkerColor.js:239
+Each trace will be colored according to the selected colorscale.                                             // /components/fields/MarkerColor.js:156
 Eckert 4                                                                                                     // /default_panels/GraphCreatePanel.js:198
 Edit in HTML                                                                                                 // /components/widgets/text_editors/MultiFormat.js:34
 Edit in Rich Text                                                                                            // /components/widgets/text_editors/MultiFormat.js:250
@@ -241,7 +241,7 @@ Heatmap                                                                         
 Heatmap GL                                                                                                   // /lib/computeTraceOptionsFromSchema.js:83
 Height                                                                                                       // /default_panels/StyleAxesPanel.js:376
 Hidden                                                                                                       // /components/fields/ErrorBars.js:82
-Hide                                                                                                         // /components/fields/MarkerColor.js:260
+Hide                                                                                                         // /components/fields/MarkerColor.js:265
 High                                                                                                         // /default_panels/GraphCreatePanel.js:81
 Histogram                                                                                                    // /lib/computeTraceOptionsFromSchema.js:27
 Histogram Normalization                                                                                      // /default_panels/StyleTracesPanel.js:57
@@ -308,7 +308,7 @@ Map Region                                                                      
 Maps                                                                                                         // /lib/traceTypes.js:25
 Margin Color                                                                                                 // /default_panels/StyleLayoutPanel.js:34
 Margins and Padding                                                                                          // /default_panels/StyleLayoutPanel.js:98
-Max                                                                                                          // /components/fields/MarkerColor.js:274
+Max                                                                                                          // /components/fields/MarkerColor.js:279
 Max Contour                                                                                                  // /default_panels/StyleTracesPanel.js:457
 Max Contours                                                                                                 // /default_panels/StyleTracesPanel.js:453
 Max Number of Labels                                                                                         // /default_panels/StyleAxesPanel.js:333
@@ -330,7 +330,7 @@ Middle Center                                                                   
 Middle Left                                                                                                  // /components/fields/derived.js:475
 Middle Right                                                                                                 // /components/fields/derived.js:477
 Miller                                                                                                       // /default_panels/GraphCreatePanel.js:196
-Min                                                                                                          // /components/fields/MarkerColor.js:273
+Min                                                                                                          // /components/fields/MarkerColor.js:278
 Min Contour                                                                                                  // /default_panels/StyleTracesPanel.js:456
 Minimum Size                                                                                                 // /default_panels/StyleTracesPanel.js:248
 Minimum X                                                                                                    // /components/fields/derived.js:168
@@ -340,7 +340,7 @@ Mirror Axis                                                                     
 Mode                                                                                                         // /default_panels/GraphTransformsPanel.js:42
 Mollweide                                                                                                    // /default_panels/GraphCreatePanel.js:209
 Month                                                                                                        // /default_panels/StyleAxesPanel.js:415
-Multiple                                                                                                     // /components/fields/MarkerColor.js:134
+Multiple                                                                                                     // /components/fields/MarkerColor.js:139
 Multiple Values                                                                                              // /lib/constants.js:18
 Name                                                                                                         // /components/fields/derived.js:501
 Natural Earth                                                                                                // /default_panels/GraphCreatePanel.js:192
@@ -349,7 +349,7 @@ No                                                                              
 No Results                                                                                                   // /components/widgets/Dropdown.js:75
 No transforms available for this trace type                                                                  // /components/containers/TransformAccordion.js:43
 None                                                                                                         // /components/fields/derived.js:76
-Normal                                                                                                       // /components/fields/MarkerColor.js:251
+Normal                                                                                                       // /components/fields/MarkerColor.js:256
 Normalization                                                                                                // /default_panels/StyleTracesPanel.js:277
 North America                                                                                                // /default_panels/GraphCreatePanel.js:179
 Note Text                                                                                                    // /default_panels/StyleNotesPanel.js:20
@@ -408,7 +408,7 @@ Relative To                                                                     
 Relative to                                                                                                  // /default_panels/StyleShapesPanel.js:34
 Relative to Grid                                                                                             // /default_panels/StyleImagesPanel.js:36
 Rendering                                                                                                    // /components/fields/TraceSelector.js:137
-Reversed                                                                                                     // /components/fields/MarkerColor.js:252
+Reversed                                                                                                     // /components/fields/MarkerColor.js:257
 Rich Text                                                                                                    // /components/widgets/text_editors/MultiFormat.js:24
 Rich text is incompatible with LaTeX.                                                                        // /components/widgets/text_editors/MultiFormat.js:121
 Right                                                                                                        // /components/fields/derived.js:109
@@ -427,18 +427,18 @@ Second                                                                          
 Segments                                                                                                     // /components/containers/TraceMarkerSection.js:21
 Select Trace Type                                                                                            // /components/widgets/TraceTypeSelector.js:187
 Select a Colorscale Type                                                                                     // /components/widgets/ColorscalePicker.js:58
-Select a Data Option                                                                                         // /components/fields/MarkerColor.js:196
+Select a Data Option                                                                                         // /components/fields/MarkerColor.js:201
 Select an Option                                                                                             // /components/widgets/Dropdown.js:66
 Separate Thousands                                                                                           // /default_panels/StyleAxesPanel.js:256
 Shape                                                                                                        // /components/containers/ShapeAccordion.js:27
 Shapes                                                                                                       // /DefaultEditor.js:36
-Show                                                                                                         // /components/fields/MarkerColor.js:259
+Show                                                                                                         // /components/fields/MarkerColor.js:264
 Show All                                                                                                     // /default_panels/StyleTracesPanel.js:213
 Show Contour                                                                                                 // /default_panels/StyleTracesPanel.js:577
 Show Sides                                                                                                   // /default_panels/StyleAxesPanel.js:515
 Side                                                                                                         // /default_panels/StyleAxesPanel.js:91
 Simple                                                                                                       // /lib/traceTypes.js:9
-Single                                                                                                       // /components/fields/MarkerColor.js:133
+Single                                                                                                       // /components/fields/MarkerColor.js:138
 Sinusoidal                                                                                                   // /default_panels/GraphCreatePanel.js:213
 Size                                                                                                         // /default_panels/StyleColorbarsPanel.js:62
 Size Scale                                                                                                   // /default_panels/StyleTracesPanel.js:249
@@ -529,7 +529,7 @@ Value                                                                           
 Value (-)                                                                                                    // /components/fields/ErrorBars.js:132
 Values                                                                                                       // /components/fields/derived.js:532
 Values Shown On Hover                                                                                        // /default_panels/StyleTracesPanel.js:574
-Variable                                                                                                     // /components/fields/MarkerColor.js:217
+Variable                                                                                                     // /components/fields/MarkerColor.js:222
 Vertex Normal                                                                                                // /default_panels/StyleTracesPanel.js:466
 Vertexcolor                                                                                                  // /default_panels/GraphCreatePanel.js:145
 Vertical                                                                                                     // /default_panels/GraphCreatePanel.js:38
