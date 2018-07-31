@@ -28,8 +28,8 @@ const GraphCreatePanel = (props, {localize: _}) => {
       <PlotlySection name={_('Data')}>
         <DataSelector label={_('Latitude')} attr="lat" />
         <DataSelector label={_('Longitude')} attr="lon" />
-        <DataSelector label={_('Labels')} attr="labels" />
         <DataSelector label={_('Values')} attr="values" />
+        <DataSelector label={_('Labels')} attr="labels" />
         <DataSelector label={_('Locations')} attr="locations" />
         <Radio
           label={_('Orientation')}
