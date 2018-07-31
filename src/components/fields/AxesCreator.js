@@ -1,7 +1,7 @@
 import Dropdown from './Dropdown';
 import Info from './Info';
 import PropTypes from 'prop-types';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
@@ -11,6 +11,7 @@ import {
   getAxisTitle,
   axisIdToAxisName,
 } from 'lib';
+import {PlotlySection} from 'components';
 
 class UnconnectedAxisCreator extends Component {
   canAddAxis() {
@@ -159,12 +160,12 @@ class UnconnectedAxesCreator extends Component {
     }
 
     return (
-      <Fragment>
+      <PlotlySection name={_('Axes to Use')}>
         {controls}
         <Info>
           {_('You can style and position your axes in the Style > Axes Panel')}
         </Info>
-      </Fragment>
+      </PlotlySection>
     );
   }
 }
