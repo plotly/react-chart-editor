@@ -5,6 +5,9 @@ import {connectToContainer} from 'lib';
 import {NumericFraction} from './derived';
 import ResizableRect from 'react-resizable-rotatable-draggable';
 
+const maxWidth = 300;
+const gridRes = 8;
+
 class UnconnectedRectanglePositioner extends Component {
   constructor(props, context) {
     super(props, context);
@@ -17,14 +20,21 @@ class UnconnectedRectanglePositioner extends Component {
     const y0 = (fieldHeightPx - (height + y)) / fieldHeightPx;
     const y1 = (fieldHeightPx - y) / fieldHeightPx;
 
-    if (x0 >= 0 && y0 >= 0 && y1 <= 1 && x1 <= 1) {
-      this.context.updateContainer({
-        'domain.x[0]': x0,
-        'domain.x[1]': x1,
-        'domain.y[0]': y0,
-        'domain.y[1]': y1,
-      });
+    const snap = v => Math.round(v * gridRes) / gridRes;
+
+    const payload = {};
+
+    if (x0 >= 0 && x1 <= 1) {
+      payload['domain.x[0]'] = snap(x0);
+      payload['domain.x[1]'] = snap(x1);
     }
+
+    if (y0 >= 0 && y1 <= 1) {
+      payload['domain.y[0]'] = snap(y0);
+      payload['domain.y[1]'] = snap(y1);
+    }
+
+    this.context.updateContainer(payload);
   }
 
   render() {
@@ -36,10 +46,9 @@ class UnconnectedRectanglePositioner extends Component {
       },
       fullLayout: {width: plotWidthPx, height: plotHeightPx},
     } = this.context;
-    const aspectRatio = 1; //plotHeightPx / plotWidthPx;
-    const maxWidth = 300;
-    const fieldWidthPx = aspectRatio > 1 ? maxWidth : maxWidth / aspectRatio;
-    const fieldHeightPx = aspectRatio < 1 ? maxWidth : maxWidth * aspectRatio;
+    const aspectRatio = plotHeightPx / plotWidthPx;
+    const fieldWidthPx = Math.min(maxWidth, maxWidth / aspectRatio);
+    const fieldHeightPx = Math.min(maxWidth, maxWidth * aspectRatio);
 
     const width = fieldWidthPx * (x[1] - x[0]);
     const height = fieldHeightPx * (y[1] - y[0]);
@@ -56,6 +65,20 @@ class UnconnectedRectanglePositioner extends Component {
             position: 'relative',
           }}
         >
+          {Array(gridRes * gridRes)
+            .fill(0)
+            .map((v, i) => (
+              <div
+                key={i}
+                style={{
+                  width: fieldWidthPx / gridRes - 1,
+                  height: fieldHeightPx / gridRes - 1,
+                  float: 'left',
+                  borderTop: i < gridRes ? '0' : '1px solid yellow',
+                  borderLeft: i % gridRes ? '1px solid yellow' : '0',
+                }}
+              />
+            ))}
           <ResizableRect
             bounds="parent"
             width={width}
@@ -63,17 +86,8 @@ class UnconnectedRectanglePositioner extends Component {
             left={left}
             top={top}
             rotatable={false}
+            draggable={false}
             zoomable="n, w, s, e, nw, ne, se, sw"
-            onDrag={(deltaX, deltaY) => {
-              this.sendUpdate({
-                fieldWidthPx,
-                fieldHeightPx,
-                width,
-                height,
-                x: left + deltaX,
-                y: top + deltaY,
-              });
-            }}
             onResize={style => {
               this.sendUpdate({
                 fieldWidthPx,
