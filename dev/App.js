@@ -16,7 +16,7 @@ import 'brace/theme/textmate';
 import ACCESS_TOKENS from '../accessTokens';
 
 const dataSources = {
-  ints: [1, 2, 3, 4, 5, 6], // eslint-disable-line no-magic-numbers
+  ints: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], // eslint-disable-line no-magic-numbers
   'jagged ints': [2, 1, 3, 5, 4, 6], // eslint-disable-line no-magic-numbers
   'toggle ints': [1, -1, 1, -1, 1, -1], // eslint-disable-line no-magic-numbers
   'big ints': [1000, 10100, 10000, 20000, 100000], // eslint-disable-line no-magic-numbers

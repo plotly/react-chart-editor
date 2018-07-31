@@ -1,7 +1,7 @@
 import Field from './Field';
 import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
-import {connectToContainer} from 'lib';
+import {adjustColorscale, connectToContainer} from 'lib';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Color from './Color';
 import Colorscale from './Colorscale';
@@ -11,7 +11,6 @@ import Info from './Info';
 import DataSelector from './DataSelector';
 import VisibilitySelect from './VisibilitySelect';
 import {MULTI_VALUED, COLORS} from 'lib/constants';
-import {getColorscale} from 'react-colorscales';
 
 class UnconnectedMarkerColor extends Component {
   constructor(props, context) {
@@ -107,26 +106,14 @@ class UnconnectedMarkerColor extends Component {
     let adjustedColors = colors;
 
     if (colorscaleType !== 'categorical') {
-      adjustedColors = getColorscale(
-        colors,
-        numberOfTraces,
-        null,
-        null,
-        colorscaleType
-      );
+      adjustedColors = adjustColorscale(colors, numberOfTraces);
     }
 
     if (
       adjustedColors.every(c => c === adjustedColors[0]) ||
       colorscaleType === 'categorical'
     ) {
-      const repetitions = Math.ceil(numberOfTraces / colors.length);
-      const newArray = new Array(repetitions).fill(colors);
-      adjustedColors = newArray
-        .reduce((a, b) => {
-          return a.concat(b);
-        }, [])
-        .slice(0, numberOfTraces);
+      adjustedColors = adjustColorscale(colors, numberOfTraces, {repeat: true});
     }
 
     const updates = adjustedColors.map(color => ({

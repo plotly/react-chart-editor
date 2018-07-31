@@ -38,6 +38,7 @@ import {
   camelCase,
   pascalCase,
 } from './strings';
+import {getColorscale} from 'react-colorscales';
 
 const TOO_LIGHT_FACTOR = 0.8;
 
@@ -175,7 +176,33 @@ function maybeAdjustSrc(src, srcAttributePath, traceType, config) {
   return config && config.fromSrc ? config.fromSrc(src, traceType) : src;
 }
 
+function adjustColorscale(
+  colorscale,
+  numberOfNeededColors,
+  colorscaleType,
+  config
+) {
+  if (config.repeat) {
+    const repetitions = Math.ceil(numberOfNeededColors / colorscale.length);
+    const newArray = new Array(repetitions).fill(colorscale);
+    return newArray
+      .reduce((a, b) => {
+        return a.concat(b);
+      }, [])
+      .slice(0, numberOfNeededColors);
+  }
+
+  return getColorscale(
+    colorscale,
+    numberOfNeededColors,
+    null,
+    null,
+    colorscaleType
+  );
+}
+
 export {
+  adjustColorscale,
   axisIdToAxisName,
   bem,
   capitalize,
