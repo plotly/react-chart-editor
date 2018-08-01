@@ -163,7 +163,9 @@ class UnconnectedAxesCreator extends Component {
       <PlotlySection name={_('Axes to Use')}>
         {controls}
         <Info>
-          {_('You can style and position your axes in the Style > Axes Panel')}
+          {_(
+            'You can style and position your axes in the Graph > Subplots Panel'
+          )}
         </Info>
       </PlotlySection>
     );

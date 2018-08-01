@@ -1,7 +1,7 @@
 import {TRACE_TO_AXIS} from 'lib/constants';
-import {capitalize, striptags} from 'lib';
+import {capitalize} from 'lib';
 
-export default function getAllAxes(fullLayout) {
+export default function getAllSubplots(fullLayout) {
   const axes = [];
   // Plotly.js should really have a helper function for this, but until it does..
   if (fullLayout && fullLayout._subplots) {
@@ -43,7 +43,7 @@ export default function getAllAxes(fullLayout) {
   return axes;
 }
 
-export function traceTypeToAxisType(traceType, subplot = false) {
+export function traceTypeToSubplotType(traceType, subplot = false) {
   let category = null;
   const traceToAxis = TRACE_TO_AXIS;
   if (subplot) {
@@ -68,24 +68,14 @@ export function traceTypeToAxisType(traceType, subplot = false) {
   throw new Error(`Sorry, could not find ${traceType} in any category.`);
 }
 
-export function axisIdToAxisName(id) {
-  return id.charAt(0) + 'axis' + id.slice(1);
+function getSubplotNumber(subplot, type) {
+  return Number(subplot.split(type)[1]);
 }
 
-function getSubplotNumber(axis) {
-  const splitSubplot = axis._subplot
-    ? axis._subplot.split(axis._axisGroup)
-    : [];
-  return splitSubplot[1]
-    ? Number(splitSubplot[1])
-    : axis._name.split('axis')[1];
-}
+export function getSubplotTitle(subplot, type) {
+  const axisType = capitalize(type === 'gl3d' ? 'scene' : type);
+  const subplotNumber =
+    getSubplotNumber(subplot, type === 'gl3d' ? 'scene' : type) || '';
 
-export function getAxisTitle(axis) {
-  const axisType = capitalize(axis._name.split('axis')[0]);
-  const subplotNumber = getSubplotNumber(axis) || 1;
-
-  return axis._input && axis._input.title
-    ? striptags(`${axisType}: ${axis._input.title}`)
-    : striptags(`${axisType} ${subplotNumber}`);
+  return `${axisType} ${subplotNumber}`;
 }

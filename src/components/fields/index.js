@@ -17,6 +17,7 @@ import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
 import AxesCreator from './AxesCreator';
+import SubplotCreator from './SubplotCreator';
 import UpdateMenuButtons from './UpdateMenuButtons';
 import {FilterOperation, FilterValue} from './FilterOperation';
 import MarkerSize from './MarkerSize';
@@ -86,6 +87,7 @@ export {
   TraceOrientation,
   TraceSelector,
   AxesCreator,
+  SubplotCreator,
   AxisOverlayDropdown,
   AxisSide,
   UpdateMenuButtons,
