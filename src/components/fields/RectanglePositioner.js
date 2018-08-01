@@ -12,6 +12,12 @@ class UnconnectedRectanglePositioner extends Component {
   constructor(props, context) {
     super(props, context);
     this.sendUpdate = this.sendUpdate.bind(this);
+    this.attr = this.props.cartesian
+      ? {
+          x: ['xaxis.domain[0]', 'xaxis.domain[1]'],
+          y: ['yaxis.domain[0]', 'yaxis.domain[1]'],
+        }
+      : {x: ['domain.x[0]', 'domain.x[1]'], y: ['domain.y[0]', 'domain.y[1]']};
   }
 
   sendUpdate({x, y, width, height, fieldWidthPx, fieldHeightPx}) {
@@ -25,27 +31,27 @@ class UnconnectedRectanglePositioner extends Component {
     const payload = {};
 
     if (x0 >= 0 && x1 <= 1) {
-      payload['domain.x[0]'] = snap(x0);
-      payload['domain.x[1]'] = snap(x1);
+      payload[this.attr.x[0]] = snap(x0);
+      payload[this.attr.x[1]] = snap(x1);
     }
 
     if (y0 >= 0 && y1 <= 1) {
-      payload['domain.y[0]'] = snap(y0);
-      payload['domain.y[1]'] = snap(y1);
+      payload[this.attr.y[0]] = snap(y0);
+      payload[this.attr.y[1]] = snap(y1);
     }
 
     this.context.updateContainer(payload);
   }
 
   render() {
-    const {attr} = this.props;
+    const {attr, cartesian} = this.props;
     const {
       localize: _,
-      fullContainer: {
-        domain: {x, y},
-      },
+      fullContainer,
       fullLayout: {width: plotWidthPx, height: plotHeightPx},
     } = this.context;
+    const x = cartesian ? fullContainer.xaxis.domain : fullContainer.domain.x;
+    const y = cartesian ? fullContainer.yaxis.domain : fullContainer.domain.y;
     const aspectRatio = plotHeightPx / plotWidthPx;
     const fieldWidthPx = Math.min(maxWidth, maxWidth / aspectRatio);
     const fieldHeightPx = Math.min(maxWidth, maxWidth * aspectRatio);
@@ -74,8 +80,8 @@ class UnconnectedRectanglePositioner extends Component {
                   width: fieldWidthPx / gridRes - 1,
                   height: fieldHeightPx / gridRes - 1,
                   float: 'left',
-                  borderTop: i < gridRes ? '0' : '1px solid yellow',
-                  borderLeft: i % gridRes ? '1px solid yellow' : '0',
+                  borderTop: i < gridRes ? '0' : '1px solid lightgray',
+                  borderLeft: i % gridRes ? '1px solid lightgray' : '0',
                 }}
               />
             ))}
@@ -100,10 +106,10 @@ class UnconnectedRectanglePositioner extends Component {
             }}
           />
         </div>
-        <NumericFraction label={_('X Start')} attr="domain.x[0]" />
-        <NumericFraction label={_('X End')} attr="domain.x[1]" />
-        <NumericFraction label={_('Y Start')} attr="domain.y[0]" />
-        <NumericFraction label={_('Y End')} attr="domain.y[1]" />
+        <NumericFraction label={_('X Start')} attr={this.attr.x[0]} />
+        <NumericFraction label={_('X End')} attr={this.attr.x[1]} />
+        <NumericFraction label={_('Y Start')} attr={this.attr.y[0]} />
+        <NumericFraction label={_('Y End')} attr={this.attr.y[1]} />
       </Field>
     );
   }
@@ -112,6 +118,7 @@ class UnconnectedRectanglePositioner extends Component {
 UnconnectedRectanglePositioner.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
+  cartesian: PropTypes.bool,
   ...Field.propTypes,
 };
 
