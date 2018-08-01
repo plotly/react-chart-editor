@@ -126,16 +126,16 @@ const AxisCreator = connectToContainer(UnconnectedAxisCreator);
 
 class UnconnectedAxesCreator extends Component {
   render() {
-    const isFirstTraceOfType =
-      this.context.data.filter(d => d.type === this.props.container.type)
+    const axisType = traceTypeToAxisType(this.props.container.type);
+    const isFirstTraceOfAxisType =
+      this.context.data.filter(d => traceTypeToAxisType(d.type) === axisType)
         .length === 1;
 
-    if (isFirstTraceOfType) {
+    if (isFirstTraceOfAxisType) {
       return null;
     }
 
     const {fullLayout, localize: _} = this.context;
-    const axisType = traceTypeToAxisType(this.props.container.type);
     const controls = [];
 
     function getOptions(axisType) {
