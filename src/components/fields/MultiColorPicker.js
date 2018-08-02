@@ -12,7 +12,10 @@ class UnconnectedMultiColorPicker extends Component {
     super(props, context);
     this.state = {
       selectedConstantColorOption:
-        context.traceIndexes.length > 1 ? 'multiple' : 'single',
+        context.traceIndexes.length > 1 &&
+        props.fullValue.every(v => v[1] === props.fullValue[0][1])
+          ? 'single'
+          : 'multiple',
     };
     this.setColor = this.setColor.bind(this);
     this.setColors = this.setColors.bind(this);
