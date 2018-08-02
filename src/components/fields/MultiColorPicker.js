@@ -60,8 +60,9 @@ class UnconnectedMultiColorPicker extends Component {
       {label: _('Single'), value: 'single'},
       {label: _('Multiple'), value: 'multiple'},
     ];
-    const selectedConstantColorOption = this.props.parentState
-      ? this.props.parentState.selectedConstantColorOption
+    const selectedConstantColorOption = this.props
+      .parentSelectedConstantColorOption
+      ? this.props.parentSelectedConstantColorOption
       : this.state.selectedConstantColorOption;
 
     const multiMessage = this.props.multiColorMessage
@@ -78,8 +79,8 @@ class UnconnectedMultiColorPicker extends Component {
           <RadioBlocks
             options={constantOptions}
             activeOption={
-              this.props.parentState
-                ? this.props.parentState.selectedConstantColorOption
+              this.props.parentSelectedConstantColorOption
+                ? this.props.parentSelectedConstantColorOption
                 : this.state.selectedConstantColorOption
             }
             onOptionChange={
@@ -128,7 +129,7 @@ UnconnectedMultiColorPicker.propTypes = {
   singleColorMessage: PropTypes.string,
   updatePlot: PropTypes.func,
   attr: PropTypes.string,
-  parentState: PropTypes.object,
+  parentSelectedConstantColorOption: PropTypes.string,
   onConstantColorOptionChange: PropTypes.func,
   messageKeyWordSingle: PropTypes.string,
   messageKeyWordPlural: PropTypes.string,

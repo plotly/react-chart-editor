@@ -122,7 +122,9 @@ class UnconnectedMarkerColor extends Component {
           setColor={this.setColor}
           setColorScale={this.setColorScale}
           onConstantColorOptionChange={this.onConstantColorOptionChange}
-          parentState={this.state}
+          parentSelectedConstantColorOption={
+            this.state.selectedConstantColorOption
+          }
         />
       </div>
     );
