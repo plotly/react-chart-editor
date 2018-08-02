@@ -61,9 +61,17 @@ class UnconnectedMultiColorPicker extends Component {
       ? this.props.parentState.selectedConstantColorOption
       : this.state.selectedConstantColorOption;
 
+    const multiMessage = this.props.multiColorMessage
+      ? this.props.multiColorMessage
+      : _('Each will be colored according to the selected colors.');
+
+    const singleMessage = this.props.singleColorMessage
+      ? this.props.singleColorMessage
+      : _('All will be colored in the same color.');
+
     if (this.context.traceIndexes.length > 1) {
       return (
-        <Field>
+        <Field {...this.props} suppressMultiValuedMessage>
           <RadioBlocks
             options={constantOptions}
             activeOption={
@@ -79,12 +87,8 @@ class UnconnectedMultiColorPicker extends Component {
           />
           <Info>
             {selectedConstantColorOption === 'single'
-              ? this.props.singleColorMessage
-                ? this.props.singleColorMessage
-                : _('All will be colored in the same color.')
-              : this.props.multiColorMessage
-                ? this.props.multiColorMessage
-                : _('The selected colors will be used to color.')}
+              ? singleMessage
+              : multiMessage}
           </Info>
           {selectedConstantColorOption === 'single' ? (
             <Color
@@ -110,6 +114,7 @@ class UnconnectedMultiColorPicker extends Component {
       <Color
         attr={this.props.attr}
         updatePlot={this.props.setColor ? this.props.setColor : this.setColor}
+        label={this.props.label}
       />
     );
   }
@@ -122,6 +127,8 @@ UnconnectedMultiColorPicker.propTypes = {
   attr: PropTypes.string,
   parentState: PropTypes.object,
   onConstantColorOptionChange: PropTypes.func,
+  messageKeyWordSingle: PropTypes.string,
+  messageKeyWordPlural: PropTypes.string,
   ...Field.propTypes,
 };
 
@@ -134,21 +141,23 @@ UnconnectedMultiColorPicker.contextTypes = {
 
 export default connectToContainer(UnconnectedMultiColorPicker, {
   modifyPlotProps(props, context, plotProps) {
-    plotProps.fullValue = context.traceIndexes
-      .map(index => {
-        const trace = context.fullData.filter(
-          trace => trace.index === index
-        )[0];
+    if (plotProps.isVisible) {
+      plotProps.fullValue = context.traceIndexes
+        .map(index => {
+          const trace = context.fullData.filter(
+            trace => trace.index === index
+          )[0];
 
-        const properties = props.attr.split('.');
-        let value = trace;
+          const properties = props.attr.split('.');
+          let value = trace;
 
-        properties.forEach(prop => {
-          value = value[prop];
-        });
+          properties.forEach(prop => {
+            value = value[prop];
+          });
 
-        return value;
-      })
-      .map(c => [0, c]);
+          return value;
+        })
+        .map(c => [0, c]);
+    }
   },
 });

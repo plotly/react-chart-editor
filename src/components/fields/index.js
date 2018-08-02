@@ -22,6 +22,8 @@ import {FilterOperation, FilterValue} from './FilterOperation';
 import MarkerSize from './MarkerSize';
 import MarkerColor from './MarkerColor';
 import VisibilitySelect from './VisibilitySelect';
+import MultiColorPicker from './MultiColorPicker';
+
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -91,5 +93,6 @@ export {
   TextPosition,
   MarkerSize,
   MarkerColor,
+  MultiColorPicker,
   VisibilitySelect,
 };
