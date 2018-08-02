@@ -1,9 +1,9 @@
 import Field from './Field';
 import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
-import {adjustColorscale, connectToContainer} from 'lib';
+import {connectToContainer} from 'lib';
 import RadioBlocks from '../widgets/RadioBlocks';
-import Color from './Color';
+import MultiColorPicker from './MultiColorPicker';
 import Colorscale from './Colorscale';
 import Numeric from './Numeric';
 import Radio from './Radio';
@@ -37,14 +37,16 @@ class UnconnectedMarkerColor extends Component {
         constant: type === 'constant' ? props.fullValue : COLORS.mutedBlue,
         variable: type === 'variable' ? props.fullValue : null,
       },
-      constantSelectedOption:
+      selectedConstantColorOption:
         type === 'constant' && props.multiValued ? 'multiple' : 'single',
     };
 
     this.setType = this.setType.bind(this);
-    this.setValue = this.setValue.bind(this);
+    this.setColor = this.setColor.bind(this);
     this.setColorScale = this.setColorScale.bind(this);
-    this.setColors = this.setColors.bind(this);
+    this.onConstantColorOptionChange = this.onConstantColorOptionChange.bind(
+      this
+    );
   }
 
   setType(type) {
@@ -67,7 +69,7 @@ class UnconnectedMarkerColor extends Component {
     }
   }
 
-  setValue(inputValue) {
+  setColor(inputValue) {
     const {type} = this.state;
 
     this.setState(
@@ -99,88 +101,32 @@ class UnconnectedMarkerColor extends Component {
     );
   }
 
-  setColors(colorscale, colorscaleType) {
-    const numberOfTraces = this.context.traceIndexes.length;
-    const colors = colorscale.map(c => c[1]);
-
-    let adjustedColors = colors;
-
-    if (colorscaleType !== 'categorical') {
-      adjustedColors = adjustColorscale(colors, numberOfTraces, colorscaleType);
-    }
-
-    if (
-      adjustedColors.every(c => c === adjustedColors[0]) ||
-      colorscaleType === 'categorical'
-    ) {
-      adjustedColors = adjustColorscale(
-        colors,
-        numberOfTraces,
-        colorscaleType,
-        {repeat: true}
-      );
-    }
-
-    const updates = adjustedColors.map(color => ({
-      ['marker.color']: color,
-    }));
-
+  onConstantColorOptionChange(value) {
     this.setState({
-      colorscale: adjustedColors,
+      selectedConstantColorOption: value,
     });
-
-    this.context.updateContainer(updates);
   }
 
   renderConstantControls() {
     const _ = this.context.localize;
-    const constantOptions = [
-      {label: _('Single'), value: 'single'},
-      {label: _('Multiple'), value: 'multiple'},
-    ];
-
-    if (this.context.traceIndexes.length > 1) {
-      return (
-        <div className="markercolor-constantcontrols__container">
-          <RadioBlocks
-            options={constantOptions}
-            activeOption={this.state.constantSelectedOption}
-            onOptionChange={value =>
-              this.setState({constantSelectedOption: value})
-            }
-          />
-          <Info>
-            {this.state.constantSelectedOption === 'single'
-              ? _('All traces will be colored in the the same color.')
-              : _(
-                  'Each trace will be colored according to the selected colorscale.'
-                )}
-          </Info>
-          {this.state.constantSelectedOption === 'single' ? (
-            <Color
-              attr="marker.color"
-              updatePlot={this.setValue}
-              fullValue={this.state.value.constant}
-            />
-          ) : (
-            <Colorscale
-              suppressMultiValuedMessage
-              attr="marker.color"
-              updatePlot={this.setColors}
-              colorscale={this.state.colorscale}
-              initialCategory={'categorical'}
-            />
-          )}
-        </div>
-      );
-    }
-
     return (
-      <Color
-        attr="marker.color"
-        updatePlot={this.setValue}
-        fullValue={this.state.value.constant}
-      />
+      <div className="markercolor-constantcontrols__container">
+        <MultiColorPicker
+          attr="marker.color"
+          multiColorMessage={_(
+            'Each trace will be colored according to the selected colorscale.'
+          )}
+          singleColorMessage={_(
+            'All traces will be colored in the the same color.'
+          )}
+          setColor={this.setColor}
+          setColorScale={this.setColorScale}
+          onConstantColorOptionChange={this.onConstantColorOptionChange}
+          parentSelectedConstantColorOption={
+            this.state.selectedConstantColorOption
+          }
+        />
+      </div>
     );
   }
 

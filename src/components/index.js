@@ -44,6 +44,7 @@ import {
   TextPosition,
   MarkerSize,
   MarkerColor,
+  MultiColorPicker,
   VisibilitySelect,
 } from './fields';
 
@@ -144,5 +145,6 @@ export {
   TextPosition,
   MarkerSize,
   MarkerColor,
+  MultiColorPicker,
   VisibilitySelect,
 };

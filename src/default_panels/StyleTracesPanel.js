@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  ColorPicker,
   Flaglist,
   ContourNumeric,
   LineDashSelector,
@@ -26,6 +25,7 @@ import {
   TextPosition,
   MarkerSize,
   MarkerColor,
+  MultiColorPicker,
   DataSelector,
   VisibilitySelect,
 } from '../components';
@@ -47,7 +47,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       ]}
     />
     <NumericFraction label={_('Opacity')} attr="opacity" />
-    <ColorPicker label={_('Color')} attr="color" />
+    <MultiColorPicker label={_('Color')} attr="color" />
     <ColorscalePicker
       label={_('Colors')}
       attr="marker.colors"
@@ -105,7 +105,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <PlotlySection name={_('Header')}>
       <Numeric label={_('Height')} attr="header.height" />
-      <ColorPicker label={_('Fill Color')} attr="header.fill.color" />
+      <MultiColorPicker label={_('Fill Color')} attr="header.fill.color" />
       <FontSelector label={_('Typeface')} attr="header.font.family" />
       <Numeric label={_('Font Size')} attr="header.font.size" />
       <Dropdown
@@ -117,13 +117,13 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
         attr="header.align"
       />
-      <ColorPicker label={_('Font Color')} attr="header.font.color" />
+      <MultiColorPicker label={_('Font Color')} attr="header.font.color" />
       <Numeric label={_('Border Width')} attr="header.line.width" />
-      <ColorPicker label={_('Border Color')} attr="header.line.color" />
+      <MultiColorPicker label={_('Border Color')} attr="header.line.color" />
     </PlotlySection>
     <PlotlySection name={_('Cells')}>
       <Numeric label={_('Height')} attr="cells.height" />
-      <ColorPicker label={_('Fill Color')} attr="cells.fill.color" />
+      <MultiColorPicker label={_('Fill Color')} attr="cells.fill.color" />
       <FontSelector label={_('Typeface')} attr="cells.font.family" />
       <Numeric label={_('Font Size')} attr="cells.font.size" />
       <Dropdown
@@ -135,9 +135,9 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
         attr="cells.align"
       />
-      <ColorPicker label={_('Font Color')} attr="cells.font.color" />
+      <MultiColorPicker label={_('Font Color')} attr="cells.font.color" />
       <Numeric label={_('Border Width')} attr="cells.line.width" />
-      <ColorPicker label={_('Border Color')} attr="cells.line.color" />
+      <MultiColorPicker label={_('Border Color')} attr="cells.line.color" />
     </PlotlySection>
     <PlotlySection name={_('Display')}>
       <Flaglist
@@ -249,7 +249,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <NumericReciprocal label={_('Size Scale')} attr="marker.sizeref" />
       <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
       <Numeric label={_('Border Width')} attr="marker.line.width" />
-      <ColorPicker label={_('Border Color')} attr="marker.line.color" />
+      <MultiColorPicker label={_('Border Color')} attr="marker.line.color" />
     </TraceMarkerSection>
     <LayoutSection name={_('Size and Spacing')}>
       <Radio
@@ -313,7 +313,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       ]}
     >
       <Numeric label={_('Width')} attr="line.width" />
-      <ColorPicker label={_('Color')} attr="line.color" />
+      <MultiColorPicker label={_('Color')} attr="line.color" />
       <Radio
         label={_('Color Bar')}
         attr="line.showscale"
@@ -342,7 +342,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </TraceTypeSection>
     <PlotlySection name={_('Filled Area')}>
       <FillDropdown attr="fill" label={_('Fill to')} />
-      <ColorPicker label={_('Color')} attr="fillcolor" />
+      <MultiColorPicker label={_('Color')} attr="fillcolor" />
     </PlotlySection>
     <TraceTypeSection
       name={_('Text')}
@@ -359,7 +359,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <DataSelector label={_('Text')} attr="text" />
       <FontSelector label={_('Typeface')} attr="textfont.family" />
       <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
-      <ColorPicker label={_('Font Color')} attr="textfont.color" />
+      <MultiColorPicker label={_('Font Color')} attr="textfont.color" />
       <TextPosition label={_('Text Position')} attr="textposition" />
     </TraceTypeSection>
     <PlotlySection name={_('Colorscale')}>
@@ -479,8 +479,8 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Increasing Trace Styles')}>
       <TextEditor label={_('Name')} attr="increasing.name" richTextOnly />
       <Numeric label={_('Width')} attr="increasing.line.width" />
-      <ColorPicker label={_('Line Color')} attr="increasing.line.color" />
-      <ColorPicker label={_('Fill Color')} attr="increasing.fillcolor" />
+      <MultiColorPicker label={_('Line Color')} attr="increasing.line.color" />
+      <MultiColorPicker label={_('Fill Color')} attr="increasing.fillcolor" />
       <LineDashSelector label={_('Type')} attr="increasing.line.dash" />
       <Radio
         label="Show in Legend"
@@ -494,8 +494,8 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Decreasing Trace Styles')}>
       <TextEditor label={_('Name')} attr="decreasing.name" richTextOnly />
       <Numeric label={_('Width')} attr="decreasing.line.width" />
-      <ColorPicker label={_('Line Color')} attr="decreasing.line.color" />
-      <ColorPicker label={_('Fill Color')} attr="decreasing.fillcolor" />
+      <MultiColorPicker label={_('Line Color')} attr="decreasing.line.color" />
+      <MultiColorPicker label={_('Fill Color')} attr="decreasing.fillcolor" />
       <LineDashSelector label={_('Type')} attr="decreasing.line.dash" />
       <Radio
         label="Show in Legend"
@@ -555,9 +555,9 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
       />
       <NumericFraction label={_('Box Width')} attr="box.width" />
-      <ColorPicker label={_('Box Fill Color')} attr="box.color" />
+      <MultiColorPicker label={_('Box Fill Color')} attr="box.color" />
       <NumericFraction label={_('Box Line Width')} attr="box.line.width" />
-      <ColorPicker label={_('Box Line Color')} attr="box.line.color" />
+      <MultiColorPicker label={_('Box Line Color')} attr="box.line.color" />
     </PlotlySection>
     <PlotlySection name={_('Meanline')}>
       <Radio
@@ -568,7 +568,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
       />
       <NumericFraction label={_('Meanline Width')} attr="meanline.width" />
-      <ColorPicker label={_('Meanline Color')} attr="meanline.color" />
+      <MultiColorPicker label={_('Meanline Color')} attr="meanline.color" />
     </PlotlySection>
     <PlotlySection name={_('On Hover')}>
       <HoverInfo attr="hoverinfo" label={_('Values Shown On Hover')} />
@@ -582,7 +582,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         showOn={true}
         defaultOpt={false}
       >
-        <ColorPicker label={_('Contour Color')} attr="contour.color" />
+        <MultiColorPicker label={_('Contour Color')} attr="contour.color" />
         <Numeric label={_('Contour Width')} attr="contour.width" />
       </VisibilitySelect>
     </PlotlySection>
