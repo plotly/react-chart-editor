@@ -2,10 +2,11 @@ import Field from './Field';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
-import {NumericFraction} from './derived';
 import ResizableRect from 'react-resizable-rotatable-draggable';
+import RadioBlocks from '../widgets/RadioBlocks';
+import DualNumeric from './DualNumeric';
 
-const maxWidth = 300;
+const maxWidth = 286;
 const gridRes = 8;
 
 class UnconnectedRectanglePositioner extends Component {
@@ -18,6 +19,7 @@ class UnconnectedRectanglePositioner extends Component {
           y: ['yaxis.domain[0]', 'yaxis.domain[1]'],
         }
       : {x: ['domain.x[0]', 'domain.x[1]'], y: ['domain.y[0]', 'domain.y[1]']};
+    this.state = {snap: true};
   }
 
   sendUpdate({x, y, width, height, fieldWidthPx, fieldHeightPx}) {
@@ -26,7 +28,9 @@ class UnconnectedRectanglePositioner extends Component {
     const y0 = (fieldHeightPx - (height + y)) / fieldHeightPx;
     const y1 = (fieldHeightPx - y) / fieldHeightPx;
 
-    const snap = v => Math.round(v * gridRes) / gridRes;
+    const snap = this.state.snap
+      ? v => Math.round(v * gridRes) / gridRes
+      : v => v;
 
     const payload = {};
 
@@ -61,14 +65,37 @@ class UnconnectedRectanglePositioner extends Component {
     const left = fieldWidthPx * x[0];
     const top = fieldHeightPx * (1 - y[1]);
 
+    let zoomable = '';
+    if (
+      !fullContainer.xaxis ||
+      !fullContainer.yaxis ||
+      (!fullContainer.xaxis.overlaying && !fullContainer.yaxis.overlaying)
+    ) {
+      zoomable = 'n, w, s, e, nw, ne, se, sw';
+    } else if (!fullContainer.xaxis.overlaying) {
+      zoomable = 'e, w';
+    } else if (!fullContainer.yaxis.overlaying) {
+      zoomable = 'n, s';
+    }
+
     return (
       <Field {...this.props} attr={attr}>
+        <Field label={_('Snap to Grid')}>
+          <RadioBlocks
+            alignment="center"
+            onOptionChange={snap => this.setState({snap: snap})}
+            activeOption={this.state.snap}
+            options={[
+              {label: _('On'), value: true},
+              {label: _('Off'), value: false},
+            ]}
+          />
+        </Field>
         <div
+          className="rect-container"
           style={{
             width: fieldWidthPx,
             height: fieldHeightPx,
-            border: '1px solid grey',
-            position: 'relative',
           }}
         >
           {Array(gridRes * gridRes)
@@ -76,10 +103,10 @@ class UnconnectedRectanglePositioner extends Component {
             .map((v, i) => (
               <div
                 key={i}
+                className="rect-grid"
                 style={{
                   width: fieldWidthPx / gridRes - 1,
                   height: fieldHeightPx / gridRes - 1,
-                  float: 'left',
                   borderTop: i < gridRes ? '0' : '1px solid lightgray',
                   borderLeft: i % gridRes ? '1px solid lightgray' : '0',
                 }}
@@ -92,8 +119,8 @@ class UnconnectedRectanglePositioner extends Component {
             left={left}
             top={top}
             rotatable={false}
-            draggable={false}
-            zoomable="n, w, s, e, nw, ne, se, sw"
+            draggable={!this.state.snap}
+            zoomable={zoomable}
             onResize={style => {
               this.sendUpdate({
                 fieldWidthPx,
@@ -104,12 +131,44 @@ class UnconnectedRectanglePositioner extends Component {
                 y: style.top,
               });
             }}
+            onDrag={(deltaX, deltaY) => {
+              this.sendUpdate({
+                fieldWidthPx,
+                fieldHeightPx,
+                width,
+                height,
+                x: left + deltaX,
+                y: top + deltaY,
+              });
+            }}
           />
         </div>
-        <NumericFraction label={_('X Start')} attr={this.attr.x[0]} />
-        <NumericFraction label={_('X End')} attr={this.attr.x[1]} />
-        <NumericFraction label={_('Y Start')} attr={this.attr.y[0]} />
-        <NumericFraction label={_('Y End')} attr={this.attr.y[1]} />
+        {fullContainer.xaxis && fullContainer.xaxis.overlaying ? (
+          ''
+        ) : (
+          <DualNumeric
+            label={_('X')}
+            attr={this.attr.x[0]}
+            attr2={this.attr.x[1]}
+            percentage
+            step={1}
+            min={0}
+            max={100}
+          />
+        )}
+        {fullContainer.yaxis && fullContainer.yaxis.overlaying ? (
+          ''
+        ) : (
+          <DualNumeric
+            label={_('Y')}
+            attr={this.attr.y[0]}
+            attr2={this.attr.y[1]}
+            percentage
+            step={1}
+            min={0}
+            max={100}
+          />
+        )}
       </Field>
     );
   }

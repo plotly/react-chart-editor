@@ -11,6 +11,7 @@ import Radio from './Radio';
 import TextEditor from './TextEditor';
 import DataSelector from './DataSelector';
 import Numeric from './Numeric';
+import DualNumeric from './DualNumeric';
 import AxisRangeValue from './AxisRangeValue';
 import Text from './Text';
 import SymbolSelector from './SymbolSelector';
@@ -78,6 +79,7 @@ export {
   LineDashSelector,
   LineShapeSelector,
   Numeric,
+  DualNumeric,
   AxisRangeValue,
   Text,
   Radio,
