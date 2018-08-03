@@ -17,22 +17,14 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
     const {localize: _} = context;
     let options = [];
 
-    if (
-      plotProps.fullContainer &&
-      plotProps.fullContainer._subplot &&
-      plotProps.fullContainer._subplot.includes('xaxis')
-    ) {
+    if (props.attr.startsWith('xaxis')) {
       options = context.fullLayout._subplots.yaxis.map(axis => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
           value: axis,
         };
       });
-    } else if (
-      plotProps.fullContainer &&
-      plotProps.fullContainer._subplot &&
-      plotProps.fullContainer._subplot.includes('yaxis')
-    ) {
+    } else if (props.attr.startsWith('yaxis')) {
       options = context.fullLayout._subplots.xaxis.map(axis => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
@@ -49,22 +41,15 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _} = context;
     let options = [];
-    if (
-      plotProps.fullContainer &&
-      plotProps.fullContainer._subplot &&
-      plotProps.fullContainer._subplot.includes('xaxis')
-    ) {
+
+    if (props.attr.startsWith('xaxis')) {
       options = context.fullLayout._subplots.xaxis.map(axis => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
           value: axis,
         };
       });
-    } else if (
-      plotProps.fullContainer &&
-      plotProps.fullContainer._subplot &&
-      plotProps.fullContainer._subplot.includes('yaxis')
-    ) {
+    } else if (props.attr.startsWith('yaxis')) {
       options = context.fullLayout._subplots.yaxis.map(axis => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
@@ -78,7 +63,11 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
     // filter out the current axisID, can't overlay over itself
     plotProps.options = options.filter(
       option =>
-        context.fullContainer && context.fullContainer._id !== option.value
+        context.fullContainer &&
+        context.fullContainer.xaxis &&
+        context.fullContainer.yaxis &&
+        context.fullContainer.xaxis._id !== option.value &&
+        context.fullContainer.yaxis._id !== option.value
     );
 
     plotProps.clearable = false;
@@ -99,11 +88,8 @@ export const RangesliderVisible = connectToContainer(UnconnectedRadio, {
 export const AxisSide = connectToContainer(UnconnectedRadio, {
   modifyPlotProps: (props, context, plotProps) => {
     const _ = context.localize;
-    if (
-      context.fullContainer &&
-      context.fullContainer._id &&
-      context.fullContainer._id.startsWith('y')
-    ) {
+
+    if (props.attr.startsWith('yaxis')) {
       plotProps.options = [
         {label: _('Left'), value: 'left'},
         {label: _('Right'), value: 'right'},
@@ -111,11 +97,7 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
       return;
     }
 
-    if (
-      context.fullContainer &&
-      context.fullContainer._id &&
-      context.fullContainer._id.startsWith('x')
-    ) {
+    if (props.attr.startsWith('xaxis')) {
       plotProps.options = [
         {label: _('Bottom'), value: 'bottom'},
         {label: _('Top'), value: 'top'},
