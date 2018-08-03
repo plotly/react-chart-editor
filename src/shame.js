@@ -45,23 +45,24 @@ function clearAxisTypes(gd, traces) {
 }
 
 export const shamefullyAdjustAxisRef = (graphDiv, payload) => {
-  if (payload.axisToBeGarbageCollected) {
-    const axis = payload.axisToBeGarbageCollected.charAt(0);
-    const axisIdNumber = Number(payload.axisToBeGarbageCollected.slice(1));
+  if (payload.axesToBeGarbageCollected) {
+    payload.axesToBeGarbageCollected.forEach(a => {
+      const axis = a.charAt(0);
+      const axisIdNumber = Number(a.slice(1));
 
-    nestedProperty(graphDiv.layout, `${axis}axis${axisIdNumber || ''}`).set(
-      null
-    );
-    Object.keys(graphDiv.layout)
-      .filter(key => key.startsWith(axis + 'axis'))
-      .forEach(key => {
-        if (
-          nestedProperty(graphDiv.layout, `${key}.overlaying`).get() ===
-          payload.axisToBeGarbageCollected
-        ) {
-          nestedProperty(graphDiv.layout, `${key}.overlaying`).set(null);
-        }
-      });
+      nestedProperty(graphDiv.layout, `${axis}axis${axisIdNumber || ''}`).set(
+        null
+      );
+      Object.keys(graphDiv.layout)
+        .filter(key => key.startsWith(axis + 'axis'))
+        .forEach(key => {
+          if (
+            nestedProperty(graphDiv.layout, `${key}.overlaying`).get() === a
+          ) {
+            nestedProperty(graphDiv.layout, `${key}.overlaying`).set(null);
+          }
+        });
+    });
   }
   if (payload.subplotToBeGarbageCollected) {
     nestedProperty(graphDiv.layout, payload.subplotToBeGarbageCollected).set(

@@ -59,7 +59,7 @@ class UnconnectedAxisCreator extends Component {
 
   updateAxis(update) {
     const currentAxisId = this.props.fullContainer[this.props.attr];
-    let axisToBeGarbageCollected = null;
+    const axesToBeGarbageCollected = [];
 
     // When we select another axis, make sure no unused axes are left
     if (
@@ -70,13 +70,13 @@ class UnconnectedAxisCreator extends Component {
           trace.index !== this.props.fullContainer.index
       )
     ) {
-      axisToBeGarbageCollected = currentAxisId;
+      axesToBeGarbageCollected.push(currentAxisId);
     }
 
     this.context.onUpdate({
       type: EDITOR_ACTIONS.UPDATE_TRACES,
       payload: {
-        axisToBeGarbageCollected,
+        axesToBeGarbageCollected,
         update: {[this.props.attr]: update},
         traceIndexes: [this.props.fullContainer.index],
       },
