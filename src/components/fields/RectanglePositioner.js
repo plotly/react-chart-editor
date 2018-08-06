@@ -94,8 +94,8 @@ class UnconnectedRectanglePositioner extends Component {
         <div
           className="rect-container"
           style={{
-            width: fieldWidthPx,
-            height: fieldHeightPx,
+            width: fieldWidthPx + 1,
+            height: fieldHeightPx + 1,
           }}
         >
           {Array(gridRes * gridRes)
@@ -107,8 +107,9 @@ class UnconnectedRectanglePositioner extends Component {
                 style={{
                   width: fieldWidthPx / gridRes - 1,
                   height: fieldHeightPx / gridRes - 1,
-                  borderTop: i < gridRes ? '0' : '1px solid lightgray',
-                  borderLeft: i % gridRes ? '1px solid lightgray' : '0',
+                  borderBottom:
+                    i < gridRes * (gridRes - 1) ? '0' : '1px solid ',
+                  borderRight: (i + 1) % gridRes ? '0' : '1px solid',
                 }}
               />
             ))}
