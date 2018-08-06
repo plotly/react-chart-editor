@@ -14,9 +14,10 @@ import RadioBlocks from 'components/widgets/RadioBlocks';
 
 import Field from './Field';
 
-export const glAvailable = type => {
-  return ['scatter', 'scatterpolar', 'scattergl', 'scatterpolargl'].includes(
-    type
+export const glAvailable = (type, fill = null) => {
+  return (
+    ['scatter', 'scatterpolar', 'scattergl', 'scatterpolargl'].includes(type) &&
+    !(type === 'scatter' && fill && fill !== 'none')
   );
 };
 
@@ -108,7 +109,13 @@ class TraceSelector extends Component {
       options: this.traceOptions,
       clearable: false,
     });
-    const {localize: _, advancedTraceTypeSelector} = this.context;
+    const {
+      localize: _,
+      advancedTraceTypeSelector,
+      glByDefault,
+      openModal,
+      traceTypesConfig,
+    } = this.context;
 
     const options = [
       {label: _('SVG'), value: ''},
@@ -122,16 +129,19 @@ class TraceSelector extends Component {
           <Field {...props}>
             <TraceTypeSelectorButton
               {...props}
-              traceTypesConfig={this.context.traceTypesConfig}
+              traceTypesConfig={traceTypesConfig}
               handleClick={() =>
-                this.context.openModal(TraceTypeSelector, {
+                openModal(TraceTypeSelector, {
                   ...props,
-                  glByDefault: this.context.glByDefault,
+                  glByDefault: glByDefault,
                 })
               }
             />
           </Field>
-          {!glAvailable(this.props.container.type) ? (
+          {!glAvailable(
+            this.props.container.type,
+            this.props.container.fill
+          ) ? (
             ''
           ) : (
             <Field label={_('Rendering')}>
