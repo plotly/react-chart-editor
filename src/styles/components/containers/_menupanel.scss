@@ -15,13 +15,14 @@
 
   &__icon {
     vertical-align: middle;
-    svg{
+    svg {
       display: block;
     }
     // gets overridden by user agent stylesheet otherwise
     width: 15px !important;
     height: 15px !important;
     fill: var(--color-text-light) !important;
+    padding-left: var(--spacing-quarter-unit);
     &:hover {
       cursor: pointer;
       fill: var(--color-accent) !important;

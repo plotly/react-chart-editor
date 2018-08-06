@@ -7,12 +7,13 @@ import {
   plotlyTraceToCustomTrace,
   computeTraceOptionsFromSchema,
 } from 'lib';
-import TraceTypeSelector, {
+import {
+  TraceTypeSelector,
   TraceTypeSelectorButton,
-} from 'components/widgets/TraceTypeSelector';
-import RadioBlocks from 'components/widgets/RadioBlocks';
-
+  RadioBlocks,
+} from 'components/widgets';
 import Field from './Field';
+import {CogIcon} from 'plotly-icons';
 
 export const glAvailable = type => {
   return ['scatter', 'scatterpolar', 'scattergl', 'scatterpolargl'].includes(
@@ -28,6 +29,7 @@ class TraceSelector extends Component {
     this.setGl = this.setGl.bind(this);
     this.glEnabled = this.glEnabled.bind(this);
     this.setTraceDefaults = this.setTraceDefaults.bind(this);
+    this.toggleGlControls = this.toggleGlControls.bind(this);
 
     this.setTraceDefaults(
       props.container,
@@ -35,10 +37,16 @@ class TraceSelector extends Component {
       props.updateContainer
     );
     this.setLocals(props, context);
+
+    this.state = {showGlControls: false};
   }
 
   glEnabled() {
     return this.props.container.type.endsWith('gl') ? 'gl' : '';
+  }
+
+  toggleGlControls() {
+    this.setState({showGlControls: !this.state.showGlControls});
   }
 
   setLocals(props, context) {
@@ -120,18 +128,36 @@ class TraceSelector extends Component {
       return (
         <div>
           <Field {...props}>
-            <TraceTypeSelectorButton
-              {...props}
-              traceTypesConfig={this.context.traceTypesConfig}
-              handleClick={() =>
-                this.context.openModal(TraceTypeSelector, {
-                  ...props,
-                  glByDefault: this.context.glByDefault,
-                })
-              }
-            />
+            <div
+              style={{
+                display: 'flex',
+                width: '100%',
+                alignItems: 'center',
+              }}
+            >
+              <TraceTypeSelectorButton
+                {...props}
+                traceTypesConfig={this.context.traceTypesConfig}
+                handleClick={() =>
+                  this.context.openModal(TraceTypeSelector, {
+                    ...props,
+                    glByDefault: this.context.glByDefault,
+                  })
+                }
+              />
+              {!glAvailable(this.props.container.type) ? (
+                ''
+              ) : (
+                <CogIcon
+                  className="menupanel__icon"
+                  onClick={this.toggleGlControls}
+                />
+              )}
+            </div>
           </Field>
-          {!glAvailable(this.props.container.type) ? (
+          {!(
+            glAvailable(this.props.container.type) && this.state.showGlControls
+          ) ? (
             ''
           ) : (
             <Field label={_('Rendering')}>
