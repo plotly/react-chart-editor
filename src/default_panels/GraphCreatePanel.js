@@ -24,73 +24,68 @@ const GraphCreatePanel = (props, {localize: _}) => {
     <TraceAccordion canAdd excludeFits>
       <TraceSelector label={_('Type')} attr="type" show />
 
-      <PlotlySection name={_('Data')}>
-        <DataSelector label={_('Latitude')} attr="lat" />
-        <DataSelector label={_('Longitude')} attr="lon" />
-        <DataSelector label={_('Values')} attr="values" />
-        <DataSelector label={_('Labels')} attr="labels" />
-        <DataSelector label={_('Locations')} attr="locations" />
+      <DataSelector label={_('Latitude')} attr="lat" />
+      <DataSelector label={_('Longitude')} attr="lon" />
+      <DataSelector label={_('Values')} attr="values" />
+      <DataSelector label={_('Labels')} attr="labels" />
+      <DataSelector label={_('Locations')} attr="locations" />
 
-        <DataSelector
-          label={{
-            histogram2d: _('X Values'),
-            histogram: _('X Values'),
-            '*': _('X'),
-          }}
-          attr="x"
-        />
-        <DataSelector
-          label={{
-            histogram2d: _('Y Values'),
-            histogram: _('Y Values'),
-            '*': _('Y'),
-          }}
-          attr="y"
-        />
-        <DataSelector
-          label={{
-            choropleth: _('Values'),
-            histogram2d: _('Z Values'),
-            '*': _('Z'),
-          }}
-          attr="z"
-        />
-        <Radio
-          label={_('Orientation')}
-          attr="orientation"
-          options={[
-            {label: _('Vertical'), value: 'v'},
-            {label: _('Horizontal'), value: 'h'},
-          ]}
-        />
-        <HistogramInfoVertical>
-          {_(
-            'Note: in vertical orientation, X values are used for bins and Y values for weights.'
-          )}
-        </HistogramInfoVertical>
-        <HistogramInfoHorizontal>
-          {_(
-            'Note: in horizontal orientation, Y Values are used for bins and X values for weights.'
-          )}
-        </HistogramInfoHorizontal>
-        <DataSelector label={_('I (Optional)')} attr="i" />
-        <DataSelector label={_('J (Optional)')} attr="j" />
-        <DataSelector label={_('K (Optional)')} attr="k" />
-        <DataSelector label={_('Open')} attr="open" />
-        <DataSelector label={_('High')} attr="high" />
-        <DataSelector label={_('Low')} attr="low" />
-        <DataSelector label={_('Close')} attr="close" />
-        <DataSelector label={_('A')} attr="a" />
-        <DataSelector label={_('B')} attr="b" />
-        <DataSelector label={_('C')} attr="c" />
-        <DataSelector label={_('Headers')} attr="header.values" />
-        <DataSelector label={_('Columns')} attr="cells.values" />
-      </PlotlySection>
+      <DataSelector
+        label={{
+          histogram2d: _('X Values'),
+          histogram: _('X Values'),
+          '*': _('X'),
+        }}
+        attr="x"
+      />
+      <DataSelector
+        label={{
+          histogram2d: _('Y Values'),
+          histogram: _('Y Values'),
+          '*': _('Y'),
+        }}
+        attr="y"
+      />
+      <DataSelector
+        label={{
+          choropleth: _('Values'),
+          histogram2d: _('Z Values'),
+          '*': _('Z'),
+        }}
+        attr="z"
+      />
+      <Radio
+        label={_('Orientation')}
+        attr="orientation"
+        options={[
+          {label: _('Vertical'), value: 'v'},
+          {label: _('Horizontal'), value: 'h'},
+        ]}
+      />
+      <HistogramInfoVertical>
+        {_(
+          'Note: in vertical orientation, X values are used for bins and Y values for weights.'
+        )}
+      </HistogramInfoVertical>
+      <HistogramInfoHorizontal>
+        {_(
+          'Note: in horizontal orientation, Y Values are used for bins and X values for weights.'
+        )}
+      </HistogramInfoHorizontal>
+      <DataSelector label={_('I (Optional)')} attr="i" />
+      <DataSelector label={_('J (Optional)')} attr="j" />
+      <DataSelector label={_('K (Optional)')} attr="k" />
+      <DataSelector label={_('Open')} attr="open" />
+      <DataSelector label={_('High')} attr="high" />
+      <DataSelector label={_('Low')} attr="low" />
+      <DataSelector label={_('Close')} attr="close" />
+      <DataSelector label={_('A')} attr="a" />
+      <DataSelector label={_('B')} attr="b" />
+      <DataSelector label={_('C')} attr="c" />
+      <DataSelector label={_('Headers')} attr="header.values" />
+      <DataSelector label={_('Columns')} attr="cells.values" />
 
-      <TraceTypeSection
-        name={_('Data')}
-        traceTypes={['scatterpolar', 'scatterpolargl']}
-      >
+      <TraceTypeSection traceTypes={['scatterpolar', 'scatterpolargl']}>
         <DataSelector label={_('Radius')} attr="r" />
         <DataSelector label={_('Theta')} attr="theta" />
         <Dropdown
