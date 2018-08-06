@@ -71,7 +71,7 @@
       svg {
         will-change: transform;
         transition: transform 0.1s ease-in-out;
-        transform: rotate(-180deg);
+        transform: rotate(-90deg);
         font-weight: bold;
         transform-origin: center center;
       }
@@ -82,7 +82,7 @@
       }
       &--open {
         svg {
-          transform: rotate(-90deg);
+          transform: rotate(0deg);
         }
       }
     }

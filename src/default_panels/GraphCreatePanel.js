@@ -11,7 +11,6 @@ import {
   SubplotCreator,
   TraceAccordion,
   TraceSelector,
-  TextEditor,
   Numeric,
   TraceTypeSection,
 } from '../components';
@@ -23,7 +22,6 @@ import {
 const GraphCreatePanel = (props, {localize: _}) => {
   return (
     <TraceAccordion canAdd excludeFits>
-      <TextEditor label={_('Name')} attr="name" richTextOnly />
       <TraceSelector label={_('Type')} attr="type" show />
 
       <PlotlySection name={_('Data')}>
@@ -32,14 +30,6 @@ const GraphCreatePanel = (props, {localize: _}) => {
         <DataSelector label={_('Values')} attr="values" />
         <DataSelector label={_('Labels')} attr="labels" />
         <DataSelector label={_('Locations')} attr="locations" />
-        <Radio
-          label={_('Orientation')}
-          attr="orientation"
-          options={[
-            {label: _('Vertical'), value: 'v'},
-            {label: _('Horizontal'), value: 'h'},
-          ]}
-        />
 
         <DataSelector
           label={{
@@ -64,6 +54,14 @@ const GraphCreatePanel = (props, {localize: _}) => {
             '*': _('Z'),
           }}
           attr="z"
+        />
+        <Radio
+          label={_('Orientation')}
+          attr="orientation"
+          options={[
+            {label: _('Vertical'), value: 'v'},
+            {label: _('Horizontal'), value: 'h'},
+          ]}
         />
         <HistogramInfoVertical>
           {_(
