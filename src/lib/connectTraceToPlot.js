@@ -108,7 +108,7 @@ export default function connectTraceToPlot(WrappedComponent) {
       return this.childContext;
     }
 
-    updateTrace(update) {
+    updateTrace(update, traceIndexes, splitTraceGroups) {
       if (this.context.onUpdate) {
         if (Array.isArray(update)) {
           update.forEach((u, i) => {
@@ -116,7 +116,10 @@ export default function connectTraceToPlot(WrappedComponent) {
               type: EDITOR_ACTIONS.UPDATE_TRACES,
               payload: {
                 update: u,
-                traceIndexes: [this.props.traceIndexes[i]],
+                traceIndexes: traceIndexes
+                  ? [traceIndexes[i]]
+                  : [this.props.traceIndexes[i]],
+                splitTraceGroup: splitTraceGroups ? splitTraceGroups[i] : null,
               },
             });
           });

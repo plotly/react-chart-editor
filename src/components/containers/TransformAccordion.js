@@ -104,6 +104,10 @@ class TransformAccordion extends Component {
                 payload.groups = null;
               }
 
+              if (type === 'groupby') {
+                payload.styles = [];
+              }
+
               updateContainer({[key]: payload});
             }
           },

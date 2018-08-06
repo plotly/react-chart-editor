@@ -65,16 +65,50 @@ class EditorControls extends Component {
 
         shamefullyClearAxisTypes(graphDiv, payload);
         shamefullyAdjustAxisRef(graphDiv, payload);
-        shamefullyAddTableColumns(graphDiv, payload);
+        // shamefullyAddTableColumns(graphDiv, payload);
 
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {
             const traceIndex = payload.traceIndexes[i];
-            const prop = nestedProperty(graphDiv.data[traceIndex], attr);
+            const splitTraceGroup = payload.splitTraceGroup
+              ? payload.splitTraceGroup
+              : null;
+
+            let prop = nestedProperty(graphDiv.data[traceIndex], attr);
             const value = payload.update[attr];
 
+            if (splitTraceGroup) {
+              // multiple splits are not supported in plotly.js:
+              // https://github.com/plotly/plotly.js/issues/1742
+              const splitContainer = graphDiv.data[
+                traceIndex
+              ].transforms.filter(t => t.type === 'groupby')[0];
+
+              const styles = nestedProperty(splitContainer, 'styles');
+              const stylesGet = styles.get();
+              let indexOfTargetToStyle = 0;
+              if (stylesGet.length) {
+                stylesGet.filter((s, i) => {
+                  if (s.target === splitTraceGroup) {
+                    indexOfTargetToStyle = i;
+                  }
+                });
+              } else {
+                styles.set([{target: splitTraceGroup, value: {}}]);
+              }
+
+              prop = nestedProperty(
+                splitContainer.styles[indexOfTargetToStyle].value,
+                attr
+              );
+            }
+
             if (value !== void 0) {
-              prop.set(value);
+              if (!prop.get() && splitTraceGroup) {
+                prop.set();
+              } else {
+                prop.set(value);
+              }
             }
           }
         }
