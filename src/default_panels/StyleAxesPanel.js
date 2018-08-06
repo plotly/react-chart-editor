@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {
-  AxisAnchorDropdown,
-  AxisOverlayDropdown,
-  AxisSide,
   AxesRange,
   DTicks,
   NTicks,
@@ -12,7 +9,6 @@ import {
   FontSelector,
   Numeric,
   NumericFraction,
-  NumericFractionDomain,
   Radio,
   TextEditor,
   PlotlySection,
@@ -22,8 +18,6 @@ import {
   RangesliderVisible,
   RangeSelectorAccordion,
 } from '../components';
-
-import {TRACE_TO_AXIS} from '../lib/constants';
 
 class StyleAxesPanel extends Component {
   constructor(props, context) {
@@ -61,35 +55,6 @@ class StyleAxesPanel extends Component {
           <FontSelector label={_('Typeface')} attr="titlefont.family" />
           <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
           <ColorPicker label={_('Font Color')} attr="titlefont.color" />
-        </AxesFold>
-
-        <AxesFold
-          name={_('Layout')}
-          axisFilter={axis =>
-            !(
-              axis._subplot.includes('polar') ||
-              axis._subplot.includes('ternary') ||
-              axis._subplot.includes('scene') ||
-              axis._subplot.includes('geo')
-            )
-          }
-        >
-          <PlotlySection name={_('Boundaries')} attr="domain[0]">
-            <AxisOverlayDropdown label={_('Overlay')} attr="overlaying" />
-            <NumericFractionDomain
-              label={_('Start Position')}
-              attr="domain[0]"
-            />
-            <NumericFractionDomain label={_('End Position')} attr="domain[1]" />
-          </PlotlySection>
-
-          <TraceTypeSection
-            name={_('Anchor')}
-            traceTypes={TRACE_TO_AXIS.cartesian}
-          >
-            <AxisAnchorDropdown label={_('Anchor To')} attr="anchor" />
-            <AxisSide label={_('Side')} attr="side" />
-          </TraceTypeSection>
         </AxesFold>
 
         <AxesFold name={_('Range')}>

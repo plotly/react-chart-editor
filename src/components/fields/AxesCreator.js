@@ -1,7 +1,7 @@
 import Dropdown from './Dropdown';
 import Info from './Info';
 import PropTypes from 'prop-types';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
@@ -11,6 +11,7 @@ import {
   getAxisTitle,
   axisIdToAxisName,
 } from 'lib';
+import {PlotlySection} from 'components';
 
 class UnconnectedAxisCreator extends Component {
   canAddAxis() {
@@ -21,62 +22,61 @@ class UnconnectedAxisCreator extends Component {
     );
   }
 
-  updateAxis() {
+  addAndUpdateAxis() {
     const {attr, updateContainer} = this.props;
-    const {onUpdate, fullLayout} = this.context;
+    const {
+      onUpdate,
+      fullLayout: {_subplots: subplots},
+    } = this.context;
+    const lastAxisNumber =
+      Number(subplots[attr][subplots[attr].length - 1].charAt(1)) || 1;
 
     updateContainer({
-      [attr]: attr.charAt(0) + (fullLayout._subplots[attr].length + 1),
+      [attr]: attr.charAt(0) + (lastAxisNumber + 1),
     });
 
+    let side = null;
     if (attr === 'yaxis') {
-      onUpdate({
-        type: EDITOR_ACTIONS.UPDATE_LAYOUT,
-        payload: {
-          update: {
-            [`${attr + (fullLayout._subplots[attr].length + 1)}.side`]: 'right',
-            [`${attr +
-              (fullLayout._subplots[attr].length + 1)}.overlaying`]: 'y',
-          },
-        },
-      });
+      side = 'right';
+    } else if (attr === 'xaxis') {
+      side = 'top';
     }
 
-    if (attr === 'xaxis') {
-      onUpdate({
-        type: EDITOR_ACTIONS.UPDATE_LAYOUT,
-        payload: {
-          update: {
-            [`${attr + (fullLayout._subplots[attr].length + 1)}.side`]: 'top',
-            [`${attr +
-              (fullLayout._subplots[attr].length + 1)}.overlaying`]: 'x',
-          },
+    onUpdate({
+      type: EDITOR_ACTIONS.UPDATE_LAYOUT,
+      payload: {
+        update: {
+          [`${attr + (lastAxisNumber + 1)}.side`]: side,
+          [`${attr + (lastAxisNumber + 1)}.overlaying`]: !(
+            attr === 'yaxis' || attr === 'xaxis'
+          )
+            ? null
+            : subplots[attr][subplots[attr].length - 1],
         },
-      });
-    }
+      },
+    });
   }
 
-  recalcAxes(update) {
+  updateAxis(update) {
     const currentAxisId = this.props.fullContainer[this.props.attr];
+    const axesToBeGarbageCollected = [];
 
     // When we select another axis, make sure no unused axes are left
-    const tracesNeedingAxisAdjustment = this.context.fullData.some(
-      t =>
-        t[this.props.attr] === currentAxisId &&
-        t.index !== this.props.fullContainer.index
-    )
-      ? null
-      : this.context.fullData.filter(
-          trace =>
-            Number(trace[this.props.attr].slice(1)) >
-            Number(currentAxisId.slice(1))
-        );
+    if (
+      currentAxisId !== update &&
+      !this.context.fullData.some(
+        trace =>
+          trace[this.props.attr] === currentAxisId &&
+          trace.index !== this.props.fullContainer.index
+      )
+    ) {
+      axesToBeGarbageCollected.push(currentAxisId);
+    }
 
     this.context.onUpdate({
       type: EDITOR_ACTIONS.UPDATE_TRACES,
       payload: {
-        tracesNeedingAxisAdjustment,
-        axisAttrToAdjust: this.props.attr,
+        axesToBeGarbageCollected,
         update: {[this.props.attr]: update},
         traceIndexes: [this.props.fullContainer.index],
       },
@@ -86,7 +86,11 @@ class UnconnectedAxisCreator extends Component {
   render() {
     const icon = <PlusIcon />;
     const extraComponent = this.canAddAxis() ? (
-      <Button variant="no-text" icon={icon} onClick={() => this.updateAxis()} />
+      <Button
+        variant="no-text"
+        icon={icon}
+        onClick={() => this.addAndUpdateAxis()}
+      />
     ) : (
       <Button variant="no-text--disabled" icon={icon} onClick={() => {}} />
     );
@@ -97,7 +101,7 @@ class UnconnectedAxisCreator extends Component {
         attr={this.props.attr}
         clearable={false}
         options={this.props.options}
-        updatePlot={u => this.recalcAxes(u)}
+        updatePlot={u => this.updateAxis(u)}
         extraComponent={extraComponent}
       />
     );
@@ -125,16 +129,16 @@ const AxisCreator = connectToContainer(UnconnectedAxisCreator);
 
 class UnconnectedAxesCreator extends Component {
   render() {
-    const isFirstTraceOfType =
-      this.context.data.filter(d => d.type === this.props.container.type)
+    const axisType = traceTypeToAxisType(this.props.container.type);
+    const isFirstTraceOfAxisType =
+      this.context.data.filter(d => traceTypeToAxisType(d.type) === axisType)
         .length === 1;
 
-    if (isFirstTraceOfType) {
+    if (isFirstTraceOfAxisType) {
       return null;
     }
 
     const {fullLayout, localize: _} = this.context;
-    const axisType = traceTypeToAxisType(this.props.container.type);
     const controls = [];
 
     function getOptions(axisType) {
@@ -144,7 +148,6 @@ class UnconnectedAxesCreator extends Component {
       }));
     }
 
-    // for the moment only cartesian subplots are supported
     if (axisType === 'cartesian') {
       ['xaxis', 'yaxis'].forEach((type, index) => {
         controls.push(
@@ -159,12 +162,14 @@ class UnconnectedAxesCreator extends Component {
     }
 
     return (
-      <Fragment>
+      <PlotlySection name={_('Axes to Use')}>
         {controls}
         <Info>
-          {_('You can style and position your axes in the Style > Axes Panel')}
+          {_(
+            'You can style and position your axes in the Graph > Subplots Panel'
+          )}
         </Info>
-      </Fragment>
+      </PlotlySection>
     );
   }
 }

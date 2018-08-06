@@ -76,6 +76,22 @@
       }
     }
   }
+
+  .rect,
+  .square {
+    border-color: var(--color-accent);
+  }
+  .rect-grid {
+    border-color: var(--panel-background) !important;
+    float: left;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+  .rect-container {
+    margin: var(--spacing-eighth-unit) auto var(--spacing-quarter-unit) auto;
+    position: relative;
+    max-width: 294px;
+  }
 }
 
 .field .field {

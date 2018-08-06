@@ -8,6 +8,7 @@ import {
   PlotlySection,
   LayoutSection,
   AxesCreator,
+  SubplotCreator,
   TraceAccordion,
   TraceSelector,
   TextEditor,
@@ -106,9 +107,8 @@ const GraphCreatePanel = (props, {localize: _}) => {
         />
       </TraceTypeSection>
 
-      <PlotlySection name={_('Axes to Use')}>
-        <AxesCreator attr="fake_attr" />
-      </PlotlySection>
+      <AxesCreator attr="fake_attr" />
+      <SubplotCreator attr="fake_attr" />
 
       <PlotlySection name={_('Error Bars X')}>
         <ErrorBars attr="error_x" />

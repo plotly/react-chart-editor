@@ -11,19 +11,21 @@ import Radio from './Radio';
 import TextEditor from './TextEditor';
 import DataSelector from './DataSelector';
 import Numeric from './Numeric';
+import DualNumeric from './DualNumeric';
 import AxisRangeValue from './AxisRangeValue';
 import Text from './Text';
 import SymbolSelector from './SymbolSelector';
 import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
 import AxesCreator from './AxesCreator';
+import SubplotCreator from './SubplotCreator';
 import UpdateMenuButtons from './UpdateMenuButtons';
 import {FilterOperation, FilterValue} from './FilterOperation';
 import MarkerSize from './MarkerSize';
 import MarkerColor from './MarkerColor';
 import VisibilitySelect from './VisibilitySelect';
 import MultiColorPicker from './MultiColorPicker';
-
+import RectanglePositioner from './RectanglePositioner';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -77,6 +79,7 @@ export {
   LineDashSelector,
   LineShapeSelector,
   Numeric,
+  DualNumeric,
   AxisRangeValue,
   Text,
   Radio,
@@ -86,6 +89,7 @@ export {
   TraceOrientation,
   TraceSelector,
   AxesCreator,
+  SubplotCreator,
   AxisOverlayDropdown,
   AxisSide,
   UpdateMenuButtons,
@@ -95,4 +99,5 @@ export {
   MarkerColor,
   MultiColorPicker,
   VisibilitySelect,
+  RectanglePositioner,
 };

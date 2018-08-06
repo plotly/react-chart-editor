@@ -1,4 +1,6 @@
 import bem from './bem';
+import connectCartesianSubplotToLayout from './connectCartesianSubplotToLayout';
+import connectNonCartesianSubplotToLayout from './connectNonCartesianSubplotToLayout';
 import connectAnnotationToLayout from './connectAnnotationToLayout';
 import connectShapeToLayout from './connectShapeToLayout';
 import connectSliderToLayout from './connectSliderToLayout';
@@ -20,6 +22,10 @@ import getAllAxes, {
   traceTypeToAxisType,
   getAxisTitle,
 } from './getAllAxes';
+import getAllSubplots, {
+  traceTypeToSubplotType,
+  getSubplotTitle,
+} from './getAllSubplots';
 import localize, {localizeString} from './localize';
 import tinyColor from 'tinycolor2';
 import unpackPlotProps from './unpackPlotProps';
@@ -216,6 +222,8 @@ export {
   camelCase,
   pascalCase,
   clamp,
+  connectCartesianSubplotToLayout,
+  connectNonCartesianSubplotToLayout,
   connectAnnotationToLayout,
   connectShapeToLayout,
   connectSliderToLayout,
@@ -234,6 +242,9 @@ export {
   dereference,
   getAllAxes,
   getAxisTitle,
+  getAllSubplots,
+  traceTypeToSubplotType,
+  getSubplotTitle,
   getDisplayName,
   isPlainObject,
   localize,

@@ -149,6 +149,9 @@ class EditorControls extends Component {
           if (this.props.beforeDeleteTrace) {
             this.props.beforeDeleteTrace(payload);
           }
+
+          shamefullyAdjustAxisRef(graphDiv, payload);
+
           graphDiv.data.splice(payload.traceIndexes[0], 1);
           if (this.props.afterDeleteTrace) {
             this.props.afterDeleteTrace(payload);

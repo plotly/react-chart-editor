@@ -2,6 +2,8 @@ import PlotlyEditor from './PlotlyEditor';
 import DefaultEditor from './DefaultEditor';
 import EditorControls from './EditorControls';
 import {
+  connectCartesianSubplotToLayout,
+  connectNonCartesianSubplotToLayout,
   connectAnnotationToLayout,
   connectShapeToLayout,
   connectAggregationToTransform,
@@ -71,6 +73,7 @@ import {
   TraceMarkerSection,
   TraceRequiredPanel,
   TraceSelector,
+  RectanglePositioner,
 } from './components';
 
 import {
@@ -97,7 +100,6 @@ export {
   ArrowSelector,
   TransformAccordion,
   AxesFold,
-  connectAggregationToTransform,
   AxesRange,
   NTicks,
   DTicks,
@@ -150,11 +152,14 @@ export {
   TraceMarkerSection,
   TraceRequiredPanel,
   TraceSelector,
+  connectCartesianSubplotToLayout,
+  connectNonCartesianSubplotToLayout,
   connectAnnotationToLayout,
   connectShapeToLayout,
   connectImageToLayout,
   connectAxesToLayout,
   connectTransformToTrace,
+  connectAggregationToTransform,
   connectLayoutToPlot,
   connectToContainer,
   connectRangeSelectorToAxis,
@@ -165,6 +170,7 @@ export {
   walkObject,
   EditorControls,
   DefaultEditor,
+  RectanglePositioner,
 };
 
 export default PlotlyEditor;

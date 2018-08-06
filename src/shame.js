@@ -45,26 +45,29 @@ function clearAxisTypes(gd, traces) {
 }
 
 export const shamefullyAdjustAxisRef = (graphDiv, payload) => {
-  if (payload.tracesNeedingAxisAdjustment) {
-    payload.tracesNeedingAxisAdjustment.forEach(trace => {
-      const axis = trace[payload.axisAttrToAdjust].charAt(0);
-      const currentAxisIdNumber = Number(
-        trace[payload.axisAttrToAdjust].slice(1)
+  if (payload.axesToBeGarbageCollected) {
+    payload.axesToBeGarbageCollected.forEach(a => {
+      const axis = a.charAt(0);
+      const axisIdNumber = Number(a.slice(1));
+
+      nestedProperty(graphDiv.layout, `${axis}axis${axisIdNumber || ''}`).set(
+        null
       );
-      const adjustedAxisIdNumber = currentAxisIdNumber - 1;
-
-      const currentAxisLayoutProperties = {
-        ...graphDiv.layout[payload.axisAttrToAdjust + currentAxisIdNumber],
-      };
-
-      // for cases when we're adjusting x2 => x, so that it becomes x not x1
-      graphDiv.data[trace.index][payload.axisAttrToAdjust] =
-        adjustedAxisIdNumber === 1 ? axis : axis + adjustedAxisIdNumber;
-
-      graphDiv.layout[
-        payload.axisAttrToAdjust + adjustedAxisIdNumber
-      ] = currentAxisLayoutProperties;
+      Object.keys(graphDiv.layout)
+        .filter(key => key.startsWith(axis + 'axis'))
+        .forEach(key => {
+          if (
+            nestedProperty(graphDiv.layout, `${key}.overlaying`).get() === a
+          ) {
+            nestedProperty(graphDiv.layout, `${key}.overlaying`).set(null);
+          }
+        });
     });
+  }
+  if (payload.subplotToBeGarbageCollected) {
+    nestedProperty(graphDiv.layout, payload.subplotToBeGarbageCollected).set(
+      null
+    );
   }
 };
 
