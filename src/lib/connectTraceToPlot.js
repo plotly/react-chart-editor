@@ -8,7 +8,7 @@ import {
   traceTypeToAxisType,
 } from '../lib';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
-import {EDITOR_ACTIONS, AXIS_TO_ATTR} from 'lib/constants';
+import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR} from 'lib/constants';
 
 export default function connectTraceToPlot(WrappedComponent) {
   class TraceConnectedComponent extends Component {
@@ -143,37 +143,40 @@ export default function connectTraceToPlot(WrappedComponent) {
         });
         return;
       }
-      const subplotType = traceTypeToAxisType(currentTrace.type);
-      const subplotNames =
-        subplotType === 'cartesian'
-          ? [currentTrace.xaxis || 'xaxis', currentTrace.yaxis || 'yaxis']
-          : currentTrace[AXIS_TO_ATTR[subplotType]] ||
-            AXIS_TO_ATTR[subplotType];
       const axesToBeGarbageCollected = [];
       let subplotToBeGarbageCollected = null;
+      const subplotType = traceTypeToAxisType(currentTrace.type);
 
-      const isSubplotUsedAnywhereElse = (subplotType, subplotName) =>
-        this.context.fullData.some(
-          trace =>
-            (trace[AXIS_TO_ATTR[subplotType]] === subplotName ||
-              (((subplotType === 'xaxis' || subplotType === 'yaxis') &&
-                subplotName.charAt(1)) === '' ||
-                (subplotName.split(subplotType)[1] === '' &&
-                  trace[AXIS_TO_ATTR[subplotType]] === null))) &&
-            trace.index !== this.props.traceIndexes[0]
-        );
+      if (subplotType) {
+        const subplotNames =
+          subplotType === 'cartesian'
+            ? [currentTrace.xaxis || 'xaxis', currentTrace.yaxis || 'yaxis']
+            : currentTrace[SUBPLOT_TO_ATTR[subplotType].data] ||
+              SUBPLOT_TO_ATTR[subplotType].data;
 
-      // When we delete a subplot, make sure no unused axes/subplots are left
-      if (subplotType === 'cartesian') {
-        if (!isSubplotUsedAnywhereElse('xaxis', subplotNames[0])) {
-          axesToBeGarbageCollected.push(subplotNames[0]);
-        }
-        if (!isSubplotUsedAnywhereElse('yaxis', subplotNames[1])) {
-          axesToBeGarbageCollected.push(subplotNames[1]);
-        }
-      } else {
-        if (!isSubplotUsedAnywhereElse(subplotType, subplotNames)) {
-          subplotToBeGarbageCollected = subplotNames;
+        const isSubplotUsedAnywhereElse = (subplotType, subplotName) =>
+          this.context.fullData.some(
+            trace =>
+              (trace[SUBPLOT_TO_ATTR[subplotType].data] === subplotName ||
+                (((subplotType === 'xaxis' || subplotType === 'yaxis') &&
+                  subplotName.charAt(1)) === '' ||
+                  (subplotName.split(subplotType)[1] === '' &&
+                    trace[SUBPLOT_TO_ATTR[subplotType].data] === null))) &&
+              trace.index !== this.props.traceIndexes[0]
+          );
+
+        // When we delete a subplot, make sure no unused axes/subplots are left
+        if (subplotType === 'cartesian') {
+          if (!isSubplotUsedAnywhereElse('xaxis', subplotNames[0])) {
+            axesToBeGarbageCollected.push(subplotNames[0]);
+          }
+          if (!isSubplotUsedAnywhereElse('yaxis', subplotNames[1])) {
+            axesToBeGarbageCollected.push(subplotNames[1]);
+          }
+        } else {
+          if (!isSubplotUsedAnywhereElse(subplotType, subplotNames)) {
+            subplotToBeGarbageCollected = subplotNames;
+          }
         }
       }
 

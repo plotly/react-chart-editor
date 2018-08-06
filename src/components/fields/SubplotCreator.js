@@ -2,7 +2,7 @@ import Dropdown from './Dropdown';
 import Info from './Info';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {EDITOR_ACTIONS, AXIS_TO_ATTR} from 'lib/constants';
+import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR} from 'lib/constants';
 import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
 import {connectToContainer, traceTypeToAxisType, getSubplotTitle} from 'lib';
@@ -25,20 +25,18 @@ class UnconnectedSingleSubplotCreator extends Component {
     const lastSubplotNumber =
       Number(
         subplots[layoutAttr][subplots[layoutAttr].length - 1].split(
-          layoutAttr === 'gl3d' ? 'scene' : layoutAttr
+          SUBPLOT_TO_ATTR[layoutAttr].layout
         )[1]
       ) || 1;
 
     updateContainer({
-      [attr]:
-        (layoutAttr === 'gl3d' ? 'scene' : layoutAttr) +
-        (lastSubplotNumber + 1),
+      [attr]: SUBPLOT_TO_ATTR[layoutAttr].layout + (lastSubplotNumber + 1),
     });
   }
 
   updateSubplot(update) {
     const currentSubplotId = this.props.fullContainer[
-      AXIS_TO_ATTR[this.props.attr]
+      SUBPLOT_TO_ATTR[this.props.attr].data
     ];
     let subplotToBeGarbageCollected = null;
 
@@ -47,7 +45,7 @@ class UnconnectedSingleSubplotCreator extends Component {
       currentSubplotId !== update &&
       !this.context.fullData.some(
         trace =>
-          trace[AXIS_TO_ATTR[this.props.attr]] === currentSubplotId &&
+          trace[SUBPLOT_TO_ATTR[this.props.attr].data] === currentSubplotId &&
           trace.index !== this.props.fullContainer.index
       )
     ) {
@@ -141,9 +139,9 @@ class UnconnectedSubplotCreator extends Component {
     return (
       <PlotlySection name={_('Subplots to Use')}>
         <SingleSubplotCreator
-          attr={AXIS_TO_ATTR[subplotType]}
+          attr={SUBPLOT_TO_ATTR[subplotType].data}
           layoutAttr={subplotType}
-          label={subplotType === 'gl3d' ? 'scene' : subplotType}
+          label={SUBPLOT_TO_ATTR[subplotType].layout}
           options={getOptions(subplotType)}
         />
         <Info>

@@ -7,7 +7,7 @@ import {
   connectCartesianSubplotToLayout,
   connectNonCartesianSubplotToLayout,
 } from 'lib';
-import {TRACE_TO_AXIS, AXIS_TO_ATTR} from 'lib/constants';
+import {TRACE_TO_AXIS, SUBPLOT_TO_ATTR} from 'lib/constants';
 
 const TraceFold = connectTraceToPlot(PlotlyFold);
 const NonCartesianSubplotFold = connectNonCartesianSubplotToLayout(PlotlyFold);
@@ -59,24 +59,49 @@ class SubplotAccordion extends Component {
         ))
     );
 
+    // For each key in layout, find all traces that belong to this subplot.
+    // E.g. if layout attr is 'ternary', find all traces that are of type
+    // that has subplot ternary, if layout attr is 'ternary2', find traces
+    // of right type that have attr 'subplot': 'ternary' in their data.
+
+    /**
+    Example: 
+    {
+      "data": [
+        {
+          "type": "scatterternary",
+          "mode": "markers",
+        },
+        {
+          "type": "scatterternary",
+          "mode": "markers",
+          "subplot": "ternary2"
+        }
+      ],
+      "layout": {
+        "ternary": {},
+        "ternary2": {},
+      },
+    }
+     */
+
     Object.keys(layout).forEach(layoutKey => {
       const traceIndexes = [];
       if (
-        ['geo', 'mapbox', 'polar', 'gl3d', 'ternary'].some(traceType => {
+        ['geo', 'mapbox', 'polar', 'gl3d', 'ternary'].some(subplotType => {
           const trIndex =
-            (traceType === 'gl3d' ? 'scene' : traceType) === layoutKey
+            SUBPLOT_TO_ATTR[subplotType].layout === layoutKey
               ? data.findIndex(trace =>
-                  TRACE_TO_AXIS[traceType].some(tt => tt === trace.type)
+                  TRACE_TO_AXIS[subplotType].some(tt => tt === trace.type)
                 )
               : data.findIndex(
-                  trace => trace[AXIS_TO_ATTR[traceType]] === layoutKey
+                  trace =>
+                    trace[SUBPLOT_TO_ATTR[subplotType].data] === layoutKey
                 );
           if (trIndex !== -1) {
             traceIndexes.push(trIndex);
           }
-          return layoutKey.startsWith(
-            traceType === 'gl3d' ? 'scene' : traceType
-          );
+          return layoutKey.startsWith(SUBPLOT_TO_ATTR[subplotType].layout);
         })
       ) {
         subplotFolds[traceIndexes[0]] = (

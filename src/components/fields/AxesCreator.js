@@ -148,7 +148,6 @@ class UnconnectedAxesCreator extends Component {
       }));
     }
 
-    // for the moment only cartesian subplots are supported
     if (axisType === 'cartesian') {
       ['xaxis', 'yaxis'].forEach((type, index) => {
         controls.push(

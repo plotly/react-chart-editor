@@ -87,7 +87,7 @@ class TraceTypeSelector extends Component {
       glAvailable(computedValue.type) &&
       !computedValue.type.endsWith('gl')
     ) {
-      computedValue.type = computedValue.type + 'gl';
+      computedValue.type += 'gl';
     }
     updateContainer(computedValue);
     this.context.handleClose();
