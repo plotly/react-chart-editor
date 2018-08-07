@@ -461,7 +461,7 @@ export const TextPosition = connectToContainer(UnconnectedDropdown, {
       {label: _('Bottom Center'), value: 'bottom center'},
       {label: _('Bottom Right'), value: 'bottom right'},
     ];
-    if (context.container.type === 'pie') {
+    if (context.container.type === 'pie' || context.container.type === 'bar') {
       options = [
         {label: _('Inside'), value: 'inside'},
         {label: _('Outside'), value: 'outside'},
@@ -477,11 +477,7 @@ export const TextPosition = connectToContainer(UnconnectedDropdown, {
 export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _, container} = context;
-    let options = [
-      {label: _('X'), value: 'x'},
-      {label: _('Y'), value: 'y'},
-      {label: _('Name'), value: 'name'},
-    ];
+    let options = [{label: _('X'), value: 'x'}, {label: _('Y'), value: 'y'}];
 
     if (
       [
@@ -496,24 +492,13 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         'mesh3d',
       ].includes(container.type)
     ) {
-      options = [
-        {label: _('X'), value: 'x'},
-        {label: _('Y'), value: 'y'},
-        {label: _('Z'), value: 'z'},
-        {label: _('Name'), value: 'name'},
-      ];
-    }
-
-    if (container.mode && container.mode.includes('text')) {
-      options.push({label: _('Text'), value: 'text'});
+      options.push({label: _('Z'), value: 'z'});
     }
 
     if (container.type === 'choropleth') {
       options = [
         {label: _('Location'), value: 'location'},
         {label: _('Values'), value: 'z'},
-        {label: _('Text'), value: 'text'},
-        {label: _('Name'), value: 'name'},
       ];
     }
 
@@ -522,8 +507,6 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         {label: _('Longitude'), value: 'loc'},
         {label: _('Latitude'), value: 'lat'},
         {label: _('Location'), value: 'location'},
-        {label: _('Text'), value: 'text'},
-        {label: _('Name'), value: 'name'},
       ];
     }
 
@@ -531,8 +514,6 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       options = [
         {label: _('Longitude'), value: 'loc'},
         {label: _('Latitude'), value: 'lat'},
-        {label: _('Text'), value: 'text'},
-        {label: _('Name'), value: 'name'},
       ];
     }
 
@@ -541,8 +522,6 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         {label: _('A'), value: 'a'},
         {label: _('B'), value: 'b'},
         {label: _('C'), value: 'c'},
-        {label: _('Text'), value: 'text'},
-        {label: _('Name'), value: 'name'},
       ];
     }
 
@@ -554,8 +533,6 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       options = [
         {label: _('R'), value: 'r'},
         {label: _('Theta'), value: 'theta'},
-        {label: _('Text'), value: 'text'},
-        {label: _('Name'), value: 'name'},
       ];
     }
 
@@ -564,10 +541,14 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         {label: _('Label'), value: 'label'},
         {label: _('Value'), value: 'value'},
         {label: _('Percent'), value: 'percent'},
-        {label: _('Text'), value: 'text'},
-        {label: _('Name'), value: 'name'},
       ];
     }
+
+    if (container.text) {
+      options.push({label: _('Text'), value: 'text'});
+    }
+
+    options.push({label: _('Trace name'), value: 'name'});
 
     plotProps.options = options;
   },
