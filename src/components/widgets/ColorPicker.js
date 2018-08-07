@@ -1,16 +1,9 @@
 import Fields from 'react-color/lib/components/sketch/SketchFields';
-import PresetColors from 'react-color/lib/components/sketch/SketchPresetColors';
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
-import {
-  Alpha,
-  Hue,
-  Saturation,
-  Checkboard,
-} from 'react-color/lib/components/common';
+import {Hue, Saturation} from 'react-color/lib/components/common';
 import {CustomPicker as customPicker} from 'react-color';
-import {DEFAULT_COLORS} from 'lib/constants';
 
 // Utility functions for converting ColorPicker color objects or raw strings
 // into TinyColor objects.
@@ -20,54 +13,27 @@ const toTinyColor = c => tinycolor(getColorSource(c));
 
 class Custom extends Component {
   render() {
-    const {rgb, onChangeComplete} = this.props;
-    const {r, g, b, a} = rgb;
-
-    const activeColor = {
-      backgroundColor: `rgba(${r}, ${g}, ${b}, ${a})`,
-    };
-
-    const _ = this.context.localize;
+    const {onChangeComplete} = this.props;
 
     return (
-      <div>
-        <div>
-          <p className="colorpicker__title">{_('Custom Color')}</p>
-          <div className="colorpicker__saturation">
-            <Saturation {...this.props} />
-          </div>
-          <div className="colorpicker__controls +flex">
-            <div className="colorpicker__sliders">
-              <div className="colorpicker__slider">
-                <Hue {...this.props} />
-              </div>
-              <div className="colorpicker__slider">
-                <Alpha {...this.props} />
-              </div>
+      <div className="colorpicker__outer">
+        <div className="colorpicker__controls +flex">
+          <div className="colorpicker__sliders">
+            <div className="colorpicker__slider">
+              <Hue {...this.props} />
             </div>
-            <div className="colorpicker__active">
-              <Checkboard />
-              <div style={activeColor} className="colorpicker__active-swatch" />
-            </div>
-          </div>
-          <div className="colorpicker__custom-input">
-            <Fields {...this.props} onChange={onChangeComplete} />
           </div>
         </div>
-        <div>
-          <p className="colorpicker__title">{_('Default Colors')}</p>
-          <div className="colorpicker__preset-colors">
-            <PresetColors colors={DEFAULT_COLORS} onClick={onChangeComplete} />
-          </div>
+        <div className="colorpicker__saturation">
+          <Saturation {...this.props} />
+        </div>
+        <div className="colorpicker__custom-input">
+          <Fields {...this.props} onChange={onChangeComplete} />
         </div>
       </div>
     );
   }
 }
-
-Custom.contextTypes = {
-  localize: PropTypes.func,
-};
 
 Custom.propTypes = {
   rgb: PropTypes.object,
@@ -120,32 +86,31 @@ class ColorPicker extends Component {
     const swatchStyle = {backgroundColor: rgbString};
 
     return (
-      <div className="colorpicker__container">
-        <div className="colorpicker">
-          <div
-            className="colorpicker__swatch +cursor-clickable"
-            style={swatchStyle}
-            onClick={this.toggleVisible}
-          />
-        </div>
+      <Fragment>
+        <div className="colorpicker__container">
+          <div className="colorpicker">
+            <div
+              className="colorpicker__swatch +cursor-clickable"
+              style={swatchStyle}
+              onClick={this.toggleVisible}
+            />
+          </div>
 
-        <div
-          className="colorpicker__selected-color +hover-grey"
-          onClick={this.toggleVisible}
-        >
-          {colorText}
+          <div
+            className="colorpicker__selected-color +hover-grey"
+            onClick={this.toggleVisible}
+          >
+            {colorText}
+          </div>
         </div>
 
         {this.state.isVisible && (
-          <div className="colorpicker__popover">
-            <div className="colorpicker__cover" onClick={this.toggleVisible} />
-            <CustomColorPicker
-              color={rgbString}
-              onChangeComplete={this.onSelectedColorChange}
-            />
-          </div>
+          <CustomColorPicker
+            color={rgbString}
+            onChangeComplete={this.onSelectedColorChange}
+          />
         )}
-      </div>
+      </Fragment>
     );
   }
 }

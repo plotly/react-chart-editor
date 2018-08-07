@@ -1,5 +1,7 @@
+$colorscalepicker-width: 215px;
+
 .colorscalePickerContainer {
-  min-width: 215px;
+  min-width: $colorscalepicker-width;
   position: relative;
   padding: 0;
   resize: none;
@@ -25,4 +27,9 @@
 
 .customPickerContainer {
   margin-top: var(--spacing-quarter-unit);
+
+  &__outer {
+    width: $colorscalepicker-width;
+    text-align: center;
+  }
 }

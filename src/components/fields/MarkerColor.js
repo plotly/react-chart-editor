@@ -110,23 +110,21 @@ class UnconnectedMarkerColor extends Component {
   renderConstantControls() {
     const _ = this.context.localize;
     return (
-      <div className="markercolor-constantcontrols__container">
-        <MultiColorPicker
-          attr="marker.color"
-          multiColorMessage={_(
-            'Each trace will be colored according to the selected colorscale.'
-          )}
-          singleColorMessage={_(
-            'All traces will be colored in the the same color.'
-          )}
-          setColor={this.setColor}
-          setColorScale={this.setColorScale}
-          onConstantColorOptionChange={this.onConstantColorOptionChange}
-          parentSelectedConstantColorOption={
-            this.state.selectedConstantColorOption
-          }
-        />
-      </div>
+      <MultiColorPicker
+        attr="marker.color"
+        multiColorMessage={_(
+          'Each trace will be colored according to the selected colorscale.'
+        )}
+        singleColorMessage={_(
+          'All traces will be colored in the the same color.'
+        )}
+        setColor={this.setColor}
+        setColorScale={this.setColorScale}
+        onConstantColorOptionChange={this.onConstantColorOptionChange}
+        parentSelectedConstantColorOption={
+          this.state.selectedConstantColorOption
+        }
+      />
     );
   }
 

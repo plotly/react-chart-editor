@@ -23,6 +23,7 @@
   &__widget {
     display: flex;
     flex-wrap: wrap;
+    flex-basis: 0;
     padding-right: var(--spacing-half-unit);
     padding-left: var(--spacing-half-unit);
     align-self: center;
