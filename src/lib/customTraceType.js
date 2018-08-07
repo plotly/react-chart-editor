@@ -83,6 +83,11 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
         },
         type: 'pie',
       };
+    case 'bar':
+      return {
+        orientation: 'v',
+        type: 'bar',
+      };
     default:
       return {type: traceType};
   }
