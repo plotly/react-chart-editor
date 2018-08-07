@@ -131,7 +131,6 @@ class UnconnectedMarkerColor extends Component {
   }
 
   renderVariableControls() {
-    const _ = this.context.localize;
     const multiValued =
       (this.props.container &&
         this.props.container.marker &&
@@ -141,11 +140,7 @@ class UnconnectedMarkerColor extends Component {
         this.props.container.marker.colorsrc === MULTI_VALUED);
     return (
       <Field multiValued={multiValued}>
-        <DataSelector
-          suppressMultiValuedMessage
-          attr="marker.color"
-          placeholder={_('Select a Data Option')}
-        />
+        <DataSelector suppressMultiValuedMessage attr="marker.color" />
         {this.props.container.marker &&
         this.props.container.marker.colorscale === MULTI_VALUED ? null : (
           <Colorscale

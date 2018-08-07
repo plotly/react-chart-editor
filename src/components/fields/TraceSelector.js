@@ -42,7 +42,9 @@ class TraceSelector extends Component {
   }
 
   glEnabled() {
-    return this.props.container.type.endsWith('gl') ? 'gl' : '';
+    return this.props.container.type && this.props.container.type.endsWith('gl')
+      ? 'gl'
+      : '';
   }
 
   toggleGlControls() {
