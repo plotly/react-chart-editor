@@ -6,6 +6,11 @@ import Field from './Field';
 import RadioBlocks from '../widgets/RadioBlocks';
 import PropTypes from 'prop-types';
 import {adjustColorscale, connectToContainer} from 'lib';
+import nestedProperty from 'plotly.js/src/lib/nested_property';
+
+function traceHasSplitTransform(trace) {
+  return trace.transforms && trace.transforms.some(t => t.type === 'groupby');
+}
 
 class UnconnectedMultiColorPicker extends Component {
   constructor(props, context) {
@@ -26,7 +31,12 @@ class UnconnectedMultiColorPicker extends Component {
   }
 
   setColors(colorscale, colorscaleType) {
-    const numberOfTraces = this.context.traceIndexes.length;
+    const numberOfTraces = this.props.tracesToColor.length;
+    const dataIndexesOfTracesToColor = this.props.tracesToColor.map(
+      t => t.index
+    );
+    const splitTraceGroups = this.props.tracesToColor.map(t => t._group);
+
     const colors = colorscale.map(c => c[1]);
 
     let adjustedColors = colors;
@@ -51,7 +61,11 @@ class UnconnectedMultiColorPicker extends Component {
       [this.props.attr]: color,
     }));
 
-    this.context.updateContainer(updates);
+    this.context.updateContainer(
+      updates,
+      dataIndexesOfTracesToColor,
+      splitTraceGroups
+    );
   }
 
   render() {
@@ -73,7 +87,11 @@ class UnconnectedMultiColorPicker extends Component {
       ? this.props.singleColorMessage
       : _('All will be colored in the same color.');
 
-    if (this.context.traceIndexes.length > 1) {
+    if (
+      this.context.traceIndexes.length > 1 ||
+      (this.context.traceIndexes.length === 1 &&
+        traceHasSplitTransform(this.context.container))
+    ) {
       return (
         <Field {...this.props} suppressMultiValuedMessage>
           <RadioBlocks
@@ -133,6 +151,7 @@ UnconnectedMultiColorPicker.propTypes = {
   onConstantColorOptionChange: PropTypes.func,
   messageKeyWordSingle: PropTypes.string,
   messageKeyWordPlural: PropTypes.string,
+  tracesToColor: PropTypes.array,
   ...Field.propTypes,
 };
 
@@ -141,27 +160,30 @@ UnconnectedMultiColorPicker.contextTypes = {
   updateContainer: PropTypes.func,
   traceIndexes: PropTypes.array,
   fullData: PropTypes.array,
+  container: PropTypes.object,
 };
 
 export default connectToContainer(UnconnectedMultiColorPicker, {
   modifyPlotProps(props, context, plotProps) {
     if (plotProps.isVisible) {
-      plotProps.fullValue = context.traceIndexes
-        .map(index => {
-          const trace = context.fullData.filter(
-            trace => trace.index === index
-          )[0];
+      const colors = [];
+      let tracesToColor = [];
 
-          const properties = props.attr.split('.');
-          let value = trace;
+      context.traceIndexes.forEach(traceIndex => {
+        const traces = context.fullData
+          .filter(trace => trace.index === traceIndex)
+          .filter(t => traceHasSplitTransform(t));
+        tracesToColor = tracesToColor.concat(traces);
 
-          properties.forEach(prop => {
-            value = value[prop];
-          });
-
-          return value;
-        })
-        .map(c => [0, c]);
+        traces.forEach(t => {
+          const value = nestedProperty(t, props.attr).get();
+          if (value) {
+            colors.push(value);
+          }
+        });
+      });
+      plotProps.tracesToColor = tracesToColor;
+      plotProps.fullValue = colors.map(c => [0, c]);
     }
   },
 });
