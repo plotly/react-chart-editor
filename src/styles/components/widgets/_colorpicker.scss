@@ -1,12 +1,11 @@
 $swatch-size: 20px;
-$colorpicker-width: 250px;
-$saturation-picker-height: 160px;
+$saturation-picker-height: 100px;
 $slider-picker-height: 10px;
+$colorpicker-width: 185px;
 
 %colorpicker__component {
   position: relative;
   overflow: hidden;
-  margin: 0 var(--spacing-half-unit);
   border: var(--border-default);
   border-radius: var(--border-radius-small);
   cursor: pointer;
@@ -21,32 +20,15 @@ $slider-picker-height: 10px;
   border: var(--border-default);
   padding: var(--spacing-eighth-unit);
 
-  &__popover {
-    left: -60px;
-    position: absolute;
-    top: 100%;
-    margin: var(--spacing-quarter-unit) 0 var(--spacing-base-unit);
+  &__outer {
     width: $colorpicker-width;
-    background-color: var(--color-background-top);
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow-base);
-    border: var(--border-default);
-    @include z-index('cloud');
   }
-  &__cover {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    @include z-index('underground');
-  }
-
   &__container {
     display: flex;
     align-items: center;
     line-height: 2;
     position: relative;
+    width: $colorpicker-width;
   }
   &__selected-color {
     margin-left: var(--spacing-half-unit);
@@ -70,7 +52,7 @@ $slider-picker-height: 10px;
     height: $saturation-picker-height;
   }
   &__custom-input {
-    padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
+    padding-top: var(--spacing-eighth-unit);
     input {
       border: var(--border-default) !important;
       box-shadow: none !important;
@@ -84,16 +66,14 @@ $slider-picker-height: 10px;
 
   /* Wrapper style for Hue and Alpha sliders and swatch */
   &__controls {
-    margin: 0 var(--spacing-half-unit);
-
     .colorpicker__sliders {
-      width: 200px;
+      width: 100%;
 
       .colorpicker__slider {
         @extend %colorpicker__component;
         margin: auto 0;
         height: $slider-picker-height;
-        margin-top: var(--spacing-eighth-unit);
+        margin: var(--spacing-eighth-unit) 0;
       }
     }
 
@@ -113,20 +93,5 @@ $slider-picker-height: 10px;
         border: 1px solid #eee;
       }
     }
-  }
-
-  &__preset-colors {
-    margin: 0 var(--spacing-half-unit);
-    & > div {
-      border-top: var(--border-light) !important; // inline style override
-      padding: var(--spacing-half-unit) !important;
-      padding-bottom: var(--spacing-quarter-unit) !important;
-    }
-  }
-  &__title {
-    margin: var(--spacing-eighth-unit) var(--spacing-half-unit);
-    font-size: var(--font-size-medium);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text-section-header);
   }
 }

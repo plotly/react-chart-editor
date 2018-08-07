@@ -44,7 +44,7 @@ class Scale extends Component {
     const _ = this.context.localize;
 
     return (
-      <Fragment>
+      <div className="customPickerContainer__outer">
         <Colorscale colorscale={selected} onClick={this.onClick} />
 
         {showColorscalePicker ? (
@@ -73,7 +73,7 @@ class Scale extends Component {
             ) : null}
           </div>
         ) : null}
-      </Fragment>
+      </div>
     );
   }
 }
