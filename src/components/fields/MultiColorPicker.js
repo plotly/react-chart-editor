@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
 import Color from './Color';
 import Colorscale from './Colorscale';
-import Info from './Info';
 import Field from './Field';
-import RadioBlocks from '../widgets/RadioBlocks';
+import Info from './Info';
 import PropTypes from 'prop-types';
+import RadioBlocks from '../widgets/RadioBlocks';
+import React, {Component} from 'react';
+import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {adjustColorscale, connectToContainer} from 'lib';
 
 class UnconnectedMultiColorPicker extends Component {
@@ -26,7 +27,7 @@ class UnconnectedMultiColorPicker extends Component {
   }
 
   setColors(colorscale, colorscaleType) {
-    const numberOfTraces = this.context.traceIndexes.length;
+    const numberOfTraces = this.props.tracesToColor.length;
     const colors = colorscale.map(c => c[1]);
 
     let adjustedColors = colors;
@@ -133,6 +134,7 @@ UnconnectedMultiColorPicker.propTypes = {
   onConstantColorOptionChange: PropTypes.func,
   messageKeyWordSingle: PropTypes.string,
   messageKeyWordPlural: PropTypes.string,
+  tracesToColor: PropTypes.array,
   ...Field.propTypes,
 };
 
@@ -146,22 +148,32 @@ UnconnectedMultiColorPicker.contextTypes = {
 export default connectToContainer(UnconnectedMultiColorPicker, {
   modifyPlotProps(props, context, plotProps) {
     if (plotProps.isVisible) {
-      plotProps.fullValue = context.traceIndexes
-        .map(index => {
-          const trace = context.fullData.filter(
-            trace => trace.index === index
-          )[0];
+      const colors = [];
+      let tracesToColor = [];
+      const dedupedTraceIndexes = [];
 
-          const properties = props.attr.split('.');
-          let value = trace;
+      context.traceIndexes.forEach(i => {
+        if (!dedupedTraceIndexes.includes(i)) {
+          dedupedTraceIndexes.push(i);
+        }
+      });
 
-          properties.forEach(prop => {
-            value = value[prop];
-          });
+      dedupedTraceIndexes.forEach(traceIndex => {
+        const traces = context.fullData.filter(
+          trace => trace.index === traceIndex
+        );
+        tracesToColor = tracesToColor.concat(traces);
 
-          return value;
-        })
-        .map(c => [0, c]);
+        traces.forEach(t => {
+          const value = nestedProperty(t, props.attr).get();
+          if (value) {
+            colors.push(value);
+          }
+        });
+      });
+
+      plotProps.tracesToColor = tracesToColor;
+      plotProps.fullValue = colors.map(c => [0, c]);
     }
   },
 });

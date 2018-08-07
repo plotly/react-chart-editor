@@ -22,7 +22,7 @@ function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
 
   // don't merge private attrs
   if (
-    (typeof key === 'string' && key.charAt(0) === '_') ||
+    (typeof key === 'string' && key.charAt(0) === '_' && key !== '_group') ||
     typeof intoVal === 'function' ||
     key === 'module'
   ) {

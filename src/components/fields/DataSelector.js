@@ -83,6 +83,16 @@ export class UnconnectedDataSelector extends Component {
           : null,
       }
     );
+
+    if (
+      this.props.container.type &&
+      this.props.container.type === 'groupby' &&
+      data
+    ) {
+      const styles = data.map(groupEl => ({target: groupEl, value: {}}));
+      update.styles = styles;
+    }
+
     this.props.updateContainer(update);
   }
 

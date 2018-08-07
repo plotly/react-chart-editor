@@ -112,3 +112,55 @@ export const shamefullyAddTableColumns = (graphDiv, {traceIndexes, update}) => {
     update['header.values'] = null;
   }
 };
+
+export const shamefullyCreateSplitStyles = (
+  graphDiv,
+  attr,
+  traceIndex,
+  splitTraceGroup
+) => {
+  if (!Array.isArray(splitTraceGroup)) {
+    splitTraceGroup = [splitTraceGroup]; // eslint-disable-line
+  }
+
+  let indexOfSplitTransform = null;
+
+  graphDiv.data[traceIndex].transforms.filter((t, i) => {
+    if (t.type === 'groupby') {
+      indexOfSplitTransform = i;
+    }
+  });
+
+  function getProp(group) {
+    let indexOfStyleObject = null;
+
+    graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles.filter(
+      (s, i) => {
+        if (s.target.toString() === group) {
+          indexOfStyleObject = i;
+        }
+      }
+    );
+
+    let path =
+      graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles[
+        indexOfStyleObject
+      ].value;
+
+    attr.split('.').forEach(p => {
+      if (!path[p]) {
+        path[p] = {};
+      }
+      path = path[p];
+    });
+
+    return nestedProperty(
+      graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles[
+        indexOfStyleObject
+      ].value,
+      attr
+    );
+  }
+
+  return splitTraceGroup.map(g => getProp(g));
+};

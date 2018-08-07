@@ -10,78 +10,155 @@ import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 const TraceFold = connectTraceToPlot(PlotlyFold);
 
 class TraceAccordion extends Component {
-  render() {
-    const {data = [], localize: _} = this.context;
-    const {
-      canAdd,
-      canGroup,
-      children,
-      messageIfEmptyFold,
-      excludeFits,
-    } = this.props;
+  renderGroupedTraceFolds(groupedTraces) {
+    if (this.props.useFullData) {
+      const dataArrayPositionsByTraceType = {};
+      const fullDataArrayPositionsByTraceType = {};
 
-    // we don't want to include analysis transforms when we're in the create panel
-    const filteredData = data.filter(t => {
-      if (excludeFits) {
-        return !(t.transforms && t.transforms.every(tr => tr.type === 'fit'));
-      }
-      return true;
-    });
+      Object.keys(groupedTraces).forEach(traceType => {
+        const dataIndexes = [];
+        const fullDataIndexes = [];
 
-    const individualTraces =
-      filteredData.length &&
-      filteredData.map((d, i) => {
+        this.context.fullData.forEach((trace, fullDataIndex) => {
+          if (trace.type === traceType && trace._expandedIndex) {
+            fullDataIndexes.push(trace._expandedIndex);
+          }
+          if (trace.type === traceType && !trace._expandedIndex) {
+            fullDataIndexes.push(fullDataIndex);
+          }
+          if (trace.type === traceType) {
+            dataIndexes.push(trace.index);
+          }
+        });
+
+        dataArrayPositionsByTraceType[traceType] = dataIndexes;
+        fullDataArrayPositionsByTraceType[traceType] = fullDataIndexes;
+      });
+
+      return Object.keys(groupedTraces).map((traceType, index) => {
         return (
           <TraceFold
-            key={i}
-            traceIndexes={[i]}
-            canDelete={canAdd}
-            messageIfEmpty={messageIfEmptyFold}
+            key={index}
+            traceIndexes={dataArrayPositionsByTraceType[traceType]}
+            name={traceType}
+            fullDataArrayPosition={fullDataArrayPositionsByTraceType[traceType]}
           >
-            {children}
+            {this.props.children}
           </TraceFold>
         );
       });
-
-    if (canAdd) {
-      const addAction = {
-        label: _('Trace'),
-        handler: ({onUpdate}) => {
-          if (onUpdate) {
-            onUpdate({
-              type: EDITOR_ACTIONS.ADD_TRACE,
-            });
-          }
-        },
-      };
-      return (
-        <PlotlyPanel addAction={addAction}>
-          {individualTraces ? individualTraces : null}
-        </PlotlyPanel>
-      );
     }
-    const tracesByGroup = filteredData.reduce((allTraces, nextTrace, index) => {
-      const traceType = plotlyTraceToCustomTrace(nextTrace);
-      if (!allTraces[traceType]) {
-        allTraces[traceType] = [];
-      }
-      allTraces[traceType].push(index);
-      return allTraces;
-    }, {});
 
-    const groupedTraces = Object.keys(tracesByGroup).map((traceType, index) => {
+    return Object.keys(groupedTraces).map((traceType, index) => {
       return (
         <TraceFold
           key={index}
-          traceIndexes={tracesByGroup[traceType]}
+          traceIndexes={groupedTraces[traceType]}
           name={traceType}
         >
           {this.props.children}
         </TraceFold>
       );
     });
+  }
 
-    if (canGroup && filteredData.length > 1 && groupedTraces.length > 0) {
+  renderIndividualTraceFolds(filteredTraces, filteredTracesFullDataPositions) {
+    if (this.props.useFullData) {
+      return filteredTraces.map((d, i) => {
+        return (
+          <TraceFold
+            key={i}
+            traceIndexes={[d.index]}
+            canDelete={this.props.canAdd}
+            messageIfEmpty={this.props.messageIfEmptyFold}
+            fullDataArrayPosition={[filteredTracesFullDataPositions[i]]}
+          >
+            {this.props.children}
+          </TraceFold>
+        );
+      });
+    }
+
+    return filteredTraces.map((d, i) => {
+      return (
+        <TraceFold
+          key={i}
+          traceIndexes={[i]}
+          canDelete={this.props.canAdd}
+          messageIfEmpty={this.props.messageIfEmptyFold}
+        >
+          {this.props.children}
+        </TraceFold>
+      );
+    });
+  }
+
+  renderCanAddPanel(filteredTraces, filteredTracesFullDataPositions) {
+    const _ = this.context.localize;
+
+    const addAction = {
+      label: _('Trace'),
+      handler: ({onUpdate}) => {
+        if (onUpdate) {
+          onUpdate({
+            type: EDITOR_ACTIONS.ADD_TRACE,
+          });
+        }
+      },
+    };
+
+    return (
+      <PlotlyPanel addAction={addAction}>
+        {filteredTraces.length
+          ? this.renderIndividualTraceFolds(
+              filteredTraces,
+              filteredTracesFullDataPositions
+            )
+          : null}
+      </PlotlyPanel>
+    );
+  }
+
+  render() {
+    const {data = [], localize: _, fullData = []} = this.context;
+    const {canAdd, canGroup, excludeFits, useFullData} = this.props;
+    const base = useFullData ? fullData : data;
+
+    // we don't want to include analysis transforms when we're in the create panel
+    const filteredTracesFullDataPositions = [];
+    const filteredTraces = base.filter((t, i) => {
+      if (excludeFits) {
+        return !(t.transforms && t.transforms.every(tr => tr.type === 'fit'));
+      }
+      filteredTracesFullDataPositions.push(i);
+      return true;
+    });
+
+    const groupedTraces = filteredTraces.reduce(
+      (allTraces, nextTrace, index) => {
+        const traceType = plotlyTraceToCustomTrace(nextTrace);
+        const adjustedIndex = useFullData ? nextTrace.index : index;
+        if (!allTraces[traceType]) {
+          allTraces[traceType] = [];
+        }
+        allTraces[traceType].push(adjustedIndex);
+        return allTraces;
+      },
+      {}
+    );
+
+    if (canAdd) {
+      return this.renderCanAddPanel(
+        filteredTraces,
+        filteredTracesFullDataPositions
+      );
+    }
+
+    if (
+      canGroup &&
+      filteredTraces.length > 1 &&
+      Object.keys(groupedTraces).length > 0
+    ) {
       return (
         <TraceRequiredPanel noPadding>
           <Tabs>
@@ -91,19 +168,34 @@ class TraceAccordion extends Component {
             </TabList>
             <TabPanel>
               <PlotlyPanel>
-                {individualTraces ? individualTraces : null}
+                {filteredTraces.length
+                  ? this.renderIndividualTraceFolds(
+                      filteredTraces,
+                      filteredTracesFullDataPositions
+                    )
+                  : null}
               </PlotlyPanel>
             </TabPanel>
             <TabPanel>
-              <PlotlyPanel>{groupedTraces ? groupedTraces : null}</PlotlyPanel>
+              <PlotlyPanel>
+                {Object.keys(groupedTraces).length
+                  ? this.renderGroupedTraceFolds(groupedTraces)
+                  : null}
+              </PlotlyPanel>
             </TabPanel>
           </Tabs>
         </TraceRequiredPanel>
       );
     }
+
     return (
       <TraceRequiredPanel>
-        {individualTraces ? individualTraces : null}
+        {filteredTraces.length
+          ? this.renderIndividualTraceFolds(
+              filteredTraces,
+              filteredTracesFullDataPositions
+            )
+          : null}
       </TraceRequiredPanel>
     );
   }
@@ -121,6 +213,7 @@ TraceAccordion.propTypes = {
   children: PropTypes.node,
   excludeFits: PropTypes.bool,
   messageIfEmptyFold: PropTypes.string,
+  useFullData: PropTypes.bool,
 };
 
 export default TraceAccordion;
