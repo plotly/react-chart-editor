@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {
   DataSelector,
   Dropdown,
-  ErrorBars,
   Radio,
   PlotlySection,
   LayoutSection,
@@ -102,18 +101,6 @@ const GraphCreatePanel = (props, {localize: _}) => {
 
       <AxesCreator attr="fake_attr" />
       <SubplotCreator attr="fake_attr" />
-
-      <PlotlySection name={_('Error Bars X')}>
-        <ErrorBars attr="error_x" />
-      </PlotlySection>
-
-      <PlotlySection name={_('Error Bars Y')}>
-        <ErrorBars attr="error_y" />
-      </PlotlySection>
-
-      <PlotlySection name={_('Error Bars Z')}>
-        <ErrorBars attr="error_z" />
-      </PlotlySection>
 
       <PlotlySection name={_('Header Options')}>
         <DataSelector label={_('Fill Color')} attr="header.fill.color" />

@@ -77,9 +77,9 @@ class ErrorBars extends Component {
           onOptionChange={this.updatePlot}
           activeOption={this.getMode()}
           options={[
+            {label: _('None'), value: 'hidden'},
             {label: _('Symmetric'), value: 'symmetric'},
             {label: _('Asymmetric'), value: 'asymmetric'},
-            {label: _('Hidden'), value: 'hidden'},
           ]}
         />
       </Field>

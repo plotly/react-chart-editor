@@ -26,6 +26,7 @@ import {
   MarkerSize,
   MarkerColor,
   MultiColorPicker,
+  ErrorBars,
   DataSelector,
   VisibilitySelect,
 } from '../components';
@@ -354,13 +355,14 @@ const StyleTracesPanel = (props, {localize: _}) => (
         'pie',
         'scatter3d',
         'scatterternary',
+        'bar',
       ]}
     >
       <DataSelector label={_('Text')} attr="text" />
+      <TextPosition label={_('Text Position')} attr="textposition" />
       <FontSelector label={_('Typeface')} attr="textfont.family" />
       <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
       <MultiColorPicker label={_('Font Color')} attr="textfont.color" />
-      <TextPosition label={_('Text Position')} attr="textposition" />
     </TraceTypeSection>
     <PlotlySection name={_('Colorscale')}>
       <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
@@ -615,6 +617,24 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
         clearable={false}
       />
+    </TraceTypeSection>
+
+    <TraceTypeSection
+      name={_('Error Bars X')}
+      traceTypes={['scatter', 'scattergl', 'scatter3d', 'bar']}
+    >
+      <ErrorBars attr="error_x" />
+    </TraceTypeSection>
+
+    <TraceTypeSection
+      name={_('Error Bars Y')}
+      traceTypes={['scatter', 'scattergl', 'scatter3d', 'bar']}
+    >
+      <ErrorBars attr="error_y" />
+    </TraceTypeSection>
+
+    <TraceTypeSection name={_('Error Bars Z')} traceTypes={['scatter3d']}>
+      <ErrorBars attr="error_z" />
     </TraceTypeSection>
   </TraceAccordion>
 );
