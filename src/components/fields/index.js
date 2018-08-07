@@ -46,10 +46,12 @@ import {
   AxisOverlayDropdown,
   AxisSide,
   TextPosition,
+  ShowInLegend,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './LineSelectors';
 
 export {
+  ShowInLegend,
   AnnotationArrowRef,
   AnnotationRef,
   AxisAnchorDropdown,

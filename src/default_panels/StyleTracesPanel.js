@@ -34,12 +34,13 @@ import {
   BinningNumeric,
   BinningDropdown,
   NumericReciprocal,
+  ShowInLegend,
 } from '../components/fields/derived';
 
 const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
-    <Radio
+    <ShowInLegend
       label="Show in Legend"
       attr="showlegend"
       options={[
@@ -47,7 +48,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         {label: _('Hide'), value: false},
       ]}
     />
-    <NumericFraction label={_('Opacity')} attr="opacity" />
+    <NumericFraction label={_('Trace Opacity')} attr="opacity" />
     <MultiColorPicker label={_('Color')} attr="color" />
     <ColorscalePicker
       label={_('Colors')}
@@ -236,7 +237,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         label={_('Color')}
         attr="marker.color"
       />
-      <NumericFraction label={_('Opacity')} attr="marker.opacity" />
+      <NumericFraction label={_('Point Opacity')} attr="marker.opacity" />
       <MarkerSize label={_('Size')} attr="marker.size" />
       <Radio
         label="Size Mode"

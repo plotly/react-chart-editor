@@ -153,6 +153,13 @@ export const BinningDropdown = connectToContainer(UnconnectedDropdown, {
   },
 });
 
+export const ShowInLegend = connectToContainer(UnconnectedRadio, {
+  modifyPlotProps: (props, context, plotProps) => {
+    plotProps.isVisible = context.fullLayout.showlegend;
+    return plotProps;
+  },
+});
+
 export const HistogramInfoVertical = connectToContainer(Info, {
   modifyPlotProps: (props, context, plotProps) => {
     plotProps.isVisible =
@@ -161,6 +168,7 @@ export const HistogramInfoVertical = connectToContainer(Info, {
     return plotProps;
   },
 });
+
 export const HistogramInfoHorizontal = connectToContainer(Info, {
   modifyPlotProps: (props, context, plotProps) => {
     plotProps.isVisible =
