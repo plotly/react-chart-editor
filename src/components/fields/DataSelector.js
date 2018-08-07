@@ -48,6 +48,8 @@ export class UnconnectedDataSelector extends Component {
         (props.container.type === 'table' && props.attr !== 'columnorder') ||
         Array.isArray(this.fullValue);
     }
+
+    this.hasData = props.attr in props.container;
   }
 
   updatePlot(value) {
@@ -108,7 +110,10 @@ export class UnconnectedDataSelector extends Component {
           optionRenderer={this.context.dataSourceOptionRenderer}
           valueRenderer={this.context.dataSourceValueRenderer}
           clearable={true}
-          placeholder={this.props.placeholder}
+          placeholder={
+            this.hasData ? 'Data inlined in figure' : 'Choose data...'
+          }
+          disabled={this.dataSourceOptions.length === 0}
         />
       </Field>
     );
@@ -119,7 +124,6 @@ UnconnectedDataSelector.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   container: PropTypes.object,
-  placeholder: PropTypes.string,
   ...Field.propTypes,
 };
 
