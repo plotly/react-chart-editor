@@ -125,7 +125,7 @@ export const shamefullyCreateSplitStyles = (
 
   let indexOfSplitTransform = null;
 
-  graphDiv.data[traceIndex].transforms.filter((t, i) => {
+  graphDiv.data[traceIndex].transforms.forEach((t, i) => {
     if (t.type === 'groupby') {
       indexOfSplitTransform = i;
     }
@@ -134,7 +134,7 @@ export const shamefullyCreateSplitStyles = (
   function getProp(group) {
     let indexOfStyleObject = null;
 
-    graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles.filter(
+    graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles.forEach(
       (s, i) => {
         if (s.target.toString() === group) {
           indexOfStyleObject = i;
