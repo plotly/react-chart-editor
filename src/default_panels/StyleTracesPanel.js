@@ -39,7 +39,7 @@ import {
 } from '../components/fields/derived';
 
 const StyleTracesPanel = (props, {localize: _}) => (
-  <TraceAccordion canGroup useFullData>
+  <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
     <ShowInLegend
       label="Show in Legend"

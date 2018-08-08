@@ -91,8 +91,10 @@ class UnconnectedMarkerColor extends Component {
       (Array.isArray(this.props.fullValue) &&
         this.props.fullValue.includes(MULTI_VALUED)) ||
       (this.props.container.marker &&
+        this.props.container.marker.colorscale &&
         this.props.container.marker.colorscale === MULTI_VALUED) ||
       (this.props.container.marker &&
+        this.props.container.marker.colorsrc &&
         this.props.container.marker.colorsrc === MULTI_VALUED) ||
       (this.props.container.marker &&
         this.props.container.marker.color &&
@@ -130,12 +132,12 @@ class UnconnectedMarkerColor extends Component {
 
   renderVariableControls() {
     const multiValued =
-      (this.props.container &&
-        this.props.container.marker &&
-        (this.props.container.marker.colorscale &&
-          this.props.container.marker.colorscale === MULTI_VALUED)) ||
-      (this.props.container.marker.colorsrc &&
-        this.props.container.marker.colorsrc === MULTI_VALUED);
+      this.props.container &&
+      this.props.container.marker &&
+      ((this.props.container.marker.colorscale &&
+        this.props.container.marker.colorscale === MULTI_VALUED) ||
+        (this.props.container.marker.colorsrc &&
+          this.props.container.marker.colorsrc === MULTI_VALUED));
     return (
       <Field multiValued={multiValued}>
         <DataSelector suppressMultiValuedMessage attr="marker.color" />
