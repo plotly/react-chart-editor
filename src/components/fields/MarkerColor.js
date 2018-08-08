@@ -156,72 +156,87 @@ class UnconnectedMarkerColor extends Component {
 
   render() {
     const {attr} = this.props;
-    const {localize: _} = this.context;
-    const {type} = this.state;
-    const options = [
-      {label: _('Constant'), value: 'constant'},
-      {label: _('Variable'), value: 'variable'},
-    ];
+    const {localize: _, container} = this.context;
+
+    // TO DO: https://github.com/plotly/react-chart-editor/issues/654
+    const noSplitsPresent =
+      container &&
+      (!container.transforms ||
+        !container.transforms.filter(t => t.type === 'groupby').length);
+
+    if (noSplitsPresent) {
+      const {type} = this.state;
+      const options = [
+        {label: _('Constant'), value: 'constant'},
+        {label: _('Variable'), value: 'variable'},
+      ];
+
+      return (
+        <Fragment>
+          <Field {...this.props} attr={attr}>
+            <Field multiValued={this.isMultiValued() && !this.state.type}>
+              <RadioBlocks
+                options={options}
+                activeOption={type}
+                onOptionChange={this.setType}
+              />
+
+              {!type ? null : (
+                <Info>
+                  {type === 'constant'
+                    ? _('All points in a trace are colored in the same color.')
+                    : _('Each point in a trace is colored according to data.')}
+                </Info>
+              )}
+            </Field>
+
+            {!type
+              ? null
+              : type === 'constant'
+                ? this.renderConstantControls()
+                : this.renderVariableControls()}
+          </Field>
+          {type === 'constant' ? null : (
+            <Fragment>
+              <Radio
+                label={_('Colorscale Direction')}
+                attr="marker.reversescale"
+                options={[
+                  {label: _('Normal'), value: false},
+                  {label: _('Reversed'), value: true},
+                ]}
+              />
+              <Radio
+                label={_('Color Bar')}
+                attr="marker.showscale"
+                options={[
+                  {label: _('Show'), value: true},
+                  {label: _('Hide'), value: false},
+                ]}
+              />
+              <VisibilitySelect
+                label={_('Colorscale Range')}
+                attr="marker.cauto"
+                options={[
+                  {label: _('Auto'), value: true},
+                  {label: _('Custom'), value: false},
+                ]}
+                showOn={false}
+                dafault={true}
+              >
+                <Numeric label={_('Min')} attr="marker.cmin" />
+                <Numeric label={_('Max')} attr="marker.cmax" />
+              </VisibilitySelect>
+            </Fragment>
+          )}
+        </Fragment>
+      );
+    }
 
     return (
-      <Fragment>
-        <Field {...this.props} attr={attr}>
-          <Field multiValued={this.isMultiValued() && !this.state.type}>
-            <RadioBlocks
-              options={options}
-              activeOption={type}
-              onOptionChange={this.setType}
-            />
-
-            {!type ? null : (
-              <Info>
-                {type === 'constant'
-                  ? _('All points in a trace are colored in the same color.')
-                  : _('Each point in a trace is colored according to data.')}
-              </Info>
-            )}
-          </Field>
-
-          {!type
-            ? null
-            : type === 'constant'
-              ? this.renderConstantControls()
-              : this.renderVariableControls()}
-        </Field>
-        {type === 'constant' ? null : (
-          <Fragment>
-            <Radio
-              label={_('Colorscale Direction')}
-              attr="marker.reversescale"
-              options={[
-                {label: _('Normal'), value: false},
-                {label: _('Reversed'), value: true},
-              ]}
-            />
-            <Radio
-              label={_('Color Bar')}
-              attr="marker.showscale"
-              options={[
-                {label: _('Show'), value: true},
-                {label: _('Hide'), value: false},
-              ]}
-            />
-            <VisibilitySelect
-              label={_('Colorscale Range')}
-              attr="marker.cauto"
-              options={[
-                {label: _('Auto'), value: true},
-                {label: _('Custom'), value: false},
-              ]}
-              showOn={false}
-              dafault={true}
-            >
-              <Numeric label={_('Min')} attr="marker.cmin" />
-              <Numeric label={_('Max')} attr="marker.cmax" />
-            </VisibilitySelect>
-          </Fragment>
-        )}
-      </Fragment>
+      <Field {...this.props} attr={attr}>
+        {this.renderConstantControls()}
+      </Field>
     );
   }
 }
@@ -236,6 +251,7 @@ UnconnectedMarkerColor.contextTypes = {
   localize: PropTypes.func,
   updateContainer: PropTypes.func,
   traceIndexes: PropTypes.array,
+  container: PropTypes.object,
 };
 
 export default connectToContainer(UnconnectedMarkerColor);

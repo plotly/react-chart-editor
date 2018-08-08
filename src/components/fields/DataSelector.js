@@ -49,7 +49,7 @@ export class UnconnectedDataSelector extends Component {
         Array.isArray(this.fullValue);
     }
 
-    this.hasData = props.attr in props.container;
+    this.hasData = props.container ? props.attr in props.container : false;
   }
 
   updatePlot(value) {
