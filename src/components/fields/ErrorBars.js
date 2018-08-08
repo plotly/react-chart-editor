@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
-import {DataSelector, Radio, Numeric} from '../index';
+import {DataSelector, Radio, Numeric, MultiColorPicker} from '../index';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Field from './Field';
 import {connectToContainer} from 'lib';
@@ -91,6 +91,36 @@ class ErrorBars extends Component {
     const mode = this.getMode();
     const showCustomDataControl = this.props.fullValue.type === 'data';
 
+    const styleAttrs = (
+      <Fragment>
+        <Radio
+          label={_('Copy Y Style')}
+          attr={`${this.props.attr}.copy_ystyle`}
+          options={[
+            {label: _('Yes'), value: true},
+            {label: _('No'), value: false},
+          ]}
+        />
+        <Radio
+          label={_('Copy Z Style')}
+          attr={`${this.props.attr}.copy_zstyle`}
+          options={[
+            {label: _('Yes'), value: true},
+            {label: _('No'), value: false},
+          ]}
+        />
+        <MultiColorPicker
+          label={_('Color')}
+          attr={`${this.props.attr}.color`}
+        />
+        <Numeric label={_('Thickness')} attr={`${this.props.attr}.thickness`} />
+        <Numeric
+          label={_('Crossbar Width')}
+          attr={`${this.props.attr}.width`}
+        />
+      </Fragment>
+    );
+
     if (mode === 'symmetric') {
       return (
         <Fragment>
@@ -111,6 +141,7 @@ class ErrorBars extends Component {
               attr={`${this.props.attr}.array`}
             />
           ) : null}
+          {styleAttrs}
         </Fragment>
       );
     }
@@ -144,6 +175,7 @@ class ErrorBars extends Component {
               />
             </Fragment>
           ) : null}
+          {styleAttrs}
         </Fragment>
       );
     }
