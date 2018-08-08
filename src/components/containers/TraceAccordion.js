@@ -137,7 +137,7 @@ class TraceAccordion extends Component {
       if (this.filteredTraces.length === 1) {
         return (
           <TraceRequiredPanel>
-            <PlotlyPanel>{this.renderUngroupedTraceFolds()}</PlotlyPanel>
+            {this.renderUngroupedTraceFolds()}
           </TraceRequiredPanel>
         );
       }
