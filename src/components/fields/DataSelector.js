@@ -87,10 +87,34 @@ export class UnconnectedDataSelector extends Component {
     if (
       this.props.container.type &&
       this.props.container.type === 'groupby' &&
+      this.props.container.styles &&
+      !this.props.container.styles.length &&
       data
     ) {
-      const styles = data.map(groupEl => ({target: groupEl, value: {}}));
+      const dedupedGroups = [];
+      data.forEach(group => {
+        if (!dedupedGroups.includes(group)) {
+          dedupedGroups.push(group);
+        }
+      });
+
+      const styles = dedupedGroups.map(groupEl => ({
+        target: groupEl,
+        value: {},
+      }));
+
       update.styles = styles;
+    }
+
+    // When clearing the data selector of groupby transforms, we want to clear
+    // all the styles we've added
+    if (
+      this.props.container.type &&
+      this.props.container.type === 'groupby' &&
+      this.props.container.styles.length &&
+      value === null
+    ) {
+      update.styles = [];
     }
 
     this.props.updateContainer(update);
@@ -146,6 +170,7 @@ UnconnectedDataSelector.contextTypes = {
     toSrc: PropTypes.func.isRequired,
     fromSrc: PropTypes.func.isRequired,
   }),
+  container: PropTypes.object,
 };
 
 function modifyPlotProps(props, context, plotProps) {
