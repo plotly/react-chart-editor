@@ -83,9 +83,17 @@ class TransformAccordion extends Component {
         </TransformFold>
       ));
 
+    // cannot have 2 Split transforms on one trace:
+    // https://github.com/plotly/plotly.js/issues/1742
+    const addActionOptions =
+      container.transforms &&
+      container.transforms.some(t => t.type === 'groupby')
+        ? transformTypes.filter(t => t.type !== 'groupby')
+        : transformTypes;
+
     const addAction = {
       label: _('Transform'),
-      handler: transformTypes.map(({label, type}) => {
+      handler: addActionOptions.map(({label, type}) => {
         return {
           label,
           handler: context => {
