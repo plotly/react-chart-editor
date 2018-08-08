@@ -333,10 +333,15 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
     if (currentAxisRef === 'paper') {
       // If currentAxesRef is paper provide all axes options to user.
 
-      plotProps.options = [
-        {label: 'in pixels', value: 'pixel'},
-        ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
-      ];
+      const axes = getAllAxes(context.fullLayout).filter(a => a._id);
+      if (axes.length > 0) {
+        plotProps.options = [
+          {label: 'in pixels', value: 'pixel'},
+          ...computeAxesRefOptions(axes, props.attr),
+        ];
+      } else {
+        plotProps.isVisible = false;
+      }
     } else {
       // If currentAxesRef is an actual axes then offer that value as the only
       // axes option.
@@ -371,10 +376,15 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
       );
     }
 
-    plotProps.options = [
-      {label: 'Canvas', value: 'paper'},
-      ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
-    ];
+    const axes = getAllAxes(context.fullLayout).filter(a => a._id);
+    if (axes.length > 0) {
+      plotProps.options = [
+        {label: 'Canvas', value: 'paper'},
+        ...computeAxesRefOptions(axes, props.attr),
+      ];
+    } else {
+      plotProps.isVisible = false;
+    }
 
     if (currentOffsetRef !== 'pixel') {
       plotProps.updatePlot = v => {
@@ -402,12 +412,17 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
 
 export const PositioningRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    plotProps.options = [
-      {label: 'Canvas', value: 'paper'},
-      ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
-    ];
+    const axes = getAllAxes(context.fullLayout).filter(a => a._id);
+    if (axes.length > 0) {
+      plotProps.options = [
+        {label: 'Canvas', value: 'paper'},
+        ...computeAxesRefOptions(axes, props.attr),
+      ];
 
-    plotProps.clearable = false;
+      plotProps.clearable = false;
+    } else {
+      plotProps.isVisible = false;
+    }
   },
 });
 
