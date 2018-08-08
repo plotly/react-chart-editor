@@ -83,7 +83,10 @@ const GraphCreatePanel = (props, {localize: _}) => {
       <DataSelector label={_('Headers')} attr="header.values" />
       <DataSelector label={_('Columns')} attr="cells.values" />
 
-      <TraceTypeSection traceTypes={['scatterpolar', 'scatterpolargl']}>
+      <TraceTypeSection
+        traceTypes={['scatterpolar', 'scatterpolargl']}
+        mode="trace"
+      >
         <DataSelector label={_('Radius')} attr="r" />
         <DataSelector label={_('Theta')} attr="theta" />
         <Dropdown

@@ -10,12 +10,17 @@ const LayoutSection = connectLayoutToPlot(PlotlySection);
 
 const TraceTypeSection = (props, context) => {
   const {fullContainer, fullData} = context;
+  const {mode, traceTypes} = props;
 
   const ifConnectedToTrace =
-    fullContainer && props.traceTypes.includes(fullContainer.type);
+    mode === 'trace' &&
+    fullContainer &&
+    traceTypes.includes(fullContainer.type);
 
   const ifConnectedToLayout =
-    fullData && fullData.some(t => props.traceTypes.includes(t.type));
+    mode === 'layout' &&
+    fullData &&
+    fullData.some(t => traceTypes.includes(t.type));
 
   if (ifConnectedToTrace || ifConnectedToLayout) {
     return <PlotlySection {...props} />;
@@ -29,10 +34,12 @@ TraceTypeSection.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
   traceTypes: PropTypes.array,
+  mode: PropTypes.string,
 };
 
 TraceTypeSection.defaultProps = {
   traceTypes: [],
+  mode: 'layout',
 };
 
 export {LayoutPanel, LayoutSection, TraceTypeSection};
