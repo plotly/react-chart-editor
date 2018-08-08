@@ -67,55 +67,6 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Plot Background')} attr="bgcolor" />
     </PlotlySection>
 
-    <PlotlySection name={_('Map Options')}>
-      <Dropdown
-        label={_('Map Region')}
-        attr="scope"
-        options={[
-          {label: _('World'), value: 'world'},
-          {label: _('USA'), value: 'usa'},
-          {label: _('Europe'), value: 'europe'},
-          {label: _('Asia'), value: 'asia'},
-          {label: _('Africa'), value: 'africa'},
-          {label: _('North America'), value: 'north america'},
-          {label: _('South America'), value: 'south america'},
-        ]}
-        clearable={false}
-      />
-      <Dropdown
-        label={_('Projection')}
-        attr="projection.type"
-        clearable={false}
-        options={[
-          {label: _('Equirectangular'), value: 'equirectangular'},
-          {label: _('Mercator'), value: 'mercator'},
-          {label: _('Orthographic'), value: 'orthographic'},
-          {label: _('Natural Earth'), value: 'natural earth'},
-          {label: _('Albers USA'), value: 'albers usa'},
-          {label: _('Winkel Tripel'), value: 'winkel tripel'},
-          {label: _('Robinson'), value: 'robinson'},
-          {label: _('Miller'), value: 'miller'},
-          {label: _('Kavrayskiy 7'), value: 'kavrayskiy7'},
-          {label: _('Eckert 4'), value: 'eckert4'},
-          {label: _('Azimuthal Equal Area'), value: 'azimuthal equal area'},
-          {
-            label: _('Azimuthal Equidistant'),
-            value: 'azimuthal equidistant',
-          },
-          {label: _('Conic Equal Area'), value: 'conic equal area'},
-          {label: _('Conic Conformal'), value: 'conic conformal'},
-          {label: _('Conic Equidistant'), value: 'conic equidistant'},
-          {label: _('Gnomonic'), value: 'gnomonic'},
-          {label: _('Stereographic'), value: 'stereographic'},
-          {label: _('Mollweide'), value: 'mollweide'},
-          {label: _('Hammer'), value: 'hammer'},
-          {label: _('Transverse Mercator'), value: 'transverse mercator'},
-          {label: _('Aitoff'), value: 'aitoff'},
-          {label: _('Sinusoidal'), value: 'sinusoidal'},
-        ]}
-      />
-    </PlotlySection>
-
     <PlotlySection name={_('Country Borders')} attr="showcountries">
       <Radio
         attr="showcountries"
@@ -190,6 +141,7 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
       <Numeric label={_('Width')} attr="riverwidth" units="px" />
       <ColorPicker label={_('Color')} attr="rivercolor" />
     </PlotlySection>
+
     <PlotlySection name={_('Map Frame')} attr="showframe">
       <Radio
         attr="showframe"
@@ -200,6 +152,70 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
       />
       <Numeric label={_('Width')} attr="framewidth" units="px" />
       <ColorPicker label={_('Color')} attr="framecolor" />
+    </PlotlySection>
+
+    <PlotlySection name={_('Map Options')}>
+      <Dropdown
+        label={_('Region')}
+        attr="scope"
+        options={[
+          {label: _('World'), value: 'world'},
+          {label: _('USA'), value: 'usa'},
+          {label: _('Europe'), value: 'europe'},
+          {label: _('Asia'), value: 'asia'},
+          {label: _('Africa'), value: 'africa'},
+          {label: _('North America'), value: 'north america'},
+          {label: _('South America'), value: 'south america'},
+        ]}
+        clearable={false}
+      />
+      <Dropdown
+        label={_('Projection')}
+        attr="projection.type"
+        clearable={false}
+        options={[
+          {label: _('Equirectangular'), value: 'equirectangular'},
+          {label: _('Mercator'), value: 'mercator'},
+          {label: _('Orthographic'), value: 'orthographic'},
+          {label: _('Natural Earth'), value: 'natural earth'},
+          {label: _('Albers USA'), value: 'albers usa'},
+          {label: _('Winkel Tripel'), value: 'winkel tripel'},
+          {label: _('Robinson'), value: 'robinson'},
+          {label: _('Miller'), value: 'miller'},
+          {label: _('Kavrayskiy 7'), value: 'kavrayskiy7'},
+          {label: _('Eckert 4'), value: 'eckert4'},
+          {label: _('Azimuthal Equal Area'), value: 'azimuthal equal area'},
+          {
+            label: _('Azimuthal Equidistant'),
+            value: 'azimuthal equidistant',
+          },
+          {label: _('Conic Equal Area'), value: 'conic equal area'},
+          {label: _('Conic Conformal'), value: 'conic conformal'},
+          {label: _('Conic Equidistant'), value: 'conic equidistant'},
+          {label: _('Gnomonic'), value: 'gnomonic'},
+          {label: _('Stereographic'), value: 'stereographic'},
+          {label: _('Mollweide'), value: 'mollweide'},
+          {label: _('Hammer'), value: 'hammer'},
+          {label: _('Transverse Mercator'), value: 'transverse mercator'},
+          {label: _('Aitoff'), value: 'aitoff'},
+          {label: _('Sinusoidal'), value: 'sinusoidal'},
+        ]}
+      />
+      <Radio
+        label={_('Resolution')}
+        attr="resolution"
+        options={[
+          {label: _('1:110,000,000'), value: 110},
+          {label: _('1:50,000,000'), value: 50},
+        ]}
+      />
+      <Numeric label={_('Scale')} attr="projection.scale" min={0} />
+    </PlotlySection>
+
+    <PlotlySection name={_('Map Rotation')}>
+      <Numeric label={_('Latitude')} attr="projection.rotation.lon" min={0} />
+      <Numeric label={_('Longitude')} attr="projection.rotation.lat" min={0} />
+      <Numeric label={_('Roll')} attr="projection.rotation.roll" min={0} />
     </PlotlySection>
   </SubplotAccordion>
 );
