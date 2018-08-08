@@ -71,19 +71,28 @@ export const shamefullyAdjustAxisRef = (graphDiv, payload) => {
   }
 };
 
-export const shamefullyAdjustGeo = ({layout: {geo = {}}}, {update}) => {
-  if (update['geo.scope']) {
-    update['geo.projection'] = {};
-    update['geo.center'] = {};
-  }
-  if (
-    // requesting projection change
-    update['geo.projection.type'] &&
-    (update['geo.projection.type'] === 'albers usa' || geo.scope === 'usa')
-  ) {
-    update['geo.scope'] = {};
-    update['geo.center'] = {};
-  }
+const geoRegex = /^(geo\d*)\./;
+export const shamefullyAdjustGeo = ({layout}, {update}) => {
+  Object.keys(update).forEach(k => {
+    const geoMatch = geoRegex.exec(k);
+    if (geoMatch) {
+      const geo = geoMatch[1];
+      if (update[geo + '.scope']) {
+        update[geo + '.projection'] = {};
+        update[geo + '.center'] = {};
+      }
+
+      if (
+        // requesting projection change
+        update[geo + '.projection.type'] &&
+        (update[geo + '.projection.type'] === 'albers usa' ||
+          (layout[geo] && layout[geo].scope === 'usa'))
+      ) {
+        update[geo + '.scope'] = {};
+        update[geo + '.center'] = {};
+      }
+    }
+  });
 };
 
 export const shamefullyAddTableColumns = (graphDiv, {traceIndexes, update}) => {
