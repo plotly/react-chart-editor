@@ -113,7 +113,45 @@ export const shamefullyAddTableColumns = (graphDiv, {traceIndexes, update}) => {
   }
 };
 
-export const shamefullyCreateSplitStyles = (
+export const shamefullyAdjustSplitStyleTargetContainers = (
+  graphDiv,
+  {traceIndexes, update}
+) => {
+  for (const attr in update) {
+    if (attr && attr.startsWith('transforms') && attr.endsWith('groups')) {
+      const transformIndex = parseInt(attr.split('[')[1], 10);
+      const transform =
+        graphDiv.data[traceIndexes[0]].transforms[transformIndex];
+
+      if (transform && transform.type === 'groupby' && transform.styles) {
+        // Create style containers for all groups
+        if (!transform.styles.length && update[attr]) {
+          const dedupedGroups = [];
+          update[attr].forEach(group => {
+            if (!dedupedGroups.includes(group)) {
+              dedupedGroups.push(group);
+            }
+          });
+
+          const styles = dedupedGroups.map(groupEl => ({
+            target: groupEl,
+            value: {},
+          }));
+
+          update[`transforms[${transformIndex}].styles`] = styles;
+        }
+
+        // When clearing the data selector of groupby transforms, we want to clear
+        // all the styles we've added
+        if (transform.styles.length && !update[attr]) {
+          update[`transforms[${transformIndex}].styles`] = [];
+        }
+      }
+    }
+  }
+};
+
+export const shamefullyCreateSplitStyleProps = (
   graphDiv,
   attr,
   traceIndex,
