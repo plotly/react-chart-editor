@@ -1,6 +1,12 @@
 import {COLORS} from 'lib/constants';
 
 export function plotlyTraceToCustomTrace(trace) {
+  if (typeof trace !== 'object') {
+    throw new Error(
+      `trace provided to plotlyTraceToCustomTrace function should be an object, received ${typeof trace}`
+    );
+  }
+
   const gl = 'gl';
   const type = trace.type
     ? trace.type.endsWith(gl)

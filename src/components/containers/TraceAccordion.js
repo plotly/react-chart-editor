@@ -42,7 +42,7 @@ class TraceAccordion extends Component {
     const fullDataArrayPositionsByTraceType = {};
 
     this.filteredTraces.forEach((trace, index) => {
-      const traceType = plotlyTraceToCustomTrace(trace.type);
+      const traceType = plotlyTraceToCustomTrace(trace);
       if (!dataArrayPositionsByTraceType[traceType]) {
         dataArrayPositionsByTraceType[traceType] = [];
       }
