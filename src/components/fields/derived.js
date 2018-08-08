@@ -528,11 +528,14 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
     }
 
     if (container.type === 'scattergeo') {
-      options = [
-        {label: _('Longitude'), value: 'loc'},
-        {label: _('Latitude'), value: 'lat'},
-        {label: _('Location'), value: 'location'},
-      ];
+      if (container.locations) {
+        options = [{label: _('Location'), value: 'location'}];
+      } else if (container.lat || container.lon) {
+        options = [
+          {label: _('Longitude'), value: 'lon'},
+          {label: _('Latitude'), value: 'lat'},
+        ];
+      }
     }
 
     if (container.type === 'scattermapbox') {
