@@ -35,6 +35,7 @@ import {
   BinningDropdown,
   NumericReciprocal,
   ShowInLegend,
+  TextInfo,
 } from '../components/fields/derived';
 
 const StyleTracesPanel = (props, {localize: _}) => (
@@ -94,17 +95,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
     </PlotlySection>
 
-    <PlotlySection name={_('Text Attributes')}>
-      <Flaglist
-        attr="textinfo"
-        options={[
-          {label: _('Label'), value: 'label'},
-          {label: _('Text'), value: 'text'},
-          {label: _('Value'), value: 'value'},
-          {label: _('%'), value: 'percent'},
-        ]}
-      />
-    </PlotlySection>
     <PlotlySection name={_('Header')}>
       <Numeric label={_('Height')} attr="header.height" />
       <MultiColorPicker label={_('Fill Color')} attr="header.fill.color" />
@@ -345,6 +335,9 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Filled Area')}>
       <FillDropdown attr="fill" label={_('Fill to')} />
       <MultiColorPicker label={_('Color')} attr="fillcolor" />
+    </PlotlySection>
+    <PlotlySection name={_('Text Attributes')}>
+      <TextInfo attr="textinfo" />
     </PlotlySection>
     <TraceTypeSection
       name={_('Text')}

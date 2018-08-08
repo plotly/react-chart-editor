@@ -482,6 +482,23 @@ export const TextPosition = connectToContainer(UnconnectedDropdown, {
   },
 });
 
+export const TextInfo = connectToContainer(UnconnectedFlaglist, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _, container} = context;
+    const options = [
+      {label: _('Label'), value: 'label'},
+      {label: _('Value'), value: 'value'},
+      {label: _('%'), value: 'percent'},
+    ];
+
+    if (container.text) {
+      options.push({label: _('Text'), value: 'text'});
+    }
+
+    plotProps.options = options;
+  },
+});
+
 export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _, container} = context;
