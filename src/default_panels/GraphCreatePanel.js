@@ -11,6 +11,7 @@ import {
   TraceSelector,
   Numeric,
   TraceTypeSection,
+  LocationSelector,
 } from '../components';
 import {
   HistogramInfoVertical,
@@ -22,11 +23,10 @@ const GraphCreatePanel = (props, {localize: _}) => {
     <TraceAccordion canAdd excludeFits>
       <TraceSelector label={_('Type')} attr="type" show />
 
-      <DataSelector label={_('Latitude')} attr="lat" />
-      <DataSelector label={_('Longitude')} attr="lon" />
+      <LocationSelector attr="type" />
+
       <DataSelector label={_('Values')} attr="values" />
       <DataSelector label={_('Labels')} attr="labels" />
-      <DataSelector label={_('Locations')} attr="locations" />
 
       <DataSelector
         label={{
@@ -125,19 +125,6 @@ const GraphCreatePanel = (props, {localize: _}) => {
         <DataSelector label={_('Intensity')} attr="intensity" />
         <DataSelector label={_('Facecolor')} attr="facecolor" />
         <DataSelector label={_('Vertexcolor')} attr="vertexcolor" />
-        <Dropdown
-          label={_('Location Format')}
-          attr="locationmode"
-          clearable={false}
-          options={[
-            {label: _('Country Names'), value: 'country names'},
-            {label: _('Country Abbreviations (ISO-3)'), value: 'ISO-3'},
-            {
-              label: _('USA State Abbreviations (e.g. NY)'),
-              value: 'USA-states',
-            },
-          ]}
-        />
         <Numeric label={_('Sum')} step={10} attr="sum" />
         <Radio
           label={_('Transpose')}

@@ -31,6 +31,18 @@ const dataSources = {
   months: ['January', 'February', 'March', 'April', 'May', 'June'],
   colors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo'],
   'blue and red': ['blue', 'red'],
+  countries: [
+    'Angola',
+    'Albania',
+    'United Arab Emirates',
+    'Argentina',
+    'Armenia',
+    'Australia',
+    'Austria',
+    'Azerbaijan',
+  ],
+  'countries iso': ['AGO', 'ALB', 'ARE', 'ARG', 'ARM', 'AUS', 'AUT', 'AZE'],
+  states: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA'],
   ...tips,
 };
 const dataSourceOptions = Object.keys(dataSources).map(name => ({

@@ -49,6 +49,7 @@ import {
   MultiColorPicker,
   VisibilitySelect,
   RectanglePositioner,
+  LocationSelector,
 } from './fields';
 
 import {
@@ -155,4 +156,5 @@ export {
   MultiColorPicker,
   VisibilitySelect,
   RectanglePositioner,
+  LocationSelector,
 };
