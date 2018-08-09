@@ -152,8 +152,13 @@ class StyleAxesPanel extends Component {
             />
             <Numeric label={_('Thickness')} attr="gridwidth" units="px" />
             <ColorPicker label={_('Color')} attr="gridcolor" />
-            <Numeric label={_('Reference')} attr="tick0" units="deg" />
-            <Numeric label={_('Spacing')} attr="dtick" units="deg" />
+            <TraceTypeSection
+              traceTypes={['choropleth', 'scattergeo']}
+              attr="range"
+            >
+              <Numeric label={_('Reference')} attr="tick0" units="deg" />
+              <Numeric label={_('Spacing')} attr="dtick" units="deg" />
+            </TraceTypeSection>
           </PlotlySection>
           <PlotlySection name={_('Zero Line')} attr="zeroline">
             <Radio
