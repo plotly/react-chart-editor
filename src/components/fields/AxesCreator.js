@@ -154,7 +154,7 @@ class UnconnectedAxesCreator extends Component {
           <AxisCreator
             key={index}
             attr={type}
-            label={type.charAt(0).toUpperCase() + ' Axis'}
+            label={type.charAt(0).toUpperCase() + _(' Axis')}
             options={getOptions(type)}
           />
         );

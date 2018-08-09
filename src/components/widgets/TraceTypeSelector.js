@@ -9,24 +9,6 @@ import {
   plotlyTraceToCustomTrace,
 } from 'lib';
 
-const actions = ({value}) => [
-  {
-    label: `Charts like this by Plotly users.`,
-    href: `https://plot.ly/feed/?q=plottype:${value}`,
-    icon: <SearchIcon />,
-  },
-  {
-    label: `View tutorials on this chart type.`,
-    href: `#`,
-    icon: <ThumnailViewIcon />,
-  },
-  {
-    label: `See a basic example.`,
-    href: `#`,
-    icon: <GraphIcon />,
-  },
-];
-
 const renderActionItems = (actionItems, item) =>
   actionItems
     ? actionItems(item).map((action, i) => (
@@ -44,7 +26,11 @@ const renderActionItems = (actionItems, item) =>
       ))
     : null;
 
-const Item = ({item, active, handleClick, actions, showActions, complex}) => {
+const Item = (
+  {item, active, handleClick, actions, showActions, complex},
+  context
+) => {
+  const {localize: _} = context;
   const {label, value, icon} = item;
   const SimpleIcon = renderTraceIcon(icon ? icon : value);
   const ComplexIcon = renderTraceIcon(icon ? icon : value, 'TraceType');
@@ -69,7 +55,7 @@ const Item = ({item, active, handleClick, actions, showActions, complex}) => {
           </div>
         )}
       </div>
-      <div className="trace-item__label">{label}</div>
+      <div className="trace-item__label">{_(label)}</div>
     </div>
   );
 };
@@ -91,6 +77,27 @@ class TraceTypeSelector extends Component {
     }
     updateContainer(computedValue);
     this.context.handleClose();
+  }
+
+  actions({value}) {
+    const {localize: _} = this.context;
+    return [
+      {
+        label: _('Charts like this by Plotly users.'),
+        href: `https://plot.ly/feed/?q=plottype:${value}`,
+        icon: <SearchIcon />,
+      },
+      {
+        label: _('View tutorials on this chart type.'),
+        href: '#',
+        icon: <ThumnailViewIcon />,
+      },
+      {
+        label: _('See a basic example.'),
+        href: '#',
+        icon: <GraphIcon />,
+      },
+    ];
   }
 
   renderCategories() {
@@ -128,7 +135,7 @@ class TraceTypeSelector extends Component {
                 key={item.value}
                 active={fullValue === item.value}
                 item={item}
-                actions={actions}
+                actions={this.actions}
                 showActions={false}
                 handleClick={() => this.selectAndClose(item.value)}
               />
@@ -156,7 +163,7 @@ class TraceTypeSelector extends Component {
         complex={complex}
         active={fullValue === item.value}
         item={item}
-        actions={actions}
+        actions={this.actions}
         showActions={false}
         handleClick={() => this.selectAndClose(item.value)}
         style={{display: 'inline-block'}}
@@ -249,6 +256,9 @@ Item.propTypes = {
   handleClick: PropTypes.func,
   actions: PropTypes.func,
   showActions: PropTypes.bool,
+};
+Item.contextTypes = {
+  localize: PropTypes.func,
 };
 
 export default TraceTypeSelector;

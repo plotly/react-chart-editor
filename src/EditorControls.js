@@ -20,6 +20,9 @@ class EditorControls extends Component {
   constructor(props, context) {
     super(props, context);
 
+    this.localize = key =>
+      localizeString(this.props.dictionaries || {}, this.props.locale, key);
+
     // we only need to compute this once.
     if (this.props.plotly) {
       this.plotSchema = this.props.plotly.PlotSchema.get();
@@ -38,8 +41,7 @@ class EditorControls extends Component {
       dataSourceValueRenderer: this.props.dataSourceValueRenderer,
       dataSourceOptionRenderer: this.props.dataSourceOptionRenderer,
       dictionaries: this.props.dictionaries || {},
-      localize: key =>
-        localizeString(this.props.dictionaries || {}, this.props.locale, key),
+      localize: this.localize,
       frames: gd._transitionData ? gd._transitionData._frames : [],
       fullData: gd._fullData,
       fullLayout: gd._fullLayout,
@@ -281,7 +283,9 @@ class EditorControls extends Component {
         break;
 
       default:
-        throw new Error('must specify an action type to handleEditorUpdate');
+        throw new Error(
+          this.localize('must specify an action type to handleEditorUpdate')
+        );
     }
   }
 

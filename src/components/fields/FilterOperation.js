@@ -5,60 +5,38 @@ import DropdownWidget from '../widgets/Dropdown';
 import TextInput from '../widgets/TextInput';
 import {connectToContainer} from 'lib';
 
-const operators = [
-  {
-    label: 'Inequality',
-    value: 'inequality',
-  },
-  {
-    label: 'Include Range',
-    value: 'inrange',
-  },
-  {
-    label: 'Exclude Range',
-    value: 'exrange',
-  },
-  {
-    label: 'Include Values',
-    value: 'inset',
-  },
-  {
-    label: 'Exclude Values',
-    value: 'exset',
-  },
-];
-
-const operations = {
+const operations = _ => ({
   inequality: [
-    {value: '!=', label: 'Target ≠ Reference'},
-    {value: '<', label: 'Target < Reference'},
-    {value: '<=', label: 'Target ≤ Reference'},
-    {value: '=', label: 'Target = Reference'},
-    {value: '>', label: 'Target > Reference'},
-    {value: '>=', label: 'Target ≥ Reference'},
+    {value: '!=', label: _('Target ≠ Reference')},
+    {value: '<', label: _('Target < Reference')},
+    {value: '<=', label: _('Target ≤ Reference')},
+    {value: '=', label: _('Target = Reference')},
+    {value: '>', label: _('Target > Reference')},
+    {value: '>=', label: _('Target ≥ Reference')},
   ],
   inrange: [
-    {value: '[]', label: 'Lower ≤ Target ≤ Upper'},
-    {value: '()', label: 'Lower < Target < Upper'},
-    {value: '[)', label: 'Lower ≤ Target < Upper'},
-    {value: '(]', label: 'Lower < Target ≤ Upper'},
+    {value: '[]', label: _('Lower ≤ Target ≤ Upper')},
+    {value: '()', label: _('Lower < Target < Upper')},
+    {value: '[)', label: _('Lower ≤ Target < Upper')},
+    {value: '(]', label: _('Lower < Target ≤ Upper')},
   ],
   exrange: [
-    {value: ')(', label: 'Lower ≤ Target ≤ Upper'},
-    {value: '][', label: 'Lower < Target < Upper'},
-    {value: ')[', label: 'Lower ≤ Target < Upper'},
-    {value: '](', label: 'Lower < Target ≤ Upper'},
+    {value: ')(', label: _('Lower ≤ Target ≤ Upper')},
+    {value: '][', label: _('Lower < Target < Upper')},
+    {value: ')[', label: _('Lower ≤ Target < Upper')},
+    {value: '](', label: _('Lower < Target ≤ Upper')},
   ],
-  inset: [{value: '{}', label: 'Include'}],
-  exset: [{value: '}{', label: 'Exclude'}],
-};
+  inset: [{value: '{}', label: _('Include')}],
+  exset: [{value: '}{', label: _('Exclude')}],
+});
 
-const findOperation = operator => {
+const findOperation = (operator, _) => {
   let op = 'inequality';
-  for (const key in operations) {
+  const ops = operations(_);
+  for (const key in ops) {
     if (
-      operations.hasOwnProperty(key) &&
-      operations[key].map(o => o.value).indexOf(operator) !== -1
+      ops.hasOwnProperty(key) &&
+      ops[key].map(o => o.value).indexOf(operator) !== -1
     ) {
       op = key;
       break;
@@ -70,17 +48,19 @@ const findOperation = operator => {
 class UnconnectedFilterOperation extends Component {
   constructor(props, context) {
     super(props, context);
+    const {localize: _} = context;
 
     this.state = {
-      operation: findOperation(this.props.fullValue),
-      operator: operations.inequality[0].value,
+      operation: findOperation(this.props.fullValue, _),
+      operator: operations(_).inequality[0].value,
     };
 
     this.setOperation = this.setOperation.bind(this);
   }
 
   setOperation(value) {
-    const operator = operations[value][0].value;
+    const {localize: _} = this.context;
+    const operator = operations(_)[value][0].value;
     this.setState({operation: value, operator: operator});
     this.props.updatePlot(operator);
   }
@@ -94,6 +74,30 @@ class UnconnectedFilterOperation extends Component {
       backgroundDark,
       attr,
     } = this.props;
+    const {localize: _} = this.context;
+
+    const operators = [
+      {
+        label: _('Inequality'),
+        value: 'inequality',
+      },
+      {
+        label: _('Include Range'),
+        value: 'inrange',
+      },
+      {
+        label: _('Exclude Range'),
+        value: 'exrange',
+      },
+      {
+        label: _('Include Values'),
+        value: 'inset',
+      },
+      {
+        label: _('Exclude Values'),
+        value: 'exset',
+      },
+    ];
 
     const opValue =
       fullValue && fullValue.length > 0 ? fullValue : this.state.operator;
@@ -103,7 +107,7 @@ class UnconnectedFilterOperation extends Component {
           <DropdownWidget
             backgroundDark={backgroundDark}
             options={operators}
-            value={findOperation(opValue)}
+            value={findOperation(opValue, _)}
             onChange={this.setOperation}
             clearable={false}
             optionRenderer={optionRenderer}
@@ -113,7 +117,7 @@ class UnconnectedFilterOperation extends Component {
           this.state.operation === 'exset' ? null : (
             <DropdownWidget
               backgroundDark={backgroundDark}
-              options={operations[this.state.operation]}
+              options={operations(_)[this.state.operation]}
               value={opValue}
               onChange={updatePlot}
               clearable={false}
@@ -132,6 +136,9 @@ UnconnectedFilterOperation.propTypes = {
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };
+UnconnectedFilterOperation.contextTypes = {
+  localize: PropTypes.func,
+};
 
 class UnconnectedFilterValue extends Component {
   constructor(props, context) {
@@ -144,7 +151,8 @@ class UnconnectedFilterValue extends Component {
   }
 
   setValue(v) {
-    const op = findOperation(this.context.container.operation);
+    const {localize: _, container} = this.context;
+    const op = findOperation(container.operation, _);
     this.setState({value: v});
     let val;
     val = op === 'inrange' || op === 'exrange' ? [v, this.state.valueMax] : v;
@@ -167,7 +175,7 @@ class UnconnectedFilterValue extends Component {
       container && container.operation ? container.operation : '=';
 
     const {fullValue, attr, defaultValue} = this.props;
-    const op = findOperation(operation);
+    const op = findOperation(operation, _);
 
     let label1 = _('Reference');
     if (op === 'inrange' || op === 'exrange') {

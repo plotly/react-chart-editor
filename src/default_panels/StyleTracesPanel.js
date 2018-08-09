@@ -42,7 +42,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
     <ShowInLegend
-      label="Show in Legend"
+      label={_('Show in Legend')}
       attr="showlegend"
       options={[
         {label: _('Show'), value: true},
@@ -230,7 +230,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <NumericFraction label={_('Point Opacity')} attr="marker.opacity" />
       <MarkerSize label={_('Size')} attr="marker.size" />
       <Radio
-        label="Size Mode"
+        label={_('Size Mode')}
         attr="marker.sizemode"
         options={[
           {label: _('Diameter'), value: 'diameter'},
@@ -479,7 +479,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <MultiColorPicker label={_('Fill Color')} attr="increasing.fillcolor" />
       <LineDashSelector label={_('Type')} attr="increasing.line.dash" />
       <Radio
-        label="Show in Legend"
+        label={_('Show in Legend')}
         attr="increasing.showlegend"
         options={[
           {label: _('Show'), value: true},
@@ -494,7 +494,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <MultiColorPicker label={_('Fill Color')} attr="decreasing.fillcolor" />
       <LineDashSelector label={_('Type')} attr="decreasing.line.dash" />
       <Radio
-        label="Show in Legend"
+        label={_('Show in Legend')}
         attr="decreasing.showlegend"
         options={[
           {label: _('Show'), value: true},
@@ -505,7 +505,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Scaling')}>
       <Numeric label={_('Bandwidth')} attr="bandwidth" />
       <Radio
-        label="Scale Mode"
+        label={_('Scale Mode')}
         attr="scalemode"
         options={[
           {label: _('Width'), value: 'width'},
@@ -513,7 +513,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
       />
       <Radio
-        label="Span Mode"
+        label={_('Span Mode')}
         attr="spanmode"
         options={[
           {label: _('Soft'), value: 'soft'},

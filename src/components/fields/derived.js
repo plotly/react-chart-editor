@@ -311,6 +311,7 @@ export const NumericReciprocal = connectToContainer(UnconnectedNumeric, {
 
 export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = context;
     if (!context.fullContainer) {
       return;
     }
@@ -325,8 +326,9 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
       currentAxisRef = yref;
     } else {
       throw new Error(
-        'AnnotationArrowRef must be given either "axref" or "ayref" as attrs. ' +
-          `Instead was given "${props.attr}".`
+        _(
+          'AnnotationArrowRef must be given either "axref" or "ayref" as attrs. Instead was given'
+        ) + props.attr
       );
     }
 
@@ -336,7 +338,7 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
       const axes = getAllAxes(context.fullLayout).filter(a => a._id);
       if (axes.length > 0) {
         plotProps.options = [
-          {label: 'in pixels', value: 'pixel'},
+          {label: _('in pixels'), value: 'pixel'},
           ...computeAxesRefOptions(axes, props.attr),
         ];
       } else {
@@ -346,8 +348,8 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
       // If currentAxesRef is an actual axes then offer that value as the only
       // axes option.
       plotProps.options = [
-        {label: 'in pixels', value: 'pixel'},
-        {label: 'according to axis', value: currentAxisRef},
+        {label: _('in pixels'), value: 'pixel'},
+        {label: _('according to axis'), value: currentAxisRef},
       ];
     }
 
@@ -362,6 +364,7 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
     }
     const {
       fullContainer: {axref, ayref},
+      localize: _,
     } = context;
 
     let currentOffsetRef;
@@ -371,15 +374,18 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
       currentOffsetRef = ayref;
     } else {
       throw new Error(
-        'AnnotationRef must be given either "xref" or "yref" as attrs. ' +
-          `Instead was given "${props.attr}".`
+        _(
+          'AnnotationRef must be given either "xref" or "yref" as attrs. Instead was given'
+        ) +
+          props.attr +
+          '.'
       );
     }
 
     const axes = getAllAxes(context.fullLayout).filter(a => a._id);
     if (axes.length > 0) {
       plotProps.options = [
-        {label: 'Canvas', value: 'paper'},
+        {label: _('Canvas'), value: 'paper'},
         ...computeAxesRefOptions(axes, props.attr),
       ];
     } else {
