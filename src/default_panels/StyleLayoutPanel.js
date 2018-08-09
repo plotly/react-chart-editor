@@ -32,7 +32,7 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Plot Background')} attr="polar.bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
       <Dropdown
-        label="Hover Interaction"
+        label={_('Hover Interaction')}
         attr="hovermode"
         options={[
           {label: _('Closest'), value: 'closest'},
@@ -43,7 +43,7 @@ const StyleLayoutPanel = (props, {localize: _}) => (
         clearable={false}
       />
       <Dropdown
-        label="Drag Interaction"
+        label={_('Drag Interaction')}
         attr="dragmode"
         options={[
           {label: _('Orbit'), value: 'orbit'},

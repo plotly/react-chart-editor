@@ -7,10 +7,11 @@ import React, {Component} from 'react';
 class AxesSelector extends Component {
   constructor(props, context) {
     super(props, context);
+    const {localize: _} = context;
 
     if (!context.axesTargetHandler) {
       throw new Error(
-        'AxesSelector must be nested within a connectAxesToPlot component'
+        _('AxesSelector must be nested within a connectAxesToPlot component')
       );
     }
   }

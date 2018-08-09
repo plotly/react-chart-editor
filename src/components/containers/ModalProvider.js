@@ -27,16 +27,17 @@ class ModalProvider extends React.Component {
     }
   }
 
-  openModal(component, props) {
+  openModal(component, componentProps) {
+    const {localize: _} = this.context;
     if (!component) {
-      throw Error('You need to provide a component for the modal to open!');
+      throw Error(_('You need to provide a component for the modal to open!'));
     }
     const {open} = this.state;
 
     if (!open) {
       this.setState({
         component: component,
-        componentProps: props,
+        componentProps: componentProps,
         open: true,
       });
     }
@@ -84,6 +85,9 @@ class ModalProvider extends React.Component {
 
 ModalProvider.propTypes = {
   children: PropTypes.node,
+};
+ModalProvider.contextTypes = {
+  localize: PropTypes.func,
 };
 ModalProvider.childContextTypes = {
   openModal: PropTypes.func,

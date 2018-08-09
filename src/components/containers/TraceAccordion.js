@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import {connectTraceToPlot, plotlyTraceToCustomTrace} from 'lib';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
+import {traceTypes} from 'lib/traceTypes';
 
 const TraceFold = connectTraceToPlot(PlotlyFold);
 
@@ -38,6 +39,7 @@ class TraceAccordion extends Component {
       return null;
     }
 
+    const {localize: _} = this.context;
     const dataArrayPositionsByTraceType = {};
     const fullDataArrayPositionsByTraceType = {};
 
@@ -62,7 +64,7 @@ class TraceAccordion extends Component {
         <TraceFold
           key={index}
           traceIndexes={dataArrayPositionsByTraceType[type]}
-          name={type}
+          name={traceTypes(_).find(t => t.value === type).label}
           fullDataArrayPosition={fullDataArrayPositionsByTraceType[type]}
         >
           {this.props.children}

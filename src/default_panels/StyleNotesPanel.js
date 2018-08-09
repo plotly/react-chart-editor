@@ -36,8 +36,8 @@ const StyleNotesPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Color')} attr="arrowcolor" />
       <ArrowSelector label={_('Arrowhead')} attr="arrowhead" />
       <Numeric label={_('Scale')} step={0.1} attr="arrowsize" units="px" />
-      <AnnotationArrowRef label="X Offset" attr="axref" />
-      <AnnotationArrowRef label="Y Offset" attr="ayref" />
+      <AnnotationArrowRef label={_('X Offset')} attr="axref" />
+      <AnnotationArrowRef label={_('Y Offset')} attr="ayref" />
       <Numeric label={_('X Vector')} attr="ax" />
       <Numeric label={_('Y Vector')} attr="ay" />
     </PlotlySection>

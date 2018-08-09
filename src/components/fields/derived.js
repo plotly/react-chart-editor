@@ -311,6 +311,7 @@ export const NumericReciprocal = connectToContainer(UnconnectedNumeric, {
 
 export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = context;
     if (!context.fullContainer) {
       return;
     }
@@ -325,24 +326,30 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
       currentAxisRef = yref;
     } else {
       throw new Error(
-        'AnnotationArrowRef must be given either "axref" or "ayref" as attrs. ' +
-          `Instead was given "${props.attr}".`
+        _(
+          'AnnotationArrowRef must be given either "axref" or "ayref" as attrs. Instead was given'
+        ) + props.attr
       );
     }
 
     if (currentAxisRef === 'paper') {
       // If currentAxesRef is paper provide all axes options to user.
 
-      plotProps.options = [
-        {label: 'in pixels', value: 'pixel'},
-        ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
-      ];
+      const axes = getAllAxes(context.fullLayout).filter(a => a._id);
+      if (axes.length > 0) {
+        plotProps.options = [
+          {label: _('in pixels'), value: 'pixel'},
+          ...computeAxesRefOptions(axes, props.attr),
+        ];
+      } else {
+        plotProps.isVisible = false;
+      }
     } else {
       // If currentAxesRef is an actual axes then offer that value as the only
       // axes option.
       plotProps.options = [
-        {label: 'in pixels', value: 'pixel'},
-        {label: 'according to axis', value: currentAxisRef},
+        {label: _('in pixels'), value: 'pixel'},
+        {label: _('according to axis'), value: currentAxisRef},
       ];
     }
 
@@ -357,6 +364,7 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
     }
     const {
       fullContainer: {axref, ayref},
+      localize: _,
     } = context;
 
     let currentOffsetRef;
@@ -366,15 +374,23 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
       currentOffsetRef = ayref;
     } else {
       throw new Error(
-        'AnnotationRef must be given either "xref" or "yref" as attrs. ' +
-          `Instead was given "${props.attr}".`
+        _(
+          'AnnotationRef must be given either "xref" or "yref" as attrs. Instead was given'
+        ) +
+          props.attr +
+          '.'
       );
     }
 
-    plotProps.options = [
-      {label: 'Canvas', value: 'paper'},
-      ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
-    ];
+    const axes = getAllAxes(context.fullLayout).filter(a => a._id);
+    if (axes.length > 0) {
+      plotProps.options = [
+        {label: _('Canvas'), value: 'paper'},
+        ...computeAxesRefOptions(axes, props.attr),
+      ];
+    } else {
+      plotProps.isVisible = false;
+    }
 
     if (currentOffsetRef !== 'pixel') {
       plotProps.updatePlot = v => {
@@ -402,12 +418,17 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
 
 export const PositioningRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    plotProps.options = [
-      {label: 'Canvas', value: 'paper'},
-      ...computeAxesRefOptions(getAllAxes(context.fullLayout), props.attr),
-    ];
+    const axes = getAllAxes(context.fullLayout).filter(a => a._id);
+    if (axes.length > 0) {
+      plotProps.options = [
+        {label: 'Canvas', value: 'paper'},
+        ...computeAxesRefOptions(axes, props.attr),
+      ];
 
-    plotProps.clearable = false;
+      plotProps.clearable = false;
+    } else {
+      plotProps.isVisible = false;
+    }
   },
 });
 
@@ -594,11 +615,25 @@ export const FillDropdown = connectToContainer(UnconnectedDropdown, {
       {label: _('Previous X'), value: 'tonextx'},
     ];
 
-    if (context.container.type === 'scatterternary') {
+    if (
+      context.container.type === 'scatterternary' ||
+      context.container.type === 'scattercarpet' ||
+      context.container.type === 'scatterpolar'
+    ) {
       options = [
         {label: _('None'), value: 'none'},
         {label: _('To Self'), value: 'toself'},
         {label: _('To Next'), value: 'tonext'},
+      ];
+    }
+
+    if (
+      context.container.type === 'scattergeo' ||
+      context.container.type === 'scattermapbox'
+    ) {
+      options = [
+        {label: _('None'), value: 'none'},
+        {label: _('To Self'), value: 'toself'},
       ];
     }
 

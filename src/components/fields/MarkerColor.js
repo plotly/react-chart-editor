@@ -57,6 +57,7 @@ class UnconnectedMarkerColor extends Component {
         this.context.updateContainer({
           ['marker.colorsrc']: null,
           ['marker.colorscale']: null,
+          ['marker.showscale']: null,
         });
         this.setState({colorscale: null});
       } else {
