@@ -49,7 +49,9 @@ class StyleAxesPanel extends Component {
       >
         <AxesFold
           name={_('Titles')}
-          axisFilter={axis => !axis._name.includes('angular')}
+          axisFilter={axis =>
+            !(axis._name.includes('angular') || axis._subplot.includes('geo'))
+          }
         >
           <TextEditor attr="title" />
           <FontSelector label={_('Typeface')} attr="titlefont.family" />
@@ -150,6 +152,8 @@ class StyleAxesPanel extends Component {
             />
             <Numeric label={_('Thickness')} attr="gridwidth" units="px" />
             <ColorPicker label={_('Color')} attr="gridcolor" />
+            <Numeric label={_('Reference')} attr="tick0" units="deg" />
+            <Numeric label={_('Spacing')} attr="dtick" units="deg" />
           </PlotlySection>
           <PlotlySection name={_('Zero Line')} attr="zeroline">
             <Radio
@@ -175,7 +179,10 @@ class StyleAxesPanel extends Component {
           </PlotlySection>
         </AxesFold>
 
-        <AxesFold name={_('Tick Labels')}>
+        <AxesFold
+          name={_('Tick Labels')}
+          axisFilter={axis => !axis._subplot.includes('geo')}
+        >
           <PlotlySection name={_('Tick Labels')} attr="showticklabels">
             <Radio
               attr="showticklabels"
@@ -298,7 +305,10 @@ class StyleAxesPanel extends Component {
             <NTicks label={_('Max Number of Labels')} attr="nticks" />
           </PlotlySection>
         </AxesFold>
-        <AxesFold name={_('Tick Markers')}>
+        <AxesFold
+          name={_('Tick Markers')}
+          axisFilter={axis => !axis._subplot.includes('geo')}
+        >
           <PlotlySection name={_('Tick Markers')} attr="ticks">
             <Radio
               attr="ticks"
@@ -464,7 +474,8 @@ class StyleAxesPanel extends Component {
           axisFilter={axis =>
             !(
               axis._subplot.includes('ternary') ||
-              axis._subplot.includes('polar')
+              axis._subplot.includes('polar') ||
+              axis._subplot.includes('geo')
             )
           }
         >
