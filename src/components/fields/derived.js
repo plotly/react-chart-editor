@@ -615,11 +615,25 @@ export const FillDropdown = connectToContainer(UnconnectedDropdown, {
       {label: _('Previous X'), value: 'tonextx'},
     ];
 
-    if (context.container.type === 'scatterternary') {
+    if (
+      context.container.type === 'scatterternary' ||
+      context.container.type === 'scattercarpet' ||
+      context.container.type === 'scatterpolar'
+    ) {
       options = [
         {label: _('None'), value: 'none'},
         {label: _('To Self'), value: 'toself'},
         {label: _('To Next'), value: 'tonext'},
+      ];
+    }
+
+    if (
+      context.container.type === 'scattergeo' ||
+      context.container.type === 'scattermapbox'
+    ) {
+      options = [
+        {label: _('None'), value: 'none'},
+        {label: _('To Self'), value: 'toself'},
       ];
     }
 
