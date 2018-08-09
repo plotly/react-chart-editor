@@ -112,3 +112,93 @@ export const shamefullyAddTableColumns = (graphDiv, {traceIndexes, update}) => {
     update['header.values'] = null;
   }
 };
+
+export const shamefullyAdjustSplitStyleTargetContainers = (
+  graphDiv,
+  {traceIndexes, update}
+) => {
+  for (const attr in update) {
+    if (attr && attr.startsWith('transforms') && attr.endsWith('groups')) {
+      const transformIndex = parseInt(attr.split('[')[1], 10);
+      const transform =
+        graphDiv.data[traceIndexes[0]].transforms[transformIndex];
+
+      if (transform && transform.type === 'groupby' && transform.styles) {
+        // Create style containers for all groups
+        if (!transform.styles.length && update[attr]) {
+          const dedupedGroups = [];
+          update[attr].forEach(group => {
+            if (!dedupedGroups.includes(group)) {
+              dedupedGroups.push(group);
+            }
+          });
+
+          const styles = dedupedGroups.map(groupEl => ({
+            target: groupEl,
+            value: {},
+          }));
+
+          update[`transforms[${transformIndex}].styles`] = styles;
+        }
+
+        // When clearing the data selector of groupby transforms, we want to clear
+        // all the styles we've added
+        if (transform.styles.length && !update[attr]) {
+          update[`transforms[${transformIndex}].styles`] = [];
+        }
+      }
+    }
+  }
+};
+
+export const shamefullyCreateSplitStyleProps = (
+  graphDiv,
+  attr,
+  traceIndex,
+  splitTraceGroup
+) => {
+  if (!Array.isArray(splitTraceGroup)) {
+    splitTraceGroup = [splitTraceGroup]; // eslint-disable-line
+  }
+
+  let indexOfSplitTransform = null;
+
+  graphDiv.data[traceIndex].transforms.forEach((t, i) => {
+    if (t.type === 'groupby') {
+      indexOfSplitTransform = i;
+    }
+  });
+
+  function getProp(group) {
+    let indexOfStyleObject = null;
+
+    graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles.forEach(
+      (s, i) => {
+        if (s.target.toString() === group) {
+          indexOfStyleObject = i;
+        }
+      }
+    );
+
+    let path =
+      graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles[
+        indexOfStyleObject
+      ].value;
+
+    attr.split('.').forEach(p => {
+      if (!path[p]) {
+        path[p] = {};
+      }
+      path = path[p];
+    });
+
+    return nestedProperty(
+      graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles[
+        indexOfStyleObject
+      ].value,
+      attr
+    );
+  }
+
+  return splitTraceGroup.map(g => getProp(g));
+};

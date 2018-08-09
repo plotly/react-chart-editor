@@ -24,15 +24,13 @@ export default function connectTraceToPlot(WrappedComponent) {
       this.setLocals(nextProps, nextContext);
     }
 
-    setLocals(props, context) {
-      const {traceIndexes} = props;
-      const {data, fullData, plotly} = context;
-
-      const trace = traceIndexes.length > 0 ? data[traceIndexes[0]] : {};
-
+    getFullTraceFromDataIndex(trace, context) {
       let fullTrace = {};
-      for (let i = 0; i < fullData.length; i++) {
-        if (traceIndexes[0] === fullData[i]._fullInput.index) {
+
+      for (let i = 0; i < context.fullData.length; i++) {
+        if (
+          this.props.traceIndexes[0] === context.fullData[i]._fullInput.index
+        ) {
           /*
            * Fit transforms are custom transforms in our custom plotly.js bundle,
            * they are different from others as they create an extra trace in the
@@ -52,14 +50,25 @@ export default function connectTraceToPlot(WrappedComponent) {
             trace.transforms &&
             trace.transforms.every(t => t.type === 'fit')
           ) {
-            fullData[i]._fullInput = fullData[i];
+            context.fullData[i]._fullInput = context.fullData[i];
           }
 
-          fullTrace = fullData[i]._fullInput;
-
+          fullTrace = context.fullData[i]._fullInput;
           break;
         }
       }
+
+      return fullTrace;
+    }
+
+    setLocals(props, context) {
+      const {traceIndexes, fullDataArrayPosition} = props;
+      const {data, fullData, plotly} = context;
+
+      const trace = data[traceIndexes[0]];
+      const fullTrace = fullDataArrayPosition
+        ? fullData[fullDataArrayPosition[0]]
+        : this.getFullTraceFromDataIndex(trace, context);
 
       this.childContext = {
         getValObject: attr =>
@@ -110,6 +119,12 @@ export default function connectTraceToPlot(WrappedComponent) {
 
     updateTrace(update) {
       if (this.context.onUpdate) {
+        const splitTraceGroup = this.props.fullDataArrayPosition
+          ? this.props.fullDataArrayPosition.map(
+              p => this.context.fullData[p]._group
+            )
+          : null;
+
         if (Array.isArray(update)) {
           update.forEach((u, i) => {
             this.context.onUpdate({
@@ -117,6 +132,18 @@ export default function connectTraceToPlot(WrappedComponent) {
               payload: {
                 update: u,
                 traceIndexes: [this.props.traceIndexes[i]],
+                splitTraceGroup: splitTraceGroup ? splitTraceGroup[i] : null,
+              },
+            });
+          });
+        } else if (splitTraceGroup) {
+          this.props.traceIndexes.forEach((t, i) => {
+            this.context.onUpdate({
+              type: EDITOR_ACTIONS.UPDATE_TRACES,
+              payload: {
+                update,
+                traceIndexes: [this.props.traceIndexes[i]],
+                splitTraceGroup: splitTraceGroup ? splitTraceGroup[i] : null,
               },
             });
           });
@@ -205,6 +232,7 @@ export default function connectTraceToPlot(WrappedComponent) {
 
   TraceConnectedComponent.propTypes = {
     traceIndexes: PropTypes.arrayOf(PropTypes.number).isRequired,
+    fullDataArrayPosition: PropTypes.arrayOf(PropTypes.number),
   };
 
   TraceConnectedComponent.contextTypes = {

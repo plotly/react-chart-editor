@@ -7,6 +7,8 @@ import {
   shamefullyAdjustAxisRef,
   shamefullyAdjustGeo,
   shamefullyAddTableColumns,
+  shamefullyCreateSplitStyleProps,
+  shamefullyAdjustSplitStyleTargetContainers,
 } from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
@@ -66,16 +68,32 @@ class EditorControls extends Component {
         shamefullyClearAxisTypes(graphDiv, payload);
         shamefullyAdjustAxisRef(graphDiv, payload);
         shamefullyAddTableColumns(graphDiv, payload);
+        shamefullyAdjustSplitStyleTargetContainers(graphDiv, payload);
 
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {
             const traceIndex = payload.traceIndexes[i];
-            const prop = nestedProperty(graphDiv.data[traceIndex], attr);
+            const splitTraceGroup = payload.splitTraceGroup
+              ? payload.splitTraceGroup.toString()
+              : null;
+
+            let props = [nestedProperty(graphDiv.data[traceIndex], attr)];
             const value = payload.update[attr];
 
-            if (value !== void 0) {
-              prop.set(value);
+            if (splitTraceGroup) {
+              props = shamefullyCreateSplitStyleProps(
+                graphDiv,
+                attr,
+                traceIndex,
+                splitTraceGroup
+              );
             }
+
+            props.forEach(p => {
+              if (value !== void 0) {
+                p.set(value);
+              }
+            });
           }
         }
 

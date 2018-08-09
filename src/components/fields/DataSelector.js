@@ -49,7 +49,7 @@ export class UnconnectedDataSelector extends Component {
         Array.isArray(this.fullValue);
     }
 
-    this.hasData = props.attr in props.container;
+    this.hasData = props.container ? props.attr in props.container : false;
   }
 
   updatePlot(value) {
@@ -83,6 +83,7 @@ export class UnconnectedDataSelector extends Component {
           : null,
       }
     );
+
     this.props.updateContainer(update);
   }
 
@@ -136,6 +137,7 @@ UnconnectedDataSelector.contextTypes = {
     toSrc: PropTypes.func.isRequired,
     fromSrc: PropTypes.func.isRequired,
   }),
+  container: PropTypes.object,
 };
 
 function modifyPlotProps(props, context, plotProps) {

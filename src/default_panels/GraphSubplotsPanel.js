@@ -17,7 +17,7 @@ import {
 import {TRACE_TO_AXIS} from '../lib/constants';
 
 const GraphSubplotsPanel = (props, {localize: _}) => (
-  <SubplotAccordion canGroup>
+  <SubplotAccordion>
     <PlotlySection name={_('Boundaries')} attr="xaxis.domain[0]">
       <AxisOverlayDropdown label={_('X Overlay')} attr="xaxis.overlaying" />
       <AxisOverlayDropdown label={_('Y Overlay')} attr="yaxis.overlaying" />
