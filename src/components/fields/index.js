@@ -48,6 +48,8 @@ import {
   AxisSide,
   TextPosition,
   ShowInLegend,
+  HoveronDropdown,
+  HovermodeDropdown,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './LineSelectors';
 
@@ -104,4 +106,6 @@ export {
   VisibilitySelect,
   RectanglePositioner,
   LocationSelector,
+  HoveronDropdown,
+  HovermodeDropdown,
 };

@@ -10,6 +10,7 @@ import {
   PlotlySection,
   TraceRequiredPanel,
   VisibilitySelect,
+  HovermodeDropdown,
 } from '../components';
 
 const StyleLayoutPanel = (props, {localize: _}) => (
@@ -31,17 +32,7 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
       <ColorPicker label={_('Plot Background')} attr="polar.bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
-      <Dropdown
-        label={_('Hover Interaction')}
-        attr="hovermode"
-        options={[
-          {label: _('Closest'), value: 'closest'},
-          {label: _('X Axis'), value: 'x'},
-          {label: _('Y Axis'), value: 'y'},
-          {label: _('Disable'), value: false},
-        ]}
-        clearable={false}
-      />
+      <HovermodeDropdown label={_('Hover Interaction')} attr="hovermode" />
       <Dropdown
         label={_('Drag Interaction')}
         attr="dragmode"
