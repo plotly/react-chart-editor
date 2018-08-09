@@ -50,6 +50,8 @@ import {
   VisibilitySelect,
   RectanglePositioner,
   LocationSelector,
+  HoveronDropdown,
+  HovermodeDropdown,
 } from './fields';
 
 import {
@@ -157,4 +159,6 @@ export {
   VisibilitySelect,
   RectanglePositioner,
   LocationSelector,
+  HoveronDropdown,
+  HovermodeDropdown,
 };

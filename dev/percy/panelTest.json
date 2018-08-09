@@ -80,7 +80,7 @@
         "shape": "spline",
         "color": "rgb(31, 119, 180)"
       },
-      "hoveron": "fills+points",
+      "hoveron": "points+fills",
       "uid": "3102ee"
     },
     {
@@ -145,7 +145,7 @@
         "shape": "spline",
         "color": "rgb(31, 119, 180)"
       },
-      "hoveron": "fills+points",
+      "hoveron": "points+fills",
       "uid": "f4d7ad"
     }
   ],

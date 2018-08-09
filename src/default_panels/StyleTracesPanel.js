@@ -36,6 +36,7 @@ import {
   NumericReciprocal,
   ShowInLegend,
   TextInfo,
+  HoveronDropdown,
 } from '../components/fields/derived';
 
 const StyleTracesPanel = (props, {localize: _}) => (
@@ -584,36 +585,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
         <Numeric label={_('Contour Width')} attr="contour.width" />
       </VisibilitySelect>
     </PlotlySection>
-    <TraceTypeSection name={_('Hover Action')} traceTypes={['box']}>
-      <Flaglist
-        attr="hoveron"
-        label={_('Hover on')}
-        options={[
-          {label: _('Boxes'), value: 'boxes'},
-          {label: _('Points'), value: 'points'},
-        ]}
-      />
-    </TraceTypeSection>
-    <TraceTypeSection
-      name={_('Hover Action')}
-      traceTypes={[
-        'scatter',
-        'scatterternary',
-        'scatterpolar',
-        'scatterpolargl',
-      ]}
-    >
-      <Dropdown
-        attr="hoveron"
-        label={_('Hover on')}
-        options={[
-          {label: _('Fills'), value: 'fills'},
-          {label: _('Points'), value: 'points'},
-          {label: _('Fills & Points'), value: 'fills+points'},
-        ]}
-        clearable={false}
-      />
-    </TraceTypeSection>
+
+    <PlotlySection name={_('Hover Action')}>
+      <HoveronDropdown attr="hoveron" label={_('Hover on')} />
+    </PlotlySection>
 
     <TraceTypeSection
       name={_('Error Bars X')}

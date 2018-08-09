@@ -539,16 +539,12 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       ].includes(container.type)
     ) {
       options.push({label: _('Z'), value: 'z'});
-    }
-
-    if (container.type === 'choropleth') {
+    } else if (container.type === 'choropleth') {
       options = [
         {label: _('Location'), value: 'location'},
         {label: _('Values'), value: 'z'},
       ];
-    }
-
-    if (container.type === 'scattergeo') {
+    } else if (container.type === 'scattergeo') {
       if (container.locations) {
         options = [{label: _('Location'), value: 'location'}];
       } else if (container.lat || container.lon) {
@@ -557,40 +553,30 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
           {label: _('Latitude'), value: 'lat'},
         ];
       }
-    }
-
-    if (container.type === 'scattermapbox') {
+    } else if (container.type === 'scattermapbox') {
       options = [
         {label: _('Longitude'), value: 'loc'},
         {label: _('Latitude'), value: 'lat'},
       ];
-    }
-
-    if (container.type === 'scatterternary') {
+    } else if (container.type === 'scatterternary') {
       options = [
         {label: _('A'), value: 'a'},
         {label: _('B'), value: 'b'},
         {label: _('C'), value: 'c'},
       ];
-    }
-
-    if (container.type === 'table') {
-      plotProps.isVisible = false;
-    }
-
-    if (['scatterpolar', 'scatterpolargl'].includes(container.type)) {
+    } else if (['scatterpolar', 'scatterpolargl'].includes(container.type)) {
       options = [
         {label: _('R'), value: 'r'},
         {label: _('Theta'), value: 'theta'},
       ];
-    }
-
-    if (container.type === 'pie') {
+    } else if (container.type === 'pie') {
       options = [
         {label: _('Label'), value: 'label'},
         {label: _('Value'), value: 'value'},
         {label: _('Percent'), value: 'percent'},
       ];
+    } else if (container.type === 'table') {
+      plotProps.isVisible = false;
     }
 
     if (container.text) {
@@ -625,9 +611,7 @@ export const FillDropdown = connectToContainer(UnconnectedDropdown, {
         {label: _('To Self'), value: 'toself'},
         {label: _('To Next'), value: 'tonext'},
       ];
-    }
-
-    if (
+    } else if (
       context.container.type === 'scattergeo' ||
       context.container.type === 'scattermapbox'
     ) {
@@ -638,6 +622,58 @@ export const FillDropdown = connectToContainer(UnconnectedDropdown, {
     }
 
     plotProps.options = options;
+    plotProps.clearable = false;
+  },
+});
+
+export const HoveronDropdown = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = context;
+
+    let options;
+    if (context.container.type === 'box') {
+      options = [
+        {label: _('Boxes'), value: 'boxes'},
+        {label: _('Points'), value: 'points'},
+        {label: _('Boxes and Points'), value: 'boxes+points'},
+      ];
+    } else if (context.container.type === 'violin') {
+      options = [
+        {label: _('Violins'), value: 'violins'},
+        {label: _('Points'), value: 'points'},
+        {label: _('KDE'), value: 'kde'},
+        {label: _('Violins and Points'), value: 'violins+points'},
+        {label: _('Violins, Points and KDE'), value: 'violins+points+kde'},
+      ];
+    } else {
+      options = [
+        {label: _('Points'), value: 'points'},
+        {label: _('Fills'), value: 'fills'},
+        {label: _('Points and Fills'), value: 'points+fills'},
+      ];
+    }
+
+    plotProps.options = options;
+    plotProps.clearable = false;
+  },
+});
+
+export const HovermodeDropdown = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = context;
+
+    plotProps.options =
+      context.container.xaxis && Object.keys(context.container.xaxis).length > 0
+        ? [
+            {label: _('Closest'), value: 'closest'},
+            {label: _('X Axis'), value: 'x'},
+            {label: _('Y Axis'), value: 'y'},
+            {label: _('Disable'), value: false},
+          ]
+        : [
+            {label: _('Closest'), value: 'closest'},
+            {label: _('Disable'), value: false},
+          ];
     plotProps.clearable = false;
   },
 });
