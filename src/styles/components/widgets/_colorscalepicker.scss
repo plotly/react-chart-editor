@@ -24,9 +24,13 @@ $colorscalepicker-width: 215px;
 .colorscalePickerContainer input:focus {
   outline: none;
 }
+.colorscalePickerBottomContainer {
+  padding-right: 3px;
+}
 
 .customPickerContainer {
   margin-top: var(--spacing-quarter-unit);
+  text-align: left;
 
   &__outer {
     width: $colorscalepicker-width;
