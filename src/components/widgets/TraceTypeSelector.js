@@ -26,11 +26,7 @@ const renderActionItems = (actionItems, item) =>
       ))
     : null;
 
-const Item = (
-  {item, active, handleClick, actions, showActions, complex},
-  context
-) => {
-  const {localize: _} = context;
+const Item = ({item, active, handleClick, actions, showActions, complex}) => {
   const {label, value, icon} = item;
   const SimpleIcon = renderTraceIcon(icon ? icon : value);
   const ComplexIcon = renderTraceIcon(icon ? icon : value, 'TraceType');
@@ -55,7 +51,7 @@ const Item = (
           </div>
         )}
       </div>
-      <div className="trace-item__label">{_(label)}</div>
+      <div className="trace-item__label">{label}</div>
     </div>
   );
 };
