@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer, adjustColorscale} from 'lib';
 
-class Colorscale extends Component {
+class UnconnectedColorscalePicker extends Component {
   constructor(props) {
     super(props);
     this.onUpdate = this.onUpdate.bind(this);
@@ -55,19 +55,19 @@ class Colorscale extends Component {
   }
 }
 
-Colorscale.propTypes = {
+UnconnectedColorscalePicker.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   initialCategory: PropTypes.string,
   ...Field.propTypes,
 };
 
-Colorscale.contextTypes = {
+UnconnectedColorscalePicker.contextTypes = {
   container: PropTypes.object,
   graphDiv: PropTypes.object,
 };
 
-export default connectToContainer(Colorscale, {
+export default connectToContainer(UnconnectedColorscalePicker, {
   modifyPlotProps: (props, context, plotProps) => {
     if (
       props.attr === 'marker.color' &&

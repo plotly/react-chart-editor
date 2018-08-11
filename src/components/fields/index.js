@@ -1,8 +1,8 @@
 import ArrowSelector from './ArrowSelector';
 import AxesSelector from './AxesSelector';
-import ColorPicker from './Color';
-import ColorscalePicker from './Colorscale';
-import Colorway from './Colorway';
+import ColorPicker from './ColorPicker';
+import ColorscalePicker from './ColorscalePicker';
+import ColorwayPicker from './ColorwayPicker';
 import Dropdown from './Dropdown';
 import Dropzone from './Dropzone';
 import FontSelector from './FontSelector';
@@ -67,7 +67,7 @@ export {
   AxesSelector,
   ColorPicker,
   ColorscalePicker,
-  Colorway,
+  ColorwayPicker,
   ContourNumeric,
   DataSelector,
   Dropdown,

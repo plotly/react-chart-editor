@@ -1,5 +1,5 @@
-import Color from './Color';
-import Colorscale from './Colorscale';
+import ColorPicker from './ColorPicker';
+import ColorscalePicker from './ColorscalePicker';
 import Field from './Field';
 import Info from './Info';
 import PropTypes from 'prop-types';
@@ -96,14 +96,14 @@ class UnconnectedMultiColorPicker extends Component {
               : multiMessage}
           </Info>
           {selectedConstantColorOption === 'single' ? (
-            <Color
+            <ColorPicker
               attr={this.props.attr}
               updatePlot={
                 this.props.setColor ? this.props.setColor : this.setColor
               }
             />
           ) : (
-            <Colorscale
+            <ColorscalePicker
               suppressMultiValuedMessage
               attr={this.props.attr}
               updatePlot={this.setColors}
@@ -116,7 +116,7 @@ class UnconnectedMultiColorPicker extends Component {
     }
 
     return (
-      <Color
+      <ColorPicker
         attr={this.props.attr}
         updatePlot={this.props.setColor ? this.props.setColor : this.setColor}
         label={this.props.label}

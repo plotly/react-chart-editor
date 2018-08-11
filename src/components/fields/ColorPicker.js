@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 
-class Color extends Component {
+class UnconnectedColorPicker extends Component {
   render() {
     return (
       <Field {...this.props}>
@@ -17,10 +17,10 @@ class Color extends Component {
   }
 }
 
-Color.propTypes = {
+UnconnectedColorPicker.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };
 
-export default connectToContainer(Color);
+export default connectToContainer(UnconnectedColorPicker);

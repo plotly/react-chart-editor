@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 
-class Colorway extends Component {
+class UnconnectedColorwayPicker extends Component {
   constructor(props) {
     super(props);
   }
@@ -22,10 +22,10 @@ class Colorway extends Component {
   }
 }
 
-Colorway.propTypes = {
+UnconnectedColorwayPicker.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };
 
-export default connectToContainer(Colorway);
+export default connectToContainer(UnconnectedColorwayPicker);

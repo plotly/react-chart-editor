@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   ColorPicker,
-  Colorway,
+  ColorwayPicker,
   Dropdown,
   FontSelector,
   PlotlyFold,
@@ -32,7 +32,7 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       </VisibilitySelect>
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
-      <Colorway label={_('Colorway')} attr="colorway" />
+      <ColorwayPicker label={_('Colorway')} attr="colorway" />
       <HovermodeDropdown label={_('Hover Interaction')} attr="hovermode" />
       <Dropdown
         label={_('Drag Interaction')}
