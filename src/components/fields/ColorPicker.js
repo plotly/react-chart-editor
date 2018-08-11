@@ -1,4 +1,4 @@
-import ColorPicker from '../widgets/ColorPicker';
+import ColorPickerWidget from '../widgets/ColorPicker';
 import Field from './Field';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
@@ -8,7 +8,7 @@ class UnconnectedColorPicker extends Component {
   render() {
     return (
       <Field {...this.props}>
-        <ColorPicker
+        <ColorPickerWidget
           selectedColor={this.props.fullValue}
           onColorChange={this.props.updatePlot}
         />
