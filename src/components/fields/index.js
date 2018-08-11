@@ -2,6 +2,7 @@ import ArrowSelector from './ArrowSelector';
 import AxesSelector from './AxesSelector';
 import ColorPicker from './ColorPicker';
 import ColorscalePicker from './ColorscalePicker';
+import PieColorscalePicker from './PieColorscalePicker';
 import ColorwayPicker from './ColorwayPicker';
 import Dropdown from './Dropdown';
 import Dropzone from './Dropzone';
@@ -73,6 +74,7 @@ export {
   Dropdown,
   ErrorBars,
   FillDropdown,
+  PieColorscalePicker,
   FilterOperation,
   FilterValue,
   Flaglist,

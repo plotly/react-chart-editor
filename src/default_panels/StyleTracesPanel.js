@@ -18,6 +18,7 @@ import {
   TraceTypeSection,
   TraceMarkerSection,
   ColorscalePicker,
+  PieColorscalePicker,
   HoverInfo,
   Dropdown,
   FillDropdown,
@@ -52,11 +53,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
     />
     <NumericFraction label={_('Trace Opacity')} attr="opacity" />
     <MultiColorPicker label={_('Color')} attr="color" />
-    <ColorscalePicker
-      label={_('Colors')}
-      attr="marker.colors"
-      initialCategory="categorical"
-    />
+    <PieColorscalePicker label={_('Colors')} attr="marker.colors" />
     <Dropdown
       label={_('Histogram Normalization')}
       options={[
