@@ -113,6 +113,7 @@ class StyleAxesPanel extends Component {
                 {label: _('Hide'), value: false},
               ]}
               showOn={true}
+              defaultOpt={true}
             >
               <Numeric label={_('Thickness')} attr="linewidth" units="px" />
               <ColorPicker label={_('Color')} attr="linecolor" />
@@ -136,6 +137,7 @@ class StyleAxesPanel extends Component {
                 {label: _('Hide'), value: false},
               ]}
               showOn={true}
+              defaultOpt={true}
             >
               <Numeric label={_('Thickness')} attr="gridwidth" units="px" />
               <ColorPicker label={_('Color')} attr="gridcolor" />
@@ -239,49 +241,47 @@ class StyleAxesPanel extends Component {
                 ]}
               />
 
-              <PlotlySection name={_('Label Prefix')}>
-                <Dropdown
-                  label={_('Prefix')}
-                  attr="tickprefix"
-                  options={[
-                    {label: _('x'), value: 'x'},
-                    {label: _('$'), value: '$'},
-                    {label: _('#'), value: '#'},
-                    {label: _('@'), value: '@'},
-                    {label: _('custom'), value: 'custom'},
-                  ]}
-                />
-                <Radio
-                  attr="showtickprefix"
-                  options={[
-                    {label: _('Every'), value: 'all'},
-                    {label: _('First'), value: 'first'},
-                    {label: _('Last'), value: 'last'},
-                    {label: _('None'), value: 'none'},
-                  ]}
-                />
-              </PlotlySection>
-              <PlotlySection name={_('Label Suffix')}>
-                <Dropdown
-                  label={_('Suffix')}
-                  attr="ticksuffix"
-                  options={[
-                    {label: _('C'), value: 'C'},
-                    {label: _('%'), value: '%'},
-                    {label: _('^'), value: '^'},
-                    {label: _('custom'), value: 'custom'},
-                  ]}
-                />
-                <Radio
-                  attr="showticksuffix"
-                  options={[
-                    {label: _('Every'), value: 'all'},
-                    {label: _('First'), value: 'first'},
-                    {label: _('Last'), value: 'last'},
-                    {label: _('None'), value: 'none'},
-                  ]}
-                />
-              </PlotlySection>
+              <Dropdown
+                label={_('Prefix')}
+                attr="tickprefix"
+                options={[
+                  {label: _('x'), value: 'x'},
+                  {label: _('$'), value: '$'},
+                  {label: _('#'), value: '#'},
+                  {label: _('@'), value: '@'},
+                  {label: _('custom'), value: 'custom'},
+                ]}
+              />
+              <Dropdown
+                label={_('Show Prefix')}
+                attr="showtickprefix"
+                options={[
+                  {label: _('Every label'), value: 'all'},
+                  {label: _('First label'), value: 'first'},
+                  {label: _('Last label'), value: 'last'},
+                  {label: _('None'), value: 'none'},
+                ]}
+              />
+              <Dropdown
+                label={_('Suffix')}
+                attr="ticksuffix"
+                options={[
+                  {label: _('C'), value: 'C'},
+                  {label: _('%'), value: '%'},
+                  {label: _('^'), value: '^'},
+                  {label: _('custom'), value: 'custom'},
+                ]}
+              />
+              <Dropdown
+                label={_('Show Suffix')}
+                attr="showticksuffix"
+                options={[
+                  {label: _('Every label'), value: 'all'},
+                  {label: _('First label'), value: 'first'},
+                  {label: _('Last label'), value: 'last'},
+                  {label: _('None'), value: 'none'},
+                ]}
+              />
 
               <Radio
                 label={_('Tick Spacing')}
