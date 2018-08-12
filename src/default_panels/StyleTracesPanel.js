@@ -387,7 +387,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Custom'), value: false},
         ]}
         showOn={false}
-        dafault={true}
+        defaultOpt={true}
       >
         <Numeric label={_('Min')} attr="zmin" />
         <Numeric label={_('Max')} attr="zmax" />
@@ -400,7 +400,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Custom'), value: false},
         ]}
         showOn={false}
-        dafault={true}
+        defaultOpt={true}
       >
         <Numeric label={_('Min')} attr="cmin" />
         <Numeric label={_('Max')} attr="cmax" />

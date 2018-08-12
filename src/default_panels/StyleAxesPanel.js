@@ -14,9 +14,10 @@ import {
   PlotlySection,
   TraceRequiredPanel,
   AxesFold,
-  TraceTypeSection,
+  AxisSide,
   RangesliderVisible,
   RangeSelectorAccordion,
+  VisibilitySelect,
 } from '../components';
 
 class StyleAxesPanel extends Component {
@@ -83,14 +84,6 @@ class StyleAxesPanel extends Component {
             <AxesRange label={_('Min')} attr="range[0]" />
             <AxesRange label={_('Max')} attr="range[1]" />
           </PlotlySection>
-          <TraceTypeSection
-            name={_('Range')}
-            traceTypes={['choropleth', 'scattergeo']}
-            attr="range"
-          >
-            <AxesRange label={_('Min')} attr="range[0]" />
-            <AxesRange label={_('Max')} attr="range[1]" />
-          </TraceTypeSection>
           <PlotlySection name={_('Zoom Interactivity')} attr="fixedrange">
             <Radio
               attr="fixedrange"
@@ -113,52 +106,53 @@ class StyleAxesPanel extends Component {
 
         <AxesFold name={_('Lines')}>
           <PlotlySection name={_('Axis Line')} attr="showline">
-            <Radio
+            <VisibilitySelect
               attr="showline"
               options={[
                 {label: _('Show'), value: true},
                 {label: _('Hide'), value: false},
               ]}
-            />
-            <Numeric label={_('Thickness')} attr="linewidth" units="px" />
-            <ColorPicker label={_('Color')} attr="linecolor" />
+              showOn={true}
+            >
+              <Numeric label={_('Thickness')} attr="linewidth" units="px" />
+              <ColorPicker label={_('Color')} attr="linecolor" />
 
-            <Radio
-              label={_('Position')}
-              attr="side"
-              options={[
-                {label: _('Bottom'), value: 'bottom'},
-                {label: _('Top'), value: 'top'},
-                {label: _('Left'), value: 'left'},
-                {label: _('Right'), value: 'right'},
-              ]}
-            />
-            <Radio
-              label={_('Mirror Axis')}
-              attr="mirror"
-              options={[
-                {label: _('On'), value: true},
-                {label: _('Off'), value: false},
-              ]}
-            />
+              <AxisSide label={_('Position')} attr="side" />
+              <Radio
+                label={_('Mirror Axis')}
+                attr="mirror"
+                options={[
+                  {label: _('On'), value: true},
+                  {label: _('Off'), value: false},
+                ]}
+              />
+            </VisibilitySelect>
           </PlotlySection>
           <PlotlySection name={_('Grid Lines')} attr="showgrid">
-            <Radio
+            <VisibilitySelect
               attr="showgrid"
               options={[
                 {label: _('Show'), value: true},
                 {label: _('Hide'), value: false},
               ]}
-            />
-            <Numeric label={_('Thickness')} attr="gridwidth" units="px" />
-            <ColorPicker label={_('Color')} attr="gridcolor" />
-            <TraceTypeSection
-              traceTypes={['choropleth', 'scattergeo']}
-              attr="range"
+              showOn={true}
             >
-              <Numeric label={_('Reference')} attr="tick0" units="deg" />
-              <Numeric label={_('Spacing')} attr="dtick" units="deg" />
-            </TraceTypeSection>
+              <Numeric label={_('Thickness')} attr="gridwidth" units="px" />
+              <ColorPicker label={_('Color')} attr="gridcolor" />
+
+              <Radio
+                label={_('Grid Spacing')}
+                attr="tickmode"
+                options={[
+                  {label: _('Auto'), value: 'auto'},
+                  {label: _('Custom'), value: 'linear'},
+                ]}
+              />
+
+              <DTicks label={_('Step Offset')} attr="tick0" />
+              <DTicks label={_('Step Size')} attr="dtick" />
+              <NTicks label={_('Max Number of Lines')} attr="nticks" />
+            </VisibilitySelect>
           </PlotlySection>
           <PlotlySection name={_('Zero Line')} attr="zeroline">
             <Radio
@@ -189,125 +183,119 @@ class StyleAxesPanel extends Component {
           axisFilter={axis => !axis._subplot.includes('geo')}
         >
           <PlotlySection name={_('Tick Labels')} attr="showticklabels">
-            <Radio
+            <VisibilitySelect
               attr="showticklabels"
               options={[
                 {label: _('Show'), value: true},
                 {label: _('Hide'), value: false},
               ]}
-            />
-            <Radio
-              label={_('Auto margins')}
-              attr="automargin"
-              options={[
-                {label: _('True'), value: true},
-                {label: _('False'), value: false},
-              ]}
-            />
-            <FontSelector label={_('Typeface')} attr="tickfont.family" />
-            <Numeric label={_('Font Size')} attr="tickfont.size" units="px" />
-            <ColorPicker label={_('Font Color')} attr="tickfont.color" />
-            <Dropdown
-              label={_('Direction')}
-              attr="side"
-              options={[
-                {label: _('Clockwise'), value: 'clockwise'},
-                {label: _('Counter Clockwise'), value: 'counterclockwise'},
-              ]}
-              clearable={false}
-            />
-            <Dropdown
-              label={_('Angle')}
-              attr="tickangle"
-              clearable={false}
-              options={[
-                {label: _('Auto'), value: 'auto'},
-                {label: _('45'), value: 45},
-                {label: _('90'), value: 90},
-                {label: _('135'), value: 135},
-                {label: _('180'), value: 180},
-              ]}
-            />
+              showOn={true}
+              defaultOpt={true}
+            >
+              <AxisSide label={_('Position')} attr="side" />
+              <Radio
+                label={_('Auto margins')}
+                attr="automargin"
+                options={[
+                  {label: _('True'), value: true},
+                  {label: _('False'), value: false},
+                ]}
+              />
+              <FontSelector label={_('Typeface')} attr="tickfont.family" />
+              <Numeric label={_('Font Size')} attr="tickfont.size" units="px" />
+              <ColorPicker label={_('Font Color')} attr="tickfont.color" />
+              <Dropdown
+                label={_('Angle')}
+                attr="tickangle"
+                clearable={false}
+                options={[
+                  {label: _('Auto'), value: 'auto'},
+                  {label: _('45'), value: 45},
+                  {label: _('90'), value: 90},
+                  {label: _('135'), value: 135},
+                  {label: _('180'), value: 180},
+                ]}
+              />
 
-            <Radio
-              label={_('Separate Thousands')}
-              attr="separatethousands"
-              options={[
-                {label: _('True'), value: true},
-                {label: _('False'), value: false},
-              ]}
-            />
-            <Dropdown
-              label={_('Exponents')}
-              attr="exponentformat"
-              clearable={false}
-              options={[
-                {label: _('None'), value: '000'},
-                {label: _('e+6'), value: 'e'},
-                {label: _('E+6'), value: 'E'},
-                {label: _('x10^6'), value: 'power'},
-                {label: _('k/M/G'), value: 'SI'},
-                {label: _('k/M/B'), value: 'B'},
-              ]}
-            />
-          </PlotlySection>
+              <Radio
+                label={_('Separate Thousands')}
+                attr="separatethousands"
+                options={[
+                  {label: _('True'), value: true},
+                  {label: _('False'), value: false},
+                ]}
+              />
+              <Dropdown
+                label={_('Exponents')}
+                attr="exponentformat"
+                clearable={false}
+                options={[
+                  {label: _('None'), value: '000'},
+                  {label: _('e+6'), value: 'e'},
+                  {label: _('E+6'), value: 'E'},
+                  {label: _('x10^6'), value: 'power'},
+                  {label: _('k/M/G'), value: 'SI'},
+                  {label: _('k/M/B'), value: 'B'},
+                ]}
+              />
 
-          <PlotlySection name={_('Label Prefix')}>
-            <Dropdown
-              label={_('Prefix')}
-              attr="tickprefix"
-              options={[
-                {label: _('x'), value: 'x'},
-                {label: _('$'), value: '$'},
-                {label: _('#'), value: '#'},
-                {label: _('@'), value: '@'},
-                {label: _('custom'), value: 'custom'},
-              ]}
-            />
-            <Radio
-              attr="showtickprefix"
-              options={[
-                {label: _('Every'), value: 'all'},
-                {label: _('First'), value: 'first'},
-                {label: _('Last'), value: 'last'},
-                {label: _('None'), value: 'none'},
-              ]}
-            />
-          </PlotlySection>
-          <PlotlySection name={_('Label Suffix')}>
-            <Dropdown
-              label={_('Suffix')}
-              attr="ticksuffix"
-              options={[
-                {label: _('C'), value: 'C'},
-                {label: _('%'), value: '%'},
-                {label: _('^'), value: '^'},
-                {label: _('custom'), value: 'custom'},
-              ]}
-            />
-            <Radio
-              attr="showticksuffix"
-              options={[
-                {label: _('Every'), value: 'all'},
-                {label: _('First'), value: 'first'},
-                {label: _('Last'), value: 'last'},
-                {label: _('None'), value: 'none'},
-              ]}
-            />
-          </PlotlySection>
+              <PlotlySection name={_('Label Prefix')}>
+                <Dropdown
+                  label={_('Prefix')}
+                  attr="tickprefix"
+                  options={[
+                    {label: _('x'), value: 'x'},
+                    {label: _('$'), value: '$'},
+                    {label: _('#'), value: '#'},
+                    {label: _('@'), value: '@'},
+                    {label: _('custom'), value: 'custom'},
+                  ]}
+                />
+                <Radio
+                  attr="showtickprefix"
+                  options={[
+                    {label: _('Every'), value: 'all'},
+                    {label: _('First'), value: 'first'},
+                    {label: _('Last'), value: 'last'},
+                    {label: _('None'), value: 'none'},
+                  ]}
+                />
+              </PlotlySection>
+              <PlotlySection name={_('Label Suffix')}>
+                <Dropdown
+                  label={_('Suffix')}
+                  attr="ticksuffix"
+                  options={[
+                    {label: _('C'), value: 'C'},
+                    {label: _('%'), value: '%'},
+                    {label: _('^'), value: '^'},
+                    {label: _('custom'), value: 'custom'},
+                  ]}
+                />
+                <Radio
+                  attr="showticksuffix"
+                  options={[
+                    {label: _('Every'), value: 'all'},
+                    {label: _('First'), value: 'first'},
+                    {label: _('Last'), value: 'last'},
+                    {label: _('None'), value: 'none'},
+                  ]}
+                />
+              </PlotlySection>
 
-          <PlotlySection name={_('Spacing')} attr="dtick">
-            <Radio
-              attr="tickmode"
-              options={[
-                {label: _('Auto'), value: 'auto'},
-                {label: _('Custom'), value: 'linear'},
-              ]}
-            />
+              <Radio
+                label={_('Tick Spacing')}
+                attr="tickmode"
+                options={[
+                  {label: _('Auto'), value: 'auto'},
+                  {label: _('Custom'), value: 'linear'},
+                ]}
+              />
 
-            <DTicks label={_('Step Offset')} attr="tick0" />
-            <DTicks label={_('Step Size')} attr="dtick" />
-            <NTicks label={_('Max Number of Labels')} attr="nticks" />
+              <DTicks label={_('Step Offset')} attr="tick0" />
+              <DTicks label={_('Step Size')} attr="dtick" />
+              <NTicks label={_('Max Number of Labels')} attr="nticks" />
+            </VisibilitySelect>
           </PlotlySection>
         </AxesFold>
         <AxesFold
@@ -315,30 +303,33 @@ class StyleAxesPanel extends Component {
           axisFilter={axis => !axis._subplot.includes('geo')}
         >
           <PlotlySection name={_('Tick Markers')} attr="ticks">
-            <Radio
+            <VisibilitySelect
               attr="ticks"
               options={[
                 {label: _('Inside'), value: 'inside'},
                 {label: _('Outside'), value: 'outside'},
                 {label: _('Hide'), value: ''},
               ]}
-            />
-            <Numeric label={_('Length')} attr="ticklen" units="px" />
-            <Numeric label={_('Width')} attr="tickwidth" units="px" />
-            <ColorPicker label={_('Color')} attr="tickcolor" />
-          </PlotlySection>
-          <PlotlySection name={_('Spacing')}>
-            <Radio
-              attr="tickmode"
-              options={[
-                {label: _('Auto'), value: 'auto'},
-                {label: _('Custom'), value: 'linear'},
-              ]}
-            />
+              showOn={['inside', 'outside']}
+              defaultOpt={'Outside'}
+            >
+              <AxisSide label={_('Position')} attr="side" />
+              <Numeric label={_('Length')} attr="ticklen" units="px" />
+              <Numeric label={_('Width')} attr="tickwidth" units="px" />
+              <ColorPicker label={_('Color')} attr="tickcolor" />
+              <Radio
+                label={_('Tick Spacing')}
+                attr="tickmode"
+                options={[
+                  {label: _('Auto'), value: 'auto'},
+                  {label: _('Custom'), value: 'linear'},
+                ]}
+              />
 
-            <DTicks label={_('Step Offset')} attr="tick0" />
-            <DTicks label={_('Step Size')} attr="dtick" />
-            <NTicks label={_('Max Number of Markers')} attr="nticks" />
+              <DTicks label={_('Step Offset')} attr="tick0" />
+              <DTicks label={_('Step Size')} attr="dtick" />
+              <NTicks label={_('Max Number of Markers')} attr="nticks" />
+            </VisibilitySelect>
           </PlotlySection>
         </AxesFold>
 

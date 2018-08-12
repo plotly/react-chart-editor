@@ -1,31 +1,39 @@
 import React, {Fragment, Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
+import {MULTI_VALUED_PLACEHOLDER} from 'lib/constants';
 import Field from './Field';
 import Radio from './Radio';
 import Dropdown from './Dropdown';
-import nestedProperty from 'plotly.js/src/lib/nested_property';
 
 class UnconnectedVisibilitySelect extends Component {
   constructor(props, context) {
     super(props, context);
 
-    const value = nestedProperty(props.container, props.attr).get();
-    this.state = {
-      mode: value === undefined ? this.props.defaultOpt : value, // eslint-disable-line no-undefined
-    };
-
     this.setMode = this.setMode.bind(this);
+    this.setLocals = this.setLocals.bind(this);
+
+    this.setLocals(props);
+  }
+
+  componentWillReceiveProps(props) {
+    this.setLocals(props);
+  }
+
+  setLocals(props) {
+    this.mode =
+      props.fullValue === undefined || // eslint-disable-line no-undefined
+      props.fullValue === MULTI_VALUED_PLACEHOLDER
+        ? this.props.defaultOpt
+        : props.fullValue;
   }
 
   setMode(mode) {
-    this.setState({mode: mode});
     this.props.updateContainer({[this.props.attr]: mode});
   }
 
   render() {
     const {dropdown, clearable, options, showOn, attr, label} = this.props;
-    const {mode} = this.state;
 
     return (
       <Fragment>
@@ -34,7 +42,7 @@ class UnconnectedVisibilitySelect extends Component {
             attr={attr}
             label={label}
             options={options}
-            fullValue={mode}
+            fullValue={this.mode}
             updatePlot={this.setMode}
             clearable={clearable}
           />
@@ -43,11 +51,14 @@ class UnconnectedVisibilitySelect extends Component {
             attr={attr}
             label={label}
             options={options}
-            fullValue={mode}
+            fullValue={this.mode}
             updatePlot={this.setMode}
           />
         )}
-        {mode !== showOn ? '' : this.props.children}
+        {(Array.isArray(showOn) && showOn.includes(this.mode)) ||
+        this.mode === showOn
+          ? this.props.children
+          : null}
       </Fragment>
     );
   }
@@ -62,6 +73,7 @@ UnconnectedVisibilitySelect.propTypes = {
     PropTypes.number,
     PropTypes.bool,
     PropTypes.string,
+    PropTypes.array,
   ]),
   defaultOpt: PropTypes.oneOfType([
     PropTypes.number,

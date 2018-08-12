@@ -223,7 +223,7 @@ class UnconnectedMarkerColor extends Component {
                   {label: _('Custom'), value: false},
                 ]}
                 showOn={false}
-                dafault={true}
+                defaultOpt={true}
               >
                 <Numeric label={_('Min')} attr="marker.cmin" />
                 <Numeric label={_('Max')} attr="marker.cmax" />

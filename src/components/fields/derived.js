@@ -89,7 +89,7 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
   modifyPlotProps: (props, context, plotProps) => {
     const _ = context.localize;
 
-    if (props.attr.startsWith('yaxis')) {
+    if (plotProps.fullValue === 'left' || plotProps.fullValue === 'right') {
       plotProps.options = [
         {label: _('Left'), value: 'left'},
         {label: _('Right'), value: 'right'},
@@ -97,10 +97,21 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
       return;
     }
 
-    if (props.attr.startsWith('xaxis')) {
+    if (plotProps.fullValue === 'top' || plotProps.fullValue === 'bottom') {
       plotProps.options = [
-        {label: _('Bottom'), value: 'bottom'},
         {label: _('Top'), value: 'top'},
+        {label: _('Bottom'), value: 'bottom'},
+      ];
+      return;
+    }
+
+    if (
+      plotProps.fullValue === 'clockwise' ||
+      plotProps.fullValue === 'counterclockwise'
+    ) {
+      plotProps.options = [
+        {label: _('Clockwise'), value: 'clockwise'},
+        {label: _('Counterclockwise'), value: 'counterclockwise'},
       ];
       return;
     }
@@ -208,7 +219,7 @@ export const DTicks = connectToContainer(UnconnectedAxisRangeValue, {
     if (
       plotProps.isVisible &&
       fullContainer &&
-      fullContainer.tickmode !== 'linear'
+      (fullContainer.tickmode !== 'linear' && fullContainer.lonaxis === null)
     ) {
       plotProps.isVisible = false;
     }
