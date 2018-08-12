@@ -217,9 +217,18 @@ export const DTicks = connectToContainer(UnconnectedAxisRangeValue, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;
     if (
+      fullContainer &&
+      fullContainer._name &&
+      (fullContainer._name.startsWith('lat') ||
+        fullContainer._name.startsWith('lon'))
+    ) {
+      // don't mess with visibility on geo axes
+      return plotProps;
+    }
+    if (
       plotProps.isVisible &&
       fullContainer &&
-      (fullContainer.tickmode !== 'linear' && fullContainer.lonaxis === null)
+      fullContainer.tickmode !== 'linear'
     ) {
       plotProps.isVisible = false;
     }
