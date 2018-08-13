@@ -4,7 +4,7 @@ import React, {Component, Fragment} from 'react';
 import {connectToContainer} from 'lib';
 import RadioBlocks from '../widgets/RadioBlocks';
 import MultiColorPicker from './MultiColorPicker';
-import Colorscale from './Colorscale';
+import ColorscalePicker from './ColorscalePicker';
 import Numeric from './Numeric';
 import Radio from './Radio';
 import Info from './Info';
@@ -144,7 +144,7 @@ class UnconnectedMarkerColor extends Component {
         <DataSelector suppressMultiValuedMessage attr="marker.color" />
         {this.props.container.marker &&
         this.props.container.marker.colorscale === MULTI_VALUED ? null : (
-          <Colorscale
+          <ColorscalePicker
             suppressMultiValuedMessage
             attr="marker.colorscale"
             updatePlot={this.setColorScale}

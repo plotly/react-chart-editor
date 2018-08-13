@@ -1,7 +1,9 @@
 import ArrowSelector from './ArrowSelector';
 import AxesSelector from './AxesSelector';
-import ColorPicker from './Color';
-import ColorscalePicker from './Colorscale';
+import ColorPicker from './ColorPicker';
+import ColorscalePicker from './ColorscalePicker';
+import PieColorscalePicker from './PieColorscalePicker';
+import ColorwayPicker from './ColorwayPicker';
 import Dropdown from './Dropdown';
 import Dropzone from './Dropzone';
 import FontSelector from './FontSelector';
@@ -66,11 +68,13 @@ export {
   AxesSelector,
   ColorPicker,
   ColorscalePicker,
+  ColorwayPicker,
   ContourNumeric,
   DataSelector,
   Dropdown,
   ErrorBars,
   FillDropdown,
+  PieColorscalePicker,
   FilterOperation,
   FilterValue,
   Flaglist,

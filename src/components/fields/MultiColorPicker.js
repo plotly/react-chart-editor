@@ -1,5 +1,5 @@
-import Color from './Color';
-import Colorscale from './Colorscale';
+import ColorPicker from './ColorPicker';
+import {UnconnectedColorscalePicker} from './ColorscalePicker';
 import Field from './Field';
 import Info from './Info';
 import PropTypes from 'prop-types';
@@ -7,6 +7,24 @@ import RadioBlocks from '../widgets/RadioBlocks';
 import React, {Component} from 'react';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {adjustColorscale, connectToContainer} from 'lib';
+
+const CustomColorscalePicker = connectToContainer(UnconnectedColorscalePicker, {
+  modifyPlotProps: (props, context, plotProps) => {
+    if (
+      props.attr === 'marker.color' &&
+      context.fullData
+        .filter(t => context.traceIndexes.includes(t.index))
+        .every(t => t.marker && t.marker.color) &&
+      (plotProps.fullValue && typeof plotProps.fullValue === 'string')
+    ) {
+      plotProps.fullValue =
+        context.fullData &&
+        context.fullData
+          .filter(t => context.traceIndexes.includes(t.index))
+          .map(t => [0, t.marker.color]);
+    }
+  },
+});
 
 class UnconnectedMultiColorPicker extends Component {
   constructor(props, context) {
@@ -96,14 +114,14 @@ class UnconnectedMultiColorPicker extends Component {
               : multiMessage}
           </Info>
           {selectedConstantColorOption === 'single' ? (
-            <Color
+            <ColorPicker
               attr={this.props.attr}
               updatePlot={
                 this.props.setColor ? this.props.setColor : this.setColor
               }
             />
           ) : (
-            <Colorscale
+            <CustomColorscalePicker
               suppressMultiValuedMessage
               attr={this.props.attr}
               updatePlot={this.setColors}
@@ -116,7 +134,7 @@ class UnconnectedMultiColorPicker extends Component {
     }
 
     return (
-      <Color
+      <ColorPicker
         attr={this.props.attr}
         updatePlot={this.props.setColor ? this.props.setColor : this.setColor}
         label={this.props.label}
