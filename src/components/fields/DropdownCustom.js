@@ -17,7 +17,7 @@ class UnconnectedDropdownCustom extends Component {
 
     this.state = {
       custom:
-        this.value === 'custom' ||
+        this.value === props.customOpt ||
         !this.props.options.map(o => o.value).includes(this.value),
     };
   }
@@ -70,7 +70,11 @@ class UnconnectedDropdownCustom extends Component {
           <Text
             attr={attr}
             updatePlot={value => this.setValue(value, true)}
-            onChange={value => this.setValue(value, true)}
+            onChange={value => {
+              if (value) {
+                this.setValue(value, true);
+              }
+            }}
           />
         )}
       </Field>

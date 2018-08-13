@@ -201,14 +201,14 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                 dafaultOpt=""
                 clearable={false}
               />
-              <Radio
+              <Dropdown
                 label={_('Show Prefix')}
                 attr={prefix + 'colorbar.showtickprefix'}
                 options={[
-                  {label: _('Every'), value: 'all'},
-                  {label: _('First'), value: 'first'},
-                  {label: _('Last'), value: 'last'},
-                  {label: _('None'), value: 'none'},
+                  {label: _('Every label'), value: 'all'},
+                  {label: _('First label'), value: 'first'},
+                  {label: _('Last label'), value: 'last'},
+                  {label: _('None label'), value: 'none'},
                 ]}
               />
 
@@ -226,14 +226,14 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                 dafaultOpt=""
                 clearable={false}
               />
-              <Radio
+              <Dropdown
                 label={_('Show Suffix')}
                 attr={prefix + 'colorbar.showticksuffix'}
                 options={[
-                  {label: _('Every'), value: 'all'},
-                  {label: _('First'), value: 'first'},
-                  {label: _('Last'), value: 'last'},
-                  {label: _('None'), value: 'none'},
+                  {label: _('Every label'), value: 'all'},
+                  {label: _('First label'), value: 'first'},
+                  {label: _('Last label'), value: 'last'},
+                  {label: _('None label'), value: 'none'},
                 ]}
               />
               <PlotlySection name={_('Number of Labels')}>
