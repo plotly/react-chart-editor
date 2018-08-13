@@ -91,7 +91,7 @@ class UnconnectedLocationSelector extends Component {
       container: {type: type},
     } = this.context;
 
-    return type === 'scattergeo' ? (
+    return type === 'scattergeo' || type === 'scattermapbox' ? (
       <Fragment>
         <Field {...this.props} attr={this.props.attr}>
           <Radio

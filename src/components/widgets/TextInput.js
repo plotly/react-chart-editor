@@ -22,7 +22,12 @@ export default class TextInput extends Component {
         placeholder={this.props.placeholder}
         text={this.state.value}
         type="text"
-        onChange={value => this.setState({value})}
+        onChange={value => {
+          if (this.props.onChange) {
+            this.props.onChange(value);
+          }
+          this.setState({value});
+        }}
         onUpdate={this.props.onUpdate}
       />
     );
@@ -33,6 +38,7 @@ TextInput.propTypes = {
   defaultValue: PropTypes.any,
   editableClassName: PropTypes.string,
   onUpdate: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   placeholder: PropTypes.string,
   value: PropTypes.any,
 };
