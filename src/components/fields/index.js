@@ -26,6 +26,7 @@ import {FilterOperation, FilterValue} from './FilterOperation';
 import MarkerSize from './MarkerSize';
 import MarkerColor from './MarkerColor';
 import VisibilitySelect from './VisibilitySelect';
+import DropdownCustom from './DropdownCustom';
 import MultiColorPicker from './MultiColorPicker';
 import RectanglePositioner from './RectanglePositioner';
 import LocationSelector from './LocationSelector';
@@ -108,6 +109,7 @@ export {
   MarkerColor,
   MultiColorPicker,
   VisibilitySelect,
+  DropdownCustom,
   RectanglePositioner,
   LocationSelector,
   HoveronDropdown,

@@ -20,6 +20,7 @@ export class UnconnectedText extends Component {
           defaultValue={this.props.defaultValue}
           placeholder={placeholder}
           onUpdate={this.props.updatePlot}
+          onChange={this.props.onChange}
         />
       </Field>
     );
@@ -31,6 +32,7 @@ UnconnectedText.propTypes = {
   fullValue: PropTypes.any,
   multiValued: PropTypes.bool,
   updatePlot: PropTypes.func,
+  onChange: PropTypes.func,
   ...Field.propTypes,
 };
 

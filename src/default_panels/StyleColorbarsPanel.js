@@ -10,9 +10,10 @@ import {
   PlotlyPanel,
   PlotlySection,
   Dropdown,
+  DropdownCustom,
   FontSelector,
   ColorPicker,
-} from '..';
+} from '../components';
 
 const StyleColorBarsPanel = (props, {localize: _}) => {
   return (
@@ -185,49 +186,56 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                   {label: _('k/M/B'), value: 'B'},
                 ]}
               />
-              <PlotlySection name={_('Label Prefix')}>
-                <Dropdown
-                  label={_('Prefix')}
-                  attr={prefix + 'colorbar.tickprefix'}
-                  options={[
-                    {label: _('x'), value: 'x'},
-                    {label: _('$'), value: '$'},
-                    {label: _('#'), value: '#'},
-                    {label: _('@'), value: '@'},
-                    {label: _('custom'), value: 'custom'},
-                  ]}
-                />
-                <Radio
-                  attr={prefix + 'colorbar.showtickprefix'}
-                  options={[
-                    {label: _('Every'), value: 'all'},
-                    {label: _('First'), value: 'first'},
-                    {label: _('Last'), value: 'last'},
-                    {label: _('None'), value: 'none'},
-                  ]}
-                />
-              </PlotlySection>
-              <PlotlySection name={_('Label Suffix')}>
-                <Dropdown
-                  label={_('Suffix')}
-                  attr={prefix + 'colorbar.ticksuffix'}
-                  options={[
-                    {label: _('C'), value: 'C'},
-                    {label: _('%'), value: '%'},
-                    {label: _('^'), value: '^'},
-                    {label: _('custom'), value: 'custom'},
-                  ]}
-                />
-                <Radio
-                  attr={prefix + 'colorbar.showticksuffix'}
-                  options={[
-                    {label: _('Every'), value: 'all'},
-                    {label: _('First'), value: 'first'},
-                    {label: _('Last'), value: 'last'},
-                    {label: _('None'), value: 'none'},
-                  ]}
-                />
-              </PlotlySection>
+              <DropdownCustom
+                label={_('Label Prefix')}
+                attr={prefix + 'colorbar.tickprefix'}
+                options={[
+                  {label: _('None'), value: ''},
+                  {label: _('x'), value: 'x'},
+                  {label: _('$'), value: '$'},
+                  {label: _('#'), value: '#'},
+                  {label: _('@'), value: '@'},
+                  {label: _('Custom'), value: 'custom'},
+                ]}
+                customOpt="custom"
+                dafaultOpt=""
+                clearable={false}
+              />
+              <Radio
+                label={_('Show Prefix')}
+                attr={prefix + 'colorbar.showtickprefix'}
+                options={[
+                  {label: _('Every'), value: 'all'},
+                  {label: _('First'), value: 'first'},
+                  {label: _('Last'), value: 'last'},
+                  {label: _('None'), value: 'none'},
+                ]}
+              />
+
+              <DropdownCustom
+                label={_('Label Suffix')}
+                attr={prefix + 'colorbar.ticksuffix'}
+                options={[
+                  {label: _('None'), value: ''},
+                  {label: _('C'), value: 'C'},
+                  {label: _('%'), value: '%'},
+                  {label: _('^'), value: '^'},
+                  {label: _('Custom'), value: 'custom'},
+                ]}
+                customOpt="custom"
+                dafaultOpt=""
+                clearable={false}
+              />
+              <Radio
+                label={_('Show Suffix')}
+                attr={prefix + 'colorbar.showticksuffix'}
+                options={[
+                  {label: _('Every'), value: 'all'},
+                  {label: _('First'), value: 'first'},
+                  {label: _('Last'), value: 'last'},
+                  {label: _('None'), value: 'none'},
+                ]}
+              />
               <PlotlySection name={_('Number of Labels')}>
                 <Radio
                   attr={prefix + 'colorbar.tickmode'}

@@ -18,6 +18,7 @@ import {
   RangesliderVisible,
   RangeSelectorAccordion,
   VisibilitySelect,
+  DropdownCustom,
 } from '../components';
 
 class StyleAxesPanel extends Component {
@@ -241,16 +242,20 @@ class StyleAxesPanel extends Component {
                 ]}
               />
 
-              <Dropdown
+              <DropdownCustom
                 label={_('Prefix')}
                 attr="tickprefix"
                 options={[
+                  {label: _('None'), value: ''},
                   {label: _('x'), value: 'x'},
                   {label: _('$'), value: '$'},
                   {label: _('#'), value: '#'},
                   {label: _('@'), value: '@'},
-                  {label: _('custom'), value: 'custom'},
+                  {label: _('Custom'), value: 'custom'},
                 ]}
+                customOpt="custom"
+                dafaultOpt=""
+                clearable={false}
               />
               <Dropdown
                 label={_('Show Prefix')}
@@ -262,15 +267,19 @@ class StyleAxesPanel extends Component {
                   {label: _('None'), value: 'none'},
                 ]}
               />
-              <Dropdown
+              <DropdownCustom
                 label={_('Suffix')}
                 attr="ticksuffix"
                 options={[
+                  {label: _('None'), value: ''},
                   {label: _('C'), value: 'C'},
                   {label: _('%'), value: '%'},
                   {label: _('^'), value: '^'},
-                  {label: _('custom'), value: 'custom'},
+                  {label: _('Custom'), value: 'custom'},
                 ]}
+                customOpt="custom"
+                dafaultOpt=""
+                clearable={false}
               />
               <Dropdown
                 label={_('Show Suffix')}
