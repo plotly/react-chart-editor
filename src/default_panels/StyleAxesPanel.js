@@ -123,7 +123,7 @@ class StyleAxesPanel extends Component {
                 label={_('Mirror Axis')}
                 attr="mirror"
                 options={[
-                  {label: _('On'), value: true},
+                  {label: _('On'), value: 'ticks'},
                   {label: _('Off'), value: false},
                 ]}
               />
