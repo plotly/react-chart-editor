@@ -84,6 +84,7 @@ class StyleAxesPanel extends Component {
             />
             <AxesRange label={_('Min')} attr="range[0]" />
             <AxesRange label={_('Max')} attr="range[1]" />
+            <Numeric label={_('Min')} attr="min" />
           </PlotlySection>
           <PlotlySection name={_('Zoom Interactivity')} attr="fixedrange">
             <Radio
