@@ -55,7 +55,7 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
         dropdown={true}
         clearable={false}
         showOn="manual"
-        dafault="mode"
+        defaultOpt="mode"
       >
         <Numeric label={_('X')} attr="aspectratio.x" step={0.1} />
         <Numeric label={_('Y')} attr="aspectratio.y" step={0.1} />

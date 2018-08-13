@@ -89,7 +89,7 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
   modifyPlotProps: (props, context, plotProps) => {
     const _ = context.localize;
 
-    if (props.attr.startsWith('yaxis')) {
+    if (plotProps.fullValue === 'left' || plotProps.fullValue === 'right') {
       plotProps.options = [
         {label: _('Left'), value: 'left'},
         {label: _('Right'), value: 'right'},
@@ -97,10 +97,21 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
       return;
     }
 
-    if (props.attr.startsWith('xaxis')) {
+    if (plotProps.fullValue === 'top' || plotProps.fullValue === 'bottom') {
       plotProps.options = [
-        {label: _('Bottom'), value: 'bottom'},
         {label: _('Top'), value: 'top'},
+        {label: _('Bottom'), value: 'bottom'},
+      ];
+      return;
+    }
+
+    if (
+      plotProps.fullValue === 'clockwise' ||
+      plotProps.fullValue === 'counterclockwise'
+    ) {
+      plotProps.options = [
+        {label: _('Clockwise'), value: 'clockwise'},
+        {label: _('Counterclockwise'), value: 'counterclockwise'},
       ];
       return;
     }
@@ -205,6 +216,15 @@ export const NTicks = connectToContainer(UnconnectedNumeric, {
 export const DTicks = connectToContainer(UnconnectedAxisRangeValue, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;
+    if (
+      fullContainer &&
+      fullContainer._name &&
+      (fullContainer._name.startsWith('lat') ||
+        fullContainer._name.startsWith('lon'))
+    ) {
+      // don't mess with visibility on geo axes
+      return plotProps;
+    }
     if (
       plotProps.isVisible &&
       fullContainer &&
