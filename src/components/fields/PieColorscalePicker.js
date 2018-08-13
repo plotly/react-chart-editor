@@ -25,9 +25,7 @@ class UnconnectedPieColorscalePicker extends Component {
 
   render() {
     const {fullValue} = this.props;
-    const colorscale = Array.isArray(fullValue)
-      ? fullValue.map(v => v[1])
-      : null;
+    const colorscale = Array.isArray(fullValue) ? fullValue : null;
 
     return (
       <Field {...this.props}>
@@ -62,15 +60,7 @@ export default connectToContainer(UnconnectedPieColorscalePicker, {
         (Array.isArray(plotProps.fullValue) && !plotProps.fullValue.length)) &&
       context.graphDiv.calcdata
     ) {
-      plotProps.fullValue = context.graphDiv.calcdata[0].map(d => [0, d.color]);
-    }
-
-    if (
-      plotProps.fullValue &&
-      Array.isArray(plotProps.fullValue) &&
-      !plotProps.fullValue.every(el => Array.isArray(el))
-    ) {
-      plotProps.fullValue = plotProps.fullValue.map(c => [0, c]);
+      plotProps.fullValue = context.graphDiv.calcdata[0].map(d => d.color);
     }
 
     if (context.traceIndexes.length > 1) {
