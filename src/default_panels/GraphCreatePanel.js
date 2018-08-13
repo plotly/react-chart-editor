@@ -9,7 +9,6 @@ import {
   SubplotCreator,
   TraceAccordion,
   TraceSelector,
-  Numeric,
   TraceTypeSection,
   LocationSelector,
 } from '../components';
@@ -125,7 +124,6 @@ const GraphCreatePanel = (props, {localize: _}) => {
         <DataSelector label={_('Intensity')} attr="intensity" />
         <DataSelector label={_('Facecolor')} attr="facecolor" />
         <DataSelector label={_('Vertexcolor')} attr="vertexcolor" />
-        <Numeric label={_('Sum')} step={10} attr="sum" />
         <Radio
           label={_('Transpose')}
           attr="transpose"

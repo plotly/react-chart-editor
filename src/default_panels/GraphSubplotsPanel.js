@@ -217,6 +217,10 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
       <Numeric label={_('Longitude')} attr="projection.rotation.lat" min={0} />
       <Numeric label={_('Roll')} attr="projection.rotation.roll" min={0} />
     </PlotlySection>
+
+    <PlotlySection name={_('Ternary')}>
+      <Numeric label={_('Sum')} attr="sum" />
+    </PlotlySection>
   </SubplotAccordion>
 );
 
