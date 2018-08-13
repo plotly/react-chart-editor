@@ -221,6 +221,11 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Ternary')}>
       <Numeric label={_('Sum')} attr="sum" />
     </PlotlySection>
+
+    <PlotlySection name={_('Polar Sector')}>
+      <Numeric label={_('Min')} attr="sector[0]" max={360} min={0} showSlider />
+      <Numeric label={_('Max')} attr="sector[1]" max={360} min={0} showSlider />
+    </PlotlySection>
   </SubplotAccordion>
 );
 
