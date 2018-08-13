@@ -70,7 +70,7 @@ export const TRACE_TO_AXIS = {
     'histogram2dcontour',
   ],
   ternary: ['scatterternary'],
-  gl3d: ['scatter3d', 'surface', 'mesh3d'],
+  gl3d: ['scatter3d', 'surface', 'mesh3d', 'cone', 'streamtube'],
   geo: ['scattergeo', 'choropleth'],
   mapbox: ['scattermapbox'],
   polar: ['scatterpolar', 'scatterpolargl'],

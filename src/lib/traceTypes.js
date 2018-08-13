@@ -102,6 +102,16 @@ export const traceTypes = _ => [
     category: chartCategory(_).THREE_D,
   },
   {
+    value: 'cone',
+    label: _('Cone'),
+    category: chartCategory(_).THREE_D,
+  },
+  {
+    value: 'streamtube',
+    label: _('Streamtube'),
+    category: chartCategory(_).THREE_D,
+  },
+  {
     value: 'mesh3d',
     label: _('3D Mesh'),
     category: chartCategory(_).THREE_D,

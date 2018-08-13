@@ -63,6 +63,14 @@ function computeTraceOptionsFromSchema(schema, _, context) {
       label: _('3D Mesh'),
     },
     {
+      value: 'cone',
+      label: _('Cone'),
+    },
+    {
+      value: 'streamtube',
+      label: _('Streamtube'),
+    },
+    {
       value: 'scattergeo',
       label: _('Atlas Map'),
     },
