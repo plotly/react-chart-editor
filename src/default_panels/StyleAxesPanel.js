@@ -22,33 +22,10 @@ import {
 } from '../components';
 
 class StyleAxesPanel extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.hasAxes = this.hasAxes.bind(this);
-  }
-
-  hasAxes() {
-    return (
-      Object.keys(this.context.fullLayout._subplots).filter(
-        type =>
-          !['cartesian', 'mapbox'].includes(type) &&
-          this.context.fullLayout._subplots[type].length > 0
-      ).length > 0
-    );
-  }
-
   render() {
     const {localize: _} = this.context;
     return (
-      <TraceRequiredPanel
-        extraConditions={[this.hasAxes]}
-        extraEmptyPanelMessages={[
-          {
-            heading: _('Your plot does not have any axes to style.'),
-            message: '',
-          },
-        ]}
-      >
+      <TraceRequiredPanel>
         <AxesFold
           name={_('Titles')}
           axisFilter={axis =>

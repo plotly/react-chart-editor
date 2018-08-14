@@ -103,7 +103,17 @@ export const subplotName = (type, _) =>
     polar: _('Polar'),
   }[type]);
 
-export const TRANSFORMS_LIST = ['filter', 'groupby', 'aggregate'];
+export const TRANSFORMS_LIST = ['filter', 'groupby', 'aggregate', 'sort'];
+
+export const TRANSFORMABLE_TRACES = [
+  'scatter',
+  'bar',
+  'scattergl',
+  'histogram',
+  'histogram2d',
+  'box',
+  'violin',
+];
 
 export const COLORS = {
   charcoal: '#444444',
