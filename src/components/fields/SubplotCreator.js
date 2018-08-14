@@ -145,9 +145,11 @@ class UnconnectedSubplotCreator extends Component {
           options={getOptions(subplotType)}
         />
         <Info>
-          {_(
-            'You can style and position your subplots in the Graph > Subplots Panel'
-          )}
+          {_('You can style and position your subplots in the ')}
+          <a onClick={() => this.context.setPanel('Graph', 'Subplots')}>
+            {_('Subplots')}
+          </a>
+          {_(' panel.')}
         </Info>
       </PlotlySection>
     );
@@ -164,6 +166,7 @@ UnconnectedSubplotCreator.contextTypes = {
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,
   localize: PropTypes.func,
+  setPanel: PropTypes.func,
 };
 
 export default connectToContainer(UnconnectedSubplotCreator, {

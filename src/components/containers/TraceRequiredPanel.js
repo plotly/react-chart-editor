@@ -45,10 +45,14 @@ class TraceRequiredPanel extends Component {
             {_('Create')}
           </a>
 <<<<<<< HEAD
+<<<<<<< HEAD
           {_(' panel to define traces.')}
 =======
           {_(' tab to define traces.')}
 >>>>>>> e9befe5... add GraphCreatePanel link to empty panel
+=======
+          {_(' panel to define traces.')}
+>>>>>>> b220435... add links to Subplots panel
         </p>
       </PanelEmpty>
     );
