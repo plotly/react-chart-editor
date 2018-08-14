@@ -79,8 +79,10 @@ export const TRACE_TO_AXIS = {
 // Note: scene, and xaxis/yaxis were added for convenience sake even though they're not subplot types
 export const SUBPLOT_TO_ATTR = {
   cartesian: {data: ['xaxis', 'yaxis'], layout: ['x', 'y']},
-  xaxis: {data: ['xaxis', 'yaxis'], layout: ['x', 'y']},
-  yaxis: {data: ['xaxis', 'yaxis'], layout: ['x', 'y']},
+  xaxis: {data: 'xaxis', layout: 'x'},
+  yaxis: {data: 'yaxis', layout: 'y'},
+  x: {data: 'xaxis', layout: 'x'},
+  y: {data: 'yaxis', layout: 'y'},
   ternary: {data: 'subplot', layout: 'ternary'},
   gl3d: {data: 'scene', layout: 'scene'},
   scene: {data: 'scene', layout: 'scene'},
@@ -88,6 +90,18 @@ export const SUBPLOT_TO_ATTR = {
   mapbox: {data: 'subplot', layout: 'mapbox'},
   polar: {data: 'subplot', layout: 'polar'},
 };
+
+export const subplotName = (type, _) =>
+  ({
+    x: _('X'),
+    y: _('Y'),
+    ternary: _('Ternary'),
+    gl3d: _('Scene'),
+    scene: _('Scene'),
+    geo: _('Geo'),
+    mapbox: _('Mapbox'),
+    polar: _('Polar'),
+  }[type]);
 
 export const TRANSFORMS_LIST = ['filter', 'groupby', 'aggregate'];
 

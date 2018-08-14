@@ -1,4 +1,4 @@
-import {TRACE_TO_AXIS} from 'lib/constants';
+import {TRACE_TO_AXIS, SUBPLOT_TO_ATTR, subplotName} from 'lib/constants';
 import {capitalize, striptags} from 'lib';
 
 export default function getAllAxes(fullLayout) {
@@ -72,7 +72,7 @@ export function axisIdToAxisName(id) {
   return id.charAt(0) + 'axis' + id.slice(1);
 }
 
-function getSubplotNumber(axis) {
+function getAxisNumber(axis) {
   const splitSubplot = axis._subplot
     ? axis._subplot.split(axis._axisGroup)
     : [];
@@ -83,9 +83,21 @@ function getSubplotNumber(axis) {
 
 export function getAxisTitle(axis) {
   const axisType = capitalize(axis._name.split('axis')[0]);
-  const subplotNumber = getSubplotNumber(axis) || 1;
+  const subplotNumber = getAxisNumber(axis) || 1;
 
   return axis._input && axis._input.title
     ? striptags(`${axisType}: ${axis._input.title}`)
     : striptags(`${axisType} ${subplotNumber}`);
+}
+
+function getSubplotNumber(subplot, type) {
+  return Number(subplot.split(type)[1]);
+}
+
+export function getSubplotTitle(subplot, type, _) {
+  const axisName = subplotName(type, _);
+  const subplotNumber =
+    getSubplotNumber(subplot, SUBPLOT_TO_ATTR[type].layout) || '';
+
+  return `${axisName} ${subplotNumber}`;
 }

@@ -21,11 +21,8 @@ import getAllAxes, {
   axisIdToAxisName,
   traceTypeToAxisType,
   getAxisTitle,
-} from './getAllAxes';
-import getAllSubplots, {
-  traceTypeToSubplotType,
   getSubplotTitle,
-} from './getAllSubplots';
+} from './getAllAxes';
 import localize, {localizeString} from './localize';
 import tinyColor from 'tinycolor2';
 import unpackPlotProps from './unpackPlotProps';
@@ -66,9 +63,18 @@ function renderTraceIcon(trace, prefix = 'Plot') {
     return null;
   }
   const gl = 'gl';
+
+  let tempTrace = trace;
+  if (tempTrace === 'cone') {
+    tempTrace = 'scatter3d';
+  } else if (tempTrace === 'streamtube') {
+    tempTrace = 'line3d';
+  }
+
   const componentName = `${prefix}${pascalCase(
-    trace.endsWith(gl) ? trace.slice(0, -gl.length) : trace
+    tempTrace.endsWith(gl) ? tempTrace.slice(0, -gl.length) : tempTrace
   )}Icon`;
+
   return PlotlyIcons[componentName]
     ? PlotlyIcons[componentName]
     : PlotlyIcons.PlotLineIcon;
@@ -242,8 +248,6 @@ export {
   dereference,
   getAllAxes,
   getAxisTitle,
-  getAllSubplots,
-  traceTypeToSubplotType,
   getSubplotTitle,
   getDisplayName,
   isPlainObject,

@@ -6,6 +6,7 @@ import {
   connectTraceToPlot,
   connectCartesianSubplotToLayout,
   connectNonCartesianSubplotToLayout,
+  getSubplotTitle,
 } from 'lib';
 import {TRACE_TO_AXIS, SUBPLOT_TO_ATTR} from 'lib/constants';
 
@@ -15,7 +16,7 @@ const CartesianSubplotFold = connectCartesianSubplotToLayout(PlotlyFold);
 
 class SubplotAccordion extends Component {
   render() {
-    const {data = [], layout = {}} = this.context;
+    const {data = [], layout = {}, localize: _} = this.context;
     const {children, messageIfEmptyFold} = this.props;
     const subplotFolds = [];
 
@@ -31,8 +32,12 @@ class SubplotAccordion extends Component {
           acc.push({
             xaxis: xaxis,
             yaxis: yaxis,
-            xaxisName: curVal.xaxis || 'x1',
-            yaxisName: curVal.yaxis || 'y1',
+            xaxisName: curVal.xaxis
+              ? getSubplotTitle(curVal.xaxis, 'x', _)
+              : 'X 1',
+            yaxisName: curVal.yaxis
+              ? getSubplotTitle(curVal.yaxis, 'y', _)
+              : 'Y 1',
             index: [inx],
           });
         } else {
@@ -52,7 +57,7 @@ class SubplotAccordion extends Component {
             messageIfEmpty={messageIfEmptyFold}
             xaxis={d.xaxis}
             yaxis={d.yaxis}
-            name={`${d.xaxisName} ${d.yaxisName}`}
+            name={`${d.xaxisName} | ${d.yaxisName}`}
           >
             {children}
           </CartesianSubplotFold>
@@ -87,8 +92,10 @@ class SubplotAccordion extends Component {
 
     Object.keys(layout).forEach(layoutKey => {
       const traceIndexes = [];
+      let subplotName;
       if (
         ['geo', 'mapbox', 'polar', 'gl3d', 'ternary'].some(subplotType => {
+          subplotName = getSubplotTitle(layoutKey, subplotType, _);
           const trIndex =
             SUBPLOT_TO_ATTR[subplotType].layout === layoutKey
               ? data.findIndex(trace =>
@@ -111,7 +118,7 @@ class SubplotAccordion extends Component {
             canDelete={false}
             messageIfEmpty={messageIfEmptyFold}
             subplot={layoutKey}
-            name={layoutKey}
+            name={subplotName}
           >
             {children}
           </NonCartesianSubplotFold>
@@ -119,15 +126,26 @@ class SubplotAccordion extends Component {
       }
     });
 
+    let pieCounter = 0;
+    let tableCounter = 0;
     data.forEach((d, i) => {
       if ((d.type === 'pie' && d.values) || d.type === 'table') {
+        if (d.type === 'pie') {
+          pieCounter++;
+        } else if (d.type === 'table') {
+          tableCounter++;
+        }
         subplotFolds[i] = (
           <TraceFold
             key={i}
             traceIndexes={[i]}
             canDelete={false}
             messageIfEmpty={messageIfEmptyFold}
-            name={`${d.type} ${i}`}
+            name={
+              d.type === 'pie'
+                ? `${_('Pie')} ${pieCounter > 1 ? pieCounter : ''}`
+                : `${_('Table')} ${tableCounter > 1 ? tableCounter : ''}`
+            }
           >
             {children}
           </TraceFold>

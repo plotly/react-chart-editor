@@ -131,7 +131,7 @@ class UnconnectedSubplotCreator extends Component {
 
     function getOptions(subplotType) {
       return fullLayout._subplots[subplotType].map(subplotId => ({
-        label: getSubplotTitle(subplotId, subplotType),
+        label: getSubplotTitle(subplotId, subplotType, _),
         value: subplotId,
       }));
     }
