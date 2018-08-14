@@ -18,7 +18,9 @@ import {
 
 const StyleColorBarsPanel = (props, {localize: _}) => {
   return (
-    <TraceAccordion messageIfEmptyFold="Need a color scale for a colorbar!">
+    <TraceAccordion
+      messageIfEmptyFold={_('Need a color scale for a colorbar!')}
+    >
       {['', 'marker.'].map(prefix => {
         return (
           <VisibilitySelect

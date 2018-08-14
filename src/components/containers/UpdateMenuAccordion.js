@@ -38,19 +38,7 @@ class UpdateMenuAccordion extends Component {
         );
       });
 
-    return (
-      <TraceRequiredPanel
-        extraConditions={[() => updatemenus.length > 0]}
-        extraEmptyPanelMessages={[
-          {
-            heading: _('There are no update menus to style in your plot'),
-            message: '',
-          },
-        ]}
-      >
-        {content ? content : null}
-      </TraceRequiredPanel>
-    );
+    return <TraceRequiredPanel>{content ? content : null}</TraceRequiredPanel>;
   }
 }
 

@@ -22,19 +22,7 @@ class SliderAccordion extends Component {
         </SliderFold>
       ));
 
-    return (
-      <TraceRequiredPanel
-        extraConditions={[() => sliders.length > 0]}
-        extraEmptyPanelMessages={[
-          {
-            heading: _('There are no sliders to style in your plot'),
-            message: '',
-          },
-        ]}
-      >
-        {content ? content : null}
-      </TraceRequiredPanel>
-    );
+    return <TraceRequiredPanel>{content ? content : null}</TraceRequiredPanel>;
   }
 }
 

@@ -17,8 +17,58 @@ import {
   StyleUpdateMenusPanel,
 } from './default_panels';
 import Logo from './components/widgets/Logo';
+import {TRANSFORMABLE_TRACES} from './lib/constants';
 
 class DefaultEditor extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.hasTransforms = this.hasTransforms.bind(this);
+    this.hasAxes = this.hasAxes.bind(this);
+    this.hasMenus = this.hasMenus.bind(this);
+    this.hasSliders = this.hasSliders.bind(this);
+    this.hasColorbars = this.hasColorbars.bind(this);
+  }
+
+  hasTransforms() {
+    return this.context.fullData.some(d =>
+      TRANSFORMABLE_TRACES.includes(d.type)
+    );
+  }
+
+  hasAxes() {
+    return (
+      Object.keys(this.context.fullLayout._subplots).filter(
+        type =>
+          !['cartesian', 'mapbox'].includes(type) &&
+          this.context.fullLayout._subplots[type].length > 0
+      ).length > 0
+    );
+  }
+
+  hasMenus() {
+    const {
+      fullLayout: {updatemenus = []},
+    } = this.context;
+
+    return updatemenus.length > 0;
+  }
+
+  hasSliders() {
+    const {
+      layout: {sliders = []},
+    } = this.context;
+
+    return sliders.length > 0;
+  }
+
+  hasColorbars() {
+    return this.context.fullData.some(
+      d =>
+        (d.marker && d.marker.showscale !== undefined) || // eslint-disable-line no-undefined
+        d.showscale !== undefined // eslint-disable-line no-undefined
+    );
+  }
+
   render() {
     const _ = this.context.localize;
     const logo = this.props.logoSrc && <Logo src={this.props.logoSrc} />;
@@ -28,17 +78,27 @@ class DefaultEditor extends Component {
         {logo ? logo : null}
         <GraphCreatePanel group={_('Graph')} name={_('Create')} />
         <GraphSubplotsPanel group={_('Graph')} name={_('Subplots')} />
-        <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />
+        {this.hasTransforms() && (
+          <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />
+        )}
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
         <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
-        <StyleAxesPanel group={_('Style')} name={_('Axes')} />
+        {this.hasAxes() && (
+          <StyleAxesPanel group={_('Style')} name={_('Axes')} />
+        )}
         <StyleLegendPanel group={_('Style')} name={_('Legend')} />
-        <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />
+        {this.hasColorbars() && (
+          <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />
+        )}
         <StyleNotesPanel group={_('Style')} name={_('Annotations')} />
         <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
         <StyleImagesPanel group={_('Style')} name={_('Images')} />
-        <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />
-        <StyleUpdateMenusPanel group={_('Style')} name={_('Menus')} />
+        {this.hasSliders() && (
+          <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />
+        )}
+        {this.hasMenus() && (
+          <StyleUpdateMenusPanel group={_('Style')} name={_('Menus')} />
+        )}
         {this.props.children ? this.props.children : null}
       </PanelMenuWrapper>
     );
@@ -52,6 +112,9 @@ DefaultEditor.propTypes = {
 
 DefaultEditor.contextTypes = {
   localize: PropTypes.func,
+  fullData: PropTypes.array,
+  fullLayout: PropTypes.object,
+  layout: PropTypes.object,
 };
 
 export default DefaultEditor;

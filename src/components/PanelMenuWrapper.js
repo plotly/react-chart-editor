@@ -23,6 +23,12 @@ class PanelsWithSidebar extends Component {
     this.setState({group, panel});
   }
 
+  getChildContext() {
+    return {
+      setPanel: this.setPanel,
+    };
+  }
+
   renderSection(section, i) {
     if (
       section.type &&
@@ -98,6 +104,10 @@ class PanelsWithSidebar extends Component {
 
 PanelsWithSidebar.propTypes = {
   children: PropTypes.node,
+};
+
+PanelsWithSidebar.childContextTypes = {
+  setPanel: PropTypes.func,
 };
 
 export default PanelsWithSidebar;

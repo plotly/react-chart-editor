@@ -31,6 +31,10 @@
     display: flex;
     flex-grow: 1;
   }
+  a {
+    color: $color-dodger-shade;
+    cursor: pointer;
+  }
 }
 
 .plotly_editor {

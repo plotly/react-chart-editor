@@ -165,9 +165,11 @@ class UnconnectedAxesCreator extends Component {
       <PlotlySection name={_('Axes to Use')}>
         {controls}
         <Info>
-          {_(
-            'You can style and position your axes in the Graph > Subplots Panel'
-          )}
+          {_('You can style and position your axes in the ')}
+          <a onClick={() => this.context.setPanel('Graph', 'Subplots')}>
+            {_('Subplots')}
+          </a>
+          {_(' panel.')}
         </Info>
       </PlotlySection>
     );
@@ -184,6 +186,7 @@ UnconnectedAxesCreator.contextTypes = {
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,
   localize: PropTypes.func,
+  setPanel: PropTypes.func,
 };
 
 export default connectToContainer(UnconnectedAxesCreator, {

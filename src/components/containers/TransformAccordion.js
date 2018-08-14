@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import {connectTransformToTrace} from 'lib';
 import FoldEmpty from './FoldEmpty';
 import {PlotScatterIcon} from 'plotly-icons';
+import {TRANSFORMABLE_TRACES} from 'lib/constants';
 
 const TransformFold = connectTransformToTrace(PlotlyFold);
 
@@ -26,17 +27,7 @@ class TransformAccordion extends Component {
       {label: _('Sort'), type: 'sort'},
     ];
 
-    const transformableCharts = [
-      'scatter',
-      'bar',
-      'scattergl',
-      'histogram',
-      'histogram2d',
-      'box',
-      'violin',
-    ];
-
-    if (!transformableCharts.includes(fullContainer.type)) {
+    if (!TRANSFORMABLE_TRACES.includes(fullContainer.type)) {
       return (
         <FoldEmpty
           icon={PlotScatterIcon}
