@@ -3,15 +3,8 @@ import plotly from 'plotly.js/dist/plotly';
 import PlotlyEditor from 'react-chart-editor';
 import 'react-chart-editor/lib/react-chart-editor.css';
 import Nav from './Nav';
+import dataSources from './dataSources';
 
-const dataSources = {
-  col1: ['Jan', 'Feb', 'Mar'], // eslint-disable-line no-magic-numbers
-  col2: [1, 2, 3],
-  col3: [4, 3, 2], // eslint-disable-line no-magic-numbers
-  col4: [17, 13, 9], // eslint-disable-line no-magic-numbers
-  col5: ['blue'],
-  col6: ['yellow', 'green', 'yellow'],
-};
 const dataSourceOptions = Object.keys(dataSources).map(name => ({
   value: name,
   label: name,
