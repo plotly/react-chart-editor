@@ -8,6 +8,7 @@ import {
   UpdateMenuAccordion,
   UpdateMenuButtons,
   VisibilitySelect,
+  Radio,
 } from '../components';
 
 const StyleUpdateMenusPanel = (props, {localize: _}) => (
@@ -35,6 +36,32 @@ const StyleUpdateMenusPanel = (props, {localize: _}) => (
         <Numeric label={_('Width')} attr="borderwidth" />
         <ColorPicker label={_('Color')} attr="bordercolor" />
       </PlotlySection>
+
+      <PlotlySection name={_('Horizontal Positioning')} attr={'x'}>
+        <Numeric label={_('Position')} attr={'x'} showSlider step={0.02} />
+        <Radio
+          label={_('Anchor')}
+          attr={'xanchor'}
+          options={[
+            {label: _('Left'), value: 'left'},
+            {label: _('Center'), value: 'center'},
+            {label: _('Right'), value: 'right'},
+          ]}
+        />
+      </PlotlySection>
+      <PlotlySection name={_('Vertical Positioning')} attr={'y'}>
+        <Numeric label={_('Position')} attr={'y'} showSlider step={0.02} />
+        <Radio
+          label={_('Anchor')}
+          attr={'yanchor'}
+          options={[
+            {label: _('Top'), value: 'top'},
+            {label: _('Middle'), value: 'middle'},
+            {label: _('Bottom'), value: 'bottom'},
+          ]}
+        />
+      </PlotlySection>
+
       <PlotlySection name={_('Padding')}>
         <Numeric label={_('Top')} attr="pad.t" units="px" />
         <Numeric label={_('Bottom')} attr="pad.b" units="px" />
