@@ -11,56 +11,32 @@ class TraceRequiredPanel extends Component {
   render() {
     const {localize: _} = this.context;
     const {children, ...rest} = this.props;
-    let showPanel = true;
-    const emptyPanelMessage = {heading: '', message: ''};
 
-    const noTraceMessage = {
-      heading: _("Looks like there aren't any traces defined yet."),
-      message: _("Go to the 'Create' tab to define traces."),
-    };
-
-    const conditions = [() => this.hasTrace()].concat(
-      this.props.extraConditions ? this.props.extraConditions : []
-    );
-
-    const messages = [noTraceMessage].concat(
-      this.props.extraEmptyPanelMessages
-        ? this.props.extraEmptyPanelMessages
-        : []
-    );
-
-    if (this.props.visible) {
-      conditions.forEach((condition, index) => {
-        if (!showPanel) {
-          return;
-        }
-        if (!condition()) {
-          showPanel = false;
-          emptyPanelMessage.heading = messages[index].heading;
-          emptyPanelMessage.message = messages[index].message;
-        }
-      });
-
-      if (showPanel) {
-        return <LayoutPanel {...rest}>{children}</LayoutPanel>;
-      }
-
-      return (
-        <PanelEmpty
-          heading={emptyPanelMessage.heading}
-          message={emptyPanelMessage.message}
-        />
-      );
+    if (!this.props.visible) {
+      return null;
     }
-    return null;
+
+    return this.hasTrace() ? (
+      <LayoutPanel {...rest}>{children}</LayoutPanel>
+    ) : (
+      <PanelEmpty
+        heading={_("Looks like there aren't any traces defined yet.")}
+      >
+        <p>
+          {_('Go to the ')}
+          <a onClick={() => this.context.setPanel('Graph', 'Create')}>
+            {_('Create')}
+          </a>
+          {_(' panel to define traces.')}
+        </p>
+      </PanelEmpty>
+    );
   }
 }
 
 TraceRequiredPanel.propTypes = {
   children: PropTypes.node,
   visible: PropTypes.bool,
-  extraConditions: PropTypes.array,
-  extraEmptyPanelMessages: PropTypes.array,
 };
 
 TraceRequiredPanel.defaultProps = {
