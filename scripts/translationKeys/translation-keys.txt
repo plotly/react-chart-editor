@@ -1,70 +1,72 @@
  Axis                                                                                                        // /components/fields/AxesCreator.js:157
+ panel to define traces.                                                                                     // /components/containers/TraceRequiredPanel.js:30
+ panel.                                                                                                      // /components/fields/AxesCreator.js:172
  to upload here or click to choose a file from your computer.                                                // /components/widgets/Dropzone.js:56
  to us.                                                                                                      // /components/widgets/Dropzone.js:146
-#                                                                                                            // /default_panels/StyleAxesPanel.js:253
-$                                                                                                            // /default_panels/StyleAxesPanel.js:252
+#                                                                                                            // /default_panels/StyleAxesPanel.js:230
+$                                                                                                            // /default_panels/StyleAxesPanel.js:229
 %                                                                                                            // /components/fields/derived.js:532
-135                                                                                                          // /default_panels/StyleAxesPanel.js:219
-180                                                                                                          // /default_panels/StyleAxesPanel.js:220
+135                                                                                                          // /default_panels/StyleAxesPanel.js:196
+180                                                                                                          // /default_panels/StyleAxesPanel.js:197
 1:110,000,000                                                                                                // /default_panels/GraphSubplotsPanel.js:211
 1:50,000,000                                                                                                 // /default_panels/GraphSubplotsPanel.js:212
 2D Contour Histogram                                                                                         // /lib/computeTraceOptionsFromSchema.js:35
 2D Histogram                                                                                                 // /lib/computeTraceOptionsFromSchema.js:31
 3D                                                                                                           // /lib/traceTypes.js:33
-3D Line                                                                                                      // /lib/computeTraceOptionsFromSchema.js:139
+3D Line                                                                                                      // /lib/computeTraceOptionsFromSchema.js:147
 3D Mesh                                                                                                      // /lib/computeTraceOptionsFromSchema.js:63
 3D Scatter                                                                                                   // /lib/computeTraceOptionsFromSchema.js:55
-3D Surface                                                                                                   // /lib/traceTypes.js:101
+3D Surface                                                                                                   // /lib/traceTypes.js:102
 3D charts                                                                                                    // /lib/traceTypes.js:13
-45                                                                                                           // /default_panels/StyleAxesPanel.js:217
-90                                                                                                           // /default_panels/StyleAxesPanel.js:218
-@                                                                                                            // /default_panels/StyleAxesPanel.js:254
+45                                                                                                           // /default_panels/StyleAxesPanel.js:194
+90                                                                                                           // /default_panels/StyleAxesPanel.js:195
+@                                                                                                            // /default_panels/StyleAxesPanel.js:231
 A                                                                                                            // /components/fields/derived.js:583
 Above                                                                                                        // /default_panels/StyleImagesPanel.js:40
-Active Color                                                                                                 // /default_panels/StyleAxesPanel.js:435
+Active Color                                                                                                 // /default_panels/StyleAxesPanel.js:412
 Africa                                                                                                       // /default_panels/GraphSubplotsPanel.js:79
-Aggregate                                                                                                    // /components/containers/TransformAccordion.js:25
-Aggregations                                                                                                 // /default_panels/GraphTransformsPanel.js:91
+Aggregate                                                                                                    // /components/containers/TransformAccordion.js:26
+Aggregations                                                                                                 // /default_panels/GraphTransformsPanel.js:28
 Aitoff                                                                                                       // /default_panels/GraphSubplotsPanel.js:113
 Albers USA                                                                                                   // /default_panels/GraphSubplotsPanel.js:94
-All                                                                                                          // /default_panels/StyleAxesPanel.js:401
+All                                                                                                          // /default_panels/StyleAxesPanel.js:378
 All points in a trace are colored in the same color.                                                         // /components/fields/MarkerColor.js:188
 All traces will be colored in the the same color.                                                            // /components/fields/MarkerColor.js:122
 All will be colored in the same color.                                                                       // /components/fields/MultiColorPicker.js:93
 Ambient                                                                                                      // /default_panels/StyleTracesPanel.js:456
-Anchor                                                                                                       // /default_panels/StyleColorbarsPanel.js:96
-Anchor Point                                                                                                 // /default_panels/StyleAxesPanel.js:450
+Anchor                                                                                                       // /default_panels/StyleColorbarsPanel.js:98
+Anchor Point                                                                                                 // /default_panels/StyleAxesPanel.js:427
 Anchor to                                                                                                    // /default_panels/GraphSubplotsPanel.js:31
-Angle                                                                                                        // /default_panels/StyleAxesPanel.js:212
+Angle                                                                                                        // /default_panels/StyleAxesPanel.js:189
 Annotation                                                                                                   // /components/containers/AnnotationAccordion.js:31
 AnnotationArrowRef must be given either "axref" or "ayref" as attrs. Instead was given                       // /components/fields/derived.js:350
 AnnotationRef must be given either "xref" or "yref" as attrs. Instead was given                              // /components/fields/derived.js:398
-Annotations                                                                                                  // /DefaultEditor.js:37
+Annotations                                                                                                  // /DefaultEditor.js:93
 Area                                                                                                         // /default_panels/StyleTracesPanel.js:235
 Arrow                                                                                                        // /default_panels/StyleNotesPanel.js:27
 Arrowhead                                                                                                    // /default_panels/StyleNotesPanel.js:37
-Ascending                                                                                                    // /default_panels/GraphTransformsPanel.js:86
+Ascending                                                                                                    // /default_panels/GraphTransformsPanel.js:90
 Asia                                                                                                         // /default_panels/GraphSubplotsPanel.js:78
 Aspect Ratio                                                                                                 // /default_panels/GraphSubplotsPanel.js:46
 Asymmetric                                                                                                   // /components/fields/ErrorBars.js:82
-Atlas Map                                                                                                    // /lib/computeTraceOptionsFromSchema.js:67
+Atlas Map                                                                                                    // /lib/computeTraceOptionsFromSchema.js:75
 Auto                                                                                                         // /components/fields/derived.js:517
-Auto margins                                                                                                 // /default_panels/StyleAxesPanel.js:201
-Average                                                                                                      // /default_panels/GraphTransformsPanel.js:40
+Auto margins                                                                                                 // /default_panels/StyleAxesPanel.js:178
+Average                                                                                                      // /default_panels/GraphTransformsPanel.js:42
 Average X                                                                                                    // /components/fields/derived.js:160
 Average Y                                                                                                    // /components/fields/derived.js:153
-Axes                                                                                                         // /DefaultEditor.js:34
+Axes                                                                                                         // /DefaultEditor.js:87
 Axes to Use                                                                                                  // /components/fields/AxesCreator.js:165
 AxesSelector must be nested within a connectAxesToPlot component                                             // /components/fields/AxesSelector.js:14
-Axis Background                                                                                              // /default_panels/StyleAxesPanel.js:173
-Axis Line                                                                                                    // /default_panels/StyleAxesPanel.js:110
+Axis Background                                                                                              // /default_panels/StyleAxesPanel.js:150
+Axis Line                                                                                                    // /default_panels/StyleAxesPanel.js:87
 Axis to Style                                                                                                // /components/fields/AxesSelector.js:53
 Azimuthal Equal Area                                                                                         // /default_panels/GraphSubplotsPanel.js:100
 Azimuthal Equidistant                                                                                        // /default_panels/GraphSubplotsPanel.js:102
 B                                                                                                            // /components/fields/derived.js:584
 Background                                                                                                   // /default_panels/StyleSlidersPanel.js:21
-Background Color                                                                                             // /default_panels/StyleAxesPanel.js:359
-Backward                                                                                                     // /default_panels/StyleAxesPanel.js:410
+Background Color                                                                                             // /default_panels/StyleAxesPanel.js:336
+Backward                                                                                                     // /default_panels/StyleAxesPanel.js:387
 Bandwidth                                                                                                    // /default_panels/StyleTracesPanel.js:506
 Bar                                                                                                          // /lib/computeTraceOptionsFromSchema.js:19
 Bar Mode                                                                                                     // /default_panels/StyleTracesPanel.js:256
@@ -79,7 +81,7 @@ Blank                                                                           
 Border                                                                                                       // /default_panels/StyleSlidersPanel.js:25
 Border Color                                                                                                 // /default_panels/GraphSubplotsPanel.js:128
 Border Width                                                                                                 // /default_panels/GraphSubplotsPanel.js:127
-Borders and Background                                                                                       // /default_panels/StyleColorbarsPanel.js:310
+Borders and Background                                                                                       // /default_panels/StyleColorbarsPanel.js:312
 Both                                                                                                         // /default_panels/StyleTracesPanel.js:529
 Bottom                                                                                                       // /components/fields/derived.js:103
 Bottom Center                                                                                                // /components/fields/derived.js:510
@@ -94,43 +96,44 @@ Box Mean                                                                        
 Box Mode                                                                                                     // /default_panels/StyleTracesPanel.js:246
 Box Padding                                                                                                  // /default_panels/StyleTracesPanel.js:254
 Box Width                                                                                                    // /default_panels/StyleTracesPanel.js:253
-Boxes                                                                                                        // /components/fields/derived.js:656
-Boxes and Points                                                                                             // /components/fields/derived.js:658
+Boxes                                                                                                        // /components/fields/derived.js:667
+Boxes and Points                                                                                             // /components/fields/derived.js:669
 Button                                                                                                       // /components/containers/RangeSelectorAccordion.js:43
 Button Labels                                                                                                // /default_panels/StyleUpdateMenusPanel.js:22
 Buttons                                                                                                      // /components/containers/UpdateMenuAccordion.js:22
-By                                                                                                           // /default_panels/GraphTransformsPanel.js:77
+By                                                                                                           // /default_panels/GraphTransformsPanel.js:81
 By Type                                                                                                      // /components/containers/TraceAccordion.js:153
 C                                                                                                            // /components/fields/derived.js:585
-Candlestick                                                                                                  // /lib/computeTraceOptionsFromSchema.js:115
+Candlestick                                                                                                  // /lib/computeTraceOptionsFromSchema.js:123
 Canvas                                                                                                       // /components/fields/derived.js:408
-Carpet                                                                                                       // /lib/computeTraceOptionsFromSchema.js:99
-Carpet Contour                                                                                               // /lib/computeTraceOptionsFromSchema.js:107
-Carpet Scatter                                                                                               // /lib/computeTraceOptionsFromSchema.js:103
-Categorical                                                                                                  // /default_panels/StyleAxesPanel.js:74
-Cell Options                                                                                                 // /default_panels/GraphCreatePanel.js:112
+Carpet                                                                                                       // /lib/computeTraceOptionsFromSchema.js:107
+Carpet Contour                                                                                               // /lib/computeTraceOptionsFromSchema.js:115
+Carpet Scatter                                                                                               // /lib/computeTraceOptionsFromSchema.js:111
+Categorical                                                                                                  // /default_panels/StyleAxesPanel.js:51
+Cell Options                                                                                                 // /default_panels/GraphCreatePanel.js:115
 Cells                                                                                                        // /default_panels/StyleTracesPanel.js:114
-Center                                                                                                       // /default_panels/StyleAxesPanel.js:456
-Change                                                                                                       // /default_panels/GraphTransformsPanel.js:49
+Center                                                                                                       // /default_panels/StyleAxesPanel.js:433
+Change                                                                                                       // /default_panels/GraphTransformsPanel.js:51
 Charts like this by Plotly users.                                                                            // /components/widgets/TraceTypeSelector.js:82
-Choropleth                                                                                                   // /lib/computeTraceOptionsFromSchema.js:71
+Choropleth                                                                                                   // /lib/computeTraceOptionsFromSchema.js:79
 Clockwise                                                                                                    // /components/fields/derived.js:113
 Close                                                                                                        // /default_panels/GraphCreatePanel.js:78
-Closest                                                                                                      // /components/fields/derived.js:688
+Closest                                                                                                      // /components/fields/derived.js:699
 Coastlines                                                                                                   // /default_panels/GraphSubplotsPanel.js:141
 Collapse All                                                                                                 // /components/containers/PanelHeader.js:41
 Color                                                                                                        // /components/fields/ErrorBars.js:113
 Color Bar                                                                                                    // /components/fields/MarkerColor.js:211
-Color Bar Container                                                                                          // /default_panels/StyleColorbarsPanel.js:325
-Color Bars                                                                                                   // /DefaultEditor.js:36
+Color Bar Container                                                                                          // /default_panels/StyleColorbarsPanel.js:327
+Color Bars                                                                                                   // /DefaultEditor.js:91
 Coloring                                                                                                     // /default_panels/StyleTracesPanel.js:425
 Colors                                                                                                       // /default_panels/StyleTracesPanel.js:56
 Colorscale                                                                                                   // /default_panels/StyleTracesPanel.js:316
 Colorscale Direction                                                                                         // /components/fields/MarkerColor.js:203
 Colorscale Range                                                                                             // /components/fields/MarkerColor.js:219
-Column Options                                                                                               // /default_panels/GraphCreatePanel.js:118
-Columns                                                                                                      // /default_panels/GraphCreatePanel.js:83
+Column Options                                                                                               // /default_panels/GraphCreatePanel.js:121
+Columns                                                                                                      // /default_panels/GraphCreatePanel.js:86
 Common Case: An 'All' tab might display this message because the X and Y tabs contain different settings.    // /lib/constants.js:24
+Cone                                                                                                         // /lib/computeTraceOptionsFromSchema.js:67
 Conic Conformal                                                                                              // /default_panels/GraphSubplotsPanel.js:106
 Conic Equal Area                                                                                             // /default_panels/GraphSubplotsPanel.js:105
 Conic Equidistant                                                                                            // /default_panels/GraphSubplotsPanel.js:107
@@ -149,15 +152,15 @@ Contour Width                                                                   
 Contours                                                                                                     // /default_panels/StyleTracesPanel.js:423
 Copy Y Style                                                                                                 // /components/fields/ErrorBars.js:97
 Copy Z Style                                                                                                 // /components/fields/ErrorBars.js:105
-Count                                                                                                        // /default_panels/GraphTransformsPanel.js:38
+Count                                                                                                        // /default_panels/GraphTransformsPanel.js:40
 Count X                                                                                                      // /components/fields/derived.js:151
 Count Y                                                                                                      // /components/fields/derived.js:158
-Counter Clockwise                                                                                            // /default_panels/StyleAxesPanel.js:103
+Counter Clockwise                                                                                            // /default_panels/StyleAxesPanel.js:80
 Counterclockwise                                                                                             // /components/fields/derived.js:114
 Country Abbreviations (ISO-3)                                                                                // /components/fields/LocationSelector.js:32
 Country Borders                                                                                              // /default_panels/GraphSubplotsPanel.js:119
 Country Names                                                                                                // /components/fields/LocationSelector.js:31
-Create                                                                                                       // /DefaultEditor.js:29
+Create                                                                                                       // /components/containers/TraceRequiredPanel.js:28
 Crossbar Width                                                                                               // /components/fields/ErrorBars.js:118
 Cube                                                                                                         // /default_panels/GraphSubplotsPanel.js:51
 Cumulative                                                                                                   // /default_panels/StyleTracesPanel.js:68
@@ -165,24 +168,25 @@ Current Bin                                                                     
 Custom                                                                                                       // /components/fields/MarkerColor.js:223
 Custom Data                                                                                                  // /components/fields/ErrorBars.js:140
 Data                                                                                                         // /components/fields/ErrorBars.js:134
-Date                                                                                                         // /default_panels/StyleAxesPanel.js:73
-Day                                                                                                          // /default_panels/StyleAxesPanel.js:397
+Date                                                                                                         // /default_panels/StyleAxesPanel.js:50
+Day                                                                                                          // /default_panels/StyleAxesPanel.js:374
 Decreasing                                                                                                   // /default_panels/StyleTracesPanel.js:82
 Decreasing Trace Styles                                                                                      // /default_panels/StyleTracesPanel.js:490
-Degrees                                                                                                      // /default_panels/GraphCreatePanel.js:95
+Degrees                                                                                                      // /default_panels/GraphCreatePanel.js:98
 Density                                                                                                      // /default_panels/StyleTracesPanel.js:63
-Descending                                                                                                   // /default_panels/GraphTransformsPanel.js:87
+Descending                                                                                                   // /default_panels/GraphTransformsPanel.js:91
 Diameter                                                                                                     // /default_panels/StyleTracesPanel.js:234
 Diffuse                                                                                                      // /default_panels/StyleTracesPanel.js:457
-Direction                                                                                                    // /default_panels/StyleAxesPanel.js:99
-Disable                                                                                                      // /components/fields/derived.js:691
-Disabled                                                                                                     // /default_panels/GraphTransformsPanel.js:73
+Direction                                                                                                    // /default_panels/StyleAxesPanel.js:76
+Disable                                                                                                      // /components/fields/derived.js:702
+Disabled                                                                                                     // /default_panels/GraphTransformsPanel.js:77
 Display                                                                                                      // /default_panels/StyleTracesPanel.js:132
 Distributions                                                                                                // /lib/traceTypes.js:21
+Divergence                                                                                                   // /components/fields/derived.js:609
 Drag Interaction                                                                                             // /default_panels/StyleLayoutPanel.js:38
 Drop the                                                                                                     // /components/widgets/Dropzone.js:53
 Dropdown                                                                                                     // /components/containers/UpdateMenuAccordion.js:21
-E+6                                                                                                          // /default_panels/StyleAxesPanel.js:239
+E+6                                                                                                          // /default_panels/StyleAxesPanel.js:216
 Each point in a trace is colored according to data.                                                          // /components/fields/MarkerColor.js:189
 Each trace will be colored according to the selected colorscale.                                             // /components/fields/MarkerColor.js:119
 Each will be colored according to the selected colors.                                                       // /components/fields/MultiColorPicker.js:89
@@ -190,8 +194,8 @@ Eckert 4                                                                        
 Edit in HTML                                                                                                 // /components/widgets/text_editors/MultiFormat.js:34
 Edit in Rich Text                                                                                            // /components/widgets/text_editors/MultiFormat.js:250
 Ellipse                                                                                                      // /default_panels/StyleShapesPanel.js:29
-Enable                                                                                                       // /default_panels/StyleAxesPanel.js:93
-Enabled                                                                                                      // /default_panels/GraphTransformsPanel.js:72
+Enable                                                                                                       // /default_panels/StyleAxesPanel.js:70
+Enabled                                                                                                      // /default_panels/GraphTransformsPanel.js:76
 End Point                                                                                                    // /default_panels/StyleShapesPanel.js:36
 Enter LaTeX formatted text                                                                                   // /components/fields/TextEditor.js:35
 Enter Link URL                                                                                               // /components/widgets/text_editors/RichText/LinkEditor.js:92
@@ -204,56 +208,57 @@ Error Bars Y                                                                    
 Error Bars Z                                                                                                 // /default_panels/StyleTracesPanel.js:604
 Error Type                                                                                                   // /components/fields/ErrorBars.js:128
 Europe                                                                                                       // /default_panels/GraphSubplotsPanel.js:77
-Every label                                                                                                  // /default_panels/StyleAxesPanel.js:265
+Every label                                                                                                  // /default_panels/StyleAxesPanel.js:242
 Exclude                                                                                                      // /components/fields/FilterOperation.js:30
 Exclude Range                                                                                                // /components/fields/FilterOperation.js:89
 Exclude Values                                                                                               // /components/fields/FilterOperation.js:97
 Expand All                                                                                                   // /components/containers/PanelHeader.js:46
-Exponents                                                                                                    // /default_panels/StyleAxesPanel.js:233
+Exponents                                                                                                    // /default_panels/StyleAxesPanel.js:210
 Face Normal                                                                                                  // /default_panels/StyleTracesPanel.js:466
-Facecolor                                                                                                    // /default_panels/GraphCreatePanel.js:125
-False                                                                                                        // /default_panels/StyleAxesPanel.js:205
+Facecolor                                                                                                    // /default_panels/GraphCreatePanel.js:128
+False                                                                                                        // /default_panels/StyleAxesPanel.js:182
 File loaded!                                                                                                 // /components/widgets/Dropzone.js:37
 Fill                                                                                                         // /default_panels/StyleImagesPanel.js:30
-Fill Color                                                                                                   // /default_panels/GraphCreatePanel.js:107
+Fill Color                                                                                                   // /default_panels/GraphCreatePanel.js:110
 Fill to                                                                                                      // /default_panels/StyleTracesPanel.js:335
 Filled Area                                                                                                  // /default_panels/StyleTracesPanel.js:334
-Fills                                                                                                        // /components/fields/derived.js:671
-Filter                                                                                                       // /components/containers/TransformAccordion.js:23
+Fills                                                                                                        // /components/fields/derived.js:682
+Filter                                                                                                       // /components/containers/TransformAccordion.js:24
 Finance                                                                                                      // /lib/traceTypes.js:17
-First                                                                                                        // /default_panels/GraphTransformsPanel.js:47
-First label                                                                                                  // /default_panels/StyleAxesPanel.js:266
+First                                                                                                        // /default_panels/GraphTransformsPanel.js:49
+First label                                                                                                  // /default_panels/StyleAxesPanel.js:243
 Fixed Width                                                                                                  // /default_panels/StyleLayoutPanel.js:30
 Fixed height                                                                                                 // /default_panels/StyleLayoutPanel.js:31
 Flatshading                                                                                                  // /default_panels/StyleTracesPanel.js:143
 Font                                                                                                         // /default_panels/StyleSlidersPanel.js:29
-Font Color                                                                                                   // /default_panels/GraphCreatePanel.js:108
-Font Size                                                                                                    // /default_panels/GraphCreatePanel.js:109
+Font Color                                                                                                   // /default_panels/GraphCreatePanel.js:111
+Font Size                                                                                                    // /default_panels/GraphCreatePanel.js:112
 Fraction                                                                                                     // /default_panels/StyleTracesPanel.js:271
-Fraction of Plot                                                                                             // /default_panels/StyleColorbarsPanel.js:67
+Fraction of Plot                                                                                             // /default_panels/StyleColorbarsPanel.js:69
 Free                                                                                                         // /components/fields/derived.js:35
 Fresnel                                                                                                      // /default_panels/StyleTracesPanel.js:460
 Gaps Between Cells                                                                                           // /default_panels/StyleTracesPanel.js:177
 Gaps in Data                                                                                                 // /default_panels/StyleTracesPanel.js:411
+Geo                                                                                                          // /lib/constants.js:101
 Global Font                                                                                                  // /default_panels/StyleLayoutPanel.js:60
 Gnomonic                                                                                                     // /default_panels/GraphSubplotsPanel.js:108
 Go back                                                                                                      // /components/widgets/text_editors/MultiFormat.js:198
-Go to the 'Create' tab to define traces.                                                                     // /components/containers/TraceRequiredPanel.js:19
-Gradians                                                                                                     // /default_panels/GraphCreatePanel.js:96
-Graph                                                                                                        // /DefaultEditor.js:29
-Grid Lines                                                                                                   // /default_panels/StyleAxesPanel.js:134
-Grid Spacing                                                                                                 // /default_panels/StyleAxesPanel.js:148
+Go to the                                                                                                    // /components/containers/TraceRequiredPanel.js:26
+Gradians                                                                                                     // /default_panels/GraphCreatePanel.js:99
+Graph                                                                                                        // /DefaultEditor.js:79
+Grid Lines                                                                                                   // /default_panels/StyleAxesPanel.js:111
+Grid Spacing                                                                                                 // /default_panels/StyleAxesPanel.js:125
 Group                                                                                                        // /default_panels/StyleTracesPanel.js:250
 Half                                                                                                         // /default_panels/StyleTracesPanel.js:91
 Hammer                                                                                                       // /default_panels/GraphSubplotsPanel.js:111
 Hard                                                                                                         // /default_panels/StyleTracesPanel.js:520
 Header                                                                                                       // /default_panels/StyleTracesPanel.js:96
-Header Options                                                                                               // /default_panels/GraphCreatePanel.js:106
-Headers                                                                                                      // /default_panels/GraphCreatePanel.js:82
+Header Options                                                                                               // /default_panels/GraphCreatePanel.js:109
+Headers                                                                                                      // /default_panels/GraphCreatePanel.js:85
 Heads up!                                                                                                    // /components/widgets/text_editors/MultiFormat.js:181
 Heatmap                                                                                                      // /default_panels/StyleTracesPanel.js:406
-Heatmap GL                                                                                                   // /lib/computeTraceOptionsFromSchema.js:83
-Height                                                                                                       // /default_panels/StyleAxesPanel.js:357
+Heatmap GL                                                                                                   // /lib/computeTraceOptionsFromSchema.js:91
+Height                                                                                                       // /default_panels/StyleAxesPanel.js:334
 Hide                                                                                                         // /components/fields/MarkerColor.js:215
 High                                                                                                         // /default_panels/GraphCreatePanel.js:76
 Histogram                                                                                                    // /lib/computeTraceOptionsFromSchema.js:27
@@ -263,15 +268,15 @@ Horizontal                                                                      
 Horizontal Boundaries                                                                                        // /default_panels/StyleShapesPanel.js:33
 Horizontal Gap                                                                                               // /default_panels/StyleTracesPanel.js:178
 Horizontal Gaps                                                                                              // /default_panels/StyleTracesPanel.js:407
-Horizontal Positioning                                                                                       // /default_panels/StyleAxesPanel.js:448
-Hour                                                                                                         // /default_panels/StyleAxesPanel.js:398
+Horizontal Positioning                                                                                       // /default_panels/StyleAxesPanel.js:425
+Hour                                                                                                         // /default_panels/StyleAxesPanel.js:375
 Hover Action                                                                                                 // /default_panels/StyleTracesPanel.js:586
 Hover Interaction                                                                                            // /default_panels/StyleLayoutPanel.js:36
-Hover Projections                                                                                            // /default_panels/StyleAxesPanel.js:479
+Hover Projections                                                                                            // /default_panels/StyleAxesPanel.js:456
 Hover on                                                                                                     // /default_panels/StyleTracesPanel.js:587
 I (Optional)                                                                                                 // /default_panels/GraphCreatePanel.js:72
 Image                                                                                                        // /components/containers/ImageAccordion.js:26
-Images                                                                                                       // /DefaultEditor.js:39
+Images                                                                                                       // /DefaultEditor.js:95
 Include                                                                                                      // /components/fields/FilterOperation.js:29
 Include Range                                                                                                // /components/fields/FilterOperation.js:85
 Include Values                                                                                               // /components/fields/FilterOperation.js:93
@@ -280,45 +285,45 @@ Increasing Trace Styles                                                         
 Individually                                                                                                 // /components/containers/TraceAccordion.js:152
 Inequality                                                                                                   // /components/fields/FilterOperation.js:81
 Inside                                                                                                       // /components/fields/derived.js:515
-Intensity                                                                                                    // /default_panels/GraphCreatePanel.js:124
+Intensity                                                                                                    // /default_panels/GraphCreatePanel.js:127
 Interpolate Gaps                                                                                             // /default_panels/StyleTracesPanel.js:415
 J (Optional)                                                                                                 // /default_panels/GraphCreatePanel.js:73
 Jitter                                                                                                       // /default_panels/StyleTracesPanel.js:221
 K (Optional)                                                                                                 // /default_panels/GraphCreatePanel.js:74
-KDE                                                                                                          // /components/fields/derived.js:664
+KDE                                                                                                          // /components/fields/derived.js:675
 Kavrayskiy 7                                                                                                 // /default_panels/GraphSubplotsPanel.js:98
 LaTeX                                                                                                        // /components/widgets/text_editors/MultiFormat.js:29
 LaTeX is a math typesetting language that doesn't work with rich text.                                       // /components/widgets/text_editors/MultiFormat.js:115
 Label                                                                                                        // /components/fields/derived.js:530
-Label Prefix                                                                                                 // /default_panels/StyleColorbarsPanel.js:190
-Label Suffix                                                                                                 // /default_panels/StyleColorbarsPanel.js:216
+Label Prefix                                                                                                 // /default_panels/StyleColorbarsPanel.js:192
+Label Suffix                                                                                                 // /default_panels/StyleColorbarsPanel.js:218
 Labels                                                                                                       // /default_panels/GraphCreatePanel.js:28
 Lakes                                                                                                        // /default_panels/GraphSubplotsPanel.js:172
 Land                                                                                                         // /default_panels/GraphSubplotsPanel.js:162
-Last                                                                                                         // /default_panels/GraphTransformsPanel.js:48
-Last label                                                                                                   // /default_panels/StyleAxesPanel.js:267
+Last                                                                                                         // /default_panels/GraphTransformsPanel.js:50
+Last label                                                                                                   // /default_panels/StyleAxesPanel.js:244
 Lat/Lon                                                                                                      // /components/fields/LocationSelector.js:99
 Latitude                                                                                                     // /components/fields/derived.js:573
-Layout                                                                                                       // /DefaultEditor.js:33
+Layout                                                                                                       // /DefaultEditor.js:85
 Left                                                                                                         // /components/fields/derived.js:94
 Legend                                                                                                       // /default_panels/StyleLegendPanel.js:16
 Legend Box                                                                                                   // /default_panels/StyleLegendPanel.js:29
 Legth                                                                                                        // /default_panels/StyleSlidersPanel.js:42
-Length                                                                                                       // /default_panels/StyleAxesPanel.js:327
+Length                                                                                                       // /default_panels/StyleAxesPanel.js:304
 Light Position                                                                                               // /default_panels/StyleTracesPanel.js:470
 Lighting                                                                                                     // /default_panels/StyleTracesPanel.js:455
 Line                                                                                                         // /default_panels/StyleShapesPanel.js:27
 Line Color                                                                                                   // /default_panels/StyleTracesPanel.js:478
 Line Width                                                                                                   // /default_panels/StyleNotesPanel.js:35
-Linear                                                                                                       // /default_panels/StyleAxesPanel.js:71
-Lines                                                                                                        // /default_panels/StyleAxesPanel.js:109
+Linear                                                                                                       // /default_panels/StyleAxesPanel.js:48
+Lines                                                                                                        // /default_panels/StyleAxesPanel.js:86
 Loading...                                                                                                   // /components/widgets/Dropzone.js:127
 Location                                                                                                     // /components/fields/derived.js:564
 Location Format                                                                                              // /components/fields/LocationSelector.js:27
 Locations                                                                                                    // /components/fields/LocationSelector.js:25
-Log                                                                                                          // /default_panels/StyleAxesPanel.js:72
+Log                                                                                                          // /default_panels/StyleAxesPanel.js:49
 Longitude                                                                                                    // /components/fields/derived.js:572
-Looks like there aren't any traces defined yet.                                                              // /components/containers/TraceRequiredPanel.js:18
+Looks like there aren't any traces defined yet.                                                              // /components/containers/TraceRequiredPanel.js:23
 Low                                                                                                          // /default_panels/GraphCreatePanel.js:77
 Lower < Target < Upper                                                                                       // /components/fields/FilterOperation.js:19
 Lower < Target ≤ Upper                                                                                       // /components/fields/FilterOperation.js:21
@@ -329,15 +334,16 @@ Manual                                                                          
 Map Frame                                                                                                    // /default_panels/GraphSubplotsPanel.js:194
 Map Options                                                                                                  // /default_panels/GraphSubplotsPanel.js:206
 Map Projection                                                                                               // /default_panels/GraphSubplotsPanel.js:70
+Mapbox                                                                                                       // /lib/constants.js:102
 Maps                                                                                                         // /lib/traceTypes.js:25
 Margin Color                                                                                                 // /default_panels/StyleLayoutPanel.js:34
 Margins and Padding                                                                                          // /default_panels/StyleLayoutPanel.js:70
 Max                                                                                                          // /components/fields/MarkerColor.js:229
 Max Contour                                                                                                  // /default_panels/StyleTracesPanel.js:453
 Max Contours                                                                                                 // /default_panels/StyleTracesPanel.js:449
-Max Number of Labels                                                                                         // /default_panels/StyleAxesPanel.js:307
-Max Number of Lines                                                                                          // /default_panels/StyleAxesPanel.js:158
-Max Number of Markers                                                                                        // /default_panels/StyleAxesPanel.js:341
+Max Number of Labels                                                                                         // /default_panels/StyleAxesPanel.js:284
+Max Number of Lines                                                                                          // /default_panels/StyleAxesPanel.js:135
+Max Number of Markers                                                                                        // /default_panels/StyleAxesPanel.js:318
 Max X Bins                                                                                                   // /default_panels/StyleTracesPanel.js:163
 Max Y Bins                                                                                                   // /default_panels/StyleTracesPanel.js:175
 Maximum X                                                                                                    // /components/fields/derived.js:162
@@ -347,10 +353,10 @@ Mean & SD                                                                       
 Meanline                                                                                                     // /default_panels/StyleTracesPanel.js:558
 Meanline Color                                                                                               // /default_panels/StyleTracesPanel.js:567
 Meanline Width                                                                                               // /default_panels/StyleTracesPanel.js:566
-Median                                                                                                       // /default_panels/GraphTransformsPanel.js:41
-Menus                                                                                                        // /DefaultEditor.js:41
+Median                                                                                                       // /default_panels/GraphTransformsPanel.js:43
+Menus                                                                                                        // /DefaultEditor.js:100
 Mercator                                                                                                     // /default_panels/GraphSubplotsPanel.js:91
-Middle                                                                                                       // /default_panels/StyleAxesPanel.js:470
+Middle                                                                                                       // /default_panels/StyleAxesPanel.js:447
 Middle Center                                                                                                // /components/fields/derived.js:507
 Middle Left                                                                                                  // /components/fields/derived.js:506
 Middle Right                                                                                                 // /components/fields/derived.js:508
@@ -360,21 +366,23 @@ Min Contour                                                                     
 Minimum Size                                                                                                 // /default_panels/StyleTracesPanel.js:238
 Minimum X                                                                                                    // /components/fields/derived.js:161
 Minimum Y                                                                                                    // /components/fields/derived.js:154
-Minute                                                                                                       // /default_panels/StyleAxesPanel.js:399
-Mirror Axis                                                                                                  // /default_panels/StyleAxesPanel.js:125
-Mode                                                                                                         // /default_panels/GraphTransformsPanel.js:42
+Minute                                                                                                       // /default_panels/StyleAxesPanel.js:376
+Mirror Axis                                                                                                  // /default_panels/StyleAxesPanel.js:102
+Mode                                                                                                         // /default_panels/GraphTransformsPanel.js:44
 Mollweide                                                                                                    // /default_panels/GraphSubplotsPanel.js:110
-Month                                                                                                        // /default_panels/StyleAxesPanel.js:396
+Month                                                                                                        // /default_panels/StyleAxesPanel.js:373
 Multiple                                                                                                     // /components/fields/MultiColorPicker.js:80
 Multiple Values                                                                                              // /lib/constants.js:18
 Name                                                                                                         // /default_panels/StyleTracesPanel.js:45
 Natural Earth                                                                                                // /default_panels/GraphSubplotsPanel.js:93
+Need a color scale for a colorbar!                                                                           // /default_panels/StyleColorbarsPanel.js:22
 Negative                                                                                                     // /default_panels/StyleTracesPanel.js:531
 No                                                                                                           // /components/fields/ErrorBars.js:101
 No Results                                                                                                   // /components/widgets/Dropdown.js:75
-No transforms available for this trace type                                                                  // /components/containers/TransformAccordion.js:43
+No transforms available for this trace type                                                                  // /components/containers/TransformAccordion.js:34
 None                                                                                                         // /components/fields/derived.js:61
-None label                                                                                                   // /default_panels/StyleColorbarsPanel.js:211
+None label                                                                                                   // /default_panels/StyleColorbarsPanel.js:213
+Norm                                                                                                         // /components/fields/derived.js:608
 Normal                                                                                                       // /components/fields/MarkerColor.js:206
 Normalization                                                                                                // /default_panels/StyleTracesPanel.js:267
 North America                                                                                                // /default_panels/GraphSubplotsPanel.js:80
@@ -383,51 +391,52 @@ Note: in horizontal orientation, Y Values are used for bins and X values for wei
 Note: in vertical orientation, X values are used for bins and Y values for weights.                          // /default_panels/GraphCreatePanel.js:64
 Number of Contours                                                                                           // /default_panels/StyleTracesPanel.js:442
 Number of Occurences                                                                                         // /default_panels/StyleTracesPanel.js:60
-OHLC                                                                                                         // /lib/computeTraceOptionsFromSchema.js:111
+OHLC                                                                                                         // /lib/computeTraceOptionsFromSchema.js:119
 Oceans                                                                                                       // /default_panels/GraphSubplotsPanel.js:152
 Off                                                                                                          // /components/fields/RectanglePositioner.js:90
 On                                                                                                           // /components/fields/RectanglePositioner.js:89
 On Hover                                                                                                     // /default_panels/StyleTracesPanel.js:569
 Opacity                                                                                                      // /default_panels/StyleShapesPanel.js:51
 Open                                                                                                         // /default_panels/GraphCreatePanel.js:75
-Operator                                                                                                     // /default_panels/GraphTransformsPanel.js:80
-Options                                                                                                      // /default_panels/GraphCreatePanel.js:123
+Operator                                                                                                     // /default_panels/GraphTransformsPanel.js:84
+Options                                                                                                      // /default_panels/GraphCreatePanel.js:126
 Orbit                                                                                                        // /default_panels/StyleLayoutPanel.js:41
-Order                                                                                                        // /default_panels/GraphCreatePanel.js:120
+Order                                                                                                        // /default_panels/GraphCreatePanel.js:123
 Orientation                                                                                                  // /default_panels/GraphCreatePanel.js:55
 Orthographic                                                                                                 // /default_panels/GraphSubplotsPanel.js:92
 Outliers                                                                                                     // /default_panels/StyleTracesPanel.js:204
 Outside                                                                                                      // /components/fields/derived.js:516
 Overlay                                                                                                      // /default_panels/StyleTracesPanel.js:249
-Padding                                                                                                      // /default_panels/StyleColorbarsPanel.js:126
+Padding                                                                                                      // /default_panels/StyleColorbarsPanel.js:128
 Pan                                                                                                          // /default_panels/StyleLayoutPanel.js:44
-Parallel Coordinates                                                                                         // /lib/computeTraceOptionsFromSchema.js:87
+Parallel Coordinates                                                                                         // /lib/computeTraceOptionsFromSchema.js:95
 Percent                                                                                                      // /components/fields/derived.js:596
-Pie                                                                                                          // /lib/computeTraceOptionsFromSchema.js:39
-Pixels                                                                                                       // /default_panels/StyleColorbarsPanel.js:68
+Pie                                                                                                          // /components/containers/SubplotAccordion.js:146
+Pixels                                                                                                       // /default_panels/StyleColorbarsPanel.js:70
 Plot Background                                                                                              // /default_panels/GraphSubplotsPanel.js:67
-Point Cloud                                                                                                  // /lib/computeTraceOptionsFromSchema.js:79
+Point Cloud                                                                                                  // /lib/computeTraceOptionsFromSchema.js:87
 Point Opacity                                                                                                // /default_panels/StyleTracesPanel.js:228
 Points                                                                                                       // /components/containers/TraceMarkerSection.js:23
-Points and Fills                                                                                             // /components/fields/derived.js:672
-Polar Scatter                                                                                                // /lib/computeTraceOptionsFromSchema.js:119
-Polar Scatter GL                                                                                             // /lib/computeTraceOptionsFromSchema.js:123
+Points and Fills                                                                                             // /components/fields/derived.js:683
+Polar                                                                                                        // /lib/constants.js:103
+Polar Scatter                                                                                                // /lib/computeTraceOptionsFromSchema.js:127
+Polar Scatter GL                                                                                             // /lib/computeTraceOptionsFromSchema.js:131
 Polar Sector                                                                                                 // /default_panels/GraphSubplotsPanel.js:225
-Position                                                                                                     // /default_panels/StyleAxesPanel.js:123
+Position                                                                                                     // /default_panels/StyleAxesPanel.js:100
 Positive                                                                                                     // /default_panels/StyleTracesPanel.js:530
-Prefix                                                                                                       // /default_panels/StyleAxesPanel.js:247
-Previous X                                                                                                   // /components/fields/derived.js:621
-Previous Y                                                                                                   // /components/fields/derived.js:620
+Prefix                                                                                                       // /default_panels/StyleAxesPanel.js:224
+Previous X                                                                                                   // /components/fields/derived.js:632
+Previous Y                                                                                                   // /components/fields/derived.js:631
 Probability                                                                                                  // /default_panels/StyleTracesPanel.js:62
 Probability Density                                                                                          // /default_panels/StyleTracesPanel.js:64
 Projection                                                                                                   // /default_panels/GraphSubplotsPanel.js:86
 Pull                                                                                                         // /default_panels/StyleTracesPanel.js:200
 R                                                                                                            // /components/fields/derived.js:589
-RMS                                                                                                          // /default_panels/GraphTransformsPanel.js:43
-Radians                                                                                                      // /default_panels/GraphCreatePanel.js:94
-Radius                                                                                                       // /default_panels/GraphCreatePanel.js:89
-Range                                                                                                        // /default_panels/GraphTransformsPanel.js:50
-Range Slider                                                                                                 // /default_panels/StyleAxesPanel.js:347
+RMS                                                                                                          // /default_panels/GraphTransformsPanel.js:45
+Radians                                                                                                      // /default_panels/GraphCreatePanel.js:97
+Radius                                                                                                       // /default_panels/GraphCreatePanel.js:92
+Range                                                                                                        // /default_panels/GraphTransformsPanel.js:52
+Range Slider                                                                                                 // /default_panels/StyleAxesPanel.js:324
 Rectangle                                                                                                    // /default_panels/StyleShapesPanel.js:28
 Reference                                                                                                    // /components/fields/FilterOperation.js:180
 Region                                                                                                       // /default_panels/GraphSubplotsPanel.js:72
@@ -447,65 +456,67 @@ Roll                                                                            
 Rotation                                                                                                     // /default_panels/StyleTracesPanel.js:198
 Roughness                                                                                                    // /default_panels/StyleTracesPanel.js:459
 SVG                                                                                                          // /components/fields/TraceSelector.js:124
-Sankey                                                                                                       // /lib/computeTraceOptionsFromSchema.js:91
-Satellite Map                                                                                                // /lib/computeTraceOptionsFromSchema.js:146
+Sankey                                                                                                       // /lib/computeTraceOptionsFromSchema.js:99
+Satellite Map                                                                                                // /lib/computeTraceOptionsFromSchema.js:154
 Scale                                                                                                        // /default_panels/GraphSubplotsPanel.js:215
 Scale Mode                                                                                                   // /default_panels/StyleTracesPanel.js:508
 Scaling                                                                                                      // /default_panels/StyleTracesPanel.js:505
 Scatter                                                                                                      // /components/fields/TraceSelector.js:67
-Scatter GL                                                                                                   // /lib/computeTraceOptionsFromSchema.js:75
-Second                                                                                                       // /default_panels/StyleAxesPanel.js:400
+Scatter GL                                                                                                   // /lib/computeTraceOptionsFromSchema.js:83
+Scene                                                                                                        // /lib/constants.js:99
+Second                                                                                                       // /default_panels/StyleAxesPanel.js:377
 See a basic example.                                                                                         // /components/widgets/TraceTypeSelector.js:92
 Segments                                                                                                     // /components/containers/TraceMarkerSection.js:21
-Select Trace Type                                                                                            // /components/widgets/TraceTypeSelector.js:190
+Select Trace Type                                                                                            // /components/widgets/TraceTypeSelector.js:193
 Select a Colorscale Type                                                                                     // /components/widgets/ColorscalePicker.js:58
 Select an Option                                                                                             // /components/widgets/Dropdown.js:66
-Separate Thousands                                                                                           // /default_panels/StyleAxesPanel.js:225
+Separate Thousands                                                                                           // /default_panels/StyleAxesPanel.js:202
 Shape                                                                                                        // /components/containers/ShapeAccordion.js:27
-Shapes                                                                                                       // /DefaultEditor.js:38
+Shapes                                                                                                       // /DefaultEditor.js:94
 Show                                                                                                         // /components/fields/MarkerColor.js:214
 Show All                                                                                                     // /default_panels/StyleTracesPanel.js:203
 Show Contour                                                                                                 // /default_panels/StyleTracesPanel.js:573
-Show Prefix                                                                                                  // /default_panels/StyleAxesPanel.js:262
-Show Sides                                                                                                   // /default_panels/StyleAxesPanel.js:497
-Show Suffix                                                                                                  // /default_panels/StyleAxesPanel.js:286
+Show Prefix                                                                                                  // /default_panels/StyleAxesPanel.js:239
+Show Sides                                                                                                   // /default_panels/StyleAxesPanel.js:474
+Show Suffix                                                                                                  // /default_panels/StyleAxesPanel.js:263
 Show in Legend                                                                                               // /default_panels/StyleTracesPanel.js:47
 Side                                                                                                         // /default_panels/GraphSubplotsPanel.js:35
 Simple                                                                                                       // /lib/traceTypes.js:9
 Single                                                                                                       // /components/fields/MultiColorPicker.js:79
 Sinusoidal                                                                                                   // /default_panels/GraphSubplotsPanel.js:114
-Size                                                                                                         // /default_panels/StyleColorbarsPanel.js:61
+Size                                                                                                         // /default_panels/StyleColorbarsPanel.js:63
 Size Mode                                                                                                    // /default_panels/StyleTracesPanel.js:231
 Size Scale                                                                                                   // /default_panels/StyleTracesPanel.js:239
-Size and Positioning                                                                                         // /default_panels/StyleColorbarsPanel.js:60
+Size and Positioning                                                                                         // /default_panels/StyleColorbarsPanel.js:62
 Size and Spacing                                                                                             // /default_panels/StyleTracesPanel.js:244
 Slider                                                                                                       // /components/containers/SliderAccordion.js:20
-Sliders                                                                                                      // /DefaultEditor.js:40
+Sliders                                                                                                      // /DefaultEditor.js:97
 Smoothing                                                                                                    // /default_panels/StyleTracesPanel.js:320
 Snap to Grid                                                                                                 // /components/fields/RectanglePositioner.js:83
 Soft                                                                                                         // /default_panels/StyleTracesPanel.js:519
-Sort                                                                                                         // /components/containers/TransformAccordion.js:26
+Sort                                                                                                         // /components/containers/TransformAccordion.js:27
 Sorted                                                                                                       // /default_panels/StyleTracesPanel.js:186
 South America                                                                                                // /default_panels/GraphSubplotsPanel.js:81
 Span                                                                                                         // /default_panels/StyleTracesPanel.js:524
 Span Mode                                                                                                    // /default_panels/StyleTracesPanel.js:516
 Specialized                                                                                                  // /lib/traceTypes.js:29
 Specular                                                                                                     // /default_panels/StyleTracesPanel.js:458
-Split                                                                                                        // /components/containers/TransformAccordion.js:24
+Split                                                                                                        // /components/containers/TransformAccordion.js:25
 Stack                                                                                                        // /default_panels/StyleTracesPanel.js:261
-Standard Deviation                                                                                           // /default_panels/GraphTransformsPanel.js:44
+Standard Deviation                                                                                           // /default_panels/GraphTransformsPanel.js:46
 Start Point                                                                                                  // /default_panels/StyleShapesPanel.js:35
-Step                                                                                                         // /default_panels/StyleAxesPanel.js:391
-Step Offset                                                                                                  // /default_panels/StyleAxesPanel.js:156
-Step Size                                                                                                    // /default_panels/StyleAxesPanel.js:157
-Stepmode                                                                                                     // /default_panels/StyleAxesPanel.js:405
+Step                                                                                                         // /default_panels/StyleAxesPanel.js:368
+Step Offset                                                                                                  // /default_panels/StyleAxesPanel.js:133
+Step Size                                                                                                    // /default_panels/StyleAxesPanel.js:134
+Stepmode                                                                                                     // /default_panels/StyleAxesPanel.js:382
 Stereographic                                                                                                // /default_panels/GraphSubplotsPanel.js:109
+Streamtube                                                                                                   // /lib/computeTraceOptionsFromSchema.js:71
 Stretch                                                                                                      // /default_panels/StyleImagesPanel.js:31
-Style                                                                                                        // /default_panels/StyleAxesPanel.js:429
+Style                                                                                                        // /default_panels/StyleAxesPanel.js:406
 Sub-Country Unit Borders                                                                                     // /default_panels/GraphSubplotsPanel.js:130
-Subplots                                                                                                     // /DefaultEditor.js:30
+Subplots                                                                                                     // /components/fields/AxesCreator.js:170
 Subplots to Use                                                                                              // /components/fields/SubplotCreator.js:140
-Suffix                                                                                                       // /default_panels/StyleAxesPanel.js:272
+Suffix                                                                                                       // /default_panels/StyleAxesPanel.js:249
 Sum                                                                                                          // /default_panels/GraphSubplotsPanel.js:222
 Sum X                                                                                                        // /components/fields/derived.js:159
 Sum Y                                                                                                        // /components/fields/derived.js:152
@@ -514,8 +525,8 @@ Surface                                                                         
 Suspected Outliers                                                                                           // /default_panels/StyleTracesPanel.js:205
 Symbol                                                                                                       // /default_panels/StyleTracesPanel.js:240
 Symmetric                                                                                                    // /components/fields/ErrorBars.js:81
-Table                                                                                                        // /lib/computeTraceOptionsFromSchema.js:95
-Target                                                                                                       // /default_panels/GraphTransformsPanel.js:79
+Table                                                                                                        // /components/containers/SubplotAccordion.js:147
+Target                                                                                                       // /default_panels/GraphTransformsPanel.js:83
 Target < Reference                                                                                           // /components/fields/FilterOperation.js:11
 Target = Reference                                                                                           // /components/fields/FilterOperation.js:13
 Target > Reference                                                                                           // /components/fields/FilterOperation.js:14
@@ -528,26 +539,24 @@ Text                                                                            
 Text Alignment                                                                                               // /default_panels/StyleTracesPanel.js:102
 Text Attributes                                                                                              // /default_panels/StyleTracesPanel.js:338
 Text Position                                                                                                // /default_panels/StyleTracesPanel.js:356
-There are no sliders to style in your plot                                                                   // /components/containers/SliderAccordion.js:30
-There are no update menus to style in your plot                                                              // /components/containers/UpdateMenuAccordion.js:46
 Theta                                                                                                        // /components/fields/derived.js:590
-Theta Unit                                                                                                   // /default_panels/GraphCreatePanel.js:92
+Theta Unit                                                                                                   // /default_panels/GraphCreatePanel.js:95
 Thickness                                                                                                    // /components/fields/ErrorBars.js:116
 This input has multiple values associated with it. Changing this setting will override these custom inputs.  // /lib/constants.js:20
 This panel could not be displayed due to an error.                                                           // /components/containers/PlotlyPanel.js:17
-Tick Labels                                                                                                  // /default_panels/StyleAxesPanel.js:186
-Tick Markers                                                                                                 // /default_panels/StyleAxesPanel.js:312
-Tick Spacing                                                                                                 // /default_panels/StyleAxesPanel.js:297
-Tick spacing                                                                                                 // /default_panels/StyleColorbarsPanel.js:245
-Ticks                                                                                                        // /default_panels/StyleColorbarsPanel.js:262
-Timescale Buttons                                                                                            // /default_panels/StyleAxesPanel.js:374
-Timeseries                                                                                                   // /lib/computeTraceOptionsFromSchema.js:135
-Title                                                                                                        // /default_panels/StyleColorbarsPanel.js:34
+Tick Labels                                                                                                  // /default_panels/StyleAxesPanel.js:163
+Tick Markers                                                                                                 // /default_panels/StyleAxesPanel.js:289
+Tick Spacing                                                                                                 // /default_panels/StyleAxesPanel.js:274
+Tick spacing                                                                                                 // /default_panels/StyleColorbarsPanel.js:247
+Ticks                                                                                                        // /default_panels/StyleColorbarsPanel.js:264
+Timescale Buttons                                                                                            // /default_panels/StyleAxesPanel.js:351
+Timeseries                                                                                                   // /lib/computeTraceOptionsFromSchema.js:143
+Title                                                                                                        // /default_panels/StyleColorbarsPanel.js:36
 Title and Fonts                                                                                              // /default_panels/StyleLayoutPanel.js:49
-Titles                                                                                                       // /default_panels/StyleAxesPanel.js:53
-To Date                                                                                                      // /default_panels/StyleAxesPanel.js:409
-To Next                                                                                                      // /components/fields/derived.js:632
-To Self                                                                                                      // /components/fields/derived.js:631
+Titles                                                                                                       // /default_panels/StyleAxesPanel.js:30
+To Date                                                                                                      // /default_panels/StyleAxesPanel.js:386
+To Next                                                                                                      // /components/fields/derived.js:643
+To Self                                                                                                      // /components/fields/derived.js:642
 To upload multiple files, create multiple files and upload them individually.                                // /components/widgets/Dropzone.js:119
 Top                                                                                                          // /components/fields/derived.js:102
 Top Center                                                                                                   // /components/fields/derived.js:504
@@ -556,54 +565,57 @@ Top Right                                                                       
 Trace                                                                                                        // /components/containers/TraceAccordion.js:121
 Trace Opacity                                                                                                // /default_panels/StyleTracesPanel.js:54
 Trace Order                                                                                                  // /default_panels/StyleLegendPanel.js:75
-Trace name                                                                                                   // /components/fields/derived.js:606
-Traces                                                                                                       // /DefaultEditor.js:32
-Transform                                                                                                    // /components/containers/TransformAccordion.js:95
-Transforms                                                                                                   // /DefaultEditor.js:31
-Transpose                                                                                                    // /default_panels/GraphCreatePanel.js:128
+Trace name                                                                                                   // /components/fields/derived.js:617
+Traces                                                                                                       // /DefaultEditor.js:84
+Transform                                                                                                    // /components/containers/TransformAccordion.js:86
+Transforms                                                                                                   // /DefaultEditor.js:82
+Transpose                                                                                                    // /default_panels/GraphCreatePanel.js:131
 Transverse Mercator                                                                                          // /default_panels/GraphSubplotsPanel.js:112
-True                                                                                                         // /default_panels/StyleAxesPanel.js:204
+True                                                                                                         // /default_panels/StyleAxesPanel.js:181
 Try again with a                                                                                             // /components/widgets/Dropzone.js:148
 Try again with a supported file format:                                                                      // /components/widgets/Dropzone.js:85
 Turntable                                                                                                    // /default_panels/StyleLayoutPanel.js:42
 Type                                                                                                         // /default_panels/GraphCreatePanel.js:23
-Typeface                                                                                                     // /default_panels/StyleAxesPanel.js:59
+Typeface                                                                                                     // /default_panels/StyleAxesPanel.js:36
+U                                                                                                            // /components/fields/derived.js:605
 URL                                                                                                          // /components/widgets/text_editors/RichText/LinkEditor.js:93
 USA                                                                                                          // /default_panels/GraphSubplotsPanel.js:76
 USA State Abbreviations (e.g. NY)                                                                            // /components/fields/LocationSelector.js:34
 Unsorted                                                                                                     // /default_panels/StyleTracesPanel.js:187
 Upper Bound                                                                                                  // /components/fields/FilterOperation.js:204
+V                                                                                                            // /components/fields/derived.js:606
 Value                                                                                                        // /components/fields/derived.js:531
 Value (-)                                                                                                    // /components/fields/ErrorBars.js:163
 Values                                                                                                       // /components/fields/derived.js:565
 Values Shown On Hover                                                                                        // /default_panels/StyleTracesPanel.js:570
 Variable                                                                                                     // /components/fields/MarkerColor.js:172
 Vertex Normal                                                                                                // /default_panels/StyleTracesPanel.js:462
-Vertexcolor                                                                                                  // /default_panels/GraphCreatePanel.js:126
+Vertexcolor                                                                                                  // /default_panels/GraphCreatePanel.js:129
 Vertical                                                                                                     // /default_panels/GraphCreatePanel.js:58
 Vertical Boundaries                                                                                          // /default_panels/StyleShapesPanel.js:39
 Vertical Gap                                                                                                 // /default_panels/StyleTracesPanel.js:179
 Vertical Gaps                                                                                                // /default_panels/StyleTracesPanel.js:408
-Vertical Positioning                                                                                         // /default_panels/StyleAxesPanel.js:462
+Vertical Positioning                                                                                         // /default_panels/StyleAxesPanel.js:439
 View tutorials on this chart type.                                                                           // /components/widgets/TraceTypeSelector.js:87
 Violin                                                                                                       // /lib/computeTraceOptionsFromSchema.js:51
 Violin Mode                                                                                                  // /default_panels/StyleTracesPanel.js:279
 Violin Padding                                                                                               // /default_panels/StyleTracesPanel.js:287
 Violin Width                                                                                                 // /default_panels/StyleTracesPanel.js:286
-Violins                                                                                                      // /components/fields/derived.js:662
-Violins and Points                                                                                           // /components/fields/derived.js:665
-Violins, Points and KDE                                                                                      // /components/fields/derived.js:666
+Violins                                                                                                      // /components/fields/derived.js:673
+Violins and Points                                                                                           // /components/fields/derived.js:676
+Violins, Points and KDE                                                                                      // /components/fields/derived.js:677
 Visible Sides                                                                                                // /default_panels/StyleTracesPanel.js:527
+W                                                                                                            // /components/fields/derived.js:607
 WebGL                                                                                                        // /components/fields/TraceSelector.js:125
 Well this is embarrassing.                                                                                   // /components/containers/PlotlyPanel.js:16
 Whisker Width                                                                                                // /default_panels/StyleTracesPanel.js:289
-Width                                                                                                        // /default_panels/GraphCreatePanel.js:119
+Width                                                                                                        // /default_panels/GraphCreatePanel.js:122
 Winkel Tripel                                                                                                // /default_panels/GraphSubplotsPanel.js:95
 World                                                                                                        // /default_panels/GraphSubplotsPanel.js:75
 X                                                                                                            // /components/fields/derived.js:546
-X = 0                                                                                                        // /components/fields/derived.js:619
+X = 0                                                                                                        // /components/fields/derived.js:630
 X Anchor                                                                                                     // /default_panels/GraphSubplotsPanel.js:29
-X Axis                                                                                                       // /components/fields/derived.js:689
+X Axis                                                                                                       // /components/fields/derived.js:700
 X Bin End                                                                                                    // /default_panels/StyleTracesPanel.js:161
 X Bin Size                                                                                                   // /default_panels/StyleTracesPanel.js:162
 X Bin Start                                                                                                  // /default_panels/StyleTracesPanel.js:160
@@ -613,9 +625,9 @@ X Overlay                                                                       
 X Values                                                                                                     // /default_panels/GraphCreatePanel.js:32
 X Vector                                                                                                     // /default_panels/StyleNotesPanel.js:41
 Y                                                                                                            // /components/fields/derived.js:546
-Y = 0                                                                                                        // /components/fields/derived.js:618
+Y = 0                                                                                                        // /components/fields/derived.js:629
 Y Anchor                                                                                                     // /default_panels/GraphSubplotsPanel.js:37
-Y Axis                                                                                                       // /components/fields/derived.js:690
+Y Axis                                                                                                       // /components/fields/derived.js:701
 Y Bin End                                                                                                    // /default_panels/StyleTracesPanel.js:173
 Y Bin Size                                                                                                   // /default_panels/StyleTracesPanel.js:174
 Y Bin Start                                                                                                  // /default_panels/StyleTracesPanel.js:172
@@ -624,29 +636,28 @@ Y Offset                                                                        
 Y Overlay                                                                                                    // /default_panels/GraphSubplotsPanel.js:23
 Y Values                                                                                                     // /default_panels/GraphCreatePanel.js:40
 Y Vector                                                                                                     // /default_panels/StyleNotesPanel.js:42
-Year                                                                                                         // /default_panels/StyleAxesPanel.js:395
+Year                                                                                                         // /default_panels/StyleAxesPanel.js:372
 Yes                                                                                                          // /components/fields/ErrorBars.js:100
 Yikes! An error occurred while parsing this file.                                                            // /components/widgets/Dropzone.js:83
 Yikes! This doesn't look like a valid                                                                        // /components/widgets/Dropzone.js:144
 Yikes! You can only upload one file at a time.                                                               // /components/widgets/Dropzone.js:116
-You can style and position your axes in the Graph > Subplots Panel                                           // /components/fields/AxesCreator.js:169
-You can style and position your subplots in the Graph > Subplots Panel                                       // /components/fields/SubplotCreator.js:149
+You can style and position your axes in the                                                                  // /components/fields/AxesCreator.js:168
+You can style and position your subplots in the                                                              // /components/fields/SubplotCreator.js:148
 You need to provide a component for the modal to open!                                                       // /components/containers/ModalProvider.js:33
-Your plot does not have any axes to style.                                                                   // /default_panels/StyleAxesPanel.js:47
 Z                                                                                                            // /components/fields/derived.js:561
 Z Values                                                                                                     // /default_panels/GraphCreatePanel.js:49
-Zero Line                                                                                                    // /default_panels/StyleAxesPanel.js:161
+Zero Line                                                                                                    // /default_panels/StyleAxesPanel.js:138
 Zoom                                                                                                         // /default_panels/StyleLayoutPanel.js:43
-Zoom Interactivity                                                                                           // /default_panels/StyleAxesPanel.js:89
-^                                                                                                            // /default_panels/StyleAxesPanel.js:278
+Zoom Interactivity                                                                                           // /default_panels/StyleAxesPanel.js:66
+^                                                                                                            // /default_panels/StyleAxesPanel.js:255
 according to axis                                                                                            // /components/fields/derived.js:372
-e+6                                                                                                          // /default_panels/StyleAxesPanel.js:238
+e+6                                                                                                          // /default_panels/StyleAxesPanel.js:215
 image                                                                                                        // /default_panels/StyleImagesPanel.js:23
 image/jpeg, image/jpg, image/svg, image/png, image/gif, image/bmp, image/webp                                // /components/widgets/Dropzone.js:16
 in pixels                                                                                                    // /components/fields/derived.js:361
-k/M/B                                                                                                        // /default_panels/StyleAxesPanel.js:242
-k/M/G                                                                                                        // /default_panels/StyleAxesPanel.js:241
+k/M/B                                                                                                        // /default_panels/StyleAxesPanel.js:219
+k/M/G                                                                                                        // /default_panels/StyleAxesPanel.js:218
 new text                                                                                                     // /components/containers/AnnotationAccordion.js:41
-x                                                                                                            // /default_panels/StyleAxesPanel.js:251
-x10^6                                                                                                        // /default_panels/StyleAxesPanel.js:240
+x                                                                                                            // /default_panels/StyleAxesPanel.js:228
+x10^6                                                                                                        // /default_panels/StyleAxesPanel.js:217
 √                                                                                                            // /components/fields/ErrorBars.js:133
