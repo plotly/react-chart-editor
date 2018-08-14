@@ -21,11 +21,8 @@ import getAllAxes, {
   axisIdToAxisName,
   traceTypeToAxisType,
   getAxisTitle,
-} from './getAllAxes';
-import getAllSubplots, {
-  traceTypeToSubplotType,
   getSubplotTitle,
-} from './getAllSubplots';
+} from './getAllAxes';
 import localize, {localizeString} from './localize';
 import tinyColor from 'tinycolor2';
 import unpackPlotProps from './unpackPlotProps';
@@ -242,8 +239,6 @@ export {
   dereference,
   getAllAxes,
   getAxisTitle,
-  getAllSubplots,
-  traceTypeToSubplotType,
   getSubplotTitle,
   getDisplayName,
   isPlainObject,
