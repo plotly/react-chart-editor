@@ -7,7 +7,6 @@ class PanelEmpty extends Component {
   render() {
     const {children, icon: Icon} = this.props;
     const heading = this.props.heading || '';
-    const message = this.props.message || '';
 
     return (
       <div className={bem('panel', 'empty')}>
@@ -16,10 +15,7 @@ class PanelEmpty extends Component {
             {Icon ? <Icon /> : <ChartLineIcon />}
           </div>
           <div className="panel__empty__message__heading">{heading}</div>
-          <div className="panel__empty__message__content">
-            <p>{message}</p>
-            {children}
-          </div>
+          <div className="panel__empty__message__content">{children}</div>
         </div>
       </div>
     );
@@ -28,7 +24,6 @@ class PanelEmpty extends Component {
 
 PanelEmpty.propTypes = {
   heading: PropTypes.string,
-  message: PropTypes.any,
   children: PropTypes.node,
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
 };

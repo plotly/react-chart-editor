@@ -85,6 +85,10 @@
         font-size: var(--font-size-base);
         color: var(--color-text-base);
         line-height: var(--font-leading-body);
+        a {
+          color: $color-dodger-shade;
+          cursor: pointer;
+        }
       }
     }
   }
