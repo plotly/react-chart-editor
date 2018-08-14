@@ -8,43 +8,13 @@ import AceEditor from 'react-ace';
 import Select from 'react-select';
 import PlotlyEditor, {DefaultEditor, Panel} from '../src';
 import Inspector from 'react-inspector';
-import tips from './tips';
+import dataSources from './dataSources';
 import 'brace/mode/json';
 import 'brace/theme/textmate';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
 
-const dataSources = {
-  ints: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], // eslint-disable-line no-magic-numbers
-  'jagged ints': [2, 1, 3, 5, 4, 6], // eslint-disable-line no-magic-numbers
-  'toggle ints': [1, -1, 1, -1, 1, -1], // eslint-disable-line no-magic-numbers
-  'big ints': [1000, 10100, 10000, 20000, 100000], // eslint-disable-line no-magic-numbers
-  dates: [
-    '2010-01-01',
-    '2010-07-01',
-    '2011-01-01',
-    '2011-07-01',
-    '2012-01-01',
-    '2012-06-01',
-  ],
-  months: ['January', 'February', 'March', 'April', 'May', 'June'],
-  colors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo'],
-  'blue and red': ['blue', 'red'],
-  countries: [
-    'Angola',
-    'Albania',
-    'United Arab Emirates',
-    'Argentina',
-    'Armenia',
-    'Australia',
-    'Austria',
-    'Azerbaijan',
-  ],
-  'countries iso': ['AGO', 'ALB', 'ARE', 'ARG', 'ARM', 'AUS', 'AUT', 'AZE'],
-  states: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA'],
-  ...tips,
-};
 const dataSourceOptions = Object.keys(dataSources).map(name => ({
   value: name,
   label: name,
