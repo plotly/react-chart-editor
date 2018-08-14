@@ -31,6 +31,7 @@ export const chartCategory = _ => {
     THREE_D: {
       value: '3D',
       label: _('3D'),
+      maxColumns: 1,
     },
   };
 };
@@ -104,6 +105,18 @@ export const traceTypes = _ => [
   {
     value: 'mesh3d',
     label: _('3D Mesh'),
+    category: chartCategory(_).THREE_D,
+  },
+  {
+    value: 'cone',
+    label: _('Cone'),
+    icon: 'scatter3d',
+    category: chartCategory(_).THREE_D,
+  },
+  {
+    value: 'streamtube',
+    label: _('Streamtube'),
+    icon: 'line3d',
     category: chartCategory(_).THREE_D,
   },
   {

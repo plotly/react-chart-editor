@@ -117,7 +117,10 @@ class TraceTypeSelector extends Component {
 
       let columnClasses = 'trace-grid__column';
 
-      if (items.length > MAX_ITEMS) {
+      if (
+        (items.length > MAX_ITEMS && !category.maxColumns) ||
+        (category.maxColumns && category.maxColumns > 1)
+      ) {
         columnClasses += ' trace-grid__column--double';
       }
 

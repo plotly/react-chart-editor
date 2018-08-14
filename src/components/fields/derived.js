@@ -597,6 +597,17 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       ];
     } else if (container.type === 'table') {
       plotProps.isVisible = false;
+    } else if (['cone', 'streamtube'].includes(container.type)) {
+      options = [
+        {label: _('X'), value: 'x'},
+        {label: _('Y'), value: 'y'},
+        {label: _('Z'), value: 'z'},
+        {label: _('U'), value: 'u'},
+        {label: _('V'), value: 'v'},
+        {label: _('W'), value: 'w'},
+        {label: _('Norm'), value: 'norm'},
+        {label: _('Divergence'), value: 'divergence'},
+      ];
     }
 
     if (container.text) {

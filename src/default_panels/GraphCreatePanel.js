@@ -79,6 +79,9 @@ const GraphCreatePanel = (props, {localize: _}) => {
       <DataSelector label={_('A')} attr="a" />
       <DataSelector label={_('B')} attr="b" />
       <DataSelector label={_('C')} attr="c" />
+      <DataSelector label={_('U')} attr="u" />
+      <DataSelector label={_('V')} attr="v" />
+      <DataSelector label={_('W')} attr="w" />
       <DataSelector label={_('Headers')} attr="header.values" />
       <DataSelector label={_('Columns')} attr="cells.values" />
 
