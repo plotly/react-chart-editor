@@ -24,35 +24,39 @@ export class Aggregations extends Component {
       return null;
     }
 
-    return aggregations
-      .filter(
-        aggr =>
-          aggr.target && aggr.target.match(/transforms\[\d*\]\./gi) === null
-      )
-      .map(({target}, i) => (
-        <AggregationSection show key={i} aggregationIndex={i}>
-          <Dropdown
-            attr="func"
-            label={target}
-            options={[
-              {label: _('Count'), value: 'count'},
-              {label: _('Sum'), value: 'sum'},
-              {label: _('Average'), value: 'avg'},
-              {label: _('Median'), value: 'median'},
-              {label: _('Mode'), value: 'mode'},
-              {label: _('RMS'), value: 'rms'},
-              {label: _('Standard Deviation'), value: 'stddev'},
-              {label: _('Min'), value: 'min'},
-              {label: _('Max'), value: 'max'},
-              {label: _('First'), value: 'first'},
-              {label: _('Last'), value: 'last'},
-              {label: _('Change'), value: 'change'},
-              {label: _('Range'), value: 'range'},
-            ]}
-            clearable={false}
-          />
-        </AggregationSection>
-      ));
+    return (
+      <PlotlySection name={_('Aggregations')} attr="aggregations">
+        {aggregations
+          .filter(
+            aggr =>
+              aggr.target && aggr.target.match(/transforms\[\d*\]\./gi) === null
+          )
+          .map(({target}, i) => (
+            <AggregationSection show key={i} aggregationIndex={i}>
+              <Dropdown
+                attr="func"
+                label={target}
+                options={[
+                  {label: _('Count'), value: 'count'},
+                  {label: _('Sum'), value: 'sum'},
+                  {label: _('Average'), value: 'avg'},
+                  {label: _('Median'), value: 'median'},
+                  {label: _('Mode'), value: 'mode'},
+                  {label: _('RMS'), value: 'rms'},
+                  {label: _('Standard Deviation'), value: 'stddev'},
+                  {label: _('Min'), value: 'min'},
+                  {label: _('Max'), value: 'max'},
+                  {label: _('First'), value: 'first'},
+                  {label: _('Last'), value: 'last'},
+                  {label: _('Change'), value: 'change'},
+                  {label: _('Range'), value: 'range'},
+                ]}
+                clearable={false}
+              />
+            </AggregationSection>
+          ))}
+      </PlotlySection>
+    );
   }
 }
 
@@ -88,9 +92,7 @@ const GraphTransformsPanel = (props, {localize: _}) => {
           ]}
         />
 
-        <PlotlySection name={_('Aggregations')} attr="aggregations">
-          <Aggregations />
-        </PlotlySection>
+        <Aggregations />
       </TransformAccordion>
     </TraceAccordion>
   );
