@@ -21,18 +21,12 @@ class UpdateMenuAccordion extends Component {
           dropdown: _('Dropdown'),
           buttons: _('Buttons'),
         };
-        const updateMenuType =
-          localizedType[upd.type] || localizedType.dropdown;
-        const activeElementLabel = upd.buttons.filter(
-          b => b._index === upd.active
-        )[0].label;
+        const menuType = localizedType[upd.type] || localizedType.dropdown;
+        const activeBtn = upd.buttons.filter(b => b._index === upd.active)[0];
+        const foldName = menuType + (activeBtn ? ': ' + activeBtn.label : '');
 
         return (
-          <UpdateMenuFold
-            key={i}
-            updateMenuIndex={i}
-            name={updateMenuType + ': ' + activeElementLabel}
-          >
+          <UpdateMenuFold key={i} updateMenuIndex={i} name={foldName}>
             {children}
           </UpdateMenuFold>
         );
