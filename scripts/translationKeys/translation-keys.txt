@@ -64,7 +64,7 @@ Axis to Style                                                                   
 Azimuthal Equal Area                                                                                         // /default_panels/GraphSubplotsPanel.js:100
 Azimuthal Equidistant                                                                                        // /default_panels/GraphSubplotsPanel.js:102
 B                                                                                                            // /components/fields/derived.js:584
-Background                                                                                                   // /default_panels/StyleSlidersPanel.js:21
+Background                                                                                                   // /default_panels/StyleSlidersPanel.js:22
 Background Color                                                                                             // /default_panels/StyleAxesPanel.js:336
 Backward                                                                                                     // /default_panels/StyleAxesPanel.js:387
 Bandwidth                                                                                                    // /default_panels/StyleTracesPanel.js:506
@@ -78,7 +78,7 @@ Below                                                                           
 Binning                                                                                                      // /default_panels/StyleTracesPanel.js:150
 Binning Function                                                                                             // /default_panels/StyleTracesPanel.js:151
 Blank                                                                                                        // /default_panels/StyleTracesPanel.js:330
-Border                                                                                                       // /default_panels/StyleSlidersPanel.js:25
+Border                                                                                                       // /default_panels/StyleSlidersPanel.js:26
 Border Color                                                                                                 // /default_panels/GraphSubplotsPanel.js:128
 Border Width                                                                                                 // /default_panels/GraphSubplotsPanel.js:127
 Borders and Background                                                                                       // /default_panels/StyleColorbarsPanel.js:312
@@ -99,7 +99,7 @@ Box Width                                                                       
 Boxes                                                                                                        // /components/fields/derived.js:667
 Boxes and Points                                                                                             // /components/fields/derived.js:669
 Button                                                                                                       // /components/containers/RangeSelectorAccordion.js:43
-Button Labels                                                                                                // /default_panels/StyleUpdateMenusPanel.js:22
+Button Labels                                                                                                // /default_panels/StyleUpdateMenusPanel.js:24
 Buttons                                                                                                      // /components/containers/UpdateMenuAccordion.js:22
 By                                                                                                           // /default_panels/GraphTransformsPanel.js:81
 By Type                                                                                                      // /components/containers/TraceAccordion.js:153
@@ -230,11 +230,12 @@ First label                                                                     
 Fixed Width                                                                                                  // /default_panels/StyleLayoutPanel.js:30
 Fixed height                                                                                                 // /default_panels/StyleLayoutPanel.js:31
 Flatshading                                                                                                  // /default_panels/StyleTracesPanel.js:143
-Font                                                                                                         // /default_panels/StyleSlidersPanel.js:29
+Font                                                                                                         // /default_panels/StyleSlidersPanel.js:30
 Font Color                                                                                                   // /default_panels/GraphCreatePanel.js:111
 Font Size                                                                                                    // /default_panels/GraphCreatePanel.js:112
 Fraction                                                                                                     // /default_panels/StyleTracesPanel.js:271
 Fraction of Plot                                                                                             // /default_panels/StyleColorbarsPanel.js:69
+Fraction of canvas                                                                                           // /default_panels/StyleSlidersPanel.js:41
 Free                                                                                                         // /components/fields/derived.js:35
 Fresnel                                                                                                      // /default_panels/StyleTracesPanel.js:460
 Gaps Between Cells                                                                                           // /default_panels/StyleTracesPanel.js:177
@@ -308,8 +309,8 @@ Layout                                                                          
 Left                                                                                                         // /components/fields/derived.js:94
 Legend                                                                                                       // /default_panels/StyleLegendPanel.js:16
 Legend Box                                                                                                   // /default_panels/StyleLegendPanel.js:29
-Legth                                                                                                        // /default_panels/StyleSlidersPanel.js:42
 Length                                                                                                       // /default_panels/StyleAxesPanel.js:304
+Length Mode                                                                                                  // /default_panels/StyleSlidersPanel.js:38
 Light Position                                                                                               // /default_panels/StyleTracesPanel.js:470
 Lighting                                                                                                     // /default_panels/StyleTracesPanel.js:455
 Line                                                                                                         // /default_panels/StyleShapesPanel.js:27
