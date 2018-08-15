@@ -61,7 +61,7 @@ Axis to Style                                                                   
 Azimuthal Equal Area                                                                                        // react-chart-editor: /default_panels/GraphSubplotsPanel.js:100
 Azimuthal Equidistant                                                                                       // react-chart-editor: /default_panels/GraphSubplotsPanel.js:102
 B                                                                                                           // react-chart-editor: /components/fields/derived.js:584
-Background                                                                                                  // react-chart-editor: /default_panels/StyleSlidersPanel.js:21
+Background                                                                                                  // react-chart-editor: /default_panels/StyleSlidersPanel.js:22
 Background Color                                                                                            // react-chart-editor: /default_panels/StyleAxesPanel.js:336
 Backward                                                                                                    // react-chart-editor: /default_panels/StyleAxesPanel.js:387
 Bandwidth                                                                                                   // react-chart-editor: /default_panels/StyleTracesPanel.js:506
@@ -75,7 +75,7 @@ Below                                                                           
 Binning                                                                                                     // react-chart-editor: /default_panels/StyleTracesPanel.js:150
 Binning Function                                                                                            // react-chart-editor: /default_panels/StyleTracesPanel.js:151
 Blank                                                                                                       // react-chart-editor: /default_panels/StyleTracesPanel.js:330
-Border                                                                                                      // react-chart-editor: /default_panels/StyleSlidersPanel.js:25
+Border                                                                                                      // react-chart-editor: /default_panels/StyleSlidersPanel.js:26
 Border Color                                                                                                // react-chart-editor: /default_panels/GraphSubplotsPanel.js:128
 Border Width                                                                                                // react-chart-editor: /default_panels/GraphSubplotsPanel.js:127
 Borders and Background                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:312
@@ -97,7 +97,7 @@ Box Width                                                                       
 Boxes                                                                                                       // react-chart-editor: /components/fields/derived.js:667
 Boxes and Points                                                                                            // react-chart-editor: /components/fields/derived.js:669
 Button                                                                                                      // react-chart-editor: /components/containers/RangeSelectorAccordion.js:43
-Button Labels                                                                                               // react-chart-editor: /default_panels/StyleUpdateMenusPanel.js:22
+Button Labels                                                                                               // react-chart-editor: /default_panels/StyleUpdateMenusPanel.js:24
 Buttons                                                                                                     // react-chart-editor: /components/containers/UpdateMenuAccordion.js:22
 By                                                                                                          // react-chart-editor: /default_panels/GraphTransformsPanel.js:81
 By Type                                                                                                     // react-chart-editor: /components/containers/TraceAccordion.js:153
@@ -242,11 +242,12 @@ First label                                                                     
 Fixed Width                                                                                                 // react-chart-editor: /default_panels/StyleLayoutPanel.js:30
 Fixed height                                                                                                // react-chart-editor: /default_panels/StyleLayoutPanel.js:31
 Flatshading                                                                                                 // react-chart-editor: /default_panels/StyleTracesPanel.js:143
-Font                                                                                                        // react-chart-editor: /default_panels/StyleSlidersPanel.js:29
+Font                                                                                                        // react-chart-editor: /default_panels/StyleSlidersPanel.js:30
 Font Color                                                                                                  // react-chart-editor: /default_panels/GraphCreatePanel.js:111
 Font Size                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:112
 Fraction                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:271
 Fraction of Plot                                                                                            // react-chart-editor: /default_panels/StyleColorbarsPanel.js:69
+Fraction of canvas                                                                                          // react-chart-editor: /default_panels/StyleSlidersPanel.js:41
 Free                                                                                                        // react-chart-editor: /components/fields/derived.js:35
 Fresnel                                                                                                     // react-chart-editor: /default_panels/StyleTracesPanel.js:460
 Gaps Between Cells                                                                                          // react-chart-editor: /default_panels/StyleTracesPanel.js:177
@@ -322,8 +323,8 @@ Layout                                                                          
 Left                                                                                                        // react-chart-editor: /components/fields/derived.js:94
 Legend                                                                                                      // react-chart-editor: /default_panels/StyleLegendPanel.js:16
 Legend Box                                                                                                  // react-chart-editor: /default_panels/StyleLegendPanel.js:29
-Legth                                                                                                       // react-chart-editor: /default_panels/StyleSlidersPanel.js:42
 Length                                                                                                      // react-chart-editor: /default_panels/StyleAxesPanel.js:304
+Length Mode                                                                                                 // react-chart-editor: /default_panels/StyleSlidersPanel.js:38
 Light Position                                                                                              // react-chart-editor: /default_panels/StyleTracesPanel.js:470
 Lighting                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:455
 Line                                                                                                        // react-chart-editor: /default_panels/StyleShapesPanel.js:27
