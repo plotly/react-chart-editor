@@ -97,6 +97,7 @@ class TransformAccordion extends Component {
 
               const payload = {type};
               if (type === 'filter') {
+                payload.target = [];
                 payload.targetsrc = null;
               } else {
                 payload.groupssrc = null;

@@ -107,12 +107,14 @@ export const TRANSFORMS_LIST = ['filter', 'groupby', 'aggregate', 'sort'];
 
 export const TRANSFORMABLE_TRACES = [
   'scatter',
-  'bar',
   'scattergl',
-  'histogram',
-  'histogram2d',
   'box',
   'violin',
+  'bar',
+  'ohlc',
+  'candlestick',
+  'histogram',
+  'histogram2d',
 ];
 
 export const COLORS = {
