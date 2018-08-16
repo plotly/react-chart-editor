@@ -1,6 +1,6 @@
 import Dropdown from './Dropdown';
 import React from 'react';
-import {DEFAULT_FONTS} from 'lib/constants';
+import PropTypes from 'prop-types';
 
 /* eslint-disable react/prop-types */
 const styledRenderer = ({value, label}) => (
@@ -8,17 +8,11 @@ const styledRenderer = ({value, label}) => (
 );
 /* eslint-enable react/prop-types */
 
-const FontSelector = props => {
-  let options;
-  if (Array.isArray(props.options)) {
-    options = props.options;
-  } else {
-    options = [...DEFAULT_FONTS];
-  }
+const FontSelector = (props, context) => {
   return (
     <Dropdown
       {...props}
-      options={options}
+      options={context.fontOptions}
       valueRenderer={styledRenderer}
       optionRenderer={styledRenderer}
     />
@@ -31,6 +25,10 @@ FontSelector.propTypes = {
 
 FontSelector.defaultProps = {
   clearable: false,
+};
+
+FontSelector.contextTypes = {
+  fontOptions: PropTypes.array,
 };
 
 export default FontSelector;

@@ -147,6 +147,7 @@ class App extends Component {
           // glByDefault
           // traceTypesConfig={traceTypesConfig}
           // makeDefaultTrace={() => ({type: 'scattergl', mode: 'markers'})}
+          // fontOptions={[{label:'Arial', value: 'arial'}]}
         >
           <DefaultEditor>
             <Panel group="Dev" name="JSON">

@@ -15,6 +15,7 @@ import isNumeric from 'fast-isnumeric';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {categoryLayout, traceTypes} from 'lib/traceTypes';
 import {ModalProvider} from 'components/containers';
+import {DEFAULT_FONTS} from 'lib/constants';
 
 class EditorControls extends Component {
   constructor(props, context) {
@@ -55,6 +56,7 @@ class EditorControls extends Component {
       showFieldTooltips: this.props.showFieldTooltips,
       glByDefault: this.props.glByDefault,
       mapBoxAccess: this.props.mapBoxAccess,
+      fontOptions: this.props.fontOptions,
     };
   }
 
@@ -344,6 +346,7 @@ EditorControls.propTypes = {
   makeDefaultTrace: PropTypes.func,
   glByDefault: PropTypes.bool,
   mapBoxAccess: PropTypes.bool,
+  fontOptions: PropTypes.array,
 };
 
 EditorControls.defaultProps = {
@@ -354,6 +357,7 @@ EditorControls.defaultProps = {
     traces: _ => traceTypes(_),
     complex: true,
   },
+  fontOptions: DEFAULT_FONTS,
 };
 
 EditorControls.childContextTypes = {
@@ -383,6 +387,7 @@ EditorControls.childContextTypes = {
   showFieldTooltips: PropTypes.bool,
   glByDefault: PropTypes.bool,
   mapBoxAccess: PropTypes.bool,
+  fontOptions: PropTypes.array,
 };
 
 export default EditorControls;

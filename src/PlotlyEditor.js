@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import createPlotComponent from 'react-plotly.js/factory';
 import EditorControls from './EditorControls';
 import PropTypes from 'prop-types';
+import {DEFAULT_FONTS} from 'lib/constants';
 
 class PlotlyEditor extends Component {
   constructor(props) {
@@ -31,6 +32,7 @@ class PlotlyEditor extends Component {
             mapBoxAccess={Boolean(
               this.props.config && this.props.config.mapboxAccessToken
             )}
+            fontOptions={this.props.fontOptions}
           >
             {this.props.children}
           </EditorControls>
@@ -82,11 +84,13 @@ PlotlyEditor.propTypes = {
   }),
   makeDefaultTrace: PropTypes.func,
   glByDefault: PropTypes.bool,
+  fontOptions: PropTypes.array,
 };
 
 PlotlyEditor.defaultProps = {
   hideControls: false,
   showFieldTooltips: false,
+  fontOptions: DEFAULT_FONTS,
 };
 
 export default PlotlyEditor;
