@@ -3,16 +3,12 @@ import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectTransformToTrace} from 'lib';
-import FoldEmpty from './FoldEmpty';
-import {PlotScatterIcon} from 'plotly-icons';
-import {TRANSFORMABLE_TRACES} from 'lib/constants';
 
 const TransformFold = connectTransformToTrace(PlotlyFold);
 
 class TransformAccordion extends Component {
   render() {
     const {
-      fullContainer,
       fullContainer: {transforms = []},
       localize: _,
       container,
@@ -26,15 +22,6 @@ class TransformAccordion extends Component {
       {label: _('Aggregate'), type: 'aggregate'},
       {label: _('Sort'), type: 'sort'},
     ];
-
-    if (!TRANSFORMABLE_TRACES.includes(fullContainer.type)) {
-      return (
-        <FoldEmpty
-          icon={PlotScatterIcon}
-          messagePrimary={_('No transforms available for this trace type')}
-        />
-      );
-    }
 
     const transformBy =
       container.transforms &&

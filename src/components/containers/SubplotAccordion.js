@@ -17,7 +17,7 @@ const CartesianSubplotFold = connectCartesianSubplotToLayout(PlotlyFold);
 class SubplotAccordion extends Component {
   render() {
     const {data = [], layout = {}, localize: _} = this.context;
-    const {children, messageIfEmptyFold} = this.props;
+    const {children} = this.props;
     const subplotFolds = [];
 
     const allCartesianAxisCombinations = data.reduce((acc, curVal, inx) => {
@@ -54,7 +54,6 @@ class SubplotAccordion extends Component {
             key={d.index[0]}
             traceIndexes={d.index}
             canDelete={false}
-            messageIfEmpty={messageIfEmptyFold}
             xaxis={d.xaxis}
             yaxis={d.yaxis}
             name={`${d.xaxisName} | ${d.yaxisName}`}
@@ -116,7 +115,6 @@ class SubplotAccordion extends Component {
             key={layoutKey}
             traceIndexes={traceIndexes}
             canDelete={false}
-            messageIfEmpty={messageIfEmptyFold}
             subplot={layoutKey}
             name={subplotName}
           >
@@ -140,7 +138,6 @@ class SubplotAccordion extends Component {
             key={i}
             traceIndexes={[i]}
             canDelete={false}
-            messageIfEmpty={messageIfEmptyFold}
             name={
               d.type === 'pie'
                 ? `${_('Pie')} ${pieCounter > 1 ? pieCounter : ''}`
@@ -166,7 +163,6 @@ SubplotAccordion.contextTypes = {
 
 SubplotAccordion.propTypes = {
   children: PropTypes.node,
-  messageIfEmptyFold: PropTypes.string,
 };
 
 export default SubplotAccordion;

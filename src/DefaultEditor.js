@@ -16,6 +16,7 @@ import {
   StyleColorbarsPanel,
   StyleUpdateMenusPanel,
 } from './default_panels';
+import {traceHasColorbar} from './default_panels/StyleColorbarsPanel';
 import Logo from './components/widgets/Logo';
 import {TRANSFORMABLE_TRACES} from './lib/constants';
 
@@ -62,11 +63,7 @@ class DefaultEditor extends Component {
   }
 
   hasColorbars() {
-    return this.context.fullData.some(
-      d =>
-        (d.marker && d.marker.showscale !== undefined) || // eslint-disable-line no-undefined
-        d.showscale !== undefined // eslint-disable-line no-undefined
-    );
+    return this.context.fullData.some(d => traceHasColorbar({}, d));
   }
 
   render() {

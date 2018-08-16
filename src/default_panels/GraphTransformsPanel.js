@@ -11,6 +11,7 @@ import {
   FilterValue,
 } from '../components';
 import {connectAggregationToTransform} from '../lib';
+import {TRANSFORMABLE_TRACES} from 'lib/constants';
 
 const AggregationSection = connectAggregationToTransform(PlotlySection);
 
@@ -68,7 +69,9 @@ Aggregations.contextTypes = {
 
 const GraphTransformsPanel = (props, {localize: _}) => {
   return (
-    <TraceAccordion>
+    <TraceAccordion
+      traceFilterCondition={t => TRANSFORMABLE_TRACES.includes(t.type)}
+    >
       <TransformAccordion>
         <Radio
           attr="enabled"
