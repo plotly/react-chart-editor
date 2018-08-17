@@ -23,19 +23,21 @@ class TraceAccordion extends Component {
   setLocals(props, context) {
     // we don't want to include analysis transforms when we're in the create panel
     const base = props.canGroup ? context.fullData : context.data;
+    const traceFilterCondition =
+      this.props.traceFilterCondition || (() => true);
 
-    this.filteredTracesFullDataPositions = [];
+    this.filteredTracesIndexes = [];
     this.filteredTraces = base.filter((t, i) => {
-      if (props.excludeFits) {
-        return !(t.transforms && t.transforms.every(tr => tr.type === 'fit'));
+      if (traceFilterCondition(t, context.fullData[i])) {
+        this.filteredTracesIndexes.push(i);
+        return true;
       }
-      this.filteredTracesFullDataPositions.push(i);
-      return true;
+      return false;
     });
   }
 
   renderGroupedTraceFolds() {
-    if (!this.filteredTraces.length || this.filteredTraces.length < 2) {
+    if (!this.filteredTraces.length || this.filteredTraces.length <= 1) {
       return null;
     }
 
@@ -55,61 +57,45 @@ class TraceAccordion extends Component {
 
       dataArrayPositionsByTraceType[traceType].push(trace.index);
       fullDataArrayPositionsByTraceType[traceType].push(
-        this.filteredTracesFullDataPositions[index]
+        this.filteredTracesIndexes[index]
       );
     });
 
-    return Object.keys(fullDataArrayPositionsByTraceType).map((type, index) => {
-      return (
-        <TraceFold
-          key={index}
-          traceIndexes={dataArrayPositionsByTraceType[type]}
-          name={traceTypes(_).find(t => t.value === type).label}
-          fullDataArrayPosition={fullDataArrayPositionsByTraceType[type]}
-        >
-          {this.props.children}
-        </TraceFold>
-      );
-    });
+    return Object.keys(fullDataArrayPositionsByTraceType).map((type, index) => (
+      <TraceFold
+        key={index}
+        traceIndexes={dataArrayPositionsByTraceType[type]}
+        name={traceTypes(_).find(t => t.value === type).label}
+        fullDataArrayPosition={fullDataArrayPositionsByTraceType[type]}
+      >
+        {this.props.children}
+      </TraceFold>
+    ));
   }
 
   renderUngroupedTraceFolds() {
-    if (!this.filteredTraces.length) {
-      return null;
-    }
-
-    return this.filteredTraces.map((d, i) => {
-      return (
-        <TraceFold
-          key={i}
-          traceIndexes={[d.index]}
-          canDelete={this.props.canAdd}
-          messageIfEmpty={this.props.messageIfEmptyFold}
-          fullDataArrayPosition={[this.filteredTracesFullDataPositions[i]]}
-        >
-          {this.props.children}
-        </TraceFold>
-      );
-    });
+    return this.filteredTraces.map((d, i) => (
+      <TraceFold
+        key={i}
+        traceIndexes={[d.index]}
+        canDelete={this.props.canAdd}
+        fullDataArrayPosition={[this.filteredTracesIndexes[i]]}
+      >
+        {this.props.children}
+      </TraceFold>
+    ));
   }
 
   renderTraceFolds() {
-    if (!this.filteredTraces.length) {
-      return null;
-    }
-
-    return this.filteredTraces.map((d, i) => {
-      return (
-        <TraceFold
-          key={i}
-          traceIndexes={[i]}
-          canDelete={this.props.canAdd}
-          messageIfEmpty={this.props.messageIfEmptyFold}
-        >
-          {this.props.children}
-        </TraceFold>
-      );
-    });
+    return this.filteredTraces.map((d, i) => (
+      <TraceFold
+        key={i}
+        traceIndexes={[this.filteredTracesIndexes[i]]}
+        canDelete={this.props.canAdd}
+      >
+        {this.props.children}
+      </TraceFold>
+    ));
   }
 
   render() {
@@ -178,8 +164,7 @@ TraceAccordion.propTypes = {
   canAdd: PropTypes.bool,
   canGroup: PropTypes.bool,
   children: PropTypes.node,
-  excludeFits: PropTypes.bool,
-  messageIfEmptyFold: PropTypes.string,
+  traceFilterCondition: PropTypes.func,
 };
 
 export default TraceAccordion;

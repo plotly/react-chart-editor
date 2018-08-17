@@ -16,11 +16,13 @@ import {
   VisibilitySelect,
 } from '../components';
 
+export const traceHasColorbar = (trace, fullTrace) =>
+  (fullTrace.marker && fullTrace.marker.showscale !== undefined) || // eslint-disable-line no-undefined
+  fullTrace.showscale !== undefined; // eslint-disable-line no-undefined
+
 const StyleColorBarsPanel = (props, {localize: _}) => {
   return (
-    <TraceAccordion
-      messageIfEmptyFold={_('Need a color scale for a colorbar!')}
-    >
+    <TraceAccordion traceFilterCondition={traceHasColorbar}>
       {['', 'marker.'].map(prefix => {
         return (
           <VisibilitySelect

@@ -19,7 +19,12 @@ import {
 
 const GraphCreatePanel = (props, {localize: _}) => {
   return (
-    <TraceAccordion canAdd excludeFits>
+    <TraceAccordion
+      canAdd
+      traceFilterCondition={t =>
+        !(t.transforms && t.transforms.every(tr => tr.type === 'fit'))
+      }
+    >
       <TraceSelector label={_('Type')} attr="type" show />
 
       <LocationSelector attr="type" />
