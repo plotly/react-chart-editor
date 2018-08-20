@@ -14,8 +14,9 @@ class PanelErrorImpl extends Component {
       <PanelEmpty
         icon={EmbedIconIcon}
         heading={_('Well this is embarrassing.')}
-        message={_('This panel could not be displayed due to an error.')}
-      />
+      >
+        <p>{_('This panel could not be displayed due to an error.')}</p>
+      </PanelEmpty>
     );
   }
 }
