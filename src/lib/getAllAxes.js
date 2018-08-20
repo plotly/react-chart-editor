@@ -44,6 +44,12 @@ export default function getAllAxes(fullLayout) {
 }
 
 export function traceTypeToAxisType(traceType, subplot = false) {
+  // plotly.js actually allows traces with no type and just
+  // defaults them to scatter, so do this here as well.
+  if (!traceType) {
+    traceType = 'scatter'; // eslint-disable-line
+  }
+
   let category = null;
   const traceToAxis = TRACE_TO_AXIS;
   if (subplot) {
