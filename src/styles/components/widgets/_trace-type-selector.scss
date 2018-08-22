@@ -171,6 +171,7 @@ $item-size: 90px;
   &__label {
     font-weight: var(--font-weight-semibold);
     width: $item-size * 0.8;
+    height: 34px;
     margin-top: var(--spacing-half-unit);
     color: var(--color-text-base);
     text-transform: capitalize;

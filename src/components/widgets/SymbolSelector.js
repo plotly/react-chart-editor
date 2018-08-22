@@ -81,7 +81,10 @@ export default class SymbolSelector extends Component {
         <div
           className="symbol-selector__item"
           key={value}
-          onClick={() => this.props.onChange(value)}
+          onClick={() => {
+            this.props.onChange(value);
+            this.togglePanel();
+          }}
         >
           <svg
             width="28"

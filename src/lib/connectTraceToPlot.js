@@ -125,6 +125,9 @@ export default function connectTraceToPlot(WrappedComponent) {
             )
           : null;
 
+        const containsAnSrc =
+          Object.keys(update).filter(a => a.endsWith('src')).length > 0;
+
         if (Array.isArray(update)) {
           update.forEach((u, i) => {
             this.context.onUpdate({
@@ -136,7 +139,7 @@ export default function connectTraceToPlot(WrappedComponent) {
               },
             });
           });
-        } else if (splitTraceGroup) {
+        } else if (splitTraceGroup && !containsAnSrc) {
           this.props.traceIndexes.forEach((t, i) => {
             this.context.onUpdate({
               type: EDITOR_ACTIONS.UPDATE_TRACES,
