@@ -21,8 +21,7 @@ class EditorControls extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.localize = key =>
-      localizeString(this.props.dictionaries || {}, this.props.locale, key);
+    this.localize = key => localizeString(this.props.dictionaries || {}, this.props.locale, key);
 
     // we only need to compute this once.
     if (this.props.plotly) {
@@ -85,12 +84,7 @@ class EditorControls extends Component {
             const value = payload.update[attr];
 
             if (splitTraceGroup) {
-              props = shamefullyCreateSplitStyleProps(
-                graphDiv,
-                attr,
-                traceIndex,
-                splitTraceGroup
-              );
+              props = shamefullyCreateSplitStyleProps(graphDiv, attr, traceIndex, splitTraceGroup);
             }
 
             props.forEach(p => {
@@ -262,17 +256,11 @@ class EditorControls extends Component {
         break;
 
       case EDITOR_ACTIONS.DELETE_TRANSFORM:
-        if (
-          isNumeric(payload.transformIndex) &&
-          payload.traceIndex < graphDiv.data.length
-        ) {
+        if (isNumeric(payload.transformIndex) && payload.traceIndex < graphDiv.data.length) {
           if (graphDiv.data[payload.traceIndex].transforms.length === 1) {
             delete graphDiv.data[payload.traceIndex].transforms;
           } else {
-            graphDiv.data[payload.traceIndex].transforms.splice(
-              payload.transformIndex,
-              1
-            );
+            graphDiv.data[payload.traceIndex].transforms.splice(payload.transformIndex, 1);
           }
           if (this.props.onUpdate) {
             this.props.onUpdate(
@@ -285,9 +273,7 @@ class EditorControls extends Component {
         break;
 
       default:
-        throw new Error(
-          this.localize('must specify an action type to handleEditorUpdate')
-        );
+        throw new Error(this.localize('must specify an action type to handleEditorUpdate'));
     }
   }
 

@@ -132,8 +132,7 @@ describe('Basic Section rules', () => {
         </TestEditor>
       );
 
-      it('SHOWS PlotlySection', () =>
-        expect(wrapper.find('div.section').length).toEqual(1));
+      it('SHOWS PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
       it('SHOWS div', () => expect(wrapper.find('#thediv').length).toEqual(1));
     });
   });
@@ -151,8 +150,7 @@ describe('Basic Fold rules', () => {
           </Panel>
         </TestEditor>
       );
-      it('SHOWS Fold', () =>
-        expect(wrapper.find('div.fold').length).toEqual(1));
+      it('SHOWS Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
       it('HIDES Field because it has no context', () =>
         expect(wrapper.find('input').length).toEqual(0));
     });
@@ -168,8 +166,7 @@ describe('Basic Fold rules', () => {
         </TestEditor>
       );
 
-      it('SHOWS Fold', () =>
-        expect(wrapper.find('div.fold').length).toEqual(1));
+      it('SHOWS Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
       it('SHOWS Field', () => expect(wrapper.find('input').length).toEqual(1));
     });
 
@@ -184,8 +181,7 @@ describe('Basic Fold rules', () => {
         </TestEditor>
       );
 
-      it('SHOWS Fold', () =>
-        expect(wrapper.find('div.fold').length).toEqual(1));
+      it('SHOWS Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
       it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
     });
 
@@ -200,8 +196,7 @@ describe('Basic Fold rules', () => {
         </TestEditor>
       );
 
-      it('SHOWS Fold', () =>
-        expect(wrapper.find('div.fold').length).toEqual(1));
+      it('SHOWS Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
       it('SHOWS div', () => expect(wrapper.find('#thediv').length).toEqual(1));
     });
 
@@ -219,12 +214,9 @@ describe('Basic Fold rules', () => {
               </Panel>
             </TestEditor>
           );
-          it('SHOWS Fold', () =>
-            expect(wrapper.find('div.fold').length).toEqual(1));
-          it('SHOWS PlotlySection', () =>
-            expect(wrapper.find('div.section').length).toEqual(1));
-          it('SHOWS div', () =>
-            expect(wrapper.find('#thediv').length).toEqual(1));
+          it('SHOWS Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+          it('SHOWS PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
+          it('SHOWS div', () => expect(wrapper.find('#thediv').length).toEqual(1));
         });
 
         describe('Field-with-visible-attr', () => {
@@ -239,12 +231,9 @@ describe('Basic Fold rules', () => {
               </LayoutPanel>
             </TestEditor>
           );
-          it('SHOWS Fold', () =>
-            expect(wrapper.find('div.fold').length).toEqual(1));
-          it('SHOWS PlotlySection', () =>
-            expect(wrapper.find('div.section').length).toEqual(1));
-          it('SHOWS Field', () =>
-            expect(wrapper.find('input').length).toEqual(1));
+          it('SHOWS Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+          it('SHOWS PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
+          it('SHOWS Field', () => expect(wrapper.find('input').length).toEqual(1));
         });
 
         describe('Field-with-invisible-attr', () => {
@@ -260,12 +249,10 @@ describe('Basic Fold rules', () => {
             </TestEditor>
           );
 
-          it('SHOWS Fold', () =>
-            expect(wrapper.find('div.fold').length).toEqual(1));
+          it('SHOWS Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
           it('HIDES PlotlySection because Plotly Section visibility rules apply', () =>
             expect(wrapper.find('div.section').length).toEqual(0));
-          it('HIDES Field', () =>
-            expect(wrapper.find('input').length).toEqual(0));
+          it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
         });
       });
     });
@@ -284,12 +271,9 @@ describe('Basic Fold rules', () => {
           </TestEditor>
         );
 
-        it('SHOWS Fold', () =>
-          expect(wrapper.find('div.fold').length).toEqual(1));
-        it('SHOWS PlotlyPanel', () =>
-          expect(wrapper.find('div.panel').length).toEqual(2));
-        it('SHOWS Field', () =>
-          expect(wrapper.find('input').length).toEqual(1));
+        it('SHOWS Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+        it('SHOWS PlotlyPanel', () => expect(wrapper.find('div.panel').length).toEqual(2));
+        it('SHOWS Field', () => expect(wrapper.find('input').length).toEqual(1));
       });
     });
 
@@ -305,10 +289,8 @@ describe('Basic Fold rules', () => {
           </TestEditor>
         );
 
-        it('SHOWS Fold', () =>
-          expect(wrapper.find('div.fold').length).toEqual(1));
-        it('SHOWS Info', () =>
-          expect(wrapper.find('.js-test-info').length).toEqual(1));
+        it('SHOWS Fold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+        it('SHOWS Info', () => expect(wrapper.find('.js-test-info').length).toEqual(1));
       });
     });
   });

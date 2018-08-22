@@ -79,12 +79,8 @@ export function axisIdToAxisName(id) {
 }
 
 function getAxisNumber(axis) {
-  const splitSubplot = axis._subplot
-    ? axis._subplot.split(axis._axisGroup)
-    : [];
-  return splitSubplot[1]
-    ? Number(splitSubplot[1])
-    : axis._name.split('axis')[1];
+  const splitSubplot = axis._subplot ? axis._subplot.split(axis._axisGroup) : [];
+  return splitSubplot[1] ? Number(splitSubplot[1]) : axis._name.split('axis')[1];
 }
 
 export function getAxisTitle(axis) {
@@ -102,8 +98,7 @@ function getSubplotNumber(subplot, type) {
 
 export function getSubplotTitle(subplot, type, _) {
   const axisName = subplotName(type, _);
-  const subplotNumber =
-    getSubplotNumber(subplot, SUBPLOT_TO_ATTR[type].layout) || '';
+  const subplotNumber = getSubplotNumber(subplot, SUBPLOT_TO_ATTR[type].layout) || '';
 
   return `${axisName} ${subplotNumber}`;
 }

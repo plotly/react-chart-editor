@@ -10,10 +10,7 @@ function doArrayWalk(key, value, walkArrays, walkArraysMatchingKeys) {
     return false;
   }
 
-  if (
-    walkArrays ||
-    (walkArraysMatchingKeys && walkArraysMatchingKeys.includes(key))
-  ) {
+  if (walkArrays || (walkArraysMatchingKeys && walkArraysMatchingKeys.includes(key))) {
     return true;
   }
 
@@ -138,10 +135,7 @@ function _walkObject(object, callback, path, config) {
     }
 
     const value = object[key];
-    if (
-      isPlainObject(value) ||
-      doArrayWalk(key, value, walkArrays, walkArraysMatchingKeys)
-    ) {
+    if (isPlainObject(value) || doArrayWalk(key, value, walkArrays, walkArraysMatchingKeys)) {
       _walkObject(value, callback, path.set(object, key), config);
     }
   });

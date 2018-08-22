@@ -190,13 +190,11 @@ const SYMBOLS = [
 
   {
     value: 'octagon',
-    label:
-      'M-1.92,-4.62H1.92L4.62,-1.92V1.92L1.92,4.62H-1.92L-4.62,1.92V-1.92Z',
+    label: 'M-1.92,-4.62H1.92L4.62,-1.92V1.92L1.92,4.62H-1.92L-4.62,1.92V-1.92Z',
   },
   {
     value: 'octagon-open',
-    label:
-      'M-1.92,-4.62H1.92L4.62,-1.92V1.92L1.92,4.62H-1.92L-4.62,1.92V-1.92Z',
+    label: 'M-1.92,-4.62H1.92L4.62,-1.92V1.92L1.92,4.62H-1.92L-4.62,1.92V-1.92Z',
     fill: 'none',
   },
 
@@ -229,25 +227,21 @@ const SYMBOLS = [
 
   {
     value: 'star-triangle-up',
-    label:
-      'M-6.93,4A 20,20 0 0 1 6.93,4A 20,20 0 0 1 0,-8A 20,20 0 0 1 -6.93,4Z',
+    label: 'M-6.93,4A 20,20 0 0 1 6.93,4A 20,20 0 0 1 0,-8A 20,20 0 0 1 -6.93,4Z',
   },
   {
     value: 'star-triangle-up-open',
-    label:
-      'M-6.93,4A 20,20 0 0 1 6.93,4A 20,20 0 0 1 0,-8A 20,20 0 0 1 -6.93,4Z',
+    label: 'M-6.93,4A 20,20 0 0 1 6.93,4A 20,20 0 0 1 0,-8A 20,20 0 0 1 -6.93,4Z',
     fill: 'none',
   },
 
   {
     value: 'star-triangle-down',
-    label:
-      'M6.93,-4A 20,20 0 0 1 -6.93,-4A 20,20 0 0 1 0,8A 20,20 0 0 1 6.93,-4Z',
+    label: 'M6.93,-4A 20,20 0 0 1 -6.93,-4A 20,20 0 0 1 0,8A 20,20 0 0 1 6.93,-4Z',
   },
   {
     value: 'star-triangle-down-open',
-    label:
-      'M6.93,-4A 20,20 0 0 1 -6.93,-4A 20,20 0 0 1 0,8A 20,20 0 0 1 6.93,-4Z',
+    label: 'M6.93,-4A 20,20 0 0 1 -6.93,-4A 20,20 0 0 1 0,8A 20,20 0 0 1 6.93,-4Z',
     fill: 'none',
   },
 
@@ -265,13 +259,11 @@ const SYMBOLS = [
 
   {
     value: 'star-diamond',
-    label:
-      'M-7,0A 9.5,9.5 0 0 1 0,7A 9.5,9.5 0 0 1 7,0A 9.5,9.5 0 0 1 0,-7A 9.5,9.5 0 0 1 -7,0Z',
+    label: 'M-7,0A 9.5,9.5 0 0 1 0,7A 9.5,9.5 0 0 1 7,0A 9.5,9.5 0 0 1 0,-7A 9.5,9.5 0 0 1 -7,0Z',
   },
   {
     value: 'star-diamond-open',
-    label:
-      'M-7,0A 9.5,9.5 0 0 1 0,7A 9.5,9.5 0 0 1 7,0A 9.5,9.5 0 0 1 0,-7A 9.5,9.5 0 0 1 -7,0Z',
+    label: 'M-7,0A 9.5,9.5 0 0 1 0,7A 9.5,9.5 0 0 1 7,0A 9.5,9.5 0 0 1 0,-7A 9.5,9.5 0 0 1 -7,0Z',
     fill: 'none',
   },
 
@@ -373,27 +365,17 @@ class SymbolSelector extends Component {
     if (this.markerColor === MULTI_VALUED) {
       this.markerColor = nestedProperty(defaultContainer, 'marker.color').get();
     }
-    this.markerColor = Array.isArray(this.markerColor)
-      ? COLORS.mutedBlue
-      : this.markerColor;
+    this.markerColor = Array.isArray(this.markerColor) ? COLORS.mutedBlue : this.markerColor;
 
     this.borderColor = this.markerColor;
     if (this.borderWidth) {
-      this.borderColor = nestedProperty(
-        fullContainer,
-        'marker.line.color'
-      ).get();
+      this.borderColor = nestedProperty(fullContainer, 'marker.line.color').get();
       if (this.borderColor === MULTI_VALUED) {
-        this.borderColor = nestedProperty(
-          defaultContainer,
-          'marker.line.color'
-        ).get();
+        this.borderColor = nestedProperty(defaultContainer, 'marker.line.color').get();
       }
     }
 
-    this.borderColor = Array.isArray(this.borderColor)
-      ? COLORS.charcoal
-      : this.borderColor;
+    this.borderColor = Array.isArray(this.borderColor) ? COLORS.charcoal : this.borderColor;
 
     if (this.props.is3D) {
       this.symbolOptions = SYMBOLS.filter(option => {

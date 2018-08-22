@@ -5,12 +5,7 @@ import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedAxisRangeValue} from './AxisRangeValue';
 import {UnconnectedRadio} from './Radio';
 import Info from './Info';
-import {
-  connectToContainer,
-  getAllAxes,
-  getAxisTitle,
-  axisIdToAxisName,
-} from 'lib';
+import {connectToContainer, getAllAxes, getAxisTitle, axisIdToAxisName} from 'lib';
 
 export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
@@ -90,25 +85,16 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
     const _ = context.localize;
 
     if (plotProps.fullValue === 'left' || plotProps.fullValue === 'right') {
-      plotProps.options = [
-        {label: _('Left'), value: 'left'},
-        {label: _('Right'), value: 'right'},
-      ];
+      plotProps.options = [{label: _('Left'), value: 'left'}, {label: _('Right'), value: 'right'}];
       return;
     }
 
     if (plotProps.fullValue === 'top' || plotProps.fullValue === 'bottom') {
-      plotProps.options = [
-        {label: _('Top'), value: 'top'},
-        {label: _('Bottom'), value: 'bottom'},
-      ];
+      plotProps.options = [{label: _('Top'), value: 'top'}, {label: _('Bottom'), value: 'bottom'}];
       return;
     }
 
-    if (
-      plotProps.fullValue === 'clockwise' ||
-      plotProps.fullValue === 'counterclockwise'
-    ) {
+    if (plotProps.fullValue === 'clockwise' || plotProps.fullValue === 'counterclockwise') {
       plotProps.options = [
         {label: _('Clockwise'), value: 'clockwise'},
         {label: _('Counterclockwise'), value: 'counterclockwise'},
@@ -132,11 +118,7 @@ export const ContourNumeric = connectToContainer(UnconnectedNumeric, {
 export const BinningNumeric = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;
-    if (
-      plotProps.isVisible &&
-      fullContainer &&
-      fullContainer[`autobin${props.axis}`]
-    ) {
+    if (plotProps.isVisible && fullContainer && fullContainer[`autobin${props.axis}`]) {
       plotProps.isVisible = false;
     }
   },
@@ -174,8 +156,7 @@ export const ShowInLegend = connectToContainer(UnconnectedRadio, {
 export const HistogramInfoVertical = connectToContainer(Info, {
   modifyPlotProps: (props, context, plotProps) => {
     plotProps.isVisible =
-      context.fullContainer.type === 'histogram' &&
-      context.fullContainer.orientation === 'v';
+      context.fullContainer.type === 'histogram' && context.fullContainer.orientation === 'v';
     return plotProps;
   },
 });
@@ -183,8 +164,7 @@ export const HistogramInfoVertical = connectToContainer(Info, {
 export const HistogramInfoHorizontal = connectToContainer(Info, {
   modifyPlotProps: (props, context, plotProps) => {
     plotProps.isVisible =
-      context.fullContainer.type === 'histogram' &&
-      context.fullContainer.orientation === 'h';
+      context.fullContainer.type === 'histogram' && context.fullContainer.orientation === 'h';
     return plotProps;
   },
 });
@@ -202,11 +182,7 @@ export const AxesRange = connectToContainer(UnconnectedAxisRangeValue, {
 export const NTicks = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;
-    if (
-      plotProps.isVisible &&
-      fullContainer &&
-      fullContainer.tickmode !== 'auto'
-    ) {
+    if (plotProps.isVisible && fullContainer && fullContainer.tickmode !== 'auto') {
       plotProps.isVisible = false;
     }
     return plotProps;
@@ -219,17 +195,12 @@ export const DTicks = connectToContainer(UnconnectedAxisRangeValue, {
     if (
       fullContainer &&
       fullContainer._name &&
-      (fullContainer._name.startsWith('lat') ||
-        fullContainer._name.startsWith('lon'))
+      (fullContainer._name.startsWith('lat') || fullContainer._name.startsWith('lon'))
     ) {
       // don't mess with visibility on geo axes
       return plotProps;
     }
-    if (
-      plotProps.isVisible &&
-      fullContainer &&
-      fullContainer.tickmode !== 'linear'
-    ) {
+    if (plotProps.isVisible && fullContainer && fullContainer.tickmode !== 'linear') {
       plotProps.isVisible = false;
     }
     return plotProps;
@@ -266,48 +237,42 @@ export const NumericFraction = connectToContainer(UnconnectedNumericFraction, {
   modifyPlotProps: numericFractionModifyPlotProps,
 });
 
-export const NumericFractionDomain = connectToContainer(
-  UnconnectedNumericFraction,
-  {
-    modifyPlotProps: (props, context, plotProps) => {
-      numericFractionModifyPlotProps(props, context, plotProps);
-      if (context.container && context.container.overlaying) {
-        plotProps.isVisible = null;
+export const NumericFractionDomain = connectToContainer(UnconnectedNumericFraction, {
+  modifyPlotProps: (props, context, plotProps) => {
+    numericFractionModifyPlotProps(props, context, plotProps);
+    if (context.container && context.container.overlaying) {
+      plotProps.isVisible = null;
+    }
+  },
+});
+
+export const NumericFractionInverse = connectToContainer(UnconnectedNumericFraction, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {attrMeta, fullValue, updatePlot} = plotProps;
+    if (isNumeric(fullValue)) {
+      plotProps.fullValue = Math.round((1 - fullValue) * 100);
+    }
+
+    plotProps.updatePlot = v => {
+      if (isNumeric(v)) {
+        updatePlot(1 - v / 100);
+      } else {
+        updatePlot(v);
       }
-    },
-  }
-);
+    };
 
-export const NumericFractionInverse = connectToContainer(
-  UnconnectedNumericFraction,
-  {
-    modifyPlotProps: (props, context, plotProps) => {
-      const {attrMeta, fullValue, updatePlot} = plotProps;
-      if (isNumeric(fullValue)) {
-        plotProps.fullValue = Math.round((1 - fullValue) * 100);
+    // Also take the inverse of max and min.
+    if (attrMeta) {
+      if (isNumeric(attrMeta.min)) {
+        plotProps.max = (1 - attrMeta.min) * 100;
       }
 
-      plotProps.updatePlot = v => {
-        if (isNumeric(v)) {
-          updatePlot(1 - v / 100);
-        } else {
-          updatePlot(v);
-        }
-      };
-
-      // Also take the inverse of max and min.
-      if (attrMeta) {
-        if (isNumeric(attrMeta.min)) {
-          plotProps.max = (1 - attrMeta.min) * 100;
-        }
-
-        if (isNumeric(attrMeta.max)) {
-          plotProps.min = (1 - attrMeta.max) * 100;
-        }
+      if (isNumeric(attrMeta.max)) {
+        plotProps.min = (1 - attrMeta.max) * 100;
       }
-    },
-  }
-);
+    }
+  },
+});
 
 export const NumericReciprocal = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
@@ -394,9 +359,7 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
       currentOffsetRef = ayref;
     } else {
       throw new Error(
-        _(
-          'AnnotationRef must be given either "xref" or "yref" as attrs. Instead was given'
-        ) +
+        _('AnnotationRef must be given either "xref" or "yref" as attrs. Instead was given') +
           props.attr +
           '.'
       );
@@ -484,10 +447,7 @@ function computeAxesRefOptions(axes, propsAttr) {
   const options = [];
   for (let i = 0; i < axes.length; i++) {
     const ax = axes[i];
-    if (
-      ax._id.charAt(0) === propsAttr.charAt(0) ||
-      ax._id.charAt(0) === propsAttr.charAt(1)
-    ) {
+    if (ax._id.charAt(0) === propsAttr.charAt(0) || ax._id.charAt(0) === propsAttr.charAt(1)) {
       const label = getAxisTitle(ax);
       options.push({label, value: ax._id});
     }
@@ -560,24 +520,15 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
     ) {
       options.push({label: _('Z'), value: 'z'});
     } else if (container.type === 'choropleth') {
-      options = [
-        {label: _('Location'), value: 'location'},
-        {label: _('Values'), value: 'z'},
-      ];
+      options = [{label: _('Location'), value: 'location'}, {label: _('Values'), value: 'z'}];
     } else if (container.type === 'scattergeo') {
       if (container.locations) {
         options = [{label: _('Location'), value: 'location'}];
       } else if (container.lat || container.lon) {
-        options = [
-          {label: _('Longitude'), value: 'lon'},
-          {label: _('Latitude'), value: 'lat'},
-        ];
+        options = [{label: _('Longitude'), value: 'lon'}, {label: _('Latitude'), value: 'lat'}];
       }
     } else if (container.type === 'scattermapbox') {
-      options = [
-        {label: _('Longitude'), value: 'loc'},
-        {label: _('Latitude'), value: 'lat'},
-      ];
+      options = [{label: _('Longitude'), value: 'loc'}, {label: _('Latitude'), value: 'lat'}];
     } else if (container.type === 'scatterternary') {
       options = [
         {label: _('A'), value: 'a'},
@@ -585,10 +536,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         {label: _('C'), value: 'c'},
       ];
     } else if (['scatterpolar', 'scatterpolargl'].includes(container.type)) {
-      options = [
-        {label: _('R'), value: 'r'},
-        {label: _('Theta'), value: 'theta'},
-      ];
+      options = [{label: _('R'), value: 'r'}, {label: _('Theta'), value: 'theta'}];
     } else if (container.type === 'pie') {
       options = [
         {label: _('Label'), value: 'label'},
@@ -646,10 +594,7 @@ export const FillDropdown = connectToContainer(UnconnectedDropdown, {
       context.container.type === 'scattergeo' ||
       context.container.type === 'scattermapbox'
     ) {
-      options = [
-        {label: _('None'), value: 'none'},
-        {label: _('To Self'), value: 'toself'},
-      ];
+      options = [{label: _('None'), value: 'none'}, {label: _('To Self'), value: 'toself'}];
     }
 
     plotProps.options = options;
@@ -701,10 +646,7 @@ export const HovermodeDropdown = connectToContainer(UnconnectedDropdown, {
             {label: _('Y Axis'), value: 'y'},
             {label: _('Disable'), value: false},
           ]
-        : [
-            {label: _('Closest'), value: 'closest'},
-            {label: _('Disable'), value: false},
-          ];
+        : [{label: _('Closest'), value: 'closest'}, {label: _('Disable'), value: false}];
     plotProps.clearable = false;
   },
 });

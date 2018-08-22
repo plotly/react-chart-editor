@@ -17,13 +17,7 @@ class PanelHeader extends Component {
 
   render() {
     const {localize: _} = this.context;
-    const {
-      children,
-      addAction,
-      allowCollapse,
-      toggleFolds,
-      hasOpen,
-    } = this.props;
+    const {children, addAction, allowCollapse, toggleFolds, hasOpen} = this.props;
 
     // dropdown is styled with same styles as react-select component - see _dropdown.scss
     const icon = <PlusIcon />;

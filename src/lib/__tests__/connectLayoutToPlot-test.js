@@ -1,21 +1,13 @@
 import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
 import connectLayoutToPlot from '../connectLayoutToPlot';
-import {
-  PlotlyFold,
-  PlotlyPanel,
-  PlotlySection,
-} from '../../components/containers';
+import {PlotlyFold, PlotlyPanel, PlotlySection} from '../../components/containers';
 import {Numeric} from '../../components/fields';
 import {TestEditor, fixtures, plotly} from '../test-utils';
 import {mount} from 'enzyme';
 
-const Layouts = [PlotlyPanel, PlotlyFold, PlotlySection].map(
-  connectLayoutToPlot
-);
-const Editor = props => (
-  <TestEditor {...{plotly, onUpdate: jest.fn(), ...props}} />
-);
+const Layouts = [PlotlyPanel, PlotlyFold, PlotlySection].map(connectLayoutToPlot);
+const Editor = props => <TestEditor {...{plotly, onUpdate: jest.fn(), ...props}} />;
 
 Layouts.forEach(Layout => {
   describe(`<${Layout.displayName}>`, () => {
@@ -61,10 +53,7 @@ Layouts.forEach(Layout => {
     it(`automatically computes min and max defaults`, () => {
       const onUpdate = jest.fn();
       const wrapper = mount(
-        <Editor
-          onUpdate={onUpdate}
-          {...fixtures.scatter({layout: {showlegend: true}})}
-        >
+        <Editor onUpdate={onUpdate} {...fixtures.scatter({layout: {showlegend: true}})}>
           <PlotlyPanel>
             <Layout>
               <Numeric label="Position x" step={0.01} attr="legend.x" />

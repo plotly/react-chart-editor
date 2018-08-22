@@ -30,9 +30,7 @@ export default function connectImageToLayout(WrappedComponent) {
     getChildContext() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
-            ? null
-            : this.context.getValObject(`images[].${attr}`),
+          !this.context.getValObject ? null : this.context.getValObject(`images[].${attr}`),
         updateContainer: this.updateImage,
         deleteContainer: this.deleteImage,
         container: this.container,
@@ -64,9 +62,7 @@ export default function connectImageToLayout(WrappedComponent) {
     }
   }
 
-  ImageConnectedComponent.displayName = `ImageConnected${getDisplayName(
-    WrappedComponent
-  )}`;
+  ImageConnectedComponent.displayName = `ImageConnected${getDisplayName(WrappedComponent)}`;
 
   ImageConnectedComponent.propTypes = {
     imageIndex: PropTypes.number.isRequired,

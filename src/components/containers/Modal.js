@@ -6,19 +6,14 @@ const ModalHeader = ({title, handleClose}) => (
   <div className="modal__header">
     {title ? <div className="modal__header__title">{title}</div> : null}
     {handleClose ? (
-      <div
-        className="modal__header__close"
-        onClick={handleClose ? () => handleClose() : null}
-      >
+      <div className="modal__header__close" onClick={handleClose ? () => handleClose() : null}>
         <CloseIcon />
       </div>
     ) : null}
   </div>
 );
 
-const ModalContent = ({children}) => (
-  <div className="modal__content">{children}</div>
-);
+const ModalContent = ({children}) => <div className="modal__content">{children}</div>;
 
 class Modal extends Component {
   constructor(props) {
@@ -50,16 +45,10 @@ class Modal extends Component {
     return (
       <div className={classes}>
         <div className="modal__card">
-          <ModalHeader
-            title={title}
-            handleClose={() => this.context.handleClose()}
-          />
+          <ModalHeader title={title} handleClose={() => this.context.handleClose()} />
           <ModalContent>{children}</ModalContent>
         </div>
-        <div
-          className="modal__backdrop"
-          onClick={() => this.context.handleClose()}
-        />
+        <div className="modal__backdrop" onClick={() => this.context.handleClose()} />
       </div>
     );
   }

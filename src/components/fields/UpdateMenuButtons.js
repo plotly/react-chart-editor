@@ -33,10 +33,7 @@ class UpdateMenuButtons extends Component {
     return (
       <Field>
         {this.renderDropdown()}
-        <TextEditor
-          attr={`buttons[${this.state.currentButtonIndex}].label`}
-          richTextOnly
-        />
+        <TextEditor attr={`buttons[${this.state.currentButtonIndex}].label`} richTextOnly />
       </Field>
     );
   }

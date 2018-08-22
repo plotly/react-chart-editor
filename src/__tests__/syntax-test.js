@@ -2,14 +2,7 @@
 import fs from 'fs';
 import glob from 'glob';
 
-const BLACK_LIST = [
-  'fdescribe',
-  'fit',
-  'xdescribe',
-  'xit',
-  'it\\.only',
-  'describe\\.only',
-];
+const BLACK_LIST = ['fdescribe', 'fit', 'xdescribe', 'xit', 'it\\.only', 'describe\\.only'];
 const REGEXS = BLACK_LIST.map(token => new RegExp(`^\\s*${token}\\(.*`));
 
 describe('Syntax and test validation', () => {

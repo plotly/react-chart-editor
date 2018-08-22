@@ -30,9 +30,7 @@ export default function connectAnnotationToLayout(WrappedComponent) {
     getChildContext() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
-            ? null
-            : this.context.getValObject(`annotations[].${attr}`),
+          !this.context.getValObject ? null : this.context.getValObject(`annotations[].${attr}`),
         updateContainer: this.updateAnnotation,
         deleteContainer: this.deleteAnnotation,
         container: this.container,

@@ -28,9 +28,7 @@ class UnconnectedRectanglePositioner extends Component {
     const y0 = (fieldHeightPx - (height + y)) / fieldHeightPx;
     const y1 = (fieldHeightPx - y) / fieldHeightPx;
 
-    const snap = this.state.snap
-      ? v => Math.round(v * gridRes) / gridRes
-      : v => v;
+    const snap = this.state.snap ? v => Math.round(v * gridRes) / gridRes : v => v;
 
     const payload = {};
 
@@ -85,10 +83,7 @@ class UnconnectedRectanglePositioner extends Component {
             alignment="center"
             onOptionChange={snap => this.setState({snap: snap})}
             activeOption={this.state.snap}
-            options={[
-              {label: _('On'), value: true},
-              {label: _('Off'), value: false},
-            ]}
+            options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
           />
         </Field>
         <div
@@ -107,8 +102,7 @@ class UnconnectedRectanglePositioner extends Component {
                 style={{
                   width: fieldWidthPx / gridRes - 1,
                   height: fieldHeightPx / gridRes - 1,
-                  borderBottom:
-                    i < gridRes * (gridRes - 1) ? '0' : '1px solid ',
+                  borderBottom: i < gridRes * (gridRes - 1) ? '0' : '1px solid ',
                   borderRight: (i + 1) % gridRes ? '0' : '1px solid',
                 }}
               />

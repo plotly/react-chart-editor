@@ -54,16 +54,8 @@ class UnconnectedMultiColorPicker extends Component {
       adjustedColors = adjustColorscale(colors, numberOfTraces, colorscaleType);
     }
 
-    if (
-      adjustedColors.every(c => c === adjustedColors[0]) ||
-      colorscaleType === 'categorical'
-    ) {
-      adjustedColors = adjustColorscale(
-        colors,
-        numberOfTraces,
-        colorscaleType,
-        {repeat: true}
-      );
+    if (adjustedColors.every(c => c === adjustedColors[0]) || colorscaleType === 'categorical') {
+      adjustedColors = adjustColorscale(colors, numberOfTraces, colorscaleType, {repeat: true});
     }
 
     const updates = adjustedColors.map(color => ({
@@ -79,8 +71,7 @@ class UnconnectedMultiColorPicker extends Component {
       {label: _('Single'), value: 'single'},
       {label: _('Multiple'), value: 'multiple'},
     ];
-    const selectedConstantColorOption = this.props
-      .parentSelectedConstantColorOption
+    const selectedConstantColorOption = this.props.parentSelectedConstantColorOption
       ? this.props.parentSelectedConstantColorOption
       : this.state.selectedConstantColorOption;
 
@@ -108,17 +99,11 @@ class UnconnectedMultiColorPicker extends Component {
                 : value => this.setState({selectedConstantColorOption: value})
             }
           />
-          <Info>
-            {selectedConstantColorOption === 'single'
-              ? singleMessage
-              : multiMessage}
-          </Info>
+          <Info>{selectedConstantColorOption === 'single' ? singleMessage : multiMessage}</Info>
           {selectedConstantColorOption === 'single' ? (
             <ColorPicker
               attr={this.props.attr}
-              updatePlot={
-                this.props.setColor ? this.props.setColor : this.setColor
-              }
+              updatePlot={this.props.setColor ? this.props.setColor : this.setColor}
             />
           ) : (
             <CustomColorscalePicker
@@ -177,9 +162,7 @@ export default connectToContainer(UnconnectedMultiColorPicker, {
       });
 
       dedupedTraceIndexes.forEach(traceIndex => {
-        const traces = context.fullData.filter(
-          trace => trace.index === traceIndex
-        );
+        const traces = context.fullData.filter(trace => trace.index === traceIndex);
         tracesToColor = tracesToColor.concat(traces);
 
         traces.forEach(t => {

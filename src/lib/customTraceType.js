@@ -16,9 +16,7 @@ export function plotlyTraceToCustomTrace(trace) {
 
   if (
     (type === 'scatter' || type === 'scattergl') &&
-    ['tozeroy', 'tozerox', 'tonexty', 'tonextx', 'toself', 'tonext'].includes(
-      trace.fill
-    )
+    ['tozeroy', 'tozerox', 'tonexty', 'tonextx', 'toself', 'tonext'].includes(trace.fill)
   ) {
     return 'area';
   } else if (

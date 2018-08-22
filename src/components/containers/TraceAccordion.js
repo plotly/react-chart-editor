@@ -23,8 +23,7 @@ class TraceAccordion extends Component {
   setLocals(props, context) {
     // we don't want to include analysis transforms when we're in the create panel
     const base = props.canGroup ? context.fullData : context.data;
-    const traceFilterCondition =
-      this.props.traceFilterCondition || (() => true);
+    const traceFilterCondition = this.props.traceFilterCondition || (() => true);
 
     this.filteredTracesIndexes = [];
     this.filteredTraces = base.filter((t, i) => {
@@ -56,9 +55,7 @@ class TraceAccordion extends Component {
       }
 
       dataArrayPositionsByTraceType[traceType].push(trace.index);
-      fullDataArrayPositionsByTraceType[traceType].push(
-        this.filteredTracesIndexes[index]
-      );
+      fullDataArrayPositionsByTraceType[traceType].push(this.filteredTracesIndexes[index]);
     });
 
     return Object.keys(fullDataArrayPositionsByTraceType).map((type, index) => (
@@ -114,20 +111,12 @@ class TraceAccordion extends Component {
         },
       };
 
-      return (
-        <PlotlyPanel addAction={addAction}>
-          {this.renderTraceFolds()}
-        </PlotlyPanel>
-      );
+      return <PlotlyPanel addAction={addAction}>{this.renderTraceFolds()}</PlotlyPanel>;
     }
 
     if (canGroup) {
       if (this.filteredTraces.length === 1) {
-        return (
-          <TraceRequiredPanel>
-            {this.renderUngroupedTraceFolds()}
-          </TraceRequiredPanel>
-        );
+        return <TraceRequiredPanel>{this.renderUngroupedTraceFolds()}</TraceRequiredPanel>;
       }
 
       if (this.filteredTraces.length > 1) {

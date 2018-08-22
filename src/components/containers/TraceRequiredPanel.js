@@ -19,14 +19,10 @@ class TraceRequiredPanel extends Component {
     return this.hasTrace() ? (
       <LayoutPanel {...rest}>{children}</LayoutPanel>
     ) : (
-      <PanelEmpty
-        heading={_("Looks like there aren't any traces defined yet.")}
-      >
+      <PanelEmpty heading={_("Looks like there aren't any traces defined yet.")}>
         <p>
           {_('Go to the ')}
-          <a onClick={() => this.context.setPanel('Graph', 'Create')}>
-            {_('Create')}
-          </a>
+          <a onClick={() => this.context.setPanel('Graph', 'Create')}>{_('Create')}</a>
           {_(' panel to define traces.')}
         </p>
       </PanelEmpty>

@@ -11,9 +11,7 @@ import connectTransformToTrace from './connectTransformToTrace';
 import connectAggregationToTransform from './connectAggregationToTransform';
 import connectAxesToLayout from './connectAxesToLayout';
 import connectLayoutToPlot from './connectLayoutToPlot';
-import connectToContainer, {
-  containerConnectedContextTypes,
-} from './connectToContainer';
+import connectToContainer, {containerConnectedContextTypes} from './connectToContainer';
 import {computeTraceOptionsFromSchema} from './computeTraceOptionsFromSchema';
 import connectTraceToPlot from './connectTraceToPlot';
 import dereference from './dereference';
@@ -27,20 +25,10 @@ import localize, {localizeString} from './localize';
 import tinyColor from 'tinycolor2';
 import unpackPlotProps from './unpackPlotProps';
 import walkObject, {isPlainObject} from './walkObject';
-import {
-  traceTypeToPlotlyInitFigure,
-  plotlyTraceToCustomTrace,
-} from './customTraceType';
+import {traceTypeToPlotlyInitFigure, plotlyTraceToCustomTrace} from './customTraceType';
 import * as PlotlyIcons from 'plotly-icons';
 import striptags from './striptags';
-import {
-  capitalize,
-  lowerCase,
-  upperCase,
-  removeNonWord,
-  camelCase,
-  pascalCase,
-} from './strings';
+import {capitalize, lowerCase, upperCase, removeNonWord, camelCase, pascalCase} from './strings';
 import {getColorscale} from 'react-colorscales';
 
 const TOO_LIGHT_FACTOR = 0.8;
@@ -75,9 +63,7 @@ function renderTraceIcon(trace, prefix = 'Plot') {
     tempTrace.endsWith(gl) ? tempTrace.slice(0, -gl.length) : tempTrace
   )}Icon`;
 
-  return PlotlyIcons[componentName]
-    ? PlotlyIcons[componentName]
-    : PlotlyIcons.PlotLineIcon;
+  return PlotlyIcons[componentName] ? PlotlyIcons[componentName] : PlotlyIcons.PlotLineIcon;
 }
 
 function transpose(originalArray) {
@@ -86,9 +72,7 @@ function transpose(originalArray) {
     return originalArray.map(a => [a]);
   }
 
-  let longestArrayItem = Array.isArray(originalArray[0])
-    ? originalArray[0].length
-    : 1;
+  let longestArrayItem = Array.isArray(originalArray[0]) ? originalArray[0].length : 1;
 
   originalArray.forEach(a => {
     // if it's not an array, it's a string
@@ -151,15 +135,9 @@ function maybeTransposeData(data, srcAttributePath, traceType) {
 
   const isTransposable2DArray =
     srcAttributePath.endsWith('zsrc') &&
-    [
-      'contour',
-      'contourgl',
-      'heatmap',
-      'heatmapgl',
-      'surface',
-      'carpet',
-      'contourcarpet',
-    ].includes(traceType);
+    ['contour', 'contourgl', 'heatmap', 'heatmapgl', 'surface', 'carpet', 'contourcarpet'].includes(
+      traceType
+    );
 
   if (isTransposable2DArray) {
     return transpose(data);
@@ -188,12 +166,7 @@ function maybeAdjustSrc(src, srcAttributePath, traceType, config) {
   return config && config.fromSrc ? config.fromSrc(src, traceType) : src;
 }
 
-function adjustColorscale(
-  colorscale,
-  numberOfNeededColors,
-  colorscaleType,
-  config
-) {
+function adjustColorscale(colorscale, numberOfNeededColors, colorscaleType, config) {
   if (config && config.repeat) {
     if (numberOfNeededColors < colorscale.length) {
       return colorscale.slice(0, numberOfNeededColors);
@@ -208,13 +181,7 @@ function adjustColorscale(
       .slice(0, numberOfNeededColors);
   }
 
-  return getColorscale(
-    colorscale,
-    numberOfNeededColors,
-    null,
-    null,
-    colorscaleType
-  );
+  return getColorscale(colorscale, numberOfNeededColors, null, null, colorscaleType);
 }
 
 export {

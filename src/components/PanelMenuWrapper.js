@@ -30,10 +30,7 @@ class PanelsWithSidebar extends Component {
   }
 
   renderSection(section, i) {
-    if (
-      section.type &&
-      (section.type.plotly_editor_traits || {}).sidebar_element
-    ) {
+    if (section.type && (section.type.plotly_editor_traits || {}).sidebar_element) {
       return cloneElement(section, {key: i});
     }
     return (

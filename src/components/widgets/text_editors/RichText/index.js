@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {
-  CompositeDecorator,
-  Editor,
-  EditorState,
-  Entity,
-  RichUtils,
-} from 'draft-js';
+import {CompositeDecorator, Editor, EditorState, Entity, RichUtils} from 'draft-js';
 import {stateToHTML} from '@plotly/draft-js-export-html';
 import {stateFromHTML} from 'draft-js-import-html';
 
@@ -59,9 +53,7 @@ class RichText extends Component {
     this.createEditorStateFromHTML = this.createEditorStateFromHTML.bind(this);
     this.getEditorStateAsHTML = this.getEditorStateAsHTML.bind(this);
     this.focus = this.focus.bind(this);
-    this.getParentContainerVerticalOffset = this.getParentContainerVerticalOffset.bind(
-      this
-    );
+    this.getParentContainerVerticalOffset = this.getParentContainerVerticalOffset.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
     this.onFocus = this.onFocus.bind(this);
@@ -234,11 +226,7 @@ class RichText extends Component {
     Entity.replaceData(linkID, {url: urlValue});
 
     // Trigger an editor state update
-    const updatedEditorState = RichUtils.toggleLink(
-      editorState,
-      selectionState,
-      linkID
-    );
+    const updatedEditorState = RichUtils.toggleLink(editorState, selectionState, linkID);
 
     this.onChange(updatedEditorState);
   }
@@ -292,10 +280,7 @@ class RichText extends Component {
   }
 
   onStyleButtonToggle(inlineStyle) {
-    const newEditorState = toggleInlineStyle(
-      this.state.editorState,
-      inlineStyle
-    );
+    const newEditorState = toggleInlineStyle(this.state.editorState, inlineStyle);
 
     if (newEditorState) {
       this.onChange(newEditorState);

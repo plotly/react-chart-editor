@@ -16,10 +16,7 @@ const StyleShapesPanel = (props, {localize: _}) => (
   <ShapeAccordion canAdd>
     <Radio
       attr="visible"
-      options={[
-        {label: _('Show'), value: true},
-        {label: _('Hide'), value: false},
-      ]}
+      options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
     />
     <Radio
       attr="type"

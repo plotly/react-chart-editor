@@ -75,9 +75,7 @@ class ModalProvider extends React.Component {
     return (
       <Fragment>
         {this.props.children}
-        {this.state.open ? (
-          <Component isAnimatingOut={isAnimatingOut} {...componentProps} />
-        ) : null}
+        {this.state.open ? <Component isAnimatingOut={isAnimatingOut} {...componentProps} /> : null}
       </Fragment>
     );
   }

@@ -1,7 +1,4 @@
-import ColorscalePicker, {
-  Colorscale,
-  COLOR_PICKER_CONSTANTS,
-} from 'react-colorscales';
+import ColorscalePicker, {Colorscale, COLOR_PICKER_CONSTANTS} from 'react-colorscales';
 import Dropdown from './Dropdown';
 import Info from '../fields/Info';
 import PropTypes from 'prop-types';
@@ -33,14 +30,11 @@ class Scale extends Component {
   render() {
     const {onColorscaleChange, selected} = this.props;
     const {selectedColorscaleType, showColorscalePicker} = this.state;
-    const description =
-      COLOR_PICKER_CONSTANTS.COLORSCALE_DESCRIPTIONS[selectedColorscaleType];
-    const colorscaleOptions = COLOR_PICKER_CONSTANTS.COLORSCALE_TYPES.map(
-      type => ({
-        label: type + ' scales',
-        value: type,
-      })
-    );
+    const description = COLOR_PICKER_CONSTANTS.COLORSCALE_DESCRIPTIONS[selectedColorscaleType];
+    const colorscaleOptions = COLOR_PICKER_CONSTANTS.COLORSCALE_TYPES.map(type => ({
+      label: type + ' scales',
+      value: type,
+    }));
     const _ = this.context.localize;
 
     return (

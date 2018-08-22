@@ -25,19 +25,13 @@ class SubplotAccordion extends Component {
         const xaxis = 'xaxis' + (curVal.xaxis ? curVal.xaxis.substring(1) : '');
         const yaxis = 'yaxis' + (curVal.yaxis ? curVal.yaxis.substring(1) : '');
 
-        const existingComboIndex = acc.findIndex(
-          t => t.xaxis === xaxis && t.yaxis === yaxis
-        );
+        const existingComboIndex = acc.findIndex(t => t.xaxis === xaxis && t.yaxis === yaxis);
         if (existingComboIndex === -1) {
           acc.push({
             xaxis: xaxis,
             yaxis: yaxis,
-            xaxisName: curVal.xaxis
-              ? getSubplotTitle(curVal.xaxis, 'x', _)
-              : 'X 1',
-            yaxisName: curVal.yaxis
-              ? getSubplotTitle(curVal.yaxis, 'y', _)
-              : 'Y 1',
+            xaxisName: curVal.xaxis ? getSubplotTitle(curVal.xaxis, 'x', _) : 'X 1',
+            yaxisName: curVal.yaxis ? getSubplotTitle(curVal.yaxis, 'y', _) : 'Y 1',
             index: [inx],
           });
         } else {
@@ -97,13 +91,8 @@ class SubplotAccordion extends Component {
           subplotName = getSubplotTitle(layoutKey, subplotType, _);
           const trIndex =
             SUBPLOT_TO_ATTR[subplotType].layout === layoutKey
-              ? data.findIndex(trace =>
-                  TRACE_TO_AXIS[subplotType].some(tt => tt === trace.type)
-                )
-              : data.findIndex(
-                  trace =>
-                    trace[SUBPLOT_TO_ATTR[subplotType].data] === layoutKey
-                );
+              ? data.findIndex(trace => TRACE_TO_AXIS[subplotType].some(tt => tt === trace.type))
+              : data.findIndex(trace => trace[SUBPLOT_TO_ATTR[subplotType].data] === layoutKey);
           if (trIndex !== -1) {
             traceIndexes.push(trIndex);
           }

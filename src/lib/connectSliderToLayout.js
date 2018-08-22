@@ -27,9 +27,7 @@ export default function connectSliderToLayout(WrappedComponent) {
     getChildContext() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
-            ? null
-            : this.context.getValObject(`sliders[].${attr}`),
+          !this.context.getValObject ? null : this.context.getValObject(`sliders[].${attr}`),
         updateContainer: this.updateSlider,
         container: this.container,
         fullContainer: this.fullContainer,
@@ -51,9 +49,7 @@ export default function connectSliderToLayout(WrappedComponent) {
     }
   }
 
-  SliderConnectedComponent.displayName = `SliderConnected${getDisplayName(
-    WrappedComponent
-  )}`;
+  SliderConnectedComponent.displayName = `SliderConnected${getDisplayName(WrappedComponent)}`;
 
   SliderConnectedComponent.propTypes = {
     sliderIndex: PropTypes.number.isRequired,

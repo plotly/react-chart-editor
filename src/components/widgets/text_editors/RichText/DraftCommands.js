@@ -117,8 +117,7 @@ export function insertSoftNewline(editorState) {
   // Terminate all current inline styles
   const currentStyleSet = newEditorState.getCurrentInlineStyle();
   newEditorState = currentStyleSet.reduce(
-    (reducedEditorState, style) =>
-      RichUtils.toggleInlineStyle(reducedEditorState, style),
+    (reducedEditorState, style) => RichUtils.toggleInlineStyle(reducedEditorState, style),
     newEditorState
   );
 
@@ -128,17 +127,9 @@ export function insertSoftNewline(editorState) {
   const selectionEnd = selectionState.getEndOffset();
 
   if (selectionEnd - selectionStart !== 0) {
-    const contentState = removeRange(
-      newEditorState.getCurrentContent(),
-      selectionState,
-      'back'
-    );
+    const contentState = removeRange(newEditorState.getCurrentContent(), selectionState, 'back');
 
-    newEditorState = EditorState.push(
-      newEditorState,
-      contentState,
-      'backspace-character'
-    );
+    newEditorState = EditorState.push(newEditorState, contentState, 'backspace-character');
   }
 
   // Insert a newline
@@ -163,10 +154,7 @@ export function toggleInlineStyle(editorState, inlineStyle) {
   }
 
   // <sub> and <sup> should be mutually exclusive.
-  const updatedEditorState = toggleMutuallyExclusiveStyles(
-    editorState,
-    inlineStyle
-  );
+  const updatedEditorState = toggleMutuallyExclusiveStyles(editorState, inlineStyle);
 
   // Add the new style.
   return RichUtils.toggleInlineStyle(updatedEditorState, inlineStyle);

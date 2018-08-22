@@ -28,10 +28,7 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
           <VisibilitySelect
             attr={prefix + 'showscale'}
             key={'x' + prefix}
-            options={[
-              {label: _('Show'), value: true},
-              {label: _('Hide'), value: false},
-            ]}
+            options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
             showOn={true}
           >
             <PlotlyPanel key={prefix + ' panel'}>
@@ -47,19 +44,13 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                     {label: _('Bottom'), value: 'bottom'},
                   ]}
                 />
-                <FontSelector
-                  label={_('Typeface')}
-                  attr={prefix + 'colorbar.titlefont.family'}
-                />
+                <FontSelector label={_('Typeface')} attr={prefix + 'colorbar.titlefont.family'} />
                 <Numeric
                   label={_('Font Size')}
                   attr={prefix + 'colorbar.titlefont.size'}
                   units="px"
                 />
-                <ColorPicker
-                  label={_('Font Color')}
-                  attr={prefix + 'colorbar.titlefont.color'}
-                />
+                <ColorPicker label={_('Font Color')} attr={prefix + 'colorbar.titlefont.color'} />
               </PlotlyFold>
               <PlotlyFold name={_('Size and Positioning')}>
                 <PlotlySection name={_('Size')} attr={prefix + 'colorbar.len'}>
@@ -73,10 +64,7 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                     ]}
                   />
 
-                  <Numeric
-                    label={_('Width')}
-                    attr={prefix + 'colorbar.thickness'}
-                  />
+                  <Numeric label={_('Width')} attr={prefix + 'colorbar.thickness'} />
 
                   <Radio
                     attr={prefix + 'colorbar.thicknessmode'}
@@ -86,10 +74,7 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                     ]}
                   />
                 </PlotlySection>
-                <PlotlySection
-                  name={_('Horizontal Positioning')}
-                  attr={prefix + 'colorbar.x'}
-                >
+                <PlotlySection name={_('Horizontal Positioning')} attr={prefix + 'colorbar.x'}>
                   <Numeric
                     label={_('Position')}
                     attr={prefix + 'colorbar.x'}
@@ -106,10 +91,7 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                     ]}
                   />
                 </PlotlySection>
-                <PlotlySection
-                  name={_('Vertical Positioning')}
-                  attr={prefix + 'colorbar.y'}
-                >
+                <PlotlySection name={_('Vertical Positioning')} attr={prefix + 'colorbar.y'}>
                   <Numeric
                     label={_('Position')}
                     attr={prefix + 'colorbar.y'}
@@ -126,45 +108,25 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                     ]}
                   />
                 </PlotlySection>
-                <PlotlySection
-                  name={_('Padding')}
-                  attr={prefix + 'colorbar.xpad'}
-                >
-                  <Numeric
-                    label={_('Vertical')}
-                    attr={prefix + 'colorbar.ypad'}
-                    units="px"
-                  />
-                  <Numeric
-                    label={_('Horizontal')}
-                    attr={prefix + 'colorbar.xpad'}
-                    units="px"
-                  />
+                <PlotlySection name={_('Padding')} attr={prefix + 'colorbar.xpad'}>
+                  <Numeric label={_('Vertical')} attr={prefix + 'colorbar.ypad'} units="px" />
+                  <Numeric label={_('Horizontal')} attr={prefix + 'colorbar.xpad'} units="px" />
                 </PlotlySection>
               </PlotlyFold>
               <PlotlyFold name={_('Labels')}>
                 <VisibilitySelect
                   attr={prefix + 'colorbar.showticklabels'}
-                  options={[
-                    {label: _('Show'), value: true},
-                    {label: _('Hide'), value: false},
-                  ]}
+                  options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
                   showOn={true}
                   defaultOpt={true}
                 >
-                  <FontSelector
-                    label={_('Typeface')}
-                    attr={prefix + 'colorbar.tickfont.family'}
-                  />
+                  <FontSelector label={_('Typeface')} attr={prefix + 'colorbar.tickfont.family'} />
                   <Numeric
                     label={_('Font Size')}
                     attr={prefix + 'colorbar.tickfont.size'}
                     units="px"
                   />
-                  <ColorPicker
-                    label={_('Font Color')}
-                    attr={prefix + 'colorbar.tickfont.color'}
-                  />
+                  <ColorPicker label={_('Font Color')} attr={prefix + 'colorbar.tickfont.color'} />
                   <Dropdown
                     label={_('Angle')}
                     attr={prefix + 'colorbar.tickangle'}
@@ -249,18 +211,9 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                     label={_('Tick spacing')}
                   />
 
-                  <Numeric
-                    label={_('Step Offset')}
-                    attr={prefix + 'colorbar.tick0'}
-                  />
-                  <Numeric
-                    label={_('Step Size')}
-                    attr={prefix + 'colorbar.dtick'}
-                  />
-                  <Numeric
-                    label={_('Max Number of Labels')}
-                    attr={prefix + 'colorbar.nticks'}
-                  />
+                  <Numeric label={_('Step Offset')} attr={prefix + 'colorbar.tick0'} />
+                  <Numeric label={_('Step Size')} attr={prefix + 'colorbar.dtick'} />
+                  <Numeric label={_('Max Number of Labels')} attr={prefix + 'colorbar.nticks'} />
                 </VisibilitySelect>
               </PlotlyFold>
               <PlotlyFold name={_('Ticks')}>
@@ -274,20 +227,9 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                   showOn={['inside', 'outside']}
                   defaultOpt={''}
                 >
-                  <Numeric
-                    label={_('Length')}
-                    attr={prefix + 'colorbar.ticklen'}
-                    units="px"
-                  />
-                  <Numeric
-                    label={_('Width')}
-                    attr={prefix + 'colorbar.tickwidth'}
-                    units="px"
-                  />
-                  <ColorPicker
-                    label={_('Color')}
-                    attr={prefix + 'colorbar.tickcolor'}
-                  />
+                  <Numeric label={_('Length')} attr={prefix + 'colorbar.ticklen'} units="px" />
+                  <Numeric label={_('Width')} attr={prefix + 'colorbar.tickwidth'} units="px" />
+                  <ColorPicker label={_('Color')} attr={prefix + 'colorbar.tickcolor'} />
                   <Radio
                     attr={prefix + 'colorbar.tickmode'}
                     options={[
@@ -297,50 +239,20 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                     label={_('Tick spacing')}
                   />
 
-                  <Numeric
-                    label={_('Step Offset')}
-                    attr={prefix + 'colorbar.tick0'}
-                  />
-                  <Numeric
-                    label={_('Step Size')}
-                    attr={prefix + 'colorbar.dtick'}
-                  />
-                  <Numeric
-                    label={_('Max Number of Labels')}
-                    attr={prefix + 'colorbar.nticks'}
-                  />
+                  <Numeric label={_('Step Offset')} attr={prefix + 'colorbar.tick0'} />
+                  <Numeric label={_('Step Size')} attr={prefix + 'colorbar.dtick'} />
+                  <Numeric label={_('Max Number of Labels')} attr={prefix + 'colorbar.nticks'} />
                 </VisibilitySelect>
               </PlotlyFold>
               <PlotlyFold name={_('Borders and Background')}>
-                <PlotlySection
-                  name={_('Color Bar')}
-                  attr={prefix + 'colorbar.outlinewidth'}
-                >
-                  <Numeric
-                    label={_('Border Width')}
-                    attr={prefix + 'colorbar.outlinewidth'}
-                  />
-                  <ColorPicker
-                    label={_('Border Color')}
-                    attr={prefix + 'colorbar.outlinecolor'}
-                  />
+                <PlotlySection name={_('Color Bar')} attr={prefix + 'colorbar.outlinewidth'}>
+                  <Numeric label={_('Border Width')} attr={prefix + 'colorbar.outlinewidth'} />
+                  <ColorPicker label={_('Border Color')} attr={prefix + 'colorbar.outlinecolor'} />
                 </PlotlySection>
-                <PlotlySection
-                  name={_('Color Bar Container')}
-                  attr={prefix + 'colorbar.bgcolor'}
-                >
-                  <ColorPicker
-                    label={_('Background Color')}
-                    attr={prefix + 'colorbar.bgcolor'}
-                  />
-                  <Numeric
-                    label={_('Border Width')}
-                    attr={prefix + 'colorbar.borderwidth'}
-                  />
-                  <ColorPicker
-                    label={_('Border Color')}
-                    attr={prefix + 'colorbar.bordercolor'}
-                  />
+                <PlotlySection name={_('Color Bar Container')} attr={prefix + 'colorbar.bgcolor'}>
+                  <ColorPicker label={_('Background Color')} attr={prefix + 'colorbar.bgcolor'} />
+                  <Numeric label={_('Border Width')} attr={prefix + 'colorbar.borderwidth'} />
+                  <ColorPicker label={_('Border Color')} attr={prefix + 'colorbar.bordercolor'} />
                 </PlotlySection>
               </PlotlyFold>
             </PlotlyPanel>

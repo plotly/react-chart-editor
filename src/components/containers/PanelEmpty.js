@@ -11,9 +11,7 @@ class PanelEmpty extends Component {
     return (
       <div className={bem('panel', 'empty')}>
         <div className="panel__empty__message">
-          <div className="panel__empty__message__icon">
-            {Icon ? <Icon /> : <ChartLineIcon />}
-          </div>
+          <div className="panel__empty__message__icon">{Icon ? <Icon /> : <ChartLineIcon />}</div>
           <div className="panel__empty__message__heading">{heading}</div>
           <div className="panel__empty__message__content">{children}</div>
         </div>

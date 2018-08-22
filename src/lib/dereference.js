@@ -3,11 +3,7 @@ import {maybeTransposeData} from './index';
 
 const SRC_ATTR_PATTERN = /src$/;
 
-export default function dereference(
-  container,
-  dataSources,
-  config = {deleteKeys: false}
-) {
+export default function dereference(container, dataSources, config = {deleteKeys: false}) {
   const replacer = (key, parent, srcPath) => {
     if (!SRC_ATTR_PATTERN.test(key)) {
       return;

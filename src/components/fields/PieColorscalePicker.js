@@ -13,12 +13,9 @@ class UnconnectedPieColorscalePicker extends Component {
   onUpdate(colorscale, colorscaleType) {
     if (Array.isArray(colorscale)) {
       const numPieSlices = this.context.graphDiv.calcdata[0].length + 1;
-      const adjustedColorscale = adjustColorscale(
-        colorscale,
-        numPieSlices,
-        colorscaleType,
-        {repeat: true}
-      );
+      const adjustedColorscale = adjustColorscale(colorscale, numPieSlices, colorscaleType, {
+        repeat: true,
+      });
       this.props.updatePlot(adjustedColorscale);
     }
   }

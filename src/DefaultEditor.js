@@ -31,9 +31,7 @@ class DefaultEditor extends Component {
   }
 
   hasTransforms() {
-    return this.context.fullData.some(d =>
-      TRANSFORMABLE_TRACES.includes(d.type)
-    );
+    return this.context.fullData.some(d => TRANSFORMABLE_TRACES.includes(d.type));
   }
 
   hasAxes() {
@@ -75,27 +73,17 @@ class DefaultEditor extends Component {
         {logo ? logo : null}
         <GraphCreatePanel group={_('Graph')} name={_('Create')} />
         <GraphSubplotsPanel group={_('Graph')} name={_('Subplots')} />
-        {this.hasTransforms() && (
-          <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />
-        )}
+        {this.hasTransforms() && <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />}
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
         <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
-        {this.hasAxes() && (
-          <StyleAxesPanel group={_('Style')} name={_('Axes')} />
-        )}
+        {this.hasAxes() && <StyleAxesPanel group={_('Style')} name={_('Axes')} />}
         <StyleLegendPanel group={_('Style')} name={_('Legend')} />
-        {this.hasColorbars() && (
-          <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />
-        )}
+        {this.hasColorbars() && <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />}
         <StyleNotesPanel group={_('Style')} name={_('Annotations')} />
         <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
         <StyleImagesPanel group={_('Style')} name={_('Images')} />
-        {this.hasSliders() && (
-          <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />
-        )}
-        {this.hasMenus() && (
-          <StyleUpdateMenusPanel group={_('Style')} name={_('Menus')} />
-        )}
+        {this.hasSliders() && <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />}
+        {this.hasMenus() && <StyleUpdateMenusPanel group={_('Style')} name={_('Menus')} />}
         {this.props.children ? this.props.children : null}
       </PanelMenuWrapper>
     );

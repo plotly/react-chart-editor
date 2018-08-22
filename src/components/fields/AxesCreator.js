@@ -5,12 +5,7 @@ import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
-import {
-  connectToContainer,
-  traceTypeToAxisType,
-  getAxisTitle,
-  axisIdToAxisName,
-} from 'lib';
+import {connectToContainer, traceTypeToAxisType, getAxisTitle, axisIdToAxisName} from 'lib';
 import {PlotlySection} from 'components';
 
 class UnconnectedAxisCreator extends Component {
@@ -28,8 +23,7 @@ class UnconnectedAxisCreator extends Component {
       onUpdate,
       fullLayout: {_subplots: subplots},
     } = this.context;
-    const lastAxisNumber =
-      Number(subplots[attr][subplots[attr].length - 1].charAt(1)) || 1;
+    const lastAxisNumber = Number(subplots[attr][subplots[attr].length - 1].charAt(1)) || 1;
 
     updateContainer({
       [attr]: attr.charAt(0) + (lastAxisNumber + 1),
@@ -47,9 +41,7 @@ class UnconnectedAxisCreator extends Component {
       payload: {
         update: {
           [`${attr + (lastAxisNumber + 1)}.side`]: side,
-          [`${attr + (lastAxisNumber + 1)}.overlaying`]: !(
-            attr === 'yaxis' || attr === 'xaxis'
-          )
+          [`${attr + (lastAxisNumber + 1)}.overlaying`]: !(attr === 'yaxis' || attr === 'xaxis')
             ? null
             : subplots[attr][subplots[attr].length - 1],
         },
@@ -66,8 +58,7 @@ class UnconnectedAxisCreator extends Component {
       currentAxisId !== update &&
       !this.context.fullData.some(
         trace =>
-          trace[this.props.attr] === currentAxisId &&
-          trace.index !== this.props.fullContainer.index
+          trace[this.props.attr] === currentAxisId && trace.index !== this.props.fullContainer.index
       )
     ) {
       axesToBeGarbageCollected.push(currentAxisId);
@@ -86,11 +77,7 @@ class UnconnectedAxisCreator extends Component {
   render() {
     const icon = <PlusIcon />;
     const extraComponent = this.canAddAxis() ? (
-      <Button
-        variant="no-text"
-        icon={icon}
-        onClick={() => this.addAndUpdateAxis()}
-      />
+      <Button variant="no-text" icon={icon} onClick={() => this.addAndUpdateAxis()} />
     ) : (
       <Button variant="no-text--disabled" icon={icon} onClick={() => {}} />
     );
@@ -131,8 +118,7 @@ class UnconnectedAxesCreator extends Component {
   render() {
     const axisType = traceTypeToAxisType(this.props.container.type);
     const isFirstTraceOfAxisType =
-      this.context.data.filter(d => traceTypeToAxisType(d.type) === axisType)
-        .length === 1;
+      this.context.data.filter(d => traceTypeToAxisType(d.type) === axisType).length === 1;
 
     if (isFirstTraceOfAxisType) {
       return null;
@@ -166,9 +152,7 @@ class UnconnectedAxesCreator extends Component {
         {controls}
         <Info>
           {_('You can style and position your axes in the ')}
-          <a onClick={() => this.context.setPanel('Graph', 'Subplots')}>
-            {_('Subplots')}
-          </a>
+          <a onClick={() => this.context.setPanel('Graph', 'Subplots')}>{_('Subplots')}</a>
           {_(' panel.')}
         </Info>
       </PlotlySection>

@@ -27,19 +27,11 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
     <RectanglePositioner attr="xaxis.domain[0]" cartesian />
 
     <TraceTypeSection name={_('X Anchor')} traceTypes={TRACE_TO_AXIS.cartesian}>
-      <AxisAnchorDropdown
-        label={_('Anchor to')}
-        attr="xaxis.anchor"
-        clearable={false}
-      />
+      <AxisAnchorDropdown label={_('Anchor to')} attr="xaxis.anchor" clearable={false} />
       <AxisSide label={_('Side')} attr="xaxis.side" />
     </TraceTypeSection>
     <TraceTypeSection name={_('Y Anchor')} traceTypes={TRACE_TO_AXIS.cartesian}>
-      <AxisAnchorDropdown
-        label={_('Anchor to')}
-        attr="yaxis.anchor"
-        clearable={false}
-      />
+      <AxisAnchorDropdown label={_('Anchor to')} attr="yaxis.anchor" clearable={false} />
       <AxisSide label={_('Side')} attr="yaxis.side" />
     </TraceTypeSection>
 
@@ -119,10 +111,7 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Country Borders')} attr="showcountries">
       <Radio
         attr="showcountries"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
       <Numeric label={_('Border Width')} attr="countrywidth" units="px" />
       <ColorPicker label={_('Border Color')} attr="countrycolor" />
@@ -130,10 +119,7 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Sub-Country Unit Borders')} attr="showsubunits">
       <Radio
         attr="showsubunits"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
       <Numeric label={_('Border Width')} attr="subunitwidth" units="px" />
       <ColorPicker label={_('Border Color')} attr="subunitcolor" />
@@ -141,10 +127,7 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Coastlines')} attr="showcoastlines">
       <Radio
         attr="showcoastlines"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
       <Numeric label={_('Width')} attr="coastlinewidth" units="px" />
       <ColorPicker label={_('Color')} attr="coastlinecolor" />
@@ -152,40 +135,28 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Oceans')} attr="showocean">
       <Radio
         attr="showocean"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
       <ColorPicker label={_('Color')} attr="oceancolor" />
     </PlotlySection>
     <PlotlySection name={_('Land')} attr="showland">
       <Radio
         attr="showland"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
       <ColorPicker label={_('Color')} attr="landcolor" />
     </PlotlySection>
     <PlotlySection name={_('Lakes')} attr="showlakes">
       <Radio
         attr="showlakes"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
       <ColorPicker label={_('Color')} attr="lakecolor" />
     </PlotlySection>
     <PlotlySection name={_('Rivers')} attr="showrivers">
       <Radio
         attr="showrivers"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
       <Numeric label={_('Width')} attr="riverwidth" units="px" />
       <ColorPicker label={_('Color')} attr="rivercolor" />
@@ -194,10 +165,7 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Map Frame')} attr="showframe">
       <Radio
         attr="showframe"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
       <Numeric label={_('Width')} attr="framewidth" units="px" />
       <ColorPicker label={_('Color')} attr="framecolor" />
@@ -207,10 +175,7 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
       <Radio
         label={_('Resolution')}
         attr="resolution"
-        options={[
-          {label: _('1:110,000,000'), value: 110},
-          {label: _('1:50,000,000'), value: 50},
-        ]}
+        options={[{label: _('1:110,000,000'), value: 110}, {label: _('1:50,000,000'), value: 50}]}
       />
       <Numeric label={_('Scale')} attr="projection.scale" min={0} />
       <Numeric label={_('Latitude')} attr="projection.rotation.lon" min={0} />
@@ -223,20 +188,8 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
     </PlotlySection>
 
     <PlotlySection name={_('Polar Sector')}>
-      <Numeric
-        label={_('Min')}
-        attr="sector[0]"
-        max={360}
-        min={-360}
-        showSlider
-      />
-      <Numeric
-        label={_('Max')}
-        attr="sector[1]"
-        max={360}
-        min={-360}
-        showSlider
-      />
+      <Numeric label={_('Min')} attr="sector[0]" max={360} min={-360} showSlider />
+      <Numeric label={_('Max')} attr="sector[1]" max={360} min={-360} showSlider />
     </PlotlySection>
   </SubplotAccordion>
 );

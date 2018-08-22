@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {
-  getDisplayName,
-  plotlyTraceToCustomTrace,
-  renderTraceIcon,
-} from '../lib';
+import {getDisplayName, plotlyTraceToCustomTrace, renderTraceIcon} from '../lib';
 
 export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
   class SubplotConnectedComponent extends Component {
@@ -45,10 +41,7 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
            * _fullData as that is where the rest of our code expects to find its
            * values.
           */
-          if (
-            trace.transforms &&
-            trace.transforms.every(t => t.type === 'fit')
-          ) {
+          if (trace.transforms && trace.transforms.every(t => t.type === 'fit')) {
             fullData[i]._fullInput = fullData[i];
           }
 
@@ -85,15 +78,11 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
     }
 
     render() {
-      return (
-        <WrappedComponent name={this.name} icon={this.icon} {...this.props} />
-      );
+      return <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
     }
   }
 
-  SubplotConnectedComponent.displayName = `SubplotConnected${getDisplayName(
-    WrappedComponent
-  )}`;
+  SubplotConnectedComponent.displayName = `SubplotConnected${getDisplayName(WrappedComponent)}`;
 
   SubplotConnectedComponent.propTypes = {
     subplot: PropTypes.string.isRequired,

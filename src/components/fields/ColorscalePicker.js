@@ -27,9 +27,7 @@ export class UnconnectedColorscalePicker extends Component {
 
   render() {
     const {fullValue} = this.props;
-    const colorscale = Array.isArray(fullValue)
-      ? fullValue.map(v => v[1])
-      : null;
+    const colorscale = Array.isArray(fullValue) ? fullValue.map(v => v[1]) : null;
 
     return (
       <Field {...this.props}>

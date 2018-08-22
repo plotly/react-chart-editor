@@ -28,9 +28,7 @@ export default function connectTraceToPlot(WrappedComponent) {
       let fullTrace = {};
 
       for (let i = 0; i < context.fullData.length; i++) {
-        if (
-          this.props.traceIndexes[0] === context.fullData[i]._fullInput.index
-        ) {
+        if (this.props.traceIndexes[0] === context.fullData[i]._fullInput.index) {
           /*
            * Fit transforms are custom transforms in our custom plotly.js bundle,
            * they are different from others as they create an extra trace in the
@@ -46,10 +44,7 @@ export default function connectTraceToPlot(WrappedComponent) {
            * _fullData as that is where the rest of our code expects to find its
            * values.
           */
-          if (
-            trace.transforms &&
-            trace.transforms.every(t => t.type === 'fit')
-          ) {
+          if (trace.transforms && trace.transforms.every(t => t.type === 'fit')) {
             context.fullData[i]._fullInput = context.fullData[i];
           }
 
@@ -74,10 +69,7 @@ export default function connectTraceToPlot(WrappedComponent) {
         getValObject: attr =>
           !plotly
             ? null
-            : plotly.PlotSchema.getTraceValObject(
-                fullTrace,
-                nestedProperty({}, attr).parts
-              ),
+            : plotly.PlotSchema.getTraceValObject(fullTrace, nestedProperty({}, attr).parts),
         updateContainer: this.updateTrace,
         deleteContainer: this.deleteTrace,
         container: trace,
@@ -120,13 +112,10 @@ export default function connectTraceToPlot(WrappedComponent) {
     updateTrace(update) {
       if (this.context.onUpdate) {
         const splitTraceGroup = this.props.fullDataArrayPosition
-          ? this.props.fullDataArrayPosition.map(
-              p => this.context.fullData[p]._group
-            )
+          ? this.props.fullDataArrayPosition.map(p => this.context.fullData[p]._group)
           : null;
 
-        const containsAnSrc =
-          Object.keys(update).filter(a => a.endsWith('src')).length > 0;
+        const containsAnSrc = Object.keys(update).filter(a => a.endsWith('src')).length > 0;
 
         if (Array.isArray(update)) {
           update.forEach((u, i) => {
@@ -181,15 +170,14 @@ export default function connectTraceToPlot(WrappedComponent) {
         const subplotNames =
           subplotType === 'cartesian'
             ? [currentTrace.xaxis || 'xaxis', currentTrace.yaxis || 'yaxis']
-            : currentTrace[SUBPLOT_TO_ATTR[subplotType].data] ||
-              SUBPLOT_TO_ATTR[subplotType].data;
+            : currentTrace[SUBPLOT_TO_ATTR[subplotType].data] || SUBPLOT_TO_ATTR[subplotType].data;
 
         const isSubplotUsedAnywhereElse = (subplotType, subplotName) =>
           this.context.fullData.some(
             trace =>
               (trace[SUBPLOT_TO_ATTR[subplotType].data] === subplotName ||
-                (((subplotType === 'xaxis' || subplotType === 'yaxis') &&
-                  subplotName.charAt(1)) === '' ||
+                (((subplotType === 'xaxis' || subplotType === 'yaxis') && subplotName.charAt(1)) ===
+                  '' ||
                   (subplotName.split(subplotType)[1] === '' &&
                     trace[SUBPLOT_TO_ATTR[subplotType].data] === null))) &&
               trace.index !== this.props.traceIndexes[0]
@@ -223,15 +211,11 @@ export default function connectTraceToPlot(WrappedComponent) {
     }
 
     render() {
-      return (
-        <WrappedComponent name={this.name} icon={this.icon} {...this.props} />
-      );
+      return <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
     }
   }
 
-  TraceConnectedComponent.displayName = `TraceConnected${getDisplayName(
-    WrappedComponent
-  )}`;
+  TraceConnectedComponent.displayName = `TraceConnected${getDisplayName(WrappedComponent)}`;
 
   TraceConnectedComponent.propTypes = {
     traceIndexes: PropTypes.arrayOf(PropTypes.number).isRequired,

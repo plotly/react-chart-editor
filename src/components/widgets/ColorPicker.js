@@ -96,19 +96,13 @@ class ColorPicker extends Component {
             />
           </div>
 
-          <div
-            className="colorpicker__selected-color +hover-grey"
-            onClick={this.toggleVisible}
-          >
+          <div className="colorpicker__selected-color +hover-grey" onClick={this.toggleVisible}>
             {colorText}
           </div>
         </div>
 
         {this.state.isVisible && (
-          <CustomColorPicker
-            color={rgbString}
-            onChangeComplete={this.onSelectedColorChange}
-          />
+          <CustomColorPicker color={rgbString} onChangeComplete={this.onSelectedColorChange} />
         )}
       </Fragment>
     );

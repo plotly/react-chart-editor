@@ -17,10 +17,7 @@ class UnconnectedMarkerColor extends Component {
     super(props, context);
 
     let type = null;
-    if (
-      !props.container.marker ||
-      (props.container.marker && !props.container.marker.colorsrc)
-    ) {
+    if (!props.container.marker || (props.container.marker && !props.container.marker.colorsrc)) {
       type = 'constant';
     } else if (
       props.container.marker &&
@@ -37,16 +34,13 @@ class UnconnectedMarkerColor extends Component {
         constant: type === 'constant' ? props.fullValue : COLORS.mutedBlue,
         variable: type === 'variable' ? props.fullValue : null,
       },
-      selectedConstantColorOption:
-        type === 'constant' && props.multiValued ? 'multiple' : 'single',
+      selectedConstantColorOption: type === 'constant' && props.multiValued ? 'multiple' : 'single',
     };
 
     this.setType = this.setType.bind(this);
     this.setColor = this.setColor.bind(this);
     this.setColorScale = this.setColorScale.bind(this);
-    this.onConstantColorOptionChange = this.onConstantColorOptionChange.bind(
-      this
-    );
+    this.onConstantColorOptionChange = this.onConstantColorOptionChange.bind(this);
   }
 
   setType(type) {
@@ -74,9 +68,7 @@ class UnconnectedMarkerColor extends Component {
     const {type} = this.state;
 
     this.setState(
-      type === 'constant'
-        ? {value: {constant: inputValue}}
-        : {value: {variable: inputValue}}
+      type === 'constant' ? {value: {constant: inputValue}} : {value: {variable: inputValue}}
     );
     this.props.updatePlot(inputValue);
   }
@@ -89,8 +81,7 @@ class UnconnectedMarkerColor extends Component {
   isMultiValued() {
     return (
       this.props.multiValued ||
-      (Array.isArray(this.props.fullValue) &&
-        this.props.fullValue.includes(MULTI_VALUED)) ||
+      (Array.isArray(this.props.fullValue) && this.props.fullValue.includes(MULTI_VALUED)) ||
       (this.props.container.marker &&
         this.props.container.marker.colorscale &&
         this.props.container.marker.colorscale === MULTI_VALUED) ||
@@ -115,18 +106,12 @@ class UnconnectedMarkerColor extends Component {
     return (
       <MultiColorPicker
         attr="marker.color"
-        multiColorMessage={_(
-          'Each trace will be colored according to the selected colorscale.'
-        )}
-        singleColorMessage={_(
-          'All traces will be colored in the the same color.'
-        )}
+        multiColorMessage={_('Each trace will be colored according to the selected colorscale.')}
+        singleColorMessage={_('All traces will be colored in the the same color.')}
         setColor={this.setColor}
         setColorScale={this.setColorScale}
         onConstantColorOptionChange={this.onConstantColorOptionChange}
-        parentSelectedConstantColorOption={
-          this.state.selectedConstantColorOption
-        }
+        parentSelectedConstantColorOption={this.state.selectedConstantColorOption}
       />
     );
   }
@@ -162,8 +147,7 @@ class UnconnectedMarkerColor extends Component {
     // TO DO: https://github.com/plotly/react-chart-editor/issues/654
     const noSplitsPresent =
       container &&
-      (!container.transforms ||
-        !container.transforms.filter(t => t.type === 'groupby').length);
+      (!container.transforms || !container.transforms.filter(t => t.type === 'groupby').length);
 
     if (noSplitsPresent) {
       const {type} = this.state;
@@ -176,11 +160,7 @@ class UnconnectedMarkerColor extends Component {
         <Fragment>
           <Field {...this.props} attr={attr}>
             <Field multiValued={this.isMultiValued() && !this.state.type}>
-              <RadioBlocks
-                options={options}
-                activeOption={type}
-                onOptionChange={this.setType}
-              />
+              <RadioBlocks options={options} activeOption={type} onOptionChange={this.setType} />
 
               {!type ? null : (
                 <Info>
@@ -202,26 +182,17 @@ class UnconnectedMarkerColor extends Component {
               <Radio
                 label={_('Colorscale Direction')}
                 attr="marker.reversescale"
-                options={[
-                  {label: _('Normal'), value: false},
-                  {label: _('Reversed'), value: true},
-                ]}
+                options={[{label: _('Normal'), value: false}, {label: _('Reversed'), value: true}]}
               />
               <Radio
                 label={_('Color Bar')}
                 attr="marker.showscale"
-                options={[
-                  {label: _('Show'), value: true},
-                  {label: _('Hide'), value: false},
-                ]}
+                options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
               />
               <VisibilitySelect
                 label={_('Colorscale Range')}
                 attr="marker.cauto"
-                options={[
-                  {label: _('Auto'), value: true},
-                  {label: _('Custom'), value: false},
-                ]}
+                options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
                 showOn={false}
                 defaultOpt={true}
               >

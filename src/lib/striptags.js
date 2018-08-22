@@ -215,10 +215,7 @@
       while ((match = ALLOWED_TAGS_REGEX.exec(allowable_tags))) {
         tag_set.add(match[1]);
       }
-    } else if (
-      !Symbol.nonNative &&
-      typeof allowable_tags[Symbol.iterator] === 'function'
-    ) {
+    } else if (!Symbol.nonNative && typeof allowable_tags[Symbol.iterator] === 'function') {
       tag_set = new Set(allowable_tags);
     } else if (typeof allowable_tags.forEach === 'function') {
       // IE11 compatible

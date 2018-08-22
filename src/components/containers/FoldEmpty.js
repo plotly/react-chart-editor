@@ -13,14 +13,10 @@ export default class FoldEmpty extends Component {
           </div>
         ) : null}
         {messagePrimary ? (
-          <div className="fold__content__empty__message__primary">
-            {messagePrimary}
-          </div>
+          <div className="fold__content__empty__message__primary">{messagePrimary}</div>
         ) : null}
         {messageSecondary ? (
-          <div className="fold__content__empty__message__secondary">
-            {messageSecondary}
-          </div>
+          <div className="fold__content__empty__message__secondary">{messageSecondary}</div>
         ) : null}
         {children ? children : null}
       </div>

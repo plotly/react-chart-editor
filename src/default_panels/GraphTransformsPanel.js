@@ -28,10 +28,7 @@ export class Aggregations extends Component {
     return (
       <PlotlySection name={_('Aggregations')} attr="aggregations">
         {aggregations
-          .filter(
-            aggr =>
-              aggr.target && aggr.target.match(/transforms\[\d*\]\./gi) === null
-          )
+          .filter(aggr => aggr.target && aggr.target.match(/transforms\[\d*\]\./gi) === null)
           .map(({target}, i) => (
             <AggregationSection show key={i} aggregationIndex={i}>
               <Dropdown
@@ -69,16 +66,11 @@ Aggregations.contextTypes = {
 
 const GraphTransformsPanel = (props, {localize: _}) => {
   return (
-    <TraceAccordion
-      traceFilterCondition={t => TRANSFORMABLE_TRACES.includes(t.type)}
-    >
+    <TraceAccordion traceFilterCondition={t => TRANSFORMABLE_TRACES.includes(t.type)}>
       <TransformAccordion>
         <Radio
           attr="enabled"
-          options={[
-            {label: _('Enabled'), value: true},
-            {label: _('Disabled'), value: false},
-          ]}
+          options={[{label: _('Enabled'), value: true}, {label: _('Disabled'), value: false}]}
         />
 
         <DataSelector label={_('By')} attr="groups" />

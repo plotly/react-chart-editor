@@ -15,9 +15,7 @@ function computeAxesOptions(axes, props, context) {
   for (let i = 0; i < filteredAxes.length; i++) {
     const ax = filteredAxes[i];
     const label = capitalize(ax._name.split('axis')[0]);
-    const value = (ax._subplot &&
-    !ax._subplot.includes('xaxis') &&
-    !ax._subplot.includes('yaxis')
+    const value = (ax._subplot && !ax._subplot.includes('xaxis') && !ax._subplot.includes('yaxis')
       ? ax._subplot + '.' + ax._name
       : ax._subplot
     ).trim();
@@ -30,9 +28,7 @@ function computeAxesOptions(axes, props, context) {
     };
   }
 
-  return options.length > 1
-    ? [{label: _('All'), value: 'allaxes'}].concat(options)
-    : options;
+  return options.length > 1 ? [{label: _('All'), value: 'allaxes'}].concat(options) : options;
 }
 
 export default function connectAxesToLayout(WrappedComponent) {
@@ -88,8 +84,7 @@ export default function connectAxesToLayout(WrappedComponent) {
         this.container = {};
       } else if (axesTarget) {
         this.fullContainer = nestedProperty(fullContainer, axesTarget).get();
-        this.container = this.container =
-          nestedProperty(container, axesTarget).get() || {};
+        this.container = this.container = nestedProperty(container, axesTarget).get() || {};
       }
     }
 
@@ -129,11 +124,7 @@ export default function connectAxesToLayout(WrappedComponent) {
           const subplot = axes[j]._subplot;
           let axesKey = axes[j]._name;
 
-          if (
-            subplot &&
-            !subplot.includes('xaxis') &&
-            !subplot.includes('yaxis')
-          ) {
+          if (subplot && !subplot.includes('xaxis') && !subplot.includes('yaxis')) {
             axesKey = `${subplot}.${axesKey}`;
           }
 
@@ -150,9 +141,7 @@ export default function connectAxesToLayout(WrappedComponent) {
     }
   }
 
-  AxesConnectedComponent.displayName = `AxesConnected${getDisplayName(
-    WrappedComponent
-  )}`;
+  AxesConnectedComponent.displayName = `AxesConnected${getDisplayName(WrappedComponent)}`;
 
   AxesConnectedComponent.contextTypes = {
     container: PropTypes.object.isRequired,

@@ -15,10 +15,7 @@ export default class SymbolSelector extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     const {markerColor, borderColor} = this.props;
-    const {
-      markerColor: nextMarkerColor,
-      borderColor: nextBorderColor,
-    } = nextProps;
+    const {markerColor: nextMarkerColor, borderColor: nextBorderColor} = nextProps;
 
     return (
       this.props.value !== nextProps.value ||
@@ -86,12 +83,7 @@ export default class SymbolSelector extends Component {
             this.togglePanel();
           }}
         >
-          <svg
-            width="28"
-            height="28"
-            className="symbol-selector__symbol"
-            data-value={value}
-          >
+          <svg width="28" height="28" className="symbol-selector__symbol" data-value={value}>
             <g transform="translate(14,14)">
               <path d={label} style={symbolStyle} />
             </g>
@@ -110,18 +102,13 @@ export default class SymbolSelector extends Component {
     return (
       <div>
         <div className={toggleClass} onClick={this.togglePanel}>
-          <span className="symbol-selector__toggle_option">
-            {this.renderActiveOption()}
-          </span>
+          <span className="symbol-selector__toggle_option">{this.renderActiveOption()}</span>
           <span>
             <CarretDownIcon className="symbol-selector__toggle__caret" />
           </span>
         </div>
         {isOpen ? (
-          <ModalBox
-            onClose={this.togglePanel}
-            backgroundDark={this.props.backgroundDark}
-          >
+          <ModalBox onClose={this.togglePanel} backgroundDark={this.props.backgroundDark}>
             {this.renderOptions()}
           </ModalBox>
         ) : null}

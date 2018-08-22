@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal from 'components/containers/Modal';
 import {glAvailable} from 'components/fields/TraceSelector';
-import {
-  traceTypeToPlotlyInitFigure,
-  renderTraceIcon,
-  plotlyTraceToCustomTrace,
-} from 'lib';
+import {traceTypeToPlotlyInitFigure, renderTraceIcon, plotlyTraceToCustomTrace} from 'lib';
 
 const renderActionItems = (actionItems, item) =>
   actionItems
@@ -208,17 +204,12 @@ export class TraceTypeSelectorButton extends Component {
     const {localize: _} = this.context;
 
     const inferredType = plotlyTraceToCustomTrace(container);
-    const {label, icon, value} = traces(_).find(
-      type => type.value === inferredType
-    );
+    const {label, icon, value} = traces(_).find(type => type.value === inferredType);
 
     const Icon = renderTraceIcon(icon ? icon : value);
 
     return (
-      <div
-        className="trace-type-select-button"
-        onClick={handleClick ? () => handleClick() : null}
-      >
+      <div className="trace-type-select-button" onClick={handleClick ? () => handleClick() : null}>
         <div className="trace-type-select-button__icon">
           <Icon />
         </div>

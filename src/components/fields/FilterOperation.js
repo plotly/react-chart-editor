@@ -34,10 +34,7 @@ const findOperation = (operator, _) => {
   let op = 'inequality';
   const ops = operations(_);
   for (const key in ops) {
-    if (
-      ops.hasOwnProperty(key) &&
-      ops[key].map(o => o.value).indexOf(operator) !== -1
-    ) {
+    if (ops.hasOwnProperty(key) && ops[key].map(o => o.value).indexOf(operator) !== -1) {
       op = key;
       break;
     }
@@ -66,14 +63,7 @@ class UnconnectedFilterOperation extends Component {
   }
 
   render() {
-    const {
-      fullValue,
-      updatePlot,
-      optionRenderer,
-      valueRenderer,
-      backgroundDark,
-      attr,
-    } = this.props;
+    const {fullValue, updatePlot, optionRenderer, valueRenderer, backgroundDark, attr} = this.props;
     const {localize: _} = this.context;
 
     const operators = [
@@ -99,8 +89,7 @@ class UnconnectedFilterOperation extends Component {
       },
     ];
 
-    const opValue =
-      fullValue && fullValue.length > 0 ? fullValue : this.state.operator;
+    const opValue = fullValue && fullValue.length > 0 ? fullValue : this.state.operator;
     return (
       <div>
         <Field {...this.props} attr={attr}>
@@ -113,8 +102,7 @@ class UnconnectedFilterOperation extends Component {
             optionRenderer={optionRenderer}
             valueRenderer={valueRenderer}
           />
-          {this.state.operation === 'inset' ||
-          this.state.operation === 'exset' ? null : (
+          {this.state.operation === 'inset' || this.state.operation === 'exset' ? null : (
             <DropdownWidget
               backgroundDark={backgroundDark}
               options={operations(_)[this.state.operation]}
@@ -171,8 +159,7 @@ class UnconnectedFilterValue extends Component {
   render() {
     const {localize: _, container} = this.context;
 
-    const operation =
-      container && container.operation ? container.operation : '=';
+    const operation = container && container.operation ? container.operation : '=';
 
     const {fullValue, attr, defaultValue} = this.props;
     const op = findOperation(operation, _);
@@ -194,11 +181,7 @@ class UnconnectedFilterValue extends Component {
     return (
       <div>
         <Field {...this.props} label={label1}>
-          <TextInput
-            value={val1}
-            defaultValue={val1}
-            onUpdate={this.setValue}
-          />
+          <TextInput value={val1} defaultValue={val1} onUpdate={this.setValue} />
         </Field>
         {!(op === 'inrange' || op === 'exrange') ? null : (
           <Field {...this.props} label={_('Upper Bound')} attr={attr}>

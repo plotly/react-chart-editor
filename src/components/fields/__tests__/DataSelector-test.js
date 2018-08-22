@@ -62,11 +62,7 @@ describe('DataSelector', () => {
     const TraceDataSelector = connectTraceToPlot(DataSelector);
     const wrapper = render(
       {},
-      <TraceDataSelector
-        traceIndexes={[0]}
-        label={{pie: 'hodor', '*': 'rodoh'}}
-        attr="x"
-      />
+      <TraceDataSelector traceIndexes={[0]} label={{pie: 'hodor', '*': 'rodoh'}} attr="x" />
     );
     expect(wrapper.find('.field__title-text').text()).toContain('rodoh');
   });
