@@ -30,9 +30,7 @@ export default function connectTransformToTrace(WrappedComponent) {
     getChildContext() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
-            ? null
-            : this.context.getValObject(`transforms[].${attr}`),
+          !this.context.getValObject ? null : this.context.getValObject(`transforms[].${attr}`),
         updateContainer: this.updateTransform,
         deleteContainer: this.deleteTransform,
         container: this.container,
@@ -67,9 +65,7 @@ export default function connectTransformToTrace(WrappedComponent) {
     }
   }
 
-  TransformConnectedComponent.displayName = `TransformConnected${getDisplayName(
-    WrappedComponent
-  )}`;
+  TransformConnectedComponent.displayName = `TransformConnected${getDisplayName(WrappedComponent)}`;
 
   TransformConnectedComponent.propTypes = {
     transformIndex: PropTypes.number.isRequired,

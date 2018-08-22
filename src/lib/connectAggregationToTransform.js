@@ -28,9 +28,7 @@ export default function connectAggregationToTransform(WrappedComponent) {
     getChildContext() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
-            ? null
-            : this.context.getValObject(`aggregations[].${attr}`),
+          !this.context.getValObject ? null : this.context.getValObject(`aggregations[].${attr}`),
         updateContainer: this.updateAggregation,
         container: this.container,
         fullContainer: this.fullContainer,

@@ -52,9 +52,7 @@ const panelFixture = (Panel, group, name, figure) => {
 const snapshotWidth = 500;
 
 Object.keys(mocks).forEach(m => {
-  const selectedPanels = panelsToTest[m]
-    ? panelsToTest[m]
-    : Object.keys(panels);
+  const selectedPanels = panelsToTest[m] ? panelsToTest[m] : Object.keys(panels);
 
   selectedPanels.forEach(p => {
     const words = p.split(/(?=[A-Z])/);

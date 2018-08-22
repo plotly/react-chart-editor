@@ -35,9 +35,7 @@ class UnconnectedSingleSubplotCreator extends Component {
   }
 
   updateSubplot(update) {
-    const currentSubplotId = this.props.fullContainer[
-      SUBPLOT_TO_ATTR[this.props.attr].data
-    ];
+    const currentSubplotId = this.props.fullContainer[SUBPLOT_TO_ATTR[this.props.attr].data];
     let subplotToBeGarbageCollected = null;
 
     // When we select another subplot, make sure no unused axes are left
@@ -65,11 +63,7 @@ class UnconnectedSingleSubplotCreator extends Component {
   render() {
     const icon = <PlusIcon />;
     const extraComponent = this.canAddAxis() ? (
-      <Button
-        variant="no-text"
-        icon={icon}
-        onClick={() => this.addAndUpdateSubplot()}
-      />
+      <Button variant="no-text" icon={icon} onClick={() => this.addAndUpdateSubplot()} />
     ) : (
       <Button variant="no-text--disabled" icon={icon} onClick={() => {}} />
     );
@@ -105,24 +99,17 @@ UnconnectedSingleSubplotCreator.contextTypes = {
   onUpdate: PropTypes.func,
 };
 
-const SingleSubplotCreator = connectToContainer(
-  UnconnectedSingleSubplotCreator
-);
+const SingleSubplotCreator = connectToContainer(UnconnectedSingleSubplotCreator);
 
 class UnconnectedSubplotCreator extends Component {
   render() {
     const subplotType = traceTypeToAxisType(this.props.container.type);
-    if (
-      !['geo', 'mapbox', 'polar', 'gl3d', 'ternary'].some(
-        t => t === subplotType
-      )
-    ) {
+    if (!['geo', 'mapbox', 'polar', 'gl3d', 'ternary'].some(t => t === subplotType)) {
       return null;
     }
 
     const isFirstTraceOfAxisType =
-      this.context.data.filter(d => traceTypeToAxisType(d.type) === subplotType)
-        .length === 1;
+      this.context.data.filter(d => traceTypeToAxisType(d.type) === subplotType).length === 1;
     if (isFirstTraceOfAxisType) {
       return null;
     }
@@ -146,9 +133,7 @@ class UnconnectedSubplotCreator extends Component {
         />
         <Info>
           {_('You can style and position your subplots in the ')}
-          <a onClick={() => this.context.setPanel('Graph', 'Subplots')}>
-            {_('Subplots')}
-          </a>
+          <a onClick={() => this.context.setPanel('Graph', 'Subplots')}>{_('Subplots')}</a>
           {_(' panel.')}
         </Info>
       </PlotlySection>

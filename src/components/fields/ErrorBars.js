@@ -45,8 +45,7 @@ class ErrorBars extends Component {
 
     if (
       this.props.fullValue.visible &&
-      (this.props.fullValue.symmetric ||
-        typeof this.props.fullValue.symmetric === 'undefined')
+      (this.props.fullValue.symmetric || typeof this.props.fullValue.symmetric === 'undefined')
     ) {
       // when this.props.fullValue.type === 'sqrt',
       // then this.props.fullValue.symmetric is undefined, but 'sqrt' is only
@@ -55,10 +54,7 @@ class ErrorBars extends Component {
       mode = 'symmetric';
     }
 
-    if (
-      this.props.fullValue.visible &&
-      this.props.fullValue.symmetric === false
-    ) {
+    if (this.props.fullValue.visible && this.props.fullValue.symmetric === false) {
       // it has to be explicitly set to false, because we don't want it to catch
       // cases when it's undefined
       mode = 'asymmetric';
@@ -96,28 +92,16 @@ class ErrorBars extends Component {
         <Radio
           label={_('Copy Y Style')}
           attr={`${this.props.attr}.copy_ystyle`}
-          options={[
-            {label: _('Yes'), value: true},
-            {label: _('No'), value: false},
-          ]}
+          options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
         />
         <Radio
           label={_('Copy Z Style')}
           attr={`${this.props.attr}.copy_zstyle`}
-          options={[
-            {label: _('Yes'), value: true},
-            {label: _('No'), value: false},
-          ]}
+          options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
         />
-        <MultiColorPicker
-          label={_('Color')}
-          attr={`${this.props.attr}.color`}
-        />
+        <MultiColorPicker label={_('Color')} attr={`${this.props.attr}.color`} />
         <Numeric label={_('Thickness')} attr={`${this.props.attr}.thickness`} />
-        <Numeric
-          label={_('Crossbar Width')}
-          attr={`${this.props.attr}.width`}
-        />
+        <Numeric label={_('Crossbar Width')} attr={`${this.props.attr}.width`} />
       </Fragment>
     );
 
@@ -136,10 +120,7 @@ class ErrorBars extends Component {
           />
           <Numeric label={_('Value')} attr={`${this.props.attr}.value`} />
           {showCustomDataControl ? (
-            <DataSelector
-              label={_('Custom Data')}
-              attr={`${this.props.attr}.array`}
-            />
+            <DataSelector label={_('Custom Data')} attr={`${this.props.attr}.array`} />
           ) : null}
           {styleAttrs}
         </Fragment>
@@ -159,20 +140,11 @@ class ErrorBars extends Component {
             ]}
           />
           <Numeric label={_('Value')} attr={`${this.props.attr}.value`} />
-          <Numeric
-            label={_('Value (-)')}
-            attr={`${this.props.attr}.valueminus`}
-          />
+          <Numeric label={_('Value (-)')} attr={`${this.props.attr}.valueminus`} />
           {showCustomDataControl ? (
             <Fragment>
-              <DataSelector
-                label={_('Error (+)')}
-                attr={`${this.props.attr}.array`}
-              />
-              <DataSelector
-                label={_('Error (-)')}
-                attr={`${this.props.attr}.arrayminus`}
-              />
+              <DataSelector label={_('Error (+)')} attr={`${this.props.attr}.array`} />
+              <DataSelector label={_('Error (-)')} attr={`${this.props.attr}.arrayminus`} />
             </Fragment>
           ) : null}
           {styleAttrs}

@@ -5,9 +5,7 @@ import {PlotlyPanel} from '../../';
 import {TestEditor, fixtures, plotly, mount} from 'lib/test-utils';
 import {connectAnnotationToLayout, connectLayoutToPlot} from 'lib';
 
-const LayoutAnnoPanel = connectLayoutToPlot(
-  connectAnnotationToLayout(PlotlyPanel)
-);
+const LayoutAnnoPanel = connectLayoutToPlot(connectAnnotationToLayout(PlotlyPanel));
 
 describe('<AnnotationRef>', () => {
   function render(props) {
@@ -38,9 +36,7 @@ describe('<AnnotationRef>', () => {
     const fixtureProps = fixtures.scatter({
       layout: {annotations: [{text: 'thor', ayref: 'y'}]},
     });
-    const drop = render({beforeUpdateLayout, ...fixtureProps}).find(
-      DropdownWidget
-    );
+    const drop = render({beforeUpdateLayout, ...fixtureProps}).find(DropdownWidget);
 
     drop.prop('onChange')('y2');
 
@@ -56,9 +52,7 @@ describe('<AnnotationRef>', () => {
     const fixtureProps = fixtures.scatter({
       layout: {annotations: [{text: 'thor', ayref: 'y'}]},
     });
-    const drop = render({beforeUpdateLayout, ...fixtureProps}).find(
-      DropdownWidget
-    );
+    const drop = render({beforeUpdateLayout, ...fixtureProps}).find(DropdownWidget);
 
     drop.prop('onChange')('paper');
     const {update} = beforeUpdateLayout.mock.calls[0][0];
@@ -72,9 +66,7 @@ describe('<AnnotationRef>', () => {
     const fixtureProps = fixtures.scatter({
       layout: {annotations: [{text: 'thor', yref: 'y', ayref: 'pixel'}]},
     });
-    const drop = render({beforeUpdateLayout, ...fixtureProps}).find(
-      DropdownWidget
-    );
+    const drop = render({beforeUpdateLayout, ...fixtureProps}).find(DropdownWidget);
 
     drop.prop('onChange')('y2');
     const {update} = beforeUpdateLayout.mock.calls[0][0];

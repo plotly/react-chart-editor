@@ -45,8 +45,7 @@ class Field extends Component {
 
     let tooltip = this.context.attr;
     if (this.context.description) {
-      tooltip +=
-        ' – ' + this.context.description.replace(/`/g, '"').replace(/\*/g, '"');
+      tooltip += ' – ' + this.context.description.replace(/`/g, '"').replace(/\*/g, '"');
     }
 
     const containerClassName = classnames(bem('field'), {
@@ -78,9 +77,7 @@ class Field extends Component {
             <MenuPanel label={getMultiValueText('title', _)} ownline question>
               <div className="info__title">{getMultiValueText('title', _)}</div>
               <div className="info__text">{getMultiValueText('text', _)}</div>
-              <div className="info__sub-text">
-                {getMultiValueText('subText', _)}
-              </div>
+              <div className="info__sub-text">{getMultiValueText('subText', _)}</div>
             </MenuPanel>
           ) : null}
           {extraComponent ? extraComponent : null}

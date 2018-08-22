@@ -25,9 +25,7 @@ class TraceMarkerSection extends Component {
   }
 
   render() {
-    return (
-      <PlotlySection name={this.name}>{this.props.children}</PlotlySection>
-    );
+    return <PlotlySection name={this.name}>{this.props.children}</PlotlySection>;
   }
 }
 

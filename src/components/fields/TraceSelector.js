@@ -7,18 +7,12 @@ import {
   plotlyTraceToCustomTrace,
   computeTraceOptionsFromSchema,
 } from 'lib';
-import {
-  TraceTypeSelector,
-  TraceTypeSelectorButton,
-  RadioBlocks,
-} from 'components/widgets';
+import {TraceTypeSelector, TraceTypeSelectorButton, RadioBlocks} from 'components/widgets';
 import Field from './Field';
 import {CogIcon} from 'plotly-icons';
 
 export const glAvailable = type => {
-  return ['scatter', 'scatterpolar', 'scattergl', 'scatterpolargl'].includes(
-    type
-  );
+  return ['scatter', 'scatterpolar', 'scattergl', 'scatterpolargl'].includes(type);
 };
 
 class TraceSelector extends Component {
@@ -31,20 +25,14 @@ class TraceSelector extends Component {
     this.setTraceDefaults = this.setTraceDefaults.bind(this);
     this.toggleGlControls = this.toggleGlControls.bind(this);
 
-    this.setTraceDefaults(
-      props.container,
-      props.fullContainer,
-      props.updateContainer
-    );
+    this.setTraceDefaults(props.container, props.fullContainer, props.updateContainer);
     this.setLocals(props, context);
 
     this.state = {showGlControls: false};
   }
 
   glEnabled() {
-    return this.props.container.type && this.props.container.type.endsWith('gl')
-      ? 'gl'
-      : '';
+    return this.props.container.type && this.props.container.type.endsWith('gl') ? 'gl' : '';
   }
 
   toggleGlControls() {
@@ -58,11 +46,7 @@ class TraceSelector extends Component {
     } else if (context.traceTypesConfig) {
       this.traceOptions = context.traceTypesConfig.traces(_);
     } else if (context.plotSchema) {
-      this.traceOptions = computeTraceOptionsFromSchema(
-        context.plotSchema,
-        _,
-        this.context
-      );
+      this.traceOptions = computeTraceOptionsFromSchema(context.plotSchema, _, this.context);
     } else {
       this.traceOptions = [{label: _('Scatter'), value: 'scatter'}];
     }
@@ -74,8 +58,7 @@ class TraceSelector extends Component {
   setTraceDefaults(container, fullContainer, updateContainer, gl) {
     if (container && !container.mode && fullContainer.type === 'scatter') {
       updateContainer({
-        type:
-          'scatter' + (gl || this.context.glByDefault ? gl : this.glEnabled()),
+        type: 'scatter' + (gl || this.context.glByDefault ? gl : this.glEnabled()),
         mode: fullContainer.mode || 'markers',
       });
     }
@@ -91,9 +74,7 @@ class TraceSelector extends Component {
     const {updateContainer} = this.props;
     const {glByDefault} = this.context;
     if (updateContainer) {
-      updateContainer(
-        traceTypeToPlotlyInitFigure(value, this.glEnabled() || glByDefault)
-      );
+      updateContainer(traceTypeToPlotlyInitFigure(value, this.glEnabled() || glByDefault));
     }
   }
 
@@ -120,10 +101,7 @@ class TraceSelector extends Component {
     });
     const {localize: _, advancedTraceTypeSelector} = this.context;
 
-    const options = [
-      {label: _('SVG'), value: ''},
-      {label: _('WebGL'), value: 'gl'},
-    ];
+    const options = [{label: _('SVG'), value: ''}, {label: _('WebGL'), value: 'gl'}];
 
     // Check and see if the advanced selector prop is true
     if (advancedTraceTypeSelector) {
@@ -150,16 +128,11 @@ class TraceSelector extends Component {
               {!glAvailable(this.props.container.type) ? (
                 ''
               ) : (
-                <CogIcon
-                  className="menupanel__icon"
-                  onClick={this.toggleGlControls}
-                />
+                <CogIcon className="menupanel__icon" onClick={this.toggleGlControls} />
               )}
             </div>
           </Field>
-          {!(
-            glAvailable(this.props.container.type) && this.state.showGlControls
-          ) ? (
+          {!(glAvailable(this.props.container.type) && this.state.showGlControls) ? (
             ''
           ) : (
             <Field label={_('Rendering')}>

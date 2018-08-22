@@ -46,11 +46,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
     setLocals(props, context) {
       this.plotProps = unpackPlotProps(props, context);
       this.attr = props.attr;
-      ContainerConnectedComponent.modifyPlotProps(
-        props,
-        context,
-        this.plotProps
-      );
+      ContainerConnectedComponent.modifyPlotProps(props, context, this.plotProps);
     }
 
     getChildContext() {
@@ -65,11 +61,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       // props. However pass plotProps as a specific prop in case inner component
       // is also wrapped by a component that `unpackPlotProps`. That way inner
       // component can skip computation as it can see plotProps is already defined.
-      const {plotProps = this.plotProps, ...props} = Object.assign(
-        {},
-        this.plotProps,
-        this.props
-      );
+      const {plotProps = this.plotProps, ...props} = Object.assign({}, this.plotProps, this.props);
       if (props.isVisible) {
         return <WrappedComponent {...props} plotProps={plotProps} />;
       }
@@ -78,9 +70,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
     }
   }
 
-  ContainerConnectedComponent.displayName = `ContainerConnected${getDisplayName(
-    WrappedComponent
-  )}`;
+  ContainerConnectedComponent.displayName = `ContainerConnected${getDisplayName(WrappedComponent)}`;
 
   ContainerConnectedComponent.contextTypes = containerConnectedContextTypes;
   ContainerConnectedComponent.childContextTypes = {

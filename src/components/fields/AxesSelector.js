@@ -10,19 +10,12 @@ class AxesSelector extends Component {
     const {localize: _} = context;
 
     if (!context.axesTargetHandler) {
-      throw new Error(
-        _('AxesSelector must be nested within a connectAxesToPlot component')
-      );
+      throw new Error(_('AxesSelector must be nested within a connectAxesToPlot component'));
     }
   }
 
   render() {
-    const {
-      axesTargetHandler,
-      axesTarget,
-      fullLayout,
-      localize: _,
-    } = this.context;
+    const {axesTargetHandler, axesTarget, fullLayout, localize: _} = this.context;
     const {axesOptions} = this.props;
     const maxCharsThatFitInRadio = 27;
     const maxOptions = axesOptions.length > 4; // eslint-disable-line
@@ -45,9 +38,7 @@ class AxesSelector extends Component {
       : axesOptions;
 
     const totalCharsInOptions =
-      (options &&
-        options.map(o => o.label).reduce((acc, o) => acc + o.length, 0)) ||
-      0;
+      (options && options.map(o => o.label).reduce((acc, o) => acc + o.length, 0)) || 0;
 
     return maxOptions || totalCharsInOptions >= maxCharsThatFitInRadio ? (
       <Field {...this.props} label={_('Axis to Style')}>

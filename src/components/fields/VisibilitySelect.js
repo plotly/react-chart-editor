@@ -22,8 +22,7 @@ class UnconnectedVisibilitySelect extends Component {
 
   setLocals(props) {
     this.mode =
-      props.fullValue === undefined || // eslint-disable-line no-undefined
-      props.fullValue === MULTI_VALUED_PLACEHOLDER
+      props.fullValue === undefined || props.fullValue === MULTI_VALUED_PLACEHOLDER // eslint-disable-line no-undefined
         ? this.props.defaultOpt
         : props.fullValue;
   }
@@ -55,8 +54,7 @@ class UnconnectedVisibilitySelect extends Component {
             updatePlot={this.setMode}
           />
         )}
-        {(Array.isArray(showOn) && showOn.includes(this.mode)) ||
-        this.mode === showOn
+        {(Array.isArray(showOn) && showOn.includes(this.mode)) || this.mode === showOn
           ? this.props.children
           : null}
       </Fragment>
@@ -75,11 +73,7 @@ UnconnectedVisibilitySelect.propTypes = {
     PropTypes.string,
     PropTypes.array,
   ]),
-  defaultOpt: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.string,
-  ]),
+  defaultOpt: PropTypes.oneOfType([PropTypes.number, PropTypes.bool, PropTypes.string]),
   label: PropTypes.string,
   attr: PropTypes.string,
   ...Field.propTypes,

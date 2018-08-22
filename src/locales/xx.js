@@ -33,14 +33,10 @@ export default {
   'Carpet Scatter': '⇚⇚Carpet Scatter⇚⇚',
   Center: '⇚Center⇚',
   Choropleth: '⇚⇚Choropleth⇚⇚',
-  'Click to enter Colorscale title':
-    '⇚⇚⇚⇚⇚Click to enter Colorscale title⇚⇚⇚⇚⇚',
-  'Click to enter Component A title':
-    '⇚⇚⇚⇚⇚⇚Click to enter Component A title⇚⇚⇚⇚⇚⇚',
-  'Click to enter Component B title':
-    '⇚⇚⇚⇚⇚⇚Click to enter Component B title⇚⇚⇚⇚⇚⇚',
-  'Click to enter Component C title':
-    '⇚⇚⇚⇚⇚⇚Click to enter Component C title⇚⇚⇚⇚⇚⇚',
+  'Click to enter Colorscale title': '⇚⇚⇚⇚⇚Click to enter Colorscale title⇚⇚⇚⇚⇚',
+  'Click to enter Component A title': '⇚⇚⇚⇚⇚⇚Click to enter Component A title⇚⇚⇚⇚⇚⇚',
+  'Click to enter Component B title': '⇚⇚⇚⇚⇚⇚Click to enter Component B title⇚⇚⇚⇚⇚⇚',
+  'Click to enter Component C title': '⇚⇚⇚⇚⇚⇚Click to enter Component C title⇚⇚⇚⇚⇚⇚',
   'Click to enter Plot title': '⇚⇚⇚⇚Click to enter Plot title⇚⇚⇚⇚',
   'Click to enter X axis title': '⇚⇚⇚⇚⇚Click to enter X axis title⇚⇚⇚⇚⇚',
   'Click to enter Y axis title': '⇚⇚⇚⇚⇚Click to enter Y axis title⇚⇚⇚⇚⇚',
@@ -143,8 +139,7 @@ export default {
     '⇚⇚⇚⇚⇚⇚⇚⇚⇚Return to the Graph > Create menu above to add data.⇚⇚⇚⇚⇚⇚⇚⇚⇚',
   Reversed: '⇚Reversed⇚',
   'Rich Text': '⇚⇚Rich Text⇚⇚',
-  'Rich text is incompatible with LaTeX.':
-    '⇚⇚⇚⇚⇚⇚Rich text is incompatible with LaTeX.⇚⇚⇚⇚⇚⇚',
+  'Rich text is incompatible with LaTeX.': '⇚⇚⇚⇚⇚⇚Rich text is incompatible with LaTeX.⇚⇚⇚⇚⇚⇚',
   Right: '⇚Right⇚',
   Sankey: '⇚Sankey⇚',
   'Satellite Map': '⇚⇚Satellite Map⇚⇚',
@@ -175,16 +170,14 @@ export default {
     '⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚The positioning inputs are relative to the anchor points on the text box.⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚',
   'This input has multiple values associated with it. Changing this setting will override these custom inputs.':
     '⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚This input has multiple values associated with it. Changing this setting will override these custom inputs.⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚⇚',
-  'This trace does not yet have any data.':
-    '⇚⇚⇚⇚⇚⇚⇚This trace does not yet have any data.⇚⇚⇚⇚⇚⇚⇚',
+  'This trace does not yet have any data.': '⇚⇚⇚⇚⇚⇚⇚This trace does not yet have any data.⇚⇚⇚⇚⇚⇚⇚',
   'Tick Labels': '⇚⇚Tick Labels⇚⇚',
   'Tick Markers': '⇚⇚Tick Markers⇚⇚',
   Title: '⇚Title⇚',
   'Title and Fonts': '⇚⇚⇚Title and Fonts⇚⇚⇚',
   Titles: '⇚Titles⇚',
   'Toggle Spike Lines': '⇚⇚⇚Toggle Spike Lines⇚⇚⇚',
-  'Toggle show closest data on hover':
-    '⇚⇚⇚⇚⇚⇚Toggle show closest data on hover⇚⇚⇚⇚⇚⇚',
+  'Toggle show closest data on hover': '⇚⇚⇚⇚⇚⇚Toggle show closest data on hover⇚⇚⇚⇚⇚⇚',
   Top: '⇚Top⇚',
   Trace: '⇚Trace⇚',
   'Trace Order': '⇚⇚Trace Order⇚⇚',

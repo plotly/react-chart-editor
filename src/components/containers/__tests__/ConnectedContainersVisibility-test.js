@@ -70,8 +70,7 @@ describe('Basic PlotlySection rules', () => {
         </TestEditor>
       );
 
-      it('HIDES PlotlySection', () =>
-        expect(wrapper.find('div.section').length).toEqual(0));
+      it('HIDES PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(0));
       it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
     });
 
@@ -86,8 +85,7 @@ describe('Basic PlotlySection rules', () => {
         </TestEditor>
       );
 
-      it('HIDES PlotlySection', () =>
-        expect(wrapper.find('div.section').length).toEqual(0));
+      it('HIDES PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(0));
       it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
     });
   });
@@ -104,8 +102,7 @@ describe('Basic PlotlySection rules', () => {
         </TestEditor>
       );
 
-      it('SHOWS PlotlySection', () =>
-        expect(wrapper.find('div.section').length).toEqual(1));
+      it('SHOWS PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
       it('SHOWS Field', () => expect(wrapper.find('input').length).toEqual(1));
     });
 
@@ -121,8 +118,7 @@ describe('Basic PlotlySection rules', () => {
         </TestEditor>
       );
 
-      it('SHOWS PlotlySection', () =>
-        expect(wrapper.find('div.section').length).toEqual(1));
+      it('SHOWS PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
       it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
       it('SHOWS div', () => expect(wrapper.find('#thediv').length).toEqual(1));
     });
@@ -141,8 +137,7 @@ describe('Basic PlotlyFold rules', () => {
           </LayoutPanel>
         </TestEditor>
       );
-      it('SHOWS PlotlyFold', () =>
-        expect(wrapper.find('div.fold').length).toEqual(1));
+      it('SHOWS PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(1));
       it('SHOWS Field', () => expect(wrapper.find('input').length).toEqual(1));
     });
 
@@ -157,8 +152,7 @@ describe('Basic PlotlyFold rules', () => {
         </TestEditor>
       );
 
-      it('HIDES PlotlyFold', () =>
-        expect(wrapper.find('div.fold').length).toEqual(0));
+      it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
       it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
     });
   });
@@ -175,8 +169,7 @@ describe('Basic PlotlyFold rules', () => {
         </TestEditor>
       );
 
-      it('SHOWS PlotlyFold', () =>
-        expect(wrapper.find('div.fold').length).toEqual(1));
+      it('SHOWS PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(1));
       it('SHOWS div', () => expect(wrapper.find('#thediv').length).toEqual(1));
     });
 
@@ -194,12 +187,9 @@ describe('Basic PlotlyFold rules', () => {
               </LayoutPanel>
             </TestEditor>
           );
-          it('HIDES PlotlyFold', () =>
-            expect(wrapper.find('div.fold').length).toEqual(0));
-          it('HIDES PlotlySection', () =>
-            expect(wrapper.find('div.section').length).toEqual(0));
-          it('HIDES div', () =>
-            expect(wrapper.find('#thediv').length).toEqual(0));
+          it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+          it('HIDES PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(0));
+          it('HIDES div', () => expect(wrapper.find('#thediv').length).toEqual(0));
         });
 
         describe('Field-with-visible-attr', () => {
@@ -214,12 +204,9 @@ describe('Basic PlotlyFold rules', () => {
               </LayoutPanel>
             </TestEditor>
           );
-          it('HIDES PlotlyFold', () =>
-            expect(wrapper.find('div.fold').length).toEqual(0));
-          it('HIDES PlotlySection', () =>
-            expect(wrapper.find('div.section').length).toEqual(0));
-          it('HIDES Field', () =>
-            expect(wrapper.find('input').length).toEqual(0));
+          it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+          it('HIDES PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(0));
+          it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
         });
 
         describe('Field-with-invisible-attr', () => {
@@ -235,12 +222,9 @@ describe('Basic PlotlyFold rules', () => {
             </TestEditor>
           );
 
-          it('HIDES PlotlyFold', () =>
-            expect(wrapper.find('div.fold').length).toEqual(0));
-          it('HIDES PlotlySection', () =>
-            expect(wrapper.find('div.section').length).toEqual(0));
-          it('HIDES Field', () =>
-            expect(wrapper.find('input').length).toEqual(0));
+          it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+          it('HIDES PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(0));
+          it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
         });
       });
     });
@@ -259,12 +243,9 @@ describe('Basic PlotlyFold rules', () => {
           </TestEditor>
         );
 
-        it('HIDES PlotlyFold', () =>
-          expect(wrapper.find('div.fold').length).toEqual(0));
-        it('HIDES inner PlotlyPanel', () =>
-          expect(wrapper.find('div.panel').length).toEqual(1));
-        it('HIDES Field', () =>
-          expect(wrapper.find('input').length).toEqual(0));
+        it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+        it('HIDES inner PlotlyPanel', () => expect(wrapper.find('div.panel').length).toEqual(1));
+        it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
       });
     });
 
@@ -282,12 +263,9 @@ describe('Basic PlotlyFold rules', () => {
           </TestEditor>
         );
 
-        it('HIDES PlotlyFold', () =>
-          expect(wrapper.find('div.fold').length).toEqual(0));
-        it('HIDES Info', () =>
-          expect(wrapper.find('.js-test-info').length).toEqual(0));
-        it('HIDES Field', () =>
-          expect(wrapper.find('input').length).toEqual(0));
+        it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+        it('HIDES Info', () => expect(wrapper.find('.js-test-info').length).toEqual(0));
+        it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
       });
     });
 
@@ -305,12 +283,9 @@ describe('Basic PlotlyFold rules', () => {
           </TestEditor>
         );
 
-        it('SHOWS PlotlyFold', () =>
-          expect(wrapper.find('div.fold').length).toEqual(1));
-        it('SHOWS PlotlySection', () =>
-          expect(wrapper.find('div.section').length).toEqual(1));
-        it('HIDES Field', () =>
-          expect(wrapper.find('input').length).toEqual(0));
+        it('SHOWS PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+        it('SHOWS PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
+        it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
       });
 
       describe('PlotlySection-with-invisible-attr', () => {
@@ -326,12 +301,9 @@ describe('Basic PlotlyFold rules', () => {
           </TestEditor>
         );
 
-        it('HIDES PlotlyFold', () =>
-          expect(wrapper.find('div.fold').length).toEqual(0));
-        it('HIDES PlotlySection', () =>
-          expect(wrapper.find('div.section').length).toEqual(0));
-        it('HIDES Field', () =>
-          expect(wrapper.find('input').length).toEqual(0));
+        it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+        it('HIDES PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(0));
+        it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
       });
     });
   });
@@ -351,10 +323,8 @@ describe('Other ways to force PlotlyFold visibility', () => {
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows PlotlyFold', () =>
-      expect(wrapper.find('div.fold').length).toEqual(1));
-    it('shows PlotlySection', () =>
-      expect(wrapper.find('div.section').length).toEqual(1));
+    it('shows PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
     it('shows div', () => expect(wrapper.find('#thediv').length).toEqual(1));
   });
 
@@ -373,13 +343,10 @@ describe('Other ways to force PlotlyFold visibility', () => {
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows PlotlyFold', () =>
-      expect(wrapper.find('div.fold').length).toEqual(1));
-    it('shows PlotlySection', () =>
-      expect(wrapper.find('div.section').length).toEqual(1));
+    it('shows PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(1));
+    it('shows PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
     it('shows div', () => expect(wrapper.find('#thediv').length).toEqual(1));
-    it('shows Field in PlotlySection', () =>
-      expect(wrapper.find('input').length).toEqual(2));
+    it('shows Field in PlotlySection', () => expect(wrapper.find('input').length).toEqual(2));
   });
 
   describe('adding a Field with invisible attr will hide PlotlyFold', () => {
@@ -396,12 +363,9 @@ describe('Other ways to force PlotlyFold visibility', () => {
       </TestEditor>
     );
 
-    it('HIDES PlotlyFold', () =>
-      expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES PlotlySection', () =>
-      expect(wrapper.find('div.section').length).toEqual(0));
-    it('HIDES Field in PlotlySection', () =>
-      expect(wrapper.find('input').length).toEqual(0));
+    it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(0));
+    it('HIDES Field in PlotlySection', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
 
@@ -423,8 +387,7 @@ describe('PlotlyPanel > PlotlyFold > PlotlyPanel > PlotlyFold', () => {
       </TestEditor>
     );
 
-    it('HIDES PlotlyFold', () =>
-      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
     it('HIDES div', () => expect(wrapper.find('#thediv').length).toEqual(0));
   });
 
@@ -442,8 +405,7 @@ describe('PlotlyPanel > PlotlyFold > PlotlyPanel > PlotlyFold', () => {
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES PlotlyFold', () =>
-      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 
@@ -462,8 +424,7 @@ describe('PlotlyPanel > PlotlyFold > PlotlyPanel > PlotlyFold', () => {
       </TestEditor>
     );
 
-    it('HIDES PlotlyFold', () =>
-      expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
@@ -486,10 +447,8 @@ describe('PlotlyPanel > PlotlyFold > PlotlyPanel > PlotlyFold > PlotlySection', 
       </TestEditor>
     );
 
-    it('HIDES PlotlyFold', () =>
-      expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES PlotlySection', () =>
-      expect(wrapper.find('div.section').length).toEqual(0));
+    it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES div', () => expect(wrapper.find('#thediv').length).toEqual(0));
   });
 
@@ -509,10 +468,8 @@ describe('PlotlyPanel > PlotlyFold > PlotlyPanel > PlotlyFold > PlotlySection', 
         </LayoutPanel>
       </TestEditor>
     );
-    it('HIDES PlotlyFold', () =>
-      expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES PlotlySection', () =>
-      expect(wrapper.find('div.section').length).toEqual(0));
+    it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 
@@ -533,10 +490,8 @@ describe('PlotlyPanel > PlotlyFold > PlotlyPanel > PlotlyFold > PlotlySection', 
       </TestEditor>
     );
 
-    it('HIDES PlotlyFold', () =>
-      expect(wrapper.find('div.fold').length).toEqual(0));
-    it('HIDES PlotlySection', () =>
-      expect(wrapper.find('div.section').length).toEqual(0));
+    it('HIDES PlotlyFold', () => expect(wrapper.find('div.fold').length).toEqual(0));
+    it('HIDES PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(0));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });
@@ -562,10 +517,8 @@ describe('PlotlyPanel > PlotlyFold > PlotlyPanel-with-visible-attr > PlotlyFold 
       </TestEditor>
     );
 
-    it('shows 2 PlotlyFolds', () =>
-      expect(wrapper.find('div.fold').length).toEqual(2));
-    it('shows PlotlySection', () =>
-      expect(wrapper.find('div.section').length).toEqual(1));
+    it('shows 2 PlotlyFolds', () => expect(wrapper.find('div.fold').length).toEqual(2));
+    it('shows PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
     it('shows div', () => expect(wrapper.find('#thediv').length).toEqual(1));
   });
 
@@ -585,10 +538,8 @@ describe('PlotlyPanel > PlotlyFold > PlotlyPanel-with-visible-attr > PlotlyFold 
         </LayoutPanel>
       </TestEditor>
     );
-    it('shows 2 PlotlyFolds', () =>
-      expect(wrapper.find('div.fold').length).toEqual(2));
-    it('shows PlotlySection', () =>
-      expect(wrapper.find('div.section').length).toEqual(1));
+    it('shows 2 PlotlyFolds', () => expect(wrapper.find('div.fold').length).toEqual(2));
+    it('shows PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
     it('shows Field', () => expect(wrapper.find('input').length).toEqual(1));
   });
 
@@ -609,10 +560,8 @@ describe('PlotlyPanel > PlotlyFold > PlotlyPanel-with-visible-attr > PlotlyFold 
       </TestEditor>
     );
 
-    it('shows 2 PlotlyFolds', () =>
-      expect(wrapper.find('div.fold').length).toEqual(2));
-    it('shows PlotlySection', () =>
-      expect(wrapper.find('div.section').length).toEqual(1));
+    it('shows 2 PlotlyFolds', () => expect(wrapper.find('div.fold').length).toEqual(2));
+    it('shows PlotlySection', () => expect(wrapper.find('div.section').length).toEqual(1));
     it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
   });
 });

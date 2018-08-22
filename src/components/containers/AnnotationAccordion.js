@@ -17,12 +17,7 @@ class AnnotationAccordion extends Component {
     const content =
       annotations.length &&
       annotations.map((ann, i) => (
-        <AnnotationFold
-          key={i}
-          annotationIndex={i}
-          name={ann.text}
-          canDelete={canAdd}
-        >
+        <AnnotationFold key={i} annotationIndex={i} name={ann.text} canDelete={canAdd}>
           {children}
         </AnnotationFold>
       ));

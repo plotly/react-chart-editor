@@ -30,9 +30,7 @@ export default function connectShapeToLayout(WrappedComponent) {
     getChildContext() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
-            ? null
-            : this.context.getValObject(`shapes[].${attr}`),
+          !this.context.getValObject ? null : this.context.getValObject(`shapes[].${attr}`),
         updateContainer: this.updateShape,
         deleteContainer: this.deleteShape,
         container: this.container,
@@ -64,9 +62,7 @@ export default function connectShapeToLayout(WrappedComponent) {
     }
   }
 
-  ShapeConnectedComponent.displayName = `ShapeConnected${getDisplayName(
-    WrappedComponent
-  )}`;
+  ShapeConnectedComponent.displayName = `ShapeConnected${getDisplayName(WrappedComponent)}`;
 
   ShapeConnectedComponent.propTypes = {
     shapeIndex: PropTypes.number.isRequired,

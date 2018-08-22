@@ -29,18 +29,13 @@ class PlotlyEditor extends Component {
             srcConverters={this.props.srcConverters}
             makeDefaultTrace={this.props.makeDefaultTrace}
             glByDefault={this.props.glByDefault}
-            mapBoxAccess={Boolean(
-              this.props.config && this.props.config.mapboxAccessToken
-            )}
+            mapBoxAccess={Boolean(this.props.config && this.props.config.mapboxAccessToken)}
             fontOptions={this.props.fontOptions}
           >
             {this.props.children}
           </EditorControls>
         )}
-        <div
-          className="plotly_editor_plot"
-          style={{width: '100%', height: '100%'}}
-        >
+        <div className="plotly_editor_plot" style={{width: '100%', height: '100%'}}>
           <this.PlotComponent
             data={this.props.data}
             layout={this.props.layout}

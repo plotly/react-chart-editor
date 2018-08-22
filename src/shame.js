@@ -50,24 +50,18 @@ export const shamefullyAdjustAxisRef = (graphDiv, payload) => {
       const axis = a.charAt(0);
       const axisIdNumber = Number(a.slice(1));
 
-      nestedProperty(graphDiv.layout, `${axis}axis${axisIdNumber || ''}`).set(
-        null
-      );
+      nestedProperty(graphDiv.layout, `${axis}axis${axisIdNumber || ''}`).set(null);
       Object.keys(graphDiv.layout)
         .filter(key => key.startsWith(axis + 'axis'))
         .forEach(key => {
-          if (
-            nestedProperty(graphDiv.layout, `${key}.overlaying`).get() === a
-          ) {
+          if (nestedProperty(graphDiv.layout, `${key}.overlaying`).get() === a) {
             nestedProperty(graphDiv.layout, `${key}.overlaying`).set(null);
           }
         });
     });
   }
   if (payload.subplotToBeGarbageCollected) {
-    nestedProperty(graphDiv.layout, payload.subplotToBeGarbageCollected).set(
-      null
-    );
+    nestedProperty(graphDiv.layout, payload.subplotToBeGarbageCollected).set(null);
   }
 };
 
@@ -98,30 +92,21 @@ export const shamefullyAdjustGeo = ({layout}, {update}) => {
 export const shamefullyAddTableColumns = (graphDiv, {traceIndexes, update}) => {
   if (
     update['cells.values'] &&
-    (!graphDiv.data[traceIndexes[0]].header ||
-      !graphDiv.data[traceIndexes[0]].header.valuessrc)
+    (!graphDiv.data[traceIndexes[0]].header || !graphDiv.data[traceIndexes[0]].header.valuessrc)
   ) {
     update['header.values'] = update['cells.valuessrc'];
   } else if (update['header.values'] === null) {
-    update['header.values'] =
-      graphDiv.data[traceIndexes[0]].cells.valuessrc || null;
-  } else if (
-    update['cells.values'] === null &&
-    !graphDiv.data[traceIndexes[0]].header.valuessrc
-  ) {
+    update['header.values'] = graphDiv.data[traceIndexes[0]].cells.valuessrc || null;
+  } else if (update['cells.values'] === null && !graphDiv.data[traceIndexes[0]].header.valuessrc) {
     update['header.values'] = null;
   }
 };
 
-export const shamefullyAdjustSplitStyleTargetContainers = (
-  graphDiv,
-  {traceIndexes, update}
-) => {
+export const shamefullyAdjustSplitStyleTargetContainers = (graphDiv, {traceIndexes, update}) => {
   for (const attr in update) {
     if (attr && attr.startsWith('transforms') && attr.endsWith('groups')) {
       const transformIndex = parseInt(attr.split('[')[1], 10);
-      const transform =
-        graphDiv.data[traceIndexes[0]].transforms[transformIndex];
+      const transform = graphDiv.data[traceIndexes[0]].transforms[transformIndex];
 
       if (transform && transform.type === 'groupby' && transform.styles) {
         // Create style containers for all groups
@@ -151,12 +136,7 @@ export const shamefullyAdjustSplitStyleTargetContainers = (
   }
 };
 
-export const shamefullyCreateSplitStyleProps = (
-  graphDiv,
-  attr,
-  traceIndex,
-  splitTraceGroup
-) => {
+export const shamefullyCreateSplitStyleProps = (graphDiv, attr, traceIndex, splitTraceGroup) => {
   if (!Array.isArray(splitTraceGroup)) {
     splitTraceGroup = [splitTraceGroup]; // eslint-disable-line
   }
@@ -172,18 +152,14 @@ export const shamefullyCreateSplitStyleProps = (
   function getProp(group) {
     let indexOfStyleObject = null;
 
-    graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles.forEach(
-      (s, i) => {
-        if (s.target.toString() === group) {
-          indexOfStyleObject = i;
-        }
+    graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles.forEach((s, i) => {
+      if (s.target.toString() === group) {
+        indexOfStyleObject = i;
       }
-    );
+    });
 
     let path =
-      graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles[
-        indexOfStyleObject
-      ].value;
+      graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles[indexOfStyleObject].value;
 
     attr.split('.').forEach(p => {
       if (!path[p]) {
@@ -193,9 +169,7 @@ export const shamefullyCreateSplitStyleProps = (
     });
 
     return nestedProperty(
-      graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles[
-        indexOfStyleObject
-      ].value,
+      graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles[indexOfStyleObject].value,
       attr
     );
   }

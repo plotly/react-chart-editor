@@ -266,14 +266,10 @@ describe('objectUtils', () => {
 
       callback.mockClear();
 
-      walkObject(
-        {[UNDEF]: 1, b: [{c: [{a: 1, d: [{a: 1}]}]}, 2, 3]},
-        callback,
-        {
-          walkArraysMatchingKeys: ['b', 'c'],
-          pathType: 'nestedProperty',
-        }
-      );
+      walkObject({[UNDEF]: 1, b: [{c: [{a: 1, d: [{a: 1}]}]}, 2, 3]}, callback, {
+        walkArraysMatchingKeys: ['b', 'c'],
+        pathType: 'nestedProperty',
+      });
 
       actualPaths = callback.mock.calls.map(args => args[2]);
       expectedPaths = [

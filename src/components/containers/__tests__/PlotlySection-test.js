@@ -16,10 +16,7 @@ describe('PlotlySection', () => {
         <TraceSection name="test-section" traceIndexes={[0]}>
           <Flaglist
             attr="mode"
-            options={[
-              {label: 'Lines', value: 'lines'},
-              {label: 'Points', value: 'markers'},
-            ]}
+            options={[{label: 'Lines', value: 'lines'}, {label: 'Points', value: 'markers'}]}
           />
           <Numeric attr="hole" min={0} max={1} step={0.1} />
         </TraceSection>
@@ -76,17 +73,10 @@ describe('TraceTypeSection', () => {
     const TraceSection = connectTraceToPlot(TraceTypeSection);
     const wrapper = mount(
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection
-          name="test-section"
-          traceIndexes={[0]}
-          traceTypes={['scatter']}
-        >
+        <TraceSection name="test-section" traceIndexes={[0]} traceTypes={['scatter']}>
           <Flaglist
             attr="mode"
-            options={[
-              {label: 'Lines', value: 'lines'},
-              {label: 'Points', value: 'markers'},
-            ]}
+            options={[{label: 'Lines', value: 'lines'}, {label: 'Points', value: 'markers'}]}
           />
         </TraceSection>
       </TestEditor>
@@ -99,17 +89,10 @@ describe('TraceTypeSection', () => {
     const TraceSection = connectTraceToPlot(TraceTypeSection);
     const wrapper = mount(
       <TestEditor onUpdate={jest.fn()} {...fixtures.scatter()}>
-        <TraceSection
-          name="test-section"
-          traceIndexes={[0]}
-          traceTypes={['heatmap']}
-        >
+        <TraceSection name="test-section" traceIndexes={[0]} traceTypes={['heatmap']}>
           <Flaglist
             attr="mode"
-            options={[
-              {label: 'Lines', value: 'lines'},
-              {label: 'Points', value: 'markers'},
-            ]}
+            options={[{label: 'Lines', value: 'lines'}, {label: 'Points', value: 'markers'}]}
           />
         </TraceSection>
       </TestEditor>

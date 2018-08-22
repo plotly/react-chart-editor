@@ -12,10 +12,7 @@ class UnconnectedMarkerSize extends Component {
     super(props, context);
 
     let type = null;
-    if (
-      !props.container.marker ||
-      (props.container.marker && !props.container.marker.sizesrc)
-    ) {
+    if (!props.container.marker || (props.container.marker && !props.container.marker.sizesrc)) {
       type = 'constant';
     } else if (
       props.container.marker &&
@@ -55,9 +52,7 @@ class UnconnectedMarkerSize extends Component {
     const {type} = this.state;
 
     this.setState(
-      type === 'constant'
-        ? {value: {constant: inputValue}}
-        : {value: {variable: inputValue}}
+      type === 'constant' ? {value: {constant: inputValue}} : {value: {variable: inputValue}}
     );
     this.props.updatePlot(inputValue);
   }
@@ -71,16 +66,11 @@ class UnconnectedMarkerSize extends Component {
       {label: _('Variable'), value: 'variable'},
     ];
     const multiValued =
-      this.props.multiValued ||
-      (Array.isArray(fullValue) && fullValue.includes(MULTI_VALUED));
+      this.props.multiValued || (Array.isArray(fullValue) && fullValue.includes(MULTI_VALUED));
 
     return (
       <Field {...this.props} multiValued={multiValued} attr={attr}>
-        <RadioBlocks
-          options={options}
-          activeOption={type}
-          onOptionChange={this.setType}
-        />
+        <RadioBlocks options={options} activeOption={type} onOptionChange={this.setType} />
         {type === 'constant' ? (
           <Numeric
             suppressMultiValuedMessage
@@ -89,11 +79,7 @@ class UnconnectedMarkerSize extends Component {
             fullValue={value.constant}
           />
         ) : multiValued ? null : (
-          <DataSelector
-            suppressMultiValuedMessage
-            attr="marker.size"
-            updatePlot={this.setValue}
-          />
+          <DataSelector suppressMultiValuedMessage attr="marker.size" updatePlot={this.setValue} />
         )}
       </Field>
     );

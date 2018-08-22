@@ -21,9 +21,7 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
       const {rangeselectorIndex} = props;
       const {container, fullContainer} = context;
 
-      const rangeselectors = container.rangeselector
-        ? container.rangeselector.buttons || []
-        : [];
+      const rangeselectors = container.rangeselector ? container.rangeselector.buttons || [] : [];
       const fullRangeselectors = fullContainer.rangeselector
         ? fullContainer.rangeselector.buttons || []
         : [];

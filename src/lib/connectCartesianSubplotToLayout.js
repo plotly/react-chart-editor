@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {
-  getDisplayName,
-  plotlyTraceToCustomTrace,
-  renderTraceIcon,
-} from '../lib';
+import {getDisplayName, plotlyTraceToCustomTrace, renderTraceIcon} from '../lib';
 
 export default function connectCartesianSubplotToLayout(WrappedComponent) {
   class SubplotConnectedComponent extends Component {
@@ -51,10 +47,7 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
            * _fullData as that is where the rest of our code expects to find its
            * values.
           */
-          if (
-            trace.transforms &&
-            trace.transforms.every(t => t.type === 'fit')
-          ) {
+          if (trace.transforms && trace.transforms.every(t => t.type === 'fit')) {
             fullData[i]._fullInput = fullData[i];
           }
 
@@ -76,9 +69,7 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
           !this.context.getValObject
             ? null
             : this.context.getValObject(
-                attr
-                  .replace('xaxis', this.props.xaxis)
-                  .replace('yaxis', this.props.yaxis)
+                attr.replace('xaxis', this.props.xaxis).replace('yaxis', this.props.yaxis)
               ),
         updateContainer: this.updateSubplot,
         deleteContainer: this.deleteSubplot,
@@ -90,24 +81,18 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
     updateSubplot(update) {
       const newUpdate = {};
       for (const key in update) {
-        const newKey = key
-          .replace('xaxis', this.props.xaxis)
-          .replace('yaxis', this.props.yaxis);
+        const newKey = key.replace('xaxis', this.props.xaxis).replace('yaxis', this.props.yaxis);
         newUpdate[newKey] = update[key];
       }
       this.context.updateContainer(newUpdate);
     }
 
     render() {
-      return (
-        <WrappedComponent name={this.name} icon={this.icon} {...this.props} />
-      );
+      return <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
     }
   }
 
-  SubplotConnectedComponent.displayName = `SubplotConnected${getDisplayName(
-    WrappedComponent
-  )}`;
+  SubplotConnectedComponent.displayName = `SubplotConnected${getDisplayName(WrappedComponent)}`;
 
   SubplotConnectedComponent.propTypes = {
     xaxis: PropTypes.string.isRequired,

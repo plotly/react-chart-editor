@@ -41,10 +41,7 @@ class LinkEditor extends Component {
     // Cursor dissappears when component rerenders, to make sure it's present
     // we're using setSelection range to make it appear at the end of text:
     // https://github.com/plotly/streambed/issues/9964
-    findDOMNode(this.input).setSelectionRange(
-      this.props.linkURL.length,
-      this.props.linkURL.length
-    );
+    findDOMNode(this.input).setSelectionRange(this.props.linkURL.length, this.props.linkURL.length);
   }
 
   getUpdatedPosition(props) {
@@ -93,10 +90,7 @@ class LinkEditor extends Component {
     const urlText = _('URL');
     // TODO: add close button
     return (
-      <div
-        className="rich-text-editor__link-editor"
-        style={{left: position.x, top: position.y}}
-      >
+      <div className="rich-text-editor__link-editor" style={{left: position.x, top: position.y}}>
         <span className="rich-text-editor__link-editor__label">{urlText}</span>
         <input
           className="rich-text-editor__link-editor__input"

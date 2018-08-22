@@ -36,9 +36,7 @@ class CheckboxGroup extends Component {
       return (
         <div key={i} className={itemClass}>
           <div
-            className={`checkbox__box${
-              option.checked ? ' checkbox__box--checked' : ''
-            }`}
+            className={`checkbox__box${option.checked ? ' checkbox__box--checked' : ''}`}
             onClick={() => this.handleChange(i)}
           >
             {option.checked && (

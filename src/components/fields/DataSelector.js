@@ -61,28 +61,15 @@ export class UnconnectedDataSelector extends Component {
     let data;
 
     if (Array.isArray(value)) {
-      data = value
-        .filter(v => Array.isArray(this.dataSources[v]))
-        .map(v => this.dataSources[v]);
+      data = value.filter(v => Array.isArray(this.dataSources[v])).map(v => this.dataSources[v]);
     } else {
       data = this.dataSources[value] || null;
     }
 
-    update[this.props.attr] = maybeTransposeData(
-      data,
-      this.srcAttr,
-      this.props.container.type
-    );
-    update[this.srcAttr] = maybeAdjustSrc(
-      value,
-      this.srcAttr,
-      this.props.container.type,
-      {
-        fromSrc: this.context.srcConverters
-          ? this.context.srcConverters.fromSrc
-          : null,
-      }
-    );
+    update[this.props.attr] = maybeTransposeData(data, this.srcAttr, this.props.container.type);
+    update[this.srcAttr] = maybeAdjustSrc(value, this.srcAttr, this.props.container.type, {
+      fromSrc: this.context.srcConverters ? this.context.srcConverters.fromSrc : null,
+    });
 
     this.props.updateContainer(update);
   }
@@ -111,9 +98,7 @@ export class UnconnectedDataSelector extends Component {
           optionRenderer={this.context.dataSourceOptionRenderer}
           valueRenderer={this.context.dataSourceValueRenderer}
           clearable={true}
-          placeholder={
-            this.hasData ? 'Data inlined in figure' : 'Choose data...'
-          }
+          placeholder={this.hasData ? 'Data inlined in figure' : 'Choose data...'}
           disabled={this.dataSourceOptions.length === 0}
         />
       </Field>
@@ -143,8 +128,7 @@ UnconnectedDataSelector.contextTypes = {
 function modifyPlotProps(props, context, plotProps) {
   if (
     attributeIsData(plotProps.attrMeta) &&
-    (context.container &&
-      TRANSFORMS_LIST.indexOf(context.container.type) === -1)
+    (context.container && TRANSFORMS_LIST.indexOf(context.container.type) === -1)
   ) {
     plotProps.isVisible = true;
   }

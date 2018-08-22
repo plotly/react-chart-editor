@@ -25,10 +25,7 @@ export default function connectLayoutToPlot(WrappedComponent) {
         getValObject: attr =>
           !plotly
             ? null
-            : plotly.PlotSchema.getLayoutValObject(
-                fullLayout,
-                nestedProperty({}, attr).parts
-              ),
+            : plotly.PlotSchema.getLayoutValObject(fullLayout, nestedProperty({}, attr).parts),
         updateContainer,
         container: layout,
         fullContainer: fullLayout,
@@ -40,9 +37,7 @@ export default function connectLayoutToPlot(WrappedComponent) {
     }
   }
 
-  LayoutConnectedComponent.displayName = `LayoutConnected${getDisplayName(
-    WrappedComponent
-  )}`;
+  LayoutConnectedComponent.displayName = `LayoutConnected${getDisplayName(WrappedComponent)}`;
 
   LayoutConnectedComponent.contextTypes = {
     layout: PropTypes.object,

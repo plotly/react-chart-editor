@@ -12,9 +12,7 @@ class Dropzone extends Component {
     };
 
     this.validFiletypes = {
-      image: _(
-        'image/jpeg, image/jpg, image/svg, image/png, image/gif, image/bmp, image/webp'
-      ),
+      image: _('image/jpeg, image/jpg, image/svg, image/png, image/gif, image/bmp, image/webp'),
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -26,16 +24,11 @@ class Dropzone extends Component {
 
     if (this.props.fileType === 'image') {
       return (
-        <div
-          className="dropzone-container__image"
-          style={{backgroundImage: `url(${value})`}}
-        />
+        <div className="dropzone-container__image" style={{backgroundImage: `url(${value})`}} />
       );
     }
 
-    return (
-      <div className="dropzone-container__message">{_('File loaded!')}</div>
-    );
+    return <div className="dropzone-container__message">{_('File loaded!')}</div>;
   }
 
   componentWillMount() {
@@ -52,17 +45,13 @@ class Dropzone extends Component {
           <p>
             {_('Drop the ') +
               this.props.fileType +
-              _(
-                ' to upload here or click to choose a file from your computer.'
-              )}
+              _(' to upload here or click to choose a file from your computer.')}
           </p>
 
           {this.props.fileType === 'image' ? (
             <p>
               {_('Supported formats are: ') +
-                this.validFiletypes[this.props.fileType]
-                  .split('image/')
-                  .join('') +
+                this.validFiletypes[this.props.fileType].split('image/').join('') +
                 '.'}
             </p>
           ) : null}
@@ -81,11 +70,7 @@ class Dropzone extends Component {
     const parsingError = (
       <div className="dropzone-container__message">
         <p>{_('Yikes! An error occurred while parsing this file.')}</p>
-        <p>
-          {_('Try again with a supported file format: ') +
-            supportedFileTypes +
-            '.'}
-        </p>
+        <p>{_('Try again with a supported file format: ') + supportedFileTypes + '.'}</p>
       </div>
     );
 
@@ -115,9 +100,7 @@ class Dropzone extends Component {
             <div className="dropzone-container__message">
               <p>{_('Yikes! You can only upload one file at a time.')}</p>
               <p>
-                {_(
-                  'To upload multiple files, create multiple files and upload them individually.'
-                )}
+                {_('To upload multiple files, create multiple files and upload them individually.')}
               </p>
             </div>
           ),
@@ -141,9 +124,7 @@ class Dropzone extends Component {
         content: (
           <div className="dropzone-container__message">
             <p>
-              {_("Yikes! This doesn't look like a valid ") +
-                this.props.fileType +
-                _(' to us. ')}
+              {_("Yikes! This doesn't look like a valid ") + this.props.fileType + _(' to us. ')}
             </p>
             <p>{_('Try again with a ') + supportedFileTypes + ' file.'}</p>
           </div>

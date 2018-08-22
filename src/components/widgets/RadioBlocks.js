@@ -59,22 +59,14 @@ class RadioBlocks extends Component {
 RadioBlocks.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.bool,
-        PropTypes.number,
-      ]).isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]).isRequired,
       label: PropTypes.string,
       icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
       disabled: PropTypes.bool,
     })
   ),
   onOptionChange: PropTypes.func.isRequired,
-  activeOption: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.bool,
-    PropTypes.number,
-  ]),
+  activeOption: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]),
   radioClassName: PropTypes.string,
 
   // One of right, left, center

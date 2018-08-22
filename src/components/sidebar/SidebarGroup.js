@@ -27,8 +27,7 @@ export default class SidebarGroup extends Component {
 
   renderSubItem(panel, i) {
     const isActive =
-      this.props.selectedPanel === panel &&
-      this.props.group === this.props.selectedGroup;
+      this.props.selectedPanel === panel && this.props.group === this.props.selectedGroup;
 
     return (
       <SidebarItem
@@ -50,10 +49,7 @@ export default class SidebarGroup extends Component {
           selectedGroup === group ? 'is-active' : '',
         ])}
       >
-        <div
-          onClick={this.toggleExpanded}
-          className={bem('sidebar__group', 'title')}
-        >
+        <div onClick={this.toggleExpanded} className={bem('sidebar__group', 'title')}>
           <div className={bem('sidebar__group', 'title__icon')}>
             <AngleRightIcon />
           </div>

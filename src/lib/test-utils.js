@@ -59,10 +59,7 @@ const fixtures = {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
       },
-      dataSourceOptions: [
-        {label: 'xCol', value: 'x1'},
-        {label: 'yCol', value: 'y1'},
-      ],
+      dataSourceOptions: [{label: 'xCol', value: 'x1'}, {label: 'yCol', value: 'y1'}],
       graphDiv: {
         data: [
           {
@@ -84,24 +81,16 @@ const fixtures = {
         x1: [1, 2, 3],
         y1: [2, 3, 4],
       },
-      dataSourceOptions: [
-        {label: 'xCol', value: 'x1'},
-        {label: 'yCol', value: 'y1'},
-      ],
+      dataSourceOptions: [{label: 'xCol', value: 'x1'}, {label: 'yCol', value: 'y1'}],
       graphDiv: {
-        data: [
-          {type: 'pie', mode: 'markers', labelssrc: 'x1', valuessrc: 'y1'},
-        ],
+        data: [{type: 'pie', mode: 'markers', labelssrc: 'x1', valuessrc: 'y1'}],
         layout: {},
       },
     });
   },
 };
 
-function applyConfig(
-  config = {},
-  {graphDiv: {data, layout}, dataSourceOptions, dataSources}
-) {
+function applyConfig(config = {}, {graphDiv: {data, layout}, dataSourceOptions, dataSources}) {
   if (config.layout) {
     extendDeep(layout, config.layout);
   }
@@ -151,11 +140,4 @@ function setupGraphDiv(figure) {
   return gd;
 }
 
-export {
-  fixtures,
-  plotly,
-  EditorControls as TestEditor,
-  mount,
-  shallow,
-  setupGraphDiv,
-};
+export {fixtures, plotly, EditorControls as TestEditor, mount, shallow, setupGraphDiv};

@@ -12,10 +12,7 @@ import {
   TraceTypeSection,
   LocationSelector,
 } from '../components';
-import {
-  HistogramInfoVertical,
-  HistogramInfoHorizontal,
-} from '../components/fields/derived';
+import {HistogramInfoVertical, HistogramInfoHorizontal} from '../components/fields/derived';
 
 const GraphCreatePanel = (props, {localize: _}) => {
   return (
@@ -60,20 +57,13 @@ const GraphCreatePanel = (props, {localize: _}) => {
       <Radio
         label={_('Orientation')}
         attr="orientation"
-        options={[
-          {label: _('Vertical'), value: 'v'},
-          {label: _('Horizontal'), value: 'h'},
-        ]}
+        options={[{label: _('Vertical'), value: 'v'}, {label: _('Horizontal'), value: 'h'}]}
       />
       <HistogramInfoVertical>
-        {_(
-          'Note: in vertical orientation, X values are used for bins and Y values for weights.'
-        )}
+        {_('Note: in vertical orientation, X values are used for bins and Y values for weights.')}
       </HistogramInfoVertical>
       <HistogramInfoHorizontal>
-        {_(
-          'Note: in horizontal orientation, Y Values are used for bins and X values for weights.'
-        )}
+        {_('Note: in horizontal orientation, Y Values are used for bins and X values for weights.')}
       </HistogramInfoHorizontal>
       <DataSelector label={_('I (Optional)')} attr="i" />
       <DataSelector label={_('J (Optional)')} attr="j" />
@@ -91,10 +81,7 @@ const GraphCreatePanel = (props, {localize: _}) => {
       <DataSelector label={_('Headers')} attr="header.values" />
       <DataSelector label={_('Columns')} attr="cells.values" />
 
-      <TraceTypeSection
-        traceTypes={['scatterpolar', 'scatterpolargl']}
-        mode="trace"
-      >
+      <TraceTypeSection traceTypes={['scatterpolar', 'scatterpolargl']} mode="trace">
         <DataSelector label={_('Radius')} attr="r" />
         <DataSelector label={_('Theta')} attr="theta" />
         <Dropdown
@@ -136,10 +123,7 @@ const GraphCreatePanel = (props, {localize: _}) => {
         <Radio
           label={_('Transpose')}
           attr="transpose"
-          options={[
-            {label: _('No'), value: false},
-            {label: _('Yes'), value: true},
-          ]}
+          options={[{label: _('No'), value: false}, {label: _('Yes'), value: true}]}
         />
       </PlotlySection>
     </TraceAccordion>

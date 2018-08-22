@@ -3,9 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 /* eslint-disable react/prop-types */
-const styledRenderer = ({value, label}) => (
-  <span style={{fontFamily: value}}>{label}</span>
-);
+const styledRenderer = ({value, label}) => <span style={{fontFamily: value}}>{label}</span>;
 /* eslint-enable react/prop-types */
 
 const FontSelector = (props, context) => {

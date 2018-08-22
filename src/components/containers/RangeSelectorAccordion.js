@@ -29,12 +29,7 @@ class RangeSelectorAccordion extends Component {
     const content =
       buttons.length &&
       buttons.map((btn, i) => (
-        <RangeSelectorFold
-          key={i}
-          rangeselectorIndex={i}
-          name={btn.label}
-          canDelete={true}
-        >
+        <RangeSelectorFold key={i} rangeselectorIndex={i} name={btn.label} canDelete={true}>
           {children}
         </RangeSelectorFold>
       ));
@@ -44,9 +39,7 @@ class RangeSelectorAccordion extends Component {
       handler: context => {
         const {fullContainer, updateContainer} = context;
         if (updateContainer) {
-          const rangeselectorIndex = Array.isArray(
-            fullContainer.rangeselector.buttons
-          )
+          const rangeselectorIndex = Array.isArray(fullContainer.rangeselector.buttons)
             ? fullContainer.rangeselector.buttons.length
             : 0;
 
@@ -57,11 +50,7 @@ class RangeSelectorAccordion extends Component {
       },
     };
 
-    return (
-      <PlotlyPanel addAction={addAction}>
-        {content ? content : null}
-      </PlotlyPanel>
-    );
+    return <PlotlyPanel addAction={addAction}>{content ? content : null}</PlotlyPanel>;
   }
 }
 

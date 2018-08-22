@@ -20,10 +20,7 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <VisibilitySelect
         attr="autosize"
         label={_('Size')}
-        options={[
-          {label: _('Auto'), value: true},
-          {label: _('Custom'), value: false},
-        ]}
+        options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
         showOn={false}
         defaultOpt={true}
       >
@@ -49,20 +46,12 @@ const StyleLayoutPanel = (props, {localize: _}) => (
     <PlotlyFold name={_('Title and Fonts')}>
       <PlotlySection name={_('Title')} attr="title">
         <TextEditor attr="title" />
-        <FontSelector
-          label={_('Typeface')}
-          attr="titlefont.family"
-          clearable={false}
-        />
+        <FontSelector label={_('Typeface')} attr="titlefont.family" clearable={false} />
         <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
         <ColorPicker label={_('Font Color')} attr="titlefont.color" />
       </PlotlySection>
       <PlotlySection name={_('Global Font')}>
-        <FontSelector
-          label={_('Typeface')}
-          attr="font.family"
-          clearable={false}
-        />
+        <FontSelector label={_('Typeface')} attr="font.family" clearable={false} />
         <Numeric label={_('Font Size')} attr="font.size" units="px" />
         <ColorPicker label={_('Font Color')} attr="font.color" />
       </PlotlySection>

@@ -6,10 +6,7 @@ export default class SidebarItem extends Component {
   render() {
     const {onClick, label, active} = this.props;
     return (
-      <div
-        onClick={onClick}
-        className={bem('sidebar__item', [active ? 'is-active' : ''])}
-      >
+      <div onClick={onClick} className={bem('sidebar__item', [active ? 'is-active' : ''])}>
         <div className={bem('sidebar__item', 'wrapper')}>
           <div className={bem('sidebar__item', 'label')}>{label}</div>
         </div>

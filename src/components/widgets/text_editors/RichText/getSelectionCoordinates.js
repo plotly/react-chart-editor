@@ -1,9 +1,7 @@
 const getCoordinates = () => {
   const coordinates = {x: 0, y: 0};
 
-  const rect = document
-    .getElementsByClassName('text-editor')[0]
-    .getBoundingClientRect();
+  const rect = document.getElementsByClassName('text-editor')[0].getBoundingClientRect();
 
   const LINK_POP_UP_WIDTH = 158.5;
 

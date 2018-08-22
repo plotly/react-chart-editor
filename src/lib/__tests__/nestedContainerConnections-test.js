@@ -2,20 +2,13 @@ import NumericInput from '../../components/widgets/NumericInput';
 import React from 'react';
 import {Numeric, PlotlySection, PlotlyPanel} from '../../components';
 import {TestEditor, fixtures, mount} from '../test-utils';
-import {
-  connectAxesToLayout,
-  connectLayoutToPlot,
-  connectToContainer,
-  connectTraceToPlot,
-} from '..';
+import {connectAxesToLayout, connectLayoutToPlot, connectToContainer, connectTraceToPlot} from '..';
 
 describe('Plot Connection', () => {
   it('can connect Field directly with full connection pipeline', () => {
     const beforeUpdateLayout = jest.fn();
     const fixtureProps = fixtures.scatter({layout: {xaxis: {range: [0, 10]}}});
-    const LayoutAxesNumeric = connectLayoutToPlot(
-      connectAxesToLayout(connectToContainer(Numeric))
-    );
+    const LayoutAxesNumeric = connectLayoutToPlot(connectAxesToLayout(connectToContainer(Numeric)));
     mount(
       <TestEditor {...{...fixtureProps, beforeUpdateLayout}}>
         <LayoutAxesNumeric label="Min" attr="range[0]" />
@@ -36,9 +29,7 @@ describe('Plot Connection', () => {
   it('can connect to layout when connected within trace context', () => {
     const beforeUpdateLayout = jest.fn();
     const fixtureProps = fixtures.scatter({layout: {width: 10}});
-    const TraceLayoutNumeric = connectTraceToPlot(
-      connectLayoutToPlot(connectToContainer(Numeric))
-    );
+    const TraceLayoutNumeric = connectTraceToPlot(connectLayoutToPlot(connectToContainer(Numeric)));
     mount(
       <TestEditor {...{...fixtureProps, beforeUpdateLayout}}>
         <TraceLayoutNumeric traceIndexes={[0]} label="Width" attr="width" />
@@ -70,11 +61,7 @@ describe('Plot Connection', () => {
     const wrapper = mount(
       <TestEditor {...{...fixtureProps}}>
         <PlotlySection name="Canvas">
-          <DeeplyConnectedNumeric
-            traceIndexes={[0]}
-            label="Width"
-            attr="width"
-          />
+          <DeeplyConnectedNumeric traceIndexes={[0]} label="Width" attr="width" />
         </PlotlySection>
       </TestEditor>
     )

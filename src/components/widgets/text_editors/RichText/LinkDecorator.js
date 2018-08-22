@@ -19,8 +19,7 @@ const LinkDecorator = props => {
 
 LinkDecorator.propTypes = {
   style: PropTypes.object.isRequired,
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.element])
-    .isRequired,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.element]).isRequired,
 };
 
 export default LinkDecorator;

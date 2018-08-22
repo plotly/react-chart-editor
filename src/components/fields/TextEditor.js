@@ -33,38 +33,14 @@ class UnconnectedTextEditor extends Component {
 
     if (latexOnly) {
       placeholder = _('Enter LaTeX formatted text');
-      editor = (
-        <LaTeX
-          value={fullValue}
-          placeholder={placeholder}
-          onChange={updatePlot}
-        />
-      );
+      editor = <LaTeX value={fullValue} placeholder={placeholder} onChange={updatePlot} />;
     } else if (richTextOnly) {
-      editor = (
-        <RichText
-          value={fullValue}
-          placeholder={placeholder}
-          onChange={updatePlot}
-        />
-      );
+      editor = <RichText value={fullValue} placeholder={placeholder} onChange={updatePlot} />;
     } else if (htmlOnly) {
       placeholder = _('Enter html formatted text');
-      editor = (
-        <HTML
-          value={fullValue}
-          placeholder={placeholder}
-          onChange={updatePlot}
-        />
-      );
+      editor = <HTML value={fullValue} placeholder={placeholder} onChange={updatePlot} />;
     } else {
-      editor = (
-        <MultiFormat
-          value={fullValue}
-          placeholder={placeholder}
-          onChange={updatePlot}
-        />
-      );
+      editor = <MultiFormat value={fullValue} placeholder={placeholder} onChange={updatePlot} />;
     }
 
     return (

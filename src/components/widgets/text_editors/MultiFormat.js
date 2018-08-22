@@ -3,12 +3,7 @@ import LaTeXEditor from './LaTeX';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import RichTextEditor from './RichText';
-import {
-  isLaTeXExpr,
-  htmlToLaTeX,
-  laTeXToHTML,
-  hasTextExpression,
-} from './convertFormats';
+import {isLaTeXExpr, htmlToLaTeX, laTeXToHTML, hasTextExpression} from './convertFormats';
 import classnames from 'classnames';
 import Button from 'components/widgets/Button';
 
@@ -101,19 +96,13 @@ class MultiFormatTextEditor extends Component {
       (currentTab === 'RICH_TEXT' && nextTab === 'HTML') ||
       (currentTab === 'HTML' && nextTab === 'RICH_TEXT');
 
-    if (
-      !isDefaultValue &&
-      trimmedValueLength > 0 &&
-      !switchingBetweenRichAndHtml
-    ) {
+    if (!isDefaultValue && trimmedValueLength > 0 && !switchingBetweenRichAndHtml) {
       // Show confirmation dialogue and defer tab change.
       let messages;
 
       if (!isLaTeXExpr(value)) {
         messages = [
-          _(
-            "LaTeX is a math typesetting language that doesn't work with rich text."
-          ),
+          _("LaTeX is a math typesetting language that doesn't work with rich text."),
           _('Continuing will convert your note to LaTeX-style text.'),
         ];
       } else if (hasTextExpression(value)) {
@@ -177,9 +166,7 @@ class MultiFormatTextEditor extends Component {
     return (
       <div className="multi-format-editor__confirmation-panel">
         <div className="multi-format-editor__confirmation-panel__content">
-          <h3 className="multi-format-editor__confirmation-panel__header">
-            {_('Heads up!')}
-          </h3>
+          <h3 className="multi-format-editor__confirmation-panel__header">{_('Heads up!')}</h3>
           <div className="multi-format-editor__confirmation-panel__message">
             <p className="multi-format-editor__confirmation-panel__message-primary">
               {messages[0]}
@@ -218,42 +205,26 @@ class MultiFormatTextEditor extends Component {
 
     const {currentTab} = this.state;
 
-    const richTextClassNames = classnames(
-      'multi-format-editor__tab',
-      'top-tab',
-      'left',
-      {selected: currentTab === 'RICH_TEXT'}
-    );
-    const latexClassNames = classnames(
-      'multi-format-editor__tab',
-      'top-tab',
-      'right',
-      {selected: currentTab === 'LATEX'}
-    );
-    const bottomTabClassNames = classnames(
-      'multi-format-editor__tab',
-      'bottom-tab'
-    );
+    const richTextClassNames = classnames('multi-format-editor__tab', 'top-tab', 'left', {
+      selected: currentTab === 'RICH_TEXT',
+    });
+    const latexClassNames = classnames('multi-format-editor__tab', 'top-tab', 'right', {
+      selected: currentTab === 'LATEX',
+    });
+    const bottomTabClassNames = classnames('multi-format-editor__tab', 'bottom-tab');
 
-    const Editor = this.editors.filter(editor => editor.key === currentTab)[0]
-      .component;
+    const Editor = this.editors.filter(editor => editor.key === currentTab)[0].component;
 
     const ModeTabsText = this.editors.map(editor => editor.label);
 
     const showBottomTab = currentTab === 'HTML' || currentTab === 'RICH_TEXT';
     const BottomTab =
       currentTab === 'HTML' ? (
-        <div
-          className={bottomTabClassNames}
-          onClick={() => this.onModeChange('RICH_TEXT')}
-        >
+        <div className={bottomTabClassNames} onClick={() => this.onModeChange('RICH_TEXT')}>
           {_('Edit in Rich Text')}
         </div>
       ) : (
-        <div
-          className={bottomTabClassNames}
-          onClick={() => this.onModeChange('HTML')}
-        >
+        <div className={bottomTabClassNames} onClick={() => this.onModeChange('HTML')}>
           {_('Edit in HTML')}
         </div>
       );
@@ -261,22 +232,14 @@ class MultiFormatTextEditor extends Component {
     return (
       <div className="multi-format-editor__root__wrapper">
         <div className="multi-format-editor__tabs">
-          <div
-            className={richTextClassNames}
-            onClick={() => this.onModeChange('RICH_TEXT')}
-          >
+          <div className={richTextClassNames} onClick={() => this.onModeChange('RICH_TEXT')}>
             {ModeTabsText[0]}
           </div>
-          <div
-            className={latexClassNames}
-            onClick={() => this.onModeChange('LATEX')}
-          >
+          <div className={latexClassNames} onClick={() => this.onModeChange('LATEX')}>
             {ModeTabsText[1]}
           </div>
         </div>
-        <div
-          className={`multi-format-editor__content__wrapper__${currentTab.toLowerCase()}`}
-        >
+        <div className={`multi-format-editor__content__wrapper__${currentTab.toLowerCase()}`}>
           <Editor
             className={`multi-format-editor__${currentTab.toLowerCase()}`}
             onChange={onChange}
@@ -296,8 +259,7 @@ class MultiFormatTextEditor extends Component {
      */
     const {nextTab} = this.state;
     const content =
-      this.renderConfirmationPanel(nextTab !== null) ||
-      this.renderEditor(nextTab === null);
+      this.renderConfirmationPanel(nextTab !== null) || this.renderEditor(nextTab === null);
 
     return <div className="multi-format-editor__root">{content}</div>;
   }

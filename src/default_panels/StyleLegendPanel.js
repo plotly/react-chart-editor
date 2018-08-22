@@ -16,10 +16,7 @@ const StyleLegendPanel = (props, {localize: _}) => (
     <PlotlyFold name={_('Legend')}>
       <Radio
         attr="showlegend"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
       <PlotlySection name={_('Text')}>
         <FontSelector label={_('Typeface')} attr="legend.font.family" />
@@ -27,11 +24,7 @@ const StyleLegendPanel = (props, {localize: _}) => (
         <ColorPicker label={_('Color')} attr="legend.font.color" />
       </PlotlySection>
       <PlotlySection name={_('Legend Box')}>
-        <Numeric
-          label={_('Border Width')}
-          attr="legend.borderwidth"
-          units="px"
-        />
+        <Numeric label={_('Border Width')} attr="legend.borderwidth" units="px" />
         <ColorPicker label={_('Border Color')} attr="legend.bordercolor" />
         <ColorPicker label={_('Background Color')} attr="legend.bgcolor" />
       </PlotlySection>
@@ -66,10 +59,7 @@ const StyleLegendPanel = (props, {localize: _}) => (
       <PlotlySection name={_('Orientation')}>
         <Radio
           attr="legend.orientation"
-          options={[
-            {label: _('Vertical'), value: 'v'},
-            {label: _('Horizontal'), value: 'h'},
-          ]}
+          options={[{label: _('Vertical'), value: 'v'}, {label: _('Horizontal'), value: 'h'}]}
         />
       </PlotlySection>
       <PlotlySection name={_('Trace Order')}>

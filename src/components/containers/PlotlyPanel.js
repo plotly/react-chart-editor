@@ -11,10 +11,7 @@ class PanelErrorImpl extends Component {
     const {localize: _} = this.context;
 
     return (
-      <PanelEmpty
-        icon={EmbedIconIcon}
-        heading={_('Well this is embarrassing.')}
-      >
+      <PanelEmpty icon={EmbedIconIcon} heading={_('Well this is embarrassing.')}>
         <p>{_('This panel could not be displayed due to an error.')}</p>
       </PanelEmpty>
     );
@@ -50,18 +47,14 @@ export class Panel extends Component {
 
   toggleFolds() {
     const {individualFoldStates} = this.state;
-    const hasOpen =
-      individualFoldStates.length > 0 &&
-      individualFoldStates.some(s => s !== true);
+    const hasOpen = individualFoldStates.length > 0 && individualFoldStates.some(s => s !== true);
     this.setState({
       individualFoldStates: individualFoldStates.map(() => hasOpen),
     });
   }
 
   toggleFold(index) {
-    this.setState(
-      update(this.state, {individualFoldStates: {$toggle: [index]}})
-    );
+    this.setState(update(this.state, {individualFoldStates: {$toggle: [index]}}));
   }
 
   calculateFolds() {
@@ -69,10 +62,7 @@ export class Panel extends Component {
     let numFolds = 0;
 
     React.Children.forEach(this.props.children, child => {
-      if (
-        ((child && child.type && child.type.plotly_editor_traits) || {})
-          .foldable
-      ) {
+      if (((child && child.type && child.type.plotly_editor_traits) || {}).foldable) {
         numFolds++;
       }
     });
@@ -101,32 +91,22 @@ export class Panel extends Component {
       return <PanelError />;
     }
 
-    const newChildren = React.Children.map(
-      this.props.children,
-      (child, index) => {
-        if (
-          ((child && child.type && child.type.plotly_editor_traits) || {})
-            .foldable
-        ) {
-          return cloneElement(child, {
-            key: index,
-            folded: individualFoldStates[index] || false,
-            toggleFold: () => this.toggleFold(index),
-          });
-        }
-        return child;
+    const newChildren = React.Children.map(this.props.children, (child, index) => {
+      if (((child && child.type && child.type.plotly_editor_traits) || {}).foldable) {
+        return cloneElement(child, {
+          key: index,
+          folded: individualFoldStates[index] || false,
+          toggleFold: () => this.toggleFold(index),
+        });
       }
-    );
+      return child;
+    });
 
     return (
-      <div
-        className={`panel${this.props.noPadding ? ' panel--no-padding' : ''}`}
-      >
+      <div className={`panel${this.props.noPadding ? ' panel--no-padding' : ''}`}>
         <PanelHeader
           addAction={this.props.addAction}
-          allowCollapse={
-            this.props.showExpandCollapse && individualFoldStates.length > 1
-          }
+          allowCollapse={this.props.showExpandCollapse && individualFoldStates.length > 1}
           toggleFolds={this.toggleFolds}
           hasOpen={individualFoldStates.some(s => s === false)}
         />

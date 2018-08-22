@@ -44,8 +44,7 @@ const computeOptions = (strokeData, stroke) =>
         d={d}
         style={{
           ...strokeStyle,
-          stroke:
-            !stroke || stroke === MULTI_VALUED ? COLORS.mutedBlue : stroke,
+          stroke: !stroke || stroke === MULTI_VALUED ? COLORS.mutedBlue : stroke,
           strokeDasharray,
         }}
       />
@@ -54,12 +53,7 @@ const computeOptions = (strokeData, stroke) =>
   }));
 
 export const LineShapeSelector = props => {
-  return (
-    <LineSelector
-      {...props}
-      computeOptions={computeOptions.bind(null, strokeShapes)}
-    />
-  );
+  return <LineSelector {...props} computeOptions={computeOptions.bind(null, strokeShapes)} />;
 };
 
 export const LineDashSelector = props => {
