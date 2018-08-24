@@ -22,6 +22,7 @@ export class UnconnectedDropdown extends Component {
           optionRenderer={this.props.optionRenderer}
           valueRenderer={this.props.valueRenderer}
           placeholder={placeholder}
+          disabled={this.props.disabled}
         />
       </Field>
     );
@@ -36,6 +37,7 @@ UnconnectedDropdown.propTypes = {
   options: PropTypes.array.isRequired,
   updatePlot: PropTypes.func,
   valueRenderer: PropTypes.func,
+  disabled: PropTypes.bool,
   ...Field.propTypes,
 };
 
