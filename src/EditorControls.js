@@ -9,6 +9,7 @@ import {
   shamefullyAddTableColumns,
   shamefullyCreateSplitStyleProps,
   shamefullyAdjustSplitStyleTargetContainers,
+  shamefullyDeleteRelatedAnalysisTransforms,
 } from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
@@ -167,6 +168,7 @@ class EditorControls extends Component {
           }
 
           shamefullyAdjustAxisRef(graphDiv, payload);
+          shamefullyDeleteRelatedAnalysisTransforms(graphDiv, payload);
 
           graphDiv.data.splice(payload.traceIndexes[0], 1);
           if (this.props.afterDeleteTrace) {
