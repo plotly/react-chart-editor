@@ -176,3 +176,21 @@ export const shamefullyCreateSplitStyleProps = (graphDiv, attr, traceIndex, spli
 
   return splitTraceGroup.map(g => getProp(g));
 };
+
+export const shamefullyDeleteRelatedAnalysisTransforms = (graphDiv, payload) => {
+  const parentTraceDataIndex = payload.traceIndexes[0];
+  const parentUid = graphDiv.data[parentTraceDataIndex].uid;
+
+  const relatedFitTransformTraceIndexes = [];
+  graphDiv.data.forEach((d, i) => {
+    if (d.transforms && d.transforms.filter(t => t.inputUid === parentUid).length) {
+      relatedFitTransformTraceIndexes.push(i);
+    }
+  });
+
+  if (relatedFitTransformTraceIndexes.length) {
+    relatedFitTransformTraceIndexes.forEach(i => {
+      graphDiv.data.splice(i, 1);
+    });
+  }
+};
