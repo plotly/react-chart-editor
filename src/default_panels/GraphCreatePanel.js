@@ -19,8 +19,7 @@ const GraphCreatePanel = (props, {localize: _}) => {
     <TraceAccordion
       canAdd
       traceFilterCondition={t =>
-        !(t.transforms && t.transforms.some(tr => tr.type === 'fit')) ||
-        !(t.transforms && t.transforms.some(tr => tr.type === 'moving-average'))
+        !(t.transforms && t.transforms.some(tr => ['fit', 'moving-average'].includes(tr.type)))
       }
     >
       <TraceSelector label={_('Type')} attr="type" show />
