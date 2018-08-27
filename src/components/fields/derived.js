@@ -127,22 +127,19 @@ export const BinningNumeric = connectToContainer(UnconnectedNumeric, {
 export const BinningDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _} = context;
-    plotProps.options =
-      plotProps.fullContainer.orientation === 'v'
-        ? [
-            {label: _('Count X'), value: 'count'},
-            {label: _('Sum Y'), value: 'sum'},
-            {label: _('Average Y'), value: 'avg'},
-            {label: _('Minimum Y'), value: 'min'},
-            {label: _('Maximum Y'), value: 'max'},
-          ]
-        : [
-            {label: _('Count Y'), value: 'count'},
-            {label: _('Sum X'), value: 'sum'},
-            {label: _('Average X'), value: 'avg'},
-            {label: _('Minimum X'), value: 'min'},
-            {label: _('Maximum X'), value: 'max'},
-          ];
+    const axis =
+      plotProps.fullContainer.type === 'histogram2d'
+        ? 'Z'
+        : plotProps.fullContainer.orientation === 'v'
+          ? 'Y'
+          : 'X';
+    plotProps.options = [
+      {label: _('Count ') + axis, value: 'count'},
+      {label: _('Sum ') + axis, value: 'sum'},
+      {label: _('Average ') + axis, value: 'avg'},
+      {label: _('Minimum ') + axis, value: 'min'},
+      {label: _('Maximum ') + axis, value: 'max'},
+    ];
   },
 });
 
@@ -165,6 +162,13 @@ export const HistogramInfoHorizontal = connectToContainer(Info, {
   modifyPlotProps: (props, context, plotProps) => {
     plotProps.isVisible =
       context.fullContainer.type === 'histogram' && context.fullContainer.orientation === 'h';
+    return plotProps;
+  },
+});
+
+export const Histogram2d = connectToContainer(Info, {
+  modifyPlotProps: (props, context, plotProps) => {
+    plotProps.isVisible = context.fullContainer.type === 'histogram2d';
     return plotProps;
   },
 });
@@ -219,12 +223,12 @@ const numericFractionModifyPlotProps = (props, context, plotProps) => {
   const min = (attrMeta && attrMeta.min) || 0;
   const max = (attrMeta && attrMeta.max) || 1;
   if (isNumeric(fullValue)) {
-    plotProps.fullValue = Math.round(100 * (fullValue - min) / (max - min));
+    plotProps.fullValue = Math.round((100 * (fullValue - min)) / (max - min));
   }
 
   plotProps.updatePlot = v => {
     if (isNumeric(v)) {
-      updatePlot(v / 100 * (max - min) + min);
+      updatePlot((v / 100) * (max - min) + min);
     } else {
       updatePlot(v);
     }

@@ -51,17 +51,20 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <NumericFraction label={_('Trace Opacity')} attr="opacity" />
     <MultiColorPicker label={_('Color')} attr="color" />
     <PieColorscalePicker label={_('Colors')} attr="marker.colors" />
-    <Dropdown
-      label={_('Histogram Normalization')}
-      options={[
-        {label: _('Number of Occurences'), value: ''},
-        {label: _('Percent'), value: 'percent'},
-        {label: _('Probability'), value: 'probability'},
-        {label: _('Density'), value: 'density'},
-        {label: _('Probability Density'), value: 'probability density'},
-      ]}
-      attr="histnorm"
-    />
+    <PlotlySection name={_('Values')}>
+      <BinningDropdown label={_('Histogram Function')} attr="histfunc" />
+      <Dropdown
+        label={_('Histogram Normalization')}
+        options={[
+          {label: _('Number of Occurences'), value: ''},
+          {label: _('Percent'), value: 'percent'},
+          {label: _('Probability'), value: 'probability'},
+          {label: _('Density'), value: 'density'},
+          {label: _('Probability Density'), value: 'probability density'},
+        ]}
+        attr="histnorm"
+      />
+    </PlotlySection>
     <PlotlySection name={_('Cumulative')}>
       <Radio
         label={_('Cumulative')}
@@ -139,7 +142,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
     </PlotlySection>
     <PlotlySection name={_('Binning')}>
-      <BinningDropdown label={_('Binning Function')} attr="histfunc" />
       <Radio
         label={_('X Binning')}
         attr="autobinx"
