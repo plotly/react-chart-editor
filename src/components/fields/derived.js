@@ -219,12 +219,12 @@ const numericFractionModifyPlotProps = (props, context, plotProps) => {
   const min = (attrMeta && attrMeta.min) || 0;
   const max = (attrMeta && attrMeta.max) || 1;
   if (isNumeric(fullValue)) {
-    plotProps.fullValue = Math.round(100 * (fullValue - min) / (max - min));
+    plotProps.fullValue = Math.round((100 * (fullValue - min)) / (max - min));
   }
 
   plotProps.updatePlot = v => {
     if (isNumeric(v)) {
-      updatePlot(v / 100 * (max - min) + min);
+      updatePlot((v / 100) * (max - min) + min);
     } else {
       updatePlot(v);
     }
