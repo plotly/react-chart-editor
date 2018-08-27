@@ -12,9 +12,13 @@ import {
   TraceTypeSection,
   LocationSelector,
 } from '../components';
-import {HistogramInfoVertical, HistogramInfoHorizontal} from '../components/fields/derived';
+import {
+  HistogramInfoVertical,
+  HistogramInfoHorizontal,
+  Histogram2d,
+} from '../components/fields/derived';
 
-const GraphCreatePanel = (props, {localize: _}) => {
+const GraphCreatePanel = (props, {localize: _, setPanel}) => {
   return (
     <TraceAccordion
       canAdd
@@ -59,11 +63,26 @@ const GraphCreatePanel = (props, {localize: _}) => {
         options={[{label: _('Vertical'), value: 'v'}, {label: _('Horizontal'), value: 'h'}]}
       />
       <HistogramInfoVertical>
-        {_('Note: in vertical orientation, X values are used for bins and Y values for weights.')}
+        {_(
+          'Note: in vertical orientation, X values are used for binning. If Y values are provided, they are used as inputs to the histogram function which you can configure in the '
+        )}
+        <a onClick={() => setPanel('Style', 'Traces')}>{_('Traces')}</a>
+        {_(' panel. If Y values are omitted, the histogram function defaults to Count.')}
       </HistogramInfoVertical>
       <HistogramInfoHorizontal>
-        {_('Note: in horizontal orientation, Y Values are used for bins and X values for weights.')}
+        {_(
+          'Note: in horizontal orientation, Y values are used for binning. If X values are provided, they are used as inputs to the histogram function which you can configure in the '
+        )}
+        <a onClick={() => setPanel('Style', 'Traces')}>{_('Traces')}</a>
+        {_(' panel. If X values are omitted, the histogram function defaults to Count.')}
       </HistogramInfoHorizontal>
+      <Histogram2d>
+        {_(
+          'Note: X and Y Values are used for binning. If Z values are provided, they are used as inputs to the histogram function which you can configure in the '
+        )}
+        <a onClick={() => setPanel('Style', 'Traces')}>{_('Traces')}</a>
+        {_(' panel. If Z values are omitted, the histogram function defaults to Count.')}
+      </Histogram2d>
       <DataSelector label={_('I (Optional)')} attr="i" />
       <DataSelector label={_('J (Optional)')} attr="j" />
       <DataSelector label={_('K (Optional)')} attr="k" />
@@ -132,4 +151,5 @@ const GraphCreatePanel = (props, {localize: _}) => {
 export default GraphCreatePanel;
 GraphCreatePanel.contextTypes = {
   localize: PropTypes.func,
+  setPanel: PropTypes.func,
 };
