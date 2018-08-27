@@ -59,6 +59,29 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Plot Background')} attr="bgcolor" />
     </PlotlySection>
 
+    <PlotlySection name={_('Map Style')}>
+      <Dropdown
+        label={_('Mapbox Style')}
+        attr="style"
+        options={[
+          {label: _('Basic'), value: 'basic'},
+          {label: _('Outdoors'), value: 'outdoors'},
+          {label: _('Light'), value: 'light'},
+          {label: _('Dark'), value: 'dark'},
+          {label: _('Satellite'), value: 'satellite'},
+          {label: _('Satellite with Streets'), value: 'satellite-streets'},
+        ]}
+        clearable={false}
+      />
+    </PlotlySection>
+    <PlotlySection name={_('Map Positioning')}>
+      <Numeric label={_('Center Latitude')} attr="center.lat" />
+      <Numeric label={_('Center Longitude')} attr="center.lon" />
+      <Numeric label={_('Zoom Level')} attr="zoom" min={0} />
+      <Numeric label={_('Bearing')} attr="bearing" />
+      <Numeric label={_('Pitch')} attr="pitch" min={0} />
+    </PlotlySection>
+
     <PlotlySection name={_('Map Projection')}>
       <Dropdown
         label={_('Region')}
