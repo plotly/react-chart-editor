@@ -92,7 +92,6 @@ class UnconnectedRectanglePositioner extends Component {
             style={{
               width: fieldWidthPx + 1,
               height: fieldHeightPx + 1,
-              margin: '0 auto',
             }}
           >
             {Array(gridRes * gridRes)
