@@ -91,7 +91,7 @@ class UnconnectedLocationSelector extends Component {
       container: {type: type},
     } = this.context;
 
-    return type === 'scattergeo' || type === 'scattermapbox' ? (
+    return type === 'scattergeo' ? (
       <Fragment>
         <Field {...this.props} attr={this.props.attr}>
           <Radio
@@ -116,7 +116,10 @@ class UnconnectedLocationSelector extends Component {
     ) : type === 'choropleth' ? (
       <Location attr="type" />
     ) : (
-      ''
+      <Fragment>
+        <DataSelector label={_('Latitude')} attr="lat" />
+        <DataSelector label={_('Longitude')} attr="lon" />
+      </Fragment>
     );
   }
 }

@@ -272,6 +272,9 @@ const StyleTracesPanel = (props, {localize: _}) => (
         'scatter3d',
         'scattergl',
         'scattergeo',
+        'scattermapbox',
+        'box',
+        'violin',
       ]}
     >
       <Numeric label={_('Width')} attr="line.width" />
@@ -310,6 +313,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         'scatterternary',
         'bar',
         'scattergeo',
+        'scattermapbox',
       ]}
     >
       <DataSelector label={_('Text')} attr="text" />
