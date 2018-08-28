@@ -73,13 +73,13 @@ class DefaultEditor extends Component {
         {logo ? logo : null}
         <GraphCreatePanel group={_('Graph')} name={_('Create')} />
         <GraphSubplotsPanel group={_('Graph')} name={_('Subplots')} />
-        {this.hasTransforms() && <GraphTransformsPanel group={_('Graph')} name={_('Transforms')} />}
+        {this.hasTransforms() && <GraphTransformsPanel group={_('Graph')} name={_('Transform')} />}
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
         <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
         {this.hasAxes() && <StyleAxesPanel group={_('Style')} name={_('Axes')} />}
         <StyleLegendPanel group={_('Style')} name={_('Legend')} />
         {this.hasColorbars() && <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />}
-        <StyleNotesPanel group={_('Style')} name={_('Annotations')} />
+        <StyleNotesPanel group={_('Style')} name={_('Annotate')} />
         <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
         <StyleImagesPanel group={_('Style')} name={_('Images')} />
         {this.hasSliders() && <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />}
