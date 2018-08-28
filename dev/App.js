@@ -65,6 +65,41 @@ const traceTypesConfig = {
   complex: true,
 };
 
+const chartHelp = {
+  area: {
+    helpDoc: 'https://help.plot.ly/make-an-area-graph/',
+    examplePlot: () => {
+      console.log('example bar plot!');
+    },
+  },
+  bar: {
+    helpDoc: 'https://help.plot.ly/stacked-bar-chart/',
+    examplePlot: () => {
+      console.log('example bar plot!');
+    },
+  },
+  box: {helpDoc: 'https://help.plot.ly/make-a-box-plot/'},
+  candlestick: {helpDoc: 'https://help.plot.ly/make-a-candlestick/'},
+  choropleth: {helpDoc: 'https://help.plot.ly/make-a-choropleth-map/'},
+  contour: {helpDoc: 'https://help.plot.ly/make-a-contour-plot/'},
+  heatmap: {helpDoc: 'https://help.plot.ly/make-a-heatmap/'},
+  histogram2d: {helpDoc: 'https://help.plot.ly/make-a-2d-histogram-heatmap/'},
+  histogram2dcontour: {helpDoc: 'https://help.plot.ly/make-a-histogram/'},
+  line: {helpDoc: 'https://help.plot.ly/make-a-line-graph/'},
+  mesh3d: {helpDoc: null},
+  ohlc: {helpDoc: 'https://help.plot.ly/make-a-ohlc/'},
+  pie: {helpDoc: 'https://help.plot.ly/make-a-pie-chart/'},
+  scatter3d: {helpDoc: 'https://help.plot.ly/make-a-3d-scatter-plot/'},
+  line3d: {helpDoc: null},
+  scatter: {helpDoc: 'https://help.plot.ly/how-to-make-a-scatter-plot/'},
+  scattergeo: {helpDoc: 'https://help.plot.ly/make-scatter-map/'},
+  scattermapbox: {helpDoc: 'https://help.plot.ly/make-a-mapbox-map/'},
+  scatterternary: {helpDoc: 'https://help.plot.ly/ternary-scatter-plot/'},
+  surface: {helpDoc: 'https://help.plot.ly/make-a-3d-surface-plot/'},
+  table: {helpDoc: null},
+  timeseries: {helpDoc: 'https://help.plot.ly/range-slider/'},
+};
+
 class App extends Component {
   constructor() {
     super();
@@ -148,6 +183,7 @@ class App extends Component {
           // traceTypesConfig={traceTypesConfig}
           // makeDefaultTrace={() => ({type: 'scattergl', mode: 'markers'})}
           // fontOptions={[{label:'Arial', value: 'arial'}]}
+          // chartHelp={chartHelp}
         >
           <DefaultEditor>
             <Panel group="Dev" name="JSON">
@@ -211,11 +247,7 @@ class App extends Component {
                 Refresh
               </button>
               <div style={{height: '80vh'}}>
-                <Inspector
-                  data={{_full: this.state.full}}
-                  expandLevel={2}
-                  sortObjectKeys={true}
-                />
+                <Inspector data={{_full: this.state.full}} expandLevel={2} sortObjectKeys={true} />
               </div>
             </Panel>
           </DefaultEditor>

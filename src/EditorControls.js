@@ -57,6 +57,7 @@ class EditorControls extends Component {
       glByDefault: this.props.glByDefault,
       mapBoxAccess: this.props.mapBoxAccess,
       fontOptions: this.props.fontOptions,
+      chartHelp: this.props.chartHelp,
     };
   }
 
@@ -335,6 +336,7 @@ EditorControls.propTypes = {
   glByDefault: PropTypes.bool,
   mapBoxAccess: PropTypes.bool,
   fontOptions: PropTypes.array,
+  chartHelp: PropTypes.object,
 };
 
 EditorControls.defaultProps = {
@@ -376,6 +378,7 @@ EditorControls.childContextTypes = {
   glByDefault: PropTypes.bool,
   mapBoxAccess: PropTypes.bool,
   fontOptions: PropTypes.array,
+  chartHelp: PropTypes.object,
 };
 
 export default EditorControls;
