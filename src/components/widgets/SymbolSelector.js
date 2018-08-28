@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import ModalBox from '../containers/ModalBox';
 import {CarretDownIcon} from 'plotly-icons';
 
 export default class SymbolSelector extends Component {
@@ -78,10 +77,7 @@ export default class SymbolSelector extends Component {
         <div
           className="symbol-selector__item"
           key={value}
-          onClick={() => {
-            this.props.onChange(value);
-            this.togglePanel();
-          }}
+          onClick={() => this.props.onChange(value)}
         >
           <svg width="28" height="28" className="symbol-selector__symbol" data-value={value}>
             <g transform="translate(14,14)">
@@ -107,11 +103,7 @@ export default class SymbolSelector extends Component {
             <CarretDownIcon className="symbol-selector__toggle__caret" />
           </span>
         </div>
-        {isOpen ? (
-          <ModalBox onClose={this.togglePanel} backgroundDark={this.props.backgroundDark}>
-            {this.renderOptions()}
-          </ModalBox>
-        ) : null}
+        {isOpen && this.renderOptions()}
       </div>
     );
   }
