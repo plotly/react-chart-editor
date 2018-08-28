@@ -6,7 +6,7 @@ import ResizableRect from 'react-resizable-rotatable-draggable';
 import RadioBlocks from '../widgets/RadioBlocks';
 import DualNumeric from './DualNumeric';
 
-const maxWidth = 286;
+const maxWidth = 276;
 const gridRes = 8;
 
 class UnconnectedRectanglePositioner extends Component {
@@ -77,94 +77,97 @@ class UnconnectedRectanglePositioner extends Component {
     }
 
     return (
-      <Field {...this.props} attr={attr}>
-        <Field label={_('Snap to Grid')}>
-          <RadioBlocks
-            alignment="center"
-            onOptionChange={snap => this.setState({snap: snap})}
-            activeOption={this.state.snap}
-            options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
-          />
+      <div style={{marginRight: 25}}>
+        <Field {...this.props} attr={attr}>
+          <Field label={_('Snap to Grid')}>
+            <RadioBlocks
+              alignment="center"
+              onOptionChange={snap => this.setState({snap: snap})}
+              activeOption={this.state.snap}
+              options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+            />
+          </Field>
+          <div
+            className="rect-container"
+            style={{
+              width: fieldWidthPx + 1,
+              height: fieldHeightPx + 1,
+              margin: '0 auto',
+            }}
+          >
+            {Array(gridRes * gridRes)
+              .fill(0)
+              .map((v, i) => (
+                <div
+                  key={i}
+                  className="rect-grid"
+                  style={{
+                    width: fieldWidthPx / gridRes - 1,
+                    height: fieldHeightPx / gridRes - 1,
+                    borderBottom: i < gridRes * (gridRes - 1) ? '0' : '1px solid ',
+                    borderRight: (i + 1) % gridRes ? '0' : '1px solid',
+                  }}
+                />
+              ))}
+            <ResizableRect
+              bounds="parent"
+              width={width}
+              height={height}
+              left={left}
+              top={top}
+              rotatable={false}
+              draggable={!this.state.snap}
+              zoomable={zoomable}
+              onResize={style => {
+                this.sendUpdate({
+                  fieldWidthPx,
+                  fieldHeightPx,
+                  width: style.width,
+                  height: style.height,
+                  x: style.left,
+                  y: style.top,
+                });
+              }}
+              onDrag={(deltaX, deltaY) => {
+                this.sendUpdate({
+                  fieldWidthPx,
+                  fieldHeightPx,
+                  width,
+                  height,
+                  x: left + deltaX,
+                  y: top + deltaY,
+                });
+              }}
+            />
+          </div>
+          {fullContainer.xaxis && fullContainer.xaxis.overlaying ? (
+            ''
+          ) : (
+            <DualNumeric
+              label={_('X')}
+              attr={this.attr.x[0]}
+              attr2={this.attr.x[1]}
+              percentage
+              step={1}
+              min={0}
+              max={100}
+            />
+          )}
+          {fullContainer.yaxis && fullContainer.yaxis.overlaying ? (
+            ''
+          ) : (
+            <DualNumeric
+              label={_('Y')}
+              attr={this.attr.y[0]}
+              attr2={this.attr.y[1]}
+              percentage
+              step={1}
+              min={0}
+              max={100}
+            />
+          )}
         </Field>
-        <div
-          className="rect-container"
-          style={{
-            width: fieldWidthPx + 1,
-            height: fieldHeightPx + 1,
-          }}
-        >
-          {Array(gridRes * gridRes)
-            .fill(0)
-            .map((v, i) => (
-              <div
-                key={i}
-                className="rect-grid"
-                style={{
-                  width: fieldWidthPx / gridRes - 1,
-                  height: fieldHeightPx / gridRes - 1,
-                  borderBottom: i < gridRes * (gridRes - 1) ? '0' : '1px solid ',
-                  borderRight: (i + 1) % gridRes ? '0' : '1px solid',
-                }}
-              />
-            ))}
-          <ResizableRect
-            bounds="parent"
-            width={width}
-            height={height}
-            left={left}
-            top={top}
-            rotatable={false}
-            draggable={!this.state.snap}
-            zoomable={zoomable}
-            onResize={style => {
-              this.sendUpdate({
-                fieldWidthPx,
-                fieldHeightPx,
-                width: style.width,
-                height: style.height,
-                x: style.left,
-                y: style.top,
-              });
-            }}
-            onDrag={(deltaX, deltaY) => {
-              this.sendUpdate({
-                fieldWidthPx,
-                fieldHeightPx,
-                width,
-                height,
-                x: left + deltaX,
-                y: top + deltaY,
-              });
-            }}
-          />
-        </div>
-        {fullContainer.xaxis && fullContainer.xaxis.overlaying ? (
-          ''
-        ) : (
-          <DualNumeric
-            label={_('X')}
-            attr={this.attr.x[0]}
-            attr2={this.attr.x[1]}
-            percentage
-            step={1}
-            min={0}
-            max={100}
-          />
-        )}
-        {fullContainer.yaxis && fullContainer.yaxis.overlaying ? (
-          ''
-        ) : (
-          <DualNumeric
-            label={_('Y')}
-            attr={this.attr.y[0]}
-            attr2={this.attr.y[1]}
-            percentage
-            step={1}
-            min={0}
-            max={100}
-          />
-        )}
-      </Field>
+      </div>
     );
   }
 }
