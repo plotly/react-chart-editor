@@ -7,19 +7,22 @@ import {traceTypeToPlotlyInitFigure, renderTraceIcon, plotlyTraceToCustomTrace} 
 
 const renderActionItems = (actionItems, item) =>
   actionItems
-    ? actionItems(item).map((action, i) => (
-        <a
-          className="trace-item__actions__item"
-          key={i}
-          aria-label={action.label}
-          data-microtip-position={`top-left`}
-          role="tooltip"
-          href={action.href}
-          target="_blank"
-        >
-          {action.icon}
-        </a>
-      ))
+    ? actionItems(item).map(
+        (action, i) =>
+          !action.onClick ? null : (
+            <a
+              className="trace-item__actions__item"
+              key={i}
+              aria-label={action.label}
+              data-microtip-position={`top-left`}
+              role="tooltip"
+              onClick={action.onClick}
+              target="_blank"
+            >
+              {action.icon}
+            </a>
+          )
+      )
     : null;
 
 const Item = ({item, active, handleClick, actions, showActions, complex}) => {
@@ -28,10 +31,7 @@ const Item = ({item, active, handleClick, actions, showActions, complex}) => {
   const ComplexIcon = renderTraceIcon(icon ? icon : value, 'TraceType');
 
   return (
-    <div
-      className={`trace-item${active ? ' trace-item--active' : ''}`}
-      onClick={() => handleClick()}
-    >
+    <div className={`trace-item${active ? ' trace-item--active' : ''}`} onClick={handleClick}>
       <div className="trace-item__actions">
         {actions && showActions ? renderActionItems(actions, item) : null}
       </div>
@@ -52,7 +52,29 @@ const Item = ({item, active, handleClick, actions, showActions, complex}) => {
   );
 };
 
+Item.propTypes = {
+  item: PropTypes.object,
+  active: PropTypes.bool,
+  complex: PropTypes.bool,
+  handleClick: PropTypes.func,
+  actions: PropTypes.func,
+  showActions: PropTypes.bool,
+};
+Item.contextTypes = {
+  localize: PropTypes.func,
+};
+
 class TraceTypeSelector extends Component {
+  constructor(props) {
+    super(props);
+
+    this.selectAndClose = this.selectAndClose.bind(this);
+    this.actions = this.actions.bind(this);
+    this.renderCategories = this.renderCategories.bind(this);
+    this.renderGrid = this.renderGrid.bind(this);
+    this.renderSingleBlock = this.renderSingleBlock.bind(this);
+  }
+
   selectAndClose(value) {
     const {
       updateContainer,
@@ -72,21 +94,38 @@ class TraceTypeSelector extends Component {
   }
 
   actions({value}) {
-    const {localize: _} = this.context;
+    const {localize: _, chartHelp} = this.context;
+
+    const onClick = (e, func) => {
+      e.stopPropagation();
+      func();
+      this.context.handleClose();
+    };
+
     return [
       {
         label: _('Charts like this by Plotly users.'),
-        href: `https://plot.ly/feed/?q=plottype:${value}`,
+        onClick:
+          chartHelp[value] &&
+          (e =>
+            onClick(e, () =>
+              window.open(
+                `https://plot.ly/feed/?q=${chartHelp[value] ? chartHelp[value].feedQuery : value}`,
+                '_blank'
+              )
+            )),
         icon: <SearchIcon />,
       },
       {
         label: _('View tutorials on this chart type.'),
-        href: '#',
+        onClick:
+          chartHelp[value] &&
+          (e => onClick(e, () => window.open(chartHelp[value].helpDoc, '_blank'))),
         icon: <ThumnailViewIcon />,
       },
       {
         label: _('See a basic example.'),
-        href: '#',
+        onClick: chartHelp[value] && (e => onClick(e, chartHelp[value].examplePlot)),
         icon: <GraphIcon />,
       },
     ];
@@ -98,6 +137,7 @@ class TraceTypeSelector extends Component {
       traceTypesConfig: {traces, categories, complex},
       mapBoxAccess,
       localize: _,
+      chartHelp,
     } = this.context;
 
     return categories(_).map((category, i) => {
@@ -131,8 +171,8 @@ class TraceTypeSelector extends Component {
                 active={fullValue === item.value}
                 item={item}
                 actions={this.actions}
-                showActions={false}
                 handleClick={() => this.selectAndClose(item.value)}
+                showActions={Boolean(chartHelp)}
               />
             ))}
           </div>
@@ -193,6 +233,20 @@ class TraceTypeSelector extends Component {
   }
 }
 
+TraceTypeSelector.propTypes = {
+  updateContainer: PropTypes.func,
+  fullValue: PropTypes.string,
+  fullContainer: PropTypes.object,
+  glByDefault: PropTypes.bool,
+};
+TraceTypeSelector.contextTypes = {
+  traceTypesConfig: PropTypes.object,
+  handleClose: PropTypes.func,
+  localize: PropTypes.func,
+  mapBoxAccess: PropTypes.bool,
+  chartHelp: PropTypes.object,
+};
+
 export class TraceTypeSelectorButton extends Component {
   render() {
     const {
@@ -209,7 +263,7 @@ export class TraceTypeSelectorButton extends Component {
     const Icon = renderTraceIcon(icon ? icon : value);
 
     return (
-      <div className="trace-type-select-button" onClick={handleClick ? () => handleClick() : null}>
+      <div className="trace-type-select-button" onClick={handleClick ? handleClick : null}>
         <div className="trace-type-select-button__icon">
           <Icon />
         </div>
@@ -219,35 +273,12 @@ export class TraceTypeSelectorButton extends Component {
   }
 }
 
-TraceTypeSelector.propTypes = {
-  updateContainer: PropTypes.func,
-  fullValue: PropTypes.string,
-  fullContainer: PropTypes.object,
-  glByDefault: PropTypes.bool,
-};
-TraceTypeSelector.contextTypes = {
-  traceTypesConfig: PropTypes.object,
-  handleClose: PropTypes.func,
-  localize: PropTypes.func,
-  mapBoxAccess: PropTypes.bool,
-};
 TraceTypeSelectorButton.propTypes = {
   handleClick: PropTypes.func.isRequired,
   container: PropTypes.object,
   traceTypesConfig: PropTypes.object.isRequired,
 };
 TraceTypeSelectorButton.contextTypes = {
-  localize: PropTypes.func,
-};
-Item.propTypes = {
-  item: PropTypes.object,
-  active: PropTypes.bool,
-  complex: PropTypes.bool,
-  handleClick: PropTypes.func,
-  actions: PropTypes.func,
-  showActions: PropTypes.bool,
-};
-Item.contextTypes = {
   localize: PropTypes.func,
 };
 
