@@ -107,6 +107,7 @@ class TraceTypeSelector extends Component {
         label: _('Charts like this by Plotly users.'),
         onClick:
           chartHelp[value] &&
+          chartHelp[value].feedQuery &&
           (e =>
             onClick(e, () =>
               window.open(
@@ -120,12 +121,16 @@ class TraceTypeSelector extends Component {
         label: _('View tutorials on this chart type.'),
         onClick:
           chartHelp[value] &&
+          chartHelp[value].helpDoc &&
           (e => onClick(e, () => window.open(chartHelp[value].helpDoc, '_blank'))),
         icon: <ThumnailViewIcon />,
       },
       {
         label: _('See a basic example.'),
-        onClick: chartHelp[value] && (e => onClick(e, chartHelp[value].examplePlot)),
+        onClick:
+          chartHelp[value] &&
+          chartHelp[value].examplePlot &&
+          (e => onClick(e, chartHelp[value].examplePlot)),
         icon: <GraphIcon />,
       },
     ];

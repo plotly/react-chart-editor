@@ -35,7 +35,7 @@ class UnconnectedSingleSubplotCreator extends Component {
   }
 
   updateSubplot(update) {
-    const currentSubplotId = this.props.fullContainer[SUBPLOT_TO_ATTR[this.props.attr].data];
+    const currentSubplotId = this.props.fullContainer[SUBPLOT_TO_ATTR[this.props.layoutAttr].data];
     let subplotToBeGarbageCollected = null;
 
     // When we select another subplot, make sure no unused axes are left
@@ -43,7 +43,7 @@ class UnconnectedSingleSubplotCreator extends Component {
       currentSubplotId !== update &&
       !this.context.fullData.some(
         trace =>
-          trace[SUBPLOT_TO_ATTR[this.props.attr].data] === currentSubplotId &&
+          trace[SUBPLOT_TO_ATTR[this.props.layoutAttr].data] === currentSubplotId &&
           trace.index !== this.props.fullContainer.index
       )
     ) {
