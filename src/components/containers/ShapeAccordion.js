@@ -59,7 +59,7 @@ class ShapeAccordion extends Component {
             <div className="panel__empty__message__content">
               <p>
                 {_(
-                  'Add shapes to a figure to call out points or periods in time, thresholds, or areas of interest.'
+                  'Add shapes to a figure to highlight points or periods in time, thresholds, or areas of interest.'
                 )}
               </p>
               <p>{_('Click on the + button above to add a shape.')}</p>
