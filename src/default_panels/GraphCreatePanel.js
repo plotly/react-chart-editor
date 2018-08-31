@@ -67,21 +67,27 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
           'Note: in vertical orientation, X values are used for binning. If Y values are provided, they are used as inputs to the histogram function which you can configure in the '
         )}
         <a onClick={() => setPanel('Style', 'Traces')}>{_('Traces')}</a>
-        {_(' panel. If Y values are omitted, the histogram function defaults to Count.')}
+        {_(
+          ' panel under Style. If Y values are omitted, the histogram function defaults to Count.'
+        )}
       </HistogramInfoVertical>
       <HistogramInfoHorizontal>
         {_(
           'Note: in horizontal orientation, Y values are used for binning. If X values are provided, they are used as inputs to the histogram function which you can configure in the '
         )}
         <a onClick={() => setPanel('Style', 'Traces')}>{_('Traces')}</a>
-        {_(' panel. If X values are omitted, the histogram function defaults to Count.')}
+        {_(
+          ' under Style panel. If X values are omitted, the histogram function defaults to Count.'
+        )}
       </HistogramInfoHorizontal>
       <Histogram2d>
         {_(
           'Note: X and Y Values are used for binning. If Z values are provided, they are used as inputs to the histogram function which you can configure in the '
         )}
         <a onClick={() => setPanel('Style', 'Traces')}>{_('Traces')}</a>
-        {_(' panel. If Z values are omitted, the histogram function defaults to Count.')}
+        {_(
+          ' under Style panel. If Z values are omitted, the histogram function defaults to Count.'
+        )}
       </Histogram2d>
       <DataSelector label={_('I (Optional)')} attr="i" />
       <DataSelector label={_('J (Optional)')} attr="j" />

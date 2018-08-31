@@ -133,7 +133,7 @@ class UnconnectedSubplotCreator extends Component {
         />
         <Info>
           {_('You can style and position your subplots in the ')}
-          <a onClick={() => this.context.setPanel('Graph', 'Subplots')}>{_('Subplots')}</a>
+          <a onClick={() => this.context.setPanel('Structure', 'Subplots')}>{_('Subplots')}</a>
           {_(' panel.')}
         </Info>
       </PlotlySection>

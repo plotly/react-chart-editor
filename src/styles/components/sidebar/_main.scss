@@ -10,7 +10,7 @@
   float: left;
   border-right: var(--border-default);
   flex-grow: 1;
-  @include scrollbar();
+  @include scrollbar(0px);
 
   &__group {
     background-color: var(--sidebar-group-background-base);
@@ -102,8 +102,8 @@
     line-height: var(--font-size-medium);
     text-transform: capitalize;
     background-color: var(--sidebar-item-background-base);
-    padding: var(--spacing-half-unit);
-    padding-left: var(--spacing-base-unit);
+    padding: 10px;
+    padding-left: 16px;
     padding-right: var(--spacing-quarter-unit);
     text-align: left;
     border-bottom: var(--border-light);
