@@ -1,4 +1,6 @@
 $item-size: 90px;
+$image-size: 60px;
+
 .trace-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -97,6 +99,7 @@ $item-size: 90px;
     justify-content: flex-start;
     align-items: flex-end;
     z-index: 99;
+    height: $image-size;
 
     &:hover {
       .trace-item__actions__item {
@@ -139,10 +142,9 @@ $item-size: 90px;
   &__image {
     position: relative;
     z-index: 2;
-    $size: 60px;
     border: 1px solid var(--color-border-default);
-    width: $size;
-    height: $size;
+    width: $image-size;
+    height: $image-size;
     border-radius: var(--border-radius);
     background: var(--color-background-top);
     box-shadow: 0 2px 9px transparent;
