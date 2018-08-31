@@ -49,7 +49,21 @@ class ImageAccordion extends Component {
 
     return (
       <TraceRequiredPanel addAction={canAdd ? addAction : null}>
-        {content ? content : null}
+        {content ? (
+          content
+        ) : (
+          <div className="panel__empty__message">
+            <div className="panel__empty__message__heading">{_('Logos, watermarks and more.')}</div>
+            <div className="panel__empty__message__content">
+              <p>
+                {_(
+                  'Embed images in your figure to make the data more readable or to brand your content.'
+                )}
+              </p>
+              <p>{_('Click on the + button above to add an image.')}</p>
+            </div>
+          </div>
+        )}
       </TraceRequiredPanel>
     );
   }
