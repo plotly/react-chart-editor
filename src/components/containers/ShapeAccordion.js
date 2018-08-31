@@ -49,7 +49,23 @@ class ShapeAccordion extends Component {
 
     return (
       <TraceRequiredPanel addAction={canAdd ? addAction : null}>
-        {content ? content : null}
+        {content ? (
+          content
+        ) : (
+          <div className="panel__empty__message">
+            <div className="panel__empty__message__heading">
+              {_('Lines, Rectangles and Ellipses.')}
+            </div>
+            <div className="panel__empty__message__content">
+              <p>
+                {_(
+                  'Add shapes to a figure to highlight points or periods in time, thresholds, or areas of interest.'
+                )}
+              </p>
+              <p>{_('Click on the + button above to add a shape.')}</p>
+            </div>
+          </div>
+        )}
       </TraceRequiredPanel>
     );
   }

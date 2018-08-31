@@ -76,8 +76,8 @@ class DefaultEditor extends Component {
         {this.hasTransforms() && (
           <GraphTransformsPanel group={_('Structure')} name={_('Transforms')} />
         )}
+        <StyleLayoutPanel group={_('Style')} name={_('General')} />
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
-        <StyleLayoutPanel group={_('Style')} name={_('Layout')} />
         {this.hasAxes() && <StyleAxesPanel group={_('Style')} name={_('Axes')} />}
         <StyleLegendPanel group={_('Style')} name={_('Legend')} />
         {this.hasColorbars() && <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />}

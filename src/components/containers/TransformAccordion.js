@@ -94,7 +94,43 @@ class TransformAccordion extends Component {
       }),
     };
 
-    return <PlotlyPanel addAction={addAction}>{content ? content : null}</PlotlyPanel>;
+    return (
+      <PlotlyPanel addAction={addAction}>
+        {content ? (
+          content
+        ) : (
+          <div className="panel__empty__message" style={{paddingTop: 0}}>
+            <div className="panel__empty__message__content">
+              <div style={{textAlign: 'left'}}>
+                <p>
+                  <strong>{_('Filter')}</strong>{' '}
+                  {_(' transforms allow you to filter data out from a trace.')}
+                </p>
+                <p>
+                  <strong>{_('Split')}</strong>{' '}
+                  {_(
+                    ' transforms allow you to create multiple traces from one source trace, so as to style them differently.'
+                  )}
+                </p>
+                <p>
+                  <strong>{_('Aggregate')}</strong>{' '}
+                  {_(
+                    ' transforms allow you to summarize a trace using an aggregate function like "average" or "minimum".'
+                  )}
+                </p>
+                <p>
+                  <strong>{_('Sort')}</strong>{' '}
+                  {_(
+                    ' transforms allow you to sort a trace, so as to control marker overlay or line connection order.'
+                  )}
+                </p>
+              </div>
+              <p>{_('Click on the + button above to add a transform.')}</p>
+            </div>
+          </div>
+        )}
+      </PlotlyPanel>
+    );
   }
 }
 

@@ -110,8 +110,31 @@ class TraceAccordion extends Component {
           }
         },
       };
-
-      return <PlotlyPanel addAction={addAction}>{this.renderTraceFolds()}</PlotlyPanel>;
+      const content = this.renderTraceFolds();
+      return (
+        <PlotlyPanel addAction={addAction}>
+          {content.length ? (
+            content
+          ) : (
+            <div className="panel__empty__message">
+              <div className="panel__empty__message__heading">Trace your data.</div>
+              <div className="panel__empty__message__content">
+                <p>
+                  {_(
+                    'Traces of various types like bar and line are the building blocks of your figure.'
+                  )}
+                </p>
+                <p>
+                  {_(
+                    'You can add as many as you like, mixing and matching types and arranging them into subplots.'
+                  )}
+                </p>
+                <p>{_('Click on the + button above to add a trace.')}</p>
+              </div>
+            </div>
+          )}
+        </PlotlyPanel>
+      );
     }
 
     if (canGroup) {
