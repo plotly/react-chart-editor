@@ -51,16 +51,8 @@ function renderTraceIcon(trace, prefix = 'Plot') {
     return null;
   }
   const gl = 'gl';
-
-  let tempTrace = trace;
-  if (tempTrace === 'cone') {
-    tempTrace = 'scatter3d';
-  } else if (tempTrace === 'streamtube') {
-    tempTrace = 'line3d';
-  }
-
   const componentName = `${prefix}${pascalCase(
-    tempTrace.endsWith(gl) ? tempTrace.slice(0, -gl.length) : tempTrace
+    trace.endsWith(gl) ? trace.slice(0, -gl.length) : trace
   )}Icon`;
 
   return PlotlyIcons[componentName] ? PlotlyIcons[componentName] : PlotlyIcons.PlotLineIcon;
