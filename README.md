@@ -32,9 +32,9 @@ This module's entry point is a React component called `<PlotlyEditor />` which c
 
 ## Styling the `<DefaultEditor />` and the built-in components
 
-* Import editor styles with `import react-chart-editor/lib/react-chart-editor.min.css`
+* Import editor styles with `import 'react-chart-editor/lib/react-chart-editor.min.css'`
 * Interested in [theming](https://github.com/plotly/react-chart-editor/tree/master/THEMING.md)?
-* Need to support IE11? import the IE css instead: `import react-chart-editor/lib/react-chart-editor.ie.min.css`
+* Need to support IE11? import the IE css instead: `import 'react-chart-editor/lib/react-chart-editor.ie.min.css'`
 
 ## Development Setup
 
