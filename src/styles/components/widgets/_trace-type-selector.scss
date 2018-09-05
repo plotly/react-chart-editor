@@ -16,6 +16,52 @@ $image-size: 60px;
     flex-shrink: 0;
     flex-grow: 0;
 
+    &:nth-of-type(4n + 3) {
+      -ms-grid-column: 1;
+    }
+    &:nth-of-type(4n) {
+      -ms-grid-column: 2;
+    }
+    &:nth-of-type(4n + 1) {
+      -ms-grid-column: 3;
+    }
+    &:nth-of-type(4n + 2) {
+      -ms-grid-column: 4;
+    }
+    &:nth-of-type(3),
+    &:nth-of-type(4),
+    &:nth-of-type(5),
+    &:nth-of-type(6) {
+      -ms-grid-row: 2;
+    }
+    &:nth-of-type(7),
+    &:nth-of-type(8),
+    &:nth-of-type(9),
+    &:nth-of-type(10) {
+      -ms-grid-row: 3;
+    }
+
+    .trace-item {
+      &:nth-of-type(2n + 1) {
+        -ms-grid-column: 1;
+      }
+      &:nth-of-type(2n + 2) {
+        -ms-grid-column: 2;
+      }
+      &:nth-of-type(3),
+      &:nth-of-type(4) {
+        -ms-grid-row: 2;
+      }
+      &:nth-of-type(5),
+      &:nth-of-type(6) {
+        -ms-grid-row: 3;
+      }
+      &:nth-of-type(7),
+      &:nth-of-type(8) {
+        -ms-grid-row: 4;
+      }
+    }
+
     &:not(:first-of-type) {
       position: relative;
       &::before {
@@ -37,6 +83,53 @@ $image-size: 60px;
     &--double {
       grid-column: span 2;
       flex-grow: 0;
+
+      &:nth-of-type(2n + 1) {
+        -ms-grid-column: 1;
+      }
+      &:nth-of-type(2n + 2) {
+        -ms-grid-column: 3;
+      }
+      &:nth-of-type(5),
+      &:nth-of-type(6) {
+        -ms-grid-row: 2;
+      }
+      &:nth-of-type(7),
+      &:nth-of-type(8) {
+        -ms-grid-row: 3;
+      }
+
+      .trace-item {
+        &:nth-of-type(4n + 1) {
+          -ms-grid-column: 1;
+        }
+        &:nth-of-type(4n + 2) {
+          -ms-grid-column: 2;
+        }
+        &:nth-of-type(4n + 3) {
+          -ms-grid-column: 3;
+        }
+        &:nth-of-type(4n) {
+          -ms-grid-column: 4;
+        }
+        &:nth-of-type(3),
+        &:nth-of-type(4) {
+          -ms-grid-row: 1;
+        }
+        &:nth-of-type(5),
+        &:nth-of-type(6),
+        &:nth-of-type(7),
+        &:nth-of-type(8) {
+          -ms-grid-row: 2;
+        }
+        &:nth-of-type(9),
+        &:nth-of-type(10),
+        &:nth-of-type(11),
+        &:nth-of-type(12) {
+          -ms-grid-row: 3;
+        }
+      }
+
       .trace-grid__column__items {
         display: grid;
         grid-gap: 0;
