@@ -143,7 +143,7 @@ $image-size: 60px;
       grid-template-columns: repeat(2, $item-size);
       flex-grow: 1;
       width: 100%;
-      padding: 0 var(--spacing-half-unit) var(--spacing-base-unit);
+      padding: 0 var(--spacing-half-unit) var(--spacing-half-unit);
     }
 
     &__header {
@@ -156,7 +156,7 @@ $image-size: 60px;
       justify-content: flex-start;
       border-top: var(--border-light);
       width: 100%;
-      padding: var(--spacing-base-unit) var(--spacing-base-unit) 0;
+      padding: var(--spacing-half-unit) var(--spacing-base-unit) 0;
       box-sizing: border-box;
     }
   }
@@ -169,7 +169,7 @@ $image-size: 60px;
   align-items: center;
   justify-content: flex-start;
   flex-grow: 0;
-  margin-top: var(--spacing-base-unit);
+  margin-top: var(--spacing-half-unit);
   color: var(--color-text-base);
   @include trans;
   position: relative;
@@ -268,7 +268,7 @@ $image-size: 60px;
     font-weight: var(--font-weight-semibold);
     width: $item-size * 0.8;
     height: 34px;
-    margin-top: var(--spacing-half-unit);
+    margin-top: var(--spacing-quarter-unit);
     color: var(--color-text-base);
     text-transform: capitalize;
     font-size: var(--font-size-small);
