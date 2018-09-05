@@ -7,6 +7,7 @@
   text-align: center;
   background: var(--sidebar-background);
   overflow-y: auto;
+  overflow-x: hidden;
   float: left;
   border-right: var(--border-default);
   flex-grow: 1;
