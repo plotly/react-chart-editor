@@ -49,6 +49,25 @@ const StyleTracesPanel = (props, {localize: _}) => (
       options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
     />
     <NumericFraction label={_('Trace Opacity')} attr="opacity" />
+    <PlotlySection name={_('Cones & Streamtubes')}>
+      <Numeric label={_('Size')} attr="sizeref" />
+      <Dropdown
+        label={_('Size Mode')}
+        options={[{label: _('scaled'), value: 'scaled'}, {label: _('absolute'), value: 'absolute'}]}
+        attr="sizemode"
+      />
+      <Dropdown
+        label={_('Cone Anchor')}
+        options={[
+          {label: _('Tip'), value: 'tip'},
+          {label: _('Tail'), value: 'tail'},
+          {label: _('Center'), value: 'center'},
+          {label: _('Center of Mass'), value: 'cm'},
+        ]}
+        attr="anchor"
+      />
+      <Numeric label={_('Max Tube segments')} attr="maxdisplayed" />
+    </PlotlySection>
     <MultiColorPicker label={_('Color')} attr="color" />
     <TraceTypeSection name={_('Pie Colors')} traceTypes={['pie']} mode="trace">
       <LayoutSection attr="name">
@@ -222,6 +241,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
       <Numeric label={_('Border Width')} attr="marker.line.width" />
       <MultiColorPicker label={_('Border Color')} attr="marker.line.color" />
+      <Numeric label={_('Max Number of Points')} attr="marker.maxdisplayed" />
     </TraceMarkerSection>
 
     <TraceTypeSection
