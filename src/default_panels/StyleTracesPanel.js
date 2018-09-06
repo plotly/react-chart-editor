@@ -170,10 +170,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <BinningNumeric label={_('Y Bin Size')} attr="ybins.size" axis="y" />
       <Numeric label={_('Max Y Bins')} attr="nbinsy" />
     </PlotlySection>
-    <PlotlySection name={_('Gaps Between Cells')}>
-      <Numeric label={_('Horizontal Gap')} attr="xgap" />
-      <Numeric label={_('Vertical Gap')} attr="ygap" />
-    </PlotlySection>
     <TraceMarkerSection>
       <Radio
         label={_('Order')}
@@ -286,6 +282,47 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Ticks')}>
       <Numeric label={_('Width')} attr="tickwidth" />
     </PlotlySection>
+    <PlotlySection name={_('Contours')}>
+      <Radio
+        label={_('Type')}
+        attr="contours.type"
+        options={[
+          {label: _('Levels'), value: 'levels'},
+          {label: _('Constraint'), value: 'constraint'},
+        ]}
+      />
+      <Dropdown
+        label={_('Coloring')}
+        attr="contours.coloring"
+        options={[
+          {label: _('Fill'), value: 'fill'},
+          {label: _('Heatmap'), value: 'heatmap'},
+          {label: _('Lines'), value: 'lines'},
+          {label: _('None'), value: 'none'},
+        ]}
+        clearable={false}
+      />
+      <Radio
+        label={_('Contour Lines')}
+        attr="contours.showlines"
+        options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+      />
+      <Radio
+        label={_('Contour Labels')}
+        attr="contours.showlabels"
+        options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+      />
+      <Radio
+        label={_('Number of Contours')}
+        attr="autocontour"
+        options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
+      />
+      <Numeric label={_('Max Contours')} attr="ncontours" />
+
+      <ContourNumeric label={_('Step Size')} attr="contours.size" />
+      <ContourNumeric label={_('Min Contour')} attr="contours.start" />
+      <ContourNumeric label={_('Max Contour')} attr="contours.end" />
+    </PlotlySection>
     <TraceTypeSection
       name={_('Lines')}
       traceTypes={[
@@ -381,6 +418,15 @@ const StyleTracesPanel = (props, {localize: _}) => (
         <Numeric label={_('Min')} attr="cmin" />
         <Numeric label={_('Max')} attr="cmax" />
       </VisibilitySelect>
+      <Radio
+        label={_('Smoothing')}
+        attr="zsmooth"
+        options={[{label: _('On'), value: 'best'}, {label: _('Off'), value: false}]}
+      />
+    </PlotlySection>
+    <PlotlySection name={_('Gaps Between Cells')}>
+      <Numeric label={_('Horizontal Gap')} attr="xgap" />
+      <Numeric label={_('Vertical Gap')} attr="ygap" />
     </PlotlySection>
     <PlotlySection name={_('Heatmap')}>
       <Numeric label={_('Horizontal Gaps')} attr="xgap" />
@@ -397,32 +443,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
         options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
       />
     </TraceTypeSection>
-    <PlotlySection name={_('Contours')}>
-      <Radio
-        label={_('Coloring')}
-        attr="contours.coloring"
-        options={[
-          {label: _('Fill'), value: 'fill'},
-          {label: _('Heatmap'), value: 'heatmap'},
-          {label: _('Lines'), value: 'lines'},
-        ]}
-      />
-      <Radio
-        label={_('Contour Lines')}
-        attr="contours.showlines"
-        options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
-      />
-      <Radio
-        label={_('Number of Contours')}
-        attr="autocontour"
-        options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
-      />
-      <Numeric label={_('Max Contours')} attr="ncontours" />
-
-      <ContourNumeric label={_('Step Size')} attr="contours.size" />
-      <ContourNumeric label={_('Min Contour')} attr="contours.start" />
-      <ContourNumeric label={_('Max Contour')} attr="contours.end" />
-    </PlotlySection>
     <PlotlySection name={_('Lighting')}>
       <NumericFraction label={_('Ambient')} attr="lighting.ambient" />
       <NumericFraction label={_('Diffuse')} attr="lighting.diffuse" />
