@@ -92,6 +92,11 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
         orientation: 'v',
         type: 'bar',
       };
+    case 'cone':
+      return {
+        sizeref: 1,
+        type: 'cone',
+      };
     default:
       return {type: traceType};
   }
