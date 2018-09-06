@@ -1,10 +1,13 @@
 $item-size: 90px;
 $image-size: 60px;
+$label-height: 34px;
+$row-height: $image-size + $label-height + $default-half-spacing-unit +
+  $default-quarter-spacing-unit;
 
 .trace-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  @media (max-width: 1000px) {
+  @media (max-width: 860px) {
     grid-template-columns: repeat(2, 1fr);
   }
   &__column {
@@ -141,6 +144,7 @@ $image-size: 60px;
       display: grid;
       grid-gap: 0;
       grid-template-columns: repeat(2, $item-size);
+      grid-template-rows: repeat(2, $row-height);
       flex-grow: 1;
       width: 100%;
       padding: 0 var(--spacing-half-unit) var(--spacing-half-unit);
@@ -267,7 +271,7 @@ $image-size: 60px;
   &__label {
     font-weight: var(--font-weight-semibold);
     width: $item-size * 0.8;
-    height: 34px;
+    height: $label-height;
     margin-top: var(--spacing-quarter-unit);
     color: var(--color-text-base);
     text-transform: capitalize;
