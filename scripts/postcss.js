@@ -27,7 +27,7 @@ const internetExplorerPostCSS = () => {
     combineSelectors,
     customProperties,
     removeRoot,
-    autoprefixer({browsers: ['ie 11']}),
+    autoprefixer({browsers: ['ie 11'], grid: true}),
     cssnano,
   ];
   fs.readFile(`${BUILD_ENV}/${fileName}.ie.css`, (err, css) => {
@@ -37,16 +37,12 @@ const internetExplorerPostCSS = () => {
         to: `${BUILD_ENV}/${fileName}.ie.min.css`,
       })
       .then(result => {
-        fs.writeFile(
-          `${BUILD_ENV}/${fileName}.ie.min.css`,
-          result.css,
-          error => {
-            if (error) {
-              /* eslint-disable no-console */
-              console.log(error);
-            }
+        fs.writeFile(`${BUILD_ENV}/${fileName}.ie.min.css`, result.css, error => {
+          if (error) {
+            /* eslint-disable no-console */
+            console.log(error);
           }
-        );
+        });
       });
   });
 };
