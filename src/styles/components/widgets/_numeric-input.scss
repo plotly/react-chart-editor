@@ -24,6 +24,12 @@
   color: var(--color-text-base);
 }
 
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .numeric-input__wrapper {
+    flex-basis: auto;
+  }
+}
+
 .numeric-input__number {
   display: inline-block;
   border: var(--border-default);
@@ -34,8 +40,8 @@
   white-space: nowrap;
   text-align: left;
   border-radius: var(--border-radius-small);
-  padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit)
-    var(--spacing-quarter-unit) var(--spacing-half-unit);
+  padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit) var(--spacing-quarter-unit)
+    var(--spacing-half-unit);
   width: 62px;
   vertical-align: middle;
   font-size: inherit;
