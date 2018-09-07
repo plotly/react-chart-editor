@@ -73,6 +73,7 @@ class Field extends Component {
         ) : null}
         <div className={fieldClass}>
           {children}
+          {extraComponent ? extraComponent : null}
           {multiValued && !suppressMultiValuedMessage ? (
             <MenuPanel label={getMultiValueText('title', _)} ownline question>
               <div className="info__title">{getMultiValueText('title', _)}</div>
@@ -80,7 +81,6 @@ class Field extends Component {
               <div className="info__sub-text">{getMultiValueText('subText', _)}</div>
             </MenuPanel>
           ) : null}
-          {extraComponent ? extraComponent : null}
         </div>
         {units ? (
           <div className={bem('field', 'units')}>

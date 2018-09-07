@@ -1,7 +1,7 @@
+import React, {Component} from 'react';
 import Dropdown from './Dropdown';
 import Info from './Info';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
 import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR} from 'lib/constants';
 import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
@@ -9,7 +9,7 @@ import {connectToContainer, traceTypeToAxisType, getSubplotTitle} from 'lib';
 import {PlotlySection} from 'components';
 
 class UnconnectedSingleSubplotCreator extends Component {
-  canAddAxis() {
+  canAddSubplot() {
     const currentAxisId = this.props.fullContainer[this.props.attr];
     const currentTraceIndex = this.props.fullContainer.index;
     return this.context.fullData.some(
@@ -62,7 +62,7 @@ class UnconnectedSingleSubplotCreator extends Component {
 
   render() {
     const icon = <PlusIcon />;
-    const extraComponent = this.canAddAxis() ? (
+    const extraComponent = this.canAddSubplot() ? (
       <Button variant="no-text" icon={icon} onClick={() => this.addAndUpdateSubplot()} />
     ) : (
       <Button variant="no-text--disabled" icon={icon} onClick={() => {}} />
@@ -86,7 +86,6 @@ UnconnectedSingleSubplotCreator.propTypes = {
   layoutAttr: PropTypes.string,
   label: PropTypes.string,
   options: PropTypes.array,
-  canAddAxis: PropTypes.bool,
   container: PropTypes.object,
   fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,

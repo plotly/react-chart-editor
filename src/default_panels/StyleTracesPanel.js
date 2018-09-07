@@ -30,6 +30,7 @@ import {
   ErrorBars,
   DataSelector,
   VisibilitySelect,
+  GroupCreator,
 } from '../components';
 import {
   BinningNumeric,
@@ -43,12 +44,17 @@ import {
 const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
-    <ShowInLegend
-      label={_('Show in Legend')}
-      attr="showlegend"
-      options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
-    />
     <NumericFraction label={_('Trace Opacity')} attr="opacity" />
+    <PlotlySection name={_('Legend')}>
+      <ShowInLegend
+        label={_('Show in Legend')}
+        attr="showlegend"
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        showOn={true}
+      >
+        <GroupCreator label={_('Legend Group')} prefix={_('Group')} attr="legendgroup" />
+      </ShowInLegend>
+    </PlotlySection>
     <PlotlySection name={_('Cones & Streamtubes')}>
       <Numeric label={_('Size')} attr="sizeref" />
       <Dropdown

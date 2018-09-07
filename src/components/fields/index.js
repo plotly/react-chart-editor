@@ -21,6 +21,7 @@ import TraceSelector from './TraceSelector';
 import ErrorBars from './ErrorBars';
 import AxesCreator from './AxesCreator';
 import SubplotCreator from './SubplotCreator';
+import GroupCreator from './GroupCreator';
 import UpdateMenuButtons from './UpdateMenuButtons';
 import {FilterOperation, FilterValue} from './FilterOperation';
 import MarkerSize from './MarkerSize';
@@ -100,6 +101,7 @@ export {
   TraceSelector,
   AxesCreator,
   SubplotCreator,
+  GroupCreator,
   AxisOverlayDropdown,
   AxisSide,
   UpdateMenuButtons,

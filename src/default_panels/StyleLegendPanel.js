@@ -63,13 +63,16 @@ const StyleLegendPanel = (props, {localize: _}) => (
         />
       </PlotlySection>
       <PlotlySection name={_('Trace Order')}>
-        <Radio
+        <Dropdown
           attr="legend.traceorder"
           options={[
             {label: _('Normal'), value: 'normal'},
             {label: _('Reversed'), value: 'reversed'},
+            {label: _('Grouped'), value: 'grouped'},
+            {label: _('Reversed and Grouped'), value: 'reversed+grouped'},
           ]}
         />
+        <Numeric label={_('Gap Between Groups')} attr="legend.tracegroupgap" units="px" />
       </PlotlySection>
     </PlotlyFold>
   </TraceRequiredPanel>
