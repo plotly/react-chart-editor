@@ -6,7 +6,7 @@ import Field from './Field';
 import Radio from './Radio';
 import Dropdown from './Dropdown';
 
-class UnconnectedVisibilitySelect extends Component {
+export class UnconnectedVisibilitySelect extends Component {
   constructor(props, context) {
     super(props, context);
 

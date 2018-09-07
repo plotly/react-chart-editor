@@ -13,6 +13,7 @@ import {
   VisibilitySelect,
   HovermodeDropdown,
 } from '../components';
+import {HoverColor} from '../components/fields/derived';
 
 const StyleLayoutPanel = (props, {localize: _}) => (
   <TraceRequiredPanel>
@@ -61,32 +62,57 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <Numeric label={_('Right')} attr="margin.r" units="px" />
       <Numeric label={_('Padding')} attr="margin.pad" units="px" />
     </PlotlyFold>
-    <PlotlyFold name={_('Interaction')}>
-      <HovermodeDropdown label={_('Hover Interaction')} attr="hovermode" />
-      <Dropdown
-        label={_('Drag Interaction')}
-        attr="dragmode"
-        options={[
-          {label: _('Zoom'), value: 'zoom'},
-          {label: _('Select'), value: 'select'},
-          {label: _('Pan'), value: 'pan'},
-          {label: _('Lasso'), value: 'lasso'},
-          {label: _('Orbit'), value: 'orbit'},
-          {label: _('Turntable'), value: 'turntable'},
-        ]}
-        clearable={false}
-      />
-      <Dropdown
-        label={_('Select Direction')}
-        attr="selectdirection"
-        options={[
-          {label: _('Any'), value: 'any'},
-          {label: _('Horizontal'), value: 'h'},
-          {label: _('Vertical'), value: 'v'},
-          {label: _('Diagonal'), value: 'd'},
-        ]}
-        clearable={false}
-      />
+    <PlotlyFold name={_('Interactions')}>
+      <PlotlySection name={_('Drag')} attr="dragmode">
+        <Dropdown
+          label={_('Mode')}
+          attr="dragmode"
+          options={[
+            {label: _('Zoom'), value: 'zoom'},
+            {label: _('Select'), value: 'select'},
+            {label: _('Pan'), value: 'pan'},
+            {label: _('Lasso'), value: 'lasso'},
+            {label: _('Orbit'), value: 'orbit'},
+            {label: _('Turntable'), value: 'turntable'},
+          ]}
+          clearable={false}
+        />
+        <Dropdown
+          label={_('Select Direction')}
+          attr="selectdirection"
+          options={[
+            {label: _('Any'), value: 'any'},
+            {label: _('Horizontal'), value: 'h'},
+            {label: _('Vertical'), value: 'v'},
+            {label: _('Diagonal'), value: 'd'},
+          ]}
+          clearable={false}
+        />
+      </PlotlySection>
+      <PlotlySection name={_('Hover')}>
+        <HovermodeDropdown label={_('Mode')} attr="hovermode">
+          <HoverColor
+            label={_('Background Color')}
+            attr="hoverlabel.bgcolor"
+            defaultColor="#FFF"
+            handleEmpty
+          />
+          <HoverColor
+            label={_('Border Color')}
+            attr="hoverlabel.bordercolor"
+            defaultColor="#000"
+            handleEmpty
+          />
+          <FontSelector label={_('Typeface')} attr="hoverlabel.font.family" clearable />
+          <Numeric label={_('Font Size')} attr="hoverlabel.font.size" />
+          <HoverColor
+            label={_('Font Color')}
+            attr="hoverlabel.font.color"
+            defaultColor="#000"
+            handleEmpty
+          />
+        </HovermodeDropdown>
+      </PlotlySection>
     </PlotlyFold>
   </TraceRequiredPanel>
 );

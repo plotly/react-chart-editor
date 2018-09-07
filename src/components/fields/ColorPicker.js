@@ -4,8 +4,34 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 
-class UnconnectedColorPicker extends Component {
+export class UnconnectedColorPicker extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      empty: !this.props.fullValue && this.props.handleEmpty,
+    };
+  }
+
   render() {
+    if (this.state.empty) {
+      return (
+        <Field {...this.props}>
+          <div className="js-test-info">
+            This color is computed from other parts of the figure but you can{' '}
+            <a
+              onClick={() => {
+                this.setState({empty: false});
+                this.props.updatePlot(this.props.defaultColor);
+              }}
+            >
+              override it
+            </a>
+            .
+          </div>
+        </Field>
+      );
+    }
+
     return (
       <Field {...this.props}>
         <ColorPickerWidget
@@ -20,6 +46,8 @@ class UnconnectedColorPicker extends Component {
 UnconnectedColorPicker.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
+  handleEmpty: PropTypes.bool,
+  defaultColor: PropTypes.string,
   ...Field.propTypes,
 };
 

@@ -5,6 +5,8 @@ import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedAxisRangeValue} from './AxisRangeValue';
 import {UnconnectedRadio} from './Radio';
 import Info from './Info';
+import {UnconnectedColorPicker} from './ColorPicker';
+import {UnconnectedVisibilitySelect} from './VisibilitySelect';
 import {connectToContainer, getAllAxes, getAxisTitle, axisIdToAxisName} from 'lib';
 
 export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
@@ -638,7 +640,7 @@ export const HoveronDropdown = connectToContainer(UnconnectedDropdown, {
   },
 });
 
-export const HovermodeDropdown = connectToContainer(UnconnectedDropdown, {
+export const HovermodeDropdown = connectToContainer(UnconnectedVisibilitySelect, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _} = context;
 
@@ -652,5 +654,14 @@ export const HovermodeDropdown = connectToContainer(UnconnectedDropdown, {
           ]
         : [{label: _('Closest'), value: 'closest'}, {label: _('Disable'), value: false}];
     plotProps.clearable = false;
+    plotProps.dropdown = true;
+    plotProps.showOn = ['closest', 'x', 'y'];
+  },
+});
+
+export const HoverColor = connectToContainer(UnconnectedColorPicker, {
+  modifyPlotProps: (props, context, plotProps) => {
+    plotProps.isVisible = Boolean(context.fullLayout.hovermode);
+    return plotProps;
   },
 });

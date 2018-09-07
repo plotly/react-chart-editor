@@ -32,6 +32,7 @@ class UnconnectedMultiColorPicker extends Component {
     this.state = {
       selectedConstantColorOption:
         context.traceIndexes.length > 1 &&
+        props.fullValue &&
         props.fullValue.every(v => v[1] === props.fullValue[0][1])
           ? 'single'
           : 'multiple',
@@ -41,7 +42,11 @@ class UnconnectedMultiColorPicker extends Component {
   }
 
   setColor(color) {
-    this.props.updatePlot(color);
+    if (this.props.setColor) {
+      this.props.setColor(color);
+    } else {
+      this.props.updatePlot(color);
+    }
   }
 
   setColors(colorscale, colorscaleType) {
@@ -88,11 +93,7 @@ class UnconnectedMultiColorPicker extends Component {
         <Field {...this.props} suppressMultiValuedMessage>
           <RadioBlocks
             options={constantOptions}
-            activeOption={
-              this.props.parentSelectedConstantColorOption
-                ? this.props.parentSelectedConstantColorOption
-                : this.state.selectedConstantColorOption
-            }
+            activeOption={selectedConstantColorOption}
             onOptionChange={
               this.props.onConstantColorOptionChange
                 ? this.props.onConstantColorOptionChange
@@ -101,10 +102,7 @@ class UnconnectedMultiColorPicker extends Component {
           />
           <Info>{selectedConstantColorOption === 'single' ? singleMessage : multiMessage}</Info>
           {selectedConstantColorOption === 'single' ? (
-            <ColorPicker
-              attr={this.props.attr}
-              updatePlot={this.props.setColor ? this.props.setColor : this.setColor}
-            />
+            <ColorPicker attr={this.props.attr} updatePlot={this.setColor} />
           ) : (
             <CustomColorscalePicker
               suppressMultiValuedMessage
@@ -119,11 +117,7 @@ class UnconnectedMultiColorPicker extends Component {
     }
 
     return (
-      <ColorPicker
-        attr={this.props.attr}
-        updatePlot={this.props.setColor ? this.props.setColor : this.setColor}
-        label={this.props.label}
-      />
+      <ColorPicker attr={this.props.attr} updatePlot={this.setColor} label={this.props.label} />
     );
   }
 }
