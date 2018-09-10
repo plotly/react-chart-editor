@@ -145,7 +145,7 @@ export const BinningDropdown = connectToContainer(UnconnectedDropdown, {
   },
 });
 
-export const ShowInLegend = connectToContainer(UnconnectedRadio, {
+export const ShowInLegend = connectToContainer(UnconnectedVisibilitySelect, {
   modifyPlotProps: (props, context, plotProps) => {
     plotProps.isVisible = context.fullLayout.showlegend;
     return plotProps;

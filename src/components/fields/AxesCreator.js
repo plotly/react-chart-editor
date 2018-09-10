@@ -99,7 +99,6 @@ UnconnectedAxisCreator.propTypes = {
   attr: PropTypes.string,
   label: PropTypes.string,
   options: PropTypes.array,
-  canAddAxis: PropTypes.bool,
   container: PropTypes.object,
   fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,
