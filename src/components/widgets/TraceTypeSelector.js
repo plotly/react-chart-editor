@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal from 'components/containers/Modal';
-import {glAvailable} from 'components/fields/TraceSelector';
 import {traceTypeToPlotlyInitFigure, renderTraceIcon, plotlyTraceToCustomTrace} from 'lib';
+import {TRACES_WITH_GL} from 'lib/constants';
 
 const renderActionItems = (actionItems, item) =>
   actionItems
@@ -83,8 +83,8 @@ class TraceTypeSelector extends Component {
     } = this.props;
     const computedValue = traceTypeToPlotlyInitFigure(value);
     if (
-      (type.endsWith('gl') || (!glAvailable(type) && glByDefault)) &&
-      glAvailable(computedValue.type) &&
+      (type.endsWith('gl') || (!TRACES_WITH_GL.includes(type) && glByDefault)) &&
+      TRACES_WITH_GL.includes(computedValue.type) &&
       !computedValue.type.endsWith('gl')
     ) {
       computedValue.type += 'gl';

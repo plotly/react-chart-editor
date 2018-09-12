@@ -65,7 +65,7 @@ const fixtures = {
           {
             type: 'scatter',
             mode: 'markers+lines',
-            fill: 'tozeroy',
+            stackgroup: 1,
             xsrc: 'x1',
             ysrc: 'y1',
           },
@@ -136,7 +136,7 @@ function setupGraphDiv(figure) {
 
   mockMissingSvgApis();
 
-  plotly.plot(gd, figure);
+  plotly.newPlot(gd, figure);
   return gd;
 }
 

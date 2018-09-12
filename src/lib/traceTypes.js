@@ -178,6 +178,11 @@ export const traceTypes = _ => [
     category: chartCategory(_).SPECIALIZED,
   },
   {
+    value: 'barpolar',
+    label: _('Polar Bar'),
+    category: chartCategory(_).SPECIALIZED,
+  },
+  {
     value: 'scatterternary',
     label: _('Ternary Scatter'),
     category: chartCategory(_).SPECIALIZED,

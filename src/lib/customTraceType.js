@@ -16,7 +16,8 @@ export function plotlyTraceToCustomTrace(trace) {
 
   if (
     (type === 'scatter' || type === 'scattergl') &&
-    ['tozeroy', 'tozerox', 'tonexty', 'tonextx', 'toself', 'tonext'].includes(trace.fill)
+    ((trace.stackgroup !== null && trace.stackgroup !== undefined) || // eslint-disable-line no-undefined
+      ['tozeroy', 'tozerox', 'tonexty', 'tonextx', 'toself', 'tonext'].includes(trace.fill))
   ) {
     return 'area';
   } else if (
@@ -37,7 +38,7 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
     case 'scatter':
       return {type: 'scatter' + gl, mode: 'markers', fill: 'none'};
     case 'area':
-      return {type: 'scatter' + gl, fill: 'tozeroy'};
+      return {type: 'scatter' + gl, mode: 'lines', stackgroup: 1};
     case 'scatterpolar':
       return {type: 'scatterpolar' + gl};
     case 'ohlc':
@@ -66,8 +67,6 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
     case 'violin':
       return {
         type: 'violin',
-        box: {visible: false},
-        meanline: {visible: false},
         bandwidth: 0,
       };
     case 'line3d':

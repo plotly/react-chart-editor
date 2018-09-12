@@ -13,6 +13,7 @@ import {
   Numeric,
   ColorPicker,
   VisibilitySelect,
+  NumericFraction,
 } from '../components';
 import {TRACE_TO_AXIS} from '../lib/constants';
 
@@ -57,6 +58,15 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
 
     <PlotlySection name={_('Canvas')}>
       <ColorPicker label={_('Plot Background')} attr="bgcolor" />
+    </PlotlySection>
+
+    <PlotlySection name={_('Bar Options')}>
+      <Radio
+        label={_('Bar Mode')}
+        attr="barmode"
+        options={[{label: _('Stack'), value: 'stack'}, {label: _('Overlay'), value: 'overlay'}]}
+      />
+      <NumericFraction label={_('Bar Padding')} attr="bargap" showSlider />
     </PlotlySection>
 
     <PlotlySection name={_('Map Style')}>
@@ -211,8 +221,9 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
     </PlotlySection>
 
     <PlotlySection name={_('Polar Sector')}>
-      <Numeric label={_('Min')} attr="sector[0]" max={360} min={-360} showSlider />
-      <Numeric label={_('Max')} attr="sector[1]" max={360} min={-360} showSlider />
+      <Numeric label={_('Min')} attr="sector[0]" min={-360} max={360} showSlider />
+      <Numeric label={_('Max')} attr="sector[1]" min={-360} max={360} showSlider />
+      <NumericFraction label={_('Hole')} attr="hole" min={0} max={100} showSlider />
     </PlotlySection>
   </SubplotAccordion>
 );

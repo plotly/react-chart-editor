@@ -12,6 +12,7 @@ import {
   TraceRequiredPanel,
   VisibilitySelect,
   HovermodeDropdown,
+  Flaglist,
 } from '../components';
 import {HoverColor} from '../components/fields/derived';
 
@@ -87,6 +88,16 @@ const StyleLayoutPanel = (props, {localize: _}) => (
             {label: _('Diagonal'), value: 'd'},
           ]}
           clearable={false}
+        />
+      </PlotlySection>
+      <PlotlySection name={_('Click')} attr="clickmode">
+        <Flaglist
+          label={_('Mode')}
+          attr="clickmode"
+          options={[
+            {label: _('Click Event'), value: 'event'},
+            {label: _('Select Data Point'), value: 'select'},
+          ]}
         />
       </PlotlySection>
       <PlotlySection name={_('Hover')}>

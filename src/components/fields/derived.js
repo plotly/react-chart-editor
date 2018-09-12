@@ -541,7 +541,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         {label: _('B'), value: 'b'},
         {label: _('C'), value: 'c'},
       ];
-    } else if (['scatterpolar', 'scatterpolargl'].includes(container.type)) {
+    } else if (['scatterpolar', 'scatterpolargl', 'barpolar'].includes(container.type)) {
       options = [{label: _('R'), value: 'r'}, {label: _('Theta'), value: 'theta'}];
     } else if (container.type === 'pie') {
       options = [

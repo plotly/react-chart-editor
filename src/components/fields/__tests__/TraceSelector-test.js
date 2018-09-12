@@ -147,7 +147,7 @@ describe('TraceSelector', () => {
     });
   });
 
-  it('updates type=scatter fill=tozeroy when type=area', () => {
+  it('updates type=scatter stackgroup=1 when type=area', () => {
     const beforeUpdateTraces = jest.fn();
     const editorProps = {
       ...fixtures.scatter({data: [{type: 'scatter', mode: 'markers'}]}),
@@ -166,6 +166,6 @@ describe('TraceSelector', () => {
     innerDropdown.prop('onChange')('area');
 
     const payload = beforeUpdateTraces.mock.calls[0][0];
-    expect(payload.update).toEqual({fill: 'tozeroy', type: 'scatter'});
+    expect(payload.update).toEqual({type: 'scatter', mode: 'lines', stackgroup: 1});
   });
 });

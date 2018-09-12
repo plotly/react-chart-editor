@@ -13,17 +13,16 @@ Layouts.forEach(Layout => {
   describe(`<${Layout.displayName}>`, () => {
     it(`wraps container with fullValue pointing to gd._fullLayout`, () => {
       const wrapper = mount(
-        <Editor {...fixtures.scatter({layout: {width: 100}})}>
+        <Editor {...fixtures.scatter({layout: {height: 100}})}>
           <PlotlyPanel>
             <Layout>
-              <Numeric label="Width" min={100} step={10} attr="width" />
+              <Numeric label="Height" min={100} step={10} attr="height" />
             </Layout>
           </PlotlyPanel>
         </Editor>
       )
-        .find('[attr="width"]')
+        .find('[attr="height"]')
         .find(NumericInput);
-
       expect(wrapper.prop('value')).toBe(100);
     });
 
@@ -32,22 +31,22 @@ Layouts.forEach(Layout => {
       const wrapper = mount(
         <Editor
           beforeUpdateLayout={beforeUpdateLayout}
-          {...fixtures.scatter({layout: {width: 100}})}
+          {...fixtures.scatter({layout: {height: 100}})}
         >
           <PlotlyPanel>
             <Layout>
-              <Numeric label="Width" min={100} step={10} attr="width" />
+              <Numeric label="Height" min={100} step={10} attr="height" />
             </Layout>
           </PlotlyPanel>
         </Editor>
       )
-        .find('[attr="width"]')
+        .find('[attr="height"]')
         .find(NumericInput);
 
-      const widthUpdate = 200;
-      wrapper.prop('onChange')(widthUpdate);
+      const heightUpdate = 200;
+      wrapper.prop('onChange')(heightUpdate);
       const payload = beforeUpdateLayout.mock.calls[0][0];
-      expect(payload).toEqual({update: {width: widthUpdate}});
+      expect(payload).toEqual({update: {height: heightUpdate}});
     });
   });
 });
