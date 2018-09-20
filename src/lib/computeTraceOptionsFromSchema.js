@@ -128,6 +128,10 @@ function computeTraceOptionsFromSchema(schema, _, context) {
       value: 'scatterpolargl',
       label: _('Polar Scatter GL'),
     },
+    {
+      value: 'barpolar',
+      label: _('Polar Bar'),
+    },
   ].filter(obj => traceTypes.indexOf(obj.value) !== -1);
 
   const traceIndex = traceType => traceOptions.findIndex(opt => opt.value === traceType);

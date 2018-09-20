@@ -73,7 +73,7 @@
         "sizesrc": "x1",
         "sizemode": "diameter"
       },
-      "fill": "tozerox",
+      "stackgroup": 1,
       "mode": "lines+markers+text",
       "line": {
         "dash": "solid",

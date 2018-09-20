@@ -7,13 +7,10 @@ import {
   plotlyTraceToCustomTrace,
   computeTraceOptionsFromSchema,
 } from 'lib';
+import {TRACES_WITH_GL} from 'lib/constants';
 import {TraceTypeSelector, TraceTypeSelectorButton, RadioBlocks} from 'components/widgets';
 import Field from './Field';
 import {CogIcon} from 'plotly-icons';
-
-export const glAvailable = type => {
-  return ['scatter', 'scatterpolar', 'scattergl', 'scatterpolargl'].includes(type);
-};
 
 class TraceSelector extends Component {
   constructor(props, context) {
@@ -125,14 +122,14 @@ class TraceSelector extends Component {
                   })
                 }
               />
-              {!glAvailable(this.props.container.type) ? (
+              {!TRACES_WITH_GL.includes(this.props.container.type) ? (
                 ''
               ) : (
                 <CogIcon className="menupanel__icon" onClick={this.toggleGlControls} />
               )}
             </div>
           </Field>
-          {!(glAvailable(this.props.container.type) && this.state.showGlControls) ? (
+          {!(TRACES_WITH_GL.includes(this.props.container.type) && this.state.showGlControls) ? (
             ''
           ) : (
             <Field label={_('Rendering')}>

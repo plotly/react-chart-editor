@@ -195,6 +195,12 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <BinningNumeric label={_('Y Bin Size')} attr="ybins.size" axis="y" />
       <Numeric label={_('Max Y Bins')} attr="nbinsy" />
     </PlotlySection>
+    <PlotlySection label={_('Bar Position')}>
+      <Numeric label={_('Base')} attr="base" />
+      <Numeric label={_('Offset')} attr="offset" />
+      <Numeric label={_('Width')} attr="width" />
+    </PlotlySection>
+
     <TraceMarkerSection>
       <Radio
         label={_('Order')}
@@ -349,6 +355,31 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <ContourNumeric label={_('Min Contour')} attr="contours.start" />
       <ContourNumeric label={_('Max Contour')} attr="contours.end" />
     </PlotlySection>
+    <TraceTypeSection name={_('Stacking')} traceTypes={['scatter']} mode="trace">
+      <GroupCreator label={_('Group')} prefix={_('Stack')} attr="stackgroup" />
+      <Radio
+        label={_('Gaps')}
+        attr="stackgaps"
+        options={[
+          {label: _('Infer Zero'), value: 'infer zero'},
+          {label: _('Interpolate'), value: 'interpolate'},
+        ]}
+      />
+      <Radio
+        label={_('Orientation')}
+        attr="orientation"
+        options={[{label: _('Horizontal'), value: 'h'}, {label: _('Vertical'), value: 'v'}]}
+      />
+      <Radio
+        label={_('Normalization')}
+        attr="groupnorm"
+        options={[
+          {label: _('None'), value: ''},
+          {label: _('Fraction'), value: 'fraction'},
+          {label: _('Percent'), value: 'percent'},
+        ]}
+      />
+    </TraceTypeSection>
     <TraceTypeSection
       name={_('Lines')}
       traceTypes={[
@@ -397,6 +428,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         'scattergl',
         'scatterpolar',
         'scatterpolargl',
+        'barpolar',
         'pie',
         'scatter3d',
         'scatterternary',

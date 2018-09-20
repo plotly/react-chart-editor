@@ -73,7 +73,7 @@ export const TRACE_TO_AXIS = {
   gl3d: ['scatter3d', 'surface', 'mesh3d', 'cone', 'streamtube'],
   geo: ['scattergeo', 'choropleth'],
   mapbox: ['scattermapbox'],
-  polar: ['scatterpolar', 'scatterpolargl'],
+  polar: ['scatterpolar', 'scatterpolargl', 'barpolar'],
 };
 
 // Note: scene, and xaxis/yaxis were added for convenience sake even though they're not subplot types
@@ -116,6 +116,8 @@ export const TRANSFORMABLE_TRACES = [
   'histogram',
   'histogram2d',
 ];
+
+export const TRACES_WITH_GL = ['scatter', 'scatterpolar', 'scattergl', 'scatterpolargl'];
 
 export const COLORS = {
   charcoal: '#444444',
