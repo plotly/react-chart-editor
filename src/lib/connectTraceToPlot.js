@@ -81,7 +81,7 @@ export default function connectTraceToPlot(WrappedComponent) {
         const multiValuedFullContainer = deepCopyPublic(fullTrace);
         fullData.forEach(t =>
           Object.keys(t).forEach(key =>
-            setMultiValuedContainer(multiValuedFullContainer, t, key, {
+            setMultiValuedContainer(multiValuedFullContainer, deepCopyPublic(t), key, {
               searchArrays: true,
             })
           )
@@ -89,7 +89,7 @@ export default function connectTraceToPlot(WrappedComponent) {
         const multiValuedContainer = deepCopyPublic(trace);
         data.forEach(t =>
           Object.keys(t).forEach(key =>
-            setMultiValuedContainer(multiValuedContainer, t, key, {
+            setMultiValuedContainer(multiValuedContainer, deepCopyPublic(t), key, {
               searchArrays: true,
             })
           )
