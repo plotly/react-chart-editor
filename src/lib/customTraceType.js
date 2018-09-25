@@ -16,7 +16,7 @@ export function plotlyTraceToCustomTrace(trace) {
 
   if (
     (type === 'scatter' || type === 'scattergl') &&
-    ((trace.stackgroup !== null && trace.stackgroup !== undefined) || // eslint-disable-line no-undefined
+    (![null, undefined, ''].includes(trace.stackgroup) || // eslint-disable-line no-undefined
       ['tozeroy', 'tozerox', 'tonexty', 'tonextx', 'toself', 'tonext'].includes(trace.fill))
   ) {
     return 'area';
