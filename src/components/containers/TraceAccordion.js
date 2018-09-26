@@ -21,14 +21,14 @@ class TraceAccordion extends Component {
   }
 
   setLocals(props, context) {
-    // we don't want to include analysis transforms when we're in the create panel
     const base = props.canGroup ? context.fullData : context.data;
     const traceFilterCondition = this.props.traceFilterCondition || (() => true);
 
-    this.filteredTracesIndexes = [];
+    this.filteredTracesDataIndexes = [];
     this.filteredTraces = base.filter((t, i) => {
-      if (traceFilterCondition(t, context.fullData[i])) {
-        this.filteredTracesIndexes.push(i);
+      const fullTrace = props.canGroup ? t : context.fullData.filter(tr => tr.index === i)[0];
+      if (traceFilterCondition(t, fullTrace)) {
+        this.filteredTracesDataIndexes.push(fullTrace.index);
         return true;
       }
       return false;
@@ -44,7 +44,7 @@ class TraceAccordion extends Component {
     const dataArrayPositionsByTraceType = {};
     const fullDataArrayPositionsByTraceType = {};
 
-    this.filteredTraces.forEach((trace, index) => {
+    this.filteredTraces.forEach(trace => {
       const traceType = plotlyTraceToCustomTrace(trace);
       if (!dataArrayPositionsByTraceType[traceType]) {
         dataArrayPositionsByTraceType[traceType] = [];
@@ -55,7 +55,8 @@ class TraceAccordion extends Component {
       }
 
       dataArrayPositionsByTraceType[traceType].push(trace.index);
-      fullDataArrayPositionsByTraceType[traceType].push(this.filteredTracesIndexes[index]);
+      // _expandedIndex is the trace's index in the fullData array
+      fullDataArrayPositionsByTraceType[traceType].push(trace._expandedIndex);
     });
 
     return Object.keys(fullDataArrayPositionsByTraceType).map((type, index) => (
@@ -76,7 +77,7 @@ class TraceAccordion extends Component {
         key={i}
         traceIndexes={[d.index]}
         canDelete={this.props.canAdd}
-        fullDataArrayPosition={[this.filteredTracesIndexes[i]]}
+        fullDataArrayPosition={[d._expandedIndex]}
       >
         {this.props.children}
       </TraceFold>
@@ -87,7 +88,7 @@ class TraceAccordion extends Component {
     return this.filteredTraces.map((d, i) => (
       <TraceFold
         key={i}
-        traceIndexes={[this.filteredTracesIndexes[i]]}
+        traceIndexes={[this.filteredTracesDataIndexes[i]]}
         canDelete={this.props.canAdd}
       >
         {this.props.children}
