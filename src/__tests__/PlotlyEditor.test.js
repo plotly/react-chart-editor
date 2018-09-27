@@ -54,18 +54,25 @@ describe('<TestApp>', () => {
   });
 
   it('Can create and delete traces', done => {
+    expect(app.find(PlotlyEditor).props().data.length).toEqual(0);
     expect(app.find(PlotlyFold).length).toEqual(0);
 
     app
       .find('.js-add-button')
       .at(0)
       .simulate('click');
-    expect(app.find('.fold').length).toEqual(1);
+
+    app.update();
+    expect(app.find(PlotlyEditor).props().data.length).toEqual(1);
+    expect(app.find('.fold').length).toEqual(0);
 
     app
       .find('.js-fold__delete')
       .at(0)
       .simulate('click');
+
+    app.update();
+    expect(app.find(PlotlyEditor).props().data.length).toEqual(1);
     expect(app.find('.fold').length).toEqual(0);
 
     // now wait for the last call to setState to go through
