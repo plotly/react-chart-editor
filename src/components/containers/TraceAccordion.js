@@ -27,15 +27,18 @@ class TraceAccordion extends Component {
     this.filteredTracesDataIndexes = [];
     this.filteredTraces = [];
 
-    if (base.length && context.fullData.length) {
+    if (base && base.length && context.fullData.length) {
       this.filteredTraces = base.filter((t, i) => {
         const fullTrace = props.canGroup ? t : context.fullData.filter(tr => tr.index === i)[0];
-        const trace = context.data[fullTrace.index];
 
-        if (traceFilterCondition(trace, fullTrace)) {
-          this.filteredTracesDataIndexes.push(fullTrace.index);
-          return true;
+        if (fullTrace) {
+          const trace = context.data[fullTrace.index];
+          if (traceFilterCondition(trace, fullTrace)) {
+            this.filteredTracesDataIndexes.push(fullTrace.index);
+            return true;
+          }
         }
+
         return false;
       });
     }
