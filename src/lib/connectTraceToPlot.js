@@ -39,6 +39,18 @@ export default function connectTraceToPlot(WrappedComponent) {
         fullTrace = fullData.filter(t => t && traceIndexes[0] === t.index)[0];
       }
 
+      // For transformed traces, we actually want to read in _fullInput because
+      // there's original parent information that's more useful to the user there
+      // This is true except for fit transforms, where reading in fullData is
+      // what we want
+      if (
+        trace.transforms &&
+        !trace.transforms.some(t => ['moving-average', 'fits'].includes(t.type)) &&
+        !fullDataArrayPosition
+      ) {
+        fullTrace = fullTrace._fullInput;
+      }
+
       this.childContext = {
         getValObject: attr =>
           !plotly
