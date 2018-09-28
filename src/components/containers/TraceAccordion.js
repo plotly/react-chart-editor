@@ -21,18 +21,27 @@ class TraceAccordion extends Component {
   }
 
   setLocals(props, context) {
-    // we don't want to include analysis transforms when we're in the create panel
     const base = props.canGroup ? context.fullData : context.data;
     const traceFilterCondition = this.props.traceFilterCondition || (() => true);
 
-    this.filteredTracesIndexes = [];
-    this.filteredTraces = base.filter((t, i) => {
-      if (traceFilterCondition(t, context.fullData[i])) {
-        this.filteredTracesIndexes.push(i);
-        return true;
-      }
-      return false;
-    });
+    this.filteredTracesDataIndexes = [];
+    this.filteredTraces = [];
+
+    if (base && base.length && context.fullData.length) {
+      this.filteredTraces = base.filter((t, i) => {
+        const fullTrace = props.canGroup ? t : context.fullData.filter(tr => tr.index === i)[0];
+
+        if (fullTrace) {
+          const trace = context.data[fullTrace.index];
+          if (traceFilterCondition(trace, fullTrace)) {
+            this.filteredTracesDataIndexes.push(fullTrace.index);
+            return true;
+          }
+        }
+
+        return false;
+      });
+    }
   }
 
   renderGroupedTraceFolds() {
@@ -44,7 +53,7 @@ class TraceAccordion extends Component {
     const dataArrayPositionsByTraceType = {};
     const fullDataArrayPositionsByTraceType = {};
 
-    this.filteredTraces.forEach((trace, index) => {
+    this.filteredTraces.forEach(trace => {
       const traceType = plotlyTraceToCustomTrace(trace);
       if (!dataArrayPositionsByTraceType[traceType]) {
         dataArrayPositionsByTraceType[traceType] = [];
@@ -55,7 +64,8 @@ class TraceAccordion extends Component {
       }
 
       dataArrayPositionsByTraceType[traceType].push(trace.index);
-      fullDataArrayPositionsByTraceType[traceType].push(this.filteredTracesIndexes[index]);
+      // _expandedIndex is the trace's index in the fullData array
+      fullDataArrayPositionsByTraceType[traceType].push(trace._expandedIndex);
     });
 
     return Object.keys(fullDataArrayPositionsByTraceType).map((type, index) => (
@@ -71,28 +81,54 @@ class TraceAccordion extends Component {
   }
 
   renderUngroupedTraceFolds() {
-    return this.filteredTraces.map((d, i) => (
-      <TraceFold
-        key={i}
-        traceIndexes={[d.index]}
-        canDelete={this.props.canAdd}
-        fullDataArrayPosition={[this.filteredTracesIndexes[i]]}
-      >
-        {this.props.children}
-      </TraceFold>
-    ));
+    if (this.filteredTraces.length) {
+      return this.filteredTraces.map((d, i) => (
+        <TraceFold
+          key={i}
+          traceIndexes={[d.index]}
+          canDelete={this.props.canAdd}
+          fullDataArrayPosition={[d._expandedIndex]}
+        >
+          {this.props.children}
+        </TraceFold>
+      ));
+    }
+    return null;
   }
 
   renderTraceFolds() {
-    return this.filteredTraces.map((d, i) => (
-      <TraceFold
-        key={i}
-        traceIndexes={[this.filteredTracesIndexes[i]]}
-        canDelete={this.props.canAdd}
-      >
-        {this.props.children}
-      </TraceFold>
-    ));
+    if (this.filteredTraces.length) {
+      return this.filteredTraces.map((d, i) => (
+        <TraceFold
+          key={i}
+          traceIndexes={[this.filteredTracesDataIndexes[i]]}
+          canDelete={this.props.canAdd}
+        >
+          {this.props.children}
+        </TraceFold>
+      ));
+    }
+    return null;
+  }
+
+  renderTracePanelHelp() {
+    const _ = this.context.localize;
+    return (
+      <div className="panel__empty__message">
+        <div className="panel__empty__message__heading">Trace your data.</div>
+        <div className="panel__empty__message__content">
+          <p>
+            {_('Traces of various types like bar and line are the building blocks of your figure.')}
+          </p>
+          <p>
+            {_(
+              'You can add as many as you like, mixing and matching types and arranging them into subplots.'
+            )}
+          </p>
+          <p>{_('Click on the + button above to add a trace.')}</p>
+        </div>
+      </div>
+    );
   }
 
   render() {
@@ -110,29 +146,10 @@ class TraceAccordion extends Component {
           }
         },
       };
-      const content = this.renderTraceFolds();
+      const traceFolds = this.renderTraceFolds();
       return (
         <PlotlyPanel addAction={addAction}>
-          {content.length ? (
-            content
-          ) : (
-            <div className="panel__empty__message">
-              <div className="panel__empty__message__heading">Trace your data.</div>
-              <div className="panel__empty__message__content">
-                <p>
-                  {_(
-                    'Traces of various types like bar and line are the building blocks of your figure.'
-                  )}
-                </p>
-                <p>
-                  {_(
-                    'You can add as many as you like, mixing and matching types and arranging them into subplots.'
-                  )}
-                </p>
-                <p>{_('Click on the + button above to add a trace.')}</p>
-              </div>
-            </div>
-          )}
+          {traceFolds ? traceFolds : this.renderTracePanelHelp()}
         </PlotlyPanel>
       );
     }

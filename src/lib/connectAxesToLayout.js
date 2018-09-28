@@ -74,7 +74,7 @@ export default function connectAxesToLayout(WrappedComponent) {
         const multiValuedContainer = deepCopyPublic(this.axes[0]);
         this.axes.slice(1).forEach(ax =>
           Object.keys(ax).forEach(key =>
-            setMultiValuedContainer(multiValuedContainer, ax, key, {
+            setMultiValuedContainer(multiValuedContainer, deepCopyPublic(ax), key, {
               searchArrays: true,
             })
           )

@@ -176,6 +176,32 @@ function adjustColorscale(colorscale, numberOfNeededColors, colorscaleType, conf
   return getColorscale(colorscale, numberOfNeededColors, null, null, colorscaleType);
 }
 
+function getFullTrace(props, context) {
+  let fullTrace = {};
+  if (context.fullData && context.data) {
+    if (props.fullDataArrayPosition) {
+      // fullDataArrayPosition will be supplied in panels that have the canGroup prop
+      fullTrace = context.fullData[props.fullDataArrayPosition[0]];
+    } else {
+      // for all other panels, we'll find fullTrace with the data index
+      fullTrace = context.fullData.filter(t => t && props.traceIndexes[0] === t.index)[0];
+    }
+
+    // For transformed traces, we actually want to read in _fullInput because
+    // there's original parent information that's more useful to the user there
+    // This is true except for fit transforms, where reading in fullData is
+    // what we want
+    if (
+      fullTrace.transforms &&
+      !fullTrace.transforms.some(t => ['moving-average', 'fits'].includes(t.type)) &&
+      !props.fullDataArrayPosition
+    ) {
+      fullTrace = fullTrace._fullInput;
+    }
+  }
+  return fullTrace;
+}
+
 export {
   adjustColorscale,
   axisIdToAxisName,
@@ -222,4 +248,5 @@ export {
   striptags,
   traceTypeToAxisType,
   transpose,
+  getFullTrace,
 };

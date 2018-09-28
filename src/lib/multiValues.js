@@ -16,6 +16,10 @@ function deepCopyPublic(value) {
   return window.JSON.parse(window.JSON.stringify(value, skipPrivateKeys));
 }
 
+/*
+ * WARNING: When using this function, make intoObj and fromObject are copies of
+ * your objects, so that no mutations occur
+ */
 function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
   const intoVal = intoObj[key];
   const fromVal = fromObj[key];
@@ -38,6 +42,8 @@ function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
     // note that if fromObj doesn't have a key in intoObj we will not
     // attempt to merge them at all, so this behavior makes the merge
     // independent of order.
+
+    // WARNING: Careful that data copies were passed in as args here, as mutation can occur
     intoObj[key] = fromVal;
   } else if (key === 'colorscale') {
     // colorscales are arrays... need to stringify before comparing

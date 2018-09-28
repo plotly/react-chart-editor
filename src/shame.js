@@ -181,16 +181,24 @@ export const shamefullyDeleteRelatedAnalysisTransforms = (graphDiv, payload) => 
   const parentTraceDataIndex = payload.traceIndexes[0];
   const parentUid = graphDiv.data[parentTraceDataIndex].uid;
 
-  const relatedFitTransformTraceIndexes = [];
-  graphDiv.data.forEach((d, i) => {
-    if (d.transforms && d.transforms.filter(t => t.inputUid === parentUid).length) {
-      relatedFitTransformTraceIndexes.push(i);
-    }
-  });
-
-  if (relatedFitTransformTraceIndexes.length) {
-    relatedFitTransformTraceIndexes.forEach(i => {
-      graphDiv.data.splice(i, 1);
+  if (parentUid) {
+    const relatedAnalysisTraceIndexes = [];
+    graphDiv.data.forEach((d, i) => {
+      if (
+        d.transforms &&
+        d.transforms.some(
+          transform =>
+            ['moving-average', 'fit'].includes(transform.type) && transform.inputUid === parentUid
+        )
+      ) {
+        relatedAnalysisTraceIndexes.push(i);
+      }
     });
+
+    if (relatedAnalysisTraceIndexes.length) {
+      relatedAnalysisTraceIndexes.forEach(i => {
+        graphDiv.data.splice(i, 1);
+      });
+    }
   }
 };
