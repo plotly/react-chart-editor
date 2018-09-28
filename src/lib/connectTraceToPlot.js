@@ -6,6 +6,7 @@ import {
   plotlyTraceToCustomTrace,
   renderTraceIcon,
   traceTypeToAxisType,
+  getFullTrace,
 } from '../lib';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
 import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR} from 'lib/constants';
@@ -25,31 +26,11 @@ export default function connectTraceToPlot(WrappedComponent) {
     }
 
     setLocals(props, context) {
-      const {traceIndexes, fullDataArrayPosition} = props;
+      const {traceIndexes} = props;
       const {data, fullData, plotly} = context;
 
       const trace = data[traceIndexes[0]];
-      let fullTrace = {};
-
-      if (fullDataArrayPosition) {
-        // fullDataArrayPosition will be supplied in panels that have the canGroup prop
-        fullTrace = fullData[fullDataArrayPosition[0]];
-      } else {
-        // for all other panels, we'll find fullTrace with the data index
-        fullTrace = fullData.filter(t => t && traceIndexes[0] === t.index)[0];
-      }
-
-      // For transformed traces, we actually want to read in _fullInput because
-      // there's original parent information that's more useful to the user there
-      // This is true except for fit transforms, where reading in fullData is
-      // what we want
-      if (
-        trace.transforms &&
-        !trace.transforms.some(t => ['moving-average', 'fits'].includes(t.type)) &&
-        !fullDataArrayPosition
-      ) {
-        fullTrace = fullTrace._fullInput;
-      }
+      const fullTrace = getFullTrace(props, context);
 
       this.childContext = {
         getValObject: attr =>
