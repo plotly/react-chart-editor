@@ -17,7 +17,7 @@ class ImageAccordion extends Component {
     const content =
       images.length &&
       images.map((img, i) => (
-        <ImageFold key={i} imageIndex={i} name={img.text} canDelete={canAdd}>
+        <ImageFold key={i} imageIndex={i} name={`${_('Image')} ${i + 1}`} canDelete={canAdd}>
           {children}
         </ImageFold>
       ));
@@ -34,7 +34,6 @@ class ImageAccordion extends Component {
 
         const key = `images[${imageIndex}]`;
         const value = {
-          text: `${_('Image')} ${imageIndex + 1}`,
           sizex: 0.1,
           sizey: 0.1,
           x: 0.5,
