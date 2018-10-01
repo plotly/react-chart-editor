@@ -9,6 +9,14 @@ class PlotlyEditor extends Component {
     super();
     this.state = {graphDiv: {}};
     this.PlotComponent = createPlotComponent(props.plotly);
+    this.handleDirectUpdate = this.handleDirectUpdate.bind(this);
+  }
+
+  handleDirectUpdate(fig, graphDiv) {
+    this.setState({graphDiv});
+    if (this.props.onDirectUpdate) {
+      this.props.onDirectUpdate(graphDiv.data, graphDiv.layout, graphDiv._transitionData._frames);
+    }
   }
 
   render() {
@@ -44,8 +52,8 @@ class PlotlyEditor extends Component {
             config={this.props.config}
             useResizeHandler={this.props.useResizeHandler}
             debug={this.props.debug}
-            onInitialized={(fig, graphDiv) => this.setState({graphDiv})}
-            onUpdate={(fig, graphDiv) => this.setState({graphDiv})}
+            onInitialized={this.handleDirectUpdate}
+            onUpdate={this.handleDirectUpdate}
             style={{width: '100%', height: '100%'}}
             divId={this.props.divId}
           />
@@ -64,6 +72,7 @@ PlotlyEditor.propTypes = {
   dataSources: PropTypes.object,
   frames: PropTypes.array,
   onUpdate: PropTypes.func,
+  onDirectUpdate: PropTypes.func,
   plotly: PropTypes.object,
   useResizeHandler: PropTypes.bool,
   debug: PropTypes.bool,

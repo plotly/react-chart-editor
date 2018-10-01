@@ -18,7 +18,7 @@ class ShapeAccordion extends Component {
     const content =
       shapes.length &&
       shapes.map((shp, i) => (
-        <ShapeFold key={i} shapeIndex={i} name={shp.text} canDelete={canAdd}>
+        <ShapeFold key={i} shapeIndex={i} name={`${_('Shape')} ${i + 1}`} canDelete={canAdd}>
           {children}
         </ShapeFold>
       ));
@@ -35,7 +35,6 @@ class ShapeAccordion extends Component {
 
         const key = `shapes[${shapeIndex}]`;
         const value = {
-          text: `${_('Shape')} ${shapeIndex}`,
           line: {color: COLORS.charcoal},
           fillcolor: COLORS.middleGray,
           opacity: 0.3,
