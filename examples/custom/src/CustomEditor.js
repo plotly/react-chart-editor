@@ -35,8 +35,7 @@ export default class CustomEditor extends Component {
             }
             <Info attr="title">
               <p>
-                This custom editor demonstrates the general-purpose container
-                and field components.
+                This custom editor demonstrates the general-purpose container and field components.
               </p>
               <p>
                 This is an <code>Info</code> component.
@@ -48,47 +47,27 @@ export default class CustomEditor extends Component {
                 label="Dropdown"
                 attr="xaxis.title"
                 show
-                options={[
-                  {label: 'Yes', value: 'yes'},
-                  {label: 'No', value: 'no'},
-                ]}
+                options={[{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}]}
               />
               <Radio
                 label="Radio"
                 attr="yaxis.title"
                 show
-                options={[
-                  {label: 'Yes', value: 'yes'},
-                  {label: 'No', value: 'no'},
-                ]}
+                options={[{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}]}
               />
               <Flaglist
                 label="Flaglist"
                 attr="titlefont.family"
                 show
-                options={[
-                  {label: 'Yes', value: 'y'},
-                  {label: 'No', value: 'n'},
-                ]}
+                options={[{label: 'Yes', value: 'y'}, {label: 'No', value: 'n'}]}
               />
               <ColorPicker label="ColorPicker" attr="plot_bgcolor" show />
               <TextEditor attr="title" label="TextEditor default" />
-              <TextEditor
-                attr="title"
-                label="TextEditor richTextOnly"
-                richTextOnly
-              />
-              <TextEditor attr="title" label="TextEditor htmlOnly" htmlOnly />
-              <TextEditor attr="title" label="TextEditor latexOnly" latexOnly />
             </PlotlySection>
           </PlotlyFold>
         </LayoutPanel>
         <SingleSidebarItem>
-          <Button
-            variant="primary"
-            label="save"
-            onClick={() => alert('save button clicked!')}
-          />
+          <Button variant="primary" label="save" onClick={() => alert('save button clicked!')} />
         </SingleSidebarItem>
         <SingleSidebarItem>
           <Button
