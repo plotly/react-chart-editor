@@ -10,13 +10,13 @@ class TraceRequiredPanel extends Component {
 
   render() {
     const {localize: _} = this.context;
-    const {children, heading, beforeMessage, afterMessage, ...rest} = this.props;
+    const {children, heading, beforeMessage, afterMessage, forceEmpty, ...rest} = this.props;
 
     if (!this.props.visible) {
       return null;
     }
 
-    return this.hasTrace() ? (
+    return !forceEmpty && this.hasTrace() ? (
       <LayoutPanel {...rest}>{children}</LayoutPanel>
     ) : (
       <PanelEmpty heading={heading || _("Looks like there aren't any traces defined yet.")}>
@@ -38,6 +38,7 @@ TraceRequiredPanel.propTypes = {
   heading: PropTypes.string,
   beforeMessage: PropTypes.string,
   afterMessage: PropTypes.string,
+  forceEmpty: PropTypes.bool,
 };
 
 TraceRequiredPanel.defaultProps = {
