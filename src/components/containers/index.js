@@ -9,6 +9,7 @@ import PlotlyFold, {Fold} from './PlotlyFold';
 import MenuPanel from './MenuPanel';
 import PlotlyPanel, {Panel} from './PlotlyPanel';
 import PlotlySection, {Section} from './PlotlySection';
+import PanelEmpty from './PanelEmpty';
 import SubplotAccordion from './SubplotAccordion';
 import TraceAccordion from './TraceAccordion';
 import TransformAccordion from './TransformAccordion';
@@ -31,6 +32,7 @@ export {
   Fold,
   PlotlyPanel,
   Panel,
+  PanelEmpty,
   PlotlySection,
   Section,
   SubplotAccordion,
