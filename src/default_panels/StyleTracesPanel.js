@@ -215,6 +215,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Counterclockwise'), value: 'counterclockwise'},
         ]}
       />
+      <GroupCreator label={_('Scale Group')} prefix={_('Group')} attr="scalegroup" />
       <Numeric label={_('Rotation')} attr="rotation" />
       <NumericFraction label={_('Hole Size')} attr="hole" />
       <NumericFraction label={_('Pull')} attr="pull" />
