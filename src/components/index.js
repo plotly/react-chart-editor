@@ -56,6 +56,7 @@ import {
   LocationSelector,
   HoveronDropdown,
   HovermodeDropdown,
+  TickFormat,
 } from './fields';
 
 import {
@@ -89,6 +90,7 @@ import {Button} from './widgets';
 import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
+  TickFormat,
   AnnotationAccordion,
   AxisAnchorDropdown,
   AxisOverlayDropdown,

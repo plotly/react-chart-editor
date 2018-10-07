@@ -1,5 +1,6 @@
 import isNumeric from 'fast-isnumeric';
 import {UnconnectedDropdown} from './Dropdown';
+import {UnconnectedDropdownCustom} from './DropdownCustom';
 import {UnconnectedFlaglist} from './Flaglist';
 import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedAxisRangeValue} from './AxisRangeValue';
@@ -142,6 +143,25 @@ export const BinningDropdown = connectToContainer(UnconnectedDropdown, {
       {label: _('Minimum ') + axis, value: 'min'},
       {label: _('Maximum ') + axis, value: 'max'},
     ];
+  },
+});
+
+export const TickFormat = connectToContainer(UnconnectedDropdownCustom, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = context;
+    if (plotProps.fullContainer.type === 'date') {
+      plotProps.options = [
+        {label: _('Default'), value: ''},
+        {label: _('Advanced (d3-time-format)'), value: '%x'},
+      ];
+      plotProps.customOpt = '%x';
+    } else {
+      plotProps.options = [
+        {label: _('Simple'), value: ''},
+        {label: _('Advanced (d3-format)'), value: 's'},
+      ];
+      plotProps.customOpt = 's';
+    }
   },
 });
 

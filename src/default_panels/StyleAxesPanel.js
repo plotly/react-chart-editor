@@ -19,6 +19,7 @@ import {
   RangeSelectorAccordion,
   VisibilitySelect,
   DropdownCustom,
+  TickFormat,
 } from '../components';
 
 class StyleAxesPanel extends Component {
@@ -163,6 +164,12 @@ class StyleAxesPanel extends Component {
                 ]}
               />
 
+              <TickFormat
+                label={_('Label Format')}
+                attr="tickformat"
+                dafaultOpt=""
+                clearable={false}
+              />
               <Radio
                 label={_('Separate Thousands')}
                 attr="separatethousands"
@@ -179,6 +186,17 @@ class StyleAxesPanel extends Component {
                   {label: _('x10^6'), value: 'power'},
                   {label: _('k/M/G'), value: 'SI'},
                   {label: _('k/M/B'), value: 'B'},
+                ]}
+              />
+              <Dropdown
+                label={_('Show Exponents')}
+                attr="showexponent"
+                clearable={false}
+                options={[
+                  {label: _('All'), value: 'all'},
+                  {label: _('First'), value: 'first'},
+                  {label: _('Last'), value: 'last'},
+                  {label: _('None'), value: 'none'},
                 ]}
               />
 
