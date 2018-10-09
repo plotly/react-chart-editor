@@ -6,7 +6,7 @@ import Field from './Field';
 import DropdownWidget from '../widgets/Dropdown';
 import Text from './Text';
 
-class UnconnectedDropdownCustom extends Component {
+export class UnconnectedDropdownCustom extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -35,19 +35,20 @@ class UnconnectedDropdownCustom extends Component {
 
   setValue(value, custom = false) {
     this.value = value;
+    const customOpt = this.props.customOpt;
     this.setState({
-      custom: (custom || value === this.props.customOpt) && value !== '',
+      custom: (custom || value === customOpt) && value !== '',
     });
     this.props.updateContainer({
-      [this.props.attr]: value === this.props.customOpt && !custom ? 'custom' : value,
+      [this.props.attr]: value === customOpt && !custom ? customOpt : value,
     });
   }
 
   render() {
-    const {options, attr} = this.props;
+    const {options, attr, customOpt} = this.props;
     const value =
       (this.value === '' || !options.map(o => o.value).includes(this.value)) && this.state.custom
-        ? 'custom'
+        ? customOpt
         : this.value;
 
     return (

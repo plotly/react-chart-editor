@@ -540,7 +540,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
     </PlotlySection>
     <PlotlySection name={_('Scaling')}>
-      <Numeric label={_('Bandwidth')} attr="bandwidth" />
+      <GroupCreator label={_('Scale Group')} prefix={_('Group')} attr="scalegroup" />
       <Radio
         label={_('Scale Mode')}
         attr="scalemode"
@@ -555,6 +555,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Manual'), value: 'manual'},
         ]}
       />
+      <Numeric label={_('Bandwidth')} attr="bandwidth" />
       <Numeric label={_('Span')} attr="span" />
       <Radio
         attr="side"

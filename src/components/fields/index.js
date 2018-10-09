@@ -54,6 +54,7 @@ import {
   ShowInLegend,
   HoveronDropdown,
   HovermodeDropdown,
+  TickFormat,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './LineSelectors';
 
@@ -93,6 +94,7 @@ export {
   DualNumeric,
   AxisRangeValue,
   Text,
+  TickFormat,
   Radio,
   SymbolSelector,
   RangesliderVisible,
