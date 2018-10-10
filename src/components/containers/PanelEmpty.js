@@ -3,18 +3,40 @@ import React, {Component} from 'react';
 import {ChartLineIcon} from 'plotly-icons';
 import {bem} from 'lib';
 
-class PanelEmpty extends Component {
+export class PanelMessage extends Component {
   render() {
     const {children, icon: Icon} = this.props;
     const heading = this.props.heading || '';
 
     return (
+      <div className="panel__empty__message">
+        {Boolean(Icon) && (
+          <div className="panel__empty__message__icon">
+            <Icon />
+          </div>
+        )}
+        {Boolean(heading) && <div className="panel__empty__message__heading">{heading}</div>}
+        <div className="panel__empty__message__content">{children}</div>
+      </div>
+    );
+  }
+}
+
+PanelMessage.defaultProps = {
+  icon: ChartLineIcon,
+};
+
+PanelMessage.propTypes = {
+  heading: PropTypes.string,
+  children: PropTypes.node,
+  icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
+};
+
+class PanelEmpty extends Component {
+  render() {
+    return (
       <div className={bem('panel', 'empty')}>
-        <div className="panel__empty__message">
-          <div className="panel__empty__message__icon">{Icon ? <Icon /> : <ChartLineIcon />}</div>
-          <div className="panel__empty__message__heading">{heading}</div>
-          <div className="panel__empty__message__content">{children}</div>
-        </div>
+        <PanelMessage {...this.props} />
       </div>
     );
   }

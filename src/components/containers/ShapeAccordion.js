@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectShapeToLayout} from 'lib';
 import {COLORS} from 'lib/constants';
+import {PanelMessage} from './PanelEmpty';
 
 const ShapeFold = connectShapeToLayout(PlotlyFold);
 
@@ -51,19 +52,14 @@ class ShapeAccordion extends Component {
         {content ? (
           content
         ) : (
-          <div className="panel__empty__message">
-            <div className="panel__empty__message__heading">
-              {_('Lines, Rectangles and Ellipses.')}
-            </div>
-            <div className="panel__empty__message__content">
-              <p>
-                {_(
-                  'Add shapes to a figure to highlight points or periods in time, thresholds, or areas of interest.'
-                )}
-              </p>
-              <p>{_('Click on the + button above to add a shape.')}</p>
-            </div>
-          </div>
+          <PanelMessage heading={_('Lines, Rectangles and Ellipses.')}>
+            <p>
+              {_(
+                'Add shapes to a figure to highlight points or periods in time, thresholds, or areas of interest.'
+              )}
+            </p>
+            <p>{_('Click on the + button above to add a shape.')}</p>
+          </PanelMessage>
         )}
       </TraceRequiredPanel>
     );

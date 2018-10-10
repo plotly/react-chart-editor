@@ -83,6 +83,7 @@ import {
   TraceRequiredPanel,
   SingleSidebarItem,
   TraceTypeSection,
+  PanelMessage,
 } from './containers';
 
 import {Button} from './widgets';
@@ -91,6 +92,7 @@ import PanelMenuWrapper from './PanelMenuWrapper';
 
 export {
   TickFormat,
+  PanelMessage,
   AnnotationAccordion,
   AxisAnchorDropdown,
   AxisOverlayDropdown,

@@ -65,8 +65,8 @@
     display: flex;
     &__message {
       text-align: center;
-      padding-top: calc(var(--spacing-base-unit) * 2);
       &__icon {
+        padding-top: calc(var(--spacing-base-unit) * 2);
         margin-bottom: var(--spacing-half-unit);
         opacity: 0.5;
         svg {
