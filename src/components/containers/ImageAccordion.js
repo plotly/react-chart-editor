@@ -3,6 +3,7 @@ import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectImageToLayout} from 'lib';
+import {PanelMessage} from './PanelEmpty';
 
 const ImageFold = connectImageToLayout(PlotlyFold);
 
@@ -51,17 +52,14 @@ class ImageAccordion extends Component {
         {content ? (
           content
         ) : (
-          <div className="panel__empty__message">
-            <div className="panel__empty__message__heading">{_('Logos, watermarks and more.')}</div>
-            <div className="panel__empty__message__content">
-              <p>
-                {_(
-                  'Embed images in your figure to make the data more readable or to brand your content.'
-                )}
-              </p>
-              <p>{_('Click on the + button above to add an image.')}</p>
-            </div>
-          </div>
+          <PanelMessage heading={_('Logos, watermarks and more.')}>
+            <p>
+              {_(
+                'Embed images in your figure to make the data more readable or to brand your content.'
+              )}
+            </p>
+            <p>{_('Click on the + button above to add an image.')}</p>
+          </PanelMessage>
         )}
       </TraceRequiredPanel>
     );

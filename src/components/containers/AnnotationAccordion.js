@@ -1,5 +1,6 @@
 import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
+import {PanelMessage} from './PanelEmpty';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectAnnotationToLayout} from 'lib';
@@ -46,17 +47,14 @@ class AnnotationAccordion extends Component {
         {content ? (
           content
         ) : (
-          <div className="panel__empty__message">
-            <div className="panel__empty__message__heading">{_('Call out your data.')}</div>
-            <div className="panel__empty__message__content">
-              <p>
-                {_(
-                  'Annotations are text and arrows you can use to point out specific parts of your figure.'
-                )}
-              </p>
-              <p>{_('Click on the + button above to add an annotation.')}</p>
-            </div>
-          </div>
+          <PanelMessage heading={_('Call out your data.')}>
+            <p>
+              {_(
+                'Annotations are text and arrows you can use to point out specific parts of your figure.'
+              )}
+            </p>
+            <p>{_('Click on the + button above to add an annotation.')}</p>
+          </PanelMessage>
         )}
       </TraceRequiredPanel>
     );

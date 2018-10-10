@@ -7,6 +7,7 @@ import {EDITOR_ACTIONS} from 'lib/constants';
 import {connectTraceToPlot, plotlyTraceToCustomTrace} from 'lib';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {traceTypes} from 'lib/traceTypes';
+import {PanelMessage} from './PanelEmpty';
 
 const TraceFold = connectTraceToPlot(PlotlyFold);
 
@@ -114,20 +115,17 @@ class TraceAccordion extends Component {
   renderTracePanelHelp() {
     const _ = this.context.localize;
     return (
-      <div className="panel__empty__message">
-        <div className="panel__empty__message__heading">Trace your data.</div>
-        <div className="panel__empty__message__content">
-          <p>
-            {_('Traces of various types like bar and line are the building blocks of your figure.')}
-          </p>
-          <p>
-            {_(
-              'You can add as many as you like, mixing and matching types and arranging them into subplots.'
-            )}
-          </p>
-          <p>{_('Click on the + button above to add a trace.')}</p>
-        </div>
-      </div>
+      <PanelMessage heading={_('Trace your data.')}>
+        <p>
+          {_('Traces of various types like bar and line are the building blocks of your figure.')}
+        </p>
+        <p>
+          {_(
+            'You can add as many as you like, mixing and matching types and arranging them into subplots.'
+          )}
+        </p>
+        <p>{_('Click on the + button above to add a trace.')}</p>
+      </PanelMessage>
     );
   }
 
