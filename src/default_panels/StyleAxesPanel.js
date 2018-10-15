@@ -380,7 +380,7 @@ class StyleAxesPanel extends Component {
         </AxesFold>
 
         <AxesFold
-          name={_('Hover Projections')}
+          name={_('Spike Lines')}
           axisFilter={axis =>
             !(
               axis._subplot.includes('ternary') ||
