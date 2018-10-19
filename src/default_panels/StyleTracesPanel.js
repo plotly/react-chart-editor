@@ -246,7 +246,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Size Mode')}
         attr="marker.sizemode"
-        options={[{label: _('Diameter'), value: 'diameter'}, {label: _('Area'), value: 'area'}]}
+        options={[{label: _('Area'), value: 'area'}, {label: _('Diameter'), value: 'diameter'}]}
       />
       <Numeric label={_('Minimum Size')} attr="marker.sizemin" />
       <NumericReciprocal label={_('Size Scale')} attr="marker.sizeref" />

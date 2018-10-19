@@ -202,3 +202,13 @@ export const shamefullyDeleteRelatedAnalysisTransforms = (graphDiv, payload) => 
     }
   }
 };
+
+export const shamefullyAdjustSizeref = (gd, {update}) => {
+  const {'marker.size': size = null, 'marker.sizesrc': src = null} = update;
+  if (size && src) {
+    const DEFAULT_MAX_AREA_PX = 45;
+    const scaleFactor = DEFAULT_MAX_AREA_PX * DEFAULT_MAX_AREA_PX;
+    update['marker.sizeref'] = size.reduce((a, b) => Math.max(a, b)) / scaleFactor;
+    update['marker.sizemode'] = 'area';
+  }
+};
