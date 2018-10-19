@@ -10,6 +10,7 @@ import {
   shamefullyCreateSplitStyleProps,
   shamefullyAdjustSplitStyleTargetContainers,
   shamefullyDeleteRelatedAnalysisTransforms,
+  shamefullyAdjustSizeref,
 } from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
@@ -70,6 +71,7 @@ class EditorControls extends Component {
           this.props.beforeUpdateTraces(payload);
         }
 
+        shamefullyAdjustSizeref(graphDiv, payload);
         shamefullyClearAxisTypes(graphDiv, payload);
         shamefullyAdjustAxisRef(graphDiv, payload);
         shamefullyAddTableColumns(graphDiv, payload);
