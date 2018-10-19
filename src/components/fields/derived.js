@@ -305,7 +305,7 @@ export const NumericReciprocal = connectToContainer(UnconnectedNumeric, {
     const {fullValue, updatePlot} = plotProps;
 
     if (isNumeric(fullValue)) {
-      plotProps.fullValue = Math.round(1 / fullValue);
+      plotProps.fullValue = 1 / fullValue;
     }
 
     plotProps.updatePlot = v => {
@@ -316,7 +316,7 @@ export const NumericReciprocal = connectToContainer(UnconnectedNumeric, {
       }
     };
 
-    plotProps.min = 1;
+    plotProps.min = 0;
   },
 });
 
