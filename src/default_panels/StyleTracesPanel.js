@@ -56,7 +56,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       </ShowInLegend>
     </PlotlySection>
     <PlotlySection name={_('Cones & Streamtubes')}>
-      <Numeric label={_('Size')} attr="sizeref" />
+      <Numeric label={_('Size')} attr="sizeref" stepmode="relative" />
       <Dropdown
         label={_('Size Mode')}
         options={[{label: _('scaled'), value: 'scaled'}, {label: _('absolute'), value: 'absolute'}]}
@@ -243,13 +243,18 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <MarkerColor suppressMultiValuedMessage label={_('Color')} attr="marker.color" />
       <NumericFraction label={_('Point Opacity')} attr="marker.opacity" />
       <MarkerSize label={_('Size')} attr="marker.size" />
+      <NumericReciprocal
+        label={_('Size Scale')}
+        attr="marker.sizeref"
+        step={0.2}
+        stepmode="relative"
+      />
       <Radio
         label={_('Size Mode')}
         attr="marker.sizemode"
         options={[{label: _('Area'), value: 'area'}, {label: _('Diameter'), value: 'diameter'}]}
       />
       <Numeric label={_('Minimum Size')} attr="marker.sizemin" />
-      <NumericReciprocal label={_('Size Scale')} attr="marker.sizeref" />
       <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
       <Numeric label={_('Border Width')} attr="marker.line.width" />
       <MultiColorPicker label={_('Border Color')} attr="marker.line.color" />

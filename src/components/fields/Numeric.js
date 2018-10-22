@@ -20,6 +20,7 @@ export class UnconnectedNumeric extends Component {
           defaultValue={this.props.defaultValue}
           placeholder={placeholder}
           step={this.props.step}
+          stepmode={this.props.stepmode}
           min={this.props.min}
           max={this.props.max}
           onChange={this.props.updatePlot}
@@ -41,6 +42,7 @@ UnconnectedNumeric.propTypes = {
   hideArrows: PropTypes.bool,
   showSlider: PropTypes.bool,
   step: PropTypes.number,
+  stepmode: PropTypes.string,
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };

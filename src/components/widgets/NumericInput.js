@@ -80,15 +80,17 @@ export default class NumericInput extends Component {
   }
 
   incrementValue(direction) {
-    const {defaultValue, min, step = 1} = this.props;
+    const {defaultValue, min, step = 1, stepmode = 'absolute'} = this.props;
     const {value} = this.state;
 
     let valueUpdate;
     if (isNumeric(value)) {
+      const x = parseFloat(value);
+      const absMode = stepmode === 'absolute';
       if (direction === 'increase') {
-        valueUpdate = parseFloat(value) + step;
+        valueUpdate = absMode ? x + step : x * (1 + step);
       } else {
-        valueUpdate = parseFloat(value) - step;
+        valueUpdate = absMode ? x - step : x / (1 + step);
       }
     } else {
       // if we are multi-valued and the user is incrementing or decrementing
@@ -176,6 +178,7 @@ NumericInput.propTypes = {
   showArrows: PropTypes.bool,
   showSlider: PropTypes.bool,
   step: PropTypes.number,
+  stepmode: PropTypes.string,
   value: PropTypes.any,
 };
 
