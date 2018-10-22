@@ -85,18 +85,12 @@ export default class NumericInput extends Component {
 
     let valueUpdate;
     if (isNumeric(value)) {
+      const x = parseFloat(value);
+      const absMode = stepmode === 'absolute';
       if (direction === 'increase') {
-        if (stepmode === 'absolute') {
-          valueUpdate = parseFloat(value) + step;
-        } else {
-          valueUpdate = parseFloat(value) * (1 + step);
-        }
+        valueUpdate = absMode ? x + step : x * (1 + step);
       } else {
-        if (stepmode === 'absolute') {
-          valueUpdate = parseFloat(value) - step;
-        } else {
-          valueUpdate = parseFloat(value) / (1 + step);
-        }
+        valueUpdate = absMode ? x - step : x / (1 + step);
       }
     } else {
       // if we are multi-valued and the user is incrementing or decrementing
