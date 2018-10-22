@@ -141,7 +141,7 @@ describe('TraceSelector', () => {
 
     const payload = beforeUpdateTraces.mock.calls[0][0];
     expect(payload.update).toEqual({
-      fill: 'none',
+      stackgroup: null,
       mode: 'lines',
       type: 'scatter',
     });

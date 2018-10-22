@@ -34,9 +34,9 @@ export function plotlyTraceToCustomTrace(trace) {
 export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
   switch (traceType) {
     case 'line':
-      return {type: 'scatter' + gl, mode: 'lines', fill: 'none'};
+      return {type: 'scatter' + gl, mode: 'lines', stackgroup: null};
     case 'scatter':
-      return {type: 'scatter' + gl, mode: 'markers', fill: 'none'};
+      return {type: 'scatter' + gl, mode: 'markers', stackgroup: null};
     case 'area':
       return {type: 'scatter' + gl, mode: 'lines', stackgroup: 1};
     case 'scatterpolar':

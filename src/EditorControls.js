@@ -1,7 +1,7 @@
 import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem, localizeString} from './lib';
+import {bem, localizeString, plotlyTraceToCustomTrace, traceTypeToPlotlyInitFigure} from './lib';
 import {
   shamefullyClearAxisTypes,
   shamefullyAdjustAxisRef,
@@ -143,14 +143,22 @@ class EditorControls extends Component {
 
         // can't use default prop because plotly.js mutates it:
         // https://github.com/plotly/react-chart-editor/issues/509
-        graphDiv.data.push(
-          this.props.makeDefaultTrace
-            ? this.props.makeDefaultTrace()
-            : {
-                type: `scatter${this.props.glByDefault ? 'gl' : ''}`,
-                mode: 'markers',
-              }
-        );
+        if (graphDiv.data.length === 0) {
+          graphDiv.data.push(
+            this.props.makeDefaultTrace
+              ? this.props.makeDefaultTrace()
+              : {
+                  type: `scatter${this.props.glByDefault ? 'gl' : ''}`,
+                  mode: 'markers',
+                }
+          );
+        } else {
+          const prevTrace = graphDiv.data[graphDiv.data.length - 1];
+          const prevTraceType = plotlyTraceToCustomTrace(prevTrace);
+          graphDiv.data.push(
+            traceTypeToPlotlyInitFigure(prevTraceType, prevTrace.type.endsWith('gl') ? 'gl' : '')
+          );
+        }
 
         if (this.props.afterAddTrace) {
           this.props.afterAddTrace(payload);
