@@ -97,6 +97,6 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
         type: 'cone',
       };
     default:
-      return {type: traceType};
+      return {type: traceType ? traceType : 'scatter'};
   }
 }

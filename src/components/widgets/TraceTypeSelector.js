@@ -83,7 +83,7 @@ class TraceTypeSelector extends Component {
     } = this.props;
     const computedValue = traceTypeToPlotlyInitFigure(value);
     if (
-      (type.endsWith('gl') || (!TRACES_WITH_GL.includes(type) && glByDefault)) &&
+      ((type && type.endsWith('gl')) || (!TRACES_WITH_GL.includes(type) && glByDefault)) &&
       TRACES_WITH_GL.includes(computedValue.type) &&
       !computedValue.type.endsWith('gl')
     ) {
