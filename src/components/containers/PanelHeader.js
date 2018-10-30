@@ -20,7 +20,7 @@ class PanelHeader extends Component {
     const {children, addAction, allowCollapse, toggleFolds, hasOpen} = this.props;
 
     // dropdown is styled with same styles as react-select component - see _dropdown.scss
-    const icon = <PlusIcon />;
+    const icon = 'customIcon' in addAction ? addAction.customIcon : <PlusIcon />;
     return !children && !addAction && !allowCollapse ? null : (
       <div className="panel__header">
         {children && children.length ? (
