@@ -610,6 +610,11 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <PlotlySection name={_('On Hover')}>
       <HoverInfo attr="hoverinfo" label={_('Values Shown On Hover')} />
+      <Radio
+        label={_('Split labels')}
+        attr="hoverlabel.split"
+        options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
+      />
       <VisibilitySelect
         attr="contour.show"
         label={_('Show Contour')}
