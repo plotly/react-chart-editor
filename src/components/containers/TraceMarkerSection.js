@@ -18,7 +18,7 @@ class TraceMarkerSection extends Component {
     if (['bar', 'histogram'].includes(traceType)) {
       this.name = _('Bars');
     } else if (traceType === 'pie') {
-      this.name = _('Segments');
+      this.name = _('Pie Segments');
     } else {
       this.name = _('Points');
     }

@@ -13,6 +13,7 @@ import {
   VisibilitySelect,
   HovermodeDropdown,
   Flaglist,
+  Radio,
 } from '../components';
 import {HoverColor} from '../components/fields/derived';
 
@@ -45,6 +46,17 @@ const StyleLayoutPanel = (props, {localize: _}) => (
         <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
         <ColorPicker label={_('Font Color')} attr="titlefont.color" />
       </PlotlySection>
+    </PlotlyFold>
+
+    <PlotlyFold name={_('Modebar')}>
+      <Radio
+        label={_('Orientation')}
+        attr="modebar.orientation"
+        options={[{label: _('Horizontal'), value: 'h'}, {label: _('Vertical'), value: 'v'}]}
+      />
+      <ColorPicker label={_('Icon Color')} attr="modebar.color" />
+      <ColorPicker label={_('Active Icon Color')} attr="modebar.activecolor" />
+      <ColorPicker label={_('Background Color')} attr="modebar.bgcolor" />
     </PlotlyFold>
     <PlotlyFold name={_('Layout')}>
       <VisibilitySelect
