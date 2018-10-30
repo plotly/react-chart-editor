@@ -156,7 +156,10 @@ class EditorControls extends Component {
           const prevTrace = graphDiv.data[graphDiv.data.length - 1];
           const prevTraceType = plotlyTraceToCustomTrace(prevTrace);
           graphDiv.data.push(
-            traceTypeToPlotlyInitFigure(prevTraceType, prevTrace.type.endsWith('gl') ? 'gl' : '')
+            traceTypeToPlotlyInitFigure(
+              prevTraceType,
+              prevTrace.type && prevTrace.type.endsWith('gl') ? 'gl' : ''
+            )
           );
         }
 
