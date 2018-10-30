@@ -118,15 +118,6 @@ export const ContourNumeric = connectToContainer(UnconnectedNumeric, {
   },
 });
 
-export const BinningNumeric = connectToContainer(UnconnectedNumeric, {
-  modifyPlotProps: (props, context, plotProps) => {
-    const {fullContainer} = plotProps;
-    if (plotProps.isVisible && fullContainer && fullContainer[`autobin${props.axis}`]) {
-      plotProps.isVisible = false;
-    }
-  },
-});
-
 export const BinningDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _} = context;

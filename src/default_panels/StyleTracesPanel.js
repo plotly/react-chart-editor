@@ -33,7 +33,6 @@ import {
   GroupCreator,
 } from '../components';
 import {
-  BinningNumeric,
   BinningDropdown,
   NumericReciprocal,
   ShowInLegend,
@@ -176,23 +175,14 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
     </PlotlySection>
     <PlotlySection name={_('Binning')}>
-      <Radio
-        label={_('X Binning')}
-        attr="autobinx"
-        options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
-      />
-      <BinningNumeric label={_('X Bin Start')} attr="xbins.start" axis="x" />
-      <BinningNumeric label={_('X Bin End')} attr="xbins.end" axis="x" />
-      <BinningNumeric label={_('X Bin Size')} attr="xbins.size" axis="x" />
+      <Numeric label={_('X Bin Start')} attr="xbins.start" axis="x" />
+      <Numeric label={_('X Bin End')} attr="xbins.end" axis="x" />
+      <Numeric label={_('X Bin Size')} attr="xbins.size" axis="x" />
       <Numeric label={_('Max X Bins')} attr="nbinsx" />
-      <Radio
-        label={_('Y Binning')}
-        attr="autobiny"
-        options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
-      />
-      <BinningNumeric label={_('Y Bin Start')} attr="ybins.start" axis="y" />
-      <BinningNumeric label={_('Y Bin End')} attr="ybins.end" axis="y" />
-      <BinningNumeric label={_('Y Bin Size')} attr="ybins.size" axis="y" />
+
+      <Numeric label={_('Y Bin Start')} attr="ybins.start" axis="y" />
+      <Numeric label={_('Y Bin End')} attr="ybins.end" axis="y" />
+      <Numeric label={_('Y Bin Size')} attr="ybins.size" axis="y" />
       <Numeric label={_('Max Y Bins')} attr="nbinsy" />
     </PlotlySection>
     <PlotlySection label={_('Bar Position')}>
