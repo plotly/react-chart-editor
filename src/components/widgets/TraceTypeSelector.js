@@ -138,12 +138,10 @@ class TraceTypeSelector extends Component {
 
   renderCategories() {
     const {fullValue} = this.props;
+    const {mapBoxAccess, localize: _, chartHelp} = this.context;
     const {
       traceTypesConfig: {traces, categories, complex},
-      mapBoxAccess,
-      localize: _,
-      chartHelp,
-    } = this.context;
+    } = this.props;
 
     return categories(_).map((category, i) => {
       let items = traces(_)
@@ -192,10 +190,10 @@ class TraceTypeSelector extends Component {
 
   renderSingleBlock() {
     const {fullValue} = this.props;
+    const {localize: _} = this.context;
     const {
       traceTypesConfig: {traces, complex},
-      localize: _,
-    } = this.context;
+    } = this.props;
 
     const items = traces(_).map(item => (
       <Item
@@ -225,10 +223,10 @@ class TraceTypeSelector extends Component {
   }
 
   render() {
+    const {localize: _} = this.context;
     const {
       traceTypesConfig: {categories},
-      localize: _,
-    } = this.context;
+    } = this.props;
 
     return (
       <Modal title={_('Select Trace Type')}>
@@ -243,9 +241,9 @@ TraceTypeSelector.propTypes = {
   fullValue: PropTypes.string,
   fullContainer: PropTypes.object,
   glByDefault: PropTypes.bool,
+  traceTypesConfig: PropTypes.object,
 };
 TraceTypeSelector.contextTypes = {
-  traceTypesConfig: PropTypes.object,
   handleClose: PropTypes.func,
   localize: PropTypes.func,
   mapBoxAccess: PropTypes.bool,
