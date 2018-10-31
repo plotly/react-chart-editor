@@ -154,14 +154,11 @@ class TraceTypeSelector extends Component {
 
       const MAX_ITEMS = 4;
 
-      let columnClasses = 'trace-grid__column';
-
-      if (
+      const columnClasses =
         (items.length > MAX_ITEMS && !category.maxColumns) ||
         (category.maxColumns && category.maxColumns > 1)
-      ) {
-        columnClasses += ' trace-grid__column--double';
-      }
+          ? 'trace-grid__column trace-grid__column--double'
+          : 'trace-grid__column';
 
       return (
         <div className={columnClasses} key={i}>
@@ -195,29 +192,20 @@ class TraceTypeSelector extends Component {
       traceTypesConfig: {traces, complex},
     } = this.props;
 
-    const items = traces(_).map(item => (
-      <Item
-        key={item.value}
-        complex={complex}
-        active={fullValue === item.value}
-        item={item}
-        actions={this.actions}
-        showActions={false}
-        handleClick={() => this.selectAndClose(item.value)}
-        style={{display: 'inline-block'}}
-      />
-    ));
-
     return (
-      <div
-        style={{
-          maxWidth: '460px',
-          display: 'flex',
-          flexFlow: 'wrap',
-          padding: '5px',
-        }}
-      >
-        {items}
+      <div className="trace-grid-single-block">
+        {traces(_).map(item => (
+          <Item
+            key={item.value}
+            complex={complex}
+            active={fullValue === item.value}
+            item={item}
+            actions={this.actions}
+            showActions={false}
+            handleClick={() => this.selectAndClose(item.value)}
+            style={{display: 'inline-block'}}
+          />
+        ))}
       </div>
     );
   }
