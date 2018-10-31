@@ -4,6 +4,13 @@ $label-height: 34px;
 $row-height: $image-size + $label-height + $default-half-spacing-unit +
   $default-quarter-spacing-unit;
 
+.trace-grid-single-block {
+  max-width: 460px;
+  display: flex;
+  flex-flow: wrap;
+  padding: var(--spacing-quarter-unit);
+}
+
 .trace-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

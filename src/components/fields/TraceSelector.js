@@ -118,6 +118,7 @@ class TraceSelector extends Component {
                 handleClick={() =>
                   this.context.openModal(TraceTypeSelector, {
                     ...props,
+                    traceTypesConfig: this.context.traceTypesConfig,
                     glByDefault: this.context.glByDefault,
                   })
                 }
