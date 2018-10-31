@@ -32,11 +32,15 @@ export function plotlyTraceToCustomTrace(trace) {
 }
 
 export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
+  const scatterTrace = {type: 'scatter' + gl, mode: 'markers', stackgroup: null};
+
   switch (traceType) {
     case 'line':
       return {type: 'scatter' + gl, mode: 'lines', stackgroup: null};
     case 'scatter':
-      return {type: 'scatter' + gl, mode: 'markers', stackgroup: null};
+      return scatterTrace;
+    case undefined: // eslint-disable-line
+      return scatterTrace;
     case 'area':
       return {type: 'scatter' + gl, mode: 'lines', stackgroup: 1};
     case 'scatterpolar':
