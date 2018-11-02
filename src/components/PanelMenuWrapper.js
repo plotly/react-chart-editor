@@ -61,17 +61,20 @@ class PanelsWithSidebar extends Component {
       const nameOrder = order.map(panel => panel.name).filter(this.getUniqueValues);
 
       orderedChildren.sort((a, b) => {
+        const panelAHasCustomOrder = groupOrder.includes(a.props.group);
+        const panelBHasCustomOrder = groupOrder.includes(b.props.group);
+
         // if one of the elements is not in the groupOrder array, then it goes to the end of the list
-        if (groupOrder.includes(a.props.group) && !groupOrder.includes(b.props.group)) {
+        if (panelAHasCustomOrder && !panelBHasCustomOrder) {
           return -1;
         }
-        if (!groupOrder.includes(a.props.group) && groupOrder.includes(b.props.group)) {
+        if (!panelAHasCustomOrder && panelBHasCustomOrder) {
           return 1;
         }
 
         // if both elements are not in the groupOrder array, they get sorted alphabetically,
         // by group, then by name
-        if (!groupOrder.includes(a.props.group) && !groupOrder.includes(b.props.group)) {
+        if (!panelAHasCustomOrder && !panelBHasCustomOrder) {
           const sortByGroup =
             a.props.group === b.props.group ? 0 : a.props.group < b.props.group ? -1 : 1;
           const sortByName =
@@ -81,7 +84,7 @@ class PanelsWithSidebar extends Component {
 
         // if both elements are in the groupOrder array, they get sorted according to their order in
         // the groupOrder, then nameOrder arrays.
-        if (groupOrder.includes(a.props.group) && groupOrder.includes(b.props.group)) {
+        if (panelAHasCustomOrder && panelBHasCustomOrder) {
           const sortByGroup = groupOrder.indexOf(a.props.group) - groupOrder.indexOf(b.props.group);
           const sortByName = nameOrder.indexOf(a.props.name) - nameOrder.indexOf(b.props.name);
           return sortByGroup || sortByName;
