@@ -45,13 +45,52 @@ class PanelsWithSidebar extends Component {
     );
   }
 
+  getUniqueValues(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
   computeMenuOptions(props) {
-    const {children} = props;
+    const {children, order} = props;
     const sections = [];
     const groupLookup = {};
     let groupIndex;
+    const orderedChildren = React.Children.toArray(children);
 
-    React.Children.forEach(children, child => {
+    if (order) {
+      const groupOrder = order.map(panel => panel.group).filter(this.getUniqueValues);
+      const nameOrder = order.map(panel => panel.name).filter(this.getUniqueValues);
+
+      orderedChildren.sort((a, b) => {
+        // if one of the elements is not in the groupOrder array, then it goes to the end of the list
+        if (groupOrder.includes(a.props.group) && !groupOrder.includes(b.props.group)) {
+          return -1;
+        }
+        if (!groupOrder.includes(a.props.group) && groupOrder.includes(b.props.group)) {
+          return 1;
+        }
+
+        // if both elements are not in the groupOrder array, they get sorted alphabetically,
+        // by group, then by name
+        if (!groupOrder.includes(a.props.group) && !groupOrder.includes(b.props.group)) {
+          const sortByGroup =
+            a.props.group === b.props.group ? 0 : a.props.group < b.props.group ? -1 : 1;
+          const sortByName =
+            a.props.name === b.props.name ? 0 : a.props.name < b.props.name ? -1 : 1;
+          return sortByGroup || sortByName;
+        }
+
+        // if both elements are in the groupOrder array, they get sorted according to their order in
+        // the groupOrder, then nameOrder arrays.
+        if (groupOrder.includes(a.props.group) && groupOrder.includes(b.props.group)) {
+          const sortByGroup = groupOrder.indexOf(a.props.group) - groupOrder.indexOf(b.props.group);
+          const sortByName = nameOrder.indexOf(a.props.name) - nameOrder.indexOf(b.props.name);
+          return sortByGroup || sortByName;
+        }
+        return 0;
+      });
+    }
+
+    orderedChildren.forEach(child => {
       if (!child) {
         return;
       }
@@ -101,6 +140,7 @@ class PanelsWithSidebar extends Component {
 
 PanelsWithSidebar.propTypes = {
   children: PropTypes.node,
+  order: PropTypes.array,
 };
 
 PanelsWithSidebar.childContextTypes = {
