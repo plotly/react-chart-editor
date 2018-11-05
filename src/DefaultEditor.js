@@ -69,7 +69,7 @@ class DefaultEditor extends Component {
     const logo = this.props.logoSrc && <Logo src={this.props.logoSrc} />;
 
     return (
-      <PanelMenuWrapper>
+      <PanelMenuWrapper menuPanelOrder={this.props.menuPanelOrder}>
         {logo ? logo : null}
         <GraphCreatePanel group={_('Structure')} name={_('Traces')} />
         <GraphSubplotsPanel group={_('Structure')} name={_('Subplots')} />
@@ -95,6 +95,7 @@ class DefaultEditor extends Component {
 DefaultEditor.propTypes = {
   children: PropTypes.node,
   logoSrc: PropTypes.string,
+  menuPanelOrder: PropTypes.array,
 };
 
 DefaultEditor.contextTypes = {
