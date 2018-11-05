@@ -1,5 +1,13 @@
 import sortMenu from '../sortMenu';
 
+function stringify(array) {
+  let string = '';
+  array.forEach(obj => {
+    string += JSON.stringify(obj);
+  });
+  return string;
+}
+
 describe('sortMenu', () => {
   it('modifies original array to follow the group, then name order provided', () => {
     const initialArray = [
@@ -7,10 +15,11 @@ describe('sortMenu', () => {
       {props: {group: 'DEV', name: 'JSON'}},
     ];
     const orderProp = [{group: 'DEV', name: 'JSON'}, {group: 'DEV', name: 'Inspector'}];
-    sortMenu(initialArray, orderProp);
 
-    expect(initialArray[0].props.name).toBe('JSON');
-    expect(initialArray[1].props.name).toBe('Inspector');
+    sortMenu(initialArray, orderProp);
+    expect(stringify(initialArray)).toBe(
+      stringify([{props: {group: 'DEV', name: 'JSON'}}, {props: {group: 'DEV', name: 'Inspector'}}])
+    );
   });
 
   it('sorts the array by group, then by name', () => {
@@ -22,7 +31,6 @@ describe('sortMenu', () => {
       {props: {group: 'DEV', name: 'Inspector'}},
       {props: {group: 'DEV', name: 'JSON'}},
     ];
-
     const orderProp = [
       {group: 'DEV', name: 'JSON'},
       {group: 'DEV', name: 'Inspector'},
@@ -33,18 +41,16 @@ describe('sortMenu', () => {
     ];
 
     sortMenu(initialArray, orderProp);
-    expect(initialArray[0].props.group).toBe('DEV');
-    expect(initialArray[0].props.name).toBe('JSON');
-    expect(initialArray[1].props.group).toBe('DEV');
-    expect(initialArray[1].props.name).toBe('Inspector');
-    expect(initialArray[2].props.group).toBe('Structure');
-    expect(initialArray[2].props.name).toBe('Subplots');
-    expect(initialArray[3].props.group).toBe('Structure');
-    expect(initialArray[3].props.name).toBe('Create');
-    expect(initialArray[4].props.group).toBe('Style');
-    expect(initialArray[4].props.name).toBe('Color Bars');
-    expect(initialArray[5].props.group).toBe('Style');
-    expect(initialArray[5].props.name).toBe('Annotation');
+    expect(stringify(initialArray)).toBe(
+      stringify([
+        {props: {group: 'DEV', name: 'JSON'}},
+        {props: {group: 'DEV', name: 'Inspector'}},
+        {props: {group: 'Structure', name: 'Subplots'}},
+        {props: {group: 'Structure', name: 'Create'}},
+        {props: {group: 'Style', name: 'Color Bars'}},
+        {props: {group: 'Style', name: 'Annotation'}},
+      ])
+    );
   });
 
   it('puts not mentionned panels to the bottom of list and sorts alphabetically', () => {
@@ -64,18 +70,16 @@ describe('sortMenu', () => {
     ];
 
     sortMenu(initialArray, orderProp);
-    expect(initialArray[0].props.group).toBe('Structure');
-    expect(initialArray[0].props.name).toBe('Subplots');
-    expect(initialArray[1].props.group).toBe('Structure');
-    expect(initialArray[1].props.name).toBe('Create');
-    expect(initialArray[2].props.group).toBe('Style');
-    expect(initialArray[2].props.name).toBe('Color Bars');
-    expect(initialArray[3].props.group).toBe('Style');
-    expect(initialArray[3].props.name).toBe('Annotation');
-    expect(initialArray[4].props.group).toBe('DEV');
-    expect(initialArray[4].props.name).toBe('Inspector');
-    expect(initialArray[5].props.group).toBe('DEV');
-    expect(initialArray[5].props.name).toBe('JSON');
+    expect(stringify(initialArray)).toBe(
+      stringify([
+        {props: {group: 'Structure', name: 'Subplots'}},
+        {props: {group: 'Structure', name: 'Create'}},
+        {props: {group: 'Style', name: 'Color Bars'}},
+        {props: {group: 'Style', name: 'Annotation'}},
+        {props: {group: 'DEV', name: 'Inspector'}},
+        {props: {group: 'DEV', name: 'JSON'}},
+      ])
+    );
   });
 
   it('orders not mentionned subpanels at the end, alphabetically', () => {
@@ -85,17 +89,17 @@ describe('sortMenu', () => {
       {props: {group: 'Style', name: 'Axes'}},
       {props: {group: 'Structure', name: 'Create'}},
     ];
-    const orderProp = [{group: 'Style', name: 'Traces'}, {group: 'Structure', name: 'Create'}];
+    const orderProp = [{group: 'Style', name: 'Traces'}];
 
     sortMenu(initialArray, orderProp);
-    expect(initialArray[0].props.group).toBe('Style');
-    expect(initialArray[0].props.name).toBe('Traces');
-    expect(initialArray[1].props.group).toBe('Style');
-    expect(initialArray[1].props.name).toBe('Axes');
-    expect(initialArray[2].props.group).toBe('Style');
-    expect(initialArray[2].props.name).toBe('General');
-    expect(initialArray[3].props.group).toBe('Structure');
-    expect(initialArray[3].props.name).toBe('Create');
+    expect(stringify(initialArray)).toBe(
+      stringify([
+        {props: {group: 'Style', name: 'Traces'}},
+        {props: {group: 'Style', name: 'Axes'}},
+        {props: {group: 'Style', name: 'General'}},
+        {props: {group: 'Structure', name: 'Create'}},
+      ])
+    );
   });
 
   it('ignores non existent panel groups', () => {
@@ -114,14 +118,14 @@ describe('sortMenu', () => {
     ];
 
     sortMenu(initialArray, orderProp);
-    expect(initialArray[0].props.group).toBe('Structure');
-    expect(initialArray[0].props.name).toBe('Create');
-    expect(initialArray[1].props.group).toBe('Structure');
-    expect(initialArray[1].props.name).toBe('Subplots');
-    expect(initialArray[2].props.group).toBe('Style');
-    expect(initialArray[2].props.name).toBe('Color Bars');
-    expect(initialArray[3].props.group).toBe('Style');
-    expect(initialArray[3].props.name).toBe('Annotation');
+    expect(stringify(initialArray)).toBe(
+      stringify([
+        {props: {group: 'Structure', name: 'Create'}},
+        {props: {group: 'Structure', name: 'Subplots'}},
+        {props: {group: 'Style', name: 'Color Bars'}},
+        {props: {group: 'Style', name: 'Annotation'}},
+      ])
+    );
   });
 
   it('ignores non existent panel names', () => {
@@ -139,14 +143,14 @@ describe('sortMenu', () => {
     ];
 
     sortMenu(initialArray, orderProp);
-    expect(initialArray[0].props.group).toBe('Style');
-    expect(initialArray[0].props.name).toBe('Color Bars');
-    expect(initialArray[1].props.group).toBe('Style');
-    expect(initialArray[1].props.name).toBe('Annotation');
-    expect(initialArray[2].props.group).toBe('Structure');
-    expect(initialArray[2].props.name).toBe('Create');
-    expect(initialArray[3].props.group).toBe('Structure');
-    expect(initialArray[3].props.name).toBe('Subplots');
+    expect(stringify(initialArray)).toBe(
+      stringify([
+        {props: {group: 'Style', name: 'Color Bars'}},
+        {props: {group: 'Style', name: 'Annotation'}},
+        {props: {group: 'Structure', name: 'Create'}},
+        {props: {group: 'Structure', name: 'Subplots'}},
+      ])
+    );
   });
 
   it('ignores invalid combinations', () => {
@@ -164,13 +168,13 @@ describe('sortMenu', () => {
     ];
 
     sortMenu(initialArray, orderProp);
-    expect(initialArray[0].props.group).toBe('Style');
-    expect(initialArray[0].props.name).toBe('Color Bars');
-    expect(initialArray[1].props.group).toBe('Style');
-    expect(initialArray[1].props.name).toBe('Annotation');
-    expect(initialArray[2].props.group).toBe('Structure');
-    expect(initialArray[2].props.name).toBe('Create');
-    expect(initialArray[3].props.group).toBe('Structure');
-    expect(initialArray[3].props.name).toBe('Subplots');
+    expect(stringify(initialArray)).toBe(
+      stringify([
+        {props: {group: 'Style', name: 'Color Bars'}},
+        {props: {group: 'Style', name: 'Annotation'}},
+        {props: {group: 'Structure', name: 'Create'}},
+        {props: {group: 'Structure', name: 'Subplots'}},
+      ])
+    );
   });
 });

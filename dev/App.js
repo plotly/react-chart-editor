@@ -186,7 +186,7 @@ class App extends Component {
           // chartHelp={chartHelp}
         >
           <DefaultEditor
-          // order={[
+          // menuPanelOrder={[
           //   {group: 'Dev', name: 'JSON'},
           //   {group: 'Dev', name: 'Inspector'},
           //   {group: 'Structure', name: 'Create'},

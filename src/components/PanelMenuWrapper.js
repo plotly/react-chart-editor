@@ -47,14 +47,14 @@ class PanelsWithSidebar extends Component {
   }
 
   computeMenuOptions(props) {
-    const {children, order} = props;
+    const {children, menuPanelOrder} = props;
     const sections = [];
     const groupLookup = {};
     let groupIndex;
     const panels = React.Children.toArray(children);
 
-    if (order) {
-      sortMenu(panels, order);
+    if (menuPanelOrder) {
+      sortMenu(panels, menuPanelOrder);
     }
 
     panels.forEach(child => {
@@ -107,7 +107,7 @@ class PanelsWithSidebar extends Component {
 
 PanelsWithSidebar.propTypes = {
   children: PropTypes.node,
-  order: PropTypes.array,
+  menuPanelOrder: PropTypes.array,
 };
 
 PanelsWithSidebar.childContextTypes = {
