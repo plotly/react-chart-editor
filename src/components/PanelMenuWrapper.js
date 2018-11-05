@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, {cloneElement, Component} from 'react';
 import SidebarGroup from './sidebar/SidebarGroup';
 import {bem} from 'lib';
+import sortMenu from 'lib/sortMenu';
 
 class PanelsWithSidebar extends Component {
   constructor(props) {
@@ -45,55 +46,18 @@ class PanelsWithSidebar extends Component {
     );
   }
 
-  getUniqueValues(value, index, self) {
-    return self.indexOf(value) === index;
-  }
-
   computeMenuOptions(props) {
     const {children, order} = props;
     const sections = [];
     const groupLookup = {};
     let groupIndex;
-    const orderedChildren = React.Children.toArray(children);
+    const panels = React.Children.toArray(children);
 
     if (order) {
-      const groupOrder = order.map(panel => panel.group).filter(this.getUniqueValues);
-      const nameOrder = order.map(panel => panel.name).filter(this.getUniqueValues);
-
-      orderedChildren.sort((a, b) => {
-        const panelAHasCustomOrder = groupOrder.includes(a.props.group);
-        const panelBHasCustomOrder = groupOrder.includes(b.props.group);
-
-        // if one of the elements is not in the groupOrder array, then it goes to the end of the list
-        if (panelAHasCustomOrder && !panelBHasCustomOrder) {
-          return -1;
-        }
-        if (!panelAHasCustomOrder && panelBHasCustomOrder) {
-          return 1;
-        }
-
-        // if both elements are not in the groupOrder array, they get sorted alphabetically,
-        // by group, then by name
-        if (!panelAHasCustomOrder && !panelBHasCustomOrder) {
-          const sortByGroup =
-            a.props.group === b.props.group ? 0 : a.props.group < b.props.group ? -1 : 1;
-          const sortByName =
-            a.props.name === b.props.name ? 0 : a.props.name < b.props.name ? -1 : 1;
-          return sortByGroup || sortByName;
-        }
-
-        // if both elements are in the groupOrder array, they get sorted according to their order in
-        // the groupOrder, then nameOrder arrays.
-        if (panelAHasCustomOrder && panelBHasCustomOrder) {
-          const sortByGroup = groupOrder.indexOf(a.props.group) - groupOrder.indexOf(b.props.group);
-          const sortByName = nameOrder.indexOf(a.props.name) - nameOrder.indexOf(b.props.name);
-          return sortByGroup || sortByName;
-        }
-        return 0;
-      });
+      sortMenu(panels, order);
     }
 
-    orderedChildren.forEach(child => {
+    panels.forEach(child => {
       if (!child) {
         return;
       }
