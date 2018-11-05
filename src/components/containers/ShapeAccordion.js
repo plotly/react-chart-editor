@@ -1,5 +1,5 @@
 import PlotlyFold from './PlotlyFold';
-import TraceRequiredPanel from './TraceRequiredPanel';
+import {LayoutPanel} from './derived';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectShapeToLayout} from 'lib';
@@ -48,7 +48,7 @@ class ShapeAccordion extends Component {
     };
 
     return (
-      <TraceRequiredPanel addAction={canAdd ? addAction : null}>
+      <LayoutPanel addAction={canAdd ? addAction : null}>
         {content ? (
           content
         ) : (
@@ -61,7 +61,7 @@ class ShapeAccordion extends Component {
             <p>{_('Click on the + button above to add a shape.')}</p>
           </PanelMessage>
         )}
-      </TraceRequiredPanel>
+      </LayoutPanel>
     );
   }
 }

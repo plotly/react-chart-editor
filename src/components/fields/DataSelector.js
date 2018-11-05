@@ -95,6 +95,7 @@ export class UnconnectedDataSelector extends Component {
           value={this.fullValue}
           onChange={this.updatePlot}
           multi={this.is2D}
+          searchable={true}
           optionRenderer={this.context.dataSourceOptionRenderer}
           valueRenderer={this.context.dataSourceValueRenderer}
           clearable={true}
