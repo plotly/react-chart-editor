@@ -12,7 +12,7 @@ import {
   Radio,
   TextEditor,
   PlotlySection,
-  TraceRequiredPanel,
+  LayoutPanel,
   AxesFold,
   AxisSide,
   RangesliderVisible,
@@ -26,7 +26,7 @@ class StyleAxesPanel extends Component {
   render() {
     const {localize: _} = this.context;
     return (
-      <TraceRequiredPanel>
+      <LayoutPanel>
         <AxesFold
           name={_('Titles')}
           axisFilter={axis => !(axis._name.includes('angular') || axis._subplot.includes('geo'))}
@@ -402,7 +402,7 @@ class StyleAxesPanel extends Component {
           <Numeric label={_('Thickness')} attr="spikethickness" units="px" />
           <ColorPicker label={_('Color')} attr="spikecolor" />
         </AxesFold>
-      </TraceRequiredPanel>
+      </LayoutPanel>
     );
   }
 }

@@ -1,5 +1,5 @@
 import PlotlyFold from './PlotlyFold';
-import TraceRequiredPanel from './TraceRequiredPanel';
+import {LayoutPanel} from './derived';
 import {PanelMessage} from './PanelEmpty';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
@@ -43,7 +43,7 @@ class AnnotationAccordion extends Component {
     };
 
     return (
-      <TraceRequiredPanel addAction={canAdd ? addAction : null}>
+      <LayoutPanel addAction={canAdd ? addAction : null}>
         {content ? (
           content
         ) : (
@@ -56,7 +56,7 @@ class AnnotationAccordion extends Component {
             <p>{_('Click on the + button above to add an annotation.')}</p>
           </PanelMessage>
         )}
-      </TraceRequiredPanel>
+      </LayoutPanel>
     );
   }
 }
