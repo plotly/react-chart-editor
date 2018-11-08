@@ -15,7 +15,6 @@ import {CogIcon} from 'plotly-icons';
 class TraceSelector extends Component {
   constructor(props, context) {
     super(props, context);
-
     this.updatePlot = this.updatePlot.bind(this);
     this.setGl = this.setGl.bind(this);
     this.glEnabled = this.glEnabled.bind(this);
