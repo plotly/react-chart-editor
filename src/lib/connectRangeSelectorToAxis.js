@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {ConnectRangeSelectorToAxisContext} from '../context';
 
 export default function connectRangeSelectorToAxis(WrappedComponent) {
   class RangeSelectorConnectedComponent extends Component {
@@ -42,6 +43,19 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`rangeselector.buttons[].${attr}`),
+        updateContainer: this.updateRangeselector,
+        deleteContainer: this.deleteRangeselector,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateRangeselector(update) {
       const newUpdate = {};
       const {rangeselectorIndex} = this.props;
@@ -65,7 +79,11 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return (
+        <ConnectRangeSelectorToAxisContext.Provider value={this.provideValue()}>
+          <WrappedComponent {...this.props} />
+        </ConnectRangeSelectorToAxisContext.Provider>
+      );
     }
   }
 

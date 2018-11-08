@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName, plotlyTraceToCustomTrace, renderTraceIcon, getFullTrace} from '../lib';
+import {ConnectNonCartesianSubplotToLayoutContext} from '../context';
 
 export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
   class SubplotConnectedComponent extends Component {
@@ -43,6 +44,18 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`${this.props.subplot}.${attr}`),
+        updateContainer: this.updateSubplot,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateSubplot(update) {
       const newUpdate = {};
       for (const key in update) {
@@ -52,7 +65,11 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
+      return (
+        <ConnectNonCartesianSubplotToLayoutContext.Provider value={this.provideValue()}>
+          <WrappedComponent name={this.name} icon={this.icon} {...this.props} />
+        </ConnectNonCartesianSubplotToLayoutContext.Provider>
+      );
     }
   }
 

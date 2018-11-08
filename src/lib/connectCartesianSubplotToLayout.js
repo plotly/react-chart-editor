@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName, plotlyTraceToCustomTrace, renderTraceIcon, getFullTrace} from '../lib';
+import {ConnectCartesianSubplotToLayoutContext} from '../context';
 
 export default function connectCartesianSubplotToLayout(WrappedComponent) {
   class SubplotConnectedComponent extends Component {
@@ -52,6 +53,21 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(
+                attr.replace('xaxis', this.props.xaxis).replace('yaxis', this.props.yaxis)
+              ),
+        updateContainer: this.updateSubplot,
+        deleteContainer: this.deleteSubplot,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateSubplot(update) {
       const newUpdate = {};
       for (const key in update) {
@@ -62,7 +78,11 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
+      return (
+        <ConnectCartesianSubplotToLayoutContext.Provider value={this.provideValue()}>
+          <WrappedComponent name={this.name} icon={this.icon} {...this.props} />
+        </ConnectCartesianSubplotToLayoutContext.Provider>
+      );
     }
   }
 

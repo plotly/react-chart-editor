@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
+import {ModalProviderContext} from '../../context';
 
 class ModalProvider extends React.Component {
   constructor(props) {
@@ -70,13 +71,26 @@ class ModalProvider extends React.Component {
     };
   }
 
+  provideValue() {
+    return {
+      openModal: (c, p) => this.openModal(c, p),
+      closeModal: () => this.closeModal(),
+      handleClose: () => this.handleClose(),
+      isAnimatingOut: this.state.isAnimatingOut,
+    };
+  }
+
   render() {
     const {component: Component, componentProps, isAnimatingOut} = this.state;
     return (
-      <Fragment>
-        {this.props.children}
-        {this.state.open ? <Component isAnimatingOut={isAnimatingOut} {...componentProps} /> : null}
-      </Fragment>
+      <ModalProviderContext.Provider value={this.provideValue()}>
+        <Fragment>
+          {this.props.children}
+          {this.state.open ? (
+            <Component isAnimatingOut={isAnimatingOut} {...componentProps} />
+          ) : null}
+        </Fragment>
+      </ModalProviderContext.Provider>
     );
   }
 }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {ConnectLayoutToPlotContext} from '../context';
 
 export default function connectLayoutToPlot(WrappedComponent) {
   class LayoutConnectedComponent extends Component {
@@ -32,8 +33,38 @@ export default function connectLayoutToPlot(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      const {layout, fullLayout, plotly, onUpdate} = this.context;
+
+      const updateContainer = update => {
+        if (!onUpdate) {
+          return;
+        }
+        onUpdate({
+          type: EDITOR_ACTIONS.UPDATE_LAYOUT,
+          payload: {
+            update,
+          },
+        });
+      };
+
+      return {
+        getValObject: attr =>
+          !plotly
+            ? null
+            : plotly.PlotSchema.getLayoutValObject(fullLayout, nestedProperty({}, attr).parts),
+        updateContainer,
+        container: layout,
+        fullContainer: fullLayout,
+      };
+    }
+
     render() {
-      return <WrappedComponent {...this.props} />;
+      return (
+        <ConnectLayoutToPlotContext.Provider value={this.provideValue()}>
+          <WrappedComponent {...this.props} />
+        </ConnectLayoutToPlotContext.Provider>
+      );
     }
   }
 

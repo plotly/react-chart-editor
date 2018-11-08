@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {ConnectImageToLayoutContext} from '../context';
 
 export default function connectImageToLayout(WrappedComponent) {
   class ImageConnectedComponent extends Component {
@@ -38,6 +39,17 @@ export default function connectImageToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`images[].${attr}`),
+        updateContainer: this.updateImage,
+        deleteContainer: this.deleteImage,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateImage(update) {
       const newUpdate = {};
       const {imageIndex} = this.props;
@@ -58,7 +70,11 @@ export default function connectImageToLayout(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return (
+        <ConnectImageToLayoutContext.Provider value={this.provideValue()}>
+          <WrappedComponent {...this.props} />
+        </ConnectImageToLayoutContext.Provider>
+      );
     }
   }
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import unpackPlotProps from './unpackPlotProps';
 import {getDisplayName} from '../lib';
+import {ConnectToContainerContext} from '../context';
 
 export const containerConnectedContextTypes = {
   localize: PropTypes.func,
@@ -56,6 +57,13 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       };
     }
 
+    provideValue() {
+      return {
+        description: this.plotProps.description,
+        attr: this.attr,
+      };
+    }
+
     render() {
       // Merge plotprops onto props so leaf components only need worry about
       // props. However pass plotProps as a specific prop in case inner component
@@ -63,7 +71,11 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       // component can skip computation as it can see plotProps is already defined.
       const {plotProps = this.plotProps, ...props} = Object.assign({}, this.plotProps, this.props);
       if (props.isVisible) {
-        return <WrappedComponent {...props} plotProps={plotProps} />;
+        return (
+          <ConnectToContainerContext.Provider value={this.provideValue()}>
+            <WrappedComponent {...props} plotProps={plotProps} />
+          </ConnectToContainerContext.Provider>
+        );
       }
 
       return null;

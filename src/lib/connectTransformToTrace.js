@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {ConnectTransformToTraceContext} from '../context';
 
 export default function connectTransformToTrace(WrappedComponent) {
   class TransformConnectedComponent extends Component {
@@ -38,6 +39,17 @@ export default function connectTransformToTrace(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`transforms[].${attr}`),
+        updateContainer: this.updateTransform,
+        deleteContainer: this.deleteTransform,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateTransform(update) {
       const newUpdate = {};
       const {transformIndex} = this.props;
@@ -61,7 +73,11 @@ export default function connectTransformToTrace(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return (
+        <ConnectTransformToTraceContext.Provider value={this.provideValue()}>
+          <WrappedComponent {...this.props} />
+        </ConnectTransformToTraceContext.Provider>
+      );
     }
   }
 

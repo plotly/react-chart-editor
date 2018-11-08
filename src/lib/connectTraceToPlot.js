@@ -10,6 +10,7 @@ import {
 } from '../lib';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
 import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR} from 'lib/constants';
+import {ConnectTraceToPlotContext} from '../context';
 
 export default function connectTraceToPlot(WrappedComponent) {
   class TraceConnectedComponent extends Component {
@@ -73,6 +74,10 @@ export default function connectTraceToPlot(WrappedComponent) {
     }
 
     getChildContext() {
+      return this.childContext;
+    }
+
+    provideValue() {
       return this.childContext;
     }
 
@@ -178,7 +183,11 @@ export default function connectTraceToPlot(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
+      return (
+        <ConnectTraceToPlotContext.Provider value={this.provideValue()}>
+          <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
+        </ConnectTraceToPlotContext.Provider>
+      );
     }
   }
 

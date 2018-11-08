@@ -5,6 +5,7 @@ import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
 import {bem} from 'lib';
 import {EmbedIconIcon} from 'plotly-icons';
+import {PlotlyPanelContext} from '../../context';
 
 class PanelErrorImpl extends Component {
   render() {
@@ -36,6 +37,12 @@ export class Panel extends Component {
   }
 
   getChildContext() {
+    return {
+      deleteContainer: this.props.deleteAction ? this.props.deleteAction : null,
+    };
+  }
+
+  provideValue() {
     return {
       deleteContainer: this.props.deleteAction ? this.props.deleteAction : null,
     };
@@ -88,7 +95,11 @@ export class Panel extends Component {
     const {individualFoldStates, hasError} = this.state;
 
     if (hasError) {
-      return <PanelError />;
+      return (
+        <PlotlyPanelContext.Provider value={this.provideValue()}>
+          <PanelError />
+        </PlotlyPanelContext.Provider>
+      );
     }
 
     const newChildren = React.Children.map(this.props.children, (child, index) => {
@@ -103,15 +114,17 @@ export class Panel extends Component {
     });
 
     return (
-      <div className={`panel${this.props.noPadding ? ' panel--no-padding' : ''}`}>
-        <PanelHeader
-          addAction={this.props.addAction}
-          allowCollapse={this.props.showExpandCollapse && individualFoldStates.length > 1}
-          toggleFolds={this.toggleFolds}
-          hasOpen={individualFoldStates.some(s => s === false)}
-        />
-        <div className={bem('panel', 'content')}>{newChildren}</div>
-      </div>
+      <PlotlyPanelContext.Provider value={this.provideValue()}>
+        <div className={`panel${this.props.noPadding ? ' panel--no-padding' : ''}`}>
+          <PanelHeader
+            addAction={this.props.addAction}
+            allowCollapse={this.props.showExpandCollapse && individualFoldStates.length > 1}
+            toggleFolds={this.toggleFolds}
+            hasOpen={individualFoldStates.some(s => s === false)}
+          />
+          <div className={bem('panel', 'content')}>{newChildren}</div>
+        </div>
+      </PlotlyPanelContext.Provider>
     );
   }
 }

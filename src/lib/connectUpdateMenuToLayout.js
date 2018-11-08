@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
+import {ConnectUpdateMenuToLayoutContext} from '../context';
 
 export default function connectUpdateMenuToLayout(WrappedComponent) {
   class UpdateMenuConnectedComponent extends Component {
@@ -34,6 +35,16 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`updatemenus[].${attr}`),
+        updateContainer: this.updateUpdateMenu,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateUpdateMenu(update) {
       const newUpdate = {};
       const {updateMenuIndex} = this.props;
@@ -45,7 +56,11 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return (
+        <ConnectUpdateMenuToLayoutContext.Provider value={this.provideValue()}>
+          <WrappedComponent {...this.props} />
+        </ConnectUpdateMenuToLayoutContext.Provider>
+      );
     }
   }
 

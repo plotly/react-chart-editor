@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {ConnectShapeToLayoutContext} from '../context';
 
 export default function connectShapeToLayout(WrappedComponent) {
   class ShapeConnectedComponent extends Component {
@@ -38,6 +39,17 @@ export default function connectShapeToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`shapes[].${attr}`),
+        updateContainer: this.updateShape,
+        deleteContainer: this.deleteShape,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateShape(update) {
       const newUpdate = {};
       const {shapeIndex} = this.props;
@@ -58,7 +70,11 @@ export default function connectShapeToLayout(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return (
+        <ConnectShapeToLayoutContext.Provider value={this.provideValue()}>
+          <WrappedComponent {...this.props} />
+        </ConnectShapeToLayoutContext.Provider>
+      );
     }
   }
 

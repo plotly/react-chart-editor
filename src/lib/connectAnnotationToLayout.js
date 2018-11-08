@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {ConnectAnnotationToLayoutContext} from '../context';
 
 export default function connectAnnotationToLayout(WrappedComponent) {
   class AnnotationConnectedComponent extends Component {
@@ -38,6 +39,17 @@ export default function connectAnnotationToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`annotations[].${attr}`),
+        updateContainer: this.updateAnnotation,
+        deleteContainer: this.deleteAnnotation,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateAnnotation(update) {
       const newUpdate = {};
       const {annotationIndex} = this.props;
@@ -58,7 +70,11 @@ export default function connectAnnotationToLayout(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return (
+        <ConnectAnnotationToLayoutContext.Provider value={this.provideValue()}>
+          <WrappedComponent {...this.props} />
+        </ConnectAnnotationToLayoutContext.Provider>
+      );
     }
   }
 

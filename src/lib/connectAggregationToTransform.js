@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
+import {ConnectAggregationToTransformContext} from '../context';
 
 export default function connectAggregationToTransform(WrappedComponent) {
   class AggregationConnectedComponent extends Component {
@@ -35,6 +36,16 @@ export default function connectAggregationToTransform(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`aggregations[].${attr}`),
+        updateContainer: this.updateAggregation,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateAggregation(update) {
       const newUpdate = {};
       const path = `aggregations[${this.props.aggregationIndex}]`;
@@ -47,7 +58,11 @@ export default function connectAggregationToTransform(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      return (
+        <ConnectAggregationToTransformContext.Provider value={this.provideValue()}>
+          <WrappedComponent {...this.props} />
+        </ConnectAggregationToTransformContext.Provider>
+      );
     }
   }
 
