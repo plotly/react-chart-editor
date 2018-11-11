@@ -18,6 +18,7 @@ import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {categoryLayout, traceTypes} from 'lib/traceTypes';
 import {ModalProvider} from 'components/containers';
 import {DEFAULT_FONTS} from 'lib/constants';
+import {EditorControlsContext} from './context';
 
 class EditorControls extends Component {
   constructor(props, context) {
@@ -32,6 +33,37 @@ class EditorControls extends Component {
   }
 
   getChildContext() {
+    const gd = this.props.graphDiv || {};
+    return {
+      advancedTraceTypeSelector: this.props.advancedTraceTypeSelector,
+      config: gd._context,
+      srcConverters: this.props.srcConverters,
+      data: gd.data,
+      dataSources: this.props.dataSources,
+      dataSourceOptions: this.props.dataSourceOptions,
+      dataSourceValueRenderer: this.props.dataSourceValueRenderer,
+      dataSourceOptionRenderer: this.props.dataSourceOptionRenderer,
+      dictionaries: this.props.dictionaries || {},
+      localize: this.localize,
+      frames: gd._transitionData ? gd._transitionData._frames : [],
+      fullData: gd._fullData,
+      fullLayout: gd._fullLayout,
+      graphDiv: gd,
+      layout: gd.layout,
+      locale: this.props.locale,
+      onUpdate: this.handleUpdate.bind(this),
+      plotSchema: this.plotSchema,
+      plotly: this.props.plotly,
+      traceTypesConfig: this.props.traceTypesConfig,
+      showFieldTooltips: this.props.showFieldTooltips,
+      glByDefault: this.props.glByDefault,
+      mapBoxAccess: this.props.mapBoxAccess,
+      fontOptions: this.props.fontOptions,
+      chartHelp: this.props.chartHelp,
+    };
+  }
+
+  provideValue() {
     const gd = this.props.graphDiv || {};
     return {
       advancedTraceTypeSelector: this.props.advancedTraceTypeSelector,
@@ -295,19 +327,21 @@ class EditorControls extends Component {
 
   render() {
     return (
-      <div
-        className={
-          bem('editor_controls') +
-          ' plotly-editor--theme-provider' +
-          `${this.props.className ? ` ${this.props.className}` : ''}`
-        }
-      >
-        <ModalProvider>
-          {this.props.graphDiv &&
-            this.props.graphDiv._fullLayout &&
-            (this.props.children ? this.props.children : <DefaultEditor />)}
-        </ModalProvider>
-      </div>
+      <EditorControlsContext.Provider value={this.provideValue()}>
+        <div
+          className={
+            bem('editor_controls') +
+            ' plotly-editor--theme-provider' +
+            `${this.props.className ? ` ${this.props.className}` : ''}`
+          }
+        >
+          <ModalProvider>
+            {this.props.graphDiv &&
+              this.props.graphDiv._fullLayout &&
+              (this.props.children ? this.props.children : <DefaultEditor />)}
+          </ModalProvider>
+        </div>
+      </EditorControlsContext.Provider>
     );
   }
 }

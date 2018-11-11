@@ -34,6 +34,16 @@ export default function connectSliderToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`sliders[].${attr}`),
+        updateContainer: this.updateSlider,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateSlider(update) {
       const newUpdate = {};
       const {sliderIndex} = this.props;

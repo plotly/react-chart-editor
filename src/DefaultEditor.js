@@ -19,6 +19,7 @@ import {
 import {traceHasColorbar} from './default_panels/StyleColorbarsPanel';
 import Logo from './components/widgets/Logo';
 import {TRANSFORMABLE_TRACES} from './lib/constants';
+import {EditorControlsContext} from './context';
 
 class DefaultEditor extends Component {
   constructor(props, context) {
@@ -98,11 +99,6 @@ DefaultEditor.propTypes = {
   menuPanelOrder: PropTypes.array,
 };
 
-DefaultEditor.contextTypes = {
-  localize: PropTypes.func,
-  fullData: PropTypes.array,
-  fullLayout: PropTypes.object,
-  layout: PropTypes.object,
-};
+DefaultEditor.contextType = EditorControlsContext;
 
 export default DefaultEditor;

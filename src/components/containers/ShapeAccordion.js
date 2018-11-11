@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import {connectShapeToLayout} from 'lib';
 import {COLORS} from 'lib/constants';
 import {PanelMessage} from './PanelEmpty';
+import {EditorControlsContext} from '../../context';
 
 const ShapeFold = connectShapeToLayout(PlotlyFold);
 
@@ -66,10 +67,7 @@ class ShapeAccordion extends Component {
   }
 }
 
-ShapeAccordion.contextTypes = {
-  layout: PropTypes.object,
-  localize: PropTypes.func,
-};
+ShapeAccordion.contextType = EditorControlsContext;
 
 ShapeAccordion.propTypes = {
   children: PropTypes.node,

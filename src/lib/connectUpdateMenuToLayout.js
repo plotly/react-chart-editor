@@ -34,6 +34,16 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`updatemenus[].${attr}`),
+        updateContainer: this.updateUpdateMenu,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateUpdateMenu(update) {
       const newUpdate = {};
       const {updateMenuIndex} = this.props;

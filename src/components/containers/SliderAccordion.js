@@ -3,6 +3,7 @@ import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectSliderToLayout} from 'lib';
+import {EditorControlsContext} from '../../context';
 
 const SliderFold = connectSliderToLayout(PlotlyFold);
 
@@ -26,10 +27,7 @@ class SliderAccordion extends Component {
   }
 }
 
-SliderAccordion.contextTypes = {
-  layout: PropTypes.object,
-  localize: PropTypes.func,
-};
+SliderAccordion.contextType = EditorControlsContext;
 
 SliderAccordion.propTypes = {
   children: PropTypes.node,

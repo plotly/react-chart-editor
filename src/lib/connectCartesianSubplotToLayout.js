@@ -52,6 +52,21 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(
+                attr.replace('xaxis', this.props.xaxis).replace('yaxis', this.props.yaxis)
+              ),
+        updateContainer: this.updateSubplot,
+        deleteContainer: this.deleteSubplot,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateSubplot(update) {
       const newUpdate = {};
       for (const key in update) {

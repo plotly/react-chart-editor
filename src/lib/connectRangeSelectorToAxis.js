@@ -42,6 +42,19 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`rangeselector.buttons[].${attr}`),
+        updateContainer: this.updateRangeselector,
+        deleteContainer: this.deleteRangeselector,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateRangeselector(update) {
       const newUpdate = {};
       const {rangeselectorIndex} = this.props;

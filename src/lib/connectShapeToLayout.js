@@ -38,6 +38,17 @@ export default function connectShapeToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`shapes[].${attr}`),
+        updateContainer: this.updateShape,
+        deleteContainer: this.deleteShape,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateShape(update) {
       const newUpdate = {};
       const {shapeIndex} = this.props;

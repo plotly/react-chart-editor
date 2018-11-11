@@ -38,6 +38,17 @@ export default function connectImageToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`images[].${attr}`),
+        updateContainer: this.updateImage,
+        deleteContainer: this.deleteImage,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateImage(update) {
       const newUpdate = {};
       const {imageIndex} = this.props;

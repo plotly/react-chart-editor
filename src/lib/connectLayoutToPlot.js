@@ -32,6 +32,32 @@ export default function connectLayoutToPlot(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      const {layout, fullLayout, plotly, onUpdate} = this.context;
+
+      const updateContainer = update => {
+        if (!onUpdate) {
+          return;
+        }
+        onUpdate({
+          type: EDITOR_ACTIONS.UPDATE_LAYOUT,
+          payload: {
+            update,
+          },
+        });
+      };
+
+      return {
+        getValObject: attr =>
+          !plotly
+            ? null
+            : plotly.PlotSchema.getLayoutValObject(fullLayout, nestedProperty({}, attr).parts),
+        updateContainer,
+        container: layout,
+        fullContainer: fullLayout,
+      };
+    }
+
     render() {
       return <WrappedComponent {...this.props} />;
     }

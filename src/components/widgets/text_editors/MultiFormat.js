@@ -6,6 +6,7 @@ import RichTextEditor from './RichText';
 import {isLaTeXExpr, htmlToLaTeX, laTeXToHTML, hasTextExpression} from './convertFormats';
 import classnames from 'classnames';
 import Button from 'components/widgets/Button';
+import {EditorControlsContext} from '../../../context';
 
 class MultiFormatTextEditor extends Component {
   constructor(props, context) {
@@ -278,8 +279,6 @@ MultiFormatTextEditor.defaultProps = {
   value: '',
 };
 
-MultiFormatTextEditor.contextTypes = {
-  localize: PropTypes.func,
-};
+MultiFormatTextEditor.contextType = EditorControlsContext;
 
 export default MultiFormatTextEditor;

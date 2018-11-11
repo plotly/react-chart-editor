@@ -56,6 +56,13 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       };
     }
 
+    provideValue() {
+      return {
+        description: this.plotProps.description,
+        attr: this.attr,
+      };
+    }
+
     render() {
       // Merge plotprops onto props so leaf components only need worry about
       // props. However pass plotProps as a specific prop in case inner component

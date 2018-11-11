@@ -43,6 +43,18 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`${this.props.subplot}.${attr}`),
+        updateContainer: this.updateSubplot,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateSubplot(update) {
       const newUpdate = {};
       for (const key in update) {

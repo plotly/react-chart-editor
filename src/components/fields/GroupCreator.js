@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
 import {MULTI_VALUED} from 'lib/constants';
+import {EditorControlsContext} from '../../context';
 
 class UnconnectedGroupCreator extends Component {
   getAllGroups() {
@@ -75,10 +76,6 @@ UnconnectedGroupCreator.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedGroupCreator.contextTypes = {
-  localize: PropTypes.func,
-  data: PropTypes.array,
-  fullData: PropTypes.array,
-};
+UnconnectedGroupCreator.contextType = EditorControlsContext;
 
 export default connectToContainer(UnconnectedGroupCreator);

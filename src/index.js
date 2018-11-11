@@ -20,6 +20,13 @@ import {
   walkObject,
 } from './lib';
 import {EDITOR_ACTIONS} from './lib/constants';
+import {
+  EditorControlsContext,
+  PanelMenuWrapperContext,
+  ModalProviderContext,
+  PlotlyFoldContext,
+  PlotlyPanelContext,
+} from './context';
 
 import {
   AnnotationAccordion,
@@ -179,6 +186,11 @@ export {
   EditorControls,
   DefaultEditor,
   RectanglePositioner,
+  EditorControlsContext,
+  PanelMenuWrapperContext,
+  ModalProviderContext,
+  PlotlyFoldContext,
+  PlotlyPanelContext,
 };
 
 export default PlotlyEditor;

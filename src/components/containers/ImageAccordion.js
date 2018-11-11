@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectImageToLayout} from 'lib';
 import {PanelMessage} from './PanelEmpty';
+import {EditorControlsContext} from '../../context';
 
 const ImageFold = connectImageToLayout(PlotlyFold);
 
@@ -66,10 +67,7 @@ class ImageAccordion extends Component {
   }
 }
 
-ImageAccordion.contextTypes = {
-  layout: PropTypes.object,
-  localize: PropTypes.func,
-};
+ImageAccordion.contextType = EditorControlsContext;
 
 ImageAccordion.propTypes = {
   children: PropTypes.node,

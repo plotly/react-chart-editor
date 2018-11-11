@@ -76,6 +76,10 @@ export default function connectTraceToPlot(WrappedComponent) {
       return this.childContext;
     }
 
+    provideValue() {
+      return this.childContext;
+    }
+
     updateTrace(update) {
       if (this.context.onUpdate) {
         const splitTraceGroup = this.props.fullDataArrayPosition

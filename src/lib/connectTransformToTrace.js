@@ -38,6 +38,17 @@ export default function connectTransformToTrace(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`transforms[].${attr}`),
+        updateContainer: this.updateTransform,
+        deleteContainer: this.deleteTransform,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateTransform(update) {
       const newUpdate = {};
       const {transformIndex} = this.props;

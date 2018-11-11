@@ -35,6 +35,16 @@ export default function connectAggregationToTransform(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject ? null : this.context.getValObject(`aggregations[].${attr}`),
+        updateContainer: this.updateAggregation,
+        container: this.container,
+        fullContainer: this.fullContainer,
+      };
+    }
+
     updateAggregation(update) {
       const newUpdate = {};
       const path = `aggregations[${this.props.aggregationIndex}]`;

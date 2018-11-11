@@ -104,6 +104,22 @@ export default function connectAxesToLayout(WrappedComponent) {
       };
     }
 
+    provideValue() {
+      return {
+        getValObject: attr =>
+          !this.context.getValObject
+            ? null
+            : this.context.getValObject(`${this.state.axesTarget}.${attr}`),
+        axesOptions: this.axesOptions,
+        axesTarget: this.state.axesTarget,
+        axesTargetHandler: this.axesTargetHandler,
+        container: this.container,
+        defaultContainer: this.defaultContainer,
+        fullContainer: this.fullContainer,
+        updateContainer: this.updateContainer,
+      };
+    }
+
     axesTargetHandler(axesTarget) {
       this.setState({axesTarget});
     }

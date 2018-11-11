@@ -6,6 +6,7 @@ import LaTeX from '../widgets/text_editors/LaTeX';
 import RichText from '../widgets/text_editors/RichText';
 import MultiFormat from '../widgets/text_editors/MultiFormat';
 import HTML from '../widgets/text_editors/HTML';
+import {EditorControlsContext} from '../../context';
 
 class UnconnectedTextEditor extends Component {
   render() {
@@ -60,9 +61,7 @@ UnconnectedTextEditor.propTypes = {
   updatePlot: PropTypes.func,
 };
 
-UnconnectedTextEditor.contextTypes = {
-  localize: PropTypes.func,
-};
+UnconnectedTextEditor.contextType = EditorControlsContext;
 
 export default connectToContainer(UnconnectedTextEditor, {
   modifyPlotProps: (props, context, plotProps) => {

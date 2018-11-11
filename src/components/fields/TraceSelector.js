@@ -11,11 +11,11 @@ import {TRACES_WITH_GL} from 'lib/constants';
 import {TraceTypeSelector, TraceTypeSelectorButton, RadioBlocks} from 'components/widgets';
 import Field from './Field';
 import {CogIcon} from 'plotly-icons';
+import {EditorControlsContext, ModalProviderContext} from '../../context';
 
 class TraceSelector extends Component {
   constructor(props, context) {
     super(props, context);
-
     this.updatePlot = this.updatePlot.bind(this);
     this.setGl = this.setGl.bind(this);
     this.glEnabled = this.glEnabled.bind(this);
@@ -112,17 +112,21 @@ class TraceSelector extends Component {
                 alignItems: 'center',
               }}
             >
-              <TraceTypeSelectorButton
-                {...props}
-                traceTypesConfig={this.context.traceTypesConfig}
-                handleClick={() =>
-                  this.context.openModal(TraceTypeSelector, {
-                    ...props,
-                    traceTypesConfig: this.context.traceTypesConfig,
-                    glByDefault: this.context.glByDefault,
-                  })
-                }
-              />
+              <ModalProviderContext.Consumer>
+                {({openModal}) => (
+                  <TraceTypeSelectorButton
+                    {...props}
+                    traceTypesConfig={this.context.traceTypesConfig}
+                    handleClick={() =>
+                      openModal(TraceTypeSelector, {
+                        ...props,
+                        traceTypesConfig: this.context.traceTypesConfig,
+                        glByDefault: this.context.glByDefault,
+                      })
+                    }
+                  />
+                )}
+              </ModalProviderContext.Consumer>
               {!TRACES_WITH_GL.includes(this.props.container.type) ? (
                 ''
               ) : (
@@ -149,15 +153,7 @@ class TraceSelector extends Component {
   }
 }
 
-TraceSelector.contextTypes = {
-  openModal: PropTypes.func,
-  advancedTraceTypeSelector: PropTypes.bool,
-  traceTypesConfig: PropTypes.object,
-  plotSchema: PropTypes.object,
-  config: PropTypes.object,
-  localize: PropTypes.func,
-  glByDefault: PropTypes.bool,
-};
+TraceSelector.contextType = EditorControlsContext;
 
 TraceSelector.propTypes = {
   container: PropTypes.object.isRequired,

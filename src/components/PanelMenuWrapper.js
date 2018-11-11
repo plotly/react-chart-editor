@@ -3,6 +3,7 @@ import React, {cloneElement, Component} from 'react';
 import SidebarGroup from './sidebar/SidebarGroup';
 import {bem} from 'lib';
 import sortMenu from 'lib/sortMenu';
+import {PanelMenuWrapperContext} from '../context';
 
 class PanelsWithSidebar extends Component {
   constructor(props) {
@@ -25,6 +26,12 @@ class PanelsWithSidebar extends Component {
   }
 
   getChildContext() {
+    return {
+      setPanel: this.setPanel,
+    };
+  }
+
+  provideValue() {
     return {
       setPanel: this.setPanel,
     };
@@ -89,18 +96,20 @@ class PanelsWithSidebar extends Component {
     const menuOpts = this.computeMenuOptions(this.props);
 
     return (
-      <div className={bem('editor_controls', 'wrapper')}>
-        <div className={bem('sidebar')}>{menuOpts.map(this.renderSection)}</div>
-        {React.Children.map(
-          this.props.children,
-          (child, i) =>
-            child === null ||
-            this.state.group !== child.props.group ||
-            this.state.panel !== child.props.name
-              ? null
-              : cloneElement(child, {key: i})
-        )}
-      </div>
+      <PanelMenuWrapperContext.Provider value={this.provideValue()}>
+        <div className={bem('editor_controls', 'wrapper')}>
+          <div className={bem('sidebar')}>{menuOpts.map(this.renderSection)}</div>
+          {React.Children.map(
+            this.props.children,
+            (child, i) =>
+              child === null ||
+              this.state.group !== child.props.group ||
+              this.state.panel !== child.props.name
+                ? null
+                : cloneElement(child, {key: i})
+          )}
+        </div>
+      </PanelMenuWrapperContext.Provider>
     );
   }
 }
