@@ -78,8 +78,8 @@
     "webpack-dev-server": "^2.11.1"
   },
   "peerDependencies": {
-    "react": ">16.6.0",
-    "react-dom": ">16.6.0"
+    "react": ">=16.6.0",
+    "react-dom": ">=16.6.0"
   },
   "homepage": "https://plotly.github.io/react-chart-editor/",
   "jest": {
