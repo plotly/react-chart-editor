@@ -15,7 +15,7 @@
     "fast-isnumeric": "^1.1.1",
     "immutability-helper": "^2.7.1",
     "plotly-icons": "1.2.2",
-    "plotly.js": "1.42.1",
+    "plotly.js": "^1.42.5",
     "prop-types": "^15.5.10",
     "raf": "^3.4.0",
     "react-color": "^2.13.8",
@@ -74,8 +74,9 @@
     "rimraf": "2.6.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
   },
   "peerDependencies": {
     "react": ">=16.6.0",
