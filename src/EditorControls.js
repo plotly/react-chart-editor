@@ -338,7 +338,15 @@ class EditorControls extends Component {
           <ModalProvider>
             {this.props.graphDiv &&
               this.props.graphDiv._fullLayout &&
-              (this.props.children ? this.props.children : <DefaultEditor />)}
+              (this.props.children ? (
+                this.props.children
+              ) : this.props.optionalPanel ? (
+                <DefaultEditor menuPanelOrder={this.props.menuPanelOrder}>
+                  {this.props.optionalPanel}
+                </DefaultEditor>
+              ) : (
+                <DefaultEditor />
+              ))}
           </ModalProvider>
         </div>
       </EditorControlsContext.Provider>
@@ -384,6 +392,8 @@ EditorControls.propTypes = {
   mapBoxAccess: PropTypes.bool,
   fontOptions: PropTypes.array,
   chartHelp: PropTypes.object,
+  optionalPanel: PropTypes.node,
+  menuPanelOrder: PropTypes.array,
 };
 
 EditorControls.defaultProps = {

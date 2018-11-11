@@ -40,6 +40,8 @@ class PlotlyEditor extends Component {
             mapBoxAccess={Boolean(this.props.config && this.props.config.mapboxAccessToken)}
             fontOptions={this.props.fontOptions}
             chartHelp={this.props.chartHelp}
+            optionalPanel={this.props.optionalPanel}
+            menuPanelOrder={this.props.menuPanelOrder}
           >
             {this.props.children}
           </EditorControls>
@@ -91,6 +93,8 @@ PlotlyEditor.propTypes = {
   glByDefault: PropTypes.bool,
   fontOptions: PropTypes.array,
   chartHelp: PropTypes.object,
+  optionalPanel: PropTypes.any,
+  menuPanelOrder: PropTypes.array,
 };
 
 PlotlyEditor.defaultProps = {
