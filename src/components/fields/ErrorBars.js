@@ -158,7 +158,8 @@ class ErrorBars extends Component {
 
   render() {
     return (
-      <Fragment>Field
+      <Fragment>
+        Field
         {this.renderModeSelector()}
         {this.renderErrorBarControls()}
       </Fragment>
