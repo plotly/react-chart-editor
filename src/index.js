@@ -19,7 +19,7 @@ import {
   localizeString,
   walkObject,
 } from './lib';
-import {EDITOR_ACTIONS} from './lib/constants';
+import {EDITOR_ACTIONS, TRANSFORMABLE_TRACES} from './lib/constants';
 import {
   EditorControlsContext,
   PanelMenuWrapperContext,
@@ -86,6 +86,7 @@ import {
   TraceSelector,
   RectanglePositioner,
 } from './components';
+import {traceHasColorbar} from './default_panels/StyleColorbarsPanel';
 
 import {
   GraphCreatePanel,
@@ -191,6 +192,8 @@ export {
   ModalProviderContext,
   PlotlyFoldContext,
   PlotlyPanelContext,
+  traceHasColorbar,
+  TRANSFORMABLE_TRACES,
 };
 
 export default PlotlyEditor;
