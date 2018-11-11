@@ -103,7 +103,7 @@
     "widgets"
   ],
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/plotly/react-chart-editor.git"
