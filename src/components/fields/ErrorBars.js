@@ -4,6 +4,7 @@ import {DataSelector, Radio, Numeric, MultiColorPicker} from '../index';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Field from './Field';
 import {connectToContainer} from 'lib';
+import {EditorControlsContext} from '../../context';
 
 class ErrorBars extends Component {
   constructor(props, context) {
@@ -157,7 +158,7 @@ class ErrorBars extends Component {
 
   render() {
     return (
-      <Fragment>
+      <Fragment>Field
         {this.renderModeSelector()}
         {this.renderErrorBarControls()}
       </Fragment>
@@ -171,8 +172,6 @@ ErrorBars.propTypes = {
   updatePlot: PropTypes.func,
 };
 
-ErrorBars.contextTypes = {
-  localize: PropTypes.func,
-};
+ErrorBars.contextType = EditorControlsContext;
 
 export default connectToContainer(ErrorBars);

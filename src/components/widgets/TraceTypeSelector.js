@@ -4,6 +4,7 @@ import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal from 'components/containers/Modal';
 import {traceTypeToPlotlyInitFigure, renderTraceIcon, plotlyTraceToCustomTrace} from 'lib';
 import {TRACES_WITH_GL} from 'lib/constants';
+import {EditorControlsContext} from '../../context';
 
 const renderActionItems = (actionItems, item) =>
   actionItems
@@ -60,9 +61,7 @@ Item.propTypes = {
   actions: PropTypes.func,
   showActions: PropTypes.bool,
 };
-Item.contextTypes = {
-  localize: PropTypes.func,
-};
+Item.contextType = EditorControlsContext;
 
 class TraceTypeSelector extends Component {
   constructor(props) {
@@ -269,8 +268,6 @@ TraceTypeSelectorButton.propTypes = {
   container: PropTypes.object,
   traceTypesConfig: PropTypes.object.isRequired,
 };
-TraceTypeSelectorButton.contextTypes = {
-  localize: PropTypes.func,
-};
+TraceTypeSelectorButton.contextType = EditorControlsContext;
 
 export default TraceTypeSelector;

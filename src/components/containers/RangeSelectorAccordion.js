@@ -3,6 +3,7 @@ import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectRangeSelectorToAxis} from 'lib';
+import {EditorControlsContext} from '../../context';
 
 const RangeSelectorFold = connectRangeSelectorToAxis(PlotlyFold);
 
@@ -54,10 +55,7 @@ class RangeSelectorAccordion extends Component {
   }
 }
 
-RangeSelectorAccordion.contextTypes = {
-  fullContainer: PropTypes.object,
-  localize: PropTypes.func,
-};
+RangeSelectorAccordion.contextType = EditorControlsContext;
 
 RangeSelectorAccordion.propTypes = {
   children: PropTypes.node,

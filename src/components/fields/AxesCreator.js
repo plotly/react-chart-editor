@@ -7,6 +7,7 @@ import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
 import {connectToContainer, traceTypeToAxisType, getAxisTitle, axisIdToAxisName} from 'lib';
 import {PlotlySection} from 'components';
+import {EditorControlsContext, ModalProviderContext} from '../../context';
 
 class UnconnectedAxisCreator extends Component {
   canAddAxis() {
@@ -104,12 +105,7 @@ UnconnectedAxisCreator.propTypes = {
   updateContainer: PropTypes.func,
 };
 
-UnconnectedAxisCreator.contextTypes = {
-  fullLayout: PropTypes.object,
-  data: PropTypes.array,
-  fullData: PropTypes.array,
-  onUpdate: PropTypes.func,
-};
+UnconnectedAxisCreator.contextType = EditorControlsContext;
 
 const AxisCreator = connectToContainer(UnconnectedAxisCreator);
 
@@ -149,11 +145,15 @@ class UnconnectedAxesCreator extends Component {
     return (
       <PlotlySection name={_('Axes to Use')}>
         {controls}
-        <Info>
-          {_('You can style and position your axes in the ')}
-          <a onClick={() => this.context.setPanel('Structure', 'Subplots')}>{_('Subplots')}</a>
-          {_(' panel.')}
-        </Info>
+        <ModalProviderContext.Consumer>
+          {({setPanel}) => (
+            <Info>
+              {_('You can style and position your axes in the ')}
+              <a onClick={() => setPanel('Structure', 'Subplots')}>{_('Subplots')}</a>
+              {_(' panel.')}
+            </Info>
+          )}
+        </ModalProviderContext.Consumer>
       </PlotlySection>
     );
   }
@@ -164,13 +164,7 @@ UnconnectedAxesCreator.propTypes = {
   fullContainer: PropTypes.object,
 };
 
-UnconnectedAxesCreator.contextTypes = {
-  data: PropTypes.array,
-  fullData: PropTypes.array,
-  fullLayout: PropTypes.object,
-  localize: PropTypes.func,
-  setPanel: PropTypes.func,
-};
+UnconnectedAxesCreator.contextType = EditorControlsContext;
 
 export default connectToContainer(UnconnectedAxesCreator, {
   modifyPlotProps: (props, context, plotProps) => {

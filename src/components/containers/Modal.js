@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {CloseIcon} from 'plotly-icons';
+import {ModalProviderContext} from '../../context';
 
 const ModalHeader = ({title, handleClose}) => (
   <div className="modal__header">
@@ -68,10 +69,7 @@ Modal.propTypes = {
   title: PropTypes.node,
 };
 
-Modal.contextTypes = {
-  handleClose: PropTypes.func,
-  isAnimatingOut: PropTypes.bool,
-};
+Modal.contextType = ModalProviderContext;
 
 export default Modal;
 

@@ -3,6 +3,7 @@ import Dropdown from './Dropdown';
 import Info from '../fields/Info';
 import PropTypes from 'prop-types';
 import React, {Component, Fragment} from 'react';
+import {EditorControlsContext} from '../../context';
 
 class Scale extends Component {
   constructor(props) {
@@ -81,8 +82,6 @@ Scale.propTypes = {
   initialCategory: PropTypes.string,
 };
 
-Scale.contextTypes = {
-  localize: PropTypes.func,
-};
+Scale.contextType = EditorControlsContext;
 
 export default Scale;
