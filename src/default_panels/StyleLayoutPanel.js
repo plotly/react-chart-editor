@@ -9,7 +9,7 @@ import {
   Numeric,
   TextEditor,
   PlotlySection,
-  TraceRequiredPanel,
+  LayoutPanel,
   VisibilitySelect,
   HovermodeDropdown,
   Flaglist,
@@ -21,7 +21,7 @@ import {EditorControlsContext} from '../context';
 const StyleLayoutPanel = () => (
   <EditorControlsContext.Consumer>
     {({localize: _}) => (
-      <TraceRequiredPanel>
+      <LayoutPanel>
         <PlotlyFold name={_('Defaults')}>
           <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
           <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
@@ -140,7 +140,7 @@ const StyleLayoutPanel = () => (
             </HovermodeDropdown>
           </PlotlySection>
         </PlotlyFold>
-      </TraceRequiredPanel>
+      </LayoutPanel>
     )}
   </EditorControlsContext.Consumer>
 );

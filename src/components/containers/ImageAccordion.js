@@ -1,5 +1,5 @@
 import PlotlyFold from './PlotlyFold';
-import TraceRequiredPanel from './TraceRequiredPanel';
+import {LayoutPanel} from './derived';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectImageToLayout} from 'lib';
@@ -49,7 +49,7 @@ class ImageAccordion extends Component {
     };
 
     return (
-      <TraceRequiredPanel addAction={canAdd ? addAction : null}>
+      <LayoutPanel addAction={canAdd ? addAction : null}>
         {content ? (
           content
         ) : (
@@ -62,7 +62,7 @@ class ImageAccordion extends Component {
             <p>{_('Click on the + button above to add an image.')}</p>
           </PanelMessage>
         )}
-      </TraceRequiredPanel>
+      </LayoutPanel>
     );
   }
 }

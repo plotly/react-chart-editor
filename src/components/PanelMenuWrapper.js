@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, {cloneElement, Component} from 'react';
 import SidebarGroup from './sidebar/SidebarGroup';
 import {bem} from 'lib';
+import sortMenu from 'lib/sortMenu';
 import {PanelMenuWrapperContext} from '../context';
 
 class PanelsWithSidebar extends Component {
@@ -53,12 +54,17 @@ class PanelsWithSidebar extends Component {
   }
 
   computeMenuOptions(props) {
-    const {children} = props;
+    const {children, menuPanelOrder} = props;
     const sections = [];
     const groupLookup = {};
     let groupIndex;
+    const panels = React.Children.toArray(children);
 
-    React.Children.forEach(children, child => {
+    if (menuPanelOrder) {
+      sortMenu(panels, menuPanelOrder);
+    }
+
+    panels.forEach(child => {
       if (!child) {
         return;
       }
@@ -110,6 +116,7 @@ class PanelsWithSidebar extends Component {
 
 PanelsWithSidebar.propTypes = {
   children: PropTypes.node,
+  menuPanelOrder: PropTypes.array,
 };
 
 PanelsWithSidebar.childContextTypes = {
