@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
-import {ConnectLayoutToPlotContext} from '../context';
 
 export default function connectLayoutToPlot(WrappedComponent) {
   class LayoutConnectedComponent extends Component {
@@ -60,11 +59,7 @@ export default function connectLayoutToPlot(WrappedComponent) {
     }
 
     render() {
-      return (
-        <ConnectLayoutToPlotContext.Provider value={this.provideValue()}>
-          <WrappedComponent {...this.props} />
-        </ConnectLayoutToPlotContext.Provider>
-      );
+      return <WrappedComponent {...this.props} />;
     }
   }
 

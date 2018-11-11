@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import unpackPlotProps from './unpackPlotProps';
 import {getDisplayName} from '../lib';
-import {ConnectToContainerContext} from '../context';
 
 export const containerConnectedContextTypes = {
   localize: PropTypes.func,
@@ -71,11 +70,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       // component can skip computation as it can see plotProps is already defined.
       const {plotProps = this.plotProps, ...props} = Object.assign({}, this.plotProps, this.props);
       if (props.isVisible) {
-        return (
-          <ConnectToContainerContext.Provider value={this.provideValue()}>
-            <WrappedComponent {...props} plotProps={plotProps} />
-          </ConnectToContainerContext.Provider>
-        );
+        return <WrappedComponent {...props} plotProps={plotProps} />;
       }
 
       return null;

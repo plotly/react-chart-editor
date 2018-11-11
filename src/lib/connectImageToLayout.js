@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
-import {ConnectImageToLayoutContext} from '../context';
 
 export default function connectImageToLayout(WrappedComponent) {
   class ImageConnectedComponent extends Component {
@@ -70,11 +69,7 @@ export default function connectImageToLayout(WrappedComponent) {
     }
 
     render() {
-      return (
-        <ConnectImageToLayoutContext.Provider value={this.provideValue()}>
-          <WrappedComponent {...this.props} />
-        </ConnectImageToLayoutContext.Provider>
-      );
+      return <WrappedComponent {...this.props} />;
     }
   }
 

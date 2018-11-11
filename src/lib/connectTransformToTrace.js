@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
-import {ConnectTransformToTraceContext} from '../context';
 
 export default function connectTransformToTrace(WrappedComponent) {
   class TransformConnectedComponent extends Component {
@@ -73,11 +72,7 @@ export default function connectTransformToTrace(WrappedComponent) {
     }
 
     render() {
-      return (
-        <ConnectTransformToTraceContext.Provider value={this.provideValue()}>
-          <WrappedComponent {...this.props} />
-        </ConnectTransformToTraceContext.Provider>
-      );
+      return <WrappedComponent {...this.props} />;
     }
   }
 

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
 import {capitalize, getAllAxes, getDisplayName, getAxisTitle} from '../lib';
-import {ConnectAxesToLayoutContext} from '../context';
 
 function computeAxesOptions(axes, props, context) {
   const _ = context.localize;
@@ -154,11 +153,7 @@ export default function connectAxesToLayout(WrappedComponent) {
     }
 
     render() {
-      return (
-        <ConnectAxesToLayoutContext.Provider value={this.provideValue()}>
-          <WrappedComponent {...this.props} options={this.axesOptions} />
-        </ConnectAxesToLayoutContext.Provider>
-      );
+      return <WrappedComponent {...this.props} options={this.axesOptions} />;
     }
   }
 

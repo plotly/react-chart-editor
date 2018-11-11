@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
-import {ConnectSliderToLayoutContext} from '../context';
 
 export default function connectSliderToLayout(WrappedComponent) {
   class SliderConnectedComponent extends Component {
@@ -56,11 +55,7 @@ export default function connectSliderToLayout(WrappedComponent) {
     }
 
     render() {
-      return (
-        <ConnectSliderToLayoutContext.Provider value={this.provideValue}>
-          <WrappedComponent {...this.props} />
-        </ConnectSliderToLayoutContext.Provider>
-      );
+      return <WrappedComponent {...this.props} />;
     }
   }
 
