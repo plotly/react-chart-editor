@@ -42,6 +42,7 @@ class PlotlyEditor extends Component {
             chartHelp={this.props.chartHelp}
             optionalPanel={this.props.optionalPanel}
             menuPanelOrder={this.props.menuPanelOrder}
+            updatePayload={this.props.updatePayload}
           >
             {this.props.children}
           </EditorControls>
@@ -95,6 +96,7 @@ PlotlyEditor.propTypes = {
   chartHelp: PropTypes.object,
   optionalPanel: PropTypes.any,
   menuPanelOrder: PropTypes.array,
+  updatePayload: PropTypes.array,
 };
 
 PlotlyEditor.defaultProps = {
