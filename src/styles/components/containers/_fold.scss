@@ -15,6 +15,7 @@
     text-shadow: var(--text-shadow-dark-ui);
     transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
       border 0.1s ease-in-out;
+    box-sizing: content-box;
 
     &:hover {
       cursor: pointer;

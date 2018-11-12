@@ -528,7 +528,8 @@
       height: 15px;
       border-radius: var(--border-radius);
       text-shadow: var(--text-shadow-dark-ui);
-      transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out, border 0.1s ease-in-out; }
+      transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out, border 0.1s ease-in-out;
+      box-sizing: content-box; }
       .editor_controls .fold__top:hover {
         cursor: pointer;
         background-color: var(--fold-header-background-closed); }
