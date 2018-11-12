@@ -61,7 +61,7 @@ Item.propTypes = {
   actions: PropTypes.func,
   showActions: PropTypes.bool,
 };
-Item.contextType = EditorControlsContext;
+// Item.contextType = EditorControlsContext;
 
 class TraceTypeSelector extends Component {
   constructor(props) {
