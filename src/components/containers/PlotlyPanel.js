@@ -5,7 +5,7 @@ import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
 import {bem} from 'lib';
 import {EmbedIconIcon} from 'plotly-icons';
-import {PlotlyPanelContext} from '../../context';
+import {EditorControlsContext, PlotlyPanelContext} from '../../context';
 
 class PanelErrorImpl extends Component {
   render() {
@@ -19,9 +19,7 @@ class PanelErrorImpl extends Component {
   }
 }
 
-PanelErrorImpl.contextTypes = {
-  localize: PropTypes.func,
-};
+PanelErrorImpl.contextType = EditorControlsContext;
 
 const PanelError = PanelErrorImpl;
 

@@ -32,6 +32,13 @@ class EditorControls extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const {updatePayload} = nextProps;
+    if (updatePayload && updatePayload.length > 0) {
+      this.handleDataSourceChange(updatePayload);
+    }
+  }
+
   getChildContext() {
     const gd = this.props.graphDiv || {};
     return {
@@ -92,6 +99,17 @@ class EditorControls extends Component {
       fontOptions: this.props.fontOptions,
       chartHelp: this.props.chartHelp,
     };
+  }
+
+  handleDataSourceChange(updatePayload) {
+    if (updatePayload && updatePayload.length !== 0) {
+      updatePayload.forEach(payload => {
+        this.handleUpdate({
+          type: EDITOR_ACTIONS.UPDATE_TRACES,
+          payload,
+        });
+      });
+    }
   }
 
   handleUpdate({type, payload}) {
@@ -394,6 +412,7 @@ EditorControls.propTypes = {
   chartHelp: PropTypes.object,
   optionalPanel: PropTypes.node,
   menuPanelOrder: PropTypes.array,
+  updatePayload: PropTypes.array,
 };
 
 EditorControls.defaultProps = {
