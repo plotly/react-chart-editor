@@ -35,7 +35,7 @@ class EditorControls extends Component {
   componentWillReceiveProps(nextProps) {
     const {updatePayload} = nextProps;
     if (updatePayload && updatePayload.length > 0) {
-      this.handleDataSourceChange(updatePayload);
+      this.handleUpdateActions(updatePayload);
     }
   }
 
@@ -101,13 +101,10 @@ class EditorControls extends Component {
     };
   }
 
-  handleDataSourceChange(updatePayload) {
+  handleUpdateActions(updatePayload) {
     if (updatePayload && updatePayload.length !== 0) {
-      updatePayload.forEach(payload => {
-        this.handleUpdate({
-          type: EDITOR_ACTIONS.UPDATE_TRACES,
-          payload,
-        });
+      updatePayload.forEach(actions => {
+        this.handleUpdate(actions);
       });
     }
   }
