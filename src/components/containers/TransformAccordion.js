@@ -79,7 +79,7 @@ class TransformAccordion extends Component {
               if (type === 'filter') {
                 payload.target = [];
                 payload.targetsrc = null;
-              } else {
+              } else if (type !== 'sort') {
                 payload.groupssrc = null;
                 payload.groups = null;
               }
