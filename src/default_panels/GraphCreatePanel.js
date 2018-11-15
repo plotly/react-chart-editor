@@ -35,7 +35,6 @@ const GraphCreatePanel = () => {
               }
             >
               <TraceSelector label={_('Type')} attr="type" show />
-
               <LocationSelector attr="type" />
 
               <DataSelector label={_('Values')} attr="values" />

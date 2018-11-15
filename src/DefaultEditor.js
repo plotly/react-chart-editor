@@ -31,72 +31,58 @@ class DefaultEditor extends Component {
     this.hasColorbars = this.hasColorbars.bind(this);
   }
 
-  hasTransforms(fullData) {
-    return fullData.some(d => TRANSFORMABLE_TRACES.includes(d.type));
+  hasTransforms() {
+    return this.context.fullData.some(d => TRANSFORMABLE_TRACES.includes(d.type));
   }
 
-  hasAxes(fullLayout) {
+  hasAxes() {
     return (
-      Object.keys(fullLayout._subplots).filter(
-        type => !['cartesian', 'mapbox'].includes(type) && fullLayout._subplots[type].length > 0
+      Object.keys(this.context.fullLayout._subplots).filter(
+        type =>
+          !['cartesian', 'mapbox'].includes(type) &&
+          this.context.fullLayout._subplots[type].length > 0
       ).length > 0
     );
   }
 
-  hasMenus(fullLayout) {
-    const {updatemenus = []} = fullLayout;
+  hasMenus() {
+    const {updatemenus = []} = this.context.fullLayout;
 
     return updatemenus.length > 0;
   }
 
-  hasSliders(layout) {
-    const {sliders = []} = layout;
-    // const {
-    //   layout: {sliders = []},
-    // } = this.context;
-
+  hasSliders() {
+    const {sliders = []} = this.context.layout;
     return sliders.length > 0;
   }
 
-  hasColorbars(fullData) {
-    return fullData.some(d => traceHasColorbar({}, d));
+  hasColorbars() {
+    return this.context.fullData.some(d => traceHasColorbar({}, d));
   }
 
   render() {
     const logo = this.props.logoSrc && <Logo src={this.props.logoSrc} />;
-
+    const _ = this.context.localize;
     return (
-      <EditorControlsContext.Consumer>
-        {({localize: _, fullData, fullLayout, layout}) => {
-          return (
-            <PanelMenuWrapper menuPanelOrder={this.props.menuPanelOrder}>
-              {logo ? logo : null}
-              <GraphCreatePanel group={_('Structure')} name={_('Traces')} />
-              <GraphSubplotsPanel group={_('Structure')} name={_('Subplots')} />
-              {this.hasTransforms(fullData) && (
-                <GraphTransformsPanel group={_('Structure')} name={_('Transforms')} />
-              )}
-              <StyleLayoutPanel group={_('Style')} name={_('General')} />
-              <StyleTracesPanel group={_('Style')} name={_('Traces')} />
-              {this.hasAxes(fullLayout) && <StyleAxesPanel group={_('Style')} name={_('Axes')} />}
-              <StyleLegendPanel group={_('Style')} name={_('Legend')} />
-              {this.hasColorbars(fullData) && (
-                <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />
-              )}
-              <StyleNotesPanel group={_('Style')} name={_('Annotation')} />
-              <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
-              <StyleImagesPanel group={_('Style')} name={_('Images')} />
-              {this.hasSliders(layout) && (
-                <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />
-              )}
-              {this.hasMenus(fullLayout) && (
-                <StyleUpdateMenusPanel group={_('Style')} name={_('Menus')} />
-              )}
-              {this.props.children ? this.props.children : null}
-            </PanelMenuWrapper>
-          );
-        }}
-      </EditorControlsContext.Consumer>
+      <PanelMenuWrapper menuPanelOrder={this.props.menuPanelOrder}>
+        {logo ? logo : null}
+        <GraphCreatePanel group={_('Structure')} name={_('Traces')} />
+        <GraphSubplotsPanel group={_('Structure')} name={_('Subplots')} />
+        {this.hasTransforms() && (
+          <GraphTransformsPanel group={_('Structure')} name={_('Transforms')} />
+        )}
+        <StyleLayoutPanel group={_('Style')} name={_('General')} />
+        <StyleTracesPanel group={_('Style')} name={_('Traces')} />
+        {this.hasAxes() && <StyleAxesPanel group={_('Style')} name={_('Axes')} />}
+        <StyleLegendPanel group={_('Style')} name={_('Legend')} />
+        {this.hasColorbars() && <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />}
+        <StyleNotesPanel group={_('Style')} name={_('Annotation')} />
+        <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
+        <StyleImagesPanel group={_('Style')} name={_('Images')} />
+        {this.hasSliders() && <StyleSlidersPanel group={_('Style')} name={_('Sliders')} />}
+        {this.hasMenus() && <StyleUpdateMenusPanel group={_('Style')} name={_('Menus')} />}
+        {this.props.children ? this.props.children : null}
+      </PanelMenuWrapper>
     );
   }
 }
@@ -107,6 +93,6 @@ DefaultEditor.propTypes = {
   menuPanelOrder: PropTypes.array,
 };
 
-// DefaultEditor.contextType = EditorControlsContext;
+DefaultEditor.contextType = EditorControlsContext;
 
 export default DefaultEditor;

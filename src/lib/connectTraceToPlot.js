@@ -10,6 +10,7 @@ import {
 } from '../lib';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
 import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR} from 'lib/constants';
+import {EditorControlsContext} from '../context';
 
 export default function connectTraceToPlot(WrappedComponent) {
   class TraceConnectedComponent extends Component {
@@ -193,12 +194,14 @@ export default function connectTraceToPlot(WrappedComponent) {
     fullDataArrayPosition: PropTypes.arrayOf(PropTypes.number),
   };
 
-  TraceConnectedComponent.contextTypes = {
-    fullData: PropTypes.array,
-    data: PropTypes.array,
-    plotly: PropTypes.object,
-    onUpdate: PropTypes.func,
-  };
+  TraceConnectedComponent.contextType = EditorControlsContext;
+
+  // TraceConnectedComponent.contextTypes = {
+  //   fullData: PropTypes.array,
+  //   data: PropTypes.array,
+  //   plotly: PropTypes.object,
+  //   onUpdate: PropTypes.func,
+  // };
 
   TraceConnectedComponent.childContextTypes = {
     getValObject: PropTypes.func,

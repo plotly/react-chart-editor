@@ -4,18 +4,20 @@ import unpackPlotProps from './unpackPlotProps';
 import {getDisplayName} from '../lib';
 
 export const containerConnectedContextTypes = {
+  // EditorControlsContext
   localize: PropTypes.func,
-  container: PropTypes.object,
   data: PropTypes.array,
-  defaultContainer: PropTypes.object,
-  fullContainer: PropTypes.object,
   fullData: PropTypes.array,
   fullLayout: PropTypes.object,
   getValObject: PropTypes.func,
   graphDiv: PropTypes.object,
   layout: PropTypes.object,
-  onUpdate: PropTypes.func,
   plotly: PropTypes.object,
+  onUpdate: PropTypes.func,
+  // anything context
+  container: PropTypes.object,
+  defaultContainer: PropTypes.object,
+  fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,
   traceIndexes: PropTypes.array,
 };

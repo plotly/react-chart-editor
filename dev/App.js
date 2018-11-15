@@ -249,7 +249,6 @@ class App extends Component {
       {group: 'Style', name: 'Menus'},
     ];
 
-    console.log(this.state.data, this.state.layout, this.state.frames);
     return (
       <div className="app">
         <PlotlyEditor

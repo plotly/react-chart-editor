@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import {bem} from 'lib';
 import {getMultiValueText} from 'lib/constants';
 import {CloseIcon} from 'plotly-icons';
+import {EditorControlsContext} from '../../context';
 
 export class FieldDelete extends Component {
   render() {
@@ -30,8 +31,6 @@ class Field extends Component {
       fieldContainerClassName,
     } = this.props;
 
-    const {localize: _} = this.context;
-
     let fieldClass;
     if (!label) {
       fieldClass = classnames('field__no-title', {
@@ -53,41 +52,45 @@ class Field extends Component {
     });
 
     return (
-      <div className={containerClassName}>
-        {label ? (
-          <div className={bem('field', 'title')}>
-            {this.context.showFieldTooltips ? (
-              <div
-                className={bem('field', 'title-text')}
-                aria-label={tooltip}
-                data-microtip-position="bottom-right"
-                data-microtip-size="large"
-                role="tooltip"
-              >
-                {label}
+      <EditorControlsContext.Consumer>
+        {({localize: _, showFieldTooltips}) => (
+          <div className={containerClassName}>
+            {label ? (
+              <div className={bem('field', 'title')}>
+                {showFieldTooltips ? (
+                  <div
+                    className={bem('field', 'title-text')}
+                    aria-label={tooltip}
+                    data-microtip-position="bottom-right"
+                    data-microtip-size="large"
+                    role="tooltip"
+                  >
+                    {label}
+                  </div>
+                ) : (
+                  <div className={bem('field', 'title-text')}>{label}</div>
+                )}
               </div>
-            ) : (
-              <div className={bem('field', 'title-text')}>{label}</div>
-            )}
+            ) : null}
+            <div className={fieldClass}>
+              {children}
+              {extraComponent ? extraComponent : null}
+              {multiValued && !suppressMultiValuedMessage ? (
+                <MenuPanel label={getMultiValueText('title', _)} ownline question>
+                  <div className="info__title">{getMultiValueText('title', _)}</div>
+                  <div className="info__text">{getMultiValueText('text', _)}</div>
+                  <div className="info__sub-text">{getMultiValueText('subText', _)}</div>
+                </MenuPanel>
+              ) : null}
+            </div>
+            {units ? (
+              <div className={bem('field', 'units')}>
+                <div className={bem('field', 'units-text')}>{units}</div>
+              </div>
+            ) : null}
           </div>
-        ) : null}
-        <div className={fieldClass}>
-          {children}
-          {extraComponent ? extraComponent : null}
-          {multiValued && !suppressMultiValuedMessage ? (
-            <MenuPanel label={getMultiValueText('title', _)} ownline question>
-              <div className="info__title">{getMultiValueText('title', _)}</div>
-              <div className="info__text">{getMultiValueText('text', _)}</div>
-              <div className="info__sub-text">{getMultiValueText('subText', _)}</div>
-            </MenuPanel>
-          ) : null}
-        </div>
-        {units ? (
-          <div className={bem('field', 'units')}>
-            <div className={bem('field', 'units-text')}>{units}</div>
-          </div>
-        ) : null}
-      </div>
+        )}
+      </EditorControlsContext.Consumer>
     );
   }
 }
@@ -104,10 +107,12 @@ Field.propTypes = {
 };
 
 Field.contextTypes = {
-  localize: PropTypes.func,
+  // EditorControlsContext
+  // localize: PropTypes.func,
+  // showFieldTooltips: PropTypes.bool,
+  // TraceToPlotContext
   description: PropTypes.string,
   attr: PropTypes.string,
-  showFieldTooltips: PropTypes.bool,
 };
 
 Field.defaultProps = {
