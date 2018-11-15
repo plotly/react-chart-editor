@@ -107,10 +107,7 @@ Field.propTypes = {
 };
 
 Field.contextTypes = {
-  // EditorControlsContext
-  // localize: PropTypes.func,
-  // showFieldTooltips: PropTypes.bool,
-  // TraceToPlotContext
+  // ConnectToContainer
   description: PropTypes.string,
   attr: PropTypes.string,
 };

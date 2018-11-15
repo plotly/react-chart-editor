@@ -139,9 +139,7 @@ Panel.defaultProps = {
   showExpandCollapse: true,
 };
 
-Panel.contextTypes = {
-  localize: PropTypes.func,
-};
+Panel.contextType = EditorControlsContext;
 
 Panel.childContextTypes = {
   deleteContainer: PropTypes.func,

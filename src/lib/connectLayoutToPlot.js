@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {EditorControlsContext} from '../context';
 
 export default function connectLayoutToPlot(WrappedComponent) {
   class LayoutConnectedComponent extends Component {
@@ -65,12 +66,7 @@ export default function connectLayoutToPlot(WrappedComponent) {
 
   LayoutConnectedComponent.displayName = `LayoutConnected${getDisplayName(WrappedComponent)}`;
 
-  LayoutConnectedComponent.contextTypes = {
-    layout: PropTypes.object,
-    fullLayout: PropTypes.object,
-    plotly: PropTypes.object,
-    onUpdate: PropTypes.func,
-  };
+  LayoutConnectedComponent.contextType = EditorControlsContext;
 
   LayoutConnectedComponent.childContextTypes = {
     getValObject: PropTypes.func,

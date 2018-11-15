@@ -196,13 +196,6 @@ export default function connectTraceToPlot(WrappedComponent) {
 
   TraceConnectedComponent.contextType = EditorControlsContext;
 
-  // TraceConnectedComponent.contextTypes = {
-  //   fullData: PropTypes.array,
-  //   data: PropTypes.array,
-  //   plotly: PropTypes.object,
-  //   onUpdate: PropTypes.func,
-  // };
-
   TraceConnectedComponent.childContextTypes = {
     getValObject: PropTypes.func,
     updateContainer: PropTypes.func,
