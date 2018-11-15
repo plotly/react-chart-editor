@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../src/locales/index.js"],"names":["en","xx"],"mappings":";;;;;;AAAA;;;;AACA;;;;;;kBAEe;AACbA,MAAIA,YADS;AAEbC,MAAIA;AAFS,C","file":"index.js","sourcesContent":["import en from './en';\nimport xx from './xx';\n\nexport default {\n  en: en,\n  xx: xx,\n};\n"]}
