@@ -98,8 +98,4 @@ const GraphTransformsPanel = () => {
   );
 };
 
-// GraphTransformsPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default GraphTransformsPanel;

@@ -71,4 +71,5 @@ export default class PlotlySection extends Section {
 }
 
 PlotlySection.plotly_editor_traits = {no_visibility_forcing: true};
-PlotlySection.contextTypes = containerConnectedContextTypes;
+PlotlySection.requireContext = containerConnectedContextTypes;
+// PlotlySection.contextTypes = containerConnectedContextTypes;

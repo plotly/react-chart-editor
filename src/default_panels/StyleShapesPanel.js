@@ -55,8 +55,4 @@ const StyleShapesPanel = () => (
   </EditorControlsContext.Consumer>
 );
 
-// StyleShapesPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default StyleShapesPanel;

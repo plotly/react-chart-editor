@@ -11,6 +11,7 @@ import {PanelMessage} from './PanelEmpty';
 import {EditorControlsContext} from '../../context';
 
 const TraceFold = connectTraceToPlot(PlotlyFold);
+
 class TraceAccordion extends Component {
   constructor(props, context) {
     super(props, context);

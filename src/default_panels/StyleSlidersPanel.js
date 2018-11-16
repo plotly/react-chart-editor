@@ -83,8 +83,4 @@ const StyleSlidersPanel = () => (
   </EditorControlsContext.Consumer>
 );
 
-// StyleSlidersPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default StyleSlidersPanel;

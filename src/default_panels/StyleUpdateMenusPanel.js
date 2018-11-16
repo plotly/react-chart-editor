@@ -74,8 +74,4 @@ const StyleUpdateMenusPanel = () => (
   </EditorControlsContext.Consumer>
 );
 
-// StyleUpdateMenusPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default StyleUpdateMenusPanel;

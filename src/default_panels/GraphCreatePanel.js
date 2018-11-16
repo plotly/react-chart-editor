@@ -18,6 +18,12 @@ import {
   Histogram2d,
 } from '../components/fields/derived';
 import {EditorControlsContext, ModalProviderContext} from '../context';
+// import {combineContext} from '../lib/mixContext';
+//
+// const {Provide, Subscribe} = combineContext({
+//   editor: <EditorControlsContext.Consumer />,
+//   modal: <ModalProviderContext.Consumer />,
+// });
 
 const GraphCreatePanel = () => {
   return (
@@ -172,7 +178,3 @@ const GraphCreatePanel = () => {
 };
 
 export default GraphCreatePanel;
-// GraphCreatePanel.contextTypes = {
-//   localize: PropTypes.func,
-//   setPanel: PropTypes.func,
-// };

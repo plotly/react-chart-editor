@@ -301,12 +301,6 @@ TraceTypeSelector.propTypes = {
   traceTypesConfig: PropTypes.object,
 };
 TraceTypeSelector.contextType = EditorControlsContext;
-// TraceTypeSelector.contextTypes = {
-//   handleClose: PropTypes.func,
-//   localize: PropTypes.func,
-//   mapBoxAccess: PropTypes.bool,
-//   chartHelp: PropTypes.object,
-// };
 
 export class TraceTypeSelectorButton extends Component {
   render() {

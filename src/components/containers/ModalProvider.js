@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {ModalProviderContext} from '../../context';
+import {EditorControlsContext, ModalProviderContext} from '../../context';
 
 class ModalProvider extends React.Component {
   constructor(props) {
@@ -62,15 +62,6 @@ class ModalProvider extends React.Component {
     }, animationDuration);
   }
 
-  getChildContext() {
-    return {
-      openModal: (c, p) => this.openModal(c, p),
-      closeModal: () => this.closeModal(),
-      handleClose: () => this.handleClose(),
-      isAnimatingOut: this.state.isAnimatingOut,
-    };
-  }
-
   provideValue() {
     return {
       openModal: (c, p) => this.openModal(c, p),
@@ -98,14 +89,6 @@ class ModalProvider extends React.Component {
 ModalProvider.propTypes = {
   children: PropTypes.node,
 };
-ModalProvider.contextTypes = {
-  localize: PropTypes.func,
-};
-ModalProvider.childContextTypes = {
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func,
-  handleClose: PropTypes.func,
-  isAnimatingOut: PropTypes.bool,
-};
+ModalProvider.contextType = EditorControlsContext;
 
 export default ModalProvider;

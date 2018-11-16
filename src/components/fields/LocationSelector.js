@@ -49,15 +49,19 @@ UnconnectedLocation.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedLocation.contextTypes = {
+UnconnectedLocation.requireContext = {
   updateContainer: PropTypes.func,
 };
+
+// UnconnectedLocation.contextTypes = {
+//   updateContainer: PropTypes.func,
+// };
 
 const Location = connectToContainer(UnconnectedLocation);
 
 class UnconnectedLocationSelector extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       mode: props.container.locations ? 'location' : 'latlon',
@@ -88,9 +92,10 @@ class UnconnectedLocationSelector extends Component {
 
   render() {
     const {mode} = this.state;
+    const {context} = this.props;
     const {
       container: {type: type},
-    } = this.context;
+    } = context;
 
     return type === 'scattergeo' ? (
       <EditorControlsContext.Consumer>
@@ -109,11 +114,11 @@ class UnconnectedLocationSelector extends Component {
             </Field>
             {mode === 'latlon' ? (
               <Fragment>
-                <DataSelector label={_('Latitude')} attr="lat" />
-                <DataSelector label={_('Longitude')} attr="lon" />
+                <DataSelector label={_('Latitude')} attr="lat" context={context} />
+                <DataSelector label={_('Longitude')} attr="lon" context={context} />
               </Fragment>
             ) : (
-              <Location attr="type" />
+              <Location attr="type" context={context} />
             )}
           </Fragment>
         )}
@@ -124,8 +129,8 @@ class UnconnectedLocationSelector extends Component {
       <EditorControlsContext.Consumer>
         {({localize: _}) => (
           <Fragment>
-            <DataSelector label={_('Latitude')} attr="lat" />
-            <DataSelector label={_('Longitude')} attr="lon" />
+            <DataSelector label={_('Latitude')} attr="lat" context={context} />
+            <DataSelector label={_('Longitude')} attr="lon" context={context} />
           </Fragment>
         )}
       </EditorControlsContext.Consumer>
@@ -140,9 +145,14 @@ UnconnectedLocationSelector.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedLocationSelector.contextTypes = {
+UnconnectedLocationSelector.requireContext = {
   container: PropTypes.object,
   updateContainer: PropTypes.func,
 };
+
+// UnconnectedLocationSelector.contextTypes = {
+//   container: PropTypes.object,
+//   updateContainer: PropTypes.func,
+// };
 
 export default connectToContainer(UnconnectedLocationSelector);

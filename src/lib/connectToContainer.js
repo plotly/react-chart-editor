@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import unpackPlotProps from './unpackPlotProps';
 import {getDisplayName} from '../lib';
+import {recursiveMap} from './recursiveMap';
 
 export const containerConnectedContextTypes = {
   // EditorControlsContext
@@ -35,28 +36,28 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       }
     }
 
-    constructor(props, context) {
-      super(props, context);
-
-      this.setLocals(props, context);
+    constructor(props) {
+      super(props);
+      this.setLocals(props);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setLocals(nextProps, nextContext);
+    componentWillReceiveProps(nextProps) {
+      this.setLocals(nextProps);
     }
 
-    setLocals(props, context) {
-      this.plotProps = unpackPlotProps(props, context);
-      this.attr = props.attr;
-      ContainerConnectedComponent.modifyPlotProps(props, context, this.plotProps);
+    setLocals(props) {
+      const {context, ...rest} = props;
+      this.plotProps = unpackPlotProps(rest, context);
+      this.attr = rest.attr;
+      ContainerConnectedComponent.modifyPlotProps(rest, context, this.plotProps);
     }
 
-    getChildContext() {
-      return {
-        description: this.plotProps.description,
-        attr: this.attr,
-      };
-    }
+    // getChildContext() {
+    //   return {
+    //     description: this.plotProps.description,
+    //     attr: this.attr,
+    //   };
+    // }
 
     provideValue() {
       return {
@@ -70,9 +71,31 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       // props. However pass plotProps as a specific prop in case inner component
       // is also wrapped by a component that `unpackPlotProps`. That way inner
       // component can skip computation as it can see plotProps is already defined.
-      const {plotProps = this.plotProps, ...props} = Object.assign({}, this.plotProps, this.props);
+      const {context, ...rest} = this.props;
+      const {plotProps = this.plotProps, ...props} = Object.assign({}, this.plotProps, rest);
       if (props.isVisible) {
-        return <WrappedComponent {...props} plotProps={plotProps} />;
+        if (this.props.children) {
+          return (
+            <WrappedComponent
+              {...props}
+              attr={this.attr}
+              descriptopn={this.plotProps.description}
+              plotProps={plotProps}
+              context={context}
+            >
+              {recursiveMap(this.props.children, this.provideValue())}
+            </WrappedComponent>
+          );
+        }
+        return (
+          <WrappedComponent
+            {...props}
+            attr={this.attr}
+            descriptopn={this.plotProps.description}
+            plotProps={plotProps}
+            context={context}
+          />
+        );
       }
 
       return null;
@@ -80,12 +103,12 @@ export default function connectToContainer(WrappedComponent, config = {}) {
   }
 
   ContainerConnectedComponent.displayName = `ContainerConnected${getDisplayName(WrappedComponent)}`;
-
-  ContainerConnectedComponent.contextTypes = containerConnectedContextTypes;
-  ContainerConnectedComponent.childContextTypes = {
-    description: PropTypes.string,
-    attr: PropTypes.string,
-  };
+  // ContainerConnectedComponent.contextTypes = containerConnectedContextTypes;
+  ContainerConnectedComponent.requireContext = containerConnectedContextTypes;
+  // ContainerConnectedComponent.childContextTypes = {
+  //   description: PropTypes.string,
+  //   attr: PropTypes.string,
+  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   ContainerConnectedComponent.plotly_editor_traits = plotly_editor_traits;
