@@ -5,7 +5,7 @@ import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
 import {bem} from 'lib';
 import {EmbedIconIcon} from 'plotly-icons';
-import {EditorControlsContext, PlotlyPanelContext} from '../../context';
+import {EditorControlsContext} from '../../context';
 import {recursiveMap} from '../../lib/recursiveMap';
 
 class PanelErrorImpl extends Component {
@@ -88,11 +88,7 @@ export class Panel extends Component {
     const {individualFoldStates, hasError} = this.state;
 
     if (hasError) {
-      return (
-        <PlotlyPanelContext.Provider value={this.provideValue()}>
-          <PanelError />
-        </PlotlyPanelContext.Provider>
-      );
+      return <PanelError />;
     }
 
     const newChildren = React.Children.map(this.props.children, (child, index) => {
@@ -107,19 +103,21 @@ export class Panel extends Component {
     });
 
     return (
-      <PlotlyPanelContext.Provider value={this.provideValue()}>
-        <div className={`panel${this.props.noPadding ? ' panel--no-padding' : ''}`}>
-          <PanelHeader
-            addAction={this.props.addAction}
-            allowCollapse={this.props.showExpandCollapse && individualFoldStates.length > 1}
-            toggleFolds={this.toggleFolds}
-            hasOpen={individualFoldStates.some(s => s === false)}
-          />
-          <div className={bem('panel', 'content')}>
-            {recursiveMap(newChildren, {...this.context, ...this.provideValue()})}
-          </div>
+      <div className={`panel${this.props.noPadding ? ' panel--no-padding' : ''}`}>
+        <PanelHeader
+          addAction={this.props.addAction}
+          allowCollapse={this.props.showExpandCollapse && individualFoldStates.length > 1}
+          toggleFolds={this.toggleFolds}
+          hasOpen={individualFoldStates.some(s => s === false)}
+        />
+        <div className={bem('panel', 'content')}>
+          {recursiveMap(newChildren, {
+            ...this.context,
+            ...this.props.context,
+            ...this.provideValue(),
+          })}
         </div>
-      </PlotlyPanelContext.Provider>
+      </div>
     );
   }
 }

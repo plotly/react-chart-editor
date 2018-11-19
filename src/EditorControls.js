@@ -19,6 +19,7 @@ import {categoryLayout, traceTypes} from 'lib/traceTypes';
 import {ModalProvider} from 'components/containers';
 import {DEFAULT_FONTS} from 'lib/constants';
 import {EditorControlsContext} from './context';
+import {recursiveMap} from './lib/recursiveMap';
 
 class EditorControls extends Component {
   constructor(props, context) {
@@ -354,7 +355,7 @@ class EditorControls extends Component {
             {this.props.graphDiv &&
               this.props.graphDiv._fullLayout &&
               (this.props.children ? (
-                this.props.children
+                recursiveMap(this.props.children, this.provideValue())
               ) : this.props.optionalPanel ? (
                 <DefaultEditor menuPanelOrder={this.props.menuPanelOrder}>
                   {this.props.optionalPanel}

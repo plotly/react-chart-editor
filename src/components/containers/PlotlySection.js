@@ -34,6 +34,7 @@ Section.propTypes = {
   attr: PropTypes.string,
   context: PropTypes.object,
 };
+Section.requireContext = containerConnectedContextTypes;
 
 export default class PlotlySection extends Section {
   constructor(props) {
