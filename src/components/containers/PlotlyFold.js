@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
 import {unpackPlotProps, containerConnectedContextTypes, striptags} from 'lib';
-import {PlotlyFoldContext} from '../../context';
 
 export class Fold extends Component {
   constructor() {
@@ -26,7 +25,7 @@ export class Fold extends Component {
 
   render() {
     if (!this.foldVisible && !this.props.messageIfEmpty) {
-      return <PlotlyFoldContext.Provider value={this.getChildContext()} />;
+      return null;
     }
     // const {deleteContainer} = this.context;
     const {
@@ -105,12 +104,10 @@ export class Fold extends Component {
     const classes = className ? ' ' + className : '';
 
     return (
-      <PlotlyFoldContext.Provider value={this.provideValue()}>
-        <div className={`fold${classes}`}>
-          {foldHeader}
-          {foldContent}
-        </div>
-      </PlotlyFoldContext.Provider>
+      <div className={`fold${classes}`}>
+        {foldHeader}
+        {foldContent}
+      </div>
     );
   }
 }

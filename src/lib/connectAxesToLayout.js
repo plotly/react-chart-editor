@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
 import {capitalize, getAllAxes, getDisplayName, getAxisTitle} from '../lib';
+import {recursiveMap} from './recursiveMap';
 
 function computeAxesOptions(axes, props, context) {
   const _ = context.localize;
@@ -153,19 +154,34 @@ export default function connectAxesToLayout(WrappedComponent) {
     }
 
     render() {
+      if (this.props.children) {
+        return (
+          <WrappedComponent {...this.props}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
       return <WrappedComponent {...this.props} options={this.axesOptions} />;
     }
   }
 
   AxesConnectedComponent.displayName = `AxesConnected${getDisplayName(WrappedComponent)}`;
 
-  AxesConnectedComponent.contextTypes = {
+  AxesConnectedComponent.requireContext = {
     container: PropTypes.object.isRequired,
     fullContainer: PropTypes.object.isRequired,
     updateContainer: PropTypes.func,
     localize: PropTypes.func,
     getValObject: PropTypes.func,
   };
+
+  // AxesConnectedComponent.contextTypes = {
+  //   container: PropTypes.object.isRequired,
+  //   fullContainer: PropTypes.object.isRequired,
+  //   updateContainer: PropTypes.func,
+  //   localize: PropTypes.func,
+  //   getValObject: PropTypes.func,
+  // };
 
   AxesConnectedComponent.childContextTypes = {
     axesOptions: PropTypes.array,

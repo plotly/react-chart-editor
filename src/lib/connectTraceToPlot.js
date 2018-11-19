@@ -82,9 +82,9 @@ export default function connectTraceToPlot(WrappedComponent) {
       }
     }
 
-    getChildContext() {
-      return this.childContext;
-    }
+    // getChildContext() {
+    //   return this.childContext;
+    // }
 
     provideValue() {
       return this.childContext;
@@ -192,21 +192,15 @@ export default function connectTraceToPlot(WrappedComponent) {
     }
 
     render() {
+      const newProps = {...this.props, ...{context: this.provideValue()}};
       if (this.props.children) {
         return (
-          <WrappedComponent name={this.name} icon={this.icon} context={this.provideValue()}>
+          <WrappedComponent name={this.name} icon={this.icon} {...newProps}>
             {recursiveMap(this.props.children, this.provideValue())}
           </WrappedComponent>
         );
       }
-      return (
-        <WrappedComponent
-          name={this.name}
-          icon={this.icon}
-          {...this.props}
-          context={this.provideValue()}
-        />
-      );
+      return <WrappedComponent name={this.name} icon={this.icon} {...newProps} />;
     }
   }
 

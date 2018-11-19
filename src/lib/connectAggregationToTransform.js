@@ -4,20 +4,19 @@ import {getDisplayName} from '../lib';
 
 export default function connectAggregationToTransform(WrappedComponent) {
   class AggregationConnectedComponent extends Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
 
       this.updateAggregation = this.updateAggregation.bind(this);
-      this.setLocals(props, context);
+      this.setLocals(props);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setLocals(nextProps, nextContext);
+    componentWillReceiveProps(nextProps) {
+      this.setLocals(nextProps);
     }
 
-    setLocals(props, context) {
-      const {aggregationIndex} = props;
-      const {container, fullContainer} = context;
+    setLocals(props) {
+      const {aggregationIndex, container, fullContainer} = props;
 
       const aggregations = (container && container.aggregations) || [];
       const fullAggregations = fullContainer.aggregations || [];
@@ -28,7 +27,7 @@ export default function connectAggregationToTransform(WrappedComponent) {
     getChildContext() {
       return {
         getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`aggregations[].${attr}`),
+          !this.props.getValObject ? null : this.props.getValObject(`aggregations[].${attr}`),
         updateContainer: this.updateAggregation,
         container: this.container,
         fullContainer: this.fullContainer,
@@ -38,7 +37,7 @@ export default function connectAggregationToTransform(WrappedComponent) {
     provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`aggregations[].${attr}`),
+          !this.props.getValObject ? null : this.props.getValObject(`aggregations[].${attr}`),
         updateContainer: this.updateAggregation,
         container: this.container,
         fullContainer: this.fullContainer,
@@ -69,14 +68,21 @@ export default function connectAggregationToTransform(WrappedComponent) {
     aggregationIndex: PropTypes.number.isRequired,
   };
 
-  AggregationConnectedComponent.contextTypes = {
+  AggregationConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    data: PropTypes.array,
-    onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
+
+  // AggregationConnectedComponent.contextTypes = {
+  //   container: PropTypes.object,
+  //   fullContainer: PropTypes.object,
+  //   data: PropTypes.array,
+  //   onUpdate: PropTypes.func,
+  //   updateContainer: PropTypes.func,
+  //   getValObject: PropTypes.func,
+  // };
 
   AggregationConnectedComponent.childContextTypes = {
     updateContainer: PropTypes.func,

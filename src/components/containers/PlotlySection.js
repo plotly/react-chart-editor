@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {containerConnectedContextTypes, unpackPlotProps} from '../../lib';
+import {recursiveMap} from '../../lib/recursiveMap';
 
 export class Section extends Component {
   constructor() {
@@ -20,7 +21,7 @@ export class Section extends Component {
             <div className="section__heading__text">{this.props.name}</div>
           </div>
         ) : null}
-        {this.props.children}
+        {recursiveMap(this.props.children, this.props.context)}
       </div>
     );
   }
@@ -31,20 +32,22 @@ Section.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
   attr: PropTypes.string,
+  context: PropTypes.object,
 };
 
 export default class PlotlySection extends Section {
-  constructor(props, context) {
-    super(props, context);
-    this.determineVisibility(props, context);
+  constructor(props) {
+    super(props);
+    this.determineVisibility(props);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.determineVisibility(nextProps, nextContext);
+  componentWillReceiveProps(nextProps) {
+    this.determineVisibility(nextProps);
   }
 
-  determineVisibility(nextProps, nextContext) {
-    const {isVisible} = unpackPlotProps(nextProps, nextContext);
+  determineVisibility(nextProps) {
+    const {context, ...props} = nextProps;
+    const {isVisible} = unpackPlotProps(props, context);
     this.sectionVisible = Boolean(isVisible);
 
     React.Children.forEach(nextProps.children, child => {
@@ -53,9 +56,9 @@ export default class PlotlySection extends Section {
       }
 
       if (child.props.attr) {
-        const plotProps = unpackPlotProps(child.props, nextContext);
+        const plotProps = unpackPlotProps(child.props, context);
         if (child.type.modifyPlotProps) {
-          child.type.modifyPlotProps(child.props, nextContext, plotProps);
+          child.type.modifyPlotProps(child.props, context, plotProps);
         }
         this.sectionVisible = this.sectionVisible || plotProps.isVisible;
         return;

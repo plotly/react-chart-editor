@@ -91,6 +91,7 @@ class UnconnectedAxisCreator extends Component {
         options={this.props.options}
         updatePlot={u => this.updateAxis(u)}
         extraComponent={extraComponent}
+        context={this.props.context}
       />
     );
   }
@@ -141,9 +142,8 @@ class UnconnectedAxesCreator extends Component {
         );
       });
     }
-
     return (
-      <PlotlySection name={_('Axes to Use')}>
+      <PlotlySection name={_('Axes to Use')} context={this.props.context}>
         {controls}
         <ModalProviderContext.Consumer>
           {({setPanel}) => (

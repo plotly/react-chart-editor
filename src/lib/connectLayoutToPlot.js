@@ -6,44 +6,8 @@ import {EditorControlsContext} from '../context';
 import {recursiveMap} from './recursiveMap';
 // import PropTypes from "prop-types";
 
-// localize: PropTypes.func,
-//     data: PropTypes.array,
-//     fullData: PropTypes.array,
-//     fullLayout: PropTypes.object,
-//     getValObject: PropTypes.func,
-//     graphDiv: PropTypes.object,
-//     layout: PropTypes.object,
-//     plotly: PropTypes.object,
-//     onUpdate: PropTypes.func,
-
 export default function connectLayoutToPlot(WrappedComponent) {
   class LayoutConnectedComponent extends Component {
-    // getChildContext() {
-    //   const {layout, fullLayout, plotly, onUpdate} = this.context;
-    //
-    //   const updateContainer = update => {
-    //     if (!onUpdate) {
-    //       return;
-    //     }
-    //     onUpdate({
-    //       type: EDITOR_ACTIONS.UPDATE_LAYOUT,
-    //       payload: {
-    //         update,
-    //       },
-    //     });
-    //   };
-    //
-    //   return {
-    //     getValObject: attr =>
-    //       !plotly
-    //         ? null
-    //         : plotly.PlotSchema.getLayoutValObject(fullLayout, nestedProperty({}, attr).parts),
-    //     updateContainer,
-    //     container: layout,
-    //     fullContainer: fullLayout,
-    //   };
-    // }
-
     provideValue() {
       const {
         layout,
@@ -88,14 +52,15 @@ export default function connectLayoutToPlot(WrappedComponent) {
     }
 
     render() {
+      const newProps = {...this.props, ...{context: this.provideValue()}};
       if (this.props.children) {
         return (
-          <WrappedComponent {...this.props}>
+          <WrappedComponent {...newProps}>
             {recursiveMap(this.props.children, this.provideValue())}
           </WrappedComponent>
         );
       }
-      return <WrappedComponent {...this.props} context={this.provideValue()} />;
+      return <WrappedComponent {...newProps} />;
     }
   }
 

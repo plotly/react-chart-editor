@@ -1,15 +1,16 @@
 import PlotlySection from './PlotlySection';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {EditorControlsContext} from '../../context';
 
 class TraceMarkerSection extends Component {
   constructor(props, context) {
     super(props, context);
-    this.setLocals(context);
+    this.setLocals(props);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setLocals(nextContext);
+  componentWillReceiveProps(nextProps) {
+    this.setLocals(nextProps);
   }
 
   setLocals(context) {
@@ -34,9 +35,14 @@ TraceMarkerSection.propTypes = {
   name: PropTypes.string,
 };
 
-TraceMarkerSection.contextTypes = {
+TraceMarkerSection.contextType = EditorControlsContext;
+TraceMarkerSection.requireContext = {
   fullContainer: PropTypes.object,
-  localize: PropTypes.func,
 };
+
+// TraceMarkerSection.contextTypes = {
+//   fullContainer: PropTypes.object,
+//   localize: PropTypes.func,
+// };
 
 export default TraceMarkerSection;

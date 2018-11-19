@@ -6,6 +6,7 @@ import update from 'immutability-helper';
 import {bem} from 'lib';
 import {EmbedIconIcon} from 'plotly-icons';
 import {EditorControlsContext, PlotlyPanelContext} from '../../context';
+import {recursiveMap} from '../../lib/recursiveMap';
 
 class PanelErrorImpl extends Component {
   render() {
@@ -32,12 +33,6 @@ export class Panel extends Component {
     };
     this.toggleFolds = this.toggleFolds.bind(this);
     this.toggleFold = this.toggleFold.bind(this);
-  }
-
-  getChildContext() {
-    return {
-      deleteContainer: this.props.deleteAction ? this.props.deleteAction : null,
-    };
   }
 
   provideValue() {
@@ -120,7 +115,9 @@ export class Panel extends Component {
             toggleFolds={this.toggleFolds}
             hasOpen={individualFoldStates.some(s => s === false)}
           />
-          <div className={bem('panel', 'content')}>{newChildren}</div>
+          <div className={bem('panel', 'content')}>
+            {recursiveMap(newChildren, {...this.context, ...this.provideValue()})}
+          </div>
         </div>
       </PlotlyPanelContext.Provider>
     );
@@ -141,9 +138,9 @@ Panel.defaultProps = {
 
 Panel.contextType = EditorControlsContext;
 
-Panel.childContextTypes = {
-  deleteContainer: PropTypes.func,
-};
+// Panel.childContextTypes = {
+//   deleteContainer: PropTypes.func,
+// };
 
 class PlotlyPanel extends Panel {}
 

@@ -6,6 +6,7 @@ import {bem} from 'lib';
 import {getMultiValueText} from 'lib/constants';
 import {CloseIcon} from 'plotly-icons';
 import {EditorControlsContext} from '../../context';
+import {recursiveMap} from '../../lib/recursiveMap';
 
 export class FieldDelete extends Component {
   render() {
@@ -73,7 +74,7 @@ class Field extends Component {
               </div>
             ) : null}
             <div className={fieldClass}>
-              {children}
+              {recursiveMap(children, this.props.context)}
               {extraComponent ? extraComponent : null}
               {multiValued && !suppressMultiValuedMessage ? (
                 <MenuPanel label={getMultiValueText('title', _)} ownline question>

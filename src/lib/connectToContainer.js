@@ -52,13 +52,6 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       ContainerConnectedComponent.modifyPlotProps(rest, context, this.plotProps);
     }
 
-    // getChildContext() {
-    //   return {
-    //     description: this.plotProps.description,
-    //     attr: this.attr,
-    //   };
-    // }
-
     provideValue() {
       return {
         description: this.plotProps.description,
@@ -73,27 +66,28 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       // component can skip computation as it can see plotProps is already defined.
       const {context, ...rest} = this.props;
       const {plotProps = this.plotProps, ...props} = Object.assign({}, this.plotProps, rest);
+      const newContext = {...context, ...this.provideValue()};
+
       if (props.isVisible) {
+        const newProps = {...props, ...{context: newContext}};
         if (this.props.children) {
           return (
             <WrappedComponent
-              {...props}
+              {...newProps}
               attr={this.attr}
               descriptopn={this.plotProps.description}
               plotProps={plotProps}
-              context={context}
             >
-              {recursiveMap(this.props.children, this.provideValue())}
+              {recursiveMap(this.props.children, newContext)}
             </WrappedComponent>
           );
         }
         return (
           <WrappedComponent
-            {...props}
+            {...newProps}
             attr={this.attr}
             descriptopn={this.plotProps.description}
             plotProps={plotProps}
-            context={context}
           />
         );
       }

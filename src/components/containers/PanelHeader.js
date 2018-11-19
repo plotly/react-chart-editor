@@ -2,6 +2,7 @@ import Button from 'components/widgets/Button';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {PlusIcon, ResizeUpIcon, ResizeDownIcon} from 'plotly-icons';
+import {EditorControlsContext} from '../../context';
 
 class PanelHeader extends Component {
   constructor() {
@@ -16,8 +17,22 @@ class PanelHeader extends Component {
   }
 
   render() {
-    const {localize: _} = this.context;
-    const {children, addAction, allowCollapse, toggleFolds, hasOpen} = this.props;
+    const {localize: _, layout, onUpdate} = this.context;
+    const {
+      children,
+      addAction,
+      allowCollapse,
+      toggleFolds,
+      hasOpen,
+      fullContainer,
+      updateContainer,
+    } = this.props;
+    const handleArgs = {
+      layout,
+      onUpdate,
+      fullContainer,
+      updateContainer,
+    };
 
     // dropdown is styled with same styles as react-select component - see _dropdown.scss
     const icon = <PlusIcon />;
@@ -51,7 +66,7 @@ class PanelHeader extends Component {
                 onClick={
                   Array.isArray(addAction.handler)
                     ? this.togglePanel
-                    : () => addAction.handler(this.context)
+                    : () => addAction.handler(handleArgs)
                 }
                 icon={icon}
                 label={addAction.label}
@@ -65,7 +80,7 @@ class PanelHeader extends Component {
                           className="Select-option"
                           key={label}
                           onClick={() => {
-                            handler(this.context);
+                            handler(handleArgs);
                             this.togglePanel();
                           }}
                         >
@@ -84,13 +99,20 @@ class PanelHeader extends Component {
   }
 }
 
-PanelHeader.contextTypes = {
-  layout: PropTypes.object,
-  onUpdate: PropTypes.func,
-  localize: PropTypes.func,
+PanelHeader.contextType = EditorControlsContext;
+
+PanelHeader.requireContext = {
   fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,
 };
+
+// PanelHeader.contextTypes = {
+//   layout: PropTypes.object,
+//   onUpdate: PropTypes.func,
+//   localize: PropTypes.func,
+//   fullContainer: PropTypes.object,
+//   updateContainer: PropTypes.func,
+// };
 
 PanelHeader.propTypes = {
   addAction: PropTypes.object,
