@@ -15,7 +15,6 @@ export class Section extends Component {
     }
 
     const {context = {}} = this.props;
-    console.log(Object.keys(context));
     return (
       <div className="section">
         {this.props.name ? (
@@ -50,7 +49,6 @@ export default class PlotlySection extends Section {
 
   determineVisibility(nextProps) {
     const {context = {}, ...props} = nextProps;
-    console.log(Object.keys(context));
     const {isVisible} = unpackPlotProps(props, context);
     this.sectionVisible = Boolean(isVisible);
 
@@ -79,4 +77,3 @@ export default class PlotlySection extends Section {
 
 PlotlySection.plotly_editor_traits = {no_visibility_forcing: true};
 PlotlySection.requireContext = containerConnectedContextTypes;
-// PlotlySection.contextTypes = containerConnectedContextTypes;

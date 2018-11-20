@@ -1,21 +1,22 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
+import {recursiveMap} from './recursiveMap';
 
 export default function connectSliderToLayout(WrappedComponent) {
   class SliderConnectedComponent extends Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
       this.updateSlider = this.updateSlider.bind(this);
-      this.setLocals(props, context);
+      this.setLocals(props);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setLocals(nextProps, nextContext);
+    componentWillReceiveProps(nextProps) {
+      this.setLocals(nextProps);
     }
 
-    setLocals(props, context) {
-      const {sliderIndex} = props;
+    setLocals(props) {
+      const {context, sliderIndex} = props;
       const {container, fullContainer} = context;
 
       const sliders = container.sliders || [];
@@ -24,20 +25,22 @@ export default function connectSliderToLayout(WrappedComponent) {
       this.fullContainer = fullSliders[sliderIndex];
     }
 
-    getChildContext() {
-      return {
-        getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`sliders[].${attr}`),
-        updateContainer: this.updateSlider,
-        container: this.container,
-        fullContainer: this.fullContainer,
-      };
-    }
+    // getChildContext() {
+    //   return {
+    //     getValObject: attr =>
+    //       !this.context.getValObject ? null : this.context.getValObject(`sliders[].${attr}`),
+    //     updateContainer: this.updateSlider,
+    //     container: this.container,
+    //     fullContainer: this.fullContainer,
+    //   };
+    // }
 
     provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`sliders[].${attr}`),
+          !this.props.context.getValObject
+            ? null
+            : this.props.context.getValObject(`sliders[].${attr}`),
         updateContainer: this.updateSlider,
         container: this.container,
         fullContainer: this.fullContainer,
@@ -51,11 +54,19 @@ export default function connectSliderToLayout(WrappedComponent) {
         const newkey = `sliders[${sliderIndex}].${key}`;
         newUpdate[newkey] = update[key];
       }
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      const newProps = {...this.props, context: this.provideValue()};
+      if (this.props.children) {
+        return (
+          <WrappedComponent {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent {...newProps} />;
     }
   }
 
@@ -65,7 +76,7 @@ export default function connectSliderToLayout(WrappedComponent) {
     sliderIndex: PropTypes.number.isRequired,
   };
 
-  SliderConnectedComponent.contextTypes = {
+  SliderConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
     onUpdate: PropTypes.func,
@@ -73,12 +84,20 @@ export default function connectSliderToLayout(WrappedComponent) {
     getValObject: PropTypes.func,
   };
 
-  SliderConnectedComponent.childContextTypes = {
-    updateContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    getValObject: PropTypes.func,
-  };
+  // SliderConnectedComponent.contextTypes = {
+  //   container: PropTypes.object,
+  //   fullContainer: PropTypes.object,
+  //   onUpdate: PropTypes.func,
+  //   updateContainer: PropTypes.func,
+  //   getValObject: PropTypes.func,
+  // };
+  //
+  // SliderConnectedComponent.childContextTypes = {
+  //   updateContainer: PropTypes.func,
+  //   container: PropTypes.object,
+  //   fullContainer: PropTypes.object,
+  //   getValObject: PropTypes.func,
+  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   SliderConnectedComponent.plotly_editor_traits = plotly_editor_traits;

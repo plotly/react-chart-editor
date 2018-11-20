@@ -53,10 +53,6 @@ UnconnectedLocation.requireContext = {
   updateContainer: PropTypes.func,
 };
 
-// UnconnectedLocation.contextTypes = {
-//   updateContainer: PropTypes.func,
-// };
-
 const Location = connectToContainer(UnconnectedLocation);
 
 class UnconnectedLocationSelector extends Component {
@@ -149,10 +145,5 @@ UnconnectedLocationSelector.requireContext = {
   container: PropTypes.object,
   updateContainer: PropTypes.func,
 };
-
-// UnconnectedLocationSelector.contextTypes = {
-//   container: PropTypes.object,
-//   updateContainer: PropTypes.func,
-// };
 
 export default connectToContainer(UnconnectedLocationSelector);

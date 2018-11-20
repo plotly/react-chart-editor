@@ -104,6 +104,7 @@ UnconnectedAxisCreator.propTypes = {
   container: PropTypes.object,
   fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,
+  context: PropTypes.object,
 };
 
 UnconnectedAxisCreator.contextType = EditorControlsContext;
@@ -162,6 +163,7 @@ class UnconnectedAxesCreator extends Component {
 UnconnectedAxesCreator.propTypes = {
   container: PropTypes.object,
   fullContainer: PropTypes.object,
+  context: PropTypes.object,
 };
 
 UnconnectedAxesCreator.contextType = EditorControlsContext;

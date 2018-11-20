@@ -1,22 +1,24 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName, plotlyTraceToCustomTrace, renderTraceIcon, getFullTrace} from '../lib';
+import {recursiveMap} from './recursiveMap';
 
 export default function connectCartesianSubplotToLayout(WrappedComponent) {
   class SubplotConnectedComponent extends Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
 
       this.updateSubplot = this.updateSubplot.bind(this);
-      this.setLocals(props, context);
+      this.setLocals(props);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setLocals(nextProps, nextContext);
+    componentWillReceiveProps(nextProps) {
+      this.setLocals(nextProps);
     }
 
-    setLocals(props, context) {
-      const {xaxis, yaxis, traceIndexes} = props;
+    setLocals(props) {
+      const {context, ...newProps} = props;
+      const {xaxis, yaxis, traceIndexes} = newProps;
       const {container, fullContainer, data} = context;
 
       this.container = {
@@ -37,27 +39,27 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
       }
     }
 
-    getChildContext() {
-      return {
-        getValObject: attr =>
-          !this.context.getValObject
-            ? null
-            : this.context.getValObject(
-                attr.replace('xaxis', this.props.xaxis).replace('yaxis', this.props.yaxis)
-              ),
-        updateContainer: this.updateSubplot,
-        deleteContainer: this.deleteSubplot,
-        container: this.container,
-        fullContainer: this.fullContainer,
-      };
-    }
+    // getChildContext() {
+    //   return {
+    //     getValObject: attr =>
+    //       !this.context.getValObject
+    //         ? null
+    //         : this.context.getValObject(
+    //             attr.replace('xaxis', this.props.xaxis).replace('yaxis', this.props.yaxis)
+    //           ),
+    //     updateContainer: this.updateSubplot,
+    //     deleteContainer: this.deleteSubplot,
+    //     container: this.container,
+    //     fullContainer: this.fullContainer,
+    //   };
+    // }
 
     provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
+          !this.props.context.getValObject
             ? null
-            : this.context.getValObject(
+            : this.props.context.getValObject(
                 attr.replace('xaxis', this.props.xaxis).replace('yaxis', this.props.yaxis)
               ),
         updateContainer: this.updateSubplot,
@@ -73,11 +75,19 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
         const newKey = key.replace('xaxis', this.props.xaxis).replace('yaxis', this.props.yaxis);
         newUpdate[newKey] = update[key];
       }
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     render() {
-      return <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
+      const newProps = {...this.props, context: this.provideValue()};
+      if (this.props.children) {
+        return (
+          <WrappedComponent name={this.name} icon={this.icon} {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent name={this.name} icon={this.icon} {...newProps} />;
     }
   }
 
@@ -88,7 +98,7 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
     yaxis: PropTypes.string.isRequired,
   };
 
-  SubplotConnectedComponent.contextTypes = {
+  SubplotConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
     data: PropTypes.array,
@@ -97,14 +107,23 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
+  // SubplotConnectedComponent.contextTypes = {
+  //   container: PropTypes.object,
+  //   fullContainer: PropTypes.object,
+  //   data: PropTypes.array,
+  //   fullData: PropTypes.array,
+  //   onUpdate: PropTypes.func,
+  //   updateContainer: PropTypes.func,
+  //   getValObject: PropTypes.func,
+  // };
 
-  SubplotConnectedComponent.childContextTypes = {
-    updateContainer: PropTypes.func,
-    deleteContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    getValObject: PropTypes.func,
-  };
+  // SubplotConnectedComponent.childContextTypes = {
+  //   updateContainer: PropTypes.func,
+  //   deleteContainer: PropTypes.func,
+  //   container: PropTypes.object,
+  //   fullContainer: PropTypes.object,
+  //   getValObject: PropTypes.func,
+  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   SubplotConnectedComponent.plotly_editor_traits = plotly_editor_traits;

@@ -132,10 +132,6 @@ Fold.requireContext = {
   deleteContainer: PropTypes.func,
 };
 
-// Fold.contextTypes = {
-//   deleteContainer: PropTypes.func,
-// };
-
 Fold.childContextTypes = {
   foldInfo: PropTypes.object,
 };
@@ -191,12 +187,5 @@ PlotlyFold.requireContext = Object.assign(
   },
   containerConnectedContextTypes
 );
-
-// PlotlyFold.contextTypes = Object.assign(
-//   {
-//     deleteContainer: PropTypes.func,
-//   },
-//   containerConnectedContextTypes
-// );
 
 export default PlotlyFold;

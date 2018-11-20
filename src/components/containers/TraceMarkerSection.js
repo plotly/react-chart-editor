@@ -40,9 +40,4 @@ TraceMarkerSection.requireContext = {
   fullContainer: PropTypes.object,
 };
 
-// TraceMarkerSection.contextTypes = {
-//   fullContainer: PropTypes.object,
-//   localize: PropTypes.func,
-// };
-
 export default TraceMarkerSection;

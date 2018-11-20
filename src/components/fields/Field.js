@@ -112,12 +112,6 @@ Field.requireContext = {
   attr: PropTypes.string,
 };
 
-// Field.contextTypes = {
-//   // ConnectToContainer
-//   description: PropTypes.string,
-//   attr: PropTypes.string,
-// };
-
 Field.defaultProps = {
   center: false,
   multiValued: false,

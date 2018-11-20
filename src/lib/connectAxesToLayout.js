@@ -91,22 +91,6 @@ export default function connectAxesToLayout(WrappedComponent) {
       }
     }
 
-    // getChildContext() {
-    //   return {
-    //     getValObject: attr =>
-    //       !this.context.getValObject
-    //         ? null
-    //         : this.context.getValObject(`${this.state.axesTarget}.${attr}`),
-    //     axesOptions: this.axesOptions,
-    //     axesTarget: this.state.axesTarget,
-    //     axesTargetHandler: this.axesTargetHandler,
-    //     container: this.container,
-    //     defaultContainer: this.defaultContainer,
-    //     fullContainer: this.fullContainer,
-    //     updateContainer: this.updateContainer,
-    //   };
-    // }
-
     provideValue() {
       return {
         getValObject: attr =>
@@ -159,7 +143,7 @@ export default function connectAxesToLayout(WrappedComponent) {
       const newProps = {...this.props, context: this.provideValue()};
       if (this.props.children) {
         return (
-          <WrappedComponent {...newProps}>
+          <WrappedComponent {...newProps} options={this.axesOptions}>
             {recursiveMap(this.props.children, this.provideValue())}
           </WrappedComponent>
         );
@@ -177,25 +161,6 @@ export default function connectAxesToLayout(WrappedComponent) {
     localize: PropTypes.func,
     getValObject: PropTypes.func,
   };
-
-  // AxesConnectedComponent.contextTypes = {
-  //   container: PropTypes.object.isRequired,
-  //   fullContainer: PropTypes.object.isRequired,
-  //   updateContainer: PropTypes.func,
-  //   localize: PropTypes.func,
-  //   getValObject: PropTypes.func,
-  // };
-
-  // AxesConnectedComponent.childContextTypes = {
-  //   axesOptions: PropTypes.array,
-  //   axesTarget: PropTypes.string,
-  //   axesTargetHandler: PropTypes.func,
-  //   container: PropTypes.object,
-  //   defaultContainer: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   updateContainer: PropTypes.func,
-  //   getValObject: PropTypes.func,
-  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   AxesConnectedComponent.plotly_editor_traits = plotly_editor_traits;

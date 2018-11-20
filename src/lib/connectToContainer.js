@@ -98,12 +98,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
   }
 
   ContainerConnectedComponent.displayName = `ContainerConnected${getDisplayName(WrappedComponent)}`;
-  // ContainerConnectedComponent.contextTypes = containerConnectedContextTypes;
   ContainerConnectedComponent.requireContext = containerConnectedContextTypes;
-  // ContainerConnectedComponent.childContextTypes = {
-  //   description: PropTypes.string,
-  //   attr: PropTypes.string,
-  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   ContainerConnectedComponent.plotly_editor_traits = plotly_editor_traits;

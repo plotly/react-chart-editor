@@ -104,14 +104,6 @@ PanelHeader.requireContext = {
   updateContainer: PropTypes.func,
 };
 
-// PanelHeader.contextTypes = {
-//   layout: PropTypes.object,
-//   onUpdate: PropTypes.func,
-//   localize: PropTypes.func,
-//   fullContainer: PropTypes.object,
-//   updateContainer: PropTypes.func,
-// };
-
 PanelHeader.propTypes = {
   addAction: PropTypes.object,
   allowCollapse: PropTypes.bool,

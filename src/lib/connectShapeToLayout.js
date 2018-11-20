@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {recursiveMap} from './recursiveMap';
 
 export default function connectShapeToLayout(WrappedComponent) {
   class ShapeConnectedComponent extends Component {
@@ -27,21 +28,23 @@ export default function connectShapeToLayout(WrappedComponent) {
       this.fullContainer = fullShapes[shapeIndex];
     }
 
-    getChildContext() {
-      return {
-        getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`shapes[].${attr}`),
-        updateContainer: this.updateShape,
-        deleteContainer: this.deleteShape,
-        container: this.container,
-        fullContainer: this.fullContainer,
-      };
-    }
+    // getChildContext() {
+    //   return {
+    //     getValObject: attr =>
+    //       !this.context.getValObject ? null : this.context.getValObject(`shapes[].${attr}`),
+    //     updateContainer: this.updateShape,
+    //     deleteContainer: this.deleteShape,
+    //     container: this.container,
+    //     fullContainer: this.fullContainer,
+    //   };
+    // }
 
     provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`shapes[].${attr}`),
+          !this.props.context.getValObject
+            ? null
+            : this.props.context.getValObject(`shapes[].${attr}`),
         updateContainer: this.updateShape,
         deleteContainer: this.deleteShape,
         container: this.container,
@@ -56,12 +59,12 @@ export default function connectShapeToLayout(WrappedComponent) {
         const newkey = `shapes[${shapeIndex}].${key}`;
         newUpdate[newkey] = update[key];
       }
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     deleteShape() {
-      if (this.context.onUpdate) {
-        this.context.onUpdate({
+      if (this.props.context.onUpdate) {
+        this.props.context.onUpdate({
           type: EDITOR_ACTIONS.DELETE_SHAPE,
           payload: {shapeIndex: this.props.shapeIndex},
         });
@@ -69,7 +72,15 @@ export default function connectShapeToLayout(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      const newProps = {...this.props, context: this.provideValue()};
+      if (this.props.children) {
+        return (
+          <WrappedComponent {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent {...newProps} />;
     }
   }
 
@@ -78,8 +89,7 @@ export default function connectShapeToLayout(WrappedComponent) {
   ShapeConnectedComponent.propTypes = {
     shapeIndex: PropTypes.number.isRequired,
   };
-
-  ShapeConnectedComponent.contextTypes = {
+  ShapeConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
     data: PropTypes.array,
@@ -87,14 +97,22 @@ export default function connectShapeToLayout(WrappedComponent) {
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
+  // ShapeConnectedComponent.contextTypes = {
+  //   container: PropTypes.object,
+  //   fullContainer: PropTypes.object,
+  //   data: PropTypes.array,
+  //   onUpdate: PropTypes.func,
+  //   updateContainer: PropTypes.func,
+  //   getValObject: PropTypes.func,
+  // };
 
-  ShapeConnectedComponent.childContextTypes = {
-    updateContainer: PropTypes.func,
-    deleteContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    getValObject: PropTypes.func,
-  };
+  // ShapeConnectedComponent.childContextTypes = {
+  //   updateContainer: PropTypes.func,
+  //   deleteContainer: PropTypes.func,
+  //   container: PropTypes.object,
+  //   fullContainer: PropTypes.object,
+  //   getValObject: PropTypes.func,
+  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   ShapeConnectedComponent.plotly_editor_traits = plotly_editor_traits;
