@@ -46,7 +46,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
     }
 
     setLocals(props) {
-      const {context, ...rest} = props;
+      const {context = {}, ...rest} = props;
 
       this.plotProps = unpackPlotProps(rest, context);
       this.attr = rest.attr;
@@ -65,7 +65,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       // props. However pass plotProps as a specific prop in case inner component
       // is also wrapped by a component that `unpackPlotProps`. That way inner
       // component can skip computation as it can see plotProps is already defined.
-      const {context, ...rest} = this.props;
+      const {context = {}, ...rest} = this.props;
       const {plotProps = this.plotProps, ...props} = Object.assign({}, this.plotProps, rest);
       const newContext = {...context, ...this.provideValue()};
 

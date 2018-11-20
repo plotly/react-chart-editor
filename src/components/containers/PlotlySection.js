@@ -14,6 +14,8 @@ export class Section extends Component {
       return null;
     }
 
+    const {context = {}} = this.props;
+    console.log(Object.keys(context));
     return (
       <div className="section">
         {this.props.name ? (
@@ -21,7 +23,7 @@ export class Section extends Component {
             <div className="section__heading__text">{this.props.name}</div>
           </div>
         ) : null}
-        {recursiveMap(this.props.children, this.props.context)}
+        {recursiveMap(this.props.children, context)}
       </div>
     );
   }
@@ -47,7 +49,8 @@ export default class PlotlySection extends Section {
   }
 
   determineVisibility(nextProps) {
-    const {context, ...props} = nextProps;
+    const {context = {}, ...props} = nextProps;
+    console.log(Object.keys(context));
     const {isVisible} = unpackPlotProps(props, context);
     this.sectionVisible = Boolean(isVisible);
 
