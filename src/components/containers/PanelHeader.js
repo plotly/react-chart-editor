@@ -18,20 +18,18 @@ class PanelHeader extends Component {
 
   render() {
     const {localize: _, layout, onUpdate} = this.context;
-    const {
-      children,
-      addAction,
-      allowCollapse,
-      toggleFolds,
-      hasOpen,
-      fullContainer,
-      updateContainer,
-    } = this.props;
+    const {children, addAction, allowCollapse, toggleFolds, hasOpen, context} = this.props;
+    let contextHandleArgs = {};
+    if (context && context.fullContainer && context.updateContainer) {
+      contextHandleArgs = {
+        fullContainer: context.fullContainer,
+        updateContainer: context.updateContainer,
+      };
+    }
     const handleArgs = {
       layout,
       onUpdate,
-      fullContainer,
-      updateContainer,
+      ...contextHandleArgs,
     };
 
     // dropdown is styled with same styles as react-select component - see _dropdown.scss
@@ -120,6 +118,7 @@ PanelHeader.propTypes = {
   children: PropTypes.node,
   hasOpen: PropTypes.bool,
   toggleFolds: PropTypes.func,
+  context: PropTypes.object,
 };
 
 export default PanelHeader;

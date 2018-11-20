@@ -47,6 +47,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
 
     setLocals(props) {
       const {context, ...rest} = props;
+
       this.plotProps = unpackPlotProps(rest, context);
       this.attr = rest.attr;
       ContainerConnectedComponent.modifyPlotProps(rest, context, this.plotProps);

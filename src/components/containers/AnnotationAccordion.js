@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectAnnotationToLayout} from 'lib';
 import {EditorControlsContext} from '../../context';
+import {recursiveMap} from '../../lib/recursiveMap';
 
 const AnnotationFold = connectAnnotationToLayout(PlotlyFold);
 
@@ -20,7 +21,7 @@ class AnnotationAccordion extends Component {
       annotations.length &&
       annotations.map((ann, i) => (
         <AnnotationFold key={i} annotationIndex={i} name={ann.text} canDelete={canAdd}>
-          {children}
+          {recursiveMap(children, this.context)}
         </AnnotationFold>
       ));
 

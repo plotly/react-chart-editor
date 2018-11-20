@@ -109,6 +109,7 @@ export class Panel extends Component {
           allowCollapse={this.props.showExpandCollapse && individualFoldStates.length > 1}
           toggleFolds={this.toggleFolds}
           hasOpen={individualFoldStates.some(s => s === false)}
+          context={this.props.context}
         />
         <div className={bem('panel', 'content')}>
           {recursiveMap(newChildren, {
@@ -128,6 +129,7 @@ Panel.propTypes = {
   deleteAction: PropTypes.func,
   noPadding: PropTypes.bool,
   showExpandCollapse: PropTypes.bool,
+  context: PropTypes.object,
 };
 
 Panel.defaultProps = {

@@ -12,6 +12,7 @@ export class UnconnectedNumeric extends Component {
       placeholder = fullValue;
       fullValue = '';
     }
+
     return (
       <Field {...this.props}>
         <NumericInput

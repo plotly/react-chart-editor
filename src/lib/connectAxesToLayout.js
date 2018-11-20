@@ -34,11 +34,12 @@ function computeAxesOptions(axes, props, context) {
 
 export default function connectAxesToLayout(WrappedComponent) {
   class AxesConnectedComponent extends Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
 
+      const {context, ...newProps} = props;
       this.axes = getAllAxes(context.fullContainer);
-      this.axesOptions = computeAxesOptions(this.axes, props, context);
+      this.axesOptions = computeAxesOptions(this.axes, newProps, context);
 
       // this.axesOptions can be an empty array when we have a filter on an AxesFold
       // and no axes correspond to the condition
@@ -57,14 +58,15 @@ export default function connectAxesToLayout(WrappedComponent) {
       this.axesTargetHandler = this.axesTargetHandler.bind(this);
       this.updateContainer = this.updateContainer.bind(this);
 
-      this.setLocals(props, this.state, context);
+      this.setLocals(newProps, this.state, context);
     }
 
-    componentWillUpdate(nextProps, nextState, nextContext) {
+    componentWillUpdate(nextProps, nextState) {
+      const {context: nextContext, ...newProps} = nextProps;
       this.axes = getAllAxes(nextContext.fullContainer);
       this.axesOptions = computeAxesOptions(this.axes, nextProps, nextContext);
       // This is not enough, what if plotly.js adds new axes...
-      this.setLocals(nextProps, nextState, nextContext);
+      this.setLocals(newProps, nextState, nextContext);
     }
 
     setLocals(nextProps, nextState, nextContext) {
@@ -89,28 +91,28 @@ export default function connectAxesToLayout(WrappedComponent) {
       }
     }
 
-    getChildContext() {
-      return {
-        getValObject: attr =>
-          !this.context.getValObject
-            ? null
-            : this.context.getValObject(`${this.state.axesTarget}.${attr}`),
-        axesOptions: this.axesOptions,
-        axesTarget: this.state.axesTarget,
-        axesTargetHandler: this.axesTargetHandler,
-        container: this.container,
-        defaultContainer: this.defaultContainer,
-        fullContainer: this.fullContainer,
-        updateContainer: this.updateContainer,
-      };
-    }
+    // getChildContext() {
+    //   return {
+    //     getValObject: attr =>
+    //       !this.context.getValObject
+    //         ? null
+    //         : this.context.getValObject(`${this.state.axesTarget}.${attr}`),
+    //     axesOptions: this.axesOptions,
+    //     axesTarget: this.state.axesTarget,
+    //     axesTargetHandler: this.axesTargetHandler,
+    //     container: this.container,
+    //     defaultContainer: this.defaultContainer,
+    //     fullContainer: this.fullContainer,
+    //     updateContainer: this.updateContainer,
+    //   };
+    // }
 
     provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
+          !this.props.context.getValObject
             ? null
-            : this.context.getValObject(`${this.state.axesTarget}.${attr}`),
+            : this.props.context.getValObject(`${this.state.axesTarget}.${attr}`),
         axesOptions: this.axesOptions,
         axesTarget: this.state.axesTarget,
         axesTargetHandler: this.axesTargetHandler,
@@ -150,18 +152,19 @@ export default function connectAxesToLayout(WrappedComponent) {
         }
       }
 
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     render() {
+      const newProps = {...this.props, context: this.provideValue()};
       if (this.props.children) {
         return (
-          <WrappedComponent {...this.props}>
+          <WrappedComponent {...newProps}>
             {recursiveMap(this.props.children, this.provideValue())}
           </WrappedComponent>
         );
       }
-      return <WrappedComponent {...this.props} options={this.axesOptions} />;
+      return <WrappedComponent {...newProps} options={this.axesOptions} />;
     }
   }
 
@@ -183,16 +186,16 @@ export default function connectAxesToLayout(WrappedComponent) {
   //   getValObject: PropTypes.func,
   // };
 
-  AxesConnectedComponent.childContextTypes = {
-    axesOptions: PropTypes.array,
-    axesTarget: PropTypes.string,
-    axesTargetHandler: PropTypes.func,
-    container: PropTypes.object,
-    defaultContainer: PropTypes.object,
-    fullContainer: PropTypes.object,
-    updateContainer: PropTypes.func,
-    getValObject: PropTypes.func,
-  };
+  // AxesConnectedComponent.childContextTypes = {
+  //   axesOptions: PropTypes.array,
+  //   axesTarget: PropTypes.string,
+  //   axesTargetHandler: PropTypes.func,
+  //   container: PropTypes.object,
+  //   defaultContainer: PropTypes.object,
+  //   fullContainer: PropTypes.object,
+  //   updateContainer: PropTypes.func,
+  //   getValObject: PropTypes.func,
+  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   AxesConnectedComponent.plotly_editor_traits = plotly_editor_traits;
