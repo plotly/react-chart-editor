@@ -44,8 +44,6 @@ TraceRequiredPanel.defaultProps = {
   visible: true,
 };
 
-TraceRequiredPanel.context = LayoutPanel.context;
-
 TraceRequiredPanel.contextType = EditorControlsContext;
 
 export default TraceRequiredPanel;

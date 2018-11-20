@@ -8,9 +8,13 @@ import {connectLayoutToPlot, containerConnectedContextTypes} from 'lib';
 const LayoutPanel = connectLayoutToPlot(PlotlyPanel);
 const LayoutSection = connectLayoutToPlot(PlotlySection);
 
-const TraceTypeSection = (props, context) => {
-  const {fullContainer, fullData} = context;
-  const {mode, traceTypes} = props;
+const TraceTypeSection = props => {
+  // const {fullContainer, fullData} = context;
+  const {
+    mode,
+    traceTypes,
+    context: {fullContainer, fullData},
+  } = props;
 
   const ifConnectedToTrace =
     mode === 'trace' && fullContainer && traceTypes.includes(fullContainer.type);
@@ -24,8 +28,7 @@ const TraceTypeSection = (props, context) => {
 
   return null;
 };
-
-TraceTypeSection.contextTypes = containerConnectedContextTypes;
+TraceTypeSection.requireContext = containerConnectedContextTypes;
 TraceTypeSection.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,

@@ -21,7 +21,7 @@ class AnnotationAccordion extends Component {
       annotations.length &&
       annotations.map((ann, i) => (
         <AnnotationFold key={i} annotationIndex={i} name={ann.text} canDelete={canAdd}>
-          {recursiveMap(children, this.context)}
+          {children}
         </AnnotationFold>
       ));
 
