@@ -51,11 +51,7 @@ class PanelsWithSidebar extends Component {
     const sections = [];
     const groupLookup = {};
     let groupIndex;
-    let childrenArray = React.Children.toArray(children);
-
-    if (menuPanelOrder) {
-      childrenArray = sortMenu(childrenArray, menuPanelOrder);
-    }
+    const childrenArray = sortMenu(React.Children.toArray(children), menuPanelOrder);
 
     childrenArray.forEach(child => {
       if (!child) {

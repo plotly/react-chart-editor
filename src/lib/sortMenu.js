@@ -9,6 +9,11 @@ function sortAlphabetically(a, b) {
 }
 
 export default function sortMenu(children, order) {
+  // Break out early if no order is provided
+  if (!order) {
+    return children;
+  }
+
   // PART 1: only sorting panels (i.e. child with a group and name prop)
   // and not other elements (like Buttons, or Logo)
   let panelsStartIndex = null;
