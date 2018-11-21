@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 import Dropdown from '../widgets/Dropdown';
 import RadioBlocks from '../widgets/RadioBlocks';
 import React, {Component} from 'react';
+import {EditorControlsContext} from '../../context';
 
 class AxesSelector extends Component {
   constructor(props, context) {
     super(props, context);
     const {localize: _} = context;
 
-    if (!context.axesTargetHandler) {
+    if (!props.context.axesTargetHandler) {
       throw new Error(_('AxesSelector must be nested within a connectAxesToPlot component'));
     }
   }
 
   render() {
-    const {axesTargetHandler, axesTarget, fullLayout, localize: _} = this.context;
+    const {localize: _} = this.context;
+    const {axesTargetHandler, axesTarget, fullLayout} = this.props.context;
     const {axesOptions} = this.props;
     const maxCharsThatFitInRadio = 27;
     const maxOptions = axesOptions.length > 4; // eslint-disable-line
@@ -60,16 +62,17 @@ class AxesSelector extends Component {
     );
   }
 }
-
-AxesSelector.contextTypes = {
+AxesSelector.requireContext = {
   axesTargetHandler: PropTypes.func,
   axesTarget: PropTypes.string,
   fullLayout: PropTypes.object,
-  localize: PropTypes.func,
 };
+
+AxesSelector.contextType = EditorControlsContext;
 
 AxesSelector.propTypes = {
   axesOptions: PropTypes.array,
+  context: PropTypes.object,
 };
 
 export default AxesSelector;

@@ -7,8 +7,8 @@ import Radio from './Radio';
 import Dropdown from './Dropdown';
 
 export class UnconnectedVisibilitySelect extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.setMode = this.setMode.bind(this);
     this.setLocals = this.setLocals.bind(this);
@@ -76,10 +76,11 @@ UnconnectedVisibilitySelect.propTypes = {
   defaultOpt: PropTypes.oneOfType([PropTypes.number, PropTypes.bool, PropTypes.string]),
   label: PropTypes.string,
   attr: PropTypes.string,
+  context: PropTypes.object,
   ...Field.propTypes,
 };
 
-UnconnectedVisibilitySelect.contextTypes = {
+UnconnectedVisibilitySelect.requireContext = {
   updateContainer: PropTypes.func,
 };
 

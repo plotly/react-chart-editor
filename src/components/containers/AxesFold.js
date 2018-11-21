@@ -10,7 +10,9 @@ class AxesFold extends Component {
     const {children, options} = this.props;
     return options.length && children ? (
       <PlotlyFold {...this.props}>
-        {options.length === 1 ? null : <AxesSelector axesOptions={options} />}
+        {options.length === 1 ? null : (
+          <AxesSelector axesOptions={options} context={this.props.context} />
+        )}
         {recursiveMap(children, this.props.context)}
       </PlotlyFold>
     ) : null;

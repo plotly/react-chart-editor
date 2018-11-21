@@ -28,17 +28,6 @@ export default function connectImageToLayout(WrappedComponent) {
       this.fullContainer = fullImages[imageIndex];
     }
 
-    // getChildContext() {
-    //   return {
-    //     getValObject: attr =>
-    //       !this.context.getValObject ? null : this.context.getValObject(`images[].${attr}`),
-    //     updateContainer: this.updateImage,
-    //     deleteContainer: this.deleteImage,
-    //     container: this.container,
-    //     fullContainer: this.fullContainer,
-    //   };
-    // }
-
     provideValue() {
       return {
         getValObject: attr =>
@@ -98,23 +87,6 @@ export default function connectImageToLayout(WrappedComponent) {
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
-
-  // ImageConnectedComponent.contextTypes = {
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   data: PropTypes.array,
-  //   onUpdate: PropTypes.func,
-  //   updateContainer: PropTypes.func,
-  //   getValObject: PropTypes.func,
-  // };
-  //
-  // ImageConnectedComponent.childContextTypes = {
-  //   updateContainer: PropTypes.func,
-  //   deleteContainer: PropTypes.func,
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   getValObject: PropTypes.func,
-  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   ImageConnectedComponent.plotly_editor_traits = plotly_editor_traits;

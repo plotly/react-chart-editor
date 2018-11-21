@@ -25,7 +25,7 @@ export class UnconnectedDualNumericFraction extends Component {
   render() {
     const {percentage, multiValued, attr2, step, min, max} = this.props;
     let fullValue = percentage ? Math.round(100 * this.props.fullValue) : this.props.fullValue;
-    let fullValue2 = nestedProperty(this.context.fullContainer, attr2).get();
+    let fullValue2 = nestedProperty(this.props.context.fullContainer, attr2).get();
     if (percentage) {
       fullValue2 = Math.round(100 * fullValue2);
     }
@@ -83,10 +83,11 @@ UnconnectedDualNumericFraction.propTypes = {
   updatePlot: PropTypes.func,
   attr2: PropTypes.any,
   percentage: PropTypes.bool,
+  context: PropTypes.object,
   ...Field.propTypes,
 };
 
-UnconnectedDualNumericFraction.contextTypes = {
+UnconnectedDualNumericFraction.requireContext = {
   fullContainer: PropTypes.object,
 };
 

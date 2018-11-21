@@ -20,9 +20,9 @@ export default function localize(Comp) {
     }
   }
   LocalizedComponent.displayName = `Localized${getDisplayName(Comp)}`;
-  LocalizedComponent.contextTypes = LocalizedComponent.contextTypes || {};
-  LocalizedComponent.contextTypes.dictionaries = PropTypes.object;
-  LocalizedComponent.contextTypes.locale = PropTypes.string;
+  LocalizedComponent.requireContext = LocalizedComponent.requireContext || {};
+  LocalizedComponent.requireContext.dictionaries = PropTypes.object;
+  LocalizedComponent.requireContext.locale = PropTypes.string;
 
   LocalizedComponent.plotly_editor_traits = Comp.plotly_editor_traits;
 

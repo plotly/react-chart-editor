@@ -32,18 +32,6 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
       }
     }
 
-    // getChildContext() {
-    //   return {
-    //     getValObject: attr =>
-    //       !this.context.getValObject
-    //         ? null
-    //         : this.context.getValObject(`${this.props.subplot}.${attr}`),
-    //     updateContainer: this.updateSubplot,
-    //     container: this.container,
-    //     fullContainer: this.fullContainer,
-    //   };
-    // }
-
     provideValue() {
       return {
         getValObject: attr =>
@@ -53,6 +41,7 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
         updateContainer: this.updateSubplot,
         container: this.container,
         fullContainer: this.fullContainer,
+        fullLayout: this.props.context.fullLayout,
       };
     }
 
@@ -86,30 +75,13 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
   SubplotConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
+    fullLayout: PropTypes.object,
     data: PropTypes.array,
     fullData: PropTypes.array,
     onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
-
-  // SubplotConnectedComponent.contextTypes = {
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   data: PropTypes.array,
-  //   fullData: PropTypes.array,
-  //   onUpdate: PropTypes.func,
-  //   updateContainer: PropTypes.func,
-  //   getValObject: PropTypes.func,
-  // };
-  //
-  // SubplotConnectedComponent.childContextTypes = {
-  //   updateContainer: PropTypes.func,
-  //   deleteContainer: PropTypes.func,
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   getValObject: PropTypes.func,
-  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   SubplotConnectedComponent.plotly_editor_traits = plotly_editor_traits;

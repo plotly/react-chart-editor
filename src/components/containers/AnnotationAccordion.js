@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectAnnotationToLayout} from 'lib';
 import {EditorControlsContext} from '../../context';
-import {recursiveMap} from '../../lib/recursiveMap';
 
 const AnnotationFold = connectAnnotationToLayout(PlotlyFold);
 

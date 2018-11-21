@@ -6,16 +6,16 @@ import {EditorControlsContext} from '../../context';
 class TraceMarkerSection extends Component {
   constructor(props, context) {
     super(props, context);
-    this.setLocals(props);
+    this.setLocals(props, context);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setLocals(nextProps);
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.setLocals(nextProps, nextContext);
   }
 
-  setLocals(context) {
-    const _ = this.context.localize;
-    const traceType = context.fullContainer.type;
+  setLocals(props, context) {
+    const _ = context.localize;
+    const traceType = props.context.fullContainer.type;
     if (['bar', 'histogram'].includes(traceType)) {
       this.name = _('Bars');
     } else if (traceType === 'pie') {

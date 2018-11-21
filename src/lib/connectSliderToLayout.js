@@ -25,16 +25,6 @@ export default function connectSliderToLayout(WrappedComponent) {
       this.fullContainer = fullSliders[sliderIndex];
     }
 
-    // getChildContext() {
-    //   return {
-    //     getValObject: attr =>
-    //       !this.context.getValObject ? null : this.context.getValObject(`sliders[].${attr}`),
-    //     updateContainer: this.updateSlider,
-    //     container: this.container,
-    //     fullContainer: this.fullContainer,
-    //   };
-    // }
-
     provideValue() {
       return {
         getValObject: attr =>
@@ -83,21 +73,6 @@ export default function connectSliderToLayout(WrappedComponent) {
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
-
-  // SliderConnectedComponent.contextTypes = {
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   onUpdate: PropTypes.func,
-  //   updateContainer: PropTypes.func,
-  //   getValObject: PropTypes.func,
-  // };
-  //
-  // SliderConnectedComponent.childContextTypes = {
-  //   updateContainer: PropTypes.func,
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   getValObject: PropTypes.func,
-  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   SliderConnectedComponent.plotly_editor_traits = plotly_editor_traits;

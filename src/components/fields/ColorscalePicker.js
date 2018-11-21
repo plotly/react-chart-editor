@@ -48,7 +48,7 @@ UnconnectedColorscalePicker.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedColorscalePicker.contextTypes = {
+UnconnectedColorscalePicker.requireContext = {
   container: PropTypes.object,
   graphDiv: PropTypes.object,
 };

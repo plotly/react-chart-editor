@@ -30,19 +30,6 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
       this.fullContainer = fullRangeselectors[rangeselectorIndex];
     }
 
-    // getChildContext() {
-    //   return {
-    //     getValObject: attr =>
-    //       !this.context.getValObject
-    //         ? null
-    //         : this.context.getValObject(`rangeselector.buttons[].${attr}`),
-    //     updateContainer: this.updateRangeselector,
-    //     deleteContainer: this.deleteRangeselector,
-    //     container: this.container,
-    //     fullContainer: this.fullContainer,
-    //   };
-    // }
-
     provideValue() {
       return {
         getValObject: attr =>
@@ -107,23 +94,6 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
-
-  // RangeSelectorConnectedComponent.contextTypes = {
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   data: PropTypes.array,
-  //   onUpdate: PropTypes.func,
-  //   updateContainer: PropTypes.func,
-  //   getValObject: PropTypes.func,
-  // };
-
-  // RangeSelectorConnectedComponent.childContextTypes = {
-  //   updateContainer: PropTypes.func,
-  //   deleteContainer: PropTypes.func,
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   getValObject: PropTypes.func,
-  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   RangeSelectorConnectedComponent.plotly_editor_traits = plotly_editor_traits;

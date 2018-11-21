@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import {
   AxesRange,
   DTicks,
@@ -21,6 +20,7 @@ import {
   DropdownCustom,
   TickFormat,
 } from '../components';
+import {EditorControlsContext} from '../context';
 
 class StyleAxesPanel extends Component {
   render() {
@@ -407,9 +407,6 @@ class StyleAxesPanel extends Component {
   }
 }
 
-StyleAxesPanel.contextTypes = {
-  fullLayout: PropTypes.object,
-  localize: PropTypes.func,
-};
+StyleAxesPanel.contextType = EditorControlsContext;
 
 export default StyleAxesPanel;

@@ -77,7 +77,6 @@ class TransformAccordion extends Component {
         return {
           label,
           handler: context => {
-            console.log('addAction', context);
             const {fullContainer, updateContainer} = context;
             if (updateContainer) {
               const transformIndex = Array.isArray(fullContainer.transforms)
@@ -150,12 +149,6 @@ TransformAccordion.requireContext = {
 };
 
 TransformAccordion.contextType = EditorControlsContext;
-// TransformAccordion.contextTypes = {
-//   fullContainer: PropTypes.object,
-//   localize: PropTypes.func,
-//   container: PropTypes.object,
-//   dataSourceOptions: PropTypes.array,
-// };
 
 TransformAccordion.propTypes = {
   children: PropTypes.node,

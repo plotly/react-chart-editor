@@ -6,20 +6,20 @@ import {recursiveMap} from './recursiveMap';
 
 export default function connectShapeToLayout(WrappedComponent) {
   class ShapeConnectedComponent extends Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
 
       this.deleteShape = this.deleteShape.bind(this);
       this.updateShape = this.updateShape.bind(this);
-      this.setLocals(props, context);
+      this.setLocals(props);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setLocals(nextProps, nextContext);
+    componentWillReceiveProps(nextProps) {
+      this.setLocals(nextProps);
     }
 
-    setLocals(props, context) {
-      const {shapeIndex} = props;
+    setLocals(props) {
+      const {shapeIndex, context} = props;
       const {container, fullContainer} = context;
 
       const shapes = container.shapes || [];
@@ -27,17 +27,6 @@ export default function connectShapeToLayout(WrappedComponent) {
       this.container = shapes[shapeIndex];
       this.fullContainer = fullShapes[shapeIndex];
     }
-
-    // getChildContext() {
-    //   return {
-    //     getValObject: attr =>
-    //       !this.context.getValObject ? null : this.context.getValObject(`shapes[].${attr}`),
-    //     updateContainer: this.updateShape,
-    //     deleteContainer: this.deleteShape,
-    //     container: this.container,
-    //     fullContainer: this.fullContainer,
-    //   };
-    // }
 
     provideValue() {
       return {
@@ -97,22 +86,6 @@ export default function connectShapeToLayout(WrappedComponent) {
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
-  // ShapeConnectedComponent.contextTypes = {
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   data: PropTypes.array,
-  //   onUpdate: PropTypes.func,
-  //   updateContainer: PropTypes.func,
-  //   getValObject: PropTypes.func,
-  // };
-
-  // ShapeConnectedComponent.childContextTypes = {
-  //   updateContainer: PropTypes.func,
-  //   deleteContainer: PropTypes.func,
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   getValObject: PropTypes.func,
-  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   ShapeConnectedComponent.plotly_editor_traits = plotly_editor_traits;

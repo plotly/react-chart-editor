@@ -5,6 +5,7 @@ import {connectToContainer} from 'lib';
 import ResizableRect from 'react-resizable-rotatable-draggable';
 import RadioBlocks from '../widgets/RadioBlocks';
 import DualNumeric from './DualNumeric';
+import {EditorControlsContext} from '../../context';
 
 const maxWidth = 276;
 const gridRes = 8;
@@ -42,16 +43,16 @@ class UnconnectedRectanglePositioner extends Component {
       payload[this.attr.y[1]] = snap(y1);
     }
 
-    this.context.updateContainer(payload);
+    this.props.context.updateContainer(payload);
   }
 
   render() {
     const {attr, cartesian} = this.props;
+    const {localize: _} = this.context;
     const {
-      localize: _,
       fullContainer,
       fullLayout: {width: plotWidthPx, height: plotHeightPx},
-    } = this.context;
+    } = this.props.context;
     const x = cartesian ? fullContainer.xaxis.domain : fullContainer.domain.x;
     const y = cartesian ? fullContainer.yaxis.domain : fullContainer.domain.y;
     const aspectRatio = plotHeightPx / plotWidthPx;
@@ -178,8 +179,9 @@ UnconnectedRectanglePositioner.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedRectanglePositioner.contextTypes = {
-  localize: PropTypes.func,
+UnconnectedRectanglePositioner.contextType = EditorControlsContext;
+
+UnconnectedRectanglePositioner.requireContext = {
   updateContainer: PropTypes.func,
   fullContainer: PropTypes.object,
   fullLayout: PropTypes.object,

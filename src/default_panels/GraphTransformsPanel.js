@@ -63,12 +63,10 @@ Aggregations.plotly_editor_traits = {no_visibility_forcing: true};
 Aggregations.contextType = EditorControlsContext;
 Aggregations.requireContext = {
   fullContainer: PropTypes.object,
-  localize: PropTypes.func,
 };
-// Aggregations.contextTypes = {
-//   fullContainer: PropTypes.object,
-//   localize: PropTypes.func,
-// };
+Aggregations.propTypes = {
+  context: PropTypes.object,
+};
 
 const GraphTransformsPanel = () => {
   return (

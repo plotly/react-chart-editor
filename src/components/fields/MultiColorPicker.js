@@ -7,6 +7,7 @@ import RadioBlocks from '../widgets/RadioBlocks';
 import React, {Component} from 'react';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {adjustColorscale, connectToContainer} from 'lib';
+import {EditorControlsContext} from '../../context';
 
 const CustomColorscalePicker = connectToContainer(UnconnectedColorscalePicker, {
   modifyPlotProps: (props, context, plotProps) => {
@@ -31,7 +32,7 @@ class UnconnectedMultiColorPicker extends Component {
     super(props, context);
     this.state = {
       selectedConstantColorOption:
-        context.traceIndexes.length > 1 &&
+        props.context.traceIndexes.length > 1 &&
         props.fullValue &&
         props.fullValue.every(v => v[1] === props.fullValue[0][1])
           ? 'single'
@@ -67,7 +68,7 @@ class UnconnectedMultiColorPicker extends Component {
       [this.props.attr]: color,
     }));
 
-    this.context.updateContainer(updates);
+    this.props.context.updateContainer(updates);
   }
 
   render() {
@@ -88,7 +89,7 @@ class UnconnectedMultiColorPicker extends Component {
       ? this.props.singleColorMessage
       : _('All will be colored in the same color.');
 
-    if (this.context.traceIndexes.length > 1) {
+    if (this.props.context.traceIndexes.length > 1) {
       return (
         <Field {...this.props} suppressMultiValuedMessage>
           <RadioBlocks
@@ -135,8 +136,9 @@ UnconnectedMultiColorPicker.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedMultiColorPicker.contextTypes = {
-  localize: PropTypes.func,
+UnconnectedMultiColorPicker.contextType = EditorControlsContext;
+
+UnconnectedMultiColorPicker.requireContext = {
   updateContainer: PropTypes.func,
   traceIndexes: PropTypes.array,
   fullData: PropTypes.array,

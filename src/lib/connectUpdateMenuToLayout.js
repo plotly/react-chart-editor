@@ -4,18 +4,18 @@ import {getDisplayName} from '../lib';
 
 export default function connectUpdateMenuToLayout(WrappedComponent) {
   class UpdateMenuConnectedComponent extends Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
       this.updateUpdateMenu = this.updateUpdateMenu.bind(this);
-      this.setLocals(props, context);
+      this.setLocals(props);
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
       this.setLocals(nextProps, nextContext);
     }
 
-    setLocals(props, context) {
-      const {updateMenuIndex} = props;
+    setLocals(props) {
+      const {updateMenuIndex, context} = props;
       const {container, fullContainer} = context;
 
       const updatemenus = container.updatemenus || [];
@@ -24,20 +24,12 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
       this.fullContainer = fullUpdateMenus[updateMenuIndex];
     }
 
-    getChildContext() {
-      return {
-        getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`updatemenus[].${attr}`),
-        updateContainer: this.updateUpdateMenu,
-        container: this.container,
-        fullContainer: this.fullContainer,
-      };
-    }
-
     provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`updatemenus[].${attr}`),
+          !this.props.context.getValObject
+            ? null
+            : this.props.context.getValObject(`updatemenus[].${attr}`),
         updateContainer: this.updateUpdateMenu,
         container: this.container,
         fullContainer: this.fullContainer,
@@ -51,7 +43,7 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
         const newkey = `updatemenus[${updateMenuIndex}].${key}`;
         newUpdate[newkey] = update[key];
       }
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     render() {
@@ -67,18 +59,11 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
     updateMenuIndex: PropTypes.number.isRequired,
   };
 
-  UpdateMenuConnectedComponent.contextTypes = {
+  UpdateMenuConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
     onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
-    getValObject: PropTypes.func,
-  };
-
-  UpdateMenuConnectedComponent.childContextTypes = {
-    updateContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
     getValObject: PropTypes.func,
   };
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import unpackPlotProps from './unpackPlotProps';
 import {getDisplayName} from '../lib';
 import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 export const containerConnectedContextTypes = {
   // EditorControlsContext
@@ -36,21 +37,23 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       }
     }
 
-    constructor(props) {
+    constructor(props, context) {
       super(props);
-      this.setLocals(props);
+      this.setLocals(props, context);
     }
 
-    componentWillReceiveProps(nextProps) {
-      this.setLocals(nextProps);
+    componentWillReceiveProps(nextProps, nextContext) {
+      this.setLocals(nextProps, nextContext);
     }
 
-    setLocals(props) {
+    setLocals(props, classContext) {
       const {context = {}, ...rest} = props;
+      const {localize} = classContext;
 
-      this.plotProps = unpackPlotProps(rest, context);
+      const newContext = {...context, localize};
+      this.plotProps = unpackPlotProps(rest, newContext);
       this.attr = rest.attr;
-      ContainerConnectedComponent.modifyPlotProps(rest, context, this.plotProps);
+      ContainerConnectedComponent.modifyPlotProps(rest, newContext, this.plotProps);
     }
 
     provideValue() {
@@ -99,6 +102,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
 
   ContainerConnectedComponent.displayName = `ContainerConnected${getDisplayName(WrappedComponent)}`;
   ContainerConnectedComponent.requireContext = containerConnectedContextTypes;
+  ContainerConnectedComponent.contextType = EditorControlsContext;
 
   const {plotly_editor_traits} = WrappedComponent;
   ContainerConnectedComponent.plotly_editor_traits = plotly_editor_traits;

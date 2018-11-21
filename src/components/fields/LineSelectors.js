@@ -113,6 +113,6 @@ LineSelector.defaultProps = {
   clearable: false,
 };
 
-LineSelector.contextTypes = {
+LineSelector.requireContext = {
   fullContainer: PropTypes.object,
 };
