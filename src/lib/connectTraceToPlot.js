@@ -82,10 +82,6 @@ export default function connectTraceToPlot(WrappedComponent) {
       }
     }
 
-    // getChildContext() {
-    //   return this.childContext;
-    // }
-
     provideValue() {
       return this.childContext;
     }

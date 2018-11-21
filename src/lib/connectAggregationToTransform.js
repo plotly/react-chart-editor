@@ -25,16 +25,6 @@ export default function connectAggregationToTransform(WrappedComponent) {
       this.fullContainer = fullAggregations[aggregationIndex];
     }
 
-    // getChildContext() {
-    //   return {
-    //     getValObject: attr =>
-    //       !this.props.getValObject ? null : this.props.getValObject(`aggregations[].${attr}`),
-    //     updateContainer: this.updateAggregation,
-    //     container: this.container,
-    //     fullContainer: this.fullContainer,
-    //   };
-    // }
-
     provideValue() {
       return {
         getValObject: attr =>
@@ -83,14 +73,6 @@ export default function connectAggregationToTransform(WrappedComponent) {
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
-
-  // AggregationConnectedComponent.childContextTypes = {
-  //   updateContainer: PropTypes.func,
-  //   deleteContainer: PropTypes.func,
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  //   getValObject: PropTypes.func,
-  // };
 
   const {plotly_editor_traits} = WrappedComponent;
   AggregationConnectedComponent.plotly_editor_traits = plotly_editor_traits;
