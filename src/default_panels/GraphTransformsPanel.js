@@ -20,7 +20,7 @@ export class Aggregations extends Component {
   render() {
     const {
       fullContainer: {aggregations = []},
-    } = this.context;
+    } = this.props.context;
     const {localize: _} = this.context;
     if (aggregations.length === 0) {
       return null;
@@ -60,10 +60,15 @@ export class Aggregations extends Component {
 }
 
 Aggregations.plotly_editor_traits = {no_visibility_forcing: true};
-Aggregations.contextTypes = {
+Aggregations.contextType = EditorControlsContext;
+Aggregations.requireContext = {
   fullContainer: PropTypes.object,
   localize: PropTypes.func,
 };
+// Aggregations.contextTypes = {
+//   fullContainer: PropTypes.object,
+//   localize: PropTypes.func,
+// };
 
 const GraphTransformsPanel = () => {
   return (

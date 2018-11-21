@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import {connectTransformToTrace} from 'lib';
 import {PanelMessage} from './PanelEmpty';
 import {EditorControlsContext} from '../../context';
-import {recursiveMap} from '../../lib/recursiveMap';
+// import {recursiveMap} from '../../lib/recursiveMap';
 
 const TransformFold = connectTransformToTrace(PlotlyFold);
 
@@ -24,7 +24,6 @@ class TransformAccordion extends Component {
         container,
       },
     } = this.props;
-    console.log(container, transforms);
 
     const transformTypes = [
       {label: _('Filter'), type: 'filter'},
@@ -61,7 +60,7 @@ class TransformAccordion extends Component {
           canDelete={true}
           context={this.props.context}
         >
-          {recursiveMap(children, this.props.context)}
+          {children}
         </TransformFold>
       ));
 
@@ -78,6 +77,7 @@ class TransformAccordion extends Component {
         return {
           label,
           handler: context => {
+            console.log('addAction', context);
             const {fullContainer, updateContainer} = context;
             if (updateContainer) {
               const transformIndex = Array.isArray(fullContainer.transforms)
@@ -106,7 +106,7 @@ class TransformAccordion extends Component {
     };
 
     return (
-      <PlotlyPanel addAction={addAction}>
+      <PlotlyPanel addAction={addAction} context={this.props.context}>
         {content ? (
           content
         ) : (
@@ -146,6 +146,7 @@ class TransformAccordion extends Component {
 TransformAccordion.requireContext = {
   container: PropTypes.object,
   fullContainer: PropTypes.object,
+  updateContainer: PropTypes.func,
 };
 
 TransformAccordion.contextType = EditorControlsContext;

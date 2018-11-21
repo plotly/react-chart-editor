@@ -26,6 +26,7 @@ class PanelHeader extends Component {
         updateContainer: context.updateContainer,
       };
     }
+
     const handleArgs = {
       layout,
       onUpdate,
