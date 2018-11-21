@@ -1,8 +1,7 @@
 # react-chart-editor
 
-> Customizable React-based editor panel for Plotly charts, Part of Plotly's [React Component Suite](https://plot.ly/products/react/) for building data visualization Web apps and products.
+> React component for creating & editing D3 charts. [Sponsor an addition to this project](https://plot.ly/products/consulting-and-oem/)
 
-master
 ![master](https://circleci.com/gh/plotly/react-chart-editor/tree/master.svg?style=svg&circle-token=df4574e01732846dba81d800d062be5f0fef5641)
 
 ## Demo & Screenshots
