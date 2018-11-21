@@ -325,10 +325,6 @@ class EditorControls extends Component {
               this.props.graphDiv._fullLayout &&
               (this.props.children ? (
                 recursiveMap(this.props.children, this.provideValue())
-              ) : this.props.optionalPanel ? (
-                <DefaultEditor menuPanelOrder={this.props.menuPanelOrder}>
-                  {this.props.optionalPanel}
-                </DefaultEditor>
               ) : (
                 <DefaultEditor />
               ))}
@@ -377,8 +373,6 @@ EditorControls.propTypes = {
   mapBoxAccess: PropTypes.bool,
   fontOptions: PropTypes.array,
   chartHelp: PropTypes.object,
-  optionalPanel: PropTypes.node,
-  menuPanelOrder: PropTypes.array,
   updatePayload: PropTypes.array,
 };
 
