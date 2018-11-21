@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 export default function connectSliderToLayout(WrappedComponent) {
   class SliderConnectedComponent extends Component {
@@ -66,10 +67,11 @@ export default function connectSliderToLayout(WrappedComponent) {
     sliderIndex: PropTypes.number.isRequired,
   };
 
+  SliderConnectedComponent.contextType = EditorControlsContext;
+
   SliderConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };

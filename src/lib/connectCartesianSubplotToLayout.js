@@ -2,24 +2,26 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName, plotlyTraceToCustomTrace, renderTraceIcon, getFullTrace} from '../lib';
 import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 export default function connectCartesianSubplotToLayout(WrappedComponent) {
   class SubplotConnectedComponent extends Component {
-    constructor(props) {
-      super(props);
+    constructor(props, context) {
+      super(props, context);
 
       this.updateSubplot = this.updateSubplot.bind(this);
-      this.setLocals(props);
+      this.setLocals(props, context);
     }
 
     componentWillReceiveProps(nextProps) {
-      this.setLocals(nextProps);
+      this.setLocals(nextProps, this.context);
     }
 
-    setLocals(props) {
-      const {context, ...newProps} = props;
+    setLocals(props, context) {
+      const {context: propContext, ...newProps} = props;
       const {xaxis, yaxis, traceIndexes} = newProps;
-      const {container, fullContainer, data} = context;
+      const {data} = context;
+      const {container, fullContainer} = propContext;
 
       this.container = {
         xaxis: container[xaxis],
@@ -51,7 +53,7 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
         deleteContainer: this.deleteSubplot,
         container: this.container,
         fullContainer: this.fullContainer,
-        fullLayout: this.props.context.fullLayout,
+        fullLayout: this.context.fullLayout,
       };
     }
 
@@ -84,13 +86,11 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
     yaxis: PropTypes.string.isRequired,
   };
 
+  SubplotConnectedComponent.contextType = EditorControlsContext;
+
   SubplotConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    data: PropTypes.array,
-    fullData: PropTypes.array,
-    fullLayout: PropTypes.object,
-    onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };

@@ -22,12 +22,13 @@ export class Aggregations extends Component {
       fullContainer: {aggregations = []},
     } = this.props.context;
     const {localize: _} = this.context;
+
     if (aggregations.length === 0) {
       return null;
     }
 
     return (
-      <PlotlySection name={_('Aggregations')} attr="aggregations">
+      <PlotlySection name={_('Aggregations')} attr="aggregations" context={this.props.context}>
         {aggregations
           .filter(aggr => aggr.target && aggr.target.match(/transforms\[\d*\]\./gi) === null)
           .map(({target}, i) => (
@@ -51,6 +52,7 @@ export class Aggregations extends Component {
                   {label: _('Range'), value: 'range'},
                 ]}
                 clearable={false}
+                context={this.props.context}
               />
             </AggregationSection>
           ))}

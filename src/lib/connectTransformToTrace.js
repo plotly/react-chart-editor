@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
 import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 export default function connectTransformToTrace(WrappedComponent) {
   class TransformConnectedComponent extends Component {
@@ -52,8 +53,8 @@ export default function connectTransformToTrace(WrappedComponent) {
     }
 
     deleteTransform() {
-      if (this.props.context.onUpdate) {
-        this.props.context.onUpdate({
+      if (this.context.onUpdate) {
+        this.context.onUpdate({
           type: EDITOR_ACTIONS.DELETE_TRANSFORM,
           payload: {
             traceIndex: this.props.context.fullContainer.index,
@@ -82,10 +83,11 @@ export default function connectTransformToTrace(WrappedComponent) {
     transformIndex: PropTypes.number.isRequired,
   };
 
+  TransformConnectedComponent.contextType = EditorControlsContext;
+
   TransformConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    data: PropTypes.array,
     onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,

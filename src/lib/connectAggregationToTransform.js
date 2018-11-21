@@ -17,7 +17,8 @@ export default function connectAggregationToTransform(WrappedComponent) {
     }
 
     setLocals(props) {
-      const {aggregationIndex, container, fullContainer} = props;
+      const {container, fullContainer} = props.context;
+      const {aggregationIndex} = props;
 
       const aggregations = (container && container.aggregations) || [];
       const fullAggregations = fullContainer.aggregations || [];

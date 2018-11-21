@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
 import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 export default function connectAnnotationToLayout(WrappedComponent) {
   class AnnotationConnectedComponent extends Component {
@@ -53,8 +54,8 @@ export default function connectAnnotationToLayout(WrappedComponent) {
     }
 
     deleteAnnotation() {
-      if (this.props.context.onUpdate) {
-        this.props.context.onUpdate({
+      if (this.context.onUpdate) {
+        this.context.onUpdate({
           type: EDITOR_ACTIONS.DELETE_ANNOTATION,
           payload: {annotationIndex: this.props.annotationIndex},
         });
@@ -82,11 +83,11 @@ export default function connectAnnotationToLayout(WrappedComponent) {
     annotationIndex: PropTypes.number.isRequired,
   };
 
+  AnnotationConnectedComponent.contextType = EditorControlsContext;
+
   AnnotationConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    data: PropTypes.array,
-    onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
+import {EditorControlsContext} from '../context';
 
 export default function connectUpdateMenuToLayout(WrappedComponent) {
   class UpdateMenuConnectedComponent extends Component {
@@ -59,10 +60,11 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
     updateMenuIndex: PropTypes.number.isRequired,
   };
 
+  UpdateMenuConnectedComponent.contextType = EditorControlsContext;
+
   UpdateMenuConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };

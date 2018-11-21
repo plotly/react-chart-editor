@@ -2,29 +2,31 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName, plotlyTraceToCustomTrace, renderTraceIcon, getFullTrace} from '../lib';
 import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
   class SubplotConnectedComponent extends Component {
-    constructor(props) {
-      super(props);
+    constructor(props, context) {
+      super(props, context);
 
       this.updateSubplot = this.updateSubplot.bind(this);
-      this.setLocals(props);
+      this.setLocals(props, context);
     }
 
     componentWillReceiveProps(nextProps) {
-      this.setLocals(nextProps);
+      this.setLocals(nextProps, this.context);
     }
 
-    setLocals(props) {
-      const {subplot, traceIndexes, context} = props;
-      const {container, fullContainer, data} = context;
+    setLocals(props, context) {
+      const {subplot, traceIndexes, context: propContext} = props;
+      const {data, fullData} = context;
+      const {container, fullContainer} = propContext;
 
       this.container = container[subplot] || {};
       this.fullContainer = fullContainer[subplot] || {};
 
       const trace = traceIndexes.length > 0 ? data[traceIndexes[0]] : {};
-      const fullTrace = getFullTrace(props, context);
+      const fullTrace = getFullTrace(props, {...propContext, data, fullData});
 
       if (trace && fullTrace) {
         this.icon = renderTraceIcon(plotlyTraceToCustomTrace(trace));
@@ -41,7 +43,7 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
         updateContainer: this.updateSubplot,
         container: this.container,
         fullContainer: this.fullContainer,
-        fullLayout: this.props.context.fullLayout,
+        fullLayout: this.context.fullLayout,
       };
     }
 
@@ -72,13 +74,11 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
     subplot: PropTypes.string.isRequired,
   };
 
+  SubplotConnectedComponent.contextType = EditorControlsContext;
+
   SubplotConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    fullLayout: PropTypes.object,
-    data: PropTypes.array,
-    fullData: PropTypes.array,
-    onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
