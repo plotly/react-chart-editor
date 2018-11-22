@@ -205,6 +205,7 @@ export default function connectTraceToPlot(WrappedComponent) {
   TraceConnectedComponent.propTypes = {
     traceIndexes: PropTypes.arrayOf(PropTypes.number).isRequired,
     fullDataArrayPosition: PropTypes.arrayOf(PropTypes.number),
+    children: PropTypes.node,
   };
 
   TraceConnectedComponent.contextType = EditorControlsContext;

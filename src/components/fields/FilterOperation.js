@@ -203,7 +203,7 @@ UnconnectedFilterValue.propTypes = {
   defaultValue: PropTypes.string,
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
-  context: PropTypes.object,
+  context: PropTypes.any,
   ...Field.propTypes,
 };
 UnconnectedFilterValue.contextType = EditorControlsContext;

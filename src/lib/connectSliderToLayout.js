@@ -63,10 +63,6 @@ export default function connectSliderToLayout(WrappedComponent) {
 
   SliderConnectedComponent.displayName = `SliderConnected${getDisplayName(WrappedComponent)}`;
 
-  SliderConnectedComponent.propTypes = {
-    sliderIndex: PropTypes.number.isRequired,
-  };
-
   SliderConnectedComponent.contextType = EditorControlsContext;
 
   SliderConnectedComponent.requireContext = {
@@ -74,6 +70,11 @@ export default function connectSliderToLayout(WrappedComponent) {
     fullContainer: PropTypes.object,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
+  };
+  SliderConnectedComponent.propTypes = {
+    sliderIndex: PropTypes.number.isRequired,
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

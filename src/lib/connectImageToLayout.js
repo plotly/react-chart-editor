@@ -76,10 +76,6 @@ export default function connectImageToLayout(WrappedComponent) {
 
   ImageConnectedComponent.displayName = `ImageConnected${getDisplayName(WrappedComponent)}`;
 
-  ImageConnectedComponent.propTypes = {
-    imageIndex: PropTypes.number.isRequired,
-  };
-
   ImageConnectedComponent.contextType = EditorControlsContext;
 
   ImageConnectedComponent.requireContext = {
@@ -87,6 +83,12 @@ export default function connectImageToLayout(WrappedComponent) {
     fullContainer: PropTypes.object,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
+  };
+
+  ImageConnectedComponent.propTypes = {
+    imageIndex: PropTypes.number.isRequired,
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

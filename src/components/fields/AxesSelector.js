@@ -72,7 +72,7 @@ AxesSelector.contextType = EditorControlsContext;
 
 AxesSelector.propTypes = {
   axesOptions: PropTypes.array,
-  context: PropTypes.object,
+  context: PropTypes.any,
 };
 
 export default AxesSelector;

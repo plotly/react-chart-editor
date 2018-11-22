@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
 import {unpackPlotProps, containerConnectedContextTypes, striptags} from 'lib';
+import {recursiveMap} from '../../lib/recursiveMap';
 
 export class Fold extends Component {
   constructor() {
@@ -85,7 +86,11 @@ export class Fold extends Component {
     let foldContent = null;
     if (!folded) {
       if (this.foldVisible) {
-        foldContent = <div className={contentClass}>{children}</div>;
+        foldContent = (
+          <div className={contentClass}>
+            {recursiveMap(children, {...this.props.context, ...this.provideValue()})}
+          </div>
+        );
       } else {
         foldContent = (
           <div className={contentClass}>
@@ -119,11 +124,12 @@ Fold.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   messageIfEmpty: PropTypes.string,
   name: PropTypes.string,
-  context: PropTypes.object,
+  context: PropTypes.any,
 };
 
 Fold.requireContext = {
   deleteContainer: PropTypes.func,
+  ...containerConnectedContextTypes,
 };
 
 // Fold.childContextTypes = {

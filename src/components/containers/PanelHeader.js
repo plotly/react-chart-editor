@@ -111,7 +111,7 @@ PanelHeader.propTypes = {
   children: PropTypes.node,
   hasOpen: PropTypes.bool,
   toggleFolds: PropTypes.func,
-  context: PropTypes.object,
+  context: PropTypes.any,
 };
 
 export default PanelHeader;

@@ -4,7 +4,7 @@ import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
 import {EditorControlsContext} from '../context';
 import {recursiveMap} from './recursiveMap';
-// import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 export default function connectLayoutToPlot(WrappedComponent) {
   class LayoutConnectedComponent extends Component {
@@ -67,13 +67,9 @@ export default function connectLayoutToPlot(WrappedComponent) {
   LayoutConnectedComponent.displayName = `LayoutConnected${getDisplayName(WrappedComponent)}`;
 
   LayoutConnectedComponent.contextType = EditorControlsContext;
-
-  // LayoutConnectedComponent.childContextTypes = {
-  //   getValObject: PropTypes.func,
-  //   updateContainer: PropTypes.func,
-  //   container: PropTypes.object,
-  //   fullContainer: PropTypes.object,
-  // };
+  LayoutConnectedComponent.propTypes = {
+    children: PropTypes.node,
+  };
 
   const {plotly_editor_traits} = WrappedComponent;
   LayoutConnectedComponent.plotly_editor_traits = plotly_editor_traits;

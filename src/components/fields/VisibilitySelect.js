@@ -76,7 +76,7 @@ UnconnectedVisibilitySelect.propTypes = {
   defaultOpt: PropTypes.oneOfType([PropTypes.number, PropTypes.bool, PropTypes.string]),
   label: PropTypes.string,
   attr: PropTypes.string,
-  context: PropTypes.object,
+  context: PropTypes.any,
   ...Field.propTypes,
 };
 

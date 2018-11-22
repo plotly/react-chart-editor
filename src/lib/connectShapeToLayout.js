@@ -76,15 +76,18 @@ export default function connectShapeToLayout(WrappedComponent) {
 
   ShapeConnectedComponent.displayName = `ShapeConnected${getDisplayName(WrappedComponent)}`;
 
-  ShapeConnectedComponent.propTypes = {
-    shapeIndex: PropTypes.number.isRequired,
-  };
   ShapeConnectedComponent.contextType = EditorControlsContext;
   ShapeConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
+  };
+
+  ShapeConnectedComponent.propTypes = {
+    shapeIndex: PropTypes.number.isRequired,
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

@@ -152,7 +152,7 @@ TransformAccordion.contextType = EditorControlsContext;
 
 TransformAccordion.propTypes = {
   children: PropTypes.node,
-  context: PropTypes.object,
+  context: PropTypes.any,
 };
 
 export default TransformAccordion;

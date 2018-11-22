@@ -83,10 +83,6 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
     WrappedComponent
   )}`;
 
-  RangeSelectorConnectedComponent.propTypes = {
-    rangeselectorIndex: PropTypes.number.isRequired,
-  };
-
   RangeSelectorConnectedComponent.contextType = EditorControlsContext;
 
   RangeSelectorConnectedComponent.requireContext = {
@@ -94,6 +90,12 @@ export default function connectRangeSelectorToAxis(WrappedComponent) {
     fullContainer: PropTypes.object,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
+  };
+
+  RangeSelectorConnectedComponent.propTypes = {
+    rangeselectorIndex: PropTypes.number.isRequired,
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

@@ -129,7 +129,7 @@ Panel.propTypes = {
   deleteAction: PropTypes.func,
   noPadding: PropTypes.bool,
   showExpandCollapse: PropTypes.bool,
-  context: PropTypes.object,
+  context: PropTypes.any,
 };
 
 Panel.defaultProps = {

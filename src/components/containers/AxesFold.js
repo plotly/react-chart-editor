@@ -22,7 +22,7 @@ class AxesFold extends Component {
 AxesFold.propTypes = {
   children: PropTypes.any,
   options: PropTypes.array,
-  context: PropTypes.object,
+  context: PlotlyFold.requireContext,
 };
 
 AxesFold.plotly_editor_traits = {foldable: true};

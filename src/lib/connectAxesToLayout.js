@@ -166,8 +166,12 @@ export default function connectAxesToLayout(WrappedComponent) {
     container: PropTypes.object.isRequired,
     fullContainer: PropTypes.object.isRequired,
     updateContainer: PropTypes.func,
-    localize: PropTypes.func,
     getValObject: PropTypes.func,
+  };
+
+  AxesConnectedComponent.propTypes = {
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

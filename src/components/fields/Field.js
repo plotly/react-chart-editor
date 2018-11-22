@@ -105,7 +105,7 @@ Field.propTypes = {
   children: PropTypes.node,
   extraComponent: PropTypes.any,
   fieldContainerClassName: PropTypes.string,
-  context: PropTypes.object,
+  context: PropTypes.any,
 };
 
 Field.requireContext = {

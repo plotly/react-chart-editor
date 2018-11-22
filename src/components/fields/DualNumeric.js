@@ -83,7 +83,7 @@ UnconnectedDualNumericFraction.propTypes = {
   updatePlot: PropTypes.func,
   attr2: PropTypes.any,
   percentage: PropTypes.bool,
-  context: PropTypes.object,
+  context: PropTypes.any,
   ...Field.propTypes,
 };
 

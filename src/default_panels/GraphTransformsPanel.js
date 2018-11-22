@@ -67,7 +67,7 @@ Aggregations.requireContext = {
   fullContainer: PropTypes.object,
 };
 Aggregations.propTypes = {
-  context: PropTypes.object,
+  context: PropTypes.any,
 };
 
 const GraphTransformsPanel = () => {

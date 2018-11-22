@@ -75,6 +75,11 @@ export default function connectAggregationToTransform(WrappedComponent) {
     getValObject: PropTypes.func,
   };
 
+  AggregationConnectedComponent.propTypes = {
+    children: PropTypes.node,
+    context: PropTypes.any,
+  };
+
   const {plotly_editor_traits} = WrappedComponent;
   AggregationConnectedComponent.plotly_editor_traits = plotly_editor_traits;
 

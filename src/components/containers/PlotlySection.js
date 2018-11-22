@@ -33,7 +33,7 @@ Section.propTypes = {
   children: PropTypes.node,
   name: PropTypes.string,
   attr: PropTypes.string,
-  context: PropTypes.object,
+  context: PropTypes.any,
 };
 Section.requireContext = containerConnectedContextTypes;
 

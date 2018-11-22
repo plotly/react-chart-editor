@@ -56,10 +56,6 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
     WrappedComponent
   )}`;
 
-  UpdateMenuConnectedComponent.propTypes = {
-    updateMenuIndex: PropTypes.number.isRequired,
-  };
-
   UpdateMenuConnectedComponent.contextType = EditorControlsContext;
 
   UpdateMenuConnectedComponent.requireContext = {
@@ -67,6 +63,12 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
     fullContainer: PropTypes.object,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
+  };
+
+  UpdateMenuConnectedComponent.propTypes = {
+    updateMenuIndex: PropTypes.number.isRequired,
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

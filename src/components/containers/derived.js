@@ -34,6 +34,7 @@ TraceTypeSection.propTypes = {
   name: PropTypes.string,
   traceTypes: PropTypes.array,
   mode: PropTypes.string,
+  context: PropTypes.any,
 };
 
 TraceTypeSection.defaultProps = {

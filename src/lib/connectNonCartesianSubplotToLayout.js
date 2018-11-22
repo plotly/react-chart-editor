@@ -70,10 +70,6 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
 
   SubplotConnectedComponent.displayName = `SubplotConnected${getDisplayName(WrappedComponent)}`;
 
-  SubplotConnectedComponent.propTypes = {
-    subplot: PropTypes.string.isRequired,
-  };
-
   SubplotConnectedComponent.contextType = EditorControlsContext;
 
   SubplotConnectedComponent.requireContext = {
@@ -81,6 +77,12 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
     fullContainer: PropTypes.object,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
+  };
+
+  SubplotConnectedComponent.propTypes = {
+    subplot: PropTypes.string.isRequired,
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;
