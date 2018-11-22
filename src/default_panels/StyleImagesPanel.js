@@ -73,8 +73,4 @@ const StyleImagesPanel = () => (
   </EditorControlsContext.Consumer>
 );
 
-// StyleImagesPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default StyleImagesPanel;

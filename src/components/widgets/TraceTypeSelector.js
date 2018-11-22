@@ -4,7 +4,7 @@ import {SearchIcon, ThumnailViewIcon, GraphIcon} from 'plotly-icons';
 import Modal from 'components/containers/Modal';
 import {traceTypeToPlotlyInitFigure, renderTraceIcon, plotlyTraceToCustomTrace} from 'lib';
 import {TRACES_WITH_GL} from 'lib/constants';
-import {EditorControlsContext} from '../../context';
+import {EditorControlsContext, ModalProviderContext} from '../../context';
 
 const renderActionItems = (actionItems, item) =>
   actionItems
@@ -67,75 +67,75 @@ class TraceTypeSelector extends Component {
   constructor(props) {
     super(props);
 
-    this.selectAndClose = this.selectAndClose.bind(this);
-    this.actions = this.actions.bind(this);
+    // this.selectAndClose = this.selectAndClose.bind(this);
+    // this.actions = this.actions.bind(this);
     this.renderCategories = this.renderCategories.bind(this);
     this.renderGrid = this.renderGrid.bind(this);
     this.renderSingleBlock = this.renderSingleBlock.bind(this);
   }
 
-  selectAndClose(value) {
-    const {
-      updateContainer,
-      glByDefault,
-      fullContainer: {type},
-    } = this.props;
-    const computedValue = traceTypeToPlotlyInitFigure(value);
-    if (
-      ((type && type.endsWith('gl')) || (!TRACES_WITH_GL.includes(type) && glByDefault)) &&
-      TRACES_WITH_GL.includes(computedValue.type) &&
-      !computedValue.type.endsWith('gl')
-    ) {
-      computedValue.type += 'gl';
-    }
-    updateContainer(computedValue);
-    this.context.handleClose();
-  }
+  // selectAndClose(value) {
+  //   const {
+  //     updateContainer,
+  //     glByDefault,
+  //     fullContainer: {type},
+  //   } = this.props;
+  //   const computedValue = traceTypeToPlotlyInitFigure(value);
+  //   if (
+  //     ((type && type.endsWith('gl')) || (!TRACES_WITH_GL.includes(type) && glByDefault)) &&
+  //     TRACES_WITH_GL.includes(computedValue.type) &&
+  //     !computedValue.type.endsWith('gl')
+  //   ) {
+  //     computedValue.type += 'gl';
+  //   }
+  //   updateContainer(computedValue);
+  //   this.context.handleClose();
+  // }
+  //
+  // actions({value}) {
+  //   const {localize: _, chartHelp} = this.context;
+  //
+  //   const onClick = (e, func) => {
+  //     e.stopPropagation();
+  //     func();
+  //     this.context.handleClose();
+  //   };
+  //
+  //   return [
+  //     {
+  //       label: _('Charts like this by Plotly users.'),
+  //       onClick:
+  //         chartHelp[value] &&
+  //         chartHelp[value].feedQuery &&
+  //         (e =>
+  //           onClick(e, () =>
+  //             window.open(
+  //               `https://plot.ly/feed/?q=${chartHelp[value] ? chartHelp[value].feedQuery : value}`,
+  //               '_blank'
+  //             )
+  //           )),
+  //       icon: <SearchIcon />,
+  //     },
+  //     {
+  //       label: _('View tutorials on this chart type.'),
+  //       onClick:
+  //         chartHelp[value] &&
+  //         chartHelp[value].helpDoc &&
+  //         (e => onClick(e, () => window.open(chartHelp[value].helpDoc, '_blank'))),
+  //       icon: <ThumnailViewIcon />,
+  //     },
+  //     {
+  //       label: _('See a basic example.'),
+  //       onClick:
+  //         chartHelp[value] &&
+  //         chartHelp[value].examplePlot &&
+  //         (e => onClick(e, chartHelp[value].examplePlot)),
+  //       icon: <GraphIcon />,
+  //     },
+  //   ];
+  // }
 
-  actions({value}) {
-    const {localize: _, chartHelp} = this.context;
-
-    const onClick = (e, func) => {
-      e.stopPropagation();
-      func();
-      this.context.handleClose();
-    };
-
-    return [
-      {
-        label: _('Charts like this by Plotly users.'),
-        onClick:
-          chartHelp[value] &&
-          chartHelp[value].feedQuery &&
-          (e =>
-            onClick(e, () =>
-              window.open(
-                `https://plot.ly/feed/?q=${chartHelp[value] ? chartHelp[value].feedQuery : value}`,
-                '_blank'
-              )
-            )),
-        icon: <SearchIcon />,
-      },
-      {
-        label: _('View tutorials on this chart type.'),
-        onClick:
-          chartHelp[value] &&
-          chartHelp[value].helpDoc &&
-          (e => onClick(e, () => window.open(chartHelp[value].helpDoc, '_blank'))),
-        icon: <ThumnailViewIcon />,
-      },
-      {
-        label: _('See a basic example.'),
-        onClick:
-          chartHelp[value] &&
-          chartHelp[value].examplePlot &&
-          (e => onClick(e, chartHelp[value].examplePlot)),
-        icon: <GraphIcon />,
-      },
-    ];
-  }
-
-  renderCategories() {
+  renderCategories(actions, selectAndClose) {
     const {fullValue} = this.props;
     const {mapBoxAccess, localize: _, chartHelp} = this.context;
     const {
@@ -169,8 +169,8 @@ class TraceTypeSelector extends Component {
                 key={item.value}
                 active={fullValue === item.value}
                 item={item}
-                actions={this.actions}
-                handleClick={() => this.selectAndClose(item.value)}
+                actions={actions}
+                handleClick={() => selectAndClose(item.value)}
                 showActions={Boolean(chartHelp)}
               />
             ))}
@@ -180,11 +180,11 @@ class TraceTypeSelector extends Component {
     });
   }
 
-  renderGrid() {
-    return <div className="trace-grid">{this.renderCategories()}</div>;
+  renderGrid(actions, selectAndClose) {
+    return <div className="trace-grid">{this.renderCategories(actions, selectAndClose)}</div>;
   }
 
-  renderSingleBlock() {
+  renderSingleBlock(actions, selectAndClose) {
     const {fullValue} = this.props;
     const {localize: _} = this.context;
     const {
@@ -199,9 +199,9 @@ class TraceTypeSelector extends Component {
             complex={complex}
             active={fullValue === item.value}
             item={item}
-            actions={this.actions}
+            actions={actions}
             showActions={false}
-            handleClick={() => this.selectAndClose(item.value)}
+            handleClick={() => selectAndClose(item.value)}
             style={{display: 'inline-block'}}
           />
         ))}
@@ -216,9 +216,79 @@ class TraceTypeSelector extends Component {
     } = this.props;
 
     return (
-      <Modal title={_('Select Trace Type')}>
-        {categories ? this.renderGrid() : this.renderSingleBlock()}
-      </Modal>
+      <ModalProviderContext.Consumer>
+        {({handleClose}) => {
+          const actions = ({value}) => {
+            const {localize: _, chartHelp} = this.context;
+
+            const onClick = (e, func) => {
+              e.stopPropagation();
+              func();
+              handleClose();
+            };
+
+            return [
+              {
+                label: _('Charts like this by Plotly users.'),
+                onClick:
+                  chartHelp[value] &&
+                  chartHelp[value].feedQuery &&
+                  (e =>
+                    onClick(e, () =>
+                      window.open(
+                        `https://plot.ly/feed/?q=${
+                          chartHelp[value] ? chartHelp[value].feedQuery : value
+                        }`,
+                        '_blank'
+                      )
+                    )),
+                icon: <SearchIcon />,
+              },
+              {
+                label: _('View tutorials on this chart type.'),
+                onClick:
+                  chartHelp[value] &&
+                  chartHelp[value].helpDoc &&
+                  (e => onClick(e, () => window.open(chartHelp[value].helpDoc, '_blank'))),
+                icon: <ThumnailViewIcon />,
+              },
+              {
+                label: _('See a basic example.'),
+                onClick:
+                  chartHelp[value] &&
+                  chartHelp[value].examplePlot &&
+                  (e => onClick(e, chartHelp[value].examplePlot)),
+                icon: <GraphIcon />,
+              },
+            ];
+          };
+
+          const selectAndClose = value => {
+            const {
+              updateContainer,
+              glByDefault,
+              fullContainer: {type},
+            } = this.props;
+            const computedValue = traceTypeToPlotlyInitFigure(value);
+            if (
+              ((type && type.endsWith('gl')) || (!TRACES_WITH_GL.includes(type) && glByDefault)) &&
+              TRACES_WITH_GL.includes(computedValue.type) &&
+              !computedValue.type.endsWith('gl')
+            ) {
+              computedValue.type += 'gl';
+            }
+            updateContainer(computedValue);
+            handleClose();
+          };
+          return (
+            <Modal title={_('Select Trace Type')}>
+              {categories
+                ? this.renderGrid(actions, selectAndClose)
+                : this.renderSingleBlock(actions, selectAndClose)}
+            </Modal>
+          );
+        }}
+      </ModalProviderContext.Consumer>
     );
   }
 }
@@ -230,12 +300,7 @@ TraceTypeSelector.propTypes = {
   glByDefault: PropTypes.bool,
   traceTypesConfig: PropTypes.object,
 };
-TraceTypeSelector.contextTypes = {
-  handleClose: PropTypes.func,
-  localize: PropTypes.func,
-  mapBoxAccess: PropTypes.bool,
-  chartHelp: PropTypes.object,
-};
+TraceTypeSelector.contextType = EditorControlsContext;
 
 export class TraceTypeSelectorButton extends Component {
   render() {

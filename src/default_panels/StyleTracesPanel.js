@@ -667,8 +667,4 @@ const StyleTracesPanel = () => (
   </EditorControlsContext.Consumer>
 );
 
-// StyleTracesPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default StyleTracesPanel;

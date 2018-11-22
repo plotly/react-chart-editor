@@ -83,8 +83,4 @@ const StyleLegendPanel = () => (
   </EditorControlsContext.Consumer>
 );
 
-// StyleLegendPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default StyleLegendPanel;

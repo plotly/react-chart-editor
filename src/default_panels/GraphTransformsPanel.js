@@ -20,14 +20,15 @@ export class Aggregations extends Component {
   render() {
     const {
       fullContainer: {aggregations = []},
-    } = this.context;
+    } = this.props.context;
     const {localize: _} = this.context;
+
     if (aggregations.length === 0) {
       return null;
     }
 
     return (
-      <PlotlySection name={_('Aggregations')} attr="aggregations">
+      <PlotlySection name={_('Aggregations')} attr="aggregations" context={this.props.context}>
         {aggregations
           .filter(aggr => aggr.target && aggr.target.match(/transforms\[\d*\]\./gi) === null)
           .map(({target}, i) => (
@@ -51,6 +52,7 @@ export class Aggregations extends Component {
                   {label: _('Range'), value: 'range'},
                 ]}
                 clearable={false}
+                context={this.props.context}
               />
             </AggregationSection>
           ))}
@@ -60,9 +62,12 @@ export class Aggregations extends Component {
 }
 
 Aggregations.plotly_editor_traits = {no_visibility_forcing: true};
-Aggregations.contextTypes = {
+Aggregations.contextType = EditorControlsContext;
+Aggregations.requireContext = {
   fullContainer: PropTypes.object,
-  localize: PropTypes.func,
+};
+Aggregations.propTypes = {
+  context: PropTypes.any,
 };
 
 const GraphTransformsPanel = () => {
@@ -97,9 +102,5 @@ const GraphTransformsPanel = () => {
     </EditorControlsContext.Consumer>
   );
 };
-
-// GraphTransformsPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
 
 export default GraphTransformsPanel;

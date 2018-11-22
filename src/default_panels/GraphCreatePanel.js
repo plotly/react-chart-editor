@@ -35,7 +35,6 @@ const GraphCreatePanel = () => {
               }
             >
               <TraceSelector label={_('Type')} attr="type" show />
-
               <LocationSelector attr="type" />
 
               <DataSelector label={_('Values')} attr="values" />
@@ -173,7 +172,3 @@ const GraphCreatePanel = () => {
 };
 
 export default GraphCreatePanel;
-// GraphCreatePanel.contextTypes = {
-//   localize: PropTypes.func,
-//   setPanel: PropTypes.func,
-// };

@@ -6,11 +6,11 @@ import PropTypes from 'prop-types';
 const styledRenderer = ({value, label}) => <span style={{fontFamily: value}}>{label}</span>;
 /* eslint-enable react/prop-types */
 
-const FontSelector = (props, context) => {
+const FontSelector = props => {
   return (
     <Dropdown
       {...props}
-      options={context.fontOptions}
+      options={props.context.fontOptions}
       valueRenderer={styledRenderer}
       optionRenderer={styledRenderer}
     />
@@ -25,7 +25,7 @@ FontSelector.defaultProps = {
   clearable: false,
 };
 
-FontSelector.contextTypes = {
+FontSelector.requireContext = {
   fontOptions: PropTypes.array,
 };
 

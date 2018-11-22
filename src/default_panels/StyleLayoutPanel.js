@@ -145,8 +145,4 @@ const StyleLayoutPanel = () => (
   </EditorControlsContext.Consumer>
 );
 
-// StyleLayoutPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default StyleLayoutPanel;

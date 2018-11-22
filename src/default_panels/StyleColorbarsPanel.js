@@ -298,8 +298,4 @@ const StyleColorBarsPanel = () => {
   );
 };
 
-// StyleColorBarsPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default StyleColorBarsPanel;

@@ -12,7 +12,7 @@ class UnconnectedPieColorscalePicker extends Component {
 
   onUpdate(colorscale, colorscaleType) {
     if (Array.isArray(colorscale)) {
-      const numPieSlices = this.context.graphDiv.calcdata[0].length + 1;
+      const numPieSlices = this.props.context.graphDiv.calcdata[0].length + 1;
       const adjustedColorscale = adjustColorscale(colorscale, numPieSlices, colorscaleType, {
         repeat: true,
       });
@@ -42,7 +42,7 @@ UnconnectedPieColorscalePicker.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedPieColorscalePicker.contextTypes = {
+UnconnectedPieColorscalePicker.requireContext = {
   container: PropTypes.object,
   graphDiv: PropTypes.object,
 };

@@ -91,6 +91,7 @@ class UnconnectedAxisCreator extends Component {
         options={this.props.options}
         updatePlot={u => this.updateAxis(u)}
         extraComponent={extraComponent}
+        context={this.props.context}
       />
     );
   }
@@ -103,6 +104,7 @@ UnconnectedAxisCreator.propTypes = {
   container: PropTypes.object,
   fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,
+  context: PropTypes.any,
 };
 
 UnconnectedAxisCreator.contextType = EditorControlsContext;
@@ -141,9 +143,8 @@ class UnconnectedAxesCreator extends Component {
         );
       });
     }
-
     return (
-      <PlotlySection name={_('Axes to Use')}>
+      <PlotlySection name={_('Axes to Use')} context={this.props.context}>
         {controls}
         <ModalProviderContext.Consumer>
           {({setPanel}) => (
@@ -162,6 +163,7 @@ class UnconnectedAxesCreator extends Component {
 UnconnectedAxesCreator.propTypes = {
   container: PropTypes.object,
   fullContainer: PropTypes.object,
+  context: PropTypes.any,
 };
 
 UnconnectedAxesCreator.contextType = EditorControlsContext;

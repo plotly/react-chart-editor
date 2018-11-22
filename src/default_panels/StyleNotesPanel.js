@@ -76,8 +76,4 @@ const StyleNotesPanel = () => (
   </EditorControlsContext.Consumer>
 );
 
-// StyleNotesPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default StyleNotesPanel;

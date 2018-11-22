@@ -5,7 +5,8 @@ import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
 import {bem} from 'lib';
 import {EmbedIconIcon} from 'plotly-icons';
-import {EditorControlsContext, PlotlyPanelContext} from '../../context';
+import {EditorControlsContext} from '../../context';
+import {recursiveMap} from '../../lib/recursiveMap';
 
 class PanelErrorImpl extends Component {
   render() {
@@ -32,12 +33,6 @@ export class Panel extends Component {
     };
     this.toggleFolds = this.toggleFolds.bind(this);
     this.toggleFold = this.toggleFold.bind(this);
-  }
-
-  getChildContext() {
-    return {
-      deleteContainer: this.props.deleteAction ? this.props.deleteAction : null,
-    };
   }
 
   provideValue() {
@@ -93,11 +88,7 @@ export class Panel extends Component {
     const {individualFoldStates, hasError} = this.state;
 
     if (hasError) {
-      return (
-        <PlotlyPanelContext.Provider value={this.provideValue()}>
-          <PanelError />
-        </PlotlyPanelContext.Provider>
-      );
+      return <PanelError />;
     }
 
     const newChildren = React.Children.map(this.props.children, (child, index) => {
@@ -112,17 +103,22 @@ export class Panel extends Component {
     });
 
     return (
-      <PlotlyPanelContext.Provider value={this.provideValue()}>
-        <div className={`panel${this.props.noPadding ? ' panel--no-padding' : ''}`}>
-          <PanelHeader
-            addAction={this.props.addAction}
-            allowCollapse={this.props.showExpandCollapse && individualFoldStates.length > 1}
-            toggleFolds={this.toggleFolds}
-            hasOpen={individualFoldStates.some(s => s === false)}
-          />
-          <div className={bem('panel', 'content')}>{newChildren}</div>
+      <div className={`panel${this.props.noPadding ? ' panel--no-padding' : ''}`}>
+        <PanelHeader
+          addAction={this.props.addAction}
+          allowCollapse={this.props.showExpandCollapse && individualFoldStates.length > 1}
+          toggleFolds={this.toggleFolds}
+          hasOpen={individualFoldStates.some(s => s === false)}
+          context={this.props.context}
+        />
+        <div className={bem('panel', 'content')}>
+          {recursiveMap(newChildren, {
+            ...this.context,
+            ...this.props.context,
+            ...this.provideValue(),
+          })}
         </div>
-      </PlotlyPanelContext.Provider>
+      </div>
     );
   }
 }
@@ -133,19 +129,18 @@ Panel.propTypes = {
   deleteAction: PropTypes.func,
   noPadding: PropTypes.bool,
   showExpandCollapse: PropTypes.bool,
+  context: PropTypes.any,
 };
 
 Panel.defaultProps = {
   showExpandCollapse: true,
 };
 
-Panel.contextTypes = {
-  localize: PropTypes.func,
-};
+Panel.contextType = EditorControlsContext;
 
-Panel.childContextTypes = {
-  deleteContainer: PropTypes.func,
-};
+// Panel.childContextTypes = {
+//   deleteContainer: PropTypes.func,
+// };
 
 class PlotlyPanel extends Panel {}
 

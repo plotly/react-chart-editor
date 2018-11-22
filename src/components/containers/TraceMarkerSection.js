@@ -1,20 +1,21 @@
 import PlotlySection from './PlotlySection';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {EditorControlsContext} from '../../context';
 
 class TraceMarkerSection extends Component {
   constructor(props, context) {
     super(props, context);
-    this.setLocals(context);
+    this.setLocals(props, context);
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
-    this.setLocals(nextContext);
+    this.setLocals(nextProps, nextContext);
   }
 
-  setLocals(context) {
-    const _ = this.context.localize;
-    const traceType = context.fullContainer.type;
+  setLocals(props, context) {
+    const _ = context.localize;
+    const traceType = props.context.fullContainer.type;
     if (['bar', 'histogram'].includes(traceType)) {
       this.name = _('Bars');
     } else if (traceType === 'pie') {
@@ -34,9 +35,9 @@ TraceMarkerSection.propTypes = {
   name: PropTypes.string,
 };
 
-TraceMarkerSection.contextTypes = {
+TraceMarkerSection.contextType = EditorControlsContext;
+TraceMarkerSection.requireContext = {
   fullContainer: PropTypes.object,
-  localize: PropTypes.func,
 };
 
 export default TraceMarkerSection;

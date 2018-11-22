@@ -6,6 +6,7 @@ import RadioBlocks from '../widgets/RadioBlocks';
 import Numeric from './Numeric';
 import DataSelector from './DataSelector';
 import {MULTI_VALUED} from 'lib/constants';
+import {EditorControlsContext} from '../../context';
 
 class UnconnectedMarkerSize extends Component {
   constructor(props, context) {
@@ -39,9 +40,9 @@ class UnconnectedMarkerSize extends Component {
     this.setState({type: type});
     this.props.updatePlot(this.state.value[type]);
     if (type === 'constant') {
-      this.context.updateContainer({['marker.sizesrc']: null});
+      this.props.context.updateContainer({['marker.sizesrc']: null});
     } else {
-      this.context.updateContainer({
+      this.props.context.updateContainer({
         ['marker.size']: null,
         ['marker.sizesrc']: null,
       });
@@ -91,9 +92,9 @@ UnconnectedMarkerSize.propTypes = {
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };
+UnconnectedMarkerSize.contextType = EditorControlsContext;
 
-UnconnectedMarkerSize.contextTypes = {
-  localize: PropTypes.func,
+UnconnectedMarkerSize.requireContext = {
   updateContainer: PropTypes.func,
 };
 

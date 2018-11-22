@@ -139,7 +139,6 @@ class SubplotAccordion extends Component {
         );
       }
     });
-
     return <TraceRequiredPanel>{subplotFolds}</TraceRequiredPanel>;
   }
 }

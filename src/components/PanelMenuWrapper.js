@@ -25,12 +25,6 @@ class PanelsWithSidebar extends Component {
     this.setState({group, panel});
   }
 
-  getChildContext() {
-    return {
-      setPanel: this.setPanel,
-    };
-  }
-
   provideValue() {
     return {
       setPanel: this.setPanel,
@@ -117,10 +111,6 @@ class PanelsWithSidebar extends Component {
 PanelsWithSidebar.propTypes = {
   children: PropTypes.node,
   menuPanelOrder: PropTypes.array,
-};
-
-PanelsWithSidebar.childContextTypes = {
-  setPanel: PropTypes.func,
 };
 
 export default PanelsWithSidebar;

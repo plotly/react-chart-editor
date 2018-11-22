@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
 import {capitalize, getAllAxes, getDisplayName, getAxisTitle} from '../lib';
+import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 function computeAxesOptions(axes, props, context) {
   const _ = context.localize;
@@ -34,10 +36,14 @@ function computeAxesOptions(axes, props, context) {
 export default function connectAxesToLayout(WrappedComponent) {
   class AxesConnectedComponent extends Component {
     constructor(props, context) {
-      super(props, context);
+      super(props);
 
-      this.axes = getAllAxes(context.fullContainer);
-      this.axesOptions = computeAxesOptions(this.axes, props, context);
+      const {context: propContext, ...newProps} = props;
+      this.axes = getAllAxes(propContext.fullContainer);
+      this.axesOptions = computeAxesOptions(this.axes, newProps, {
+        ...propContext,
+        localize: context.localize,
+      });
 
       // this.axesOptions can be an empty array when we have a filter on an AxesFold
       // and no axes correspond to the condition
@@ -56,14 +62,18 @@ export default function connectAxesToLayout(WrappedComponent) {
       this.axesTargetHandler = this.axesTargetHandler.bind(this);
       this.updateContainer = this.updateContainer.bind(this);
 
-      this.setLocals(props, this.state, context);
+      this.setLocals(newProps, this.state, propContext);
     }
 
-    componentWillUpdate(nextProps, nextState, nextContext) {
-      this.axes = getAllAxes(nextContext.fullContainer);
-      this.axesOptions = computeAxesOptions(this.axes, nextProps, nextContext);
+    componentWillUpdate(nextProps, nextState) {
+      const {context: propContext, ...newProps} = nextProps;
+      this.axes = getAllAxes(propContext.fullContainer);
+      this.axesOptions = computeAxesOptions(this.axes, nextProps, {
+        ...propContext,
+        localize: this.context.localize,
+      });
       // This is not enough, what if plotly.js adds new axes...
-      this.setLocals(nextProps, nextState, nextContext);
+      this.setLocals(newProps, nextState, propContext);
     }
 
     setLocals(nextProps, nextState, nextContext) {
@@ -88,28 +98,12 @@ export default function connectAxesToLayout(WrappedComponent) {
       }
     }
 
-    getChildContext() {
-      return {
-        getValObject: attr =>
-          !this.context.getValObject
-            ? null
-            : this.context.getValObject(`${this.state.axesTarget}.${attr}`),
-        axesOptions: this.axesOptions,
-        axesTarget: this.state.axesTarget,
-        axesTargetHandler: this.axesTargetHandler,
-        container: this.container,
-        defaultContainer: this.defaultContainer,
-        fullContainer: this.fullContainer,
-        updateContainer: this.updateContainer,
-      };
-    }
-
     provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
+          !this.props.context.getValObject
             ? null
-            : this.context.getValObject(`${this.state.axesTarget}.${attr}`),
+            : this.props.context.getValObject(`${this.state.axesTarget}.${attr}`),
         axesOptions: this.axesOptions,
         axesTarget: this.state.axesTarget,
         axesTargetHandler: this.axesTargetHandler,
@@ -149,33 +143,35 @@ export default function connectAxesToLayout(WrappedComponent) {
         }
       }
 
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     render() {
-      return <WrappedComponent {...this.props} options={this.axesOptions} />;
+      const newProps = {...this.props, context: this.provideValue()};
+      if (this.props.children) {
+        return (
+          <WrappedComponent {...newProps} options={this.axesOptions}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent {...newProps} options={this.axesOptions} />;
     }
   }
 
   AxesConnectedComponent.displayName = `AxesConnected${getDisplayName(WrappedComponent)}`;
+  AxesConnectedComponent.contextType = EditorControlsContext;
 
-  AxesConnectedComponent.contextTypes = {
+  AxesConnectedComponent.requireContext = {
     container: PropTypes.object.isRequired,
     fullContainer: PropTypes.object.isRequired,
     updateContainer: PropTypes.func,
-    localize: PropTypes.func,
     getValObject: PropTypes.func,
   };
 
-  AxesConnectedComponent.childContextTypes = {
-    axesOptions: PropTypes.array,
-    axesTarget: PropTypes.string,
-    axesTargetHandler: PropTypes.func,
-    container: PropTypes.object,
-    defaultContainer: PropTypes.object,
-    fullContainer: PropTypes.object,
-    updateContainer: PropTypes.func,
-    getValObject: PropTypes.func,
+  AxesConnectedComponent.propTypes = {
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

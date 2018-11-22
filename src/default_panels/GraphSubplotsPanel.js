@@ -236,8 +236,4 @@ const GraphSubplotsPanel = () => (
   </EditorControlsContext.Consumer>
 );
 
-// GraphSubplotsPanel.contextTypes = {
-//   localize: PropTypes.func,
-// };
-
 export default GraphSubplotsPanel;

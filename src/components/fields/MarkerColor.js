@@ -11,6 +11,7 @@ import Info from './Info';
 import DataSelector from './DataSelector';
 import VisibilitySelect from './VisibilitySelect';
 import {MULTI_VALUED, COLORS} from 'lib/constants';
+import {EditorControlsContext} from '../../context';
 
 class UnconnectedMarkerColor extends Component {
   constructor(props, context) {
@@ -48,14 +49,14 @@ class UnconnectedMarkerColor extends Component {
       this.setState({type: type});
       this.props.updatePlot(this.state.value[type]);
       if (type === 'constant') {
-        this.context.updateContainer({
+        this.props.context.updateContainer({
           ['marker.colorsrc']: null,
           ['marker.colorscale']: null,
           ['marker.showscale']: null,
         });
         this.setState({colorscale: null});
       } else {
-        this.context.updateContainer({
+        this.props.context.updateContainer({
           ['marker.color']: null,
           ['marker.colorsrc']: null,
           ['marker.colorscale']: [],
@@ -75,7 +76,7 @@ class UnconnectedMarkerColor extends Component {
 
   setColorScale(inputValue) {
     this.setState({colorscale: inputValue});
-    this.context.updateContainer({['marker.colorscale']: inputValue});
+    this.props.context.updateContainer({['marker.colorscale']: inputValue});
   }
 
   isMultiValued() {
@@ -142,7 +143,8 @@ class UnconnectedMarkerColor extends Component {
 
   render() {
     const {attr} = this.props;
-    const {localize: _, container} = this.context;
+    const {localize: _} = this.context;
+    const {container} = this.props.context;
 
     // TO DO: https://github.com/plotly/react-chart-editor/issues/654
     const noSplitsPresent =
@@ -219,8 +221,9 @@ UnconnectedMarkerColor.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedMarkerColor.contextTypes = {
-  localize: PropTypes.func,
+UnconnectedMarkerColor.contextType = EditorControlsContext;
+
+UnconnectedMarkerColor.requireContext = {
   updateContainer: PropTypes.func,
   traceIndexes: PropTypes.array,
   container: PropTypes.object,

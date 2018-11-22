@@ -1,23 +1,24 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
+import {recursiveMap} from './recursiveMap';
 
 export default function connectAggregationToTransform(WrappedComponent) {
   class AggregationConnectedComponent extends Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
 
       this.updateAggregation = this.updateAggregation.bind(this);
-      this.setLocals(props, context);
+      this.setLocals(props);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setLocals(nextProps, nextContext);
+    componentWillReceiveProps(nextProps) {
+      this.setLocals(nextProps);
     }
 
-    setLocals(props, context) {
+    setLocals(props) {
+      const {container, fullContainer} = props.context;
       const {aggregationIndex} = props;
-      const {container, fullContainer} = context;
 
       const aggregations = (container && container.aggregations) || [];
       const fullAggregations = fullContainer.aggregations || [];
@@ -25,20 +26,12 @@ export default function connectAggregationToTransform(WrappedComponent) {
       this.fullContainer = fullAggregations[aggregationIndex];
     }
 
-    getChildContext() {
-      return {
-        getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`aggregations[].${attr}`),
-        updateContainer: this.updateAggregation,
-        container: this.container,
-        fullContainer: this.fullContainer,
-      };
-    }
-
     provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`aggregations[].${attr}`),
+          !this.props.context.getValObject
+            ? null
+            : this.props.context.getValObject(`aggregations[].${attr}`),
         updateContainer: this.updateAggregation,
         container: this.container,
         fullContainer: this.fullContainer,
@@ -53,11 +46,19 @@ export default function connectAggregationToTransform(WrappedComponent) {
       }
       newUpdate[`${path}.target`] = this.fullContainer.target;
       newUpdate[`${path}.enabled`] = true;
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      const newProps = {...this.props, context: this.provideValue()};
+      if (this.props.children) {
+        return (
+          <WrappedComponent {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent {...newProps} />;
     }
   }
 
@@ -69,21 +70,16 @@ export default function connectAggregationToTransform(WrappedComponent) {
     aggregationIndex: PropTypes.number.isRequired,
   };
 
-  AggregationConnectedComponent.contextTypes = {
+  AggregationConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    data: PropTypes.array,
-    onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
 
-  AggregationConnectedComponent.childContextTypes = {
-    updateContainer: PropTypes.func,
-    deleteContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    getValObject: PropTypes.func,
+  AggregationConnectedComponent.propTypes = {
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

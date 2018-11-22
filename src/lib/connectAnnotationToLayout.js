@@ -2,23 +2,26 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 export default function connectAnnotationToLayout(WrappedComponent) {
   class AnnotationConnectedComponent extends Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
 
       this.deleteAnnotation = this.deleteAnnotation.bind(this);
       this.updateAnnotation = this.updateAnnotation.bind(this);
-      this.setLocals(props, context);
+      this.setLocals(props);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setLocals(nextProps, nextContext);
+    componentWillReceiveProps(nextProps) {
+      this.setLocals(nextProps);
     }
 
-    setLocals(props, context) {
-      const {annotationIndex} = props;
+    setLocals(props) {
+      const {context, ...newProps} = props;
+      const {annotationIndex} = newProps;
       const {container, fullContainer} = context;
 
       const annotations = container.annotations || [];
@@ -27,21 +30,12 @@ export default function connectAnnotationToLayout(WrappedComponent) {
       this.fullContainer = fullAnnotations[annotationIndex];
     }
 
-    getChildContext() {
-      return {
-        getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`annotations[].${attr}`),
-        updateContainer: this.updateAnnotation,
-        deleteContainer: this.deleteAnnotation,
-        container: this.container,
-        fullContainer: this.fullContainer,
-      };
-    }
-
     provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`annotations[].${attr}`),
+          !this.props.context.getValObject
+            ? null
+            : this.props.context.getValObject(`annotations[].${attr}`),
         updateContainer: this.updateAnnotation,
         deleteContainer: this.deleteAnnotation,
         container: this.container,
@@ -56,7 +50,7 @@ export default function connectAnnotationToLayout(WrappedComponent) {
         const newkey = `annotations[${annotationIndex}].${key}`;
         newUpdate[newkey] = update[key];
       }
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     deleteAnnotation() {
@@ -69,7 +63,15 @@ export default function connectAnnotationToLayout(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      const newProps = {...this.props, context: this.provideValue()};
+      if (this.props.children) {
+        return (
+          <WrappedComponent {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent {...newProps} />;
     }
   }
 
@@ -81,21 +83,18 @@ export default function connectAnnotationToLayout(WrappedComponent) {
     annotationIndex: PropTypes.number.isRequired,
   };
 
-  AnnotationConnectedComponent.contextTypes = {
+  AnnotationConnectedComponent.contextType = EditorControlsContext;
+
+  AnnotationConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    data: PropTypes.array,
-    onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
 
-  AnnotationConnectedComponent.childContextTypes = {
-    updateContainer: PropTypes.func,
-    deleteContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    getValObject: PropTypes.func,
+  AnnotationConnectedComponent.propTypes = {
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;
