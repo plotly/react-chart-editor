@@ -1,10 +1,10 @@
 {
-  "name": "react-chart-editor",
+  "name": "react-chart-editor-fork-oprstchn",
   "description": "plotly.js chart editor react component UI",
-  "version": "0.33.3",
-  "author": "Plotly, Inc.",
+  "version": "0.33.4",
+  "author": "oprstchn",
   "bugs": {
-    "url": "https://github.com/plotly/react-chart-editor/issues"
+    "url": "https://github.com/oprstchn/react-chart-editor/issues"
   },
   "dependencies": {
     "@plotly/draft-js-export-html": "1.2.0",
@@ -82,7 +82,7 @@
     "react": ">=16.6.0",
     "react-dom": ">=16.6.0"
   },
-  "homepage": "https://plotly.github.io/react-chart-editor/",
+  "homepage": "https://oprstchn.github.io/react-chart-editor/",
   "jest": {
     "roots": [
       "<rootDir>/src/"
@@ -106,7 +106,7 @@
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/plotly/react-chart-editor.git"
+    "url": "https://github.com/oprstchn/react-chart-editor.git"
   },
   "scripts": {
     "lint": "prettier --write \"src/**/*.js\"",
