@@ -6,7 +6,7 @@ import 'react-select/dist/react-select.css';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
-import PlotlyEditor, {DefaultEditor, Panel} from '../src';
+import PlotlyEditor, {DefaultEditor, Panel, StyleNotesPanel, StyleColorbarsPanel} from '../src';
 import Inspector from 'react-inspector';
 import dataSources from './dataSources';
 import 'brace/mode/json';
@@ -163,73 +163,6 @@ class App extends Component {
   }
 
   render() {
-    const optionalPanel = [
-      <Panel group="Dev" name="JSON">
-        <div className="mocks">
-          <Select
-            clearable={false}
-            value={this.state.currentMockIndex}
-            name="mock-dropdown"
-            options={this.state.mocks.map((item, i) => ({
-              label: item,
-              value: i,
-            }))}
-            searchable={true}
-            searchPromptText="Search for a mock"
-            onChange={option => this.loadMock(option.value)}
-            noResultsText={'No Results'}
-            placeholder={'Search for a mock'}
-          />
-        </div>
-        <button
-          className="devbtn"
-          onClick={this.loadJSON}
-          style={{background: this.state.json_error ? 'pink' : 'white'}}
-        >
-          Save
-        </button>
-        <AceEditor
-          mode="json"
-          theme="textmate"
-          onChange={json_string => this.setState({json_string})}
-          value={this.state.json_string}
-          name="UNIQUE_ID_OF_DIV"
-          style={{height: '80vh'}}
-          setOptions={{
-            showLineNumbers: false,
-            tabSize: 2,
-          }}
-          commands={[
-            {
-              name: 'save',
-              bindKey: {win: 'Ctrl-s', mac: 'Command-s'},
-              exec: this.loadJSON,
-            },
-          ]}
-          editorProps={{$blockScrolling: true}}
-        />
-      </Panel>,
-      <Panel group="Dev" name="Inspector">
-        <button
-          className="devbtn"
-          onClick={() => {
-            const gd = document.getElementById('gd') || {};
-            this.setState({
-              full: {
-                _fullData: gd._fullData || [],
-                _fullLayout: gd._fullLayout || {},
-              },
-            });
-          }}
-        >
-          Refresh
-        </button>
-        <div style={{height: '80vh'}}>
-          <Inspector data={{_full: this.state.full}} expandLevel={2} sortObjectKeys={true} />
-        </div>
-      </Panel>,
-    ];
-
     const menuPanelOrder = [
       {group: 'Dev', name: 'JSON'},
       {group: 'Dev', name: 'Inspector'},
@@ -270,29 +203,11 @@ class App extends Component {
           // makeDefaultTrace={() => ({type: 'scattergl', mode: 'markers'})}
           // fontOptions={[{label:'Arial', value: 'arial'}]}
           // chartHelp={chartHelp}
-          // optionalPanel={optionalPanel}
           // menuPanelOrder={menuPanelOrder}
         >
-          <DefaultEditor
-          // menuPanelOrder={[
-          //   {group: 'Dev', name: 'JSON'},
-          //   {group: 'Dev', name: 'Inspector'},
-          //   {group: 'Structure', name: 'Create'},
-          //   {group: 'Structure', name: 'Subplots'},
-          //   {group: 'Structure', name: 'Transforms'},
-          //   {group: 'Test', name: 'Testing'},
-          //   {group: 'Style', name: 'General'},
-          //   {group: 'Style', name: 'Traces'},
-          //   {group: 'Style', name: 'Axes'},
-          //   {group: 'Style', name: 'Legend'},
-          //   {group: 'Style', name: 'Color Bars'},
-          //   {group: 'Style', name: 'Annotation'},
-          //   {group: 'Style', name: 'Shapes'},
-          //   {group: 'Style', name: 'Images'},
-          //   {group: 'Style', name: 'Sliders'},
-          //   {group: 'Style', name: 'Menus'},
-          // ]}
-          >
+          <DefaultEditor>
+            <StyleNotesPanel group={'Style'} name={'Notes'} />
+            <StyleColorbarsPanel group={'Style'} name={'Colorbars'} />
             <Panel group="Dev" name="JSON">
               <div className="mocks">
                 <Select
