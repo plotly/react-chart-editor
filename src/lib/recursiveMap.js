@@ -7,15 +7,6 @@ export function recursiveMap(children, context) {
       return child;
     }
 
-    // if (
-    //   child.type &&
-    //   child.type.displayName &&
-    //   (child.type.displayName.indexOf('LayoutConnected') === 0 ||
-    //     child.type.displayName.indexOf('TraceConnected') === 0)
-    // ) {
-    //   return newChild;
-    // }
-
     if (child.type.requireContext) {
       const requireContext = {};
       const newChildren = {};
