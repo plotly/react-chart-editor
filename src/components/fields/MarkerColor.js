@@ -12,6 +12,7 @@ import DataSelector from './DataSelector';
 import VisibilitySelect from './VisibilitySelect';
 import {MULTI_VALUED, COLORS} from 'lib/constants';
 import {EditorControlsContext} from '../../context';
+import {containerConnectedContextTypes} from '../../lib/connectToContainer';
 
 class UnconnectedMarkerColor extends Component {
   constructor(props, context) {
@@ -113,6 +114,7 @@ class UnconnectedMarkerColor extends Component {
         setColorScale={this.setColorScale}
         onConstantColorOptionChange={this.onConstantColorOptionChange}
         parentSelectedConstantColorOption={this.state.selectedConstantColorOption}
+        context={this.props.context}
       />
     );
   }
@@ -125,8 +127,9 @@ class UnconnectedMarkerColor extends Component {
         this.props.container.marker.colorscale === MULTI_VALUED) ||
         (this.props.container.marker.colorsrc &&
           this.props.container.marker.colorsrc === MULTI_VALUED));
+
     return (
-      <Field multiValued={multiValued}>
+      <Field multiValued={multiValued} context={this.props.context}>
         <DataSelector suppressMultiValuedMessage attr="marker.color" />
         {this.props.container.marker &&
         this.props.container.marker.colorscale === MULTI_VALUED ? null : (
@@ -160,7 +163,7 @@ class UnconnectedMarkerColor extends Component {
 
       return (
         <Fragment>
-          <Field {...this.props} attr={attr}>
+          <Field {...this.props} attr={attr} context={this.props.context}>
             <Field multiValued={this.isMultiValued() && !this.state.type}>
               <RadioBlocks options={options} activeOption={type} onOptionChange={this.setType} />
 
@@ -197,6 +200,7 @@ class UnconnectedMarkerColor extends Component {
                 options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
                 showOn={false}
                 defaultOpt={true}
+                context={this.props.context}
               >
                 <Numeric label={_('Min')} attr="marker.cmin" />
                 <Numeric label={_('Max')} attr="marker.cmax" />
@@ -223,10 +227,11 @@ UnconnectedMarkerColor.propTypes = {
 
 UnconnectedMarkerColor.contextType = EditorControlsContext;
 
-UnconnectedMarkerColor.requireContext = {
-  updateContainer: PropTypes.func,
-  traceIndexes: PropTypes.array,
-  container: PropTypes.object,
-};
+UnconnectedMarkerColor.requireContext = containerConnectedContextTypes;
+// {
+//   updateContainer: PropTypes.func,
+//   traceIndexes: PropTypes.array,
+//   container: PropTypes.object,
+// };
 
 export default connectToContainer(UnconnectedMarkerColor);

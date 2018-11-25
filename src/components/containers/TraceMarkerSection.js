@@ -2,6 +2,7 @@ import PlotlySection from './PlotlySection';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {EditorControlsContext} from '../../context';
+import {containerConnectedContextTypes} from '../../lib/connectToContainer';
 
 class TraceMarkerSection extends Component {
   constructor(props, context) {
@@ -26,18 +27,21 @@ class TraceMarkerSection extends Component {
   }
 
   render() {
-    return <PlotlySection name={this.name}>{this.props.children}</PlotlySection>;
+    return (
+      <PlotlySection name={this.name} context={this.props.context}>
+        {this.props.children}
+      </PlotlySection>
+    );
   }
 }
 
 TraceMarkerSection.propTypes = {
   children: PropTypes.node,
+  context: PropTypes.any,
   name: PropTypes.string,
 };
 
 TraceMarkerSection.contextType = EditorControlsContext;
-TraceMarkerSection.requireContext = {
-  fullContainer: PropTypes.object,
-};
+TraceMarkerSection.requireContext = containerConnectedContextTypes;
 
 export default TraceMarkerSection;
