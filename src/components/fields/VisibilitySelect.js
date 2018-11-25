@@ -5,6 +5,7 @@ import {MULTI_VALUED_PLACEHOLDER} from 'lib/constants';
 import Field from './Field';
 import Radio from './Radio';
 import Dropdown from './Dropdown';
+import {recursiveMap} from '../../lib/recursiveMap';
 
 export class UnconnectedVisibilitySelect extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export class UnconnectedVisibilitySelect extends Component {
   }
 
   setMode(mode) {
-    this.props.updateContainer({[this.props.attr]: mode});
+    this.props.context.updateContainer({[this.props.attr]: mode});
   }
 
   render() {
@@ -44,6 +45,7 @@ export class UnconnectedVisibilitySelect extends Component {
             fullValue={this.mode}
             updatePlot={this.setMode}
             clearable={clearable}
+            context={this.props.context}
           />
         ) : (
           <Radio
@@ -52,10 +54,11 @@ export class UnconnectedVisibilitySelect extends Component {
             options={options}
             fullValue={this.mode}
             updatePlot={this.setMode}
+            context={this.props.context}
           />
         )}
         {(Array.isArray(showOn) && showOn.includes(this.mode)) || this.mode === showOn
-          ? this.props.children
+          ? recursiveMap(this.props.children, this.props.context)
           : null}
       </Fragment>
     );
