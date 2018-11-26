@@ -13,8 +13,8 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-      - run: sudo apt-get update -y && \
-          apt-get install xserver-xorg-dev libxi-dev libxext-dev -y
+      - run: sudo apt-get update -y
+      - run: sudo apt-get install xserver-xorg-dev libxi-dev libxext-dev -y
       - run: npm install
 
       - save_cache:
