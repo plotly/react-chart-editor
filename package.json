@@ -63,7 +63,7 @@
     "postcss-combine-duplicated-selectors": "^6.0.2",
     "postcss-custom-properties": "^6.3.1",
     "postcss-remove-root": "^0.0.2",
-    "prettier": "^1.14.2",
+    "prettier": "^1.15.2",
     "react": "^16.6.3",
     "react-ace": "^6.1.4",
     "react-dom": "^16.6.3",

@@ -145,9 +145,9 @@ export function insertSoftNewline(editorState) {
  */
 export function toggleInlineStyle(editorState, inlineStyle) {
   /*
-     * TODO tech-debt. Link toggles should not go via toggleInlineStyle.
-     * https://github.com/plotly/streambed/issues/6354
-     */
+   * TODO tech-debt. Link toggles should not go via toggleInlineStyle.
+   * https://github.com/plotly/streambed/issues/6354
+   */
 
   if (inlineStyle === LINK) {
     return toggleLink(editorState);

@@ -26,10 +26,10 @@ export const STYLE_MAP = {
   },
   [SUBSCRIPT]: {
     /*
-         * Can't use text-align; IE renders `text-bottom` properly, but
-         * FF doesn't (same height as `bottom`). Chrome doesn't understand
-         * `text-align: bottom`. Use relative positioning instead.
-         */
+     * Can't use text-align; IE renders `text-bottom` properly, but
+     * FF doesn't (same height as `bottom`). Chrome doesn't understand
+     * `text-align: bottom`. Use relative positioning instead.
+     */
     lineHeight: 0,
     fontSize: '65%',
     position: 'relative',
@@ -37,10 +37,10 @@ export const STYLE_MAP = {
   },
   [SUPERSCRIPT]: {
     /*
-         * Can't use text-align; IE renders `text-top` properly, but
-         * FF doesn't (same height as `top`). Chrome doesn't understand
-         * `text-align: top`. Use relative positioning instead.
-         */
+     * Can't use text-align; IE renders `text-top` properly, but
+     * FF doesn't (same height as `top`). Chrome doesn't understand
+     * `text-align: top`. Use relative positioning instead.
+     */
     lineHeight: 0,
     fontSize: '65%',
     position: 'relative',

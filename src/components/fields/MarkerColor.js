@@ -179,8 +179,8 @@ class UnconnectedMarkerColor extends Component {
             {!type
               ? null
               : type === 'constant'
-                ? this.renderConstantControls()
-                : this.renderVariableControls()}
+              ? this.renderConstantControls()
+              : this.renderVariableControls()}
           </Field>
           {type === 'constant' ? null : (
             <Fragment>
