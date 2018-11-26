@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "@percy/react": "^0.4.6",
-    "@percy/react-percy-ci": "^0.4.6",
     "autoprefixer": "^9.1.3",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
