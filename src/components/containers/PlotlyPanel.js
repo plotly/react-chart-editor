@@ -7,6 +7,7 @@ import {bem} from 'lib';
 import {EmbedIconIcon} from 'plotly-icons';
 import {EditorControlsContext} from '../../context';
 import {recursiveMap} from '../../lib/recursiveMap';
+import {containerConnectedContextTypes} from '../../lib';
 
 class PanelErrorImpl extends Component {
   render() {
@@ -137,6 +138,7 @@ Panel.defaultProps = {
 };
 
 Panel.contextType = EditorControlsContext;
+Panel.requireContext = containerConnectedContextTypes;
 
 // Panel.childContextTypes = {
 //   deleteContainer: PropTypes.func,

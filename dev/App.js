@@ -6,8 +6,7 @@ import 'react-select/dist/react-select.css';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
-import PlotlyEditor, {DefaultEditor, Panel, StyleNotesPanel, StyleColorbarsPanel} from '../src';
-import {StyleUpdateMenusPanel} from '../src/default_panels';
+import PlotlyEditor, {DefaultEditor, Panel} from '../src';
 import Inspector from 'react-inspector';
 import dataSources from './dataSources';
 import 'brace/mode/json';
@@ -164,25 +163,6 @@ class App extends Component {
   }
 
   render() {
-    const menuPanelOrder = [
-      {group: 'Dev', name: 'JSON'},
-      {group: 'Dev', name: 'Inspector'},
-      {group: 'Structure', name: 'Create'},
-      {group: 'Structure', name: 'Subplots'},
-      {group: 'Structure', name: 'Transforms'},
-      {group: 'Test', name: 'Testing'},
-      {group: 'Style', name: 'General'},
-      {group: 'Style', name: 'Traces'},
-      {group: 'Style', name: 'Axes'},
-      {group: 'Style', name: 'Legend'},
-      {group: 'Style', name: 'Color Bars'},
-      {group: 'Style', name: 'Annotation'},
-      {group: 'Style', name: 'Shapes'},
-      {group: 'Style', name: 'Images'},
-      {group: 'Style', name: 'Sliders'},
-      {group: 'Style', name: 'Menus'},
-    ];
-
     return (
       <div className="app">
         <PlotlyEditor
@@ -207,9 +187,6 @@ class App extends Component {
           // menuPanelOrder={menuPanelOrder}
         >
           <DefaultEditor>
-            <StyleNotesPanel group={'Style'} name={'Notes'} />
-            <StyleColorbarsPanel group={'Style'} name={'Colorbars'} />
-            <StyleUpdateMenusPanel group={'Style'} name={'UpdateMenus'} />
             <Panel group="Dev" name="JSON">
               <div className="mocks">
                 <Select

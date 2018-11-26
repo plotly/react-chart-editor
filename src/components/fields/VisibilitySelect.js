@@ -1,11 +1,11 @@
-import React, {Fragment, Component} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
 import {MULTI_VALUED_PLACEHOLDER} from 'lib/constants';
 import Field from './Field';
 import Radio from './Radio';
 import Dropdown from './Dropdown';
-import {recursiveMap} from '../../lib/recursiveMap';
+import {RecursiveComponent, recursiveMap} from '../../lib/recursiveMap';
 
 export class UnconnectedVisibilitySelect extends Component {
   constructor(props) {
@@ -36,7 +36,7 @@ export class UnconnectedVisibilitySelect extends Component {
     const {dropdown, clearable, options, showOn, attr, label} = this.props;
 
     return (
-      <Fragment>
+      <RecursiveComponent context={this.props.context}>
         {dropdown ? (
           <Dropdown
             attr={attr}
@@ -45,7 +45,6 @@ export class UnconnectedVisibilitySelect extends Component {
             fullValue={this.mode}
             updatePlot={this.setMode}
             clearable={clearable}
-            context={this.props.context}
           />
         ) : (
           <Radio
@@ -54,13 +53,12 @@ export class UnconnectedVisibilitySelect extends Component {
             options={options}
             fullValue={this.mode}
             updatePlot={this.setMode}
-            context={this.props.context}
           />
         )}
         {(Array.isArray(showOn) && showOn.includes(this.mode)) || this.mode === showOn
           ? recursiveMap(this.props.children, this.props.context)
           : null}
-      </Fragment>
+      </RecursiveComponent>
     );
   }
 }
@@ -84,6 +82,9 @@ UnconnectedVisibilitySelect.propTypes = {
 };
 
 UnconnectedVisibilitySelect.requireContext = {
+  container: PropTypes.object,
+  defaultContainer: PropTypes.object,
+  fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,
 };
 
