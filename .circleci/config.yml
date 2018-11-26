@@ -23,4 +23,4 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: npm test
-#      - run: npm run test:percy
+      - run: npm run test:percy
