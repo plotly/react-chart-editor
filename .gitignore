@@ -12,7 +12,7 @@ npm-debug.log*
 
 example/dist
 
-# lib
+lib
 !src/lib
 
 accessTokens.js
