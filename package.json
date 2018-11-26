@@ -69,7 +69,6 @@
     "react-dom": "^16.6.3",
     "react-hot-loader": "^4.3.12",
     "react-inspector": "^2.2.2",
-    "react-percy": "^0.3.0",
     "react-test-renderer": "^16.2.0",
     "rimraf": "2.6.2",
     "sass-loader": "^7.1.0",
