@@ -7,6 +7,7 @@ import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
 import PlotlyEditor, {DefaultEditor, Panel, StyleNotesPanel, StyleColorbarsPanel} from '../src';
+import {StyleUpdateMenusPanel} from '../src/default_panels';
 import Inspector from 'react-inspector';
 import dataSources from './dataSources';
 import 'brace/mode/json';
@@ -208,6 +209,7 @@ class App extends Component {
           <DefaultEditor>
             <StyleNotesPanel group={'Style'} name={'Notes'} />
             <StyleColorbarsPanel group={'Style'} name={'Colorbars'} />
+            <StyleUpdateMenusPanel group={'Style'} name={'UpdateMenus'} />
             <Panel group="Dev" name="JSON">
               <div className="mocks">
                 <Select

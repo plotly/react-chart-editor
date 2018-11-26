@@ -122,7 +122,7 @@
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill",
     "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:percy": "PERCY_TOKEN=6650afd4ff3ff3088a6ea4c5b14c12f802f15b4ef30f6160a03b2927aee8c398 react-percy",
+    "test:percy": "react-percy",
     "test:percy-local": "react-percy --debug",
     "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
     "watch-test": "jest --watch"

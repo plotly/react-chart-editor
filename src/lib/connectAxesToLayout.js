@@ -110,6 +110,7 @@ export default function connectAxesToLayout(WrappedComponent) {
         container: this.container,
         defaultContainer: this.defaultContainer,
         fullContainer: this.fullContainer,
+        fullLayout: this.context.fullLayout,
         updateContainer: this.updateContainer,
       };
     }
