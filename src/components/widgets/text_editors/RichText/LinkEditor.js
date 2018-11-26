@@ -60,9 +60,9 @@ class LinkEditor extends Component {
 
   onInputKeyDown(ev) {
     /*
-         * `KeyboardEvent.key` enjoys excellent cross-browser support.
-         * https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
-         */
+     * `KeyboardEvent.key` enjoys excellent cross-browser support.
+     * https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
+     */
     const {key} = ev;
 
     if (key === RETURN_KEY) {
