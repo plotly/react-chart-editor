@@ -8,10 +8,39 @@ function sortAlphabetically(a, b) {
   return sortByGroup || sortByName;
 }
 
-export default function sortMenu(panels, order) {
-  // validates order, if a desired panel matches no panel in the panels array,
-  // it is excluded from ordering considerations
+export default function sortMenu(children, order) {
+  // Break out early if no order is provided
+  if (!order) {
+    return children;
+  }
 
+  // PART 1: only sorting panels (i.e. child with a group and name prop)
+  // and not other elements (like Buttons, or Logo)
+  let panelsStartIndex = null;
+  let panelsEndIndex = null;
+  for (let i = 0; i < children.length; i++) {
+    if (children[i].props.group && children[i].props.name && !panelsStartIndex) {
+      panelsStartIndex = i;
+      break;
+    }
+  }
+  for (let i = panelsStartIndex; i < children.length; i++) {
+    if (!children[i].props.group && !children[i].props.name && !panelsEndIndex) {
+      panelsEndIndex = i - 1;
+      break;
+    } else if (i === children.length - 1) {
+      panelsEndIndex = i;
+    }
+  }
+
+  const prePanelsChildren = panelsStartIndex === 0 ? [] : children.slice(0, panelsStartIndex);
+  const panels =
+    panelsStartIndex !== panelsEndIndex ? children.slice(panelsStartIndex, panelsEndIndex + 1) : [];
+  const postPanelsChildren =
+    panelsEndIndex === children.length ? [] : children.slice(panelsEndIndex + 1);
+
+  // PART 2: validate order prop, if a desired panel specified in order, matches no actual panel rendered
+  // in the panels array, it is excluded from ordering considerations
   // eslint-disable-next-line
   order = order.filter(desiredPanel =>
     panels.some(
@@ -22,8 +51,8 @@ export default function sortMenu(panels, order) {
   );
 
   const desiredGroupOrder = order.map(panel => panel.group).filter(getUniqueValues);
-  const desiredNameOrder = order.map(panel => panel.name).filter(getUniqueValues);
 
+  // PART 3: Sort panels
   panels.sort((a, b) => {
     const panelAHasGroupCustomOrder = desiredGroupOrder.includes(a.props.group);
     const panelBHasGroupCustomOrder = desiredGroupOrder.includes(b.props.group);
@@ -57,6 +86,16 @@ export default function sortMenu(panels, order) {
       }
 
       if (indexOfGroupA === indexOfGroupB) {
+        // Since Subpanels names can be reused in different groups
+        // we compute desired order here to get the desired index right.
+        // We are filtering on unique values, just in case, even if we don't
+        // have to because within a given group we'd assume that there will be
+        // no 2 subpanels named the same.
+        const desiredNameOrder = order
+          .filter(panel => panel.group === a.props.group)
+          .map(panel => panel.name)
+          .filter(getUniqueValues);
+
         const panelAHasNameCustomOrder = desiredNameOrder.includes(a.props.name);
         const panelBHasNameCustomOrder = desiredNameOrder.includes(b.props.name);
 
@@ -79,4 +118,7 @@ export default function sortMenu(panels, order) {
     }
     return 0;
   });
+
+  // PART 4: Return all children
+  return prePanelsChildren.concat(panels).concat(postPanelsChildren);
 }

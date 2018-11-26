@@ -1,15 +1,19 @@
 import sortMenu from '../sortMenu';
 
 describe('sortMenu', () => {
-  it('modifies original array to follow the group, then name order provided', () => {
+  it('returns a new array of sorted children', () => {
     const initialArray = [
       {props: {group: 'DEV', name: 'Inspector'}},
       {props: {group: 'DEV', name: 'JSON'}},
     ];
     const orderProp = [{group: 'DEV', name: 'JSON'}, {group: 'DEV', name: 'Inspector'}];
+    const newArray = sortMenu(initialArray, orderProp);
 
-    sortMenu(initialArray, orderProp);
     expect(initialArray).toEqual([
+      {props: {group: 'DEV', name: 'Inspector'}},
+      {props: {group: 'DEV', name: 'JSON'}},
+    ]);
+    expect(newArray).toEqual([
       {props: {group: 'DEV', name: 'JSON'}},
       {props: {group: 'DEV', name: 'Inspector'}},
     ]);
@@ -32,9 +36,9 @@ describe('sortMenu', () => {
       {group: 'Style', name: 'Color Bars'},
       {group: 'Style', name: 'Annotation'},
     ];
+    const newArray = sortMenu(initialArray, orderProp);
 
-    sortMenu(initialArray, orderProp);
-    expect(initialArray).toEqual([
+    expect(newArray).toEqual([
       {props: {group: 'DEV', name: 'JSON'}},
       {props: {group: 'DEV', name: 'Inspector'}},
       {props: {group: 'Structure', name: 'Subplots'}},
@@ -59,9 +63,9 @@ describe('sortMenu', () => {
       {group: 'Style', name: 'Color Bars'},
       {group: 'Style', name: 'Annotation'},
     ];
+    const newArray = sortMenu(initialArray, orderProp);
 
-    sortMenu(initialArray, orderProp);
-    expect(initialArray).toEqual([
+    expect(newArray).toEqual([
       {props: {group: 'Structure', name: 'Subplots'}},
       {props: {group: 'Structure', name: 'Create'}},
       {props: {group: 'Style', name: 'Color Bars'}},
@@ -79,9 +83,9 @@ describe('sortMenu', () => {
       {props: {group: 'Structure', name: 'Create'}},
     ];
     const orderProp = [{group: 'Style', name: 'Traces'}];
+    const newArray = sortMenu(initialArray, orderProp);
 
-    sortMenu(initialArray, orderProp);
-    expect(initialArray).toEqual([
+    expect(newArray).toEqual([
       {props: {group: 'Style', name: 'Traces'}},
       {props: {group: 'Style', name: 'Axes'}},
       {props: {group: 'Style', name: 'General'}},
@@ -96,16 +100,15 @@ describe('sortMenu', () => {
       {props: {group: 'Style', name: 'Color Bars'}},
       {props: {group: 'Style', name: 'Annotation'}},
     ];
-
     const orderProp = [
       {group: 'Non Existent', name: 'Subplots'},
       {group: 'Structure', name: 'Create'},
       {group: 'Style', name: 'Color Bars'},
       {group: 'Style', name: 'Annotation'},
     ];
+    const newArray = sortMenu(initialArray, orderProp);
 
-    sortMenu(initialArray, orderProp);
-    expect(initialArray).toEqual([
+    expect(newArray).toEqual([
       {props: {group: 'Structure', name: 'Create'}},
       {props: {group: 'Structure', name: 'Subplots'}},
       {props: {group: 'Style', name: 'Color Bars'}},
@@ -120,15 +123,14 @@ describe('sortMenu', () => {
       {props: {group: 'Style', name: 'Color Bars'}},
       {props: {group: 'Style', name: 'Annotation'}},
     ];
-
     const orderProp = [
       {group: 'Structure', name: 'Non Existent'},
       {group: 'Style', name: 'Color Bars'},
       {group: 'Style', name: 'Annotation'},
     ];
+    const newArray = sortMenu(initialArray, orderProp);
 
-    sortMenu(initialArray, orderProp);
-    expect(initialArray).toEqual([
+    expect(newArray).toEqual([
       {props: {group: 'Style', name: 'Color Bars'}},
       {props: {group: 'Style', name: 'Annotation'}},
       {props: {group: 'Structure', name: 'Create'}},
@@ -143,19 +145,43 @@ describe('sortMenu', () => {
       {props: {group: 'Style', name: 'Color Bars'}},
       {props: {group: 'Style', name: 'Annotation'}},
     ];
-
     const orderProp = [
       {group: 'Structure', name: 'Annotation'},
       {group: 'Style', name: 'Color Bars'},
       {group: 'Style', name: 'Annotation'},
     ];
+    const newArray = sortMenu(initialArray, orderProp);
 
-    sortMenu(initialArray, orderProp);
-    expect(initialArray).toEqual([
+    expect(newArray).toEqual([
       {props: {group: 'Style', name: 'Color Bars'}},
       {props: {group: 'Style', name: 'Annotation'}},
       {props: {group: 'Structure', name: 'Create'}},
       {props: {group: 'Structure', name: 'Subplots'}},
+    ]);
+  });
+
+  it('does not sort children with no group or name props', () => {
+    const initialArray = [
+      {props: {type: 'Logo'}},
+      {props: {group: 'A', name: 'A'}},
+      {props: {group: 'Structure', name: 'Subplots'}},
+      {props: {group: 'Structure', name: 'Create'}},
+      {props: {type: 'ButtonA'}},
+      {props: {type: 'ButtonB'}},
+    ];
+    const orderProp = [
+      {group: 'Structure', name: 'Create'},
+      {group: 'Structure', name: 'Subplots'},
+    ];
+    const newArray = sortMenu(initialArray, orderProp);
+
+    expect(newArray).toEqual([
+      {props: {type: 'Logo'}},
+      {props: {group: 'Structure', name: 'Create'}},
+      {props: {group: 'Structure', name: 'Subplots'}},
+      {props: {group: 'A', name: 'A'}},
+      {props: {type: 'ButtonA'}},
+      {props: {type: 'ButtonB'}},
     ]);
   });
 });
