@@ -103,7 +103,11 @@ class UnconnectedMultiColorPicker extends Component {
           />
           <Info>{selectedConstantColorOption === 'single' ? singleMessage : multiMessage}</Info>
           {selectedConstantColorOption === 'single' ? (
-            <ColorPicker attr={this.props.attr} updatePlot={this.setColor} />
+            <ColorPicker
+              attr={this.props.attr}
+              updatePlot={this.setColor}
+              context={this.props.context}
+            />
           ) : (
             <CustomColorscalePicker
               suppressMultiValuedMessage
@@ -111,6 +115,7 @@ class UnconnectedMultiColorPicker extends Component {
               updatePlot={this.setColors}
               fullValue={this.props.fullValue}
               initialCategory={'categorical'}
+              context={this.props.context}
             />
           )}
         </Field>
@@ -118,7 +123,12 @@ class UnconnectedMultiColorPicker extends Component {
     }
 
     return (
-      <ColorPicker attr={this.props.attr} updatePlot={this.setColor} label={this.props.label} />
+      <ColorPicker
+        attr={this.props.attr}
+        updatePlot={this.setColor}
+        label={this.props.label}
+        context={this.props.context}
+      />
     );
   }
 }

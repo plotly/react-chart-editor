@@ -179,8 +179,8 @@ class UnconnectedMarkerColor extends Component {
             {!type
               ? null
               : type === 'constant'
-                ? this.renderConstantControls()
-                : this.renderVariableControls()}
+              ? this.renderConstantControls()
+              : this.renderVariableControls()}
           </Field>
           {type === 'constant' ? null : (
             <Fragment>
@@ -188,11 +188,13 @@ class UnconnectedMarkerColor extends Component {
                 label={_('Colorscale Direction')}
                 attr="marker.reversescale"
                 options={[{label: _('Normal'), value: false}, {label: _('Reversed'), value: true}]}
+                context={this.props.context}
               />
               <Radio
                 label={_('Color Bar')}
                 attr="marker.showscale"
                 options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+                context={this.props.context}
               />
               <VisibilitySelect
                 label={_('Colorscale Range')}

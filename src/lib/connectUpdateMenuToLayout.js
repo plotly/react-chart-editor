@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EditorControlsContext} from '../context';
+import {recursiveMap} from './recursiveMap';
 
 export default function connectUpdateMenuToLayout(WrappedComponent) {
   class UpdateMenuConnectedComponent extends Component {
@@ -48,7 +49,15 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      const newProps = {...this.props, context: this.provideValue()};
+      if (this.props.children) {
+        return (
+          <WrappedComponent {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent {...newProps} />;
     }
   }
 

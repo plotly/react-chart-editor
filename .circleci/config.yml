@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:8.9
+      - image: circleci/node:8.11
 
     working_directory: ~/react-chart-editor
 
@@ -13,8 +13,11 @@ jobs:
           keys:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
-
+      - run: sudo apt-get update -y
+      - run: sudo apt-get install xserver-xorg-dev libxi-dev libxext-dev -y
       - run: npm install
+      - run: npm install --save-dev @percy/react
+      - run: npm rebuild node-sass
 
       - save_cache:
           paths:

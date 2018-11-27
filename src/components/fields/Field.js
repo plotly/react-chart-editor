@@ -109,6 +109,11 @@ Field.propTypes = {
 };
 
 Field.requireContext = {
+  container: PropTypes.object,
+  defaultContainer: PropTypes.object,
+  fullContainer: PropTypes.object,
+  updateContainer: PropTypes.func,
+  traceIndexes: PropTypes.array,
   description: PropTypes.string,
   attr: PropTypes.string,
 };

@@ -37,12 +37,12 @@ class RichText extends Component {
     super(props, context);
 
     /*
-         * Initially set state based on the plotly.js annotation content.
-         * After this, as long as this component is mounted, it owns the source
-         * of truth for the annotation value via `this.state.editorState`.
-         * This state may be updated externally via a prop update.
-         * See `componentWillReceiveProps`.
-         */
+     * Initially set state based on the plotly.js annotation content.
+     * After this, as long as this component is mounted, it owns the source
+     * of truth for the annotation value via `this.state.editorState`.
+     * This state may be updated externally via a prop update.
+     * See `componentWillReceiveProps`.
+     */
     this.state = {
       editorState: props.value.toString().trim().length
         ? this.createEditorStateFromHTML(props.value)
@@ -71,13 +71,13 @@ class RichText extends Component {
     const {linkEditorFocus, editorFocus} = this.state;
 
     /*
-         * Don't worry about what plotly.js thinks the annotation value
-         * should be while we're using our editor, for these reasons:
-         *
-         * 1. The editor should be considered the source of truth, unless the
-         *    user is actually editing the annotation inline, in the chart.
-         * 2. Sometimes we get updates with stale values.
-         */
+     * Don't worry about what plotly.js thinks the annotation value
+     * should be while we're using our editor, for these reasons:
+     *
+     * 1. The editor should be considered the source of truth, unless the
+     *    user is actually editing the annotation inline, in the chart.
+     * 2. Sometimes we get updates with stale values.
+     */
     if (linkEditorFocus || editorFocus) {
       return;
     }
@@ -241,11 +241,11 @@ class RichText extends Component {
    */
   onLinkEditorClose() {
     /*
-         * Focus on editor immediately to avoid error that occurs when
-         * `selection.extend` is called and another element has focus.
-         * https://bugzilla.mozilla.org/show_bug.cgi?id=921444
-         * https://github.com/facebook/draft-js/blob/342576bf7186d07c82a41d9ca8169130669747d6/src/component/selection/setDraftEditorSelection.js#L128-L134
-         */
+     * Focus on editor immediately to avoid error that occurs when
+     * `selection.extend` is called and another element has focus.
+     * https://bugzilla.mozilla.org/show_bug.cgi?id=921444
+     * https://github.com/facebook/draft-js/blob/342576bf7186d07c82a41d9ca8169130669747d6/src/component/selection/setDraftEditorSelection.js#L128-L134
+     */
     this.focus();
 
     // Hide the editor.

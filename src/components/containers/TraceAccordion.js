@@ -189,6 +189,7 @@ TraceAccordion.propTypes = {
   canGroup: PropTypes.bool,
   children: PropTypes.node,
   traceFilterCondition: PropTypes.func,
+  context: PropTypes.any,
 };
 
 export default TraceAccordion;

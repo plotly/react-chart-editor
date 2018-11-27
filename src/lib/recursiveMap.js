@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
+import PropTypes from 'prop-types';
+import {containerConnectedContextTypes} from './connectToContainer';
 
 export function recursiveMap(children, context) {
   return React.Children.map(children, child => {
@@ -29,3 +31,16 @@ export function recursiveMap(children, context) {
     return newChild;
   });
 }
+
+export class RecursiveComponent extends Component {
+  render() {
+    return <Fragment>{recursiveMap(this.props.children, this.props.context)}</Fragment>;
+  }
+}
+
+RecursiveComponent.propTypes = {
+  context: PropTypes.any,
+  children: PropTypes.any,
+};
+
+RecursiveComponent.requireContext = containerConnectedContextTypes;
