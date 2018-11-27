@@ -181,6 +181,10 @@ PlotlyFold.plotly_editor_traits = {
   foldable: true,
 };
 
+PlotlyFold.propTypes = {
+  context: PropTypes.any,
+};
+
 PlotlyFold.requireContext = Object.assign(
   {
     deleteContainer: PropTypes.func,

@@ -3,8 +3,9 @@ import React, {Component, Fragment} from 'react';
 import {DataSelector, Radio, Numeric, MultiColorPicker} from '../index';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Field from './Field';
-import {connectToContainer} from 'lib';
+import {connectToContainer, containerConnectedContextTypes} from 'lib';
 import {EditorControlsContext} from '../../context';
+import {RecursiveComponent} from '../../lib/recursiveMap';
 
 class ErrorBars extends Component {
   constructor(props, context) {
@@ -89,7 +90,7 @@ class ErrorBars extends Component {
     const showCustomDataControl = this.props.fullValue.type === 'data';
 
     const styleAttrs = (
-      <Fragment>
+      <RecursiveComponent context={this.props.context}>
         <Radio
           label={_('Copy Y Style')}
           attr={`${this.props.attr}.copy_ystyle`}
@@ -103,12 +104,12 @@ class ErrorBars extends Component {
         <MultiColorPicker label={_('Color')} attr={`${this.props.attr}.color`} />
         <Numeric label={_('Thickness')} attr={`${this.props.attr}.thickness`} />
         <Numeric label={_('Crossbar Width')} attr={`${this.props.attr}.width`} />
-      </Fragment>
+      </RecursiveComponent>
     );
 
     if (mode === 'symmetric') {
       return (
-        <Fragment>
+        <RecursiveComponent context={this.props.context}>
           <Radio
             label={_('Error Type')}
             attr={`${this.props.attr}.type`}
@@ -124,13 +125,13 @@ class ErrorBars extends Component {
             <DataSelector label={_('Custom Data')} attr={`${this.props.attr}.array`} />
           ) : null}
           {styleAttrs}
-        </Fragment>
+        </RecursiveComponent>
       );
     }
 
     if (mode === 'asymmetric') {
       return (
-        <Fragment>
+        <RecursiveComponent context={this.props.context}>
           <Radio
             label={_('Error Type')}
             attr={`${this.props.attr}.type`}
@@ -149,7 +150,7 @@ class ErrorBars extends Component {
             </Fragment>
           ) : null}
           {styleAttrs}
-        </Fragment>
+        </RecursiveComponent>
       );
     }
 
@@ -159,7 +160,6 @@ class ErrorBars extends Component {
   render() {
     return (
       <Fragment>
-        Field
         {this.renderModeSelector()}
         {this.renderErrorBarControls()}
       </Fragment>
@@ -171,8 +171,10 @@ ErrorBars.propTypes = {
   attr: PropTypes.string,
   fullValue: PropTypes.object,
   updatePlot: PropTypes.func,
+  context: PropTypes.any,
 };
 
 ErrorBars.contextType = EditorControlsContext;
+ErrorBars.requireContext = containerConnectedContextTypes;
 
 export default connectToContainer(ErrorBars);

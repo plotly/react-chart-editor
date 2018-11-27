@@ -36,7 +36,7 @@ function computeAxesOptions(axes, props, context) {
 export default function connectAxesToLayout(WrappedComponent) {
   class AxesConnectedComponent extends Component {
     constructor(props, context) {
-      super(props);
+      super(props, context);
 
       const {context: propContext, ...newProps} = props;
       this.axes = getAllAxes(propContext.fullContainer);
@@ -110,6 +110,7 @@ export default function connectAxesToLayout(WrappedComponent) {
         container: this.container,
         defaultContainer: this.defaultContainer,
         fullContainer: this.fullContainer,
+        fullLayout: this.context.fullLayout,
         updateContainer: this.updateContainer,
       };
     }

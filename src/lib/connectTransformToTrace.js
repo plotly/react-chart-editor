@@ -92,7 +92,7 @@ export default function connectTransformToTrace(WrappedComponent) {
   TransformConnectedComponent.propTypes = {
     transformIndex: PropTypes.number.isRequired,
     children: PropTypes.node,
-    context: TransformConnectedComponent.requireContext,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

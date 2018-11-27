@@ -10,21 +10,21 @@ const RangeSelectorFold = connectRangeSelectorToAxis(PlotlyFold);
 class RangeSelectorAccordion extends Component {
   render() {
     if (
-      !this.context.fullContainer ||
-      !this.context.fullContainer.rangeselector ||
-      !this.context.fullContainer.rangeselector.visible ||
+      !this.props.context.fullContainer ||
+      !this.props.context.fullContainer.rangeselector ||
+      !this.props.context.fullContainer.rangeselector.visible ||
       // next line checks for "all" case
-      this.context.fullContainer._axisGroup === 0
+      this.props.context.fullContainer._axisGroup === 0
     ) {
       return null;
     }
 
+    const {localize: _} = this.context;
     const {
       fullContainer: {
         rangeselector: {buttons = []},
       },
-      localize: _,
-    } = this.context;
+    } = this.props.context;
     const {children} = this.props;
 
     const content =
@@ -51,14 +51,26 @@ class RangeSelectorAccordion extends Component {
       },
     };
 
-    return <PlotlyPanel addAction={addAction}>{content ? content : null}</PlotlyPanel>;
+    return (
+      <PlotlyPanel addAction={addAction} context={this.props.context}>
+        {content ? content : null}
+      </PlotlyPanel>
+    );
   }
 }
 
 RangeSelectorAccordion.contextType = EditorControlsContext;
 
+RangeSelectorAccordion.requireContext = {
+  container: PropTypes.object,
+  fullContainer: PropTypes.object,
+  updateContainer: PropTypes.func,
+  getValObject: PropTypes.func,
+};
+
 RangeSelectorAccordion.propTypes = {
   children: PropTypes.node,
+  context: PropTypes.any,
 };
 
 RangeSelectorAccordion.plotly_editor_traits = {

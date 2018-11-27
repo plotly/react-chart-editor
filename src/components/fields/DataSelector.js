@@ -54,7 +54,7 @@ export class UnconnectedDataSelector extends Component {
   }
 
   updatePlot(value) {
-    if (!this.props.updateContainer) {
+    if (!this.props.context.updateContainer) {
       return;
     }
 
@@ -72,7 +72,7 @@ export class UnconnectedDataSelector extends Component {
       fromSrc: this.context.srcConverters ? this.context.srcConverters.fromSrc : null,
     });
 
-    this.props.updateContainer(update);
+    this.props.context.updateContainer(update);
   }
 
   render() {
@@ -112,11 +112,13 @@ UnconnectedDataSelector.propTypes = {
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   container: PropTypes.object,
+  context: PropTypes.any,
   ...Field.propTypes,
 };
 
 UnconnectedDataSelector.requireContext = {
   container: PropTypes.object,
+  updateContainer: PropTypes.func,
   description: PropTypes.string,
   attr: PropTypes.string,
 };

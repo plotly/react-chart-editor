@@ -63,11 +63,17 @@ export default function connectAnnotationToLayout(WrappedComponent) {
     }
 
     render() {
-      const newProps = {...this.props, context: this.provideValue()};
+      const newProps = {
+        ...this.props,
+        context: {...this.provideValue(), fullLayout: this.context.fullLayout},
+      };
       if (this.props.children) {
         return (
           <WrappedComponent {...newProps}>
-            {recursiveMap(this.props.children, this.provideValue())}
+            {recursiveMap(this.props.children, {
+              ...this.provideValue(),
+              fullLayout: this.context.fullLayout,
+            })}
           </WrappedComponent>
         );
       }

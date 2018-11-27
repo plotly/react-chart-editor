@@ -52,38 +52,52 @@ const computeOptions = (strokeData, stroke) =>
     value,
   }));
 
-export const LineShapeSelector = props => {
-  return <LineSelector {...props} computeOptions={computeOptions.bind(null, strokeShapes)} />;
+export class LineShapeSelector extends Component {
+  render() {
+    return (
+      <LineSelector {...this.props} computeOptions={computeOptions.bind(null, strokeShapes)} />
+    );
+  }
+}
+LineShapeSelector.requireContext = {
+  fullContainer: PropTypes.object,
 };
 
-export const LineDashSelector = props => {
-  return (
-    <LineSelector
-      {...props}
-      computeOptions={lineColor =>
-        computeOptions(strokeDashes, lineColor).concat([
-          {
-            label: '',
-            value: null,
-          },
-        ])
-      }
-    />
-  );
+export class LineDashSelector extends Component {
+  render() {
+    return (
+      <LineSelector
+        {...this.props}
+        computeOptions={lineColor =>
+          computeOptions(strokeDashes, lineColor).concat([
+            {
+              label: '',
+              value: null,
+            },
+          ])
+        }
+      />
+    );
+  }
+}
+
+LineDashSelector.requireContext = {
+  fullContainer: PropTypes.object,
 };
 
 class LineSelector extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.setLocals(props, context);
+  constructor(props) {
+    super(props);
+    this.setLocals(props);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setLocals(nextProps, nextContext);
+  componentWillReceiveProps(nextProps) {
+    this.setLocals(nextProps);
   }
 
-  setLocals(nextProps, nextContext) {
-    const {fullContainer} = nextContext;
+  setLocals(nextProps) {
+    const {context = {}} = nextProps;
+    const {fullContainer} = context;
     const lineColor = nestedProperty(fullContainer, 'line.color').get();
     if (!this.options || this.lineColor !== lineColor) {
       this.options = this.props.computeOptions(lineColor);
