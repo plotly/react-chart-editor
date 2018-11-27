@@ -28,13 +28,14 @@ class AxesSelector extends Component {
       Object.values(fullLayout._subplots).some(s => s.length > 1);
 
     const options = multipleSublots
-      ? axesOptions.map(option =>
-          option.value === 'allaxes'
-            ? option
-            : {
-                label: option.title,
-                value: option.value,
-              }
+      ? axesOptions.map(
+          option =>
+            option.value === 'allaxes'
+              ? option
+              : {
+                  label: option.title,
+                  value: option.value,
+                }
         )
       : axesOptions;
 

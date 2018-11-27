@@ -78,8 +78,8 @@
     "webpack-dev-server": "^3.1.10"
   },
   "peerDependencies": {
-    "react": ">=16.6.0",
-    "react-dom": ">=16.6.0"
+    "react": ">=16.3.0",
+    "react-dom": ">=16.3.0"
   },
   "homepage": "https://oprstchn.github.io/react-chart-editor/",
   "jest": {
