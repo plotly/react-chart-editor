@@ -89,14 +89,12 @@ class PanelsWithSidebar extends Component {
       <PanelMenuWrapperContext.Provider value={this.provideValue()}>
         <div className={bem('editor_controls', 'wrapper')}>
           <div className={bem('sidebar')}>{menuOpts.map(this.renderSection)}</div>
-          {React.Children.map(
-            this.props.children,
-            (child, i) =>
-              child === null ||
-              this.state.group !== child.props.group ||
-              this.state.panel !== child.props.name
-                ? null
-                : cloneElement(child, {key: i})
+          {React.Children.map(this.props.children, (child, i) =>
+            child === null ||
+            this.state.group !== child.props.group ||
+            this.state.panel !== child.props.name
+              ? null
+              : cloneElement(child, {key: i})
           )}
         </div>
       </PanelMenuWrapperContext.Provider>
