@@ -1,7 +1,7 @@
 {
   "name": "react-chart-editor-fork-oprstchn",
   "description": "fork from plotly.js chart editor react component UI by oprstchn",
-  "version": "0.33.4",
+  "version": "0.33.5",
   "author": "oprstchn",
   "bugs": {
     "url": "https://github.com/oprstchn/react-chart-editor/issues"
