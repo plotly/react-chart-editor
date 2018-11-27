@@ -16,6 +16,7 @@ jobs:
       - run: sudo apt-get update -y
       - run: sudo apt-get install xserver-xorg-dev libxi-dev libxext-dev -y
       - run: npm install
+      - run: npm install @percy/react
       - run: npm rebuild node-sass
 
       - save_cache:
