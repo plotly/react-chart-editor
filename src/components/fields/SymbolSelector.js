@@ -346,18 +346,20 @@ const SYMBOLS = [
 ];
 
 class SymbolSelector extends Component {
-  constructor(props, context) {
-    super(props, context);
-    this.setLocals(props, context);
+  constructor(props) {
+    super(props);
+    this.setLocals(props);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
-    this.setLocals(nextProps, nextContext);
+  componentWillReceiveProps(nextProps) {
+    this.setLocals(nextProps);
   }
 
-  setLocals(props, context) {
-    const {fullContainer} = props;
-    const {defaultContainer} = context;
+  setLocals(props) {
+    const {
+      fullContainer,
+      context: {defaultContainer},
+    } = props;
 
     this.markerColor = nestedProperty(fullContainer, 'marker.color').get();
     this.borderWidth = nestedProperty(fullContainer, 'marker.line.width').get();
@@ -409,7 +411,7 @@ SymbolSelector.propTypes = {
   updatePlot: PropTypes.func,
   ...Field.propTypes,
 };
-SymbolSelector.contextTypes = {
+SymbolSelector.requireContext = {
   defaultContainer: PropTypes.object,
 };
 

@@ -10,6 +10,8 @@ import {
 } from '../lib';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
 import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR} from 'lib/constants';
+import {EditorControlsContext} from '../context';
+import {recursiveMap} from './recursiveMap';
 
 export default function connectTraceToPlot(WrappedComponent) {
   class TraceConnectedComponent extends Component {
@@ -27,12 +29,20 @@ export default function connectTraceToPlot(WrappedComponent) {
 
     setLocals(props, context) {
       const {traceIndexes} = props;
-      const {data, fullData, plotly} = context;
+      const {data, layout, fullLayout, plotly, onUpdate, localize, fullData, graphDiv} = context;
 
       const trace = data[traceIndexes[0]];
       const fullTrace = getFullTrace(props, context);
 
       this.childContext = {
+        data,
+        layout,
+        fullLayout,
+        plotly,
+        onUpdate,
+        localize,
+        fullData,
+        graphDiv,
         getValObject: attr =>
           !plotly
             ? null
@@ -72,7 +82,7 @@ export default function connectTraceToPlot(WrappedComponent) {
       }
     }
 
-    getChildContext() {
+    provideValue() {
       return this.childContext;
     }
 
@@ -178,7 +188,15 @@ export default function connectTraceToPlot(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
+      const newProps = {...this.props, ...{context: this.provideValue()}};
+      if (this.props.children) {
+        return (
+          <WrappedComponent name={this.name} icon={this.icon} {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent name={this.name} icon={this.icon} {...newProps} />;
     }
   }
 
@@ -187,24 +205,10 @@ export default function connectTraceToPlot(WrappedComponent) {
   TraceConnectedComponent.propTypes = {
     traceIndexes: PropTypes.arrayOf(PropTypes.number).isRequired,
     fullDataArrayPosition: PropTypes.arrayOf(PropTypes.number),
+    children: PropTypes.node,
   };
 
-  TraceConnectedComponent.contextTypes = {
-    fullData: PropTypes.array,
-    data: PropTypes.array,
-    plotly: PropTypes.object,
-    onUpdate: PropTypes.func,
-  };
-
-  TraceConnectedComponent.childContextTypes = {
-    getValObject: PropTypes.func,
-    updateContainer: PropTypes.func,
-    deleteContainer: PropTypes.func,
-    defaultContainer: PropTypes.object,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    traceIndexes: PropTypes.array,
-  };
+  TraceConnectedComponent.contextType = EditorControlsContext;
 
   const {plotly_editor_traits} = WrappedComponent;
   TraceConnectedComponent.plotly_editor_traits = plotly_editor_traits;

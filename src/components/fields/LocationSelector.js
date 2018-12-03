@@ -5,6 +5,7 @@ import Field from './Field';
 import Radio from './Radio';
 import {UnconnectedDropdown} from './Dropdown';
 import DataSelector from './DataSelector';
+import {EditorControlsContext} from '../../context';
 
 const LocationmodeVisible = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
@@ -18,25 +19,27 @@ const LocationmodeVisible = connectToContainer(UnconnectedDropdown, {
 
 class UnconnectedLocation extends Component {
   render() {
-    const {localize: _} = this.context;
-
     return (
-      <Fragment>
-        <DataSelector label={_('Locations')} attr="locations" />
-        <LocationmodeVisible
-          label={_('Location Format')}
-          attr="locationmode"
-          clearable={false}
-          options={[
-            {label: _('Country Names'), value: 'country names'},
-            {label: _('Country Abbreviations (ISO-3)'), value: 'ISO-3'},
-            {
-              label: _('USA State Abbreviations (e.g. NY)'),
-              value: 'USA-states',
-            },
-          ]}
-        />
-      </Fragment>
+      <EditorControlsContext.Consumer>
+        {({localize: _}) => (
+          <Fragment>
+            <DataSelector label={_('Locations')} attr="locations" />
+            <LocationmodeVisible
+              label={_('Location Format')}
+              attr="locationmode"
+              clearable={false}
+              options={[
+                {label: _('Country Names'), value: 'country names'},
+                {label: _('Country Abbreviations (ISO-3)'), value: 'ISO-3'},
+                {
+                  label: _('USA State Abbreviations (e.g. NY)'),
+                  value: 'USA-states',
+                },
+              ]}
+            />
+          </Fragment>
+        )}
+      </EditorControlsContext.Consumer>
     );
   }
 }
@@ -46,16 +49,15 @@ UnconnectedLocation.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedLocation.contextTypes = {
-  localize: PropTypes.func,
+UnconnectedLocation.requireContext = {
   updateContainer: PropTypes.func,
 };
 
 const Location = connectToContainer(UnconnectedLocation);
 
 class UnconnectedLocationSelector extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.state = {
       mode: props.container.locations ? 'location' : 'latlon',
@@ -86,40 +88,48 @@ class UnconnectedLocationSelector extends Component {
 
   render() {
     const {mode} = this.state;
+    const {context} = this.props;
     const {
-      localize: _,
       container: {type: type},
-    } = this.context;
+    } = context;
 
     return type === 'scattergeo' ? (
-      <Fragment>
-        <Field {...this.props} attr={this.props.attr}>
-          <Radio
-            options={[
-              {value: 'latlon', label: _('Lat/Lon')},
-              {value: 'location', label: _('Location')},
-            ]}
-            fullValue={mode}
-            updatePlot={this.setMode}
-            attr={this.props.attr}
-          />
-        </Field>
-        {mode === 'latlon' ? (
+      <EditorControlsContext.Consumer>
+        {({localize: _}) => (
           <Fragment>
-            <DataSelector label={_('Latitude')} attr="lat" />
-            <DataSelector label={_('Longitude')} attr="lon" />
+            <Field {...this.props} attr={this.props.attr}>
+              <Radio
+                options={[
+                  {value: 'latlon', label: _('Lat/Lon')},
+                  {value: 'location', label: _('Location')},
+                ]}
+                fullValue={mode}
+                updatePlot={this.setMode}
+                attr={this.props.attr}
+              />
+            </Field>
+            {mode === 'latlon' ? (
+              <Fragment>
+                <DataSelector label={_('Latitude')} attr="lat" context={context} />
+                <DataSelector label={_('Longitude')} attr="lon" context={context} />
+              </Fragment>
+            ) : (
+              <Location attr="type" context={context} />
+            )}
           </Fragment>
-        ) : (
-          <Location attr="type" />
         )}
-      </Fragment>
+      </EditorControlsContext.Consumer>
     ) : type === 'choropleth' ? (
       <Location attr="type" />
     ) : (
-      <Fragment>
-        <DataSelector label={_('Latitude')} attr="lat" />
-        <DataSelector label={_('Longitude')} attr="lon" />
-      </Fragment>
+      <EditorControlsContext.Consumer>
+        {({localize: _}) => (
+          <Fragment>
+            <DataSelector label={_('Latitude')} attr="lat" context={context} />
+            <DataSelector label={_('Longitude')} attr="lon" context={context} />
+          </Fragment>
+        )}
+      </EditorControlsContext.Consumer>
     );
   }
 }
@@ -131,9 +141,8 @@ UnconnectedLocationSelector.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedLocationSelector.contextTypes = {
+UnconnectedLocationSelector.requireContext = {
   container: PropTypes.object,
-  localize: PropTypes.func,
   updateContainer: PropTypes.func,
 };
 

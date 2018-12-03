@@ -4,18 +4,26 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectTransformToTrace} from 'lib';
 import {PanelMessage} from './PanelEmpty';
+import {EditorControlsContext} from '../../context';
+// import {recursiveMap} from '../../lib/recursiveMap';
 
 const TransformFold = connectTransformToTrace(PlotlyFold);
 
 class TransformAccordion extends Component {
   render() {
     const {
-      fullContainer: {transforms = []},
+      // fullContainer: {transforms = []},
       localize: _,
-      container,
+      // container,
       dataSourceOptions,
     } = this.context;
-    const {children} = this.props;
+    const {
+      children,
+      context: {
+        fullContainer: {transforms = []},
+        container,
+      },
+    } = this.props;
 
     const transformTypes = [
       {label: _('Filter'), type: 'filter'},
@@ -50,6 +58,7 @@ class TransformAccordion extends Component {
           name={`${transformTypes.filter(({type}) => type === tr.type)[0].label}${transformBy &&
             transformBy[i]}`}
           canDelete={true}
+          context={this.props.context}
         >
           {children}
         </TransformFold>
@@ -96,7 +105,7 @@ class TransformAccordion extends Component {
     };
 
     return (
-      <PlotlyPanel addAction={addAction}>
+      <PlotlyPanel addAction={addAction} context={this.props.context}>
         {content ? (
           content
         ) : (
@@ -133,15 +142,17 @@ class TransformAccordion extends Component {
   }
 }
 
-TransformAccordion.contextTypes = {
-  fullContainer: PropTypes.object,
-  localize: PropTypes.func,
+TransformAccordion.requireContext = {
   container: PropTypes.object,
-  dataSourceOptions: PropTypes.array,
+  fullContainer: PropTypes.object,
+  updateContainer: PropTypes.func,
 };
+
+TransformAccordion.contextType = EditorControlsContext;
 
 TransformAccordion.propTypes = {
   children: PropTypes.node,
+  context: PropTypes.any,
 };
 
 export default TransformAccordion;

@@ -5,6 +5,9 @@ import React, {Component, cloneElement} from 'react';
 import update from 'immutability-helper';
 import {bem} from 'lib';
 import {EmbedIconIcon} from 'plotly-icons';
+import {EditorControlsContext} from '../../context';
+import {recursiveMap} from '../../lib/recursiveMap';
+import {containerConnectedContextTypes} from '../../lib';
 
 class PanelErrorImpl extends Component {
   render() {
@@ -18,9 +21,7 @@ class PanelErrorImpl extends Component {
   }
 }
 
-PanelErrorImpl.contextTypes = {
-  localize: PropTypes.func,
-};
+PanelErrorImpl.contextType = EditorControlsContext;
 
 const PanelError = PanelErrorImpl;
 
@@ -35,7 +36,7 @@ export class Panel extends Component {
     this.toggleFold = this.toggleFold.bind(this);
   }
 
-  getChildContext() {
+  provideValue() {
     return {
       deleteContainer: this.props.deleteAction ? this.props.deleteAction : null,
     };
@@ -109,8 +110,15 @@ export class Panel extends Component {
           allowCollapse={this.props.showExpandCollapse && individualFoldStates.length > 1}
           toggleFolds={this.toggleFolds}
           hasOpen={individualFoldStates.some(s => s === false)}
+          context={this.props.context}
         />
-        <div className={bem('panel', 'content')}>{newChildren}</div>
+        <div className={bem('panel', 'content')}>
+          {recursiveMap(newChildren, {
+            ...this.context,
+            ...this.props.context,
+            ...this.provideValue(),
+          })}
+        </div>
       </div>
     );
   }
@@ -122,19 +130,19 @@ Panel.propTypes = {
   deleteAction: PropTypes.func,
   noPadding: PropTypes.bool,
   showExpandCollapse: PropTypes.bool,
+  context: PropTypes.any,
 };
 
 Panel.defaultProps = {
   showExpandCollapse: true,
 };
 
-Panel.contextTypes = {
-  localize: PropTypes.func,
-};
+Panel.contextType = EditorControlsContext;
+Panel.requireContext = containerConnectedContextTypes;
 
-Panel.childContextTypes = {
-  deleteContainer: PropTypes.func,
-};
+// Panel.childContextTypes = {
+//   deleteContainer: PropTypes.func,
+// };
 
 class PlotlyPanel extends Panel {}
 

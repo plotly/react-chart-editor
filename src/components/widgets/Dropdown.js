@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Select from 'react-select';
 import classnames from 'classnames';
+import {EditorControlsContext} from '../../context';
 
 class Dropdown extends Component {
   constructor(props) {
@@ -111,8 +112,6 @@ Dropdown.propTypes = {
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
-Dropdown.contextTypes = {
-  localize: PropTypes.func,
-};
+Dropdown.contextType = EditorControlsContext;
 
 export default Dropdown;

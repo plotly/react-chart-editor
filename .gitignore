@@ -6,13 +6,14 @@ npm-debug.log*
 .*
 !.gitignore
 !.gitattributes
+!.circleci
 !.npmignore
 !.eslintrc
 !.eslintignore
 
 example/dist
 
-lib
+# lib
 !src/lib
 
 accessTokens.js

@@ -7,6 +7,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {RETURN_KEY, ESCAPE_KEY} from 'lib/constants';
 import {findDOMNode} from 'react-dom';
+import {EditorControlsContext} from '../../../../context';
 
 class LinkEditor extends Component {
   constructor(props) {
@@ -59,9 +60,9 @@ class LinkEditor extends Component {
 
   onInputKeyDown(ev) {
     /*
-         * `KeyboardEvent.key` enjoys excellent cross-browser support.
-         * https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
-         */
+     * `KeyboardEvent.key` enjoys excellent cross-browser support.
+     * https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key
+     */
     const {key} = ev;
 
     if (key === RETURN_KEY) {
@@ -128,8 +129,6 @@ LinkEditor.defaultProps = {
   },
 };
 
-LinkEditor.contextTypes = {
-  localize: PropTypes.func.isRequired,
-};
+LinkEditor.contextType = EditorControlsContext;
 
 export default LinkEditor;

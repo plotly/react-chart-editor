@@ -2,23 +2,25 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 export default function connectTransformToTrace(WrappedComponent) {
   class TransformConnectedComponent extends Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
 
       this.deleteTransform = this.deleteTransform.bind(this);
       this.updateTransform = this.updateTransform.bind(this);
-      this.setLocals(props, context);
+      this.setLocals(props);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setLocals(nextProps, nextContext);
+    componentWillReceiveProps(nextProps) {
+      this.setLocals(nextProps);
     }
 
-    setLocals(props, context) {
-      const {transformIndex} = props;
+    setLocals(props) {
+      const {context, transformIndex} = props;
       const {container, fullContainer} = context;
 
       const transforms = container.transforms || [];
@@ -27,10 +29,12 @@ export default function connectTransformToTrace(WrappedComponent) {
       this.fullContainer = fullTransforms[transformIndex];
     }
 
-    getChildContext() {
+    provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`transforms[].${attr}`),
+          !this.props.context.getValObject
+            ? null
+            : this.props.context.getValObject(`transforms[].${attr}`),
         updateContainer: this.updateTransform,
         deleteContainer: this.deleteTransform,
         container: this.container,
@@ -45,7 +49,7 @@ export default function connectTransformToTrace(WrappedComponent) {
         const newkey = `transforms[${transformIndex}].${key}`;
         newUpdate[newkey] = update[key];
       }
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     deleteTransform() {
@@ -53,7 +57,7 @@ export default function connectTransformToTrace(WrappedComponent) {
         this.context.onUpdate({
           type: EDITOR_ACTIONS.DELETE_TRANSFORM,
           payload: {
-            traceIndex: this.context.fullContainer.index,
+            traceIndex: this.props.context.fullContainer.index,
             transformIndex: this.props.transformIndex,
           },
         });
@@ -61,31 +65,34 @@ export default function connectTransformToTrace(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      const newProps = {...this.props, context: this.provideValue()};
+      if (this.props.children) {
+        return (
+          <WrappedComponent {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent {...newProps} />;
     }
   }
 
   TransformConnectedComponent.displayName = `TransformConnected${getDisplayName(WrappedComponent)}`;
 
-  TransformConnectedComponent.propTypes = {
-    transformIndex: PropTypes.number.isRequired,
-  };
+  TransformConnectedComponent.contextType = EditorControlsContext;
 
-  TransformConnectedComponent.contextTypes = {
+  TransformConnectedComponent.requireContext = {
     container: PropTypes.object,
     fullContainer: PropTypes.object,
-    data: PropTypes.array,
     onUpdate: PropTypes.func,
     updateContainer: PropTypes.func,
     getValObject: PropTypes.func,
   };
 
-  TransformConnectedComponent.childContextTypes = {
-    updateContainer: PropTypes.func,
-    deleteContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    getValObject: PropTypes.func,
+  TransformConnectedComponent.propTypes = {
+    transformIndex: PropTypes.number.isRequired,
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

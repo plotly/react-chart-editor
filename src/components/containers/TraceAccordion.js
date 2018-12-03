@@ -8,6 +8,7 @@ import {connectTraceToPlot, plotlyTraceToCustomTrace} from 'lib';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {traceTypes} from 'lib/traceTypes';
 import {PanelMessage} from './PanelEmpty';
+import {EditorControlsContext} from '../../context';
 
 const TraceFold = connectTraceToPlot(PlotlyFold);
 
@@ -181,17 +182,14 @@ class TraceAccordion extends Component {
   }
 }
 
-TraceAccordion.contextTypes = {
-  fullData: PropTypes.array,
-  data: PropTypes.array,
-  localize: PropTypes.func,
-};
+TraceAccordion.contextType = EditorControlsContext;
 
 TraceAccordion.propTypes = {
   canAdd: PropTypes.bool,
   canGroup: PropTypes.bool,
   children: PropTypes.node,
   traceFilterCondition: PropTypes.func,
+  context: PropTypes.any,
 };
 
 export default TraceAccordion;

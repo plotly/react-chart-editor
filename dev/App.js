@@ -184,27 +184,9 @@ class App extends Component {
           // makeDefaultTrace={() => ({type: 'scattergl', mode: 'markers'})}
           // fontOptions={[{label:'Arial', value: 'arial'}]}
           // chartHelp={chartHelp}
+          // menuPanelOrder={menuPanelOrder}
         >
-          <DefaultEditor
-          // menuPanelOrder={[
-          //   {group: 'Dev', name: 'JSON'},
-          //   {group: 'Dev', name: 'Inspector'},
-          //   {group: 'Structure', name: 'Create'},
-          //   {group: 'Structure', name: 'Subplots'},
-          //   {group: 'Structure', name: 'Transforms'},
-          //   {group: 'Test', name: 'Testing'},
-          //   {group: 'Style', name: 'General'},
-          //   {group: 'Style', name: 'Traces'},
-          //   {group: 'Style', name: 'Axes'},
-          //   {group: 'Style', name: 'Legend'},
-          //   {group: 'Style', name: 'Color Bars'},
-          //   {group: 'Style', name: 'Annotation'},
-          //   {group: 'Style', name: 'Shapes'},
-          //   {group: 'Style', name: 'Images'},
-          //   {group: 'Style', name: 'Sliders'},
-          //   {group: 'Style', name: 'Menus'},
-          // ]}
-          >
+          <DefaultEditor>
             <Panel group="Dev" name="JSON">
               <div className="mocks">
                 <Select

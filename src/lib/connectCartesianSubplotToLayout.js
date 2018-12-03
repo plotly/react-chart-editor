@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName, plotlyTraceToCustomTrace, renderTraceIcon, getFullTrace} from '../lib';
+import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 export default function connectCartesianSubplotToLayout(WrappedComponent) {
   class SubplotConnectedComponent extends Component {
@@ -11,13 +13,15 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
       this.setLocals(props, context);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setLocals(nextProps, nextContext);
+    componentWillReceiveProps(nextProps) {
+      this.setLocals(nextProps, this.context);
     }
 
     setLocals(props, context) {
-      const {xaxis, yaxis, traceIndexes} = props;
-      const {container, fullContainer, data} = context;
+      const {context: propContext, ...newProps} = props;
+      const {xaxis, yaxis, traceIndexes} = newProps;
+      const {data} = context;
+      const {container, fullContainer} = propContext;
 
       this.container = {
         xaxis: container[xaxis],
@@ -37,18 +41,19 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
       }
     }
 
-    getChildContext() {
+    provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
+          !this.props.context.getValObject
             ? null
-            : this.context.getValObject(
+            : this.props.context.getValObject(
                 attr.replace('xaxis', this.props.xaxis).replace('yaxis', this.props.yaxis)
               ),
         updateContainer: this.updateSubplot,
         deleteContainer: this.deleteSubplot,
         container: this.container,
         fullContainer: this.fullContainer,
+        fullLayout: this.context.fullLayout,
       };
     }
 
@@ -58,37 +63,38 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
         const newKey = key.replace('xaxis', this.props.xaxis).replace('yaxis', this.props.yaxis);
         newUpdate[newKey] = update[key];
       }
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     render() {
-      return <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
+      const newProps = {...this.props, context: this.provideValue()};
+      if (this.props.children) {
+        return (
+          <WrappedComponent name={this.name} icon={this.icon} {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent name={this.name} icon={this.icon} {...newProps} />;
     }
   }
 
   SubplotConnectedComponent.displayName = `SubplotConnected${getDisplayName(WrappedComponent)}`;
 
+  SubplotConnectedComponent.contextType = EditorControlsContext;
+
+  SubplotConnectedComponent.requireContext = {
+    container: PropTypes.object,
+    fullContainer: PropTypes.object,
+    updateContainer: PropTypes.func,
+    getValObject: PropTypes.func,
+  };
+
   SubplotConnectedComponent.propTypes = {
     xaxis: PropTypes.string.isRequired,
     yaxis: PropTypes.string.isRequired,
-  };
-
-  SubplotConnectedComponent.contextTypes = {
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    data: PropTypes.array,
-    fullData: PropTypes.array,
-    onUpdate: PropTypes.func,
-    updateContainer: PropTypes.func,
-    getValObject: PropTypes.func,
-  };
-
-  SubplotConnectedComponent.childContextTypes = {
-    updateContainer: PropTypes.func,
-    deleteContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    getValObject: PropTypes.func,
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

@@ -3,6 +3,7 @@ import React, {cloneElement, Component} from 'react';
 import SidebarGroup from './sidebar/SidebarGroup';
 import {bem} from 'lib';
 import sortMenu from 'lib/sortMenu';
+import {PanelMenuWrapperContext} from '../context';
 
 class PanelsWithSidebar extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class PanelsWithSidebar extends Component {
     this.setState({group, panel});
   }
 
-  getChildContext() {
+  provideValue() {
     return {
       setPanel: this.setPanel,
     };
@@ -85,18 +86,18 @@ class PanelsWithSidebar extends Component {
     const menuOpts = this.computeMenuOptions(this.props);
 
     return (
-      <div className={bem('editor_controls', 'wrapper')}>
-        <div className={bem('sidebar')}>{menuOpts.map(this.renderSection)}</div>
-        {React.Children.map(
-          this.props.children,
-          (child, i) =>
+      <PanelMenuWrapperContext.Provider value={this.provideValue()}>
+        <div className={bem('editor_controls', 'wrapper')}>
+          <div className={bem('sidebar')}>{menuOpts.map(this.renderSection)}</div>
+          {React.Children.map(this.props.children, (child, i) =>
             child === null ||
             this.state.group !== child.props.group ||
             this.state.panel !== child.props.name
               ? null
               : cloneElement(child, {key: i})
-        )}
-      </div>
+          )}
+        </div>
+      </PanelMenuWrapperContext.Provider>
     );
   }
 }
@@ -104,10 +105,6 @@ class PanelsWithSidebar extends Component {
 PanelsWithSidebar.propTypes = {
   children: PropTypes.node,
   menuPanelOrder: PropTypes.array,
-};
-
-PanelsWithSidebar.childContextTypes = {
-  setPanel: PropTypes.func,
 };
 
 export default PanelsWithSidebar;

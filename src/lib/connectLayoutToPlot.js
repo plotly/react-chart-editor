@@ -1,13 +1,24 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {getDisplayName} from '../lib';
 import {EDITOR_ACTIONS} from './constants';
+import {EditorControlsContext} from '../context';
+import {recursiveMap} from './recursiveMap';
+import PropTypes from 'prop-types';
 
 export default function connectLayoutToPlot(WrappedComponent) {
   class LayoutConnectedComponent extends Component {
-    getChildContext() {
-      const {layout, fullLayout, plotly, onUpdate} = this.context;
+    provideValue() {
+      const {
+        layout,
+        fullLayout,
+        plotly,
+        onUpdate,
+        localize,
+        fullData,
+        graphDiv,
+        data,
+      } = this.context;
 
       const updateContainer = update => {
         if (!onUpdate) {
@@ -22,6 +33,14 @@ export default function connectLayoutToPlot(WrappedComponent) {
       };
 
       return {
+        layout,
+        fullLayout,
+        plotly,
+        onUpdate,
+        localize,
+        fullData,
+        data,
+        graphDiv,
         getValObject: attr =>
           !plotly
             ? null
@@ -33,24 +52,23 @@ export default function connectLayoutToPlot(WrappedComponent) {
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      const newProps = {...this.props, ...{context: this.provideValue()}};
+      if (this.props.children) {
+        return (
+          <WrappedComponent {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent {...newProps} />;
     }
   }
 
   LayoutConnectedComponent.displayName = `LayoutConnected${getDisplayName(WrappedComponent)}`;
 
-  LayoutConnectedComponent.contextTypes = {
-    layout: PropTypes.object,
-    fullLayout: PropTypes.object,
-    plotly: PropTypes.object,
-    onUpdate: PropTypes.func,
-  };
-
-  LayoutConnectedComponent.childContextTypes = {
-    getValObject: PropTypes.func,
-    updateContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
+  LayoutConnectedComponent.contextType = EditorControlsContext;
+  LayoutConnectedComponent.propTypes = {
+    children: PropTypes.node,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

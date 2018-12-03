@@ -30,6 +30,8 @@ import * as PlotlyIcons from 'plotly-icons';
 import striptags from './striptags';
 import {capitalize, lowerCase, upperCase, removeNonWord, camelCase, pascalCase} from './strings';
 import {getColorscale} from 'react-colorscales';
+import {EDITOR_ACTIONS} from './constants';
+import recursiveMap from './recursiveMap';
 
 const TOO_LIGHT_FACTOR = 0.8;
 
@@ -249,4 +251,6 @@ export {
   traceTypeToAxisType,
   transpose,
   getFullTrace,
+  EDITOR_ACTIONS,
+  recursiveMap,
 };

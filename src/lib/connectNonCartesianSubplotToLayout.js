@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName, plotlyTraceToCustomTrace, renderTraceIcon, getFullTrace} from '../lib';
+import {recursiveMap} from './recursiveMap';
+import {EditorControlsContext} from '../context';
 
 export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
   class SubplotConnectedComponent extends Component {
@@ -11,19 +13,20 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
       this.setLocals(props, context);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-      this.setLocals(nextProps, nextContext);
+    componentWillReceiveProps(nextProps) {
+      this.setLocals(nextProps, this.context);
     }
 
     setLocals(props, context) {
-      const {subplot, traceIndexes} = props;
-      const {container, fullContainer, data} = context;
+      const {subplot, traceIndexes, context: propContext} = props;
+      const {data, fullData} = context;
+      const {container, fullContainer} = propContext;
 
       this.container = container[subplot] || {};
       this.fullContainer = fullContainer[subplot] || {};
 
       const trace = traceIndexes.length > 0 ? data[traceIndexes[0]] : {};
-      const fullTrace = getFullTrace(props, context);
+      const fullTrace = getFullTrace(props, {...propContext, data, fullData});
 
       if (trace && fullTrace) {
         this.icon = renderTraceIcon(plotlyTraceToCustomTrace(trace));
@@ -31,15 +34,16 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
       }
     }
 
-    getChildContext() {
+    provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject
+          !this.props.context.getValObject
             ? null
-            : this.context.getValObject(`${this.props.subplot}.${attr}`),
+            : this.props.context.getValObject(`${this.props.subplot}.${attr}`),
         updateContainer: this.updateSubplot,
         container: this.container,
         fullContainer: this.fullContainer,
+        fullLayout: this.context.fullLayout,
       };
     }
 
@@ -48,36 +52,37 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
       for (const key in update) {
         newUpdate[`${this.props.subplot}.${key}`] = update[key];
       }
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     render() {
-      return <WrappedComponent name={this.name} icon={this.icon} {...this.props} />;
+      const newProps = {...this.props, ...{context: this.provideValue()}};
+      if (this.props.children) {
+        return (
+          <WrappedComponent name={this.name} icon={this.icon} {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent name={this.name} icon={this.icon} {...newProps} />;
     }
   }
 
   SubplotConnectedComponent.displayName = `SubplotConnected${getDisplayName(WrappedComponent)}`;
 
+  SubplotConnectedComponent.contextType = EditorControlsContext;
+
+  SubplotConnectedComponent.requireContext = {
+    container: PropTypes.object,
+    fullContainer: PropTypes.object,
+    updateContainer: PropTypes.func,
+    getValObject: PropTypes.func,
+  };
+
   SubplotConnectedComponent.propTypes = {
     subplot: PropTypes.string.isRequired,
-  };
-
-  SubplotConnectedComponent.contextTypes = {
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    data: PropTypes.array,
-    fullData: PropTypes.array,
-    onUpdate: PropTypes.func,
-    updateContainer: PropTypes.func,
-    getValObject: PropTypes.func,
-  };
-
-  SubplotConnectedComponent.childContextTypes = {
-    updateContainer: PropTypes.func,
-    deleteContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    getValObject: PropTypes.func,
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;

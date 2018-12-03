@@ -1,14 +1,15 @@
-import React, {Fragment, Component} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
 import {MULTI_VALUED_PLACEHOLDER} from 'lib/constants';
 import Field from './Field';
 import Radio from './Radio';
 import Dropdown from './Dropdown';
+import {RecursiveComponent, recursiveMap} from '../../lib/recursiveMap';
 
 export class UnconnectedVisibilitySelect extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
 
     this.setMode = this.setMode.bind(this);
     this.setLocals = this.setLocals.bind(this);
@@ -28,14 +29,14 @@ export class UnconnectedVisibilitySelect extends Component {
   }
 
   setMode(mode) {
-    this.props.updateContainer({[this.props.attr]: mode});
+    this.props.context.updateContainer({[this.props.attr]: mode});
   }
 
   render() {
     const {dropdown, clearable, options, showOn, attr, label} = this.props;
 
     return (
-      <Fragment>
+      <RecursiveComponent context={this.props.context}>
         {dropdown ? (
           <Dropdown
             attr={attr}
@@ -55,9 +56,9 @@ export class UnconnectedVisibilitySelect extends Component {
           />
         )}
         {(Array.isArray(showOn) && showOn.includes(this.mode)) || this.mode === showOn
-          ? this.props.children
+          ? recursiveMap(this.props.children, this.props.context)
           : null}
-      </Fragment>
+      </RecursiveComponent>
     );
   }
 }
@@ -76,10 +77,14 @@ UnconnectedVisibilitySelect.propTypes = {
   defaultOpt: PropTypes.oneOfType([PropTypes.number, PropTypes.bool, PropTypes.string]),
   label: PropTypes.string,
   attr: PropTypes.string,
+  context: PropTypes.any,
   ...Field.propTypes,
 };
 
-UnconnectedVisibilitySelect.contextTypes = {
+UnconnectedVisibilitySelect.requireContext = {
+  container: PropTypes.object,
+  defaultContainer: PropTypes.object,
+  fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,
 };
 

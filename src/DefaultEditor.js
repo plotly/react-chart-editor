@@ -19,10 +19,11 @@ import {
 import {traceHasColorbar} from './default_panels/StyleColorbarsPanel';
 import Logo from './components/widgets/Logo';
 import {TRANSFORMABLE_TRACES} from './lib/constants';
+import {EditorControlsContext} from './context';
 
 class DefaultEditor extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
     this.hasTransforms = this.hasTransforms.bind(this);
     this.hasAxes = this.hasAxes.bind(this);
     this.hasMenus = this.hasMenus.bind(this);
@@ -45,18 +46,13 @@ class DefaultEditor extends Component {
   }
 
   hasMenus() {
-    const {
-      fullLayout: {updatemenus = []},
-    } = this.context;
+    const {updatemenus = []} = this.context.fullLayout;
 
     return updatemenus.length > 0;
   }
 
   hasSliders() {
-    const {
-      layout: {sliders = []},
-    } = this.context;
-
+    const {sliders = []} = this.context.layout;
     return sliders.length > 0;
   }
 
@@ -65,9 +61,8 @@ class DefaultEditor extends Component {
   }
 
   render() {
-    const _ = this.context.localize;
     const logo = this.props.logoSrc && <Logo src={this.props.logoSrc} />;
-
+    const _ = this.context.localize;
     return (
       <PanelMenuWrapper menuPanelOrder={this.props.menuPanelOrder}>
         {logo ? logo : null}
@@ -98,11 +93,6 @@ DefaultEditor.propTypes = {
   menuPanelOrder: PropTypes.array,
 };
 
-DefaultEditor.contextTypes = {
-  localize: PropTypes.func,
-  fullData: PropTypes.array,
-  fullLayout: PropTypes.object,
-  layout: PropTypes.object,
-};
+DefaultEditor.contextType = EditorControlsContext;
 
 export default DefaultEditor;

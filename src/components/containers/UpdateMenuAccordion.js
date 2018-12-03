@@ -3,6 +3,7 @@ import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectUpdateMenuToLayout} from 'lib';
+import {EditorControlsContext} from '../../context';
 
 const UpdateMenuFold = connectUpdateMenuToLayout(PlotlyFold);
 
@@ -36,10 +37,7 @@ class UpdateMenuAccordion extends Component {
   }
 }
 
-UpdateMenuAccordion.contextTypes = {
-  fullLayout: PropTypes.object,
-  localize: PropTypes.func,
-};
+UpdateMenuAccordion.contextType = EditorControlsContext;
 
 UpdateMenuAccordion.propTypes = {
   children: PropTypes.node,

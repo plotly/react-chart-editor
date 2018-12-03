@@ -1,6 +1,7 @@
 import Dropdown from './Dropdown';
-import React from 'react';
+import React, {Component} from 'react';
 import ARROW_PATHS from 'plotly.js/src/components/annotations/arrow_paths';
+import {containerConnectedContextTypes} from '../../lib';
 
 const ARROW_OPTIONS = ARROW_PATHS.map(({path}, index) => {
   const label = (
@@ -29,9 +30,11 @@ const ARROW_OPTIONS = ARROW_PATHS.map(({path}, index) => {
   };
 });
 
-const ArrowSelector = props => {
-  return <Dropdown {...props} options={ARROW_OPTIONS} />;
-};
+class ArrowSelector extends Component {
+  render() {
+    return <Dropdown {...this.props} options={ARROW_OPTIONS} />;
+  }
+}
 
 ArrowSelector.propTypes = {
   ...Dropdown.propTypes,
@@ -40,5 +43,7 @@ ArrowSelector.propTypes = {
 ArrowSelector.defaultProps = {
   clearable: false,
 };
+
+ArrowSelector.requireContext = containerConnectedContextTypes;
 
 export default ArrowSelector;

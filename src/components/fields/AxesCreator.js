@@ -7,6 +7,7 @@ import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
 import {connectToContainer, traceTypeToAxisType, getAxisTitle, axisIdToAxisName} from 'lib';
 import {PlotlySection} from 'components';
+import {EditorControlsContext, ModalProviderContext} from '../../context';
 
 class UnconnectedAxisCreator extends Component {
   canAddAxis() {
@@ -90,6 +91,7 @@ class UnconnectedAxisCreator extends Component {
         options={this.props.options}
         updatePlot={u => this.updateAxis(u)}
         extraComponent={extraComponent}
+        context={this.props.context}
       />
     );
   }
@@ -102,14 +104,10 @@ UnconnectedAxisCreator.propTypes = {
   container: PropTypes.object,
   fullContainer: PropTypes.object,
   updateContainer: PropTypes.func,
+  context: PropTypes.any,
 };
 
-UnconnectedAxisCreator.contextTypes = {
-  fullLayout: PropTypes.object,
-  data: PropTypes.array,
-  fullData: PropTypes.array,
-  onUpdate: PropTypes.func,
-};
+UnconnectedAxisCreator.contextType = EditorControlsContext;
 
 const AxisCreator = connectToContainer(UnconnectedAxisCreator);
 
@@ -145,15 +143,18 @@ class UnconnectedAxesCreator extends Component {
         );
       });
     }
-
     return (
-      <PlotlySection name={_('Axes to Use')}>
+      <PlotlySection name={_('Axes to Use')} context={this.props.context}>
         {controls}
-        <Info>
-          {_('You can style and position your axes in the ')}
-          <a onClick={() => this.context.setPanel('Structure', 'Subplots')}>{_('Subplots')}</a>
-          {_(' panel.')}
-        </Info>
+        <ModalProviderContext.Consumer>
+          {({setPanel}) => (
+            <Info>
+              {_('You can style and position your axes in the ')}
+              <a onClick={() => setPanel('Structure', 'Subplots')}>{_('Subplots')}</a>
+              {_(' panel.')}
+            </Info>
+          )}
+        </ModalProviderContext.Consumer>
       </PlotlySection>
     );
   }
@@ -162,15 +163,10 @@ class UnconnectedAxesCreator extends Component {
 UnconnectedAxesCreator.propTypes = {
   container: PropTypes.object,
   fullContainer: PropTypes.object,
+  context: PropTypes.any,
 };
 
-UnconnectedAxesCreator.contextTypes = {
-  data: PropTypes.array,
-  fullData: PropTypes.array,
-  fullLayout: PropTypes.object,
-  localize: PropTypes.func,
-  setPanel: PropTypes.func,
-};
+UnconnectedAxesCreator.contextType = EditorControlsContext;
 
 export default connectToContainer(UnconnectedAxesCreator, {
   modifyPlotProps: (props, context, plotProps) => {

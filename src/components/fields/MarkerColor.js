@@ -11,6 +11,8 @@ import Info from './Info';
 import DataSelector from './DataSelector';
 import VisibilitySelect from './VisibilitySelect';
 import {MULTI_VALUED, COLORS} from 'lib/constants';
+import {EditorControlsContext} from '../../context';
+import {containerConnectedContextTypes} from '../../lib/connectToContainer';
 
 class UnconnectedMarkerColor extends Component {
   constructor(props, context) {
@@ -48,14 +50,14 @@ class UnconnectedMarkerColor extends Component {
       this.setState({type: type});
       this.props.updatePlot(this.state.value[type]);
       if (type === 'constant') {
-        this.context.updateContainer({
+        this.props.context.updateContainer({
           ['marker.colorsrc']: null,
           ['marker.colorscale']: null,
           ['marker.showscale']: null,
         });
         this.setState({colorscale: null});
       } else {
-        this.context.updateContainer({
+        this.props.context.updateContainer({
           ['marker.color']: null,
           ['marker.colorsrc']: null,
           ['marker.colorscale']: [],
@@ -75,7 +77,7 @@ class UnconnectedMarkerColor extends Component {
 
   setColorScale(inputValue) {
     this.setState({colorscale: inputValue});
-    this.context.updateContainer({['marker.colorscale']: inputValue});
+    this.props.context.updateContainer({['marker.colorscale']: inputValue});
   }
 
   isMultiValued() {
@@ -112,6 +114,7 @@ class UnconnectedMarkerColor extends Component {
         setColorScale={this.setColorScale}
         onConstantColorOptionChange={this.onConstantColorOptionChange}
         parentSelectedConstantColorOption={this.state.selectedConstantColorOption}
+        context={this.props.context}
       />
     );
   }
@@ -124,8 +127,9 @@ class UnconnectedMarkerColor extends Component {
         this.props.container.marker.colorscale === MULTI_VALUED) ||
         (this.props.container.marker.colorsrc &&
           this.props.container.marker.colorsrc === MULTI_VALUED));
+
     return (
-      <Field multiValued={multiValued}>
+      <Field multiValued={multiValued} context={this.props.context}>
         <DataSelector suppressMultiValuedMessage attr="marker.color" />
         {this.props.container.marker &&
         this.props.container.marker.colorscale === MULTI_VALUED ? null : (
@@ -142,7 +146,8 @@ class UnconnectedMarkerColor extends Component {
 
   render() {
     const {attr} = this.props;
-    const {localize: _, container} = this.context;
+    const {localize: _} = this.context;
+    const {container} = this.props.context;
 
     // TO DO: https://github.com/plotly/react-chart-editor/issues/654
     const noSplitsPresent =
@@ -158,7 +163,7 @@ class UnconnectedMarkerColor extends Component {
 
       return (
         <Fragment>
-          <Field {...this.props} attr={attr}>
+          <Field {...this.props} attr={attr} context={this.props.context}>
             <Field multiValued={this.isMultiValued() && !this.state.type}>
               <RadioBlocks options={options} activeOption={type} onOptionChange={this.setType} />
 
@@ -174,8 +179,8 @@ class UnconnectedMarkerColor extends Component {
             {!type
               ? null
               : type === 'constant'
-                ? this.renderConstantControls()
-                : this.renderVariableControls()}
+              ? this.renderConstantControls()
+              : this.renderVariableControls()}
           </Field>
           {type === 'constant' ? null : (
             <Fragment>
@@ -183,11 +188,13 @@ class UnconnectedMarkerColor extends Component {
                 label={_('Colorscale Direction')}
                 attr="marker.reversescale"
                 options={[{label: _('Normal'), value: false}, {label: _('Reversed'), value: true}]}
+                context={this.props.context}
               />
               <Radio
                 label={_('Color Bar')}
                 attr="marker.showscale"
                 options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+                context={this.props.context}
               />
               <VisibilitySelect
                 label={_('Colorscale Range')}
@@ -195,6 +202,7 @@ class UnconnectedMarkerColor extends Component {
                 options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
                 showOn={false}
                 defaultOpt={true}
+                context={this.props.context}
               >
                 <Numeric label={_('Min')} attr="marker.cmin" />
                 <Numeric label={_('Max')} attr="marker.cmax" />
@@ -219,11 +227,13 @@ UnconnectedMarkerColor.propTypes = {
   ...Field.propTypes,
 };
 
-UnconnectedMarkerColor.contextTypes = {
-  localize: PropTypes.func,
-  updateContainer: PropTypes.func,
-  traceIndexes: PropTypes.array,
-  container: PropTypes.object,
-};
+UnconnectedMarkerColor.contextType = EditorControlsContext;
+
+UnconnectedMarkerColor.requireContext = containerConnectedContextTypes;
+// {
+//   updateContainer: PropTypes.func,
+//   traceIndexes: PropTypes.array,
+//   container: PropTypes.object,
+// };
 
 export default connectToContainer(UnconnectedMarkerColor);

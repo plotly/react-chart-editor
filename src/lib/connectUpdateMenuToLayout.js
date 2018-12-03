@@ -1,21 +1,23 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
+import {EditorControlsContext} from '../context';
+import {recursiveMap} from './recursiveMap';
 
 export default function connectUpdateMenuToLayout(WrappedComponent) {
   class UpdateMenuConnectedComponent extends Component {
-    constructor(props, context) {
-      super(props, context);
+    constructor(props) {
+      super(props);
       this.updateUpdateMenu = this.updateUpdateMenu.bind(this);
-      this.setLocals(props, context);
+      this.setLocals(props);
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
       this.setLocals(nextProps, nextContext);
     }
 
-    setLocals(props, context) {
-      const {updateMenuIndex} = props;
+    setLocals(props) {
+      const {updateMenuIndex, context} = props;
       const {container, fullContainer} = context;
 
       const updatemenus = container.updatemenus || [];
@@ -24,10 +26,12 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
       this.fullContainer = fullUpdateMenus[updateMenuIndex];
     }
 
-    getChildContext() {
+    provideValue() {
       return {
         getValObject: attr =>
-          !this.context.getValObject ? null : this.context.getValObject(`updatemenus[].${attr}`),
+          !this.props.context.getValObject
+            ? null
+            : this.props.context.getValObject(`updatemenus[].${attr}`),
         updateContainer: this.updateUpdateMenu,
         container: this.container,
         fullContainer: this.fullContainer,
@@ -41,11 +45,19 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
         const newkey = `updatemenus[${updateMenuIndex}].${key}`;
         newUpdate[newkey] = update[key];
       }
-      this.context.updateContainer(newUpdate);
+      this.props.context.updateContainer(newUpdate);
     }
 
     render() {
-      return <WrappedComponent {...this.props} />;
+      const newProps = {...this.props, context: this.provideValue()};
+      if (this.props.children) {
+        return (
+          <WrappedComponent {...newProps}>
+            {recursiveMap(this.props.children, this.provideValue())}
+          </WrappedComponent>
+        );
+      }
+      return <WrappedComponent {...newProps} />;
     }
   }
 
@@ -53,23 +65,19 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
     WrappedComponent
   )}`;
 
+  UpdateMenuConnectedComponent.contextType = EditorControlsContext;
+
+  UpdateMenuConnectedComponent.requireContext = {
+    container: PropTypes.object,
+    fullContainer: PropTypes.object,
+    updateContainer: PropTypes.func,
+    getValObject: PropTypes.func,
+  };
+
   UpdateMenuConnectedComponent.propTypes = {
     updateMenuIndex: PropTypes.number.isRequired,
-  };
-
-  UpdateMenuConnectedComponent.contextTypes = {
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    onUpdate: PropTypes.func,
-    updateContainer: PropTypes.func,
-    getValObject: PropTypes.func,
-  };
-
-  UpdateMenuConnectedComponent.childContextTypes = {
-    updateContainer: PropTypes.func,
-    container: PropTypes.object,
-    fullContainer: PropTypes.object,
-    getValObject: PropTypes.func,
+    children: PropTypes.node,
+    context: PropTypes.any,
   };
 
   const {plotly_editor_traits} = WrappedComponent;
