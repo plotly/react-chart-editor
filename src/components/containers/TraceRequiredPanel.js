@@ -2,7 +2,7 @@ import PanelEmpty from './PanelEmpty';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {LayoutPanel} from './derived';
-import {EditorControlsContext, ModalProviderContext} from '../../context';
+import {EditorControlsContext, PanelMenuWrapperContext} from '../../context';
 
 class TraceRequiredPanel extends Component {
   hasTrace() {
@@ -20,7 +20,7 @@ class TraceRequiredPanel extends Component {
     return this.hasTrace() ? (
       <LayoutPanel {...rest}>{children}</LayoutPanel>
     ) : (
-      <ModalProviderContext.Consumer>
+      <PanelMenuWrapperContext.Consumer>
         {({setPanel}) => (
           <PanelEmpty heading={_("Looks like there aren't any traces defined yet.")}>
             <p>
@@ -30,7 +30,7 @@ class TraceRequiredPanel extends Component {
             </p>
           </PanelEmpty>
         )}
-      </ModalProviderContext.Consumer>
+      </PanelMenuWrapperContext.Consumer>
     );
   }
 }

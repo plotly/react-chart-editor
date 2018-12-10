@@ -17,13 +17,13 @@ import {
   HistogramInfoHorizontal,
   Histogram2d,
 } from '../components/fields/derived';
-import {EditorControlsContext, ModalProviderContext} from '../context';
+import {EditorControlsContext, PanelMenuWrapperContext} from '../context';
 
 const GraphCreatePanel = () => {
   return (
     <EditorControlsContext.Consumer>
       {({localize: _}) => (
-        <ModalProviderContext.Consumer>
+        <PanelMenuWrapperContext.Consumer>
           {({setPanel}) => (
             <TraceAccordion
               canAdd
@@ -165,7 +165,7 @@ const GraphCreatePanel = () => {
               </PlotlySection>
             </TraceAccordion>
           )}
-        </ModalProviderContext.Consumer>
+        </PanelMenuWrapperContext.Consumer>
       )}
     </EditorControlsContext.Consumer>
   );

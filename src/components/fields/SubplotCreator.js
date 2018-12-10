@@ -7,7 +7,7 @@ import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
 import {connectToContainer, traceTypeToAxisType, getSubplotTitle} from 'lib';
 import {PlotlySection} from 'components';
-import {EditorControlsContext, ModalProviderContext} from '../../context';
+import {EditorControlsContext, PanelMenuWrapperContext} from '../../context';
 
 class UnconnectedSingleSubplotCreator extends Component {
   canAddSubplot() {
@@ -126,7 +126,7 @@ class UnconnectedSubplotCreator extends Component {
           label={SUBPLOT_TO_ATTR[subplotType].layout}
           options={getOptions(subplotType)}
         />
-        <ModalProviderContext>
+        <PanelMenuWrapperContext.Consumer>
           {({setPanel}) => (
             <Info>
               {_('You can style and position your subplots in the ')}
@@ -134,7 +134,7 @@ class UnconnectedSubplotCreator extends Component {
               {_(' panel.')}
             </Info>
           )}
-        </ModalProviderContext>
+        </PanelMenuWrapperContext.Consumer>
       </PlotlySection>
     );
   }

@@ -7,7 +7,7 @@ import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
 import {connectToContainer, traceTypeToAxisType, getAxisTitle, axisIdToAxisName} from 'lib';
 import {PlotlySection} from 'components';
-import {EditorControlsContext, ModalProviderContext} from '../../context';
+import {EditorControlsContext, PanelMenuWrapperContext} from '../../context';
 
 class UnconnectedAxisCreator extends Component {
   canAddAxis() {
@@ -146,7 +146,7 @@ class UnconnectedAxesCreator extends Component {
     return (
       <PlotlySection name={_('Axes to Use')} context={this.props.context}>
         {controls}
-        <ModalProviderContext.Consumer>
+        <PanelMenuWrapperContext.Consumer>
           {({setPanel}) => (
             <Info>
               {_('You can style and position your axes in the ')}
@@ -154,7 +154,7 @@ class UnconnectedAxesCreator extends Component {
               {_(' panel.')}
             </Info>
           )}
-        </ModalProviderContext.Consumer>
+        </PanelMenuWrapperContext.Consumer>
       </PlotlySection>
     );
   }
