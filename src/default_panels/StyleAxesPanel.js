@@ -31,10 +31,10 @@ class StyleAxesPanel extends Component {
           name={_('Titles')}
           axisFilter={axis => !(axis._name.includes('angular') || axis._subplot.includes('geo'))}
         >
-          <TextEditor attr="title" />
-          <FontSelector label={_('Typeface')} attr="titlefont.family" />
-          <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
-          <ColorPicker label={_('Font Color')} attr="titlefont.color" />
+          <TextEditor attr="title.text" />
+          <FontSelector label={_('Typeface')} attr="title.font.family" />
+          <Numeric label={_('Font Size')} attr="title.font.size" units="px" />
+          <ColorPicker label={_('Font Color')} attr="title.font.color" />
         </AxesFold>
 
         <AxesFold name={_('Range')}>

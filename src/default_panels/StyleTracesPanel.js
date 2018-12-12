@@ -86,8 +86,8 @@ const StyleTracesPanel = (props, {localize: _}) => (
         />
       </LayoutSection>
     </TraceTypeSection>
-    <PlotlySection name={_('Pie Title')} attr="title">
-      <TextEditor label={_('Name')} attr="title" />
+    <PlotlySection name={_('Pie Title')} attr="title.text">
+      <TextEditor label={_('Name')} attr="title.text" />
       <Dropdown
         label={'Title Position'}
         attr="titleposition"
@@ -101,8 +101,8 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Bottom Right'), value: 'bottom right'},
         ]}
       />
-      <FontSelector label={_('Typeface')} attr="titlefont.family" clearable={false} />
-      <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
+      <FontSelector label={_('Typeface')} attr="title.font.family" clearable={false} />
+      <Numeric label={_('Font Size')} attr="title.font.size" units="px" />
     </PlotlySection>
     <PlotlySection name={_('Values')}>
       <BinningDropdown label={_('Histogram Function')} attr="histfunc" />
