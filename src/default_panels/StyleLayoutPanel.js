@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   ColorPicker,
   ColorwayPicker,
+  ColorscalePicker,
   Dropdown,
   FontSelector,
   PlotlyFold,
@@ -22,21 +23,28 @@ const StyleLayoutPanel = (props, {localize: _}) => (
     <PlotlyFold name={_('Defaults')}>
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
-      <ColorwayPicker label={_('Base Colors')} attr="colorway" />
-      <FontSelector label={_('Typeface')} attr="font.family" clearable={false} />
-      <Numeric label={_('Font Size')} attr="font.size" units="px" />
-      <ColorPicker label={_('Font Color')} attr="font.color" />
-      <Dropdown
-        label={_('Number format')}
-        attr="separators"
-        options={[
-          {label: _('1,234.56'), value: '.,'},
-          {label: _('1 234.56'), value: ', '},
-          {label: _('1 234,56'), value: ', '},
-          {label: _('1.234,56'), value: ',.'},
-        ]}
-        clearable={false}
-      />
+      <PlotlySection name={_('Color Scales')} attr="colorway">
+        <ColorwayPicker label={_('Categorical')} attr="colorway" />
+        <ColorscalePicker label={_('Sequential')} attr="colorscale.sequential" />
+        <ColorscalePicker label={_('Diverging')} attr="colorscale.diverging" />
+        <ColorscalePicker label={_('Sequential Negative')} attr="colorscale.sequentialminus" />
+      </PlotlySection>
+      <PlotlySection name={_('Text')} attr="font.family">
+        <FontSelector label={_('Typeface')} attr="font.family" clearable={false} />
+        <Numeric label={_('Font Size')} attr="font.size" units="px" />
+        <ColorPicker label={_('Font Color')} attr="font.color" />
+        <Dropdown
+          label={_('Number format')}
+          attr="separators"
+          options={[
+            {label: _('1,234.56'), value: '.,'},
+            {label: _('1 234.56'), value: ', '},
+            {label: _('1 234,56'), value: ', '},
+            {label: _('1.234,56'), value: ',.'},
+          ]}
+          clearable={false}
+        />
+      </PlotlySection>
     </PlotlyFold>
 
     <PlotlyFold name={_('Title')}>
