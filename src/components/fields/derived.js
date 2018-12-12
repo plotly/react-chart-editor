@@ -197,8 +197,6 @@ export const AxesRange = connectToContainer(UnconnectedAxisRangeValue, {
   },
 });
 
-export const NumericOrDate = connectToContainer(UnconnectedNumericOrDate);
-
 export const NTicks = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer} = plotProps;

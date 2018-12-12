@@ -13,6 +13,7 @@ import Radio from './Radio';
 import TextEditor from './TextEditor';
 import DataSelector from './DataSelector';
 import Numeric from './Numeric';
+import NumericOrDate from './NumericOrDate';
 import DualNumeric from './DualNumeric';
 import AxisRangeValue from './AxisRangeValue';
 import Text from './Text';
@@ -56,7 +57,6 @@ import {
   HovermodeDropdown,
   TickFormat,
   BinSize,
-  NumericOrDate,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './LineSelectors';
 
