@@ -57,6 +57,7 @@ import {
   HoveronDropdown,
   HovermodeDropdown,
   TickFormat,
+  NumericOrDate,
 } from './fields';
 
 import {
@@ -175,4 +176,5 @@ export {
   LocationSelector,
   HoveronDropdown,
   HovermodeDropdown,
+  NumericOrDate,
 };

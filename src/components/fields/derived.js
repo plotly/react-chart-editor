@@ -3,6 +3,7 @@ import {UnconnectedDropdown} from './Dropdown';
 import {UnconnectedDropdownCustom} from './DropdownCustom';
 import {UnconnectedFlaglist} from './Flaglist';
 import {UnconnectedNumeric} from './Numeric';
+import {UnconnectedNumericOrDate} from './NumericOrDate';
 import {UnconnectedAxisRangeValue} from './AxisRangeValue';
 import {UnconnectedRadio} from './Radio';
 import Info from './Info';
@@ -195,6 +196,8 @@ export const AxesRange = connectToContainer(UnconnectedAxisRangeValue, {
     return plotProps;
   },
 });
+
+export const NumericOrDate = connectToContainer(UnconnectedNumericOrDate);
 
 export const NTicks = connectToContainer(UnconnectedNumeric, {
   modifyPlotProps: (props, context, plotProps) => {
