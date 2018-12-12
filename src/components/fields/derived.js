@@ -435,7 +435,7 @@ export const PositioningRef = connectToContainer(UnconnectedDropdown, {
   },
 });
 
-export const PositioningNumeric = connectToContainer(UnconnectedNumeric, {
+export const PositioningNumeric = connectToContainer(UnconnectedNumericOrDate, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer, fullValue, updatePlot} = plotProps;
     if (
