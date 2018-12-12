@@ -13,6 +13,7 @@ import {
   Radio,
   TextEditor,
   PlotlySection,
+  NumericOrDate,
 } from '../components';
 
 const StyleNotesPanel = (props, {localize: _}) => (
@@ -35,8 +36,8 @@ const StyleNotesPanel = (props, {localize: _}) => (
       <Numeric label={_('Scale')} step={0.1} attr="arrowsize" units="px" />
       <AnnotationArrowRef label={_('X Offset')} attr="axref" />
       <AnnotationArrowRef label={_('Y Offset')} attr="ayref" />
-      <Numeric label={_('X Vector')} attr="ax" />
-      <Numeric label={_('Y Vector')} attr="ay" />
+      <NumericOrDate label={_('X Vector')} attr="ax" />
+      <NumericOrDate label={_('Y Vector')} attr="ay" />
     </PlotlySection>
     <PlotlySection name={_('Horizontal Positioning')}>
       <Dropdown

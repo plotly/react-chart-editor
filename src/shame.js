@@ -3,6 +3,7 @@
  */
 import {getFromId} from 'plotly.js/src/plots/cartesian/axis_ids';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
+import {isDateTime} from 'plotly.js/src/lib';
 
 // Temporary fix for:
 // https://github.com/plotly/react-chart-editor/issues/103
@@ -211,4 +212,23 @@ export const shamefullyAdjustSizeref = (gd, {update}) => {
     update['marker.sizeref'] = size.reduce((a, b) => Math.max(a, b)) / scaleFactor;
     update['marker.sizemode'] = 'area';
   }
+};
+
+export const shamefullyAdjustBinSize = (gd, {update}, traceIndexInDataArray) => {
+  const traceIndexInFullDataArray = gd._fullData.filter(t => t.index === traceIndexInDataArray)[0]
+    ._expandedIndex;
+  const binSizeAttrs = Object.keys(update).filter(attr => attr.includes('bins.size'));
+
+  binSizeAttrs.forEach(attr => {
+    const attrHead = attr.split('.')[0];
+    if (
+      gd._fullData[traceIndexInFullDataArray] &&
+      gd._fullData[traceIndexInFullDataArray][attrHead] &&
+      gd._fullData[traceIndexInFullDataArray][attrHead].start &&
+      isDateTime(gd._fullData[traceIndexInFullDataArray][attrHead].start)
+    ) {
+      const monthNum = update[attr];
+      update[attr] = 'M' + monthNum;
+    }
+  });
 };

@@ -3,6 +3,7 @@ import {UnconnectedDropdown} from './Dropdown';
 import {UnconnectedDropdownCustom} from './DropdownCustom';
 import {UnconnectedFlaglist} from './Flaglist';
 import {UnconnectedNumeric} from './Numeric';
+import {UnconnectedNumericOrDate} from './NumericOrDate';
 import {UnconnectedAxisRangeValue} from './AxisRangeValue';
 import {UnconnectedRadio} from './Radio';
 import Info from './Info';
@@ -432,7 +433,7 @@ export const PositioningRef = connectToContainer(UnconnectedDropdown, {
   },
 });
 
-export const PositioningNumeric = connectToContainer(UnconnectedNumeric, {
+export const PositioningNumeric = connectToContainer(UnconnectedNumericOrDate, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer, fullValue, updatePlot} = plotProps;
     if (
@@ -674,5 +675,17 @@ export const HoverColor = connectToContainer(UnconnectedColorPicker, {
   modifyPlotProps: (props, context, plotProps) => {
     plotProps.isVisible = Boolean(context.fullLayout.hovermode);
     return plotProps;
+  },
+});
+
+export const BinSize = connectToContainer(UnconnectedNumeric, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = context;
+    if (typeof plotProps.fullValue === 'string' && plotProps.fullValue[0] === 'M') {
+      plotProps.fullValue = plotProps.fullValue.substring(1);
+      plotProps.min = 1;
+      plotProps.max = 12;
+      plotProps.units = parseInt(plotProps.fullValue, 10) === 1 ? _('Month') : _('Months');
+    }
   },
 });
