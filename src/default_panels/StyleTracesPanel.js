@@ -39,6 +39,7 @@ import {
   ShowInLegend,
   TextInfo,
   HoveronDropdown,
+  BinSize,
 } from '../components/fields/derived';
 
 const StyleTracesPanel = (props, {localize: _}) => (
@@ -194,14 +195,14 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
     </PlotlySection>
     <PlotlySection name={_('Binning')}>
-      <Numeric label={_('X Bin Size')} attr="xbins.size" axis="x" />
       <NumericOrDate label={_('X Bin Start')} attr="xbins.start" axis="x" />
       <NumericOrDate label={_('X Bin End')} attr="xbins.end" axis="x" />
+      <BinSize label={_('X Bin Size')} attr="xbins.size" axis="x" />
       <Numeric label={_('Max X Bins')} attr="nbinsx" />
 
       <NumericOrDate label={_('Y Bin Start')} attr="ybins.start" axis="y" />
       <NumericOrDate label={_('Y Bin End')} attr="ybins.end" axis="y" />
-      <Numeric label={_('Y Bin Size')} attr="ybins.size" axis="y" />
+      <BinSize label={_('Y Bin Size')} attr="ybins.size" axis="y" />
       <Numeric label={_('Max Y Bins')} attr="nbinsy" />
     </PlotlySection>
     <PlotlySection label={_('Bar Position')}>

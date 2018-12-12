@@ -55,6 +55,7 @@ import {
   HoveronDropdown,
   HovermodeDropdown,
   TickFormat,
+  BinSize,
   NumericOrDate,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './LineSelectors';
@@ -119,5 +120,6 @@ export {
   LocationSelector,
   HoveronDropdown,
   HovermodeDropdown,
+  BinSize,
   NumericOrDate,
 };
