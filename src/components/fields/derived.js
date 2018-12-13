@@ -518,6 +518,17 @@ export const TextInfo = connectToContainer(UnconnectedFlaglist, {
   },
 });
 
+export const HoverTemplateSwitch = connectToContainer(UnconnectedRadio, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = context;
+
+    plotProps.options = [
+      {label: _('Basic'), value: ''},
+      {label: _('Advanced'), value: plotProps.fullValue || 'template'},
+    ];
+  },
+});
+
 export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _, container} = context;
