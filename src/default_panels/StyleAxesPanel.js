@@ -48,6 +48,7 @@ class StyleAxesPanel extends Component {
                 {label: _('Log'), value: 'log'},
                 {label: _('Date'), value: 'date'},
                 {label: _('Categorical'), value: 'category'},
+                {label: _('Multicategorical'), value: 'multicategory'},
               ]}
             />
             <Radio
@@ -287,6 +288,19 @@ class StyleAxesPanel extends Component {
               <DTicks label={_('Step Offset')} attr="tick0" />
               <DTicks label={_('Step Size')} attr="dtick" />
               <NTicks label={_('Max Number of Markers')} attr="nticks" />
+            </VisibilitySelect>
+          </PlotlySection>
+        </AxesFold>
+
+        <AxesFold name={_('Multicategory Dividers')}>
+          <PlotlySection name={_('Dividers')} attr="showdividers">
+            <VisibilitySelect
+              attr="showdividers"
+              options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+              showOn={true}
+            >
+              <Numeric label={_('Width')} attr="dividerwidth" units="px" />
+              <ColorPicker label={_('Color')} attr="dividercolor" />
             </VisibilitySelect>
           </PlotlySection>
         </AxesFold>
