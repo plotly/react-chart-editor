@@ -8,7 +8,7 @@ import RichText from '../widgets/text_editors/RichText';
 import MultiFormat from '../widgets/text_editors/MultiFormat';
 import HTML from '../widgets/text_editors/HTML';
 
-class UnconnectedTextEditor extends Component {
+export class UnconnectedTextEditor extends Component {
   render() {
     const {
       attr,

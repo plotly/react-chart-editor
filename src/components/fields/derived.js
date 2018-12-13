@@ -8,6 +8,7 @@ import {UnconnectedAxisRangeValue} from './AxisRangeValue';
 import {UnconnectedRadio} from './Radio';
 import Info from './Info';
 import {UnconnectedColorPicker} from './ColorPicker';
+import {UnconnectedTextEditor} from './TextEditor';
 import {UnconnectedVisibilitySelect} from './VisibilitySelect';
 import {connectToContainer, getAllAxes, getAxisTitle, axisIdToAxisName} from 'lib';
 
@@ -523,9 +524,19 @@ export const HoverTemplateSwitch = connectToContainer(UnconnectedRadio, {
     const {localize: _} = context;
 
     plotProps.options = [
-      {label: _('Basic'), value: ''},
-      {label: _('Advanced'), value: plotProps.fullValue || 'template'},
+      {label: _('Values'), value: ''},
+      {label: _('Template'), value: plotProps.fullValue || ' '},
     ];
+    return plotProps;
+  },
+});
+
+export const HoverTemplateText = connectToContainer(UnconnectedTextEditor, {
+  modifyPlotProps: (props, context, plotProps) => {
+    if (plotProps.isVisible && plotProps.fullValue === '') {
+      plotProps.isVisible = false;
+    }
+    return plotProps;
   },
 });
 

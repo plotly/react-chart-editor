@@ -20,6 +20,7 @@ import {
   ColorscalePicker,
   ColorwayPicker,
   HoverInfo,
+  HoverTemplateText,
   HoverTemplateSwitch,
   Dropdown,
   FillDropdown,
@@ -611,10 +612,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <NumericFraction label={_('Meanline Width')} attr="meanline.width" />
       <MultiColorPicker label={_('Meanline Color')} attr="meanline.color" />
     </PlotlySection>
-    <PlotlySection name={_('On Hover')}>
+    <PlotlySection name={_('Hover/Tooltip Text')}>
       <HoverTemplateSwitch attr="hovertemplate" label={_('Mode')} />
-      <HoverInfo attr="hoverinfo" label={_('Values Shown On Hover')} />
-      <TextEditor attr="hovertemplate" label={_('Text Template')} />
+      <HoverInfo attr="hoverinfo" label={_('Show')} />
+      <HoverTemplateText attr="hovertemplate" label={_('Template')} />
       <Radio
         label={_('Split labels')}
         attr="hoverlabel.split"
