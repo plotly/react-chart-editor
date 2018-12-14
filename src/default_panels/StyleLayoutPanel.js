@@ -26,8 +26,12 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <PlotlySection name={_('Color Scales')} attr="colorway">
         <ColorwayPicker label={_('Categorical')} attr="colorway" />
         <ColorscalePicker label={_('Sequential')} attr="colorscale.sequential" />
-        <ColorscalePicker label={_('Diverging')} attr="colorscale.diverging" />
-        <ColorscalePicker label={_('Sequential Negative')} attr="colorscale.sequentialminus" />
+        <ColorscalePicker
+          label={_('Diverging')}
+          attr="colorscale.diverging"
+          initialCategory="divergent"
+        />
+        <ColorscalePicker label={_('Negative Sequential')} attr="colorscale.sequentialminus" />
       </PlotlySection>
       <PlotlySection name={_('Text')} attr="font.family">
         <FontSelector label={_('Typeface')} attr="font.family" clearable={false} />
