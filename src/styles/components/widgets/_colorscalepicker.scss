@@ -1,4 +1,5 @@
 $colorscalepicker-width: 215px;
+$colorscalepicker-height: 20px;
 
 .colorscalePickerContainer {
   min-width: $colorscalepicker-width;
@@ -41,5 +42,9 @@ $colorscalepicker-width: 215px;
   &__outer {
     width: $colorscalepicker-width;
     text-align: center;
+  }
+
+  &__inner {
+    height: $colorscalepicker-height;
   }
 }

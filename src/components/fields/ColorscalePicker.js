@@ -30,7 +30,7 @@ export class UnconnectedColorscalePicker extends Component {
     const colorscale = Array.isArray(fullValue) ? fullValue.map(v => v[1]) : null;
 
     return (
-      <Field {...this.props}>
+      <Field {...this.props} fieldContainerClassName="field__colorscale">
         <ColorscalePickerWidget
           selected={colorscale}
           onColorscaleChange={this.onUpdate}
