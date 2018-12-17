@@ -11,19 +11,17 @@ const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24; // eslint-disable-line
 const DAYS_IN_MONTH = 30;
 
 class UnconnectedBinSize extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       units: 'months',
     };
-    this.update = this.update.bind(this);
-    this.convertToMilliseconds = this.convertToMilliseconds.bind(this);
-    this.onUnitChange = this.onUnitChange.bind(this);
   }
 
-  convertToMilliseconds(value) {
+  update(value) {
+    let adjustedValue = value;
+
     if (this.state.units === 'months') {
-      let adjustedValue = value;
       // eslint-disable-next-line
       if (adjustedValue > 12) {
         adjustedValue = 12; // eslint-disable-line
@@ -31,11 +29,10 @@ class UnconnectedBinSize extends Component {
       if (adjustedValue < 0) {
         adjustedValue = 0;
       }
-      return adjustedValue * MILLISECONDS_IN_DAY * DAYS_IN_MONTH;
+      adjustedValue = 'M' + adjustedValue;
     }
 
     if (this.state.units === 'days') {
-      let adjustedValue = value;
       // eslint-disable-next-line
       if (adjustedValue > 366) {
         adjustedValue = 366; // eslint-disable-line
@@ -43,42 +40,39 @@ class UnconnectedBinSize extends Component {
       if (adjustedValue < 0) {
         adjustedValue = 0;
       }
-      return adjustedValue * MILLISECONDS_IN_DAY;
+      adjustedValue = adjustedValue * MILLISECONDS_IN_DAY;
     }
 
-    return value;
-  }
-
-  update(value) {
-    this.props.updatePlot(this.convertToMilliseconds(value));
+    this.props.updatePlot(adjustedValue);
   }
 
   onUnitChange(value) {
-    const milliseconds =
-      value === 'months' &&
-      typeof this.props.fullValue === 'string' &&
-      this.props.fullValue[0] === 'M'
-        ? parseInt(this.props.fullValue.substring(1), 10) * DAYS_IN_MONTH * MILLISECONDS_IN_DAY
-        : this.props.fullValue;
+    const isFullValueMonthFormat =
+      typeof this.props.fullValue === 'string' && this.props.fullValue[0] === 'M';
+
+    const milliseconds = isFullValueMonthFormat
+      ? parseInt(this.props.fullValue.substring(1), 10) * DAYS_IN_MONTH * MILLISECONDS_IN_DAY
+      : this.props.fullValue;
 
     this.setState({units: value});
-    this.props.updatePlot(milliseconds);
+    if (value === 'months') {
+      this.props.updatePlot('M' + Math.round(milliseconds / MILLISECONDS_IN_DAY / DAYS_IN_MONTH));
+    } else {
+      this.props.updatePlot(milliseconds);
+    }
   }
 
   getDisplayValue(value) {
-    const numberValue =
-      typeof value === 'string' && value[0] === 'M' ? parseInt(value.substring(1), 10) : value;
-
-    if (this.state.units === 'months') {
-      return Math.round(numberValue / MILLISECONDS_IN_DAY / DAYS_IN_MONTH);
+    if (this.state.units === 'months' && typeof value === 'string' && value[0] === 'M') {
+      return parseInt(value.substring(1), 10);
     }
     if (this.state.units === 'days') {
-      return Math.round(numberValue / MILLISECONDS_IN_DAY);
+      return Math.round(value / MILLISECONDS_IN_DAY);
     }
     if (this.state.units === 'milliseconds') {
-      return numberValue;
+      return value;
     }
-    return numberValue;
+    return null;
   }
 
   render() {
@@ -96,19 +90,22 @@ class UnconnectedBinSize extends Component {
             {value: 'days', label: _('Days')},
             {value: 'milliseconds', label: _('Milliseconds')},
           ]}
-          onOptionChange={this.onUnitChange}
+          onOptionChange={value => this.onUnitChange(value)}
           activeOption={this.state.units}
         />
         <div style={{height: '7px', width: '100%', display: 'block'}}> </div>
         <NumericInput
           value={this.getDisplayValue(this.props.fullValue)}
-          onUpdate={this.update}
+          onUpdate={value => this.update(value)}
           editableClassName="binsize-milliseconds"
         />
       </Field>
     ) : (
       <Field {...this.props}>
-        <NumericInput value={this.props.fullValue} onUpdate={this.props.updatePlot} />
+        <NumericInput
+          value={this.props.fullValue}
+          onUpdate={value => this.props.updatePlot(value)}
+        />
       </Field>
     );
   }
