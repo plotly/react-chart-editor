@@ -28,8 +28,8 @@ class UnconnectedBinSize extends Component {
       if (adjustedValue > 12) {
         adjustedValue = 12; // eslint-disable-line
       }
-      if (adjustedValue < 1) {
-        adjustedValue = 1;
+      if (adjustedValue < 0) {
+        adjustedValue = 0;
       }
       return adjustedValue * MILLISECONDS_IN_DAY * DAYS_IN_MONTH;
     }
@@ -40,8 +40,8 @@ class UnconnectedBinSize extends Component {
       if (adjustedValue > 366) {
         adjustedValue = 366; // eslint-disable-line
       }
-      if (adjustedValue < 1) {
-        adjustedValue = 1;
+      if (adjustedValue < 0) {
+        adjustedValue = 0;
       }
       return adjustedValue * MILLISECONDS_IN_DAY;
     }
