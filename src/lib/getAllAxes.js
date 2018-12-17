@@ -67,11 +67,7 @@ export function traceTypeToAxisType(traceType, subplot = false) {
     return category;
   }
 
-  if (traceType === 'pie' || traceType === 'table') {
-    return null;
-  }
-
-  throw new Error(`Sorry, could not find ${traceType} in any category.`);
+  return null;
 }
 
 export function axisIdToAxisName(id) {

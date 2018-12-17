@@ -8,10 +8,6 @@ export const chartCategory = _ => {
       value: 'SIMPLE',
       label: _('Simple'),
     },
-    CHARTS_3D: {
-      value: 'CHARTS_3D',
-      label: _('3D charts'),
-    },
     FINANCIAL: {
       value: 'FINANCIAL',
       label: _('Finance'),
@@ -32,6 +28,10 @@ export const chartCategory = _ => {
       value: '3D',
       label: _('3D'),
       maxColumns: 1,
+    },
+    HIDDEN: {
+      value: 'HIDDEN',
+      label: '',
     },
   };
 };
@@ -157,21 +157,6 @@ export const traceTypes = _ => [
     label: _('Atlas Map'),
     category: chartCategory(_).MAPS,
   },
-  // {
-  //   value: 'parcoords',
-  //   label: _('Parallel Coordinates'),
-  //   category: chartCategory(_).SPECIALIZED,
-  // },
-  // {
-  //   value: 'sankey',
-  //   label: _('Sankey'),
-  //   category: chartCategory(_).SPECIALIZED,
-  // },
-  // {
-  //   value: 'carpet',
-  //   label: _('Carpet'),
-  //   category: chartCategory(_).SPECIALIZED,
-  // },
   {
     value: 'scatterpolar',
     label: _('Polar Scatter'),
@@ -197,11 +182,6 @@ export const traceTypes = _ => [
     label: _('OHLC'),
     category: chartCategory(_).FINANCIAL,
   },
-  // {
-  //   value: 'pointcloud',
-  //   label: _('Point Cloud'),
-  //   category: chartCategory(_).THREE_D,
-  // },
   {
     value: 'scattergl',
     icon: 'scatter',
@@ -214,10 +194,50 @@ export const traceTypes = _ => [
     label: _('Polar Scatter'),
     category: chartCategory(_).THREE_D,
   },
-  // {
-  //   value: 'heatmapgl',
-  //   icon: 'heatmap',
-  //   label: _('Heatmap GL'),
-  //   category: chartCategory(_).THREE_D,
-  // },
+  {
+    value: 'heatmapgl',
+    icon: 'heatmap',
+    label: _('Heatmap GL'),
+    category: chartCategory(_).HIDDEN,
+  },
+  {
+    value: 'pointcloud',
+    label: _('Point Cloud'),
+    category: chartCategory(_).HIDDEN,
+  },
+  {
+    value: 'parcoords',
+    label: _('Parallel Coordinates'),
+    category: chartCategory(_).HIDDEN,
+  },
+  {
+    value: 'parcats',
+    label: _('Parallel Categories'),
+    category: chartCategory(_).HIDDEN,
+  },
+  {
+    value: 'splom',
+    label: _('Scatterplot Matrix'),
+    category: chartCategory(_).HIDDEN,
+  },
+  {
+    value: 'sankey',
+    label: _('Sankey'),
+    category: chartCategory(_).HIDDEN,
+  },
+  {
+    value: 'scattercarpet',
+    label: _('Scatter Carpet'),
+    category: chartCategory(_).HIDDEN,
+  },
+  {
+    value: 'contourcarpet',
+    label: _('Contour Carpet'),
+    category: chartCategory(_).HIDDEN,
+  },
+  {
+    value: 'carpet',
+    label: _('Carpet'),
+    category: chartCategory(_).HIDDEN,
+  },
 ];
