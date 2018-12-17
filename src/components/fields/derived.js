@@ -699,15 +699,3 @@ export const HoverColor = connectToContainer(UnconnectedColorPicker, {
     return plotProps;
   },
 });
-
-export const BinSize = connectToContainer(UnconnectedNumeric, {
-  modifyPlotProps: (props, context, plotProps) => {
-    const {localize: _} = context;
-    if (typeof plotProps.fullValue === 'string' && plotProps.fullValue[0] === 'M') {
-      plotProps.fullValue = plotProps.fullValue.substring(1);
-      plotProps.min = 1;
-      plotProps.max = 12;
-      plotProps.units = parseInt(plotProps.fullValue, 10) === 1 ? _('Month') : _('Months');
-    }
-  },
-});
