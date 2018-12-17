@@ -52,13 +52,11 @@ const StyleLayoutPanel = (props, {localize: _}) => (
     </PlotlyFold>
 
     <PlotlyFold name={_('Title')}>
-      <PlotlySection name={_('Title')} attr="title.text">
-        <TextEditor attr="title.text" />
-        <FontSelector label={_('Typeface')} attr="title.font.family" clearable={false} />
-        <Numeric label={_('Font Size')} attr="title.font.size" units="px" />
-        <ColorPicker label={_('Font Color')} attr="title.font.color" />
-        <Numeric label={_('Horizontal Position')} showSlider step={0.02} attr="title.x" />
-      </PlotlySection>
+      <TextEditor attr="title.text" />
+      <FontSelector label={_('Typeface')} attr="title.font.family" clearable={false} />
+      <Numeric label={_('Font Size')} attr="title.font.size" units="px" />
+      <ColorPicker label={_('Font Color')} attr="title.font.color" />
+      <Numeric label={_('Horizontal Position')} showSlider step={0.02} attr="title.x" />
     </PlotlyFold>
 
     <PlotlyFold name={_('Modebar')}>

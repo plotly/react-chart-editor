@@ -194,7 +194,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         label={_('Flatshading')}
         options={[{label: _('Enable'), value: true}, {label: _('Disable'), value: false}]}
       />
-    </PlotlySection>{' '}
+    </PlotlySection>
     <TraceTypeSection
       name={_('Bar Grouping, Sizing and Spacing')}
       traceTypes={['bar', 'histogram']}
