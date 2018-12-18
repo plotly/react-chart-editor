@@ -19,27 +19,13 @@ class UnconnectedBinSize extends Component {
   }
 
   update(value) {
-    let adjustedValue = value;
+    let adjustedValue = value < 0 ? 0 : value;
 
     if (this.state.units === 'months') {
-      // eslint-disable-next-line
-      if (adjustedValue > 12) {
-        adjustedValue = 12; // eslint-disable-line
-      }
-      if (adjustedValue < 0) {
-        adjustedValue = 0;
-      }
       adjustedValue = 'M' + adjustedValue;
     }
 
     if (this.state.units === 'days') {
-      // eslint-disable-next-line
-      if (adjustedValue > 366) {
-        adjustedValue = 366; // eslint-disable-line
-      }
-      if (adjustedValue < 0) {
-        adjustedValue = 0;
-      }
       adjustedValue = adjustedValue * MILLISECONDS_IN_DAY;
     }
 
@@ -120,6 +106,7 @@ UnconnectedBinSize.propTypes = {
   updatePlot: PropTypes.func,
   attr: PropTypes.string,
   fullContainer: PropTypes.object,
+  ...Field.propTypes,
 };
 
 export default connectToContainer(UnconnectedBinSize);
