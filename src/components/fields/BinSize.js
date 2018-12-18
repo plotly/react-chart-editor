@@ -11,6 +11,7 @@ const MILLISECONDS_IN_SECOND = 1000;
 const MILLISECONDS_IN_MINUTE = MILLISECONDS_IN_SECOND * 60; // eslint-disable-line
 const MILLISECONDS_IN_DAY = MILLISECONDS_IN_MINUTE * 60 * 24; // eslint-disable-line
 const DAYS_IN_MONTH = 30;
+const MONTHS_IN_YEAR = 12; //eslint-disable-line
 
 function getSmallestUnit(milliseconds) {
   const units = {
@@ -41,7 +42,9 @@ class UnconnectedBinSize extends Component {
 
     const initialUnit =
       props.fullValue && typeof props.fullValue === 'string' && props.fullValue[0] === 'M'
-        ? 'months'
+        ? parseInt(props.fullValue.substring(1), 10) % MONTHS_IN_YEAR === 0
+          ? 'years'
+          : 'months'
         : getSmallestUnit(props.fullValue);
 
     this.state = {
@@ -51,6 +54,10 @@ class UnconnectedBinSize extends Component {
 
   update(value) {
     let adjustedValue = value < 0 ? 0 : value;
+
+    if (this.state.units === 'years') {
+      adjustedValue = 'M' + adjustedValue * MONTHS_IN_YEAR;
+    }
 
     if (this.state.units === 'months') {
       adjustedValue = 'M' + adjustedValue;
@@ -80,7 +87,8 @@ class UnconnectedBinSize extends Component {
       : this.props.fullValue;
 
     this.setState({units: value});
-    if (value === 'months') {
+
+    if (['years', 'months'].includes(value)) {
       this.props.updatePlot('M' + Math.round(milliseconds / MILLISECONDS_IN_DAY / DAYS_IN_MONTH));
     } else {
       this.props.updatePlot(milliseconds);
@@ -91,10 +99,12 @@ class UnconnectedBinSize extends Component {
     const numericValue =
       typeof value === 'string' && value[0] === 'M' ? parseInt(value.substring(1), 10) : value;
 
+    if (this.state.units === 'years') {
+      return numericValue / MONTHS_IN_YEAR;
+    }
     if (this.state.units === 'months') {
       return numericValue;
     }
-
     if (this.state.units === 'days') {
       return Math.round(numericValue / MILLISECONDS_IN_DAY);
     }
@@ -121,6 +131,7 @@ class UnconnectedBinSize extends Component {
       <Field {...this.props}>
         <Dropdown
           options={[
+            {value: 'years', label: _('Years')},
             {value: 'months', label: _('Months')},
             {value: 'days', label: _('Days')},
             {value: 'minutes', label: _('Minutes')},
