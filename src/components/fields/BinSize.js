@@ -7,7 +7,8 @@ import {connectToContainer} from 'lib';
 import {isDateTime} from 'plotly.js/src/lib';
 import {isJSDate} from 'plotly.js/src/lib/dates';
 
-const MILLISECONDS_IN_DAY = 1000 * 60 * 60 * 24; // eslint-disable-line
+const MILISECONDS_IN_MINUTE = 1000 * 60;
+const MILLISECONDS_IN_DAY = MILISECONDS_IN_MINUTE * 60 * 24; // eslint-disable-line
 const DAYS_IN_MONTH = 30;
 
 class UnconnectedBinSize extends Component {
@@ -27,6 +28,10 @@ class UnconnectedBinSize extends Component {
 
     if (this.state.units === 'days') {
       adjustedValue = adjustedValue * MILLISECONDS_IN_DAY;
+    }
+
+    if (this.state.units === 'minutes') {
+      adjustedValue = adjustedValue * MILISECONDS_IN_MINUTE;
     }
 
     this.props.updatePlot(adjustedValue);
@@ -55,6 +60,9 @@ class UnconnectedBinSize extends Component {
     if (this.state.units === 'days') {
       return Math.round(value / MILLISECONDS_IN_DAY);
     }
+    if (this.state.units === 'minutes') {
+      return Math.round(value / MILISECONDS_IN_MINUTE);
+    }
     if (this.state.units === 'milliseconds') {
       return value;
     }
@@ -72,9 +80,10 @@ class UnconnectedBinSize extends Component {
       <Field {...this.props}>
         <RadioBlocks
           options={[
-            {value: 'months', label: _('Months')},
-            {value: 'days', label: _('Days')},
-            {value: 'milliseconds', label: _('Milliseconds')},
+            {value: 'months', label: _('Mo')},
+            {value: 'days', label: _('D')},
+            {value: 'minutes', label: _('Min')},
+            {value: 'milliseconds', label: _('Ms')},
           ]}
           onOptionChange={value => this.onUnitChange(value)}
           activeOption={this.state.units}
