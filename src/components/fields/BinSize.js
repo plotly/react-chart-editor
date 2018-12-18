@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import Field from './Field';
-import RadioBlocks from '../widgets/RadioBlocks';
+import Dropdown from '../widgets/Dropdown';
 import NumericInput from '../widgets/NumericInput';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
 import {isDateTime} from 'plotly.js/src/lib';
 import {isJSDate} from 'plotly.js/src/lib/dates';
 
-const MILISECONDS_IN_MINUTE = 1000 * 60;
-const MILLISECONDS_IN_DAY = MILISECONDS_IN_MINUTE * 60 * 24; // eslint-disable-line
+const MILLISECONDS_IN_SECOND = 1000;
+const MILLISECONDS_IN_MINUTE = MILLISECONDS_IN_SECOND * 60; // eslint-disable-line
+const MILLISECONDS_IN_DAY = MILLISECONDS_IN_MINUTE * 60 * 24; // eslint-disable-line
 const DAYS_IN_MONTH = 30;
 
 class UnconnectedBinSize extends Component {
@@ -31,7 +32,11 @@ class UnconnectedBinSize extends Component {
     }
 
     if (this.state.units === 'minutes') {
-      adjustedValue = adjustedValue * MILISECONDS_IN_MINUTE;
+      adjustedValue = adjustedValue * MILLISECONDS_IN_MINUTE;
+    }
+
+    if (this.state.seconds === 'seconds') {
+      adjustedValue = adjustedValue * MILLISECONDS_IN_SECOND;
     }
 
     this.props.updatePlot(adjustedValue);
@@ -61,7 +66,10 @@ class UnconnectedBinSize extends Component {
       return Math.round(value / MILLISECONDS_IN_DAY);
     }
     if (this.state.units === 'minutes') {
-      return Math.round(value / MILISECONDS_IN_MINUTE);
+      return Math.round(value / MILLISECONDS_IN_MINUTE);
+    }
+    if (this.state.units === 'seconds') {
+      return Math.round(value / MILLISECONDS_IN_SECOND);
     }
     if (this.state.units === 'milliseconds') {
       return value;
@@ -78,15 +86,17 @@ class UnconnectedBinSize extends Component {
 
     return BinStartIsDate ? (
       <Field {...this.props}>
-        <RadioBlocks
+        <Dropdown
           options={[
-            {value: 'months', label: _('Mo')},
-            {value: 'days', label: _('D')},
-            {value: 'minutes', label: _('Min')},
-            {value: 'milliseconds', label: _('Ms')},
+            {value: 'months', label: _('Months')},
+            {value: 'days', label: _('Days')},
+            {value: 'minutes', label: _('Minutes')},
+            {value: 'seconds', label: _('Seconds')},
+            {value: 'milliseconds', label: _('Milliseconds')},
           ]}
-          onOptionChange={value => this.onUnitChange(value)}
-          activeOption={this.state.units}
+          clearable={false}
+          onChange={value => this.onUnitChange(value)}
+          value={this.state.units}
         />
         <div style={{height: '7px', width: '100%', display: 'block'}}> </div>
         <NumericInput
