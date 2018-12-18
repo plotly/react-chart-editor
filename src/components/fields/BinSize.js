@@ -12,11 +12,40 @@ const MILLISECONDS_IN_MINUTE = MILLISECONDS_IN_SECOND * 60; // eslint-disable-li
 const MILLISECONDS_IN_DAY = MILLISECONDS_IN_MINUTE * 60 * 24; // eslint-disable-line
 const DAYS_IN_MONTH = 30;
 
+function getSmallestUnit(milliseconds) {
+  const units = {
+    seconds: MILLISECONDS_IN_SECOND,
+    minutes: MILLISECONDS_IN_MINUTE,
+    days: MILLISECONDS_IN_DAY,
+  };
+
+  let smallestUnit = 'milliseconds';
+
+  ['seconds', 'minutes', 'days'].forEach(unit => {
+    if (
+      milliseconds % units[unit] === 0 &&
+      (smallestUnit === 'milliseconds' ||
+        (smallestUnit !== 'milliseconds' &&
+          milliseconds / units[smallestUnit] > milliseconds / units[unit]))
+    ) {
+      smallestUnit = unit;
+    }
+  });
+
+  return smallestUnit;
+}
+
 class UnconnectedBinSize extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    const initialUnit =
+      props.fullValue && typeof props.fullValue === 'string' && props.fullValue[0] === 'M'
+        ? 'months'
+        : getSmallestUnit(props.fullValue);
+
     this.state = {
-      units: 'months',
+      units: initialUnit,
     };
   }
 
@@ -35,7 +64,7 @@ class UnconnectedBinSize extends Component {
       adjustedValue = adjustedValue * MILLISECONDS_IN_MINUTE;
     }
 
-    if (this.state.seconds === 'seconds') {
+    if (this.state.units === 'seconds') {
       adjustedValue = adjustedValue * MILLISECONDS_IN_SECOND;
     }
 
@@ -59,20 +88,24 @@ class UnconnectedBinSize extends Component {
   }
 
   getDisplayValue(value) {
-    if (this.state.units === 'months' && typeof value === 'string' && value[0] === 'M') {
-      return parseInt(value.substring(1), 10);
+    const numericValue =
+      typeof value === 'string' && value[0] === 'M' ? parseInt(value.substring(1), 10) : value;
+
+    if (this.state.units === 'months') {
+      return numericValue;
     }
+
     if (this.state.units === 'days') {
-      return Math.round(value / MILLISECONDS_IN_DAY);
+      return Math.round(numericValue / MILLISECONDS_IN_DAY);
     }
     if (this.state.units === 'minutes') {
-      return Math.round(value / MILLISECONDS_IN_MINUTE);
+      return Math.round(numericValue / MILLISECONDS_IN_MINUTE);
     }
     if (this.state.units === 'seconds') {
-      return Math.round(value / MILLISECONDS_IN_SECOND);
+      return Math.round(numericValue / MILLISECONDS_IN_SECOND);
     }
     if (this.state.units === 'milliseconds') {
-      return value;
+      return numericValue;
     }
     return null;
   }
