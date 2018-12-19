@@ -34,7 +34,7 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
           >
             <PlotlyPanel key={prefix + ' panel'}>
               <PlotlyFold name={_('Title')}>
-                <TextEditor attr={prefix + 'colorbar.title'} />
+                <TextEditor attr={prefix + 'colorbar.title.text'} />
 
                 <Dropdown
                   label={_('Location')}
