@@ -314,10 +314,7 @@ class StyleAxesPanel extends Component {
               <NTicks label={_('Max Number of Markers')} attr="nticks" />
             </VisibilitySelect>
           </PlotlySection>
-        </AxesFold>
-
-        <AxesFold name={_('Multicategory Dividers')}>
-          <PlotlySection name={_('Dividers')} attr="showdividers">
+          <PlotlySection name={_('Multicategory Dividers')} attr="showdividers">
             <VisibilitySelect
               attr="showdividers"
               options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
