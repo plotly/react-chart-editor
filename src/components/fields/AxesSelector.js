@@ -31,7 +31,7 @@ class AxesSelector extends Component {
             option.value === 'allaxes'
               ? option
               : {
-                  label: option.title,
+                  label: option.title.text,
                   value: option.value,
                 }
         )

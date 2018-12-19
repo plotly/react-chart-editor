@@ -84,7 +84,7 @@ export function getAxisTitle(axis) {
   const subplotNumber = getAxisNumber(axis) || 1;
 
   return axis._input && axis._input.title
-    ? striptags(`${axisType}: ${axis._input.title}`)
+    ? striptags(`${axisType}: ${axis._input.title.text}`)
     : striptags(`${axisType} ${subplotNumber}`);
 }
 
