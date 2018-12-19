@@ -31,10 +31,10 @@ class StyleAxesPanel extends Component {
           name={_('Titles')}
           axisFilter={axis => !(axis._name.includes('angular') || axis._subplot.includes('geo'))}
         >
-          <TextEditor attr="title" />
-          <FontSelector label={_('Typeface')} attr="titlefont.family" />
-          <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
-          <ColorPicker label={_('Font Color')} attr="titlefont.color" />
+          <TextEditor attr="title.text" />
+          <FontSelector label={_('Typeface')} attr="title.font.family" />
+          <Numeric label={_('Font Size')} attr="title.font.size" units="px" />
+          <ColorPicker label={_('Font Color')} attr="title.font.color" />
         </AxesFold>
 
         <AxesFold name={_('Range')}>
@@ -48,6 +48,7 @@ class StyleAxesPanel extends Component {
                 {label: _('Log'), value: 'log'},
                 {label: _('Date'), value: 'date'},
                 {label: _('Categorical'), value: 'category'},
+                {label: _('Multicategorical'), value: 'multicategory'},
               ]}
             />
             <Radio
@@ -106,6 +107,14 @@ class StyleAxesPanel extends Component {
               <ColorPicker label={_('Color')} attr="gridcolor" />
 
               <Radio
+                label={_('Position On')}
+                attr="tickson"
+                options={[
+                  {label: _('Labels'), value: 'labels'},
+                  {label: _('Boundaries'), value: 'boundaries'},
+                ]}
+              />
+              <Radio
                 label={_('Grid Spacing')}
                 attr="tickmode"
                 options={[{label: _('Auto'), value: 'auto'}, {label: _('Custom'), value: 'linear'}]}
@@ -147,6 +156,14 @@ class StyleAxesPanel extends Component {
                 label={_('Auto margins')}
                 attr="automargin"
                 options={[{label: _('True'), value: true}, {label: _('False'), value: false}]}
+              />
+              <Radio
+                label={_('Position on')}
+                attr="tickson"
+                options={[
+                  {label: _('Labels'), value: 'labels'},
+                  {label: _('Boundaries'), value: 'boundaries'},
+                ]}
               />
               <FontSelector label={_('Typeface')} attr="tickfont.family" />
               <Numeric label={_('Font Size')} attr="tickfont.size" units="px" />
@@ -275,6 +292,14 @@ class StyleAxesPanel extends Component {
               defaultOpt={'Outside'}
             >
               <AxisSide label={_('Position')} attr="side" />
+              <Radio
+                label={_('Position on')}
+                attr="tickson"
+                options={[
+                  {label: _('Labels'), value: 'labels'},
+                  {label: _('Boundaries'), value: 'boundaries'},
+                ]}
+              />
               <Numeric label={_('Length')} attr="ticklen" units="px" />
               <Numeric label={_('Width')} attr="tickwidth" units="px" />
               <ColorPicker label={_('Color')} attr="tickcolor" />
@@ -287,6 +312,16 @@ class StyleAxesPanel extends Component {
               <DTicks label={_('Step Offset')} attr="tick0" />
               <DTicks label={_('Step Size')} attr="dtick" />
               <NTicks label={_('Max Number of Markers')} attr="nticks" />
+            </VisibilitySelect>
+          </PlotlySection>
+          <PlotlySection name={_('Multicategory Dividers')} attr="showdividers">
+            <VisibilitySelect
+              attr="showdividers"
+              options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+              showOn={true}
+            >
+              <Numeric label={_('Width')} attr="dividerwidth" units="px" />
+              <ColorPicker label={_('Color')} attr="dividercolor" />
             </VisibilitySelect>
           </PlotlySection>
         </AxesFold>

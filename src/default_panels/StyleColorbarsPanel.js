@@ -34,24 +34,24 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
           >
             <PlotlyPanel key={prefix + ' panel'}>
               <PlotlyFold name={_('Title')}>
-                <TextEditor attr={prefix + 'colorbar.title'} />
+                <TextEditor attr={prefix + 'colorbar.title.text'} />
 
                 <Dropdown
                   label={_('Location')}
-                  attr={prefix + 'colorbar.titleside'}
+                  attr={prefix + 'colorbar.title.side'}
                   options={[
                     {label: _('Top'), value: 'top'},
                     {label: _('Right'), value: 'right'},
                     {label: _('Bottom'), value: 'bottom'},
                   ]}
                 />
-                <FontSelector label={_('Typeface')} attr={prefix + 'colorbar.titlefont.family'} />
+                <FontSelector label={_('Typeface')} attr={prefix + 'colorbar.title.font.family'} />
                 <Numeric
                   label={_('Font Size')}
-                  attr={prefix + 'colorbar.titlefont.size'}
+                  attr={prefix + 'colorbar.title.font.size'}
                   units="px"
                 />
-                <ColorPicker label={_('Font Color')} attr={prefix + 'colorbar.titlefont.color'} />
+                <ColorPicker label={_('Font Color')} attr={prefix + 'colorbar.title.font.color'} />
               </PlotlyFold>
               <PlotlyFold name={_('Size and Positioning')}>
                 <PlotlySection name={_('Size')} attr={prefix + 'colorbar.len'}>

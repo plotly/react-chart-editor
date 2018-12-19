@@ -57,7 +57,7 @@ export default class CustomEditor extends Component {
               />
               <Flaglist
                 label="Flaglist"
-                attr="titlefont.family"
+                attr="title.font.family"
                 show
                 options={[{label: 'Yes', value: 'y'}, {label: 'No', value: 'n'}]}
               />

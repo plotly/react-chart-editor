@@ -41,8 +41,9 @@ class Scale extends Component {
 
     return (
       <div className="customPickerContainer__outer">
-        <Colorscale colorscale={selected} onClick={this.onClick} />
-
+        <div className="customPickerContainer__inner">
+          <Colorscale colorscale={selected} onClick={this.onClick} />
+        </div>
         {showColorscalePicker ? (
           <div className="customPickerContainer">
             <Dropdown

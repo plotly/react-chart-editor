@@ -1728,16 +1728,10 @@ export default {
   'jagged ints': [2, 1, 3, 5, 4, 6],
   'toggle ints': [1, -1, 1, -1, 1, -1],
   'big ints': [1000, 10100, 10000, 20000, 100000],
-  dates: [
-    '2010-01-01',
-    '2010-07-01',
-    '2011-01-01',
-    '2011-07-01',
-    '2012-01-01',
-    '2012-06-01',
-  ],
+  dates: ['2010-01-01', '2010-07-01', '2011-01-01', '2011-07-01', '2012-01-01', '2012-06-01'],
   months: ['January', 'February', 'March', 'April', 'May', 'June'],
   colors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo'],
+  buckets: ['A', 'A', 'A', 'B', 'B', 'B'],
   'blue and red': ['blue', 'red'],
   countries: [
     'Angola',
