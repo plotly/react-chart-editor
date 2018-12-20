@@ -98,8 +98,9 @@ $colorpicker-width: 185px;
 
 .fold .fold {
   .colorpicker__container {
-    width: calc(
-      #{$colorpicker-width} - var(--spacing-half-unit) - var(--spacing-half-unit)
-    );
+    width: calc(#{$colorpicker-width} - var(--spacing-half-unit) - var(--spacing-half-unit));
+  }
+  .colorpicker__outer {
+    width: calc(#{$colorpicker-width} - var(--spacing-half-unit) - var(--spacing-half-unit));
   }
 }
