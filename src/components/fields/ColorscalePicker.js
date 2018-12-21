@@ -3,6 +3,7 @@ import Field from './Field';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
+import {EDITOR_ACTIONS} from 'lib/constants';
 
 export class UnconnectedColorscalePicker extends Component {
   constructor(props) {
@@ -22,6 +23,13 @@ export class UnconnectedColorscalePicker extends Component {
         }),
         colorscaleType
       );
+      this.context.onUpdate({
+        type: EDITOR_ACTIONS.UPDATE_TRACES,
+        payload: {
+          update: {autocolorscale: false},
+          traceIndexes: [this.props.fullContainer.index],
+        },
+      });
     }
   }
 
@@ -43,6 +51,7 @@ export class UnconnectedColorscalePicker extends Component {
 
 UnconnectedColorscalePicker.propTypes = {
   fullValue: PropTypes.any,
+  fullContainer: PropTypes.object,
   updatePlot: PropTypes.func,
   initialCategory: PropTypes.string,
   ...Field.propTypes,
@@ -51,6 +60,7 @@ UnconnectedColorscalePicker.propTypes = {
 UnconnectedColorscalePicker.contextTypes = {
   container: PropTypes.object,
   graphDiv: PropTypes.object,
+  onUpdate: PropTypes.func,
 };
 
 export default connectToContainer(UnconnectedColorscalePicker);
