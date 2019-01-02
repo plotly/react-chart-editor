@@ -25,11 +25,12 @@
   white-space: nowrap;
   text-align: left;
   border-radius: var(--border-radius-small);
-  padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit)
-    var(--spacing-quarter-unit) var(--spacing-half-unit);
+  padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit) var(--spacing-quarter-unit)
+    var(--spacing-half-unit);
   width: 140px;
   vertical-align: middle;
   font-size: inherit;
   color: inherit;
   font-family: inherit;
+  outline: none;
 }
