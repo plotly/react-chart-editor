@@ -14,7 +14,7 @@ export class UnconnectedNumericOrDate extends Component {
       (isDateTime(this.props.fullValue) || isJSDate(this.props.fullValue));
 
     return fullValueIsDate ? (
-      <UnconnectedDateTimePicker {...this.props} placeholder={'yyyy-mm-dd 00:00:00.00'} />
+      <UnconnectedDateTimePicker {...this.props} placeholder={'yyyy-mm-dd hh:mm:ss.xxx'} />
     ) : (
       <UnconnectedNumeric {...this.props} />
     );

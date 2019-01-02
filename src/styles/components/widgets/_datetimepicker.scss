@@ -7358,3 +7358,17 @@ div.bp3-html-select.bp3-minimal.bp3-datepicker-year-select span {
 .bp3-button.bp3-minimal:hover {
   background: none;
 }
+
+.bp3-timepicker-input-row {
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  border: var(--border-default) !important;
+}
+
+.bp3-timepicker.datetimepicker-time-icon {
+  display: inline-block;
+}
+
+.datetimepicker-date-units {
+  padding: 5px;
+}

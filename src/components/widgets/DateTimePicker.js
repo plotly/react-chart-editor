@@ -80,14 +80,21 @@ export default class DateTimePicker extends Component {
               />
             ) : null}
             {this.state.timepickerOpen ? (
-              <TimePicker
-                value={JSDate}
-                precision={'millisecond'}
-                className="datetimepicker-time-icon"
-                onChange={value => {
-                  this.props.onChange(this.toPlotlyJSDate(value));
-                }}
-              />
+              <div>
+                <TimePicker
+                  value={JSDate}
+                  precision={'millisecond'}
+                  className="datetimepicker-time-icon"
+                  onChange={value => {
+                    this.props.onChange(this.toPlotlyJSDate(value));
+                  }}
+                />
+                <span className="datetimepicker-date-units">
+                  {new Date(this.props.value).toLocaleTimeString('en-US').split(' ')[1] === 'PM'
+                    ? 'PM'
+                    : 'AM'}
+                </span>
+              </div>
             ) : null}
           </div>
         ) : null}
