@@ -14,7 +14,7 @@ const DAYS_IN_MONTH = 30;
 const MONTHS_IN_YEAR = 12; //eslint-disable-line
 
 function twoDecimalsRound(value) {
-  return +value.toFixed(2);
+  return Math.round(value * 100) / 100;
 }
 
 function getSmallestUnit(milliseconds) {
