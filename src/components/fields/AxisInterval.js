@@ -36,7 +36,7 @@ function getSmallestUnit(milliseconds) {
   return smallestUnit;
 }
 
-class UnconnectedAxisInterval extends Component {
+export class UnconnectedAxisInterval extends Component {
   constructor(props) {
     super(props);
 
