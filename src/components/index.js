@@ -60,7 +60,7 @@ import {
   HovermodeDropdown,
   TickFormat,
   NumericOrDate,
-  BinSize,
+  AxisInterval,
 } from './fields';
 
 import {
@@ -182,5 +182,5 @@ export {
   HoveronDropdown,
   HovermodeDropdown,
   NumericOrDate,
-  BinSize,
+  AxisInterval,
 };

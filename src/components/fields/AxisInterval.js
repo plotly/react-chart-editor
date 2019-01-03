@@ -36,7 +36,7 @@ function getSmallestUnit(milliseconds) {
   return smallestUnit;
 }
 
-class UnconnectedBinSize extends Component {
+class UnconnectedAxisInterval extends Component {
   constructor(props) {
     super(props);
 
@@ -146,7 +146,7 @@ class UnconnectedBinSize extends Component {
         <NumericInput
           value={this.getDisplayValue(this.props.fullValue)}
           onUpdate={value => this.update(value)}
-          editableClassName="binsize-milliseconds"
+          editableClassName="AxisInterval-milliseconds"
         />
       </Field>
     ) : (
@@ -160,11 +160,11 @@ class UnconnectedBinSize extends Component {
   }
 }
 
-UnconnectedBinSize.contextTypes = {
+UnconnectedAxisInterval.contextTypes = {
   localize: PropTypes.func,
 };
 
-UnconnectedBinSize.propTypes = {
+UnconnectedAxisInterval.propTypes = {
   fullValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   updatePlot: PropTypes.func,
   attr: PropTypes.string,
@@ -172,4 +172,4 @@ UnconnectedBinSize.propTypes = {
   ...Field.propTypes,
 };
 
-export default connectToContainer(UnconnectedBinSize);
+export default connectToContainer(UnconnectedAxisInterval);

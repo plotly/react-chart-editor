@@ -34,7 +34,7 @@ import {
   VisibilitySelect,
   GroupCreator,
   NumericOrDate,
-  BinSize,
+  AxisInterval,
 } from '../components';
 import {
   BinningDropdown,
@@ -230,12 +230,12 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <NumericOrDate label={_('X Bin Start')} attr="xbins.start" axis="x" />
       <NumericOrDate label={_('X Bin End')} attr="xbins.end" axis="x" />
       <Numeric label={_('Max X Bins')} attr="nbinsx" />
-      <BinSize label={_('X Bin Size')} attr="xbins.size" axis="x" />
+      <AxisInterval label={_('X Bin Size')} attr="xbins.size" axis="x" />
 
       <NumericOrDate label={_('Y Bin Start')} attr="ybins.start" axis="y" />
       <NumericOrDate label={_('Y Bin End')} attr="ybins.end" axis="y" />
       <Numeric label={_('Max Y Bins')} attr="nbinsy" />
-      <BinSize label={_('Y Bin Size')} attr="ybins.size" axis="y" />
+      <AxisInterval label={_('Y Bin Size')} attr="ybins.size" axis="y" />
     </PlotlySection>
     <PlotlySection label={_('Bar Position')}>
       <NumericOrDate label={_('Base')} attr="base" />
