@@ -32,6 +32,7 @@ import DropdownCustom from './DropdownCustom';
 import MultiColorPicker from './MultiColorPicker';
 import RectanglePositioner from './RectanglePositioner';
 import LocationSelector from './LocationSelector';
+import AxisInterval from './AxisInterval';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -58,7 +59,6 @@ import {
   HoveronDropdown,
   HovermodeDropdown,
   TickFormat,
-  BinSize,
 } from './derived';
 import {LineDashSelector, LineShapeSelector} from './LineSelectors';
 
@@ -124,6 +124,6 @@ export {
   LocationSelector,
   HoveronDropdown,
   HovermodeDropdown,
-  BinSize,
+  AxisInterval,
   NumericOrDate,
 };

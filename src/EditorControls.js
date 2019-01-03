@@ -11,7 +11,6 @@ import {
   shamefullyAdjustSplitStyleTargetContainers,
   shamefullyDeleteRelatedAnalysisTransforms,
   shamefullyAdjustSizeref,
-  shamefullyAdjustBinSize,
 } from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
@@ -82,8 +81,6 @@ class EditorControls extends Component {
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {
             const traceIndex = payload.traceIndexes[i];
-
-            shamefullyAdjustBinSize(graphDiv, payload, traceIndex);
 
             const splitTraceGroup = payload.splitTraceGroup
               ? payload.splitTraceGroup.toString()
