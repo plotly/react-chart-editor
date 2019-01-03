@@ -126,8 +126,12 @@ export class UnconnectedAxisInterval extends Component {
     const binStartValue = this.props.fullContainer[attrHead].start;
     const BinStartIsDate =
       typeof binStartValue === 'string' && (isDateTime(binStartValue) || isJSDate(binStartValue));
+    const tick0 =
+      this.props.fullContainer.tick0 &&
+      (this.props.fullContainer.tick0 || this.props.fullContainer.colorbar.tick0);
+    const tick0IsDate = tick0 && (isDateTime(tick0) || isJSDate(tick0));
 
-    return BinStartIsDate ? (
+    return BinStartIsDate || tick0IsDate ? (
       <Field {...this.props}>
         <Dropdown
           options={[
