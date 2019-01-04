@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   AxesRange,
   DTicks,
+  DTicksInterval,
   NTicks,
   ColorPicker,
   Dropdown,
@@ -121,7 +122,7 @@ class StyleAxesPanel extends Component {
               />
 
               <DTicks label={_('Step Offset')} attr="tick0" />
-              <DTicks label={_('Step Size')} attr="dtick" />
+              <DTicksInterval label={_('Step Size')} attr="dtick" />
               <NTicks label={_('Max Number of Lines')} attr="nticks" />
             </VisibilitySelect>
           </PlotlySection>
@@ -274,7 +275,7 @@ class StyleAxesPanel extends Component {
               />
 
               <DTicks label={_('Step Offset')} attr="tick0" />
-              <DTicks label={_('Step Size')} attr="dtick" />
+              <DTicksInterval label={_('Step Size')} attr="dtick" />
               <NTicks label={_('Max Number of Labels')} attr="nticks" />
             </VisibilitySelect>
           </PlotlySection>
@@ -310,7 +311,7 @@ class StyleAxesPanel extends Component {
               />
 
               <DTicks label={_('Step Offset')} attr="tick0" />
-              <DTicks label={_('Step Size')} attr="dtick" />
+              <DTicksInterval label={_('Step Size')} attr="dtick" />
               <NTicks label={_('Max Number of Markers')} attr="nticks" />
             </VisibilitySelect>
           </PlotlySection>

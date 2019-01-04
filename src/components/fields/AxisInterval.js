@@ -13,6 +13,10 @@ const MILLISECONDS_IN_DAY = MILLISECONDS_IN_MINUTE * 60 * 24; // eslint-disable-
 const DAYS_IN_MONTH = 30;
 const MONTHS_IN_YEAR = 12; //eslint-disable-line
 
+function twoDecimalsRound(value) {
+  return Math.round(value * 100) / 100;
+}
+
 function getSmallestUnit(milliseconds) {
   const units = {
     seconds: MILLISECONDS_IN_SECOND,
@@ -36,7 +40,7 @@ function getSmallestUnit(milliseconds) {
   return smallestUnit;
 }
 
-class UnconnectedAxisInterval extends Component {
+export class UnconnectedAxisInterval extends Component {
   constructor(props) {
     super(props);
 
@@ -54,13 +58,22 @@ class UnconnectedAxisInterval extends Component {
 
   update(value) {
     let adjustedValue = value < 0 ? 0 : value;
+    const isValueInteger = adjustedValue % 1 === 0;
 
     if (this.state.units === 'years') {
-      adjustedValue = 'M' + adjustedValue * MONTHS_IN_YEAR;
+      if (isValueInteger) {
+        adjustedValue = 'M' + adjustedValue * MONTHS_IN_YEAR;
+      } else {
+        adjustedValue = adjustedValue * MONTHS_IN_YEAR * DAYS_IN_MONTH * MILLISECONDS_IN_DAY;
+      }
     }
 
     if (this.state.units === 'months') {
-      adjustedValue = 'M' + adjustedValue;
+      if (isValueInteger) {
+        adjustedValue = 'M' + adjustedValue;
+      } else {
+        adjustedValue = adjustedValue * DAYS_IN_MONTH * MILLISECONDS_IN_DAY;
+      }
     }
 
     if (this.state.units === 'days') {
@@ -89,7 +102,12 @@ class UnconnectedAxisInterval extends Component {
     this.setState({units: value});
 
     if (['years', 'months'].includes(value)) {
-      this.props.updatePlot('M' + Math.round(milliseconds / MILLISECONDS_IN_DAY / DAYS_IN_MONTH));
+      const nbMonths = milliseconds / MILLISECONDS_IN_DAY / DAYS_IN_MONTH;
+      if (nbMonths % 1 === 0) {
+        this.props.updatePlot('M' + nbMonths);
+      } else {
+        this.props.updatePlot(milliseconds);
+      }
     } else {
       this.props.updatePlot(milliseconds);
     }
@@ -100,19 +118,25 @@ class UnconnectedAxisInterval extends Component {
       typeof value === 'string' && value[0] === 'M' ? parseInt(value.substring(1), 10) : value;
 
     if (this.state.units === 'years') {
-      return numericValue / MONTHS_IN_YEAR;
+      if (typeof value === 'string') {
+        return twoDecimalsRound(numericValue / MONTHS_IN_YEAR);
+      }
+      return twoDecimalsRound(numericValue / MILLISECONDS_IN_DAY / DAYS_IN_MONTH / MONTHS_IN_YEAR);
     }
     if (this.state.units === 'months') {
-      return numericValue;
+      if (typeof value === 'string') {
+        return twoDecimalsRound(numericValue);
+      }
+      return twoDecimalsRound(numericValue / MILLISECONDS_IN_DAY / DAYS_IN_MONTH);
     }
     if (this.state.units === 'days') {
-      return Math.round(numericValue / MILLISECONDS_IN_DAY);
+      return twoDecimalsRound(numericValue / MILLISECONDS_IN_DAY);
     }
     if (this.state.units === 'minutes') {
-      return Math.round(numericValue / MILLISECONDS_IN_MINUTE);
+      return twoDecimalsRound(numericValue / MILLISECONDS_IN_MINUTE);
     }
     if (this.state.units === 'seconds') {
-      return Math.round(numericValue / MILLISECONDS_IN_SECOND);
+      return twoDecimalsRound(numericValue / MILLISECONDS_IN_SECOND);
     }
     if (this.state.units === 'milliseconds') {
       return numericValue;
@@ -126,8 +150,12 @@ class UnconnectedAxisInterval extends Component {
     const binStartValue = this.props.fullContainer[attrHead].start;
     const BinStartIsDate =
       typeof binStartValue === 'string' && (isDateTime(binStartValue) || isJSDate(binStartValue));
+    const tick0 =
+      this.props.fullContainer.tick0 &&
+      (this.props.fullContainer.tick0 || this.props.fullContainer.colorbar.tick0);
+    const tick0IsDate = tick0 && (isDateTime(tick0) || isJSDate(tick0));
 
-    return BinStartIsDate ? (
+    return BinStartIsDate || tick0IsDate ? (
       <Field {...this.props}>
         <Dropdown
           options={[
@@ -142,7 +170,7 @@ class UnconnectedAxisInterval extends Component {
           onChange={value => this.onUnitChange(value)}
           value={this.state.units}
         />
-        <div style={{height: '7px', width: '100%', display: 'block'}}> </div>
+        <div style={{width: '100%', display: 'block'}}> </div>
         <NumericInput
           value={this.getDisplayValue(this.props.fullValue)}
           onUpdate={value => this.update(value)}

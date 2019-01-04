@@ -15,6 +15,7 @@ import {
   ColorPicker,
   VisibilitySelect,
   NumericOrDate,
+  AxisInterval,
 } from '../components';
 
 export const traceHasColorbar = (trace, fullTrace) =>
@@ -213,7 +214,7 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                   />
 
                   <NumericOrDate label={_('Step Offset')} attr={prefix + 'colorbar.tick0'} />
-                  <Numeric label={_('Step Size')} attr={prefix + 'colorbar.dtick'} />
+                  <AxisInterval label={_('Step Size')} attr={prefix + 'colorbar.dtick'} />
                   <Numeric label={_('Max Number of Labels')} attr={prefix + 'colorbar.nticks'} />
                 </VisibilitySelect>
               </PlotlyFold>
@@ -241,7 +242,7 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
                   />
 
                   <NumericOrDate label={_('Step Offset')} attr={prefix + 'colorbar.tick0'} />
-                  <Numeric label={_('Step Size')} attr={prefix + 'colorbar.dtick'} />
+                  <AxisInterval label={_('Step Size')} attr={prefix + 'colorbar.dtick'} />
                   <Numeric label={_('Max Number of Labels')} attr={prefix + 'colorbar.nticks'} />
                 </VisibilitySelect>
               </PlotlyFold>
