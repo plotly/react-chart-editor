@@ -36,6 +36,18 @@ export class UnconnectedDataSelector extends Component {
     this.is2D = false;
     if (props.container) {
       this.is2D =
+        ((props.attr === 'x' || props.attr === 'y') &&
+          [
+            'scatter',
+            'scattergl',
+            'bar',
+            'heatmap',
+            'heatmapgl',
+            'violin',
+            'box',
+            'contour',
+            'contourgl',
+          ].includes(props.container.type)) ||
         (props.attr === 'z' &&
           [
             'contour',
@@ -61,14 +73,23 @@ export class UnconnectedDataSelector extends Component {
     const update = {};
     let data;
 
-    if (Array.isArray(value)) {
-      data = value.filter(v => Array.isArray(this.dataSources[v])).map(v => this.dataSources[v]);
+    const adjustedValue =
+      Array.isArray(value) &&
+      value.length === 1 &&
+      (this.props.attr === 'x' || this.props.attr === 'y')
+        ? value[0]
+        : value;
+
+    if (Array.isArray(adjustedValue)) {
+      data = adjustedValue
+        .filter(v => Array.isArray(this.dataSources[v]))
+        .map(v => this.dataSources[v]);
     } else {
-      data = this.dataSources[value] || null;
+      data = this.dataSources[adjustedValue] || null;
     }
 
     update[this.props.attr] = maybeTransposeData(data, this.srcAttr, this.props.container.type);
-    update[this.srcAttr] = maybeAdjustSrc(value, this.srcAttr, this.props.container.type, {
+    update[this.srcAttr] = maybeAdjustSrc(adjustedValue, this.srcAttr, this.props.container.type, {
       fromSrc: this.context.srcConverters ? this.context.srcConverters.fromSrc : null,
     });
 

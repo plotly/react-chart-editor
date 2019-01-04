@@ -24,6 +24,8 @@ import {
   Flaglist,
   FontSelector,
   HoverInfo,
+  HoverTemplateText,
+  HoverTemplateSwitch,
   Info,
   NumericFraction,
   NumericFractionDomain,
@@ -57,6 +59,8 @@ import {
   HoveronDropdown,
   HovermodeDropdown,
   TickFormat,
+  NumericOrDate,
+  AxisInterval,
 } from './fields';
 
 import {
@@ -131,6 +135,8 @@ export {
   Fold,
   FontSelector,
   HoverInfo,
+  HoverTemplateText,
+  HoverTemplateSwitch,
   Info,
   NumericFraction,
   NumericFractionDomain,
@@ -175,4 +181,6 @@ export {
   LocationSelector,
   HoveronDropdown,
   HovermodeDropdown,
+  NumericOrDate,
+  AxisInterval,
 };

@@ -89,6 +89,7 @@ class EditorControls extends Component {
         }
 
         shamefullyAdjustSizeref(graphDiv, payload);
+
         shamefullyClearAxisTypes(graphDiv, payload);
         shamefullyAdjustAxisRef(graphDiv, payload);
         shamefullyAddTableColumns(graphDiv, payload);
@@ -97,6 +98,7 @@ class EditorControls extends Component {
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {
             const traceIndex = payload.traceIndexes[i];
+
             const splitTraceGroup = payload.splitTraceGroup
               ? payload.splitTraceGroup.toString()
               : null;

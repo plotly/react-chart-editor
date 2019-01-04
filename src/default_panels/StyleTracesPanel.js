@@ -20,6 +20,8 @@ import {
   ColorscalePicker,
   ColorwayPicker,
   HoverInfo,
+  HoverTemplateText,
+  HoverTemplateSwitch,
   Dropdown,
   FillDropdown,
   FontSelector,
@@ -31,6 +33,7 @@ import {
   DataSelector,
   VisibilitySelect,
   GroupCreator,
+  AxisInterval,
 } from '../components';
 import {
   BinningDropdown,
@@ -146,7 +149,6 @@ const StyleTracesPanel = () => (
             ]}
           />
         </PlotlySection>
-
         <PlotlySection name={_('Header')}>
           <Numeric label={_('Height')} attr="header.height" />
           <MultiColorPicker label={_('Fill Color')} attr="header.fill.color" />
@@ -198,23 +200,82 @@ const StyleTracesPanel = () => (
             options={[{label: _('Enable'), value: true}, {label: _('Disable'), value: false}]}
           />
         </PlotlySection>
+        <TraceTypeSection
+          name={_('Bar Grouping, Sizing and Spacing')}
+          traceTypes={['bar', 'histogram']}
+          mode="trace"
+        >
+          <LayoutSection attr="name">
+            <Dropdown
+              label={_('Bar Mode')}
+              attr="barmode"
+              options={[
+                {label: _('Grouped'), value: 'group'},
+                {label: _('Positive/Negative Stacked'), value: 'relative'},
+                {label: _('Strict Sum Stacked'), value: 'stack'},
+                {label: _('Overlaid'), value: 'overlay'},
+              ]}
+              clearable={false}
+            />
+            <Dropdown
+              label={_('Normalization')}
+              attr="barnorm"
+              options={[
+                {label: _('None'), value: ''},
+                {label: _('Fraction'), value: 'fraction'},
+                {label: _('Percent'), value: 'percent'},
+              ]}
+              clearable={false}
+            />
+            <NumericFractionInverse label={_('Bar Width')} attr="bargap" />
+            <NumericFraction label={_('Bar Padding')} attr="bargroupgap" />
+          </LayoutSection>
+        </TraceTypeSection>
         <PlotlySection name={_('Binning')}>
           <Numeric label={_('X Bin Start')} attr="xbins.start" axis="x" />
           <Numeric label={_('X Bin End')} attr="xbins.end" axis="x" />
-          <Numeric label={_('X Bin Size')} attr="xbins.size" axis="x" />
           <Numeric label={_('Max X Bins')} attr="nbinsx" />
+          <AxisInterval label={_('X Bin Size')} attr="xbins.size" axis="x" />
 
           <Numeric label={_('Y Bin Start')} attr="ybins.start" axis="y" />
           <Numeric label={_('Y Bin End')} attr="ybins.end" axis="y" />
           <Numeric label={_('Y Bin Size')} attr="ybins.size" axis="y" />
-          <Numeric label={_('Max Y Bins')} attr="nbinsy" />
+          <AxisInterval label={_('Y Bin Size')} attr="ybins.size" axis="y" />
         </PlotlySection>
         <PlotlySection label={_('Bar Position')}>
           <Numeric label={_('Base')} attr="base" />
           <Numeric label={_('Offset')} attr="offset" />
           <Numeric label={_('Width')} attr="width" />
         </PlotlySection>
-
+        <TraceTypeSection name={_('Box Size and Spacing')} traceTypes={['box']} mode="trace">
+          <LayoutSection attr="name">
+            <Radio
+              label={_('Box Mode')}
+              attr="boxmode"
+              options={[
+                {label: _('Overlay'), value: 'overlay'},
+                {label: _('Group'), value: 'group'},
+              ]}
+            />
+            <NumericFractionInverse label={_('Box Width')} attr="boxgap" />
+            <NumericFraction label={_('Box Padding')} attr="boxgroupgap" />
+          </LayoutSection>
+        </TraceTypeSection>
+        <TraceTypeSection name={_('Violin Size and Spacing')} traceTypes={['violin']} mode="trace">
+          <LayoutSection attr="name">
+            <Radio
+              label={_('Violin Mode')}
+              attr="violinmode"
+              options={[
+                {label: _('Overlay'), value: 'overlay'},
+                {label: _('Group'), value: 'group'},
+              ]}
+            />
+            <NumericFractionInverse label={_('Violin Width')} attr="violingap" />
+            <NumericFraction label={_('Violin Padding')} attr="violingroupgap" />
+          </LayoutSection>
+        </TraceTypeSection>
+        <NumericFraction label={_('Whisker Width')} attr="whiskerwidth" />
         <TraceMarkerSection>
           <Radio
             label={_('Order')}
@@ -274,68 +335,6 @@ const StyleTracesPanel = () => (
           <MultiColorPicker label={_('Border Color')} attr="marker.line.color" />
           <Numeric label={_('Max Number of Points')} attr="marker.maxdisplayed" />
         </TraceMarkerSection>
-
-        <TraceTypeSection
-          name={_('Bar Size and Spacing')}
-          traceTypes={['bar', 'histogram']}
-          mode="trace"
-        >
-          <LayoutSection attr="name">
-            <Dropdown
-              label={_('Bar Mode')}
-              attr="barmode"
-              options={[
-                {label: _('Overlay'), value: 'overlay'},
-                {label: _('Group'), value: 'group'},
-                {label: _('Stack'), value: 'stack'},
-                {label: _('Relative'), value: 'relative'},
-              ]}
-              clearable={false}
-            />
-            <Dropdown
-              label={_('Normalization')}
-              attr="barnorm"
-              options={[
-                {label: _('None'), value: ''},
-                {label: _('Fraction'), value: 'fraction'},
-                {label: _('Percent'), value: 'percent'},
-              ]}
-              clearable={false}
-            />
-            <NumericFractionInverse label={_('Bar Width')} attr="bargap" />
-            <NumericFraction label={_('Bar Padding')} attr="bargroupgap" />
-          </LayoutSection>
-        </TraceTypeSection>
-        <TraceTypeSection name={_('Box Size and Spacing')} traceTypes={['box']} mode="trace">
-          <LayoutSection attr="name">
-            <Radio
-              label={_('Box Mode')}
-              attr="boxmode"
-              options={[
-                {label: _('Overlay'), value: 'overlay'},
-                {label: _('Group'), value: 'group'},
-              ]}
-            />
-            <NumericFractionInverse label={_('Box Width')} attr="boxgap" />
-            <NumericFraction label={_('Box Padding')} attr="boxgroupgap" />
-          </LayoutSection>
-        </TraceTypeSection>
-        <TraceTypeSection name={_('Violin Size and Spacing')} traceTypes={['violin']} mode="trace">
-          <LayoutSection attr="name">
-            <Radio
-              label={_('Violin Mode')}
-              attr="violinmode"
-              options={[
-                {label: _('Overlay'), value: 'overlay'},
-                {label: _('Group'), value: 'group'},
-              ]}
-            />
-            <NumericFractionInverse label={_('Violin Width')} attr="violingap" />
-            <NumericFraction label={_('Violin Padding')} attr="violingroupgap" />
-          </LayoutSection>
-        </TraceTypeSection>
-
-        <NumericFraction label={_('Whisker Width')} attr="whiskerwidth" />
         <PlotlySection name={_('Ticks')}>
           <Numeric label={_('Width')} attr="tickwidth" />
         </PlotlySection>
@@ -620,8 +619,10 @@ const StyleTracesPanel = () => (
           <NumericFraction label={_('Meanline Width')} attr="meanline.width" />
           <MultiColorPicker label={_('Meanline Color')} attr="meanline.color" />
         </PlotlySection>
-        <PlotlySection name={_('On Hover')}>
-          <HoverInfo attr="hoverinfo" label={_('Values Shown On Hover')} />
+        <PlotlySection name={_('Hover/Tooltip Text')}>
+          <HoverTemplateSwitch attr="hovertemplate" label={_('Mode')} />
+          <HoverInfo attr="hoverinfo" label={_('Show')} />
+          <HoverTemplateText attr="hovertemplate" label={_('Template')} />
           <Radio
             label={_('Split labels')}
             attr="hoverlabel.split"
@@ -638,11 +639,9 @@ const StyleTracesPanel = () => (
             <Numeric label={_('Contour Width')} attr="contour.width" />
           </VisibilitySelect>
         </PlotlySection>
-
         <PlotlySection name={_('Hover Action')}>
           <HoveronDropdown attr="hoveron" label={_('Hover on')} />
         </PlotlySection>
-
         <TraceTypeSection
           name={_('Error Bars X')}
           traceTypes={['scatter', 'scattergl', 'scatter3d', 'bar']}
@@ -650,7 +649,6 @@ const StyleTracesPanel = () => (
         >
           <ErrorBars attr="error_x" />
         </TraceTypeSection>
-
         <TraceTypeSection
           name={_('Error Bars Y')}
           traceTypes={['scatter', 'scattergl', 'scatter3d', 'bar']}
@@ -658,7 +656,6 @@ const StyleTracesPanel = () => (
         >
           <ErrorBars attr="error_y" />
         </TraceTypeSection>
-
         <TraceTypeSection name={_('Error Bars Z')} traceTypes={['scatter3d']} mode="trace">
           <ErrorBars attr="error_z" />
         </TraceTypeSection>

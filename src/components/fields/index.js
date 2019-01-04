@@ -13,6 +13,7 @@ import Radio from './Radio';
 import TextEditor from './TextEditor';
 import DataSelector from './DataSelector';
 import Numeric from './Numeric';
+import NumericOrDate from './NumericOrDate';
 import DualNumeric from './DualNumeric';
 import AxisRangeValue from './AxisRangeValue';
 import Text from './Text';
@@ -31,6 +32,7 @@ import DropdownCustom from './DropdownCustom';
 import MultiColorPicker from './MultiColorPicker';
 import RectanglePositioner from './RectanglePositioner';
 import LocationSelector from './LocationSelector';
+import AxisInterval from './AxisInterval';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -42,6 +44,8 @@ import {
   ContourNumeric,
   FillDropdown,
   HoverInfo,
+  HoverTemplateText,
+  HoverTemplateSwitch,
   NumericFraction,
   NumericFractionDomain,
   PositioningNumeric,
@@ -83,6 +87,8 @@ export {
   Flaglist,
   FontSelector,
   HoverInfo,
+  HoverTemplateText,
+  HoverTemplateSwitch,
   Info,
   NumericFraction,
   NumericFractionDomain,
@@ -118,4 +124,6 @@ export {
   LocationSelector,
   HoveronDropdown,
   HovermodeDropdown,
+  AxisInterval,
+  NumericOrDate,
 };

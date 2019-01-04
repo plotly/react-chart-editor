@@ -78,6 +78,12 @@
     }
   }
 
+  &__colorscale {
+    .field__widget {
+      padding-right: 0;
+    }
+  }
+
   .rect,
   .square {
     border-color: var(--color-accent);

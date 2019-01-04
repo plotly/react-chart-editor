@@ -58,6 +58,16 @@ const StyleLegendPanel = () => (
               ]}
             />
             <Numeric label={_('Position')} showSlider step={0.02} attr="legend.y" />
+            <Dropdown
+              label={_('Text Alignment')}
+              clearable={false}
+              attr="legend.valign"
+              options={[
+                {label: _('Top'), value: 'top'},
+                {label: _('Middle'), value: 'middle'},
+                {label: _('Bottom'), value: 'bottom'},
+              ]}
+            />
           </PlotlySection>
           <PlotlySection name={_('Orientation')}>
             <Radio

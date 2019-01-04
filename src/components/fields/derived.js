@@ -3,10 +3,12 @@ import {UnconnectedDropdown} from './Dropdown';
 import {UnconnectedDropdownCustom} from './DropdownCustom';
 import {UnconnectedFlaglist} from './Flaglist';
 import {UnconnectedNumeric} from './Numeric';
+import {UnconnectedNumericOrDate} from './NumericOrDate';
 import {UnconnectedAxisRangeValue} from './AxisRangeValue';
 import {UnconnectedRadio} from './Radio';
 import Info from './Info';
 import {UnconnectedColorPicker} from './ColorPicker';
+import {UnconnectedTextEditor} from './TextEditor';
 import {UnconnectedVisibilitySelect} from './VisibilitySelect';
 import {connectToContainer, getAllAxes, getAxisTitle, axisIdToAxisName} from 'lib';
 
@@ -432,7 +434,7 @@ export const PositioningRef = connectToContainer(UnconnectedDropdown, {
   },
 });
 
-export const PositioningNumeric = connectToContainer(UnconnectedNumeric, {
+export const PositioningNumeric = connectToContainer(UnconnectedNumericOrDate, {
   modifyPlotProps: (props, context, plotProps) => {
     const {fullContainer, fullValue, updatePlot} = plotProps;
     if (
@@ -514,6 +516,27 @@ export const TextInfo = connectToContainer(UnconnectedFlaglist, {
     }
 
     plotProps.options = options;
+  },
+});
+
+export const HoverTemplateSwitch = connectToContainer(UnconnectedRadio, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {localize: _} = context;
+
+    plotProps.options = [
+      {label: _('Values'), value: ''},
+      {label: _('Template'), value: plotProps.fullValue || ' '},
+    ];
+    return plotProps;
+  },
+});
+
+export const HoverTemplateText = connectToContainer(UnconnectedTextEditor, {
+  modifyPlotProps: (props, context, plotProps) => {
+    if (plotProps.isVisible && plotProps.fullValue === '') {
+      plotProps.isVisible = false;
+    }
+    return plotProps;
   },
 });
 

@@ -3,6 +3,7 @@ import React from 'react';
 import {
   ColorPicker,
   ColorwayPicker,
+  ColorscalePicker,
   Dropdown,
   FontSelector,
   PlotlyFold,
@@ -25,32 +26,40 @@ const StyleLayoutPanel = () => (
         <PlotlyFold name={_('Defaults')}>
           <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
           <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
-          <ColorwayPicker label={_('Base Colors')} attr="colorway" />
-          <FontSelector label={_('Typeface')} attr="font.family" clearable={false} />
-          <Numeric label={_('Font Size')} attr="font.size" units="px" />
-          <ColorPicker label={_('Font Color')} attr="font.color" />
-          <Dropdown
-            label={_('Number format')}
-            attr="separators"
-            options={[
-              {label: _('1,234.56'), value: '.,'},
-              {label: _('1 234.56'), value: ', '},
-              {label: _('1 234,56'), value: ', '},
-              {label: _('1.234,56'), value: ',.'},
-            ]}
-            clearable={false}
-          />
-        </PlotlyFold>
-
-        <PlotlyFold name={_('Title')}>
-          <PlotlySection name={_('Title')} attr="title">
-            <TextEditor attr="title" />
-            <FontSelector label={_('Typeface')} attr="titlefont.family" clearable={false} />
-            <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
-            <ColorPicker label={_('Font Color')} attr="titlefont.color" />
+          <PlotlySection name={_('Color Scales')} attr="colorway">
+            <ColorwayPicker label={_('Categorical')} attr="colorway" />
+            <ColorscalePicker label={_('Sequential')} attr="colorscale.sequential" />
+            <ColorscalePicker
+              label={_('Diverging')}
+              attr="colorscale.diverging"
+              initialCategory="divergent"
+            />
+            <ColorscalePicker label={_('Negative Sequential')} attr="colorscale.sequentialminus" />
+          </PlotlySection>
+          <PlotlySection name={_('Text')} attr="font.family">
+            <FontSelector label={_('Typeface')} attr="font.family" clearable={false} />
+            <Numeric label={_('Font Size')} attr="font.size" units="px" />
+            <ColorPicker label={_('Font Color')} attr="font.color" />
+            <Dropdown
+              label={_('Number format')}
+              attr="separators"
+              options={[
+                {label: _('1,234.56'), value: '.,'},
+                {label: _('1 234.56'), value: ', '},
+                {label: _('1 234,56'), value: ', '},
+                {label: _('1.234,56'), value: ',.'},
+              ]}
+              clearable={false}
+            />
           </PlotlySection>
         </PlotlyFold>
-
+        <PlotlyFold name={_('Title')}>
+          <TextEditor attr="title.text" />
+          <FontSelector label={_('Typeface')} attr="titlefont.family" clearable={false} />
+          <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
+          <ColorPicker label={_('Font Color')} attr="titlefont.color" />
+          <Numeric label={_('Horizontal Position')} showSlider step={0.02} attr="title.x" />
+        </PlotlyFold>
         <PlotlyFold name={_('Modebar')}>
           <Radio
             label={_('Orientation')}

@@ -2,13 +2,14 @@ import Field from './Field';
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
+import nestedProperty from 'plotly.js/src/lib/nested_property';
 import LaTeX from '../widgets/text_editors/LaTeX';
 import RichText from '../widgets/text_editors/RichText';
 import MultiFormat from '../widgets/text_editors/MultiFormat';
 import HTML from '../widgets/text_editors/HTML';
 import {EditorControlsContext} from '../../context';
 
-class UnconnectedTextEditor extends Component {
+export class UnconnectedTextEditor extends Component {
   render() {
     const {
       attr,
@@ -25,7 +26,7 @@ class UnconnectedTextEditor extends Component {
     let fullValue = this.props.fullValue;
 
     let placeholder;
-    if (multiValued || (fullValue && (!container || !container[attr]))) {
+    if (multiValued || (fullValue && (!container || !nestedProperty(container, attr)))) {
       placeholder = fullValue;
       fullValue = '';
     }

@@ -14,6 +14,7 @@ import {
   FontSelector,
   ColorPicker,
   VisibilitySelect,
+  NumericOrDate,
 } from '../components';
 import {EditorControlsContext} from '../context';
 
@@ -35,24 +36,24 @@ class StyleColorBarsPanel extends Component {
         >
           <PlotlyPanel key={prefix + ' panel'}>
             <PlotlyFold name={_('Title')}>
-              <TextEditor attr={prefix + 'colorbar.title'} />
+              <TextEditor attr={prefix + 'colorbar.title.text'} />
 
               <Dropdown
                 label={_('Location')}
-                attr={prefix + 'colorbar.titleside'}
+                attr={prefix + 'colorbar.title.side'}
                 options={[
                   {label: _('Top'), value: 'top'},
                   {label: _('Right'), value: 'right'},
                   {label: _('Bottom'), value: 'bottom'},
                 ]}
               />
-              <FontSelector label={_('Typeface')} attr={prefix + 'colorbar.titlefont.family'} />
+              <FontSelector label={_('Typeface')} attr={prefix + 'colorbar.title.font.family'} />
               <Numeric
                 label={_('Font Size')}
-                attr={prefix + 'colorbar.titlefont.size'}
+                attr={prefix + 'colorbar.title.font.size'}
                 units="px"
               />
-              <ColorPicker label={_('Font Color')} attr={prefix + 'colorbar.titlefont.color'} />
+              <ColorPicker label={_('Font Color')} attr={prefix + 'colorbar.title.font.color'} />
             </PlotlyFold>
             <PlotlyFold name={_('Size and Positioning')}>
               <PlotlySection name={_('Size')} attr={prefix + 'colorbar.len'}>
@@ -213,7 +214,7 @@ class StyleColorBarsPanel extends Component {
                   label={_('Tick spacing')}
                 />
 
-                <Numeric label={_('Step Offset')} attr={prefix + 'colorbar.tick0'} />
+                <NumericOrDate label={_('Step Offset')} attr={prefix + 'colorbar.tick0'} />
                 <Numeric label={_('Step Size')} attr={prefix + 'colorbar.dtick'} />
                 <Numeric label={_('Max Number of Labels')} attr={prefix + 'colorbar.nticks'} />
               </VisibilitySelect>
@@ -241,7 +242,7 @@ class StyleColorBarsPanel extends Component {
                   label={_('Tick spacing')}
                 />
 
-                <Numeric label={_('Step Offset')} attr={prefix + 'colorbar.tick0'} />
+                <NumericOrDate label={_('Step Offset')} attr={prefix + 'colorbar.tick0'} />
                 <Numeric label={_('Step Size')} attr={prefix + 'colorbar.dtick'} />
                 <Numeric label={_('Max Number of Labels')} attr={prefix + 'colorbar.nticks'} />
               </VisibilitySelect>

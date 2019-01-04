@@ -13,6 +13,7 @@ import {
   Radio,
   TextEditor,
   PlotlySection,
+  NumericOrDate,
 } from '../components';
 import {EditorControlsContext} from '../context';
 
