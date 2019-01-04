@@ -7,7 +7,6 @@
     "url": "https://github.com/plotly/react-chart-editor/issues"
   },
   "dependencies": {
-    "@blueprintjs/datetime": "^3.5.0",
     "@plotly/draft-js-export-html": "1.2.0",
     "classnames": "^2.2.5",
     "draft-js": "^0.10.4",
@@ -53,7 +52,6 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-react-percy": "^0.2.1",
-    "file-loader": "^2.0.0",
     "fs": "^0.0.1-security",
     "gl": "^4.0.4",
     "glob": "^7.1.2",

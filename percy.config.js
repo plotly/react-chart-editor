@@ -10,14 +10,6 @@ export default {
           test: /\.json$/,
           loader: 'json-loader',
         },
-        {
-          test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
-          use: [
-            {
-              loader: 'file-loader',
-            },
-          ],
-        },
       ],
     },
   },
