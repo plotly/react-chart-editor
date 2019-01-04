@@ -22,7 +22,6 @@ $width: 220px;
   width: 200px;
   height: 30px;
   margin: 0 auto;
-  padding-top: 2px;
 }
 
 .datetimepicker-container-input {
@@ -72,7 +71,11 @@ $width: 220px;
 
 .DayPicker-wrapper {
   width: $width;
-  padding-bottom: 8px;
+  padding-bottom: 5px;
+}
+
+.DayPicker-Day {
+  outline: none !important;
 }
 
 .DayPicker-Day--highlighted {
@@ -81,12 +84,12 @@ $width: 220px;
   outline: none;
 }
 
-.DayPicker-Weekday {
-  color: #577290 !important;
+.DayPicker-Day--highlighted:hover {
+  background-color: var(--color-accent) !important;
 }
 
-.DayPicker-Day--highlighted:hover {
-  color: var(--color-text-base);
+.DayPicker-Weekday {
+  color: #577290 !important;
 }
 
 .datimepicker-yearpicker,

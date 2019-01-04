@@ -3,9 +3,22 @@ import {CalendarMultiselectIcon, RecentIcon} from 'plotly-icons';
 import {ms2DateTime, dateTime2ms} from 'plotly.js/src/lib/dates';
 import DayPicker from 'react-day-picker';
 import PropTypes from 'prop-types';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import TextInput from './TextInput';
 import Dropdown from './Dropdown';
+
+function formatDigits(number, nbDigits) {
+  const string = number.toString();
+  if (string.length !== nbDigits) {
+    return (
+      new Array(nbDigits - string.length)
+        .fill(0)
+        .join()
+        .replace(',', '') + number
+    );
+  }
+  return number;
+}
 
 export default class DateTimePicker extends Component {
   constructor() {
@@ -19,6 +32,7 @@ export default class DateTimePicker extends Component {
     this.toPlotlyJSDate = this.toPlotlyJSDate.bind(this);
     this.onMonthChange = this.onMonthChange.bind(this);
     this.onYearChange = this.onYearChange.bind(this);
+    this.updateTime = this.updateTime.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -41,10 +55,12 @@ export default class DateTimePicker extends Component {
 
   getYearOptions(current) {
     const yearAsNumber = parseInt(current, 10);
+    // eslint-disable-next-line
     const lastFive = new Array(5).fill(0).map((year, index) => {
-      const newOption = yearAsNumber - (5 - index);
+      const newOption = yearAsNumber - (5 - index); // eslint-disable-line
       return {label: newOption, value: newOption};
     });
+    // eslint-disable-next-line
     const nextFive = new Array(5).fill(0).map((year, index) => {
       const newOption = yearAsNumber + (index + 1);
       return {label: newOption, value: newOption};
@@ -82,12 +98,21 @@ export default class DateTimePicker extends Component {
     this.props.onChange(this.toPlotlyJSDate(currentDateInJS));
   }
 
+  getTime(JSDate) {
+    return `${formatDigits(JSDate.getHours(), 2)}:${formatDigits(
+      JSDate.getMinutes(),
+      2
+    )}:${formatDigits(JSDate.getSeconds(), 2)}.${formatDigits(JSDate.getMilliseconds(), 3)}`;
+  }
+
+  updateTime(value) {
+    const date = this.props.value.split(' ')[0];
+    this.props.onChange(date + ' ' + value);
+  }
+
   render() {
     const JSDate = new Date(this.props.value);
-    const currentMonth = JSDate.getMonth();
     const currentYear = JSDate.getFullYear();
-    const monthOptions = this.getMonthOptions();
-    const yearOptions = this.getYearOptions(currentYear);
 
     return (
       <div className="datetimepicker-container">
@@ -124,14 +149,14 @@ export default class DateTimePicker extends Component {
               <div className="datetimepicker-datepicker-container">
                 <div className="datetimepicker-datepicker-navbar">
                   <Dropdown
-                    options={monthOptions}
-                    value={currentMonth}
+                    options={this.getMonthOptions()}
+                    value={JSDate.getMonth()}
                     className="datimepicker-monthpicker"
                     clearable={false}
                     onChange={this.onMonthChange}
                   />
                   <Dropdown
-                    options={yearOptions}
+                    options={this.getYearOptions(currentYear)}
                     value={currentYear}
                     className="datimepicker-yearpicker"
                     clearable={false}
@@ -151,10 +176,9 @@ export default class DateTimePicker extends Component {
             {this.state.timepickerOpen ? (
               <div>
                 <TextInput
-                  value={JSDate}
-                  onUpdate={value => {
-                    this.props.onChange(this.toPlotlyJSDate(value));
-                  }}
+                  value={this.getTime(JSDate)}
+                  onUpdate={this.updateTime}
+                  placeHolder="hh:mm:ss.xxx"
                 />
                 <span className="datetimepicker-date-units">
                   {new Date(this.props.value).toLocaleTimeString('en-US').split(' ')[1] === 'PM'
