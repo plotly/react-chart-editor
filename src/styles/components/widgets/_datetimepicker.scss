@@ -1,5 +1,7 @@
+$width: 220px;
+
 .datetimepicker-container {
-  width: 220px;
+  width: $width;
 
   .mdi-icon {
     width: 20px;
@@ -8,6 +10,19 @@
   &__content {
     margin-top: 5px;
   }
+}
+
+.datetimepicker-datepicker-container {
+  margin-top: 5px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 5px;
+}
+
+.datetimepicker-datepicker-navbar {
+  width: 200px;
+  height: 30px;
+  margin: 0 auto;
+  padding-top: 2px;
 }
 
 .datetimepicker-container-input {
@@ -31,9 +46,64 @@
 }
 
 .datepicker-container-rce {
-  border: var(--border-default);
+  outline: none;
 }
 
 .datetimepicker-date-units {
   padding: 5px;
+}
+
+.DayPicker {
+  font-size: $font-size;
+}
+
+.DayPicker-NavBar,
+.DayPicker-Caption {
+  display: none;
+}
+
+.DayPicker-Month {
+  margin: 0px;
+}
+
+.DayPicker-Months {
+  margin: 2px 0;
+}
+
+.DayPicker-wrapper {
+  width: $width;
+  padding-bottom: 8px;
+}
+
+.DayPicker-Day--highlighted {
+  background-color: var(--color-accent);
+  color: white;
+  outline: none;
+}
+
+.DayPicker-Weekday {
+  color: #577290 !important;
+}
+
+.DayPicker-Day--highlighted:hover {
+  color: var(--color-text-base);
+}
+
+.datimepicker-yearpicker,
+.datimepicker-monthpicker {
+  display: inline-block;
+  font-size: 14px;
+}
+
+.datimepicker-monthpicker {
+  min-width: 120px;
+}
+
+.datimepicker-yearpicker {
+  min-width: 70px !important;
+}
+
+.dropdown-container.datimepicker-monthpicker div div,
+.dropdown-container.datimepicker-yearpicker div div {
+  border: none;
 }

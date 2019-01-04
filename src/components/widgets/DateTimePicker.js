@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import {DatePicker, TimePicker} from '@blueprintjs/datetime';
-import '@blueprintjs/datetime/lib/css/blueprint-datetime.css';
-import TextInput from './TextInput';
+import 'react-day-picker/lib/style.css';
 import {CalendarMultiselectIcon, RecentIcon} from 'plotly-icons';
 import {ms2DateTime, dateTime2ms} from 'plotly.js/src/lib/dates';
+import DayPicker from 'react-day-picker';
+import PropTypes from 'prop-types';
+import React, {Component, Fragment} from 'react';
+import TextInput from './TextInput';
+import Dropdown from './Dropdown';
 
 export default class DateTimePicker extends Component {
   constructor() {
@@ -16,6 +17,8 @@ export default class DateTimePicker extends Component {
 
     this.onToggle = this.onToggle.bind(this);
     this.toPlotlyJSDate = this.toPlotlyJSDate.bind(this);
+    this.onMonthChange = this.onMonthChange.bind(this);
+    this.onYearChange = this.onYearChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -36,8 +39,55 @@ export default class DateTimePicker extends Component {
     return ms2DateTime(ms);
   }
 
+  getYearOptions(current) {
+    const yearAsNumber = parseInt(current, 10);
+    const lastFive = new Array(5).fill(0).map((year, index) => {
+      const newOption = yearAsNumber - (5 - index);
+      return {label: newOption, value: newOption};
+    });
+    const nextFive = new Array(5).fill(0).map((year, index) => {
+      const newOption = yearAsNumber + (index + 1);
+      return {label: newOption, value: newOption};
+    });
+    return lastFive.concat([{label: current, value: current}]).concat(nextFive);
+  }
+
+  getMonthOptions() {
+    const _ = this.context.localize;
+    return [
+      {label: _('January'), value: 0},
+      {label: _('February'), value: 1},
+      {label: _('March'), value: 2},
+      {label: _('April'), value: 3},
+      {label: _('May'), value: 4},
+      {label: _('June'), value: 5},
+      {label: _('July'), value: 6},
+      {label: _('August'), value: 7},
+      {label: _('September'), value: 8},
+      {label: _('October'), value: 9},
+      {label: _('November'), value: 10},
+      {label: _('December'), value: 11},
+    ];
+  }
+
+  onMonthChange(value) {
+    const currentDateInJS = new Date(this.props.value);
+    currentDateInJS.setMonth(value);
+    this.props.onChange(this.toPlotlyJSDate(currentDateInJS));
+  }
+
+  onYearChange(value) {
+    const currentDateInJS = new Date(this.props.value);
+    currentDateInJS.setFullYear(value);
+    this.props.onChange(this.toPlotlyJSDate(currentDateInJS));
+  }
+
   render() {
     const JSDate = new Date(this.props.value);
+    const currentMonth = JSDate.getMonth();
+    const currentYear = JSDate.getFullYear();
+    const monthOptions = this.getMonthOptions();
+    const yearOptions = this.getYearOptions(currentYear);
 
     return (
       <div className="datetimepicker-container">
@@ -71,21 +121,38 @@ export default class DateTimePicker extends Component {
         {this.state.calendarOpen || this.state.timepickerOpen ? (
           <div className="datetimepicker-container__content">
             {this.state.calendarOpen ? (
-              <DatePicker
-                value={JSDate}
-                className="datepicker-container-rce"
-                onChange={value => {
-                  this.props.onChange(this.toPlotlyJSDate(value));
-                }}
-              />
+              <div className="datetimepicker-datepicker-container">
+                <div className="datetimepicker-datepicker-navbar">
+                  <Dropdown
+                    options={monthOptions}
+                    value={currentMonth}
+                    className="datimepicker-monthpicker"
+                    clearable={false}
+                    onChange={this.onMonthChange}
+                  />
+                  <Dropdown
+                    options={yearOptions}
+                    value={currentYear}
+                    className="datimepicker-yearpicker"
+                    clearable={false}
+                    onChange={this.onYearChange}
+                  />
+                </div>
+                <DayPicker
+                  className="datepicker-container-rce"
+                  modifiers={{highlighted: JSDate}}
+                  month={JSDate}
+                  onDayClick={value => {
+                    this.props.onChange(this.toPlotlyJSDate(value));
+                  }}
+                />
+              </div>
             ) : null}
             {this.state.timepickerOpen ? (
               <div>
-                <TimePicker
+                <TextInput
                   value={JSDate}
-                  precision={'millisecond'}
-                  className="datetimepicker-time-icon"
-                  onChange={value => {
+                  onUpdate={value => {
                     this.props.onChange(this.toPlotlyJSDate(value));
                   }}
                 />
@@ -107,4 +174,8 @@ DateTimePicker.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
+};
+
+DateTimePicker.contextTypes = {
+  localize: PropTypes.func,
 };
