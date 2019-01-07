@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 import {EDITOR_ACTIONS} from 'lib/constants';
+import {EditorControlsContext} from '../../context';
 
 export class UnconnectedColorscalePicker extends Component {
   constructor(props) {
@@ -64,7 +65,8 @@ UnconnectedColorscalePicker.requireContext = {
   updateContainer: PropTypes.func,
   traceIndexes: PropTypes.array,
   graphDiv: PropTypes.object,
-  onUpdate: PropTypes.func,
 };
+
+UnconnectedColorscalePicker.contextType = EditorControlsContext;
 
 export default connectToContainer(UnconnectedColorscalePicker);
