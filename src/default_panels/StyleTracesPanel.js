@@ -239,7 +239,7 @@ const StyleTracesPanel = () => (
 
           <Numeric label={_('Y Bin Start')} attr="ybins.start" axis="y" />
           <Numeric label={_('Y Bin End')} attr="ybins.end" axis="y" />
-          <Numeric label={_('Y Bin Size')} attr="ybins.size" axis="y" />
+          <Numeric label={_('Max Y Bins')} attr="nbinsy" />
           <AxisInterval label={_('Y Bin Size')} attr="ybins.size" axis="y" />
         </PlotlySection>
         <PlotlySection label={_('Bar Position')}>
