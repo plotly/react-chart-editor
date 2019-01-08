@@ -20,8 +20,17 @@
   margin: 0 auto;
 }
 
-.datetimepicker-container-input {
+.datetimepicker-container-date-input {
   margin-top: -20px;
+}
+
+.datetimepicker-container-date-input--error {
+  margin-top: -20px;
+  border-color: var(--color-sienna);
+}
+
+.datetimepicker-container-time-input--error {
+  border-color: var(--color-sienna);
 }
 
 .datetimepicker-container-icons {

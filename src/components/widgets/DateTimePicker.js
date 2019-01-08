@@ -1,30 +1,34 @@
 import 'react-day-picker/lib/style.css';
 import {CalendarMultiselectIcon} from 'plotly-icons';
-import {ms2DateTime, dateTime2ms} from 'plotly.js/src/lib/dates';
+import {ms2DateTime, dateTime2ms, isDateTime} from 'plotly.js/src/lib/dates';
 import DayPicker from 'react-day-picker';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import TextInput from './TextInput';
 import Dropdown from './Dropdown';
 
-function formatDigits(number, nbDigits) {
-  const string = number.toString();
-  if (string.length !== nbDigits) {
-    return (
-      new Array(nbDigits - string.length)
-        .fill(0)
-        .join()
-        .replace(',', '') + number
-    );
-  }
-  return number;
-}
+const testDate = '2000-01-01';
+const testTime = '00:00';
+const datePlaceholder = 'yyyy-mm-dd';
+const timePlaceholder = 'hh:mm:ss.xxx';
 
 export default class DateTimePicker extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    const {time, date} = this.parseDateTime(props.value);
+    const isValidTime = isDateTime(testDate + ' ' + time);
+    const isValidDate = isDateTime(date + ' ' + testTime);
+
     this.state = {
       calendarOpen: false,
+      dateInputClassName: isValidDate
+        ? 'datetimepicker-container-date-input'
+        : 'datetimepicker-container-date-input--error',
+      timeInputClassName: isValidTime
+        ? 'datetimepicker-container-time-input'
+        : 'datetimepicker-container-time-input--error',
+      timeValue: time,
+      dateValue: date,
     };
 
     this.toPlotlyJSDate = this.toPlotlyJSDate.bind(this);
@@ -78,22 +82,33 @@ export default class DateTimePicker extends Component {
   onMonthChange(value) {
     const currentDateInJS = new Date(this.props.value);
     currentDateInJS.setMonth(value);
-    this.props.onChange(this.toPlotlyJSDate(currentDateInJS));
+    const plotlyJSDate = this.toPlotlyJSDate(currentDateInJS);
+
+    if (isDateTime(plotlyJSDate)) {
+      this.props.onChange(plotlyJSDate);
+    }
+
+    const {time, date} = this.parseDateTime(plotlyJSDate);
+    this.setState({
+      timeValue: time,
+      dateValue: date,
+    });
   }
 
   onYearChange(value) {
     const currentDateInJS = new Date(this.props.value);
     currentDateInJS.setFullYear(value);
-    this.props.onChange(this.toPlotlyJSDate(currentDateInJS));
-  }
+    const plotlyJSDate = this.toPlotlyJSDate(currentDateInJS);
 
-  getTime(JSDate) {
-    return (
-      `${formatDigits(JSDate.getHours(), 2)}:` +
-      `${formatDigits(JSDate.getMinutes(), 2)}:` +
-      `${formatDigits(JSDate.getSeconds(), 2)}.` +
-      `${formatDigits(JSDate.getMilliseconds(), 3)}`
-    );
+    if (isDateTime(plotlyJSDate)) {
+      this.props.onChange(plotlyJSDate);
+    }
+
+    const {time, date} = this.parseDateTime(plotlyJSDate);
+    this.setState({
+      timeValue: time,
+      dateValue: date,
+    });
   }
 
   parseDateTime(value) {
@@ -102,31 +117,72 @@ export default class DateTimePicker extends Component {
   }
 
   updateTime(value) {
-    const {date: currentDate, time: currentTime} = this.parseDateTime(this.props.value);
+    const update = this.state.dateValue + ' ' + value;
+    const isValidTime = isDateTime(testDate + ' ' + value);
 
-    if (value !== currentTime) {
-      this.props.onChange(currentDate + ' ' + value);
+    if (value === '') {
+      this.setState({
+        timeInputClassName: 'datetimepicker-container-time-input',
+        timeValue: timePlaceholder,
+      });
+      return;
+    }
+
+    if (isValidTime) {
+      this.props.onChange(update);
+      this.setState({
+        timeValue: value,
+        timeInputClassName: 'datetimepicker-container-time-input',
+      });
+      return;
+    }
+
+    if (!isValidTime) {
+      this.setState({
+        timeInputClassName: 'datetimepicker-container-time-input--error',
+        timeValue: value,
+      });
     }
   }
 
   updateDate(value) {
-    const {date: currentDate, time: currentTime} = this.parseDateTime(this.props.value);
+    const update = value + ' ' + this.state.timeValue;
+    const isValidDate = isDateTime(value + ' ' + testTime);
 
-    if (value !== currentDate) {
-      this.props.onChange(value + ' ' + currentTime);
+    if (isValidDate) {
+      this.props.onChange(update);
+      this.setState({
+        dateValue: value,
+        dateInputClassName: 'datetimepicker-container-date-input',
+      });
+      return;
+    }
+
+    if (value === '') {
+      this.setState({
+        dateValue: datePlaceholder,
+        dateInputClassName: 'datetimepicker-container-date-input',
+      });
+      return;
+    }
+
+    if (!isValidDate) {
+      this.setState({
+        dateValue: value,
+        dateInputClassName: 'datetimepicker-container-date-input--error',
+      });
     }
   }
 
   render() {
-    const {date: currentDate} = this.parseDateTime(this.props.value);
     const JSDate = new Date(this.props.value);
     const currentYear = JSDate.getFullYear();
 
     return (
       <div className="datetimepicker-container">
         <TextInput
-          value={currentDate}
-          editableClassName={'datetimepicker-container-input'}
+          value={this.state.dateValue}
+          editableClassName={this.state.dateInputClassName}
           onUpdate={this.updateDate}
         />
         <div className="datetimepicker-container-icons">
@@ -174,9 +230,10 @@ export default class DateTimePicker extends Component {
         ) : null}
         <div className="datetimepicker-container-time">
           <TextInput
-            value={this.getTime(JSDate)}
+            value={this.state.timeValue}
             onUpdate={this.updateTime}
             placeHolder="hh:mm:ss.xxx"
+            editableClassName={this.state.timeInputClassName}
           />
           <span className="datetimepicker-date-units">
             {JSDate.toLocaleTimeString('en-US').split(' ')[1] === 'PM' ? 'PM' : 'AM'}

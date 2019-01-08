@@ -9,9 +9,9 @@ import {UnconnectedDateTimePicker} from './DateTimePicker';
 
 export class UnconnectedNumericOrDate extends Component {
   render() {
+    const date = typeof this.props.fullValue === 'string' && this.props.fullValue.split(' ')[0];
     const fullValueIsDate =
-      typeof this.props.fullValue === 'string' &&
-      (isDateTime(this.props.fullValue) || isJSDate(this.props.fullValue));
+      typeof this.props.fullValue === 'string' && date && (isDateTime(date) || isJSDate(date));
 
     return fullValueIsDate ? (
       <UnconnectedDateTimePicker {...this.props} placeholder={'yyyy-mm-dd hh:mm:ss.xxx'} />
