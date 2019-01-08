@@ -1,6 +1,6 @@
 import Field from './Field';
 import {UnconnectedNumeric} from './Numeric';
-import {UnconnectedText} from './Text';
+import {UnconnectedDateTimePicker} from './DateTimePicker';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
@@ -9,7 +9,7 @@ export class UnconnectedAxisRangeValue extends Component {
   render() {
     return this.props.multiValued ||
       (this.props.fullContainer && this.props.fullContainer.type === 'date') ? (
-      <UnconnectedText {...this.props} />
+      <UnconnectedDateTimePicker {...this.props} />
     ) : (
       <UnconnectedNumeric {...this.props} />
     );
