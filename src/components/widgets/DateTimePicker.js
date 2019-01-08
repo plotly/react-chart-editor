@@ -1,5 +1,5 @@
 import 'react-day-picker/lib/style.css';
-import {CalendarMultiselectIcon, RecentIcon} from 'plotly-icons';
+import {CalendarMultiselectIcon} from 'plotly-icons';
 import {ms2DateTime, dateTime2ms} from 'plotly.js/src/lib/dates';
 import DayPicker from 'react-day-picker';
 import PropTypes from 'prop-types';
@@ -25,27 +25,13 @@ export default class DateTimePicker extends Component {
     super();
     this.state = {
       calendarOpen: false,
-      timepickerOpen: false,
     };
 
-    this.onToggle = this.onToggle.bind(this);
     this.toPlotlyJSDate = this.toPlotlyJSDate.bind(this);
     this.onMonthChange = this.onMonthChange.bind(this);
     this.onYearChange = this.onYearChange.bind(this);
     this.updateTime = this.updateTime.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // Reset the value to the graph's actual value
-    if (nextProps.value !== this.props.value) {
-      this.setState({
-        value: nextProps.value,
-      });
-    }
-  }
-
-  onToggle() {
-    this.setState({expanded: !this.state.expanded});
+    this.updateDate = this.updateDate.bind(this);
   }
 
   toPlotlyJSDate(value) {
@@ -54,17 +40,20 @@ export default class DateTimePicker extends Component {
   }
 
   getYearOptions(current) {
-    const yearAsNumber = parseInt(current, 10);
     // eslint-disable-next-line
-    const lastFive = new Array(5).fill(0).map((year, index) => {
-      const newOption = yearAsNumber - (5 - index); // eslint-disable-line
+    const base = 5;
+    const yearAsNumber = parseInt(current, 10);
+
+    const lastFive = new Array(base).fill(0).map((year, index) => {
+      const newOption = yearAsNumber - (base - index);
       return {label: newOption, value: newOption};
     });
-    // eslint-disable-next-line
-    const nextFive = new Array(5).fill(0).map((year, index) => {
+
+    const nextFive = new Array(base).fill(0).map((year, index) => {
       const newOption = yearAsNumber + (index + 1);
       return {label: newOption, value: newOption};
     });
+
     return lastFive.concat([{label: current, value: current}]).concat(nextFive);
   }
 
@@ -99,51 +88,58 @@ export default class DateTimePicker extends Component {
   }
 
   getTime(JSDate) {
-    return `${formatDigits(JSDate.getHours(), 2)}:${formatDigits(
-      JSDate.getMinutes(),
-      2
-    )}:${formatDigits(JSDate.getSeconds(), 2)}.${formatDigits(JSDate.getMilliseconds(), 3)}`;
+    return (
+      `${formatDigits(JSDate.getHours(), 2)}:` +
+      `${formatDigits(JSDate.getMinutes(), 2)}:` +
+      `${formatDigits(JSDate.getSeconds(), 2)}.` +
+      `${formatDigits(JSDate.getMilliseconds(), 3)}`
+    );
+  }
+
+  parseDateTime(value) {
+    const parsed = value.split(' ');
+    return {date: parsed[0], time: parsed[1]};
   }
 
   updateTime(value) {
-    const date = this.props.value.split(' ')[0];
-    this.props.onChange(date + ' ' + value);
+    const {date: currentDate, time: currentTime} = this.parseDateTime(this.props.value);
+
+    if (value !== currentTime) {
+      this.props.onChange(currentDate + ' ' + value);
+    }
+  }
+
+  updateDate(value) {
+    const {date: currentDate, time: currentTime} = this.parseDateTime(this.props.value);
+
+    if (value !== currentDate) {
+      this.props.onChange(value + ' ' + currentTime);
+    }
   }
 
   render() {
+    const {date: currentDate} = this.parseDateTime(this.props.value);
     const JSDate = new Date(this.props.value);
     const currentYear = JSDate.getFullYear();
 
     return (
       <div className="datetimepicker-container">
         <TextInput
-          value={this.props.value}
+          value={currentDate}
           editableClassName={'datetimepicker-container-input'}
-          onUpdate={this.props.onChange}
+          onUpdate={this.updateDate}
         />
         <div className="datetimepicker-container-icons">
           <CalendarMultiselectIcon
-            onClick={() =>
-              this.setState({calendarOpen: !this.state.calendarOpen, timepickerOpen: false})
-            }
+            onClick={() => this.setState({calendarOpen: !this.state.calendarOpen})}
             className={
               this.state.calendarOpen
                 ? 'datetimepicker-date-icon--selected'
                 : 'datetimepicker-date-icon'
             }
           />
-          <RecentIcon
-            onClick={() =>
-              this.setState({timepickerOpen: !this.state.timepickerOpen, calendarOpen: false})
-            }
-            className={
-              this.state.timepickerOpen
-                ? 'datetimepicker-time-icon--selected'
-                : 'datetimepicker-time-icon'
-            }
-          />
         </div>
-        {this.state.calendarOpen || this.state.timepickerOpen ? (
+        {this.state.calendarOpen ? (
           <div className="datetimepicker-container__content">
             {this.state.calendarOpen ? (
               <div className="datetimepicker-datepicker-container">
@@ -168,27 +164,24 @@ export default class DateTimePicker extends Component {
                   modifiers={{highlighted: JSDate}}
                   month={JSDate}
                   onDayClick={value => {
-                    this.props.onChange(this.toPlotlyJSDate(value));
+                    const plotlyDate = this.toPlotlyJSDate(value).split(' ')[0];
+                    this.updateDate(plotlyDate);
                   }}
                 />
               </div>
             ) : null}
-            {this.state.timepickerOpen ? (
-              <div>
-                <TextInput
-                  value={this.getTime(JSDate)}
-                  onUpdate={this.updateTime}
-                  placeHolder="hh:mm:ss.xxx"
-                />
-                <span className="datetimepicker-date-units">
-                  {new Date(this.props.value).toLocaleTimeString('en-US').split(' ')[1] === 'PM'
-                    ? 'PM'
-                    : 'AM'}
-                </span>
-              </div>
-            ) : null}
           </div>
         ) : null}
+        <div className="datetimepicker-container-time">
+          <TextInput
+            value={this.getTime(JSDate)}
+            onUpdate={this.updateTime}
+            placeHolder="hh:mm:ss.xxx"
+          />
+          <span className="datetimepicker-date-units">
+            {JSDate.toLocaleTimeString('en-US').split(' ')[1] === 'PM' ? 'PM' : 'AM'}
+          </span>
+        </div>
       </div>
     );
   }
