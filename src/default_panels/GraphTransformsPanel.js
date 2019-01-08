@@ -64,7 +64,10 @@ export class Aggregations extends Component {
 Aggregations.plotly_editor_traits = {no_visibility_forcing: true};
 Aggregations.contextType = EditorControlsContext;
 Aggregations.requireContext = {
+  container: PropTypes.object,
   fullContainer: PropTypes.object,
+  updateContainer: PropTypes.func,
+  getValObject: PropTypes.func,
 };
 Aggregations.propTypes = {
   context: PropTypes.any,
