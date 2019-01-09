@@ -54,6 +54,12 @@
   border-color: var(--color-sienna);
 }
 
+.numeric-input__number--error:focus {
+  @extend .numeric-input__number;
+  border-color: var(--color-sienna);
+  outline-color: var(--color-sienna);
+}
+
 .numeric-input__caret-box {
   display: inline-block;
   max-height: 32px;
