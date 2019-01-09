@@ -69,7 +69,7 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Active Icon Color')} attr="modebar.activecolor" />
       <ColorPicker label={_('Background Color')} attr="modebar.bgcolor" />
     </PlotlyFold>
-    <PlotlyFold name={_('Layout')}>
+    <PlotlyFold name={_('Size and Margins')}>
       <VisibilitySelect
         attr="autosize"
         label={_('Size')}
