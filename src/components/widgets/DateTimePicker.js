@@ -16,8 +16,8 @@ export default class DateTimePicker extends Component {
   constructor(props) {
     super(props);
     const {time, date} = this.parseDateTime(props.value);
-    const isValidTime = isDateTime(testDate + ' ' + time);
-    const isValidDate = isDateTime(date + ' ' + testTime);
+    const isValidTime = isDateTime(testDate + ' ' + time) || time === timePlaceholder;
+    const isValidDate = isDateTime(date + ' ' + testTime) || date === datePlaceholder;
 
     this.state = {
       calendarOpen: false,
@@ -113,11 +113,12 @@ export default class DateTimePicker extends Component {
 
   parseDateTime(value) {
     const parsed = value.split(' ');
-    return {date: parsed[0], time: parsed[1]};
+    return {date: parsed[0], time: parsed[1] ? parsed[1] : ''};
   }
 
   updateTime(value) {
-    const update = this.state.dateValue + ' ' + value;
+    const {date: currentDate} = this.parseDateTime(this.props.value);
+    const update = currentDate + ' ' + value;
     const isValidTime = isDateTime(testDate + ' ' + value);
 
     if (value === '') {
@@ -137,6 +138,10 @@ export default class DateTimePicker extends Component {
       return;
     }
 
+    if (value === timePlaceholder) {
+      return;
+    }
+
     if (!isValidTime) {
       this.setState({
         timeInputClassName: 'datetimepicker-container-time-input--error',
@@ -146,7 +151,8 @@ export default class DateTimePicker extends Component {
   }
 
   updateDate(value) {
-    const update = value + ' ' + this.state.timeValue;
+    const {time: currentTime} = this.parseDateTime(this.props.value);
+    const update = value + ' ' + currentTime;
     const isValidDate = isDateTime(value + ' ' + testTime);
 
     if (isValidDate) {
@@ -163,6 +169,10 @@ export default class DateTimePicker extends Component {
         dateValue: datePlaceholder,
         dateInputClassName: 'datetimepicker-container-date-input',
       });
+      return;
+    }
+
+    if (value === datePlaceholder) {
       return;
     }
 
@@ -184,6 +194,7 @@ export default class DateTimePicker extends Component {
           value={this.state.dateValue}
           editableClassName={this.state.dateInputClassName}
           onUpdate={this.updateDate}
+          placeHolder={datePlaceholder}
         />
         <div className="datetimepicker-container-icons">
           <CalendarMultiselectIcon
@@ -232,7 +243,7 @@ export default class DateTimePicker extends Component {
           <TextInput
             value={this.state.timeValue}
             onUpdate={this.updateTime}
-            placeHolder="hh:mm:ss.xxx"
+            placeHolder={timePlaceholder}
             editableClassName={this.state.timeInputClassName}
           />
           <span className="datetimepicker-date-units">
@@ -247,7 +258,6 @@ export default class DateTimePicker extends Component {
 DateTimePicker.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string.isRequired,
 };
 
 DateTimePicker.contextTypes = {
