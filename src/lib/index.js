@@ -204,8 +204,26 @@ function getFullTrace(props, context) {
   return fullTrace;
 }
 
+function adjustValue(value, attr) {
+  return Array.isArray(value) && value.length === 1 && (attr === 'x' || attr === 'y')
+    ? value[0]
+    : value;
+}
+
+function adjustData(dataSources, adjustedValue) {
+  let data;
+  if (Array.isArray(adjustedValue)) {
+    data = adjustedValue.filter(v => Array.isArray(dataSources[v])).map(v => dataSources[v]);
+  } else {
+    data = dataSources[adjustedValue] || null;
+  }
+  return data;
+}
+
 export {
   adjustColorscale,
+  adjustValue,
+  adjustData,
   axisIdToAxisName,
   bem,
   capitalize,

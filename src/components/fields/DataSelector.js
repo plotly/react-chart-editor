@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import Field from './Field';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
-import {connectToContainer, maybeAdjustSrc, maybeTransposeData} from 'lib';
+import {connectToContainer, maybeAdjustSrc, maybeTransposeData, adjustValue, adjustData} from 'lib';
 import {TRANSFORMS_LIST} from 'lib/constants';
 import {EditorControlsContext} from '../../context';
 
@@ -71,22 +71,9 @@ export class UnconnectedDataSelector extends Component {
     }
 
     const update = {};
-    let data;
 
-    const adjustedValue =
-      Array.isArray(value) &&
-      value.length === 1 &&
-      (this.props.attr === 'x' || this.props.attr === 'y')
-        ? value[0]
-        : value;
-
-    if (Array.isArray(adjustedValue)) {
-      data = adjustedValue
-        .filter(v => Array.isArray(this.dataSources[v]))
-        .map(v => this.dataSources[v]);
-    } else {
-      data = this.dataSources[adjustedValue] || null;
-    }
+    const adjustedValue = adjustValue(value, this.props.attr);
+    const data = adjustData(this.dataSources, adjustedValue);
 
     update[this.props.attr] = maybeTransposeData(data, this.srcAttr, this.props.container.type);
     update[this.srcAttr] = maybeAdjustSrc(adjustedValue, this.srcAttr, this.props.container.type, {
