@@ -50,23 +50,8 @@
 }
 
 .numeric-input__number--error {
-  display: inline-block;
-  border: var(--border-default);
+  @extend .numeric-input__number;
   border-color: var(--color-sienna);
-  background: var(--color-background-inputs);
-  cursor: text;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-align: left;
-  border-radius: var(--border-radius-small);
-  padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit) var(--spacing-quarter-unit)
-    var(--spacing-half-unit);
-  width: 62px;
-  vertical-align: middle;
-  font-size: inherit;
-  color: inherit;
-  font-family: inherit;
 }
 
 .numeric-input__caret-box {
