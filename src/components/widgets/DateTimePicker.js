@@ -125,10 +125,18 @@ export default class DateTimePicker extends Component {
     const JSDate = new Date(this.getAdjustedPlotlyJSDateTime(plotlyJSDateTime));
     const localeTime = JSDate.toLocaleTimeString('en-US').split(' ');
 
+    const parsedTime = time.split(':').reduce((timeArray, timePart) => {
+      const parsed = timePart.split('.');
+      return timeArray.concat(parsed);
+    }, []);
+
+    const isNoon =
+      parsedTime[0] === '12' && parsedTime.slice(1).every(part => parseInt(part, 10) === 0);
+
     return !isValidDateTime || time === '' || JSDate.toDateString() === 'Invalid Date'
       ? ''
       : localeTime[1] === 'PM'
-        ? localeTime[0].startsWith('12')
+        ? isNoon
           ? _('noon')
           : 'PM'
         : 'AM';
