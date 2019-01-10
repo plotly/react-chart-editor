@@ -13,9 +13,9 @@ const datePlaceholder = 'yyyy-mm-dd';
 const timePlaceholder = 'hh:mm:ss.xxx';
 
 export default class DateTimePicker extends Component {
-  constructor(props) {
-    super(props);
-    const {time, date} = this.parseDateTime(props.value);
+  constructor(props, context) {
+    super(props, context);
+    const {time, date} = this.parsePlotlyJSDateTime(props.value);
     const isValidTime = isDateTime(testDate + ' ' + time) || ['', timePlaceholder].includes(time);
     const isValidDate = isDateTime(date + ' ' + testTime) || ['', datePlaceholder].includes(date);
 
@@ -29,6 +29,7 @@ export default class DateTimePicker extends Component {
         : 'datetimepicker-container-time-input +error',
       timeValue: time,
       dateValue: date,
+      AMPM: this.getAMPM(date, time, context.localize),
     };
 
     this.toPlotlyJSDate = this.toPlotlyJSDate.bind(this);
@@ -82,7 +83,7 @@ export default class DateTimePicker extends Component {
   }
 
   onMonthChange(value) {
-    const currentDateInJS = new Date(this.props.value);
+    const currentDateInJS = new Date(this.getAdjustedPlotlyJSDateTime(this.props.value));
     currentDateInJS.setMonth(value);
     const plotlyJSDate = this.toPlotlyJSDate(currentDateInJS);
 
@@ -90,7 +91,7 @@ export default class DateTimePicker extends Component {
       this.props.onChange(plotlyJSDate);
     }
 
-    const {time, date} = this.parseDateTime(plotlyJSDate);
+    const {time, date} = this.parsePlotlyJSDateTime(plotlyJSDate);
     this.setState({
       timeValue: time,
       dateValue: date,
@@ -98,7 +99,7 @@ export default class DateTimePicker extends Component {
   }
 
   onYearChange(value) {
-    const currentDateInJS = new Date(this.props.value);
+    const currentDateInJS = new Date(this.getAdjustedPlotlyJSDateTime(this.props.value));
     currentDateInJS.setFullYear(value);
     const plotlyJSDate = this.toPlotlyJSDate(currentDateInJS);
 
@@ -106,26 +107,51 @@ export default class DateTimePicker extends Component {
       this.props.onChange(plotlyJSDate);
     }
 
-    const {time, date} = this.parseDateTime(plotlyJSDate);
+    const {time, date} = this.parsePlotlyJSDateTime(plotlyJSDate);
     this.setState({
       timeValue: time,
       dateValue: date,
     });
   }
 
-  parseDateTime(value) {
+  parsePlotlyJSDateTime(value) {
     const parsed = value.split(' ');
     return {date: parsed[0], time: parsed[1] ? parsed[1] : ''};
   }
 
+  getAMPM(date, time, _) {
+    const plotlyJSDateTime = date + ' ' + time;
+    const isValidDateTime = isDateTime(plotlyJSDateTime);
+    const JSDate = new Date(this.getAdjustedPlotlyJSDateTime(plotlyJSDateTime));
+    const localeTime = JSDate.toLocaleTimeString('en-US').split(' ');
+
+    return !isValidDateTime || time === '' || JSDate.toDateString() === 'Invalid Date'
+      ? ''
+      : localeTime[1] === 'PM'
+        ? localeTime[0].startsWith('12')
+          ? _('noon')
+          : 'PM'
+        : 'AM';
+  }
+
+  adjustedTime(time) {
+    if (time.toString().length <= 2) {
+      return time + ':00';
+    }
+    return time;
+  }
+
   onTimeChange(value) {
+    const {date: currentDate} = this.parsePlotlyJSDateTime(this.props.value);
     const isValidTime = isDateTime(testDate + ' ' + value);
+
     this.setState({
       timeInputClassName:
         isValidTime || value === ''
           ? 'datetimepicker-container-time-input'
           : 'datetimepicker-container-time-input +error',
       timeValue: value,
+      AMPM: this.getAMPM(currentDate, value, this.context.localize),
     });
   }
 
@@ -141,13 +167,14 @@ export default class DateTimePicker extends Component {
   }
 
   onTimeUpdate(value) {
-    const {time: currentTime, date: currentDate} = this.parseDateTime(this.props.value);
+    const {time: currentTime, date: currentDate} = this.parsePlotlyJSDateTime(this.props.value);
     const isValidTime = isDateTime(testDate + ' ' + value);
 
     if (value === '') {
       this.setState({
         timeInputClassName: 'datetimepicker-container-time-input',
         timeValue: currentTime,
+        AMPM: this.getAMPM(currentDate, currentTime, this.context.localize),
       });
       return;
     }
@@ -158,7 +185,7 @@ export default class DateTimePicker extends Component {
   }
 
   onDateUpdate(value) {
-    const {date: currentDate, time: currentTime} = this.parseDateTime(this.props.value);
+    const {date: currentDate, time: currentTime} = this.parsePlotlyJSDateTime(this.props.value);
     const isValidDate = isDateTime(value + ' ' + testTime);
 
     if (isValidDate) {
@@ -175,9 +202,13 @@ export default class DateTimePicker extends Component {
     }
   }
 
+  getAdjustedPlotlyJSDateTime(dateTimeString) {
+    const {date, time} = this.parsePlotlyJSDateTime(dateTimeString);
+    return date + ' ' + this.adjustedTime(time);
+  }
+
   render() {
-    const JSDate = new Date(this.props.value);
-    const localeTime = JSDate.toLocaleTimeString('en-US').split(' ');
+    const JSDate = new Date(this.getAdjustedPlotlyJSDateTime(this.props.value));
     const currentYear = JSDate.getFullYear();
 
     return (
@@ -241,9 +272,7 @@ export default class DateTimePicker extends Component {
             placeHolder={timePlaceholder}
             editableClassName={this.state.timeInputClassName}
           />
-          <span className="datetimepicker-date-units">
-            {localeTime[1] === 'PM' ? (localeTime[0].startsWith('12:') ? 'noon' : 'PM') : 'AM'}
-          </span>
+          <span className="datetimepicker-date-units">{this.state.AMPM}</span>
         </div>
       </div>
     );
