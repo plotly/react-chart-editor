@@ -208,8 +208,12 @@ export default class DateTimePicker extends Component {
   }
 
   render() {
-    const JSDate = new Date(this.getAdjustedPlotlyJSDateTime(this.props.value));
-    const currentYear = JSDate.getFullYear();
+    const JSDate = new Date(
+      this.getAdjustedPlotlyJSDateTime(this.state.dateValue + ' ' + testTime)
+    );
+    const isValidJSDate = JSDate.toDateString() !== 'Invalid Date';
+    const currentYear = isValidJSDate ? JSDate.getFullYear() : new Date().getFullYear();
+    const currentMonth = isValidJSDate ? JSDate.getMonth() : new Date().getMonth();
 
     return (
       <div className="datetimepicker-container">
@@ -237,7 +241,7 @@ export default class DateTimePicker extends Component {
                 <div className="datetimepicker-datepicker-navbar">
                   <Dropdown
                     options={this.getMonthOptions()}
-                    value={JSDate.getMonth()}
+                    value={currentMonth}
                     className="datimepicker-monthpicker"
                     clearable={false}
                     onChange={this.onMonthChange}
@@ -252,8 +256,8 @@ export default class DateTimePicker extends Component {
                 </div>
                 <DayPicker
                   className="datepicker-container-rce"
-                  modifiers={{highlighted: JSDate}}
-                  month={JSDate}
+                  modifiers={{highlighted: isValidJSDate ? JSDate : ''}}
+                  month={isValidJSDate ? JSDate : new Date()}
                   onDayClick={value => {
                     const plotlyDate = this.toPlotlyJSDate(value).split(' ')[0];
                     this.onDateChange(plotlyDate);

@@ -117,3 +117,11 @@
 .dropdown-container.datimepicker-yearpicker div div {
   border: none;
 }
+
+.DayPicker-Day--today {
+  font-weight: var(--font-weight-normal);
+}
+
+.DayPicker-Day--today:not(.DayPicker-Day--highlighted) {
+  color: var(--color-text-base);
+}
