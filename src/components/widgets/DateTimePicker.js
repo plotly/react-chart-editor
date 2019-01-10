@@ -16,8 +16,8 @@ export default class DateTimePicker extends Component {
   constructor(props) {
     super(props);
     const {time, date} = this.parseDateTime(props.value);
-    const isValidTime = isDateTime(testDate + ' ' + time) || time === timePlaceholder;
-    const isValidDate = isDateTime(date + ' ' + testTime) || date === datePlaceholder;
+    const isValidTime = isDateTime(testDate + ' ' + time) || ['', timePlaceholder].includes(time);
+    const isValidDate = isDateTime(date + ' ' + testTime) || ['', datePlaceholder].includes(date);
 
     this.state = {
       calendarOpen: false,
@@ -34,8 +34,10 @@ export default class DateTimePicker extends Component {
     this.toPlotlyJSDate = this.toPlotlyJSDate.bind(this);
     this.onMonthChange = this.onMonthChange.bind(this);
     this.onYearChange = this.onYearChange.bind(this);
-    this.updateTime = this.updateTime.bind(this);
-    this.updateDate = this.updateDate.bind(this);
+    this.onTimeChange = this.onTimeChange.bind(this);
+    this.onDateChange = this.onDateChange.bind(this);
+    this.onTimeUpdate = this.onTimeUpdate.bind(this);
+    this.onDateUpdate = this.onDateUpdate.bind(this);
   }
 
   toPlotlyJSDate(value) {
@@ -116,71 +118,60 @@ export default class DateTimePicker extends Component {
     return {date: parsed[0], time: parsed[1] ? parsed[1] : ''};
   }
 
-  updateTime(value) {
-    const {date: currentDate} = this.parseDateTime(this.props.value);
-    const update = currentDate + ' ' + value;
+  onTimeChange(value) {
     const isValidTime = isDateTime(testDate + ' ' + value);
+    this.setState({
+      timeInputClassName:
+        isValidTime || value === ''
+          ? 'datetimepicker-container-time-input'
+          : 'datetimepicker-container-time-input +error',
+      timeValue: value,
+    });
+  }
 
-    if (value === '') {
+  onDateChange(value) {
+    const isValidDate = isDateTime(value + ' ' + testTime);
+    this.setState({
+      dateInputClassName:
+        isValidDate || value === ''
+          ? 'datetimepicker-container-date-input'
+          : 'datetimepicker-container-date-input +error',
+      dateValue: value,
+    });
+  }
+
+  onTimeUpdate() {
+    const {time: currentTime, date: currentDate} = this.parseDateTime(this.props.value);
+    const isValidTime = isDateTime(testDate + ' ' + this.state.timeValue);
+
+    if (this.state.timeValue === '') {
       this.setState({
         timeInputClassName: 'datetimepicker-container-time-input',
-        timeValue: timePlaceholder,
+        timeValue: currentTime,
       });
       return;
     }
 
     if (isValidTime) {
-      this.props.onChange(update);
-      this.setState({
-        timeValue: value,
-        timeInputClassName: 'datetimepicker-container-time-input',
-      });
-      return;
-    }
-
-    if (value === timePlaceholder) {
-      return;
-    }
-
-    if (!isValidTime) {
-      this.setState({
-        timeInputClassName: 'datetimepicker-container-time-input +error',
-        timeValue: value,
-      });
+      this.props.onChange(currentDate + ' ' + this.state.timeValue);
     }
   }
 
-  updateDate(value) {
-    const {time: currentTime} = this.parseDateTime(this.props.value);
-    const update = value + ' ' + currentTime;
-    const isValidDate = isDateTime(value + ' ' + testTime);
+  onDateUpdate() {
+    const {date: currentDate, time: currentTime} = this.parseDateTime(this.props.value);
+    const isValidDate = isDateTime(this.state.dateValue + ' ' + testTime);
 
     if (isValidDate) {
-      this.props.onChange(update);
+      this.props.onChange(this.state.dateValue + ' ' + currentTime);
+      return;
+    }
+
+    if (this.state.dateValue === '') {
       this.setState({
-        dateValue: value,
+        dateValue: currentDate,
         dateInputClassName: 'datetimepicker-container-date-input',
       });
       return;
-    }
-
-    if (value === '') {
-      this.setState({
-        dateValue: datePlaceholder,
-        dateInputClassName: 'datetimepicker-container-date-input',
-      });
-      return;
-    }
-
-    if (value === datePlaceholder) {
-      return;
-    }
-
-    if (!isValidDate) {
-      this.setState({
-        dateValue: value,
-        dateInputClassName: 'datetimepicker-container-date-input +error',
-      });
     }
   }
 
@@ -193,7 +184,8 @@ export default class DateTimePicker extends Component {
         <TextInput
           value={this.state.dateValue}
           editableClassName={this.state.dateInputClassName}
-          onUpdate={this.updateDate}
+          onChange={this.onDateChange}
+          onUpdate={this.onDateUpdate}
           placeHolder={datePlaceholder}
         />
         <div className="datetimepicker-container-icons">
@@ -242,7 +234,8 @@ export default class DateTimePicker extends Component {
         <div className="datetimepicker-container-time">
           <TextInput
             value={this.state.timeValue}
-            onUpdate={this.updateTime}
+            onChange={this.onTimeChange}
+            onUpdate={this.onTimeUpdate}
             placeHolder={timePlaceholder}
             editableClassName={this.state.timeInputClassName}
           />
