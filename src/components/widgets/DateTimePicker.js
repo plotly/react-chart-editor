@@ -157,16 +157,16 @@ export default class DateTimePicker extends Component {
     }
   }
 
-  onDateUpdate() {
+  onDateUpdate(value) {
     const {date: currentDate, time: currentTime} = this.parseDateTime(this.props.value);
-    const isValidDate = isDateTime(this.state.dateValue + ' ' + testTime);
+    const isValidDate = isDateTime(value + ' ' + testTime);
 
     if (isValidDate) {
-      this.props.onChange(this.state.dateValue + ' ' + currentTime);
+      this.props.onChange(value + ' ' + currentTime);
       return;
     }
 
-    if (this.state.dateValue === '') {
+    if (value === '') {
       this.setState({
         dateValue: currentDate,
         dateInputClassName: 'datetimepicker-container-date-input',
@@ -177,6 +177,7 @@ export default class DateTimePicker extends Component {
 
   render() {
     const JSDate = new Date(this.props.value);
+    const localeTime = JSDate.toLocaleTimeString('en-US').split(' ');
     const currentYear = JSDate.getFullYear();
 
     return (
@@ -224,7 +225,8 @@ export default class DateTimePicker extends Component {
                   month={JSDate}
                   onDayClick={value => {
                     const plotlyDate = this.toPlotlyJSDate(value).split(' ')[0];
-                    this.updateDate(plotlyDate);
+                    this.onDateChange(plotlyDate);
+                    this.onDateUpdate(plotlyDate);
                   }}
                 />
               </div>
@@ -240,7 +242,7 @@ export default class DateTimePicker extends Component {
             editableClassName={this.state.timeInputClassName}
           />
           <span className="datetimepicker-date-units">
-            {JSDate.toLocaleTimeString('en-US').split(' ')[1] === 'PM' ? 'PM' : 'AM'}
+            {localeTime[1] === 'PM' ? (localeTime[0].startsWith('12:') ? 'noon' : 'PM') : 'AM'}
           </span>
         </div>
       </div>
