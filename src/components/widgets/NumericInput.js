@@ -24,7 +24,7 @@ export default class NumericInput extends Component {
   }
 
   getNumericInputClassName(value) {
-    return isNumeric(value)
+    return isNumeric(value) || value === ''
       ? `numeric-input__number ${this.props.editableClassName ? this.props.editableClassName : ''}`
       : `numeric-input__number--error ${
           this.props.editableClassName ? this.props.editableClassName : ''
@@ -67,6 +67,14 @@ export default class NumericInput extends Component {
   updateValue(newValue) {
     const {max, min, integerOnly} = this.props;
     let updatedValue = newValue;
+
+    if (updatedValue === '') {
+      this.setState({
+        value: this.props.value,
+        numericInputClassName: this.getNumericInputClassName(this.props.value),
+      });
+      return;
+    }
 
     // When the user blurs on non-numeric data reset the component
     // to the last known good value (this.props.value).
