@@ -23,10 +23,10 @@ export default class DateTimePicker extends Component {
       calendarOpen: false,
       dateInputClassName: isValidDate
         ? 'datetimepicker-container-date-input'
-        : 'datetimepicker-container-date-input--error',
+        : 'datetimepicker-container-date-input +error',
       timeInputClassName: isValidTime
         ? 'datetimepicker-container-time-input'
-        : 'datetimepicker-container-time-input--error',
+        : 'datetimepicker-container-time-input +error',
       timeValue: time,
       dateValue: date,
     };
@@ -144,7 +144,7 @@ export default class DateTimePicker extends Component {
 
     if (!isValidTime) {
       this.setState({
-        timeInputClassName: 'datetimepicker-container-time-input--error',
+        timeInputClassName: 'datetimepicker-container-time-input +error',
         timeValue: value,
       });
     }
@@ -179,7 +179,7 @@ export default class DateTimePicker extends Component {
     if (!isValidDate) {
       this.setState({
         dateValue: value,
-        dateInputClassName: 'datetimepicker-container-date-input--error',
+        dateInputClassName: 'datetimepicker-container-date-input +error',
       });
     }
   }
