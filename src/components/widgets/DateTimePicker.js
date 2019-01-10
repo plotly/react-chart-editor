@@ -140,11 +140,11 @@ export default class DateTimePicker extends Component {
     });
   }
 
-  onTimeUpdate() {
+  onTimeUpdate(value) {
     const {time: currentTime, date: currentDate} = this.parseDateTime(this.props.value);
-    const isValidTime = isDateTime(testDate + ' ' + this.state.timeValue);
+    const isValidTime = isDateTime(testDate + ' ' + value);
 
-    if (this.state.timeValue === '') {
+    if (value === '') {
       this.setState({
         timeInputClassName: 'datetimepicker-container-time-input',
         timeValue: currentTime,
@@ -153,7 +153,7 @@ export default class DateTimePicker extends Component {
     }
 
     if (isValidTime) {
-      this.props.onChange(currentDate + ' ' + this.state.timeValue);
+      this.props.onChange(currentDate + ' ' + value);
     }
   }
 
