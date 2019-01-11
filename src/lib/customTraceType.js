@@ -83,13 +83,6 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
         type: 'scatter3d',
         mode: 'markers',
       };
-    case 'pie':
-      return {
-        marker: {
-          colors: [],
-        },
-        type: 'pie',
-      };
     case 'bar':
       return {
         orientation: 'v',
