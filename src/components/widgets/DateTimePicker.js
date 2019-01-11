@@ -230,7 +230,7 @@ export default class DateTimePicker extends Component {
           editableClassName={this.state.dateInputClassName}
           onChange={this.onDateChange}
           onUpdate={this.onDateUpdate}
-          placeHolder={datePlaceholder}
+          placeholder={datePlaceholder}
         />
         <div className="datetimepicker-container-icons">
           <CalendarMultiselectIcon
@@ -281,7 +281,7 @@ export default class DateTimePicker extends Component {
             value={this.state.timeValue}
             onChange={this.onTimeChange}
             onUpdate={this.onTimeUpdate}
-            placeHolder={timePlaceholder}
+            placeholder={timePlaceholder}
             editableClassName={this.state.timeInputClassName}
           />
           <span className="datetimepicker-date-units">{this.state.AMPM}</span>
