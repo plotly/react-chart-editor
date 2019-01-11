@@ -86,7 +86,7 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
     case 'pie':
       return {
         marker: {
-          colors: [],
+          colors: null,
         },
         type: 'pie',
       };
