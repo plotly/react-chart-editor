@@ -18,7 +18,7 @@ export default class TextInput extends Component {
   render() {
     return (
       <EditableText
-        className={`text-input ${this.props.editableClassName}`}
+        className={`text-input ${this.props.editableClassName ? this.props.editableClassName : ''}`}
         placeholder={this.props.placeholder}
         text={this.state.value}
         type="text"

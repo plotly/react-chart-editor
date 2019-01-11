@@ -33,6 +33,8 @@ import MultiColorPicker from './MultiColorPicker';
 import RectanglePositioner from './RectanglePositioner';
 import LocationSelector from './LocationSelector';
 import AxisInterval from './AxisInterval';
+import DateTimePicker from './DateTimePicker';
+
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -128,4 +130,5 @@ export {
   HovermodeDropdown,
   AxisInterval,
   NumericOrDate,
+  DateTimePicker,
 };

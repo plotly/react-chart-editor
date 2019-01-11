@@ -1,20 +1,20 @@
 import Field from './Field';
 import {UnconnectedNumeric} from './Numeric';
-import {UnconnectedText} from './Text';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 import {isDateTime} from 'plotly.js/src/lib';
 import {isJSDate} from 'plotly.js/src/lib/dates';
+import {UnconnectedDateTimePicker} from './DateTimePicker';
 
 export class UnconnectedNumericOrDate extends Component {
   render() {
+    const date = typeof this.props.fullValue === 'string' && this.props.fullValue.split(' ')[0];
     const fullValueIsDate =
-      typeof this.props.fullValue === 'string' &&
-      (isDateTime(this.props.fullValue) || isJSDate(this.props.fullValue));
+      typeof this.props.fullValue === 'string' && date && (isDateTime(date) || isJSDate(date));
 
     return fullValueIsDate ? (
-      <UnconnectedText {...this.props} placeholder={'yyyy-mm-dd 00:00:00.00'} />
+      <UnconnectedDateTimePicker {...this.props} placeholder={'yyyy-mm-dd hh:mm:ss.xxx'} />
     ) : (
       <UnconnectedNumeric {...this.props} />
     );

@@ -1,0 +1,127 @@
+.datetimepicker-container {
+  .mdi-icon {
+    width: 20px;
+    margin: 2px;
+  }
+  &__content {
+    margin-top: 5px;
+  }
+}
+
+.datetimepicker-datepicker-container {
+  margin-top: 5px;
+  border: 1px solid var(--color-border-default);
+  border-radius: 5px;
+}
+
+.datetimepicker-datepicker-navbar {
+  width: 200px;
+  height: 30px;
+  margin: 0 auto;
+}
+
+.datetimepicker-container-date-input {
+  margin-top: -20px;
+}
+
+.datetimepicker-container-icons {
+  display: inline-block;
+  margin-top: 2px;
+  margin-left: 2px;
+}
+
+.datetimepicker-container-time {
+  margin-top: 5px;
+}
+
+.datetimepicker-container-time-input,
+.datetimepicker-container-date-input {
+  width: 130px;
+}
+
+.datetimepicker-time-icon--selected,
+.datetimepicker-date-icon--selected {
+  fill: var(--color-accent);
+}
+
+.datetimepicker-time-icon:hover,
+.datetimepicker-date-icon:hover {
+  fill: #899aaf;
+}
+
+.datepicker-container-rce {
+  outline: none;
+}
+
+.datetimepicker-date-units {
+  padding-left: 5px;
+}
+
+.DayPicker {
+  font-size: $font-size;
+}
+
+.DayPicker-NavBar,
+.DayPicker-Caption {
+  display: none;
+}
+
+.DayPicker-Month {
+  margin: 0px;
+}
+
+.DayPicker-Months {
+  margin: 2px 0;
+  outline: none;
+}
+
+.DayPicker-wrapper {
+  width: 220px;
+  padding-bottom: 5px;
+  outline: none;
+}
+
+.DayPicker-Day {
+  outline: none !important;
+}
+
+.DayPicker-Day--highlighted {
+  background-color: var(--color-accent);
+  color: white;
+  outline: none;
+}
+
+.DayPicker-Day--highlighted:hover {
+  background-color: var(--color-accent) !important;
+}
+
+.DayPicker-Weekday {
+  color: #577290 !important;
+}
+
+.datimepicker-yearpicker,
+.datimepicker-monthpicker {
+  display: inline-block;
+  font-size: 14px;
+}
+
+.datimepicker-monthpicker {
+  min-width: 120px;
+}
+
+.datimepicker-yearpicker {
+  min-width: 70px !important;
+}
+
+.dropdown-container.datimepicker-monthpicker div div,
+.dropdown-container.datimepicker-yearpicker div div {
+  border: none;
+}
+
+.DayPicker-Day--today {
+  font-weight: var(--font-weight-normal);
+}
+
+.DayPicker-Day--today:not(.DayPicker-Day--highlighted) {
+  color: var(--color-text-base);
+}
