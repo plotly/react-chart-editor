@@ -24,22 +24,30 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
       <PlotlySection name={_('Color Scales')} attr="colorway">
-        <ColorwayPicker label={_('Categorical')} attr="colorway" disableCategorySwitch />
+        <ColorwayPicker
+          label={_('Categorical')}
+          attr="colorway"
+          disableCategorySwitch
+          labelWidth={64}
+        />
         <ColorscalePicker
           label={_('Sequential')}
           attr="colorscale.sequential"
           disableCategorySwitch
+          labelWidth={64}
         />
         <ColorscalePicker
           label={_('Diverging')}
           attr="colorscale.diverging"
           initialCategory="divergent"
           disableCategorySwitch
+          labelWidth={64}
         />
         <ColorscalePicker
           label={_('Negative Sequential')}
           attr="colorscale.sequentialminus"
           disableCategorySwitch
+          labelWidth={64}
         />
       </PlotlySection>
       <PlotlySection name={_('Text')} attr="font.family">

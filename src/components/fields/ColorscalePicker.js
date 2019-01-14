@@ -51,6 +51,7 @@ export class UnconnectedColorscalePicker extends Component {
 }
 
 UnconnectedColorscalePicker.propTypes = {
+  labelWidth: PropTypes.number,
   fullValue: PropTypes.any,
   fullContainer: PropTypes.object,
   updatePlot: PropTypes.func,
