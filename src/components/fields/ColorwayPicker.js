@@ -5,10 +5,6 @@ import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 
 class UnconnectedColorwayPicker extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Field {...this.props}>
@@ -16,6 +12,7 @@ class UnconnectedColorwayPicker extends Component {
           selected={this.props.fullValue}
           onColorscaleChange={this.props.updatePlot}
           initialCategory="categorical"
+          disableCategorySwitch={this.props.disableCategorySwitch}
         />
       </Field>
     );
