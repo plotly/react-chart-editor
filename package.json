@@ -87,7 +87,8 @@
       "<rootDir>/src/"
     ],
     "moduleNameMapper": {
-      "^.+\\.css$": "<rootDir>/config/CSSStub.js"
+      "^.+\\.css$": "<rootDir>/config/CSSStub.js",
+      "^.+\\_colorscalepicker.scss$": "<rootDir>/config/ColorscalepickerStub.js"
     }
   },
   "keywords": [
