@@ -24,6 +24,7 @@ $text-padding: 5px;
   resize: none;
   border: none;
   background: none;
+  max-height: none;
 }
 
 // Some more styling adjustments to original react-
@@ -56,11 +57,13 @@ $text-padding: 5px;
 .customPickerContainer {
   text-align: left;
   width: 215px;
+  margin-top: 5px;
+  min-height: 27px;
 }
 
 // The expandable part of the component
 .customPickerContainer__expanded-content {
-  margin-top: var(--spacing-quarter-unit);
+  margin-top: 10px;
 }
 
 .customPickerContainer__category-dropdown {
