@@ -23,7 +23,7 @@ const StyleLayoutPanel = (props, {localize: _}) => (
     <PlotlyFold name={_('Defaults')}>
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
-      <PlotlySection name={_('Color Scales')} attr="colorway">
+      <PlotlySection name={_('Colorscales')} attr="colorway">
         <ColorwayPicker
           label={_('Categorical')}
           attr="colorway"
