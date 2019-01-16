@@ -2,9 +2,6 @@
 $colorscalepicker-width: 240px;
 $colorscale-clickable-part-width: 180px;
 $text-padding: 5px;
-:export {
-  colorscalepickerWidth: $colorscalepicker-width;
-}
 
 // We're making our own custom colorscale picker to better adapt to RCE layout
 // so we're not displaying some parts of the original colorscalepicker (categody dropdown, description)

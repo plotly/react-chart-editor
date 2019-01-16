@@ -3,8 +3,8 @@ import Dropdown from './Dropdown';
 import Info from '../fields/Info';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import colorscalepickerStyles from '../../styles/components/widgets/_colorscalepicker.scss';
-const colorscalepickerContainerWidth = parseInt(colorscalepickerStyles.colorscalepickerWidth, 10);
+// CAREFUL: needs to be the same value as $colorscalepicker-width in _colorscalepicker.scss
+const colorscalepickerContainerWidth = 240;
 
 class Scale extends Component {
   constructor(props) {
