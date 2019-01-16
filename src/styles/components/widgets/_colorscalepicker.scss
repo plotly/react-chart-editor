@@ -1,5 +1,6 @@
 // this width is also passed in as a prop in widgets/ColorscalePicker.js
-$colorscalepicker-width: 270px;
+$colorscalepicker-width: 240px;
+$colorscale-clickable-part-width: 180px;
 $text-padding: 5px;
 :export {
   colorscalepickerWidth: $colorscalepicker-width;
@@ -49,16 +50,17 @@ $text-padding: 5px;
   margin-left: 27%;
   width: 70%;
 }
-.customPickerContainer > div > div {
-  width: 95% !important; // Adjusting react-colorscales <Colorscale/> width
-}
 
 // Our custom component, containing all the colorpicker
 .customPickerContainer {
   text-align: left;
-  width: 215px;
+  width: $colorscale-clickable-part-width;
+}
+
+.customPickerContainer__clickable {
   margin-top: 5px;
   min-height: 27px;
+  width: $colorscale-clickable-part-width;
 }
 
 // The expandable part of the component
@@ -71,7 +73,7 @@ $text-padding: 5px;
 }
 
 .customPickerContainer__palettes {
-  margin-left: -67px;
+  margin-left: -60px;
 }
 
 .customPickerContainer__info {
@@ -79,5 +81,5 @@ $text-padding: 5px;
 }
 
 .customPickerContainer__category-dropdown {
-  width: 215px !important;
+  width: $colorscale-clickable-part-width !important;
 }

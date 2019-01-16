@@ -43,8 +43,9 @@ class Scale extends Component {
 
     return (
       <div className="customPickerContainer">
-        <Colorscale colorscale={selected} onClick={this.onClick} />
-
+        <div className="customPickerContainer__clickable">
+          <Colorscale colorscale={selected} onClick={this.onClick} />
+        </div>
         {showColorscalePicker ? (
           <div className="customPickerContainer__expanded-content">
             {disableCategorySwitch ? null : (

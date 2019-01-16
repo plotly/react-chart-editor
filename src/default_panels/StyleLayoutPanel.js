@@ -28,26 +28,26 @@ const StyleLayoutPanel = (props, {localize: _}) => (
           label={_('Categorical')}
           attr="colorway"
           disableCategorySwitch
-          labelWidth={64}
+          labelWidth={80}
         />
         <ColorscalePicker
           label={_('Sequential')}
           attr="colorscale.sequential"
           disableCategorySwitch
-          labelWidth={64}
+          labelWidth={80}
         />
         <ColorscalePicker
           label={_('Diverging')}
           attr="colorscale.diverging"
           initialCategory="divergent"
           disableCategorySwitch
-          labelWidth={64}
+          labelWidth={80}
         />
         <ColorscalePicker
           label={_('Negative Sequential')}
           attr="colorscale.sequentialminus"
           disableCategorySwitch
-          labelWidth={64}
+          labelWidth={80}
         />
       </PlotlySection>
       <PlotlySection name={_('Text')} attr="font.family">
