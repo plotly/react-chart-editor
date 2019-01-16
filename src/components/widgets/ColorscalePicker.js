@@ -2,7 +2,9 @@ import ColorscalePicker, {Colorscale, COLOR_PICKER_CONSTANTS} from 'react-colors
 import Dropdown from './Dropdown';
 import Info from '../fields/Info';
 import PropTypes from 'prop-types';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
+// CAREFUL: needs to be the same value as $colorscalepicker-width in _colorscalepicker.scss
+const colorscalepickerContainerWidth = 240;
 
 class Scale extends Component {
   constructor(props) {
@@ -28,7 +30,7 @@ class Scale extends Component {
   }
 
   render() {
-    const {onColorscaleChange, selected} = this.props;
+    const {onColorscaleChange, selected, disableCategorySwitch} = this.props;
     const {selectedColorscaleType, showColorscalePicker} = this.state;
     const description = COLOR_PICKER_CONSTANTS.COLORSCALE_DESCRIPTIONS[selectedColorscaleType];
     const colorscaleOptions = COLOR_PICKER_CONSTANTS.COLORSCALE_TYPES.filter(
@@ -40,33 +42,36 @@ class Scale extends Component {
     const _ = this.context.localize;
 
     return (
-      <div className="customPickerContainer__outer">
-        <div className="customPickerContainer__inner">
+      <div className="customPickerContainer">
+        <div className="customPickerContainer__clickable">
           <Colorscale colorscale={selected} onClick={this.onClick} />
         </div>
         {showColorscalePicker ? (
-          <div className="customPickerContainer">
-            <Dropdown
-              options={colorscaleOptions}
-              value={selectedColorscaleType}
-              onChange={this.onChange}
-              clearable={false}
-              searchable={false}
-              placeholder={_('Select a Colorscale Type')}
-            />
+          <div className="customPickerContainer__expanded-content">
+            {disableCategorySwitch ? null : (
+              <Dropdown
+                options={colorscaleOptions}
+                value={selectedColorscaleType}
+                onChange={this.onChange}
+                clearable={false}
+                searchable={false}
+                placeholder={_('Select a Colorscale Type')}
+                className="customPickerContainer__category-dropdown"
+              />
+            )}
             {description ? (
-              <Fragment>
+              <div className="customPickerContainer__palettes">
                 <ColorscalePicker
                   onChange={onColorscaleChange}
                   colorscale={selected}
-                  width={215}
+                  width={colorscalepickerContainerWidth}
                   colorscaleType={this.state.selectedColorscaleType}
                   onColorscaleTypeChange={this.onColorscaleTypeChange}
                   disableSwatchControls
                   scaleLength={7}
                 />
-                <Info>{description}</Info>
-              </Fragment>
+                <Info className="customPickerContainer__info">{description}</Info>
+              </div>
             ) : null}
           </div>
         ) : null}
@@ -80,6 +85,7 @@ Scale.propTypes = {
   selected: PropTypes.array,
   label: PropTypes.string,
   initialCategory: PropTypes.string,
+  disableCategorySwitch: PropTypes.bool,
 };
 
 Scale.contextTypes = {

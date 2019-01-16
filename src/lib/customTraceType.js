@@ -93,6 +93,26 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
         sizeref: 1,
         type: 'cone',
       };
+    case 'histogram2dcontour':
+      return {
+        type: 'histogram2dcontour',
+        autocolorscale: true,
+      };
+    case 'histogram2d':
+      return {
+        type: 'histogram2d',
+        autocolorscale: true,
+      };
+    case 'heatmap':
+      return {
+        type: 'heatmap',
+        autocolorscale: true,
+      };
+    case 'contour':
+      return {
+        type: 'contour',
+        autocolorscale: true,
+      };
     default:
       return {type: traceType};
   }

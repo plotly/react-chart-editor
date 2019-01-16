@@ -1,19 +1,10 @@
-$colorscalepicker-width: 215px;
-$colorscalepicker-height: 20px;
+// this width is also passed in as a prop in widgets/ColorscalePicker.js
+$colorscalepicker-width: 240px;
+$colorscale-clickable-part-width: 180px;
+$text-padding: 5px;
 
-.colorscalePickerContainer {
-  min-width: $colorscalepicker-width;
-  position: relative;
-  padding: 0;
-  resize: none;
-  border: none;
-  background: none;
-}
-
-.colorscalePickerContainer::-webkit-scrollbar {
-  width: 5px;
-}
-
+// We're making our own custom colorscale picker to better adapt to RCE layout
+// so we're not displaying some parts of the original colorscalepicker (categody dropdown, description)
 .colorscalePickerTopContainer {
   display: none;
 }
@@ -22,6 +13,19 @@ $colorscalepicker-height: 20px;
   display: none;
 }
 
+// We're overriding some of the styles of the original css container class of react-colorscales
+// because we don't need this functionality
+.colorscalePickerContainer {
+  min-width: $colorscalepicker-width;
+  position: relative;
+  padding: 0;
+  resize: none;
+  border: none;
+  background: none;
+  max-height: none;
+}
+
+// Some more styling adjustments to original react-
 .colorscalePickerContainer input:focus {
   outline: none;
 }
@@ -30,21 +34,49 @@ $colorscalepicker-height: 20px;
     display: inline;
   }
 }
-
+.colorscalePickerContainer::-webkit-scrollbar {
+  width: 5px;
+}
 .colorscalePickerBottomContainer {
-  padding-right: 3px;
+  padding: $text-padding 0 0 0;
+}
+// Adjustments for cubehelix controls
+.colorscaleControlPanel {
+  padding: 0;
+  margin: 0;
+  margin-left: 27%;
+  width: 70%;
 }
 
+// Our custom component, containing all the colorpicker
 .customPickerContainer {
-  margin-top: var(--spacing-quarter-unit);
   text-align: left;
+  width: $colorscale-clickable-part-width;
+}
 
-  &__outer {
-    width: $colorscalepicker-width;
-    text-align: center;
-  }
+.customPickerContainer__clickable {
+  margin-top: 5px;
+  min-height: 27px;
+  width: $colorscale-clickable-part-width;
+}
 
-  &__inner {
-    height: $colorscalepicker-height;
-  }
+// The expandable part of the component
+.customPickerContainer__expanded-content {
+  margin-top: 10px;
+}
+
+.customPickerContainer__category-dropdown {
+  max-width: 100%;
+}
+
+.customPickerContainer__palettes {
+  margin-left: -60px;
+}
+
+.customPickerContainer__info {
+  width: $colorscalepicker-width;
+}
+
+.customPickerContainer__category-dropdown {
+  width: $colorscale-clickable-part-width !important;
 }

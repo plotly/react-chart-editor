@@ -28,6 +28,7 @@ class Field extends Component {
       units,
       extraComponent,
       fieldContainerClassName,
+      labelWidth,
     } = this.props;
 
     const {localize: _} = this.context;
@@ -55,7 +56,10 @@ class Field extends Component {
     return (
       <div className={containerClassName}>
         {label ? (
-          <div className={bem('field', 'title')}>
+          <div
+            className={bem('field', 'title')}
+            style={labelWidth ? {minWidth: labelWidth + 'px'} : {}}
+          >
             {this.context.showFieldTooltips ? (
               <div
                 className={bem('field', 'title-text')}
@@ -93,6 +97,7 @@ class Field extends Component {
 }
 
 Field.propTypes = {
+  labelWidth: PropTypes.number,
   center: PropTypes.bool,
   label: PropTypes.any,
   units: PropTypes.string,
