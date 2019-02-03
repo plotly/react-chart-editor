@@ -15,7 +15,7 @@
     "fast-isnumeric": "^1.1.1",
     "immutability-helper": "^2.7.1",
     "plotly-icons": "1.2.3",
-    "plotly.js": "1.43.2",
+    "plotly.js": "1.44.1",
     "prop-types": "^15.5.10",
     "raf": "^3.4.0",
     "react-color": "^2.13.8",
