@@ -155,7 +155,7 @@ function maybeAdjustSrc(src, srcAttributePath, traceType, config) {
     return src[0];
   }
 
-  return config && config.fromSrc ? config.fromSrc(src, traceType) : src;
+  return config && config.fromSrc ? config.fromSrc(src, traceType, srcAttributePath) : src;
 }
 
 function adjustColorscale(colorscale, numberOfNeededColors, colorscaleType, config) {

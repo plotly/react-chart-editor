@@ -17,6 +17,7 @@ import {
   Radio,
 } from '../components';
 import {HoverColor} from '../components/fields/derived';
+import DataSelector from '../components/fields/DataSelector';
 
 const StyleLayoutPanel = (props, {localize: _}) => (
   <LayoutPanel>
@@ -164,6 +165,9 @@ const StyleLayoutPanel = (props, {localize: _}) => (
           />
         </HovermodeDropdown>
       </PlotlySection>
+    </PlotlyFold>
+    <PlotlyFold name={_('Meta')}>
+      <DataSelector label={_('Custom Data')} attr="meta" />
     </PlotlyFold>
   </LayoutPanel>
 );
