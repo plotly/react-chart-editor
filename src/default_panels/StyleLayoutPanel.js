@@ -15,6 +15,7 @@ import {
   HovermodeDropdown,
   Flaglist,
   Radio,
+  Info,
 } from '../components';
 import {HoverColor} from '../components/fields/derived';
 import DataSelector from '../components/fields/DataSelector';
@@ -166,8 +167,27 @@ const StyleLayoutPanel = (props, {localize: _}) => (
         </HovermodeDropdown>
       </PlotlySection>
     </PlotlyFold>
-    <PlotlyFold name={_('Meta')}>
+    <PlotlyFold name={_('Meta Text')}>
       <DataSelector label={_('Custom Data')} attr="meta" />
+      <Info>
+        <p>
+          {_(
+            'You can refer to the items in this column in any text fields of the editor like so: '
+          )}
+          <span
+            style={{
+              lineHeight: '20px',
+              backgroundColor: '#eadef7',
+              borderRadius: '2px',
+              fontStyle: 'italic',
+            }}
+          >
+            {'%{meta[0]}'}
+          </span>
+          {' .'}
+        </p>
+        {_('Note: item count starts at 0.')}
+      </Info>
     </PlotlyFold>
   </LayoutPanel>
 );
