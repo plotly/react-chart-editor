@@ -494,33 +494,6 @@ function computeAxesRefOptions(axes, propsAttr) {
   return options;
 }
 
-export const TextPosition = connectToContainer(UnconnectedDropdown, {
-  modifyPlotProps: (props, context, plotProps) => {
-    const {localize: _} = context;
-    let options = [
-      {label: _('Top Left'), value: 'top left'},
-      {label: _('Top Center'), value: 'top center'},
-      {label: _('Top Right'), value: 'top right'},
-      {label: _('Middle Left'), value: 'middle left'},
-      {label: _('Middle Center'), value: 'middle center'},
-      {label: _('Middle Right'), value: 'middle right'},
-      {label: _('Bottom Left'), value: 'bottom left'},
-      {label: _('Bottom Center'), value: 'bottom center'},
-      {label: _('Bottom Right'), value: 'bottom right'},
-    ];
-    if (context.container.type === 'pie' || context.container.type === 'bar') {
-      options = [
-        {label: _('Inside'), value: 'inside'},
-        {label: _('Outside'), value: 'outside'},
-        {label: _('Auto'), value: 'auto'},
-        {label: _('None'), value: 'none'},
-      ];
-    }
-    plotProps.options = options;
-    plotProps.clearable = false;
-  },
-});
-
 export const TextInfo = connectToContainer(UnconnectedFlaglist, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _, container} = context;

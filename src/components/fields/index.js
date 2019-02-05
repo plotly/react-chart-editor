@@ -34,6 +34,7 @@ import RectanglePositioner from './RectanglePositioner';
 import LocationSelector from './LocationSelector';
 import AxisInterval from './AxisInterval';
 import DateTimePicker from './DateTimePicker';
+import TextPosition from './TextPosition';
 
 import {
   AnnotationArrowRef,
@@ -57,7 +58,6 @@ import {
   TraceOrientation,
   AxisOverlayDropdown,
   AxisSide,
-  TextPosition,
   ShowInLegend,
   HoveronDropdown,
   HovermodeDropdown,
