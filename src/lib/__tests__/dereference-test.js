@@ -1,5 +1,5 @@
 import dereference from '../dereference';
-import {consolidateStreamedStyles} from 'styled-components';
+
 /* eslint-disable no-magic-numbers */
 describe('dereference', () => {
   it('does not search into data arrays', () => {
