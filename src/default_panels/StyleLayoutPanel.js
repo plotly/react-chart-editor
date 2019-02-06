@@ -174,17 +174,20 @@ const StyleLayoutPanel = (props, {localize: _}) => (
           {_(
             'You can refer to the items in this column in any text fields of the editor like so: '
           )}
-          <span
-            style={{
-              lineHeight: '20px',
-              backgroundColor: '#eadef7',
-              borderRadius: '2px',
-              fontStyle: 'italic',
-            }}
-          >
-            {'%{meta[0]}'}
-          </span>
-          {' .'}
+          <div>
+            <span
+              style={{
+                lineHeight: '20px',
+                backgroundColor: '#eadef7',
+                borderRadius: '2px',
+                fontStyle: 'italic',
+                letterSpacing: '1px',
+              }}
+            >
+              {'%{meta[0]}'}
+            </span>
+            {' .'}
+          </div>
         </p>
         {_('Note: item count starts at 0.')}
       </Info>

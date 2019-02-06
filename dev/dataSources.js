@@ -1745,4 +1745,5 @@ export default {
   ],
   'countries iso': ['AGO', 'ALB', 'ARE', 'ARG', 'ARM', 'AUS', 'AUT', 'AZE'],
   states: ['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA'],
+  textpositions: ['bottom', 'bottom right', 'left', 'right', 'left'],
 };

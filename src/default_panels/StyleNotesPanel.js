@@ -24,7 +24,28 @@ const StyleNotesPanel = (props, {localize: _}) => (
       <Numeric label={_('Font Size')} attr="font.size" units="px" />
       <ColorPicker label={_('Font Color')} attr="font.color" />
       <Numeric label={_('Angle')} attr="textangle" units="°" />
+      <Dropdown
+        label={_('Horizontal Alignment')}
+        clearable={false}
+        attr="align"
+        options={[
+          {label: _('Left'), value: 'left'},
+          {label: _('Center'), value: 'center'},
+          {label: _('Right'), value: 'right'},
+        ]}
+      />
+      <Dropdown
+        label={_('Vertical Alignment')}
+        clearable={false}
+        attr="valign"
+        options={[
+          {label: _('Left'), value: 'left'},
+          {label: _('Center'), value: 'center'},
+          {label: _('Right'), value: 'right'},
+        ]}
+      />
     </PlotlySection>
+
     <PlotlySection name={_('Arrow')}>
       <Radio
         attr="showarrow"

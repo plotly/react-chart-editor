@@ -198,7 +198,7 @@ class StyleAxesPanel extends Component {
                 attr="exponentformat"
                 clearable={false}
                 options={[
-                  {label: _('None'), value: '000'},
+                  {label: _('None'), value: 'none'},
                   {label: _('e+6'), value: 'e'},
                   {label: _('E+6'), value: 'E'},
                   {label: _('x10^6'), value: 'power'},
