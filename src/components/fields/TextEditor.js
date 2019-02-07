@@ -8,21 +8,56 @@ import RichText from '../widgets/text_editors/RichText';
 import MultiFormat from '../widgets/text_editors/MultiFormat';
 import HTML from '../widgets/text_editors/HTML';
 
+// TODO: import plotly.js regex directly: https://github.com/plotly/plotly.js/issues/3520
+const TEMPLATE_STRING_REGEX = /%{([^\s%{}:]*)(:[^}]*)?}/g;
+const INDEX_IN_TEMPLATE_STRING_REGEX = /%{(meta(\[(\d+)]))}/;
+
 export class UnconnectedTextEditor extends Component {
+  hasTemplateStrings(value) {
+    return value.match(TEMPLATE_STRING_REGEX);
+  }
+
+  updatePlot(value) {
+    const {updatePlot} = this.props;
+    const templateStrings = this.hasTemplateStrings(value);
+
+    let adjustedValue = value;
+
+    if (templateStrings) {
+      adjustedValue = adjustedValue.replace(TEMPLATE_STRING_REGEX, match => {
+        const index = INDEX_IN_TEMPLATE_STRING_REGEX.exec(match);
+        if (index) {
+          const adjustedIndex = parseInt(index[3], 10) - 1;
+          return `%{meta[${adjustedIndex}]}`;
+        }
+        return match;
+      });
+    }
+
+    updatePlot(adjustedValue);
+  }
+
+  getAdjustedFullValue(fullValue) {
+    const templateStrings = this.hasTemplateStrings(fullValue);
+    if (templateStrings) {
+      return fullValue.replace(TEMPLATE_STRING_REGEX, match => {
+        const index = INDEX_IN_TEMPLATE_STRING_REGEX.exec(match);
+        if (index) {
+          const adjustedIndex = parseInt(index[3], 10) + 1;
+          return `%{meta[${adjustedIndex}]}`;
+        }
+        return match;
+      });
+    }
+    return fullValue;
+  }
+
   render() {
-    const {
-      attr,
-      container,
-      htmlOnly,
-      latexOnly,
-      multiValued,
-      richTextOnly,
-      updatePlot,
-    } = this.props;
+    const {attr, container, htmlOnly, latexOnly, multiValued, richTextOnly} = this.props;
 
     const {localize: _} = this.context;
 
-    let fullValue = this.props.fullValue;
+    let fullValue = this.getAdjustedFullValue(this.props.fullValue);
 
     let placeholder;
     if (multiValued || (fullValue && (!container || !nestedProperty(container, attr)))) {
@@ -34,14 +69,30 @@ export class UnconnectedTextEditor extends Component {
 
     if (latexOnly) {
       placeholder = _('Enter LaTeX formatted text');
-      editor = <LaTeX value={fullValue} placeholder={placeholder} onChange={updatePlot} />;
+      editor = (
+        <LaTeX value={fullValue} placeholder={placeholder} onChange={this.updatePlot.bind(this)} />
+      );
     } else if (richTextOnly) {
-      editor = <RichText value={fullValue} placeholder={placeholder} onChange={updatePlot} />;
+      editor = (
+        <RichText
+          value={fullValue}
+          placeholder={placeholder}
+          onChange={this.updatePlot.bind(this)}
+        />
+      );
     } else if (htmlOnly) {
       placeholder = _('Enter html formatted text');
-      editor = <HTML value={fullValue} placeholder={placeholder} onChange={updatePlot} />;
+      editor = (
+        <HTML value={fullValue} placeholder={placeholder} onChange={this.updatePlot.bind(this)} />
+      );
     } else {
-      editor = <MultiFormat value={fullValue} placeholder={placeholder} onChange={updatePlot} />;
+      editor = (
+        <MultiFormat
+          value={fullValue}
+          placeholder={placeholder}
+          onChange={this.updatePlot.bind(this)}
+        />
+      );
     }
 
     return (
