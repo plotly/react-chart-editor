@@ -14,6 +14,9 @@ const INDEX_IN_TEMPLATE_STRING_REGEX = /%{(meta(\[(\d+)]))}/;
 
 export class UnconnectedTextEditor extends Component {
   hasTemplateStrings(value) {
+    if (!value) {
+      return false;
+    }
     return value.match(TEMPLATE_STRING_REGEX);
   }
 
@@ -28,7 +31,9 @@ export class UnconnectedTextEditor extends Component {
         const index = INDEX_IN_TEMPLATE_STRING_REGEX.exec(match);
         if (index) {
           const adjustedIndex = parseInt(index[3], 10) - 1;
-          return `%{meta[${adjustedIndex}]}`;
+          if (!isNaN(adjustedIndex)) {
+            return `%{meta[${adjustedIndex}]}`;
+          }
         }
         return match;
       });
@@ -44,7 +49,10 @@ export class UnconnectedTextEditor extends Component {
         const index = INDEX_IN_TEMPLATE_STRING_REGEX.exec(match);
         if (index) {
           const adjustedIndex = parseInt(index[3], 10) + 1;
-          return `%{meta[${adjustedIndex}]}`;
+          if (!isNaN(adjustedIndex)) {
+            return `%{meta[${adjustedIndex}]}`;
+          }
+          return match;
         }
         return match;
       });
