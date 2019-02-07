@@ -174,22 +174,10 @@ const StyleLayoutPanel = (props, {localize: _}) => (
           {_(
             'You can refer to the items in this column in any text fields of the editor like so: '
           )}
-          <div>
-            <span
-              style={{
-                lineHeight: '20px',
-                backgroundColor: '#eadef7',
-                borderRadius: '2px',
-                fontStyle: 'italic',
-                letterSpacing: '1px',
-              }}
-            >
-              {'%{meta[0]}'}
-            </span>
-            {' .'}
-          </div>
+          <p style={{letterSpacing: '1px', fontStyle: 'italic'}}>
+            {_("Ex: 'My custom title %{meta[1]}.' ")}
+          </p>
         </p>
-        {_('Note: item count starts at 0.')}
       </Info>
     </PlotlyFold>
   </LayoutPanel>
