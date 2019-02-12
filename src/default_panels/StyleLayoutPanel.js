@@ -174,8 +174,11 @@ const StyleLayoutPanel = (props, {localize: _}) => (
           {_(
             'You can refer to the items in this column in any text fields of the editor like so: '
           )}
-          <p style={{letterSpacing: '1px', fontStyle: 'italic'}}>
-            {_("Ex: 'My custom title %{meta[1]}.' ")}
+          <p>
+            {_('Ex: ')}
+            <span style={{letterSpacing: '1px', fontStyle: 'italic', userSelect: 'text'}}>
+              {_('My custom title %{meta[1]}')}
+            </span>
           </p>
         </p>
       </Info>
