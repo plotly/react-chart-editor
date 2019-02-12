@@ -67,7 +67,8 @@ export class UnconnectedTextEditor extends Component {
 
     let fullValue = this.getAdjustedFullValue(this.props.fullValue);
 
-    let placeholder;
+    let placeholder = this.props.placeholder;
+
     if (multiValued || (fullValue && (!container || !nestedProperty(container, attr)))) {
       placeholder = fullValue;
       fullValue = '';
@@ -118,16 +119,27 @@ UnconnectedTextEditor.propTypes = {
   latexOnly: PropTypes.bool,
   richTextOnly: PropTypes.bool,
   updatePlot: PropTypes.func,
+  placeholder: PropTypes.string,
 };
 
 UnconnectedTextEditor.contextTypes = {
   localize: PropTypes.func,
+  fullLayout: PropTypes.object,
 };
 
 export default connectToContainer(UnconnectedTextEditor, {
   modifyPlotProps: (props, context, plotProps) => {
     if (plotProps.isVisible && plotProps.multiValued) {
       plotProps.isVisible = false;
+    }
+
+    if (
+      context.fullLayout &&
+      context.fullLayout._dfltTitle &&
+      Object.values(context.fullLayout._dfltTitle).includes(plotProps.fullValue)
+    ) {
+      plotProps.placeholder = plotProps.fullValue;
+      plotProps.fullValue = '';
     }
   },
 });
