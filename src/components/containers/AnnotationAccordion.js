@@ -3,8 +3,7 @@ import {LayoutPanel} from './derived';
 import {PanelMessage} from './PanelEmpty';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectAnnotationToLayout} from 'lib';
-import {templateString} from 'plotly.js/src/lib';
+import {connectAnnotationToLayout, getParsedTemplateString} from 'lib';
 
 const AnnotationFold = connectAnnotationToLayout(PlotlyFold);
 
@@ -19,12 +18,11 @@ class AnnotationAccordion extends Component {
     const content =
       annotations.length &&
       annotations.map((ann, i) => {
-        const textPostTemplate = templateString(ann.text, {meta});
         return (
           <AnnotationFold
             key={i}
             annotationIndex={i}
-            name={textPostTemplate === '' ? ann.text : textPostTemplate}
+            name={getParsedTemplateString(ann.text, meta)}
             canDelete={canAdd}
           >
             {children}

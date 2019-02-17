@@ -2,7 +2,7 @@ import PlotlyFold from './PlotlyFold';
 import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectRangeSelectorToAxis} from 'lib';
+import {connectRangeSelectorToAxis, getParsedTemplateString} from 'lib';
 
 const RangeSelectorFold = connectRangeSelectorToAxis(PlotlyFold);
 
@@ -23,13 +23,19 @@ class RangeSelectorAccordion extends Component {
         rangeselector: {buttons = []},
       },
       localize: _,
+      layout: meta,
     } = this.context;
     const {children} = this.props;
 
     const content =
       buttons.length &&
       buttons.map((btn, i) => (
-        <RangeSelectorFold key={i} rangeselectorIndex={i} name={btn.label} canDelete={true}>
+        <RangeSelectorFold
+          key={i}
+          rangeselectorIndex={i}
+          name={getParsedTemplateString(btn.label, meta)}
+          canDelete={true}
+        >
           {children}
         </RangeSelectorFold>
       ));
@@ -57,6 +63,7 @@ class RangeSelectorAccordion extends Component {
 RangeSelectorAccordion.contextTypes = {
   fullContainer: PropTypes.object,
   localize: PropTypes.func,
+  layout: PropTypes.object,
 };
 
 RangeSelectorAccordion.propTypes = {

@@ -7,6 +7,7 @@ import {
   renderTraceIcon,
   traceTypeToAxisType,
   getFullTrace,
+  getParsedTemplateString,
 } from '../lib';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
 import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR} from 'lib/constants';
@@ -27,7 +28,7 @@ export default function connectTraceToPlot(WrappedComponent) {
 
     setLocals(props, context) {
       const {traceIndexes} = props;
-      const {data, fullData, plotly} = context;
+      const {data, fullData, plotly, layout: meta} = context;
 
       const trace = data[traceIndexes[0]];
       const fullTrace = getFullTrace(props, context);
@@ -68,7 +69,7 @@ export default function connectTraceToPlot(WrappedComponent) {
 
       if (trace && fullTrace) {
         this.icon = renderTraceIcon(plotlyTraceToCustomTrace(trace));
-        this.name = fullTrace.name;
+        this.name = getParsedTemplateString(fullTrace.name, meta);
       }
     }
 
@@ -194,6 +195,7 @@ export default function connectTraceToPlot(WrappedComponent) {
     data: PropTypes.array,
     plotly: PropTypes.object,
     onUpdate: PropTypes.func,
+    layout: PropTypes.object,
   };
 
   TraceConnectedComponent.childContextTypes = {

@@ -30,6 +30,7 @@ import * as PlotlyIcons from 'plotly-icons';
 import striptags from './striptags';
 import {capitalize, lowerCase, upperCase, removeNonWord, camelCase, pascalCase} from './strings';
 import {getColorscale} from 'react-colorscales';
+import {templateString} from 'plotly.js/src/lib';
 
 const TOO_LIGHT_FACTOR = 0.8;
 
@@ -200,6 +201,16 @@ function getFullTrace(props, context) {
     }
   }
   return fullTrace;
+}
+
+function getParsedTemplateString(originalString, meta) {
+  let text = originalString;
+
+  if (originalString && meta && meta.length) {
+    text = templateString(originalString, {meta});
+  }
+
+  return text === '' && originalString ? originalString : text;
 }
 
 export {
