@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import TextInput from './TextInput';
 import Dropdown from './Dropdown';
+import {MULTI_VALUED_PLACEHOLDER} from 'lib/constants';
 
 const testDate = '2000-01-01';
 const testTime = '00:00';
@@ -16,8 +17,12 @@ export default class DateTimePicker extends Component {
   constructor(props, context) {
     super(props, context);
     const {time, date} = this.parsePlotlyJSDateTime(props.value);
-    const isValidTime = isDateTime(testDate + ' ' + time) || ['', timePlaceholder].includes(time);
-    const isValidDate = isDateTime(date + ' ' + testTime) || ['', datePlaceholder].includes(date);
+    const isValidTime =
+      isDateTime(testDate + ' ' + time) ||
+      ['', timePlaceholder, MULTI_VALUED_PLACEHOLDER].includes(time);
+    const isValidDate =
+      isDateTime(date + ' ' + testTime) ||
+      ['', datePlaceholder, MULTI_VALUED_PLACEHOLDER].includes(date);
 
     this.state = {
       calendarOpen: false,
