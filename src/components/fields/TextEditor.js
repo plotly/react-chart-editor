@@ -32,7 +32,7 @@ export class UnconnectedTextEditor extends Component {
         if (index) {
           const adjustedIndex = parseInt(index[3], 10) - 1;
           if (!isNaN(adjustedIndex)) {
-            return `%{meta[${adjustedIndex}]}`;
+            return `%{meta[${adjustedIndex < 0 ? 0 : adjustedIndex}]}`;
           }
         }
         return match;
