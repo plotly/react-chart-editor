@@ -30,6 +30,7 @@ import * as PlotlyIcons from 'plotly-icons';
 import striptags from './striptags';
 import {capitalize, lowerCase, upperCase, removeNonWord, camelCase, pascalCase} from './strings';
 import {getColorscale} from 'react-colorscales';
+import {templateString} from 'plotly.js/src/lib';
 
 const TOO_LIGHT_FACTOR = 0.8;
 
@@ -202,51 +203,62 @@ function getFullTrace(props, context) {
   return fullTrace;
 }
 
+function getParsedTemplateString(originalString, meta) {
+  let text = originalString;
+
+  if (originalString && meta && meta.length) {
+    text = templateString(originalString, {meta});
+  }
+
+  return text === '' && originalString ? originalString : text;
+}
+
 export {
   adjustColorscale,
   axisIdToAxisName,
   bem,
-  capitalize,
-  lowerCase,
-  upperCase,
-  removeNonWord,
   camelCase,
-  pascalCase,
+  capitalize,
   clamp,
-  connectCartesianSubplotToLayout,
-  connectNonCartesianSubplotToLayout,
+  computeTraceOptionsFromSchema,
+  connectAggregationToTransform,
   connectAnnotationToLayout,
+  connectAxesToLayout,
+  connectCartesianSubplotToLayout,
+  connectImageToLayout,
+  connectLayoutToPlot,
+  connectNonCartesianSubplotToLayout,
+  connectRangeSelectorToAxis,
   connectShapeToLayout,
   connectSliderToLayout,
-  connectUpdateMenuToLayout,
-  connectImageToLayout,
-  connectAxesToLayout,
-  connectLayoutToPlot,
   connectToContainer,
-  connectRangeSelectorToAxis,
-  connectTransformToTrace,
-  connectAggregationToTransform,
   connectTraceToPlot,
+  connectTransformToTrace,
+  connectUpdateMenuToLayout,
   containerConnectedContextTypes,
-  computeTraceOptionsFromSchema,
-  traceTypeToPlotlyInitFigure,
   dereference,
   getAllAxes,
   getAxisTitle,
-  getSubplotTitle,
   getDisplayName,
+  getFullTrace,
+  getSubplotTitle,
   isPlainObject,
   localize,
   localizeString,
+  lowerCase,
   maybeAdjustSrc,
   maybeTransposeData,
+  getParsedTemplateString,
+  pascalCase,
   plotlyTraceToCustomTrace,
+  removeNonWord,
   renderTraceIcon,
-  unpackPlotProps,
-  walkObject,
-  tooLight,
   striptags,
+  tooLight,
   traceTypeToAxisType,
+  traceTypeToPlotlyInitFigure,
   transpose,
-  getFullTrace,
+  unpackPlotProps,
+  upperCase,
+  walkObject,
 };

@@ -5,7 +5,13 @@ import React, {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
-import {connectToContainer, traceTypeToAxisType, getAxisTitle, axisIdToAxisName} from 'lib';
+import {
+  connectToContainer,
+  traceTypeToAxisType,
+  getAxisTitle,
+  axisIdToAxisName,
+  getParsedTemplateString,
+} from 'lib';
 import {PlotlySection} from 'components';
 
 class UnconnectedAxisCreator extends Component {
@@ -128,7 +134,10 @@ class UnconnectedAxesCreator extends Component {
 
     function getOptions(axisType) {
       return fullLayout._subplots[axisType].map(axisId => ({
-        label: getAxisTitle(fullLayout[axisIdToAxisName(axisId)]),
+        label: getParsedTemplateString(
+          getAxisTitle(fullLayout[axisIdToAxisName(axisId)]),
+          fullLayout.meta
+        ),
         value: axisId,
       }));
     }
