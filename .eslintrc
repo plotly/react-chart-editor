@@ -17,6 +17,12 @@
       "jsx": true
     }
   },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
+  },
   "env": {
     "browser": true,
     "es6": true,
@@ -115,7 +121,7 @@
     "yoda": ["error"],
     "spaced-comment": ["error", "always", {
       "block": {
-        exceptions: ["*"]
+        "exceptions": ["*"]
       }
     }],
     "no-unused-vars": ["error", {

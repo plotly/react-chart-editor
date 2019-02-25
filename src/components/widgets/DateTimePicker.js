@@ -141,10 +141,10 @@ export default class DateTimePicker extends Component {
     return !isValidDateTime || time === '' || JSDate.toDateString() === 'Invalid Date'
       ? ''
       : localeTime[1] === 'PM'
-        ? isNoon
-          ? _('noon')
-          : 'PM'
-        : 'AM';
+      ? isNoon
+        ? _('noon')
+        : 'PM'
+      : 'AM';
   }
 
   adjustedTime(time) {
