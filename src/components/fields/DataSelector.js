@@ -117,11 +117,10 @@ export class UnconnectedDataSelector extends Component {
           onChange={this.updatePlot}
           multi={this.is2D}
           searchable={true}
-          optionRenderer={this.context.dataSourceOptionRenderer}
-          valueRenderer={this.context.dataSourceValueRenderer}
           clearable={true}
           placeholder={this.hasData ? 'Data inlined in figure' : 'Choose data...'}
           disabled={this.dataSourceOptions.length === 0}
+          components={this.props.dataSourceComponents}
         />
       </Field>
     );
@@ -137,9 +136,8 @@ UnconnectedDataSelector.propTypes = {
 
 UnconnectedDataSelector.contextTypes = {
   dataSources: PropTypes.object,
+  dataSourceComponents: PropTypes.object,
   dataSourceOptions: PropTypes.array,
-  dataSourceValueRenderer: PropTypes.func,
-  dataSourceOptionRenderer: PropTypes.func,
   srcConverters: PropTypes.shape({
     toSrc: PropTypes.func.isRequired,
     fromSrc: PropTypes.func.isRequired,

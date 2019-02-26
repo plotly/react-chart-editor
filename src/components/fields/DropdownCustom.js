@@ -59,8 +59,7 @@ export class UnconnectedDropdownCustom extends Component {
           value={value}
           onChange={this.setValue}
           clearable={this.props.clearable}
-          optionRenderer={this.props.optionRenderer}
-          valueRenderer={this.props.valueRenderer}
+          components={this.props.components}
           placeholder={this.props.placeholder}
         />
 
@@ -81,9 +80,12 @@ export class UnconnectedDropdownCustom extends Component {
 }
 
 UnconnectedDropdownCustom.propTypes = {
+  backgroundDark: PropTypes.bool,
   fullValue: PropTypes.any,
   updatePlot: PropTypes.func,
   clearable: PropTypes.bool,
+  components: PropTypes.object,
+  placeholder: PropTypes.any,
   defaultOpt: PropTypes.oneOfType([PropTypes.number, PropTypes.bool, PropTypes.string]),
   customOpt: PropTypes.oneOfType([PropTypes.number, PropTypes.bool, PropTypes.string]),
   label: PropTypes.string,

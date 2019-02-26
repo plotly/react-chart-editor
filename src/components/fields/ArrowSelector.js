@@ -4,7 +4,7 @@ import ARROW_PATHS from 'plotly.js/src/components/annotations/arrow_paths';
 
 const ARROW_OPTIONS = ARROW_PATHS.map(({path}, index) => {
   const label = (
-    <svg width="40" height="20" style={{position: 'relative', top: '5px'}}>
+    <svg width="40" height="20" style={{position: 'relative'}}>
       <line
         stroke="rgb(68, 68, 68)"
         style={{fill: 'none'}}
