@@ -1,4 +1,4 @@
-import React, {Fragment, Component} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
 import {MULTI_VALUED_PLACEHOLDER} from 'lib/constants';
@@ -35,7 +35,7 @@ export class UnconnectedVisibilitySelect extends Component {
     const {dropdown, clearable, options, showOn, attr, label} = this.props;
 
     return (
-      <Fragment>
+      <>
         {dropdown ? (
           <Dropdown
             attr={attr}
@@ -57,7 +57,7 @@ export class UnconnectedVisibilitySelect extends Component {
         {(Array.isArray(showOn) && showOn.includes(this.mode)) || this.mode === showOn
           ? this.props.children
           : null}
-      </Fragment>
+      </>
     );
   }
 }

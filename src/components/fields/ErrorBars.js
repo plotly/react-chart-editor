@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {DataSelector, Radio, Numeric, MultiColorPicker} from '../index';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Field from './Field';
@@ -88,7 +88,7 @@ class ErrorBars extends Component {
     const showCustomDataControl = this.props.fullValue.type === 'data';
 
     const styleAttrs = (
-      <Fragment>
+      <>
         <Radio
           label={_('Copy Y Style')}
           attr={`${this.props.attr}.copy_ystyle`}
@@ -102,12 +102,12 @@ class ErrorBars extends Component {
         <MultiColorPicker label={_('Color')} attr={`${this.props.attr}.color`} />
         <Numeric label={_('Thickness')} attr={`${this.props.attr}.thickness`} />
         <Numeric label={_('Crossbar Width')} attr={`${this.props.attr}.width`} />
-      </Fragment>
+      </>
     );
 
     if (mode === 'symmetric') {
       return (
-        <Fragment>
+        <>
           <Radio
             label={_('Error Type')}
             attr={`${this.props.attr}.type`}
@@ -123,13 +123,13 @@ class ErrorBars extends Component {
             <DataSelector label={_('Custom Data')} attr={`${this.props.attr}.array`} />
           ) : null}
           {styleAttrs}
-        </Fragment>
+        </>
       );
     }
 
     if (mode === 'asymmetric') {
       return (
-        <Fragment>
+        <>
           <Radio
             label={_('Error Type')}
             attr={`${this.props.attr}.type`}
@@ -142,13 +142,13 @@ class ErrorBars extends Component {
           <Numeric label={_('Value')} attr={`${this.props.attr}.value`} />
           <Numeric label={_('Value (-)')} attr={`${this.props.attr}.valueminus`} />
           {showCustomDataControl ? (
-            <Fragment>
+            <>
               <DataSelector label={_('Error (+)')} attr={`${this.props.attr}.array`} />
               <DataSelector label={_('Error (-)')} attr={`${this.props.attr}.arrayminus`} />
-            </Fragment>
+            </>
           ) : null}
           {styleAttrs}
-        </Fragment>
+        </>
       );
     }
 
@@ -157,10 +157,10 @@ class ErrorBars extends Component {
 
   render() {
     return (
-      <Fragment>
+      <>
         {this.renderModeSelector()}
         {this.renderErrorBarControls()}
-      </Fragment>
+      </>
     );
   }
 }

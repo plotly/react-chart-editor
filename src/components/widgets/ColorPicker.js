@@ -1,5 +1,5 @@
 import Fields from 'react-color/lib/components/sketch/SketchFields';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import {Hue, Saturation} from 'react-color/lib/components/common';
@@ -86,7 +86,7 @@ class ColorPicker extends Component {
     const swatchStyle = {backgroundColor: rgbString};
 
     return (
-      <Fragment>
+      <>
         <div className="colorpicker__container">
           <div className="colorpicker">
             <div
@@ -104,7 +104,7 @@ class ColorPicker extends Component {
         {this.state.isVisible && (
           <CustomColorPicker color={rgbString} onChangeComplete={this.onSelectedColorChange} />
         )}
-      </Fragment>
+      </>
     );
   }
 }

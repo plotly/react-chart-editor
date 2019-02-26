@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 class ModalProvider extends React.Component {
@@ -73,10 +73,10 @@ class ModalProvider extends React.Component {
   render() {
     const {component: Component, componentProps, isAnimatingOut} = this.state;
     return (
-      <Fragment>
+      <>
         {this.props.children}
         {this.state.open ? <Component isAnimatingOut={isAnimatingOut} {...componentProps} /> : null}
-      </Fragment>
+      </>
     );
   }
 }
