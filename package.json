@@ -120,7 +120,7 @@
     "prepublishOnly": "npm run make:lib",
     "start": "webpack-dev-server --hot",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
-    "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill",
+    "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill --maxWorkers=2",
     "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:percy": "react-percy",
