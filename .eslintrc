@@ -60,7 +60,7 @@
     "guard-for-in": ["off"],
     "import/named": ["off"],
     "import/no-duplicates": ["error"],
-    "import/no-named-as-default": ["error"],
+    "import/no-named-as-default": ["off"],
     "new-cap": ["error"],
     "no-alert": [1],
     "no-caller": ["error"],

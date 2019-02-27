@@ -45,7 +45,7 @@
     "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-module-resolver": "^3.2.0",
-    "css-loader": "^0.28.11",
+    "css-loader": "^2.1.0",
     "cssnano": "^4.1.10",
     "enzyme": "3.9.0",
     "enzyme-adapter-react-16": "1.10.0",
@@ -74,8 +74,9 @@
     "rimraf": "2.6.3",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
   },
   "peerDependencies": {
     "react": ">15",
