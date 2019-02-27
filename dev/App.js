@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {hot} from 'react-hot-loader';
+import {hot} from 'react-hot-loader/root';
 import plotly from 'plotly.js/dist/plotly-with-meta';
 import '../src/styles/main.scss';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
@@ -275,4 +275,4 @@ class App extends Component {
   }
 }
 
-export default hot(module)(App);
+export default hot(App);
