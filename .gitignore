@@ -4,6 +4,7 @@ npm-debug.log*
 *.sublime*
 
 .*
+!.storybook
 !.gitignore
 !.gitattributes
 !.npmignore
@@ -19,3 +20,5 @@ accessTokens.js
 yarn.lock
 yarn-error.log
 package-lock.json
+
+storybook-static
