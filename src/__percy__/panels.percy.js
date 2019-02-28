@@ -59,7 +59,7 @@ Object.keys(mocks).forEach(m => {
     const panelGroup = words[0];
     const panelName = words.slice(1, -1).join(' ');
 
-    percySnapshot(`${m}_${p}`, {widths: [snapshotWidth]}, () =>
+    percySnapshot(`Panels: ${m}_${p}`, {widths: [snapshotWidth]}, () =>
       panelFixture(panels[p], panelGroup, panelName, mocks[m])
     );
   });

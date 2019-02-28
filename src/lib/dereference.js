@@ -10,7 +10,6 @@ export default function dereference(container, dataSources, config = {deleteKeys
     }
 
     const dataKey = key.replace(SRC_ATTR_PATTERN, '');
-    const traceType = parent.type;
 
     let srcRef = config.toSrc ? config.toSrc(parent[key]) : parent[key];
 
@@ -19,7 +18,7 @@ export default function dereference(container, dataSources, config = {deleteKeys
       srcRef = [srcRef];
     }
 
-    let data = srcRef.map(ref => {
+    let dereferencedData = srcRef.map(ref => {
       if (config.deleteKeys && !(ref in dataSources)) {
         delete parent[dataKey];
       }
@@ -28,18 +27,29 @@ export default function dereference(container, dataSources, config = {deleteKeys
 
     // remove extra data wrapping
     if (srcRef.length === 1) {
-      data = data[0];
+      dereferencedData = dereferencedData[0];
     }
 
-    if (!Array.isArray(data)) {
+    if (!Array.isArray(dereferencedData)) {
       return;
     }
 
-    parent[dataKey] = maybeTransposeData(data, srcPath, traceType);
+    if (Array.isArray(container)) {
+      // Case where we were originally given data to dereference
+      const traceType = parent.type;
+      parent[dataKey] = maybeTransposeData(dereferencedData, srcPath, traceType);
+    } else {
+      // This means we're dereferencing layout
+      parent[dataKey] = dereferencedData;
+    }
   };
 
-  walkObject(container, replacer, {
-    walkArraysMatchingKeys: ['data', 'transforms'],
-    pathType: 'nestedProperty',
-  });
+  if (Array.isArray(container)) {
+    walkObject(container, replacer, {
+      walkArraysMatchingKeys: ['data', 'transforms'],
+      pathType: 'nestedProperty',
+    });
+  } else {
+    walkObject(container, replacer, {pathType: 'nestedProperty'});
+  }
 }

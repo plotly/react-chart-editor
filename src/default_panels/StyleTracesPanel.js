@@ -33,6 +33,7 @@ import {
   DataSelector,
   VisibilitySelect,
   GroupCreator,
+  NumericOrDate,
   AxisInterval,
 } from '../components';
 import {
@@ -93,8 +94,8 @@ const StyleTracesPanel = () => (
             />
           </LayoutSection>
         </TraceTypeSection>
-        <PlotlySection name={_('Pie Title')} attr="title">
-          <TextEditor label={_('Name')} attr="title" />
+        <PlotlySection name={_('Pie Title')} attr="title.text">
+          <TextEditor label={_('Name')} attr="title.text" />
           <Dropdown
             label={'Title Position'}
             attr="titleposition"
@@ -108,8 +109,8 @@ const StyleTracesPanel = () => (
               {label: _('Bottom Right'), value: 'bottom right'},
             ]}
           />
-          <FontSelector label={_('Typeface')} attr="titlefont.family" clearable={false} />
-          <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
+          <FontSelector label={_('Typeface')} attr="title.font.family" clearable={false} />
+          <Numeric label={_('Font Size')} attr="title.font.size" units="px" />
         </PlotlySection>
         <PlotlySection name={_('Values')}>
           <BinningDropdown label={_('Histogram Function')} attr="histfunc" />
@@ -232,18 +233,18 @@ const StyleTracesPanel = () => (
           </LayoutSection>
         </TraceTypeSection>
         <PlotlySection name={_('Binning')}>
-          <Numeric label={_('X Bin Start')} attr="xbins.start" axis="x" />
-          <Numeric label={_('X Bin End')} attr="xbins.end" axis="x" />
+          <NumericOrDate label={_('X Bin Start')} attr="xbins.start" axis="x" />
+          <NumericOrDate label={_('X Bin End')} attr="xbins.end" axis="x" />
           <Numeric label={_('Max X Bins')} attr="nbinsx" />
           <AxisInterval label={_('X Bin Size')} attr="xbins.size" axis="x" />
 
-          <Numeric label={_('Y Bin Start')} attr="ybins.start" axis="y" />
-          <Numeric label={_('Y Bin End')} attr="ybins.end" axis="y" />
+          <NumericOrDate label={_('Y Bin Start')} attr="ybins.start" axis="y" />
+          <NumericOrDate label={_('Y Bin End')} attr="ybins.end" axis="y" />
           <Numeric label={_('Max Y Bins')} attr="nbinsy" />
           <AxisInterval label={_('Y Bin Size')} attr="ybins.size" axis="y" />
         </PlotlySection>
         <PlotlySection label={_('Bar Position')}>
-          <Numeric label={_('Base')} attr="base" />
+          <NumericOrDate label={_('Base')} attr="base" />
           <Numeric label={_('Offset')} attr="offset" />
           <Numeric label={_('Width')} attr="width" />
         </PlotlySection>
@@ -315,7 +316,12 @@ const StyleTracesPanel = () => (
           />
           <NumericFraction label={_('Jitter')} attr="jitter" />
           <Numeric label={_('Position')} attr="pointpos" step={0.1} showSlider />
-          <MarkerColor suppressMultiValuedMessage label={_('Color')} attr="marker.color" />
+          <MarkerColor
+            suppressMultiValuedMessage
+            label={_('Color')}
+            attr="marker.color"
+            labelWidth={80}
+          />
           <NumericFraction label={_('Point Opacity')} attr="marker.opacity" />
           <MarkerSize label={_('Size')} attr="marker.size" />
           <NumericReciprocal

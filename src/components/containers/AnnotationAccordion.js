@@ -3,7 +3,7 @@ import {LayoutPanel} from './derived';
 import {PanelMessage} from './PanelEmpty';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectAnnotationToLayout} from 'lib';
+import {connectAnnotationToLayout, getParsedTemplateString} from 'lib';
 import {EditorControlsContext} from '../../context';
 
 const AnnotationFold = connectAnnotationToLayout(PlotlyFold);
@@ -11,18 +11,25 @@ const AnnotationFold = connectAnnotationToLayout(PlotlyFold);
 class AnnotationAccordion extends Component {
   render() {
     const {
-      layout: {annotations = []},
+      layout: {annotations = [], meta = []},
       localize: _,
     } = this.context;
     const {canAdd, children} = this.props;
 
     const content =
       annotations.length &&
-      annotations.map((ann, i) => (
-        <AnnotationFold key={i} annotationIndex={i} name={ann.text} canDelete={canAdd}>
-          {children}
-        </AnnotationFold>
-      ));
+      annotations.map((ann, i) => {
+        return (
+          <AnnotationFold
+            key={i}
+            annotationIndex={i}
+            name={getParsedTemplateString(ann.text, meta)}
+            canDelete={canAdd}
+          >
+            {children}
+          </AnnotationFold>
+        );
+      });
 
     const addAction = {
       label: _('Annotation'),

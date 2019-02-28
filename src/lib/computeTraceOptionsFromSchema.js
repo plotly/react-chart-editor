@@ -132,6 +132,10 @@ function computeTraceOptionsFromSchema(schema, _, context) {
       value: 'barpolar',
       label: _('Polar Bar'),
     },
+    {
+      value: 'isosurface',
+      label: _('Isosurface'),
+    },
   ].filter(obj => traceTypes.indexOf(obj.value) !== -1);
 
   const traceIndex = traceType => traceOptions.findIndex(opt => opt.value === traceType);

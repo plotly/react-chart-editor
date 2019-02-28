@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import {
   ColorPicker,
   ColorwayPicker,
@@ -15,7 +14,9 @@ import {
   HovermodeDropdown,
   Flaglist,
   Radio,
+  Info,
 } from '../components';
+import DataSelector from '../components/fields/DataSelector';
 import {HoverColor} from '../components/fields/derived';
 import {EditorControlsContext} from '../context';
 
@@ -26,15 +27,32 @@ const StyleLayoutPanel = () => (
         <PlotlyFold name={_('Defaults')}>
           <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
           <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
-          <PlotlySection name={_('Color Scales')} attr="colorway">
-            <ColorwayPicker label={_('Categorical')} attr="colorway" />
-            <ColorscalePicker label={_('Sequential')} attr="colorscale.sequential" />
+          <PlotlySection name={_('Colorscales')} attr="colorway">
+            <ColorwayPicker
+              label={_('Categorical')}
+              attr="colorway"
+              disableCategorySwitch
+              labelWidth={80}
+            />
+            <ColorscalePicker
+              label={_('Sequential')}
+              attr="colorscale.sequential"
+              disableCategorySwitch
+              labelWidth={80}
+            />
             <ColorscalePicker
               label={_('Diverging')}
               attr="colorscale.diverging"
               initialCategory="divergent"
+              disableCategorySwitch
+              labelWidth={80}
             />
-            <ColorscalePicker label={_('Negative Sequential')} attr="colorscale.sequentialminus" />
+            <ColorscalePicker
+              label={_('Negative Sequential')}
+              attr="colorscale.sequentialminus"
+              disableCategorySwitch
+              labelWidth={80}
+            />
           </PlotlySection>
           <PlotlySection name={_('Text')} attr="font.family">
             <FontSelector label={_('Typeface')} attr="font.family" clearable={false} />
@@ -53,13 +71,15 @@ const StyleLayoutPanel = () => (
             />
           </PlotlySection>
         </PlotlyFold>
+
         <PlotlyFold name={_('Title')}>
           <TextEditor attr="title.text" />
-          <FontSelector label={_('Typeface')} attr="titlefont.family" clearable={false} />
-          <Numeric label={_('Font Size')} attr="titlefont.size" units="px" />
-          <ColorPicker label={_('Font Color')} attr="titlefont.color" />
+          <FontSelector label={_('Typeface')} attr="title.font.family" clearable={false} />
+          <Numeric label={_('Font Size')} attr="title.font.size" units="px" />
+          <ColorPicker label={_('Font Color')} attr="title.font.color" />
           <Numeric label={_('Horizontal Position')} showSlider step={0.02} attr="title.x" />
         </PlotlyFold>
+
         <PlotlyFold name={_('Modebar')}>
           <Radio
             label={_('Orientation')}
@@ -70,7 +90,7 @@ const StyleLayoutPanel = () => (
           <ColorPicker label={_('Active Icon Color')} attr="modebar.activecolor" />
           <ColorPicker label={_('Background Color')} attr="modebar.bgcolor" />
         </PlotlyFold>
-        <PlotlyFold name={_('Layout')}>
+        <PlotlyFold name={_('Size and Margins')}>
           <VisibilitySelect
             attr="autosize"
             label={_('Size')}
@@ -148,6 +168,22 @@ const StyleLayoutPanel = () => (
               />
             </HovermodeDropdown>
           </PlotlySection>
+        </PlotlyFold>
+        <PlotlyFold name={_('Meta Text')}>
+          <DataSelector label={_('Custom Data')} attr="meta" />
+          <Info>
+            <p>
+              {_(
+                'You can refer to the items in this column in any text fields of the editor like so: '
+              )}
+              <p>
+                {_('Ex: ')}
+                <span style={{letterSpacing: '1px', fontStyle: 'italic', userSelect: 'text'}}>
+                  {_('My custom title %{meta[1]}')}
+                </span>
+              </p>
+            </p>
+          </Info>
         </PlotlyFold>
       </LayoutPanel>
     )}

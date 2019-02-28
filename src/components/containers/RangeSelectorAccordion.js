@@ -2,7 +2,7 @@ import PlotlyFold from './PlotlyFold';
 import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {connectRangeSelectorToAxis} from 'lib';
+import {connectRangeSelectorToAxis, getParsedTemplateString} from 'lib';
 import {EditorControlsContext} from '../../context';
 
 const RangeSelectorFold = connectRangeSelectorToAxis(PlotlyFold);
@@ -24,13 +24,19 @@ class RangeSelectorAccordion extends Component {
       fullContainer: {
         rangeselector: {buttons = []},
       },
+      layout: meta,
     } = this.props.context;
     const {children} = this.props;
 
     const content =
       buttons.length &&
       buttons.map((btn, i) => (
-        <RangeSelectorFold key={i} rangeselectorIndex={i} name={btn.label} canDelete={true}>
+        <RangeSelectorFold
+          key={i}
+          rangeselectorIndex={i}
+          name={getParsedTemplateString(btn.label, meta)}
+          canDelete={true}
+        >
           {children}
         </RangeSelectorFold>
       ));
@@ -64,9 +70,13 @@ RangeSelectorAccordion.contextType = EditorControlsContext;
 RangeSelectorAccordion.requireContext = {
   container: PropTypes.object,
   fullContainer: PropTypes.object,
-  updateContainer: PropTypes.func,
-  getValObject: PropTypes.func,
+  layout: PropTypes.object,
 };
+// >>>>>>> upstream/master
+// <<<<<<< HEAD
+// updateContainer: PropTypes.func,
+// getValObject: PropTypes.func,
+// *=======*
 
 RangeSelectorAccordion.propTypes = {
   children: PropTypes.node,

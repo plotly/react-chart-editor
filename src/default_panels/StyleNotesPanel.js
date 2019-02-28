@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import {
   AnnotationArrowRef,
   AnnotationRef,
@@ -13,6 +12,7 @@ import {
   Radio,
   TextEditor,
   PlotlySection,
+  NumericOrDate,
 } from '../components';
 import {EditorControlsContext} from '../context';
 
@@ -26,7 +26,28 @@ const StyleNotesPanel = () => (
           <Numeric label={_('Font Size')} attr="font.size" units="px" />
           <ColorPicker label={_('Font Color')} attr="font.color" />
           <Numeric label={_('Angle')} attr="textangle" units="°" />
+          <Dropdown
+            label={_('Horizontal Alignment')}
+            clearable={false}
+            attr="align"
+            options={[
+              {label: _('Left'), value: 'left'},
+              {label: _('Center'), value: 'center'},
+              {label: _('Right'), value: 'right'},
+            ]}
+          />
+          <Dropdown
+            label={_('Vertical Alignment')}
+            clearable={false}
+            attr="valign"
+            options={[
+              {label: _('Left'), value: 'left'},
+              {label: _('Center'), value: 'center'},
+              {label: _('Right'), value: 'right'},
+            ]}
+          />
         </PlotlySection>
+
         <PlotlySection name={_('Arrow')}>
           <Radio
             attr="showarrow"
@@ -38,8 +59,8 @@ const StyleNotesPanel = () => (
           <Numeric label={_('Scale')} step={0.1} attr="arrowsize" units="px" />
           <AnnotationArrowRef label={_('X Offset')} attr="axref" />
           <AnnotationArrowRef label={_('Y Offset')} attr="ayref" />
-          <Numeric label={_('X Vector')} attr="ax" />
-          <Numeric label={_('Y Vector')} attr="ay" />
+          <NumericOrDate label={_('X Vector')} attr="ax" />
+          <NumericOrDate label={_('Y Vector')} attr="ay" />
         </PlotlySection>
         <PlotlySection name={_('Horizontal Positioning')}>
           <Dropdown

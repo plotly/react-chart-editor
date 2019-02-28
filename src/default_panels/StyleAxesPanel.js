@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {
   AxesRange,
   DTicks,
+  DTicksInterval,
   NTicks,
   ColorPicker,
   Dropdown,
@@ -121,7 +122,7 @@ class StyleAxesPanel extends Component {
               />
 
               <DTicks label={_('Step Offset')} attr="tick0" />
-              <DTicks label={_('Step Size')} attr="dtick" />
+              <DTicksInterval label={_('Step Size')} attr="dtick" />
               <NTicks label={_('Max Number of Lines')} attr="nticks" />
             </VisibilitySelect>
           </PlotlySection>
@@ -197,7 +198,7 @@ class StyleAxesPanel extends Component {
                 attr="exponentformat"
                 clearable={false}
                 options={[
-                  {label: _('None'), value: '000'},
+                  {label: _('None'), value: 'none'},
                   {label: _('e+6'), value: 'e'},
                   {label: _('E+6'), value: 'E'},
                   {label: _('x10^6'), value: 'power'},
@@ -274,7 +275,7 @@ class StyleAxesPanel extends Component {
               />
 
               <DTicks label={_('Step Offset')} attr="tick0" />
-              <DTicks label={_('Step Size')} attr="dtick" />
+              <DTicksInterval label={_('Step Size')} attr="dtick" />
               <NTicks label={_('Max Number of Labels')} attr="nticks" />
             </VisibilitySelect>
           </PlotlySection>
@@ -310,7 +311,7 @@ class StyleAxesPanel extends Component {
               />
 
               <DTicks label={_('Step Offset')} attr="tick0" />
-              <DTicks label={_('Step Size')} attr="dtick" />
+              <DTicksInterval label={_('Step Size')} attr="dtick" />
               <NTicks label={_('Max Number of Markers')} attr="nticks" />
             </VisibilitySelect>
           </PlotlySection>

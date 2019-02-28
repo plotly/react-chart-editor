@@ -5,7 +5,9 @@ export default class Info extends Component {
   render() {
     return (
       <Field {...this.props}>
-        <div className="js-test-info">{this.props.children}</div>
+        <div className={`js-test-info ${this.props.className ? this.props.className : ''}`}>
+          {this.props.children}
+        </div>
       </Field>
     );
   }

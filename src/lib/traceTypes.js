@@ -240,4 +240,9 @@ export const traceTypes = _ => [
     label: _('Carpet'),
     category: chartCategory(_).HIDDEN,
   },
+  {
+    value: 'isosurface',
+    label: _('Isosurface'),
+    category: chartCategory(_).HIDDEN,
+  },
 ];

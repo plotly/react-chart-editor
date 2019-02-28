@@ -12,11 +12,23 @@ export default class NumericInput extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {value: props.value};
+    this.state = {
+      value: props.value,
+      numericInputClassName: this.getNumericInputClassName(props.value),
+    };
+
     this.onChange = this.onChange.bind(this);
     this.updateValue = this.updateValue.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
     this.onWheel = this.onWheel.bind(this);
+  }
+
+  getNumericInputClassName(value) {
+    return isNumeric(value) || value === ''
+      ? `numeric-input__number ${this.props.editableClassName ? this.props.editableClassName : ''}`
+      : `numeric-input__number +error ${
+          this.props.editableClassName ? this.props.editableClassName : ''
+        }`;
   }
 
   componentWillReceiveProps(nextProps) {
@@ -49,17 +61,28 @@ export default class NumericInput extends Component {
   }
 
   onChange(value) {
-    this.setState({value});
+    this.setState({value, numericInputClassName: this.getNumericInputClassName(value)});
   }
 
   updateValue(newValue) {
-    const {max, min, integerOnly, value: propsValue} = this.props;
+    const {max, min, integerOnly} = this.props;
     let updatedValue = newValue;
+
+    if (updatedValue === '') {
+      this.setState({
+        value: this.props.value,
+        numericInputClassName: this.getNumericInputClassName(this.props.value),
+      });
+      return;
+    }
 
     // When the user blurs on non-numeric data reset the component
     // to the last known good value (this.props.value).
     if (!isNumeric(updatedValue)) {
-      this.setState({value: propsValue});
+      this.setState({
+        value: updatedValue,
+        numericInputClassName: this.getNumericInputClassName(updatedValue),
+      });
       return;
     }
 
@@ -151,7 +174,7 @@ export default class NumericInput extends Component {
     return (
       <div className="numeric-input__wrapper">
         <EditableText
-          className={`numeric-input__number ${this.props.editableClassName}`}
+          className={this.state.numericInputClassName}
           placeholder={this.props.placeholder}
           text={this.state.value}
           type="text"

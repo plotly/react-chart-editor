@@ -7,8 +7,8 @@ import {EDITOR_ACTIONS} from 'lib/constants';
 import {EditorControlsContext} from '../../context';
 
 export class UnconnectedColorscalePicker extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.onUpdate = this.onUpdate.bind(this);
   }
 
@@ -44,6 +44,7 @@ export class UnconnectedColorscalePicker extends Component {
           selected={colorscale}
           onColorscaleChange={this.onUpdate}
           initialCategory={this.props.initialCategory}
+          disableCategorySwitch={this.props.disableCategorySwitch}
         />
       </Field>
     );
@@ -51,6 +52,7 @@ export class UnconnectedColorscalePicker extends Component {
 }
 
 UnconnectedColorscalePicker.propTypes = {
+  labelWidth: PropTypes.number,
   fullValue: PropTypes.any,
   fullContainer: PropTypes.object,
   updatePlot: PropTypes.func,

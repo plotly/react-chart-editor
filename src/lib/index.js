@@ -30,6 +30,7 @@ import * as PlotlyIcons from 'plotly-icons';
 import striptags from './striptags';
 import {capitalize, lowerCase, upperCase, removeNonWord, camelCase, pascalCase} from './strings';
 import {getColorscale} from 'react-colorscales';
+import {templateString} from 'plotly.js/src/lib';
 import {EDITOR_ACTIONS} from './constants';
 import recursiveMap from './recursiveMap';
 
@@ -157,7 +158,7 @@ function maybeAdjustSrc(src, srcAttributePath, traceType, config) {
     return src[0];
   }
 
-  return config && config.fromSrc ? config.fromSrc(src, traceType) : src;
+  return config && config.fromSrc ? config.fromSrc(src, traceType, srcAttributePath) : src;
 }
 
 function adjustColorscale(colorscale, numberOfNeededColors, colorscaleType, config) {
@@ -204,6 +205,16 @@ function getFullTrace(props, context) {
   return fullTrace;
 }
 
+function getParsedTemplateString(originalString, meta) {
+  let text = originalString;
+
+  if (originalString && meta && meta.length) {
+    text = templateString(originalString, {meta});
+  }
+
+  return text === '' && originalString ? originalString : text;
+}
+
 function adjustValue(value, attr) {
   return Array.isArray(value) && value.length === 1 && (attr === 'x' || attr === 'y')
     ? value[0]
@@ -226,49 +237,50 @@ export {
   adjustData,
   axisIdToAxisName,
   bem,
-  capitalize,
-  lowerCase,
-  upperCase,
-  removeNonWord,
   camelCase,
-  pascalCase,
+  capitalize,
   clamp,
-  connectCartesianSubplotToLayout,
-  connectNonCartesianSubplotToLayout,
+  computeTraceOptionsFromSchema,
+  connectAggregationToTransform,
   connectAnnotationToLayout,
+  connectAxesToLayout,
+  connectCartesianSubplotToLayout,
+  connectImageToLayout,
+  connectLayoutToPlot,
+  connectNonCartesianSubplotToLayout,
+  connectRangeSelectorToAxis,
   connectShapeToLayout,
   connectSliderToLayout,
-  connectUpdateMenuToLayout,
-  connectImageToLayout,
-  connectAxesToLayout,
-  connectLayoutToPlot,
   connectToContainer,
-  connectRangeSelectorToAxis,
-  connectTransformToTrace,
-  connectAggregationToTransform,
   connectTraceToPlot,
+  connectTransformToTrace,
+  connectUpdateMenuToLayout,
   containerConnectedContextTypes,
-  computeTraceOptionsFromSchema,
-  traceTypeToPlotlyInitFigure,
   dereference,
   getAllAxes,
   getAxisTitle,
-  getSubplotTitle,
   getDisplayName,
+  getFullTrace,
+  getSubplotTitle,
   isPlainObject,
   localize,
   localizeString,
+  lowerCase,
   maybeAdjustSrc,
   maybeTransposeData,
+  getParsedTemplateString,
+  pascalCase,
   plotlyTraceToCustomTrace,
+  removeNonWord,
   renderTraceIcon,
-  unpackPlotProps,
-  walkObject,
-  tooLight,
   striptags,
+  tooLight,
   traceTypeToAxisType,
+  traceTypeToPlotlyInitFigure,
   transpose,
-  getFullTrace,
+  unpackPlotProps,
+  upperCase,
+  walkObject,
   EDITOR_ACTIONS,
   recursiveMap,
 };

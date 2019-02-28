@@ -30,6 +30,7 @@ class Field extends Component {
       units,
       extraComponent,
       fieldContainerClassName,
+      labelWidth,
     } = this.props;
 
     let fieldClass;
@@ -54,11 +55,14 @@ class Field extends Component {
 
     return (
       <EditorControlsContext.Consumer>
-        {({localize: _, showFieldTooltips}) => (
+        {({localize: _}) => (
           <div className={containerClassName}>
             {label ? (
-              <div className={bem('field', 'title')}>
-                {showFieldTooltips ? (
+              <div
+                className={bem('field', 'title')}
+                style={labelWidth ? {minWidth: labelWidth + 'px'} : {}}
+              >
+                {this.context.showFieldTooltips ? (
                   <div
                     className={bem('field', 'title-text')}
                     aria-label={tooltip}
@@ -97,6 +101,7 @@ class Field extends Component {
 }
 
 Field.propTypes = {
+  labelWidth: PropTypes.number,
   center: PropTypes.bool,
   label: PropTypes.any,
   units: PropTypes.string,

@@ -58,6 +58,7 @@ class Dropdown extends Component {
 
     const dropdownContainerClass = classnames('dropdown-container', {
       'dropdown--dark': this.props.backgroundDark,
+      [this.props.className]: this.props.className,
     });
 
     return (

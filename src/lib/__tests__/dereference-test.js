@@ -1,4 +1,5 @@
 import dereference from '../dereference';
+
 /* eslint-disable no-magic-numbers */
 describe('dereference', () => {
   it('does not search into data arrays', () => {
@@ -64,5 +65,14 @@ describe('dereference', () => {
     expect(container[0].z[1][1]).toBe(2);
     expect(container[0].z[2][0]).toBe(3);
     expect(container[0].z[2][1]).toBe(2);
+  });
+
+  // TO DO: dereference all of layout
+  it('can dereference top level layout keys', () => {
+    const container = {metasrc: 'x1', xaxis: {ticktext: 'x2'}};
+    dereference(container, {x1: ['yes!'], x2: ['some', 'text']});
+
+    expect(Array.isArray(container.meta)).toBe(true);
+    expect(container.meta[0]).toBe('yes!');
   });
 });

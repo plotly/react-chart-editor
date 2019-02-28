@@ -7,6 +7,7 @@ import {
   renderTraceIcon,
   traceTypeToAxisType,
   getFullTrace,
+  getParsedTemplateString,
 } from '../lib';
 import {deepCopyPublic, setMultiValuedContainer} from './multiValues';
 import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR} from 'lib/constants';
@@ -30,6 +31,7 @@ export default function connectTraceToPlot(WrappedComponent) {
     setLocals(props, context) {
       const {traceIndexes} = props;
       const {data, layout, fullLayout, plotly, onUpdate, localize, fullData, graphDiv} = context;
+      const meta = layout;
 
       const trace = data[traceIndexes[0]];
       const fullTrace = getFullTrace(props, context);
@@ -78,7 +80,7 @@ export default function connectTraceToPlot(WrappedComponent) {
 
       if (trace && fullTrace) {
         this.icon = renderTraceIcon(plotlyTraceToCustomTrace(trace));
-        this.name = fullTrace.name;
+        this.name = getParsedTemplateString(fullTrace.name, meta);
       }
     }
 
@@ -209,6 +211,17 @@ export default function connectTraceToPlot(WrappedComponent) {
   };
 
   TraceConnectedComponent.contextType = EditorControlsContext;
+
+  // TraceConnectedComponent.childContextTypes = {
+  //   getValObject: PropTypes.func,
+  //   updateContainer: PropTypes.func,
+  //   deleteContainer: PropTypes.func,
+  //   defaultContainer: PropTypes.object,
+  //   container: PropTypes.object,
+  //   fullContainer: PropTypes.object,
+  //   traceIndexes: PropTypes.array,
+  // };
+  // >>>>>>> upstream/master
 
   const {plotly_editor_traits} = WrappedComponent;
   TraceConnectedComponent.plotly_editor_traits = plotly_editor_traits;
