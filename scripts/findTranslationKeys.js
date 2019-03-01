@@ -1,5 +1,5 @@
-const transform = require('babel-core').transform;
-const traverse = require('babel-traverse').default;
+const transformSync = require('@babel/core').transformSync;
+const traverse = require('@babel/traverse').default;
 const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
@@ -10,10 +10,8 @@ const path = require('path');
 const pathToSrc = process.argv[2] || path.join(__dirname, '../src');
 const srcGlob = path.join(pathToSrc, '**/*.js');
 
-const pathToTranslationKeys = process.argv[3] || path.join(
-  __dirname,
-  './translationKeys/translation-keys.txt'
-);
+const pathToTranslationKeys =
+  process.argv[3] || path.join(__dirname, './translationKeys/translation-keys.txt');
 
 findLocaleStrings();
 
@@ -30,16 +28,28 @@ function findLocaleStrings() {
     files.forEach(file => {
       const code = fs.readFileSync(file, 'utf-8');
       const filePartialPath = file.substr(pathToSrc.length);
-      const ast = transform(code, {
-        presets: ['react', 'es2015', 'stage-2'],
+      const ast = transformSync(code, {
+        presets: ['@babel/preset-react', '@babel/preset-env'],
+        plugins: [
+          '@babel/plugin-proposal-object-rest-spread',
+          [
+            'module-resolver',
+            {
+              root: ['./'],
+              alias: {
+                components: './src/components',
+                lib: './src/lib',
+                styles: './src/styles',
+              },
+            },
+          ],
+        ],
+        ast: true,
       }).ast;
 
       traverse(ast, {
         enter(path) {
-          if (
-            path.node.type === 'CallExpression' &&
-            path.node.callee.name === '_'
-          ) {
+          if (path.node.type === 'CallExpression' && path.node.callee.name === '_') {
             const strNode = path.node.arguments[0];
             let strNodeValue = strNode.value;
 
@@ -47,9 +57,7 @@ function findLocaleStrings() {
               logError(file, path.node, 'Localize takes 1 args');
             }
 
-            if (
-              ['StringLiteral', 'BinaryExpression'].indexOf(strNode.type) < 0
-            ) {
+            if (['StringLiteral', 'BinaryExpression'].indexOf(strNode.type) < 0) {
               logError(
                 file,
                 path.node,
@@ -71,8 +79,7 @@ function findLocaleStrings() {
             }
 
             if (!dict[strNodeValue]) {
-              dict[strNodeValue] =
-                filePartialPath + ':' + strNode.loc.start.line;
+              dict[strNodeValue] = filePartialPath + ':' + strNode.loc.start.line;
               maxLen = Math.max(maxLen, strNodeValue.length);
               hasTranslation = true;
             }
@@ -96,9 +103,7 @@ function findLocaleStrings() {
 }
 
 function logError(file, node, msg) {
-  throw new Error(
-    file + ' [line ' + node.loc.start.line + '] ' + msg + '\n   '
-  );
+  throw new Error(file + ' [line ' + node.loc.start.line + '] ' + msg + '\n   ');
 }
 
 function spaces(len) {
