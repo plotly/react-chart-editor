@@ -1,6 +1,6 @@
 import Field from './Field';
 import PropTypes from 'prop-types';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 import RadioBlocks from '../widgets/RadioBlocks';
 import MultiColorPicker from './MultiColorPicker';
@@ -157,7 +157,7 @@ class UnconnectedMarkerColor extends Component {
       ];
 
       return (
-        <Fragment>
+        <>
           <Field {...this.props} attr={attr}>
             <Field multiValued={this.isMultiValued() && !this.state.type}>
               <RadioBlocks options={options} activeOption={type} onOptionChange={this.setType} />
@@ -174,11 +174,11 @@ class UnconnectedMarkerColor extends Component {
             {!type
               ? null
               : type === 'constant'
-                ? this.renderConstantControls()
-                : this.renderVariableControls()}
+              ? this.renderConstantControls()
+              : this.renderVariableControls()}
           </Field>
           {type === 'constant' ? null : (
-            <Fragment>
+            <>
               <Radio
                 label={_('Colorscale Direction')}
                 attr="marker.reversescale"
@@ -199,9 +199,9 @@ class UnconnectedMarkerColor extends Component {
                 <Numeric label={_('Min')} attr="marker.cmin" />
                 <Numeric label={_('Max')} attr="marker.cmax" />
               </VisibilitySelect>
-            </Fragment>
+            </>
           )}
-        </Fragment>
+        </>
       );
     }
 

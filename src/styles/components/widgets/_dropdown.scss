@@ -1,5 +1,4 @@
 .dropdown-container {
-  @import 'node_modules/react-select/scss/default';
   flex-grow: 1;
 
   &:not(:last-child) {
@@ -7,121 +6,115 @@
   }
 
   .Select {
-    &.is-focused {
-      & > .Select-control {
-        background-color: var(--color-background-inputs);
-        .Select-input {
-          background-color: var(--color-background-inputs) !important;
-        }
-      }
-    }
-    &.is-open {
-      & > .Select-control {
-        border-color: var(--color-border-dark);
-        background-color: var(--color-background-inputs) !important;
-        .Select-input {
-          background-color: var(--color-background-inputs) !important;
-        }
-      }
-    }
-    &:not(.is-open) {
-      .Select-control {
-        background-color: var(--color-background-inputs) !important;
-        &:hover {
-          border-color: var(--color-border-dark);
-          .Select-arrow {
-            opacity: 1;
-          }
-        }
-      }
-    }
-
-    &-control {
+    &__control {
       background-color: var(--color-background-inputs);
       border: var(--border-default);
       box-shadow: none !important;
       color: var(--color-text-base);
+      min-height: 36px;
+      &:hover {
+        border-color: var(--color-border-dark);
+        .Select__arrow {
+          opacity: 1;
+        }
+      }
+      &:not(.is-open) {
+        background-color: var(--color-background-inputs) !important;
+      }
     }
-    &-option {
+    &__option {
       color: var(--color-text-base);
     }
-    &-menu-outer {
+    &__menu {
       border: var(--border-default);
       border-top-color: var(--color-border-default);
       background-color: transparent;
       box-shadow: var(--box-shadow-base);
+      margin-bottom: 0;
+      margin-top: 0;
+      top: 98%;
+      &-list {
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+    }
+    &__indicator-separator {
+      display: none;
+    }
+    &__clear-indicator {
+      padding: 6px 0;
+      color: $color-rhino-medium-2;
+      &:hover {
+        color: $color-sienna;
+      }
+    }
+    &__dropdown-indicator {
+      padding: 6px 6px 6px 0;
+      color: $color-rhino-medium-2;
+      &:hover {
+        color: var(--color-border-accent);
+      }
+    }
+    &__single-value {
+      font-size: 12px;
+      height: 16px;
+      color: var(--color-text-active);
+      font-weight: 400;
+    }
+    &__multi-value {
+      background-color: $color-rhino-light-2;
+      border: var(--border-default);
+      &__label {
+        max-width: 105px;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
     }
   }
-  .Select.is-focused:not(.is-open) > .Select-control {
+  .Select.is-focused:not(.is-open) > .Select__control {
     border-color: var(--color-border-accent);
   }
-  .Select.has-value.Select--single
-    > .Select-control
-    .Select-value
-    .Select-value-label,
-  .Select.has-value.is-pseudo-focused.Select--single
-    > .Select-control
-    .Select-value
-    .Select-value-label {
-    color: var(--color-text-base);
-  }
-  .Select.is-open .Select-arrow,
-  .editor_controls
-    .dropdown-container
-    .Select
-    .Select-arrow-zone:hover
-    > .Select-arrow {
-    border-color: transparent transparent var(--color-border-accent) !important;
-  }
 
-  .Select-arrow-zone:hover {
-    .Select-arrow {
-      border-top-color: var(--color-border-accent) !important;
-    }
-  }
-  .Select-arrow {
+  .Select__arrow {
     border-color: var(--color-border-default) transparent transparent;
   }
 
-  .Select-option {
+  .Select__option {
     background-color: var(--color-background-inputs);
-    &.is-selected {
+    &--is-selected {
       color: var(--color-text-active);
       font-weight: var(--font-weight-semibold);
       background-color: var(--color-background-light);
     }
-    &.is-focused {
+    &--is-focused {
       background-color: var(--color-background-light);
       color: var(--color-text-active);
     }
   }
-  .Select-option:hover {
+  .Select__option:hover {
     color: var(--color-text-active);
     background-color: var(--color-background-light);
   }
 
-  .Select-placeholder,
-  .Select--single > .Select-control .Select-value {
+  .Select__value-container {
     color: var(--color-text-base);
+    padding: 2px 6px;
   }
-  .Select-value-label {
-    color: var(--color-text-base) !important;
-  }
-  .Select-placeholder {
+  .Select__placeholder {
     color: var(--color-text-placeholder);
   }
   .dropdown--dark {
     .Select {
-      &-control {
+      &__control {
         background-color: var(--color-background-inverse);
       }
-      &-option {
+      &__option {
         background-color: var(--color-background-inverse);
-        &.is-selected {
+        &--is-selected {
           background-color: var(--color-border-default);
         }
       }
-      &.is-focused {
+      &--is-focused {
         background-color: var(--color-border-light);
       }
     }

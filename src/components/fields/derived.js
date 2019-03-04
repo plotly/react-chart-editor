@@ -128,8 +128,8 @@ export const BinningDropdown = connectToContainer(UnconnectedDropdown, {
       plotProps.fullContainer.type === 'histogram2d'
         ? 'Z'
         : plotProps.fullContainer.orientation === 'v'
-          ? 'Y'
-          : 'X';
+        ? 'Y'
+        : 'X';
     plotProps.options = [
       {label: _('Count ') + axis, value: 'count'},
       {label: _('Sum ') + axis, value: 'sum'},

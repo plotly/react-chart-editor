@@ -7,7 +7,10 @@ import * as panels from '../default_panels/';
 
 import '../../dev/styles.css';
 import '../styles/main.scss';
-import './percy.css';
+import './stories.css';
+
+import React from 'react';
+import {storiesOf} from '@storybook/react';
 
 /**
  * To add more Percy tests - add a mock file to /dev/percy, add it to /dev/percy/index.js
@@ -49,7 +52,7 @@ const panelFixture = (Panel, group, name, figure) => {
   );
 };
 
-const snapshotWidth = 500;
+let stories = storiesOf('Panels', module);
 
 Object.keys(mocks).forEach(m => {
   const selectedPanels = panelsToTest[m] ? panelsToTest[m] : Object.keys(panels);
@@ -59,7 +62,7 @@ Object.keys(mocks).forEach(m => {
     const panelGroup = words[0];
     const panelName = words.slice(1, -1).join(' ');
 
-    percySnapshot(`Panels: ${m}_${p}`, {widths: [snapshotWidth]}, () =>
+    stories = stories.add(`${m}_${p}`, () =>
       panelFixture(panels[p], panelGroup, panelName, mocks[m])
     );
   });

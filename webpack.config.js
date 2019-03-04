@@ -1,10 +1,11 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: ['babel-polyfill', 'react-hot-loader/patch', './dev/index.js'],
+  entry: ['@babel/polyfill', 'react-hot-loader/patch', './dev/index.js'],
   output: {
     filename: 'bundle.js',
   },
+  mode: 'development',
   module: {
     rules: [
       {
@@ -12,10 +13,10 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['react', 'es2015'],
+            presets: ['@babel/react', '@babel/env'],
             plugins: [
               'react-hot-loader/babel',
-              'transform-object-rest-spread',
+              '@babel/plugin-proposal-object-rest-spread',
               [
                 'module-resolver',
                 {
@@ -38,7 +39,11 @@ module.exports = {
       },
     ],
   },
-
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
   plugins: [new webpack.IgnorePlugin(/vertx/)],
   devServer: {
     open: true,

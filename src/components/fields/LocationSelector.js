@@ -1,4 +1,4 @@
-import React, {Fragment, Component} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
 import Field from './Field';
@@ -21,7 +21,7 @@ class UnconnectedLocation extends Component {
     const {localize: _} = this.context;
 
     return (
-      <Fragment>
+      <>
         <DataSelector label={_('Locations')} attr="locations" />
         <LocationmodeVisible
           label={_('Location Format')}
@@ -36,7 +36,7 @@ class UnconnectedLocation extends Component {
             },
           ]}
         />
-      </Fragment>
+      </>
     );
   }
 }
@@ -92,7 +92,7 @@ class UnconnectedLocationSelector extends Component {
     } = this.context;
 
     return type === 'scattergeo' ? (
-      <Fragment>
+      <>
         <Field {...this.props} attr={this.props.attr}>
           <Radio
             options={[
@@ -105,21 +105,21 @@ class UnconnectedLocationSelector extends Component {
           />
         </Field>
         {mode === 'latlon' ? (
-          <Fragment>
+          <>
             <DataSelector label={_('Latitude')} attr="lat" />
             <DataSelector label={_('Longitude')} attr="lon" />
-          </Fragment>
+          </>
         ) : (
           <Location attr="type" />
         )}
-      </Fragment>
+      </>
     ) : type === 'choropleth' ? (
       <Location attr="type" />
     ) : (
-      <Fragment>
+      <>
         <DataSelector label={_('Latitude')} attr="lat" />
         <DataSelector label={_('Longitude')} attr="lon" />
-      </Fragment>
+      </>
     );
   }
 }

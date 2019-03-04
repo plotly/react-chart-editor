@@ -2,7 +2,7 @@ import Dropdown from './Dropdown';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Field from './Field';
 import PropTypes from 'prop-types';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 import Info from './Info';
 import DataSelector from './DataSelector';
@@ -23,16 +23,16 @@ export class UnconnectedTextPosition extends Component {
     ];
     const control =
       this.state.posType === 'simple' ? (
-        <Fragment>
+        <>
           <Info>
             {_(
               'This will position all text values on the plot according to the selected position.'
             )}
           </Info>
           <Dropdown options={this.props.options} attr="textposition" />
-        </Fragment>
+        </>
       ) : (
-        <Fragment>
+        <>
           <Info>
             <div>
               {_(
@@ -44,7 +44,7 @@ export class UnconnectedTextPosition extends Component {
           <Info>
             <div>{_('("Top", "Middle", "Bottom") + ("Left", "Center", "Right")')}</div>
           </Info>
-        </Fragment>
+        </>
       );
 
     return (

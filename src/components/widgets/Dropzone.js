@@ -138,11 +138,15 @@ class Dropzone extends Component {
       <Drop
         accept={this.validFiletypes[this.props.fileType]}
         onDrop={this.onDrop}
-        className="dropzone-container"
         activeClassName="dropzone-container--active"
         rejectClassName="dropzone-container--rejected"
       >
-        <div className="dropzone-container__content">{this.state.content}</div>
+        {({getRootProps, getInputProps}) => (
+          <div {...getRootProps()} className="dropzone-container">
+            <input {...getInputProps()} />
+            <div className="dropzone-container__content">{this.state.content}</div>
+          </div>
+        )}
       </Drop>
     );
   }

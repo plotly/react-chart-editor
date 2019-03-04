@@ -40,8 +40,7 @@
   white-space: nowrap;
   text-align: left;
   border-radius: var(--border-radius-small);
-  padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit) var(--spacing-quarter-unit)
-    var(--spacing-half-unit);
+  padding: var(--spacing-quarter-unit);
   width: 62px;
   vertical-align: middle;
   font-size: inherit;
@@ -69,6 +68,7 @@
   border-radius: 1px;
   line-height: var(--spacing-half-unit);
   text-align: center;
+  max-height: 13px;
 }
 
 .numeric-top-caret-modifier {

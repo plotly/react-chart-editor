@@ -63,7 +63,7 @@ class UnconnectedFilterOperation extends Component {
   }
 
   render() {
-    const {fullValue, updatePlot, optionRenderer, valueRenderer, backgroundDark, attr} = this.props;
+    const {fullValue, updatePlot, backgroundDark, attr} = this.props;
     const {localize: _} = this.context;
 
     const operators = [
@@ -99,8 +99,6 @@ class UnconnectedFilterOperation extends Component {
             value={findOperation(opValue, _)}
             onChange={this.setOperation}
             clearable={false}
-            optionRenderer={optionRenderer}
-            valueRenderer={valueRenderer}
           />
           {this.state.operation === 'inset' || this.state.operation === 'exset' ? null : (
             <DropdownWidget
@@ -109,8 +107,6 @@ class UnconnectedFilterOperation extends Component {
               value={opValue}
               onChange={updatePlot}
               clearable={false}
-              optionRenderer={optionRenderer}
-              valueRenderer={valueRenderer}
             />
           )}
         </Field>
