@@ -25,7 +25,7 @@ const internetExplorerPostCSS = () => {
    */
   const ie11_plugins = [
     combineSelectors,
-    customProperties,
+    customProperties({preserve: false}),
     removeRoot,
     autoprefixer({browsers: ['ie 11'], grid: true}),
     cssnano,
