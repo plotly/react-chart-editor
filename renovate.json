@@ -1,5 +1,33 @@
 {
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "updateTypes": "minor",
+      "depTypeList": [
+        "dependencies"
+      ],
+      "groupName": "minor deps",
+      "schedule": [
+        "before 2am on monday"
+      ]
+    },
+    {
+      "updateTypes": "minor",
+      "depTypeList": [
+        "devDependencies"
+      ],
+      "groupName": "minor devDeps",
+      "schedule": [
+        "before 2am on monday"
+      ]
+    },
+    {
+      "packageNames": [
+        "plotly.js"
+      ],
+      "groupName": "plotly.js"
+    }
   ]
 }
