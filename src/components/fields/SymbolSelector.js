@@ -377,13 +377,10 @@ class SymbolSelector extends Component {
 
     this.borderColor = Array.isArray(this.borderColor) ? COLORS.charcoal : this.borderColor;
 
-    if (this.props.is3D) {
-      this.symbolOptions = SYMBOLS.filter(option => {
-        return option.threeD;
-      });
-    } else {
-      this.symbolOptions = [...SYMBOLS];
-    }
+    this.symbolOptions =
+      this.props.container.type === 'scatter3d'
+        ? SYMBOLS.filter(option => option.threeD)
+        : [...SYMBOLS];
   }
 
   render() {
