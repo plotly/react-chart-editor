@@ -11,7 +11,8 @@
         3
       ],
       "xsrc": "x1",
-      "boxmean": true
+      "boxmean": true,
+      "notched": true
     }
   ],
   "layout": {

@@ -436,6 +436,13 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <FillDropdown attr="fill" label={_('Fill to')} />
       <MultiColorPicker label={_('Color')} attr="fillcolor" />
     </PlotlySection>
+    <PlotlySection name={_('Notches')}>
+      <Radio
+        attr="notched"
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+      />
+      <Numeric label={_('Width')} attr="notchwidth" min={0} max={0.5} step={0.1} />
+    </PlotlySection>
     <PlotlySection name={_('Text Attributes')}>
       <TextInfo attr="textinfo" />
     </PlotlySection>
