@@ -55,7 +55,17 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
         <Numeric label={_('Z')} attr="aspectratio.z" step={0.1} />
       </VisibilitySelect>
     </PlotlySection>
-
+    <PlotlySection name={_('Projection')}>
+      <Dropdown
+        label={_('Type')}
+        attr="camera.projection.type"
+        options={[
+          {label: _('Perspective'), value: 'perspective'},
+          {label: _('Orthographic'), value: 'orthographic'},
+        ]}
+        clearable={false}
+      />
+    </PlotlySection>
     <PlotlySection name={_('Canvas')}>
       <ColorPicker label={_('Plot Background')} attr="bgcolor" />
     </PlotlySection>
