@@ -37,6 +37,9 @@
         padding-top: 0;
         padding-bottom: 0;
       }
+      &-notice {
+        background: var(--color-background-inputs);
+      }
     }
     &__indicator-separator {
       display: none;
