@@ -58,7 +58,7 @@ class Dropdown extends Component {
           placeholder={placeholder || _('Select an Option')}
           isClearable={clearable}
           value={opts.filter(o =>
-            Array.isArray(value) ? value.includes(o.value) : value === o.value
+            Array.isArray(value) ? value.includes(o[valueKey]) : value === o[valueKey]
           )}
           options={opts}
           isSearchable={searchable}
