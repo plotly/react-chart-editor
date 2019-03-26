@@ -105,6 +105,9 @@
   }
   .Select__placeholder {
     color: var(--color-text-placeholder);
+    font-size: 12px;
+    height: 16px;
+    font-weight: 400;
   }
   .dropdown--dark {
     .Select {
