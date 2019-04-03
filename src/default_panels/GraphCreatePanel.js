@@ -57,6 +57,12 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
         }}
         attr="z"
       />
+      <DataSelector
+        label={{
+          '*': _('Measure'),
+        }}
+        attr="measure"
+      />
       <Radio
         label={_('Orientation')}
         attr="orientation"

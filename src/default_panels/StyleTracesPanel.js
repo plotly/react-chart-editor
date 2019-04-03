@@ -83,7 +83,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         <Radio
           label={_('Mode')}
           attr="waterfallmode"
-          options={[{label: _('Group'), value: 'group'}, {label: _('Overal'), value: 'overlay'}]}
+          options={[{label: _('Group'), value: 'group'}, {label: _('Overlay'), value: 'overlay'}]}
         />
         <NumericFraction label={_('Gap')} attr="waterfallgap" />
         <NumericFraction label={_('Group gap')} attr="waterfallgroupgap" />
@@ -498,24 +498,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
         options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
       />
     </TraceTypeSection>
-    <TraceTypeSection
-      name={_('Inside Text')}
-      traceTypes={['pie', 'sunburst', 'bar', 'waterfall']}
-      mode="trace"
-    >
-      <FontSelector label={_('Typeface')} attr="insidetextfont.family" />
-      <Numeric label={_('Font Size')} attr="insidetextfont.size" units="px" />
-      <MultiColorPicker label={_('Font Color')} attr="insidetextfont.color" />
-    </TraceTypeSection>
-    <TraceTypeSection
-      name={_('Outside Text')}
-      traceTypes={['pie', 'sunburst', 'bar', 'waterfall']}
-      mode="trace"
-    >
-      <FontSelector label={_('Typeface')} attr="outsidetextfont.family" />
-      <Numeric label={_('Font Size')} attr="outsidetextfont.size" units="px" />
-      <MultiColorPicker label={_('Font Color')} attr="outsidetextfont.color" />
-    </TraceTypeSection>
     <PlotlySection name={_('Colorscale')}>
       <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
       <Radio
@@ -587,7 +569,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <NumericFraction label={_('Y')} attr="lightposition.y" />
       <NumericFraction label={_('Z')} attr="lightposition.z" />
     </PlotlySection>
-    <PlotlySection name={_('Increasing Trace Styles')}>
+    <PlotlySection name={_('Increasing Marker Styles')}>
       <TextEditor label={_('Name')} attr="increasing.name" richTextOnly />
       <Numeric label={_('Width')} attr="increasing.line.width" />
       <MultiColorPicker label={_('Line Color')} attr="increasing.line.color" />
@@ -602,7 +584,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
     </PlotlySection>
-    <PlotlySection name={_('Decreasing Trace Styles')}>
+    <PlotlySection name={_('Decreasing Marker Styles')}>
       <TextEditor label={_('Name')} attr="decreasing.name" richTextOnly />
       <Numeric label={_('Width')} attr="decreasing.line.width" />
       <MultiColorPicker label={_('Line Color')} attr="decreasing.line.color" />
@@ -617,7 +599,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
     </PlotlySection>
-    <PlotlySection name={_('Totals Styles')}>
+    <PlotlySection name={_('Total Marker Styles')}>
       <MultiColorPicker label={_('Marker Color')} attr="totals.marker.color" />
       <MultiColorPicker label={_('Line Color')} attr="totals.marker.line.color" />
       <Numeric label={_('Line Width')} attr="totals.marker.line.width" />

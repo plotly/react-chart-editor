@@ -1,4 +1,4 @@
-import plotly from 'plotly.js/dist/plotly-cartesian';
+import plotly from 'plotly.js/dist/plotly';
 import {extendDeep} from 'plotly.js/src/lib/extend';
 import EditorControls from '../EditorControls';
 import {configure, mount, shallow} from 'enzyme';

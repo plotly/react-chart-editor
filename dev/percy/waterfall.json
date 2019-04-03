@@ -37,7 +37,13 @@
       "textposition": "auto",
       "textfont": {
         "family": "sans-serif"
-      }
+      },
+      "measure": [
+        "absolute",
+        "relative",
+        "total"
+      ],
+      "measuresrc": "y2"
     }
   ],
   "layout": {
