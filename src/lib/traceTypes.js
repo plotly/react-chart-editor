@@ -11,6 +11,7 @@ export const chartCategory = _ => {
     FINANCIAL: {
       value: 'FINANCIAL',
       label: _('Finance'),
+      maxColumns: 1,
     },
     DISTRIBUTIONS: {
       value: 'DISTRIBUTIONS',
@@ -19,10 +20,12 @@ export const chartCategory = _ => {
     MAPS: {
       value: 'MAPS',
       label: _('Maps'),
+      maxColumns: 1,
     },
     SPECIALIZED: {
       value: 'SPECIALIZED',
       label: _('Specialized'),
+      maxColumns: 1,
     },
     THREE_D: {
       value: '3D',
