@@ -183,6 +183,11 @@ export const traceTypes = _ => [
     category: chartCategory(_).FINANCIAL,
   },
   {
+    value: 'waterfall',
+    label: _('Waterfall'),
+    category: chartCategory(_).FINANCIAL,
+  },
+  {
     value: 'scattergl',
     icon: 'scatter',
     label: _('Scatter'),

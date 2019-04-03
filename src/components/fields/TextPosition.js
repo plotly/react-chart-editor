@@ -91,7 +91,11 @@ export default connectToContainer(UnconnectedTextPosition, {
       {label: _('Bottom Center'), value: 'bottom center'},
       {label: _('Bottom Right'), value: 'bottom right'},
     ];
-    if (context.container.type === 'pie' || context.container.type === 'bar') {
+    if (
+      context.container.type === 'pie' ||
+      context.container.type === 'bar' ||
+      context.container.type === 'waterfall'
+    ) {
       options = [
         {label: _('Inside'), value: 'inside'},
         {label: _('Outside'), value: 'outside'},
