@@ -1,4 +1,5 @@
-import {TestEditor, setupGraphDiv, fixtures, plotly} from 'lib/test-utils';
+import {TestEditor, setupGraphDiv, fixtures} from 'lib/test-utils';
+import plotly from 'plotly.js/dist/plotly';
 
 import {PanelMenuWrapper} from '../components';
 
@@ -31,7 +32,7 @@ window.URL.createObjectURL = function() {
 };
 
 const panelFixture = (Panel, group, name, figure) => {
-  const gd = setupGraphDiv(figure);
+  const gd = setupGraphDiv(figure, plotly);
   gd._context = plotly.setPlotConfig();
   gd._context.setBackground = () => {
     return null;

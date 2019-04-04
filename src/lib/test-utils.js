@@ -1,4 +1,4 @@
-import plotly from 'plotly.js/dist/plotly';
+import plotlyCartesian from 'plotly.js/dist/plotly-cartesian';
 import {extendDeep} from 'plotly.js/src/lib/extend';
 import EditorControls from '../EditorControls';
 import {configure, mount, shallow} from 'enzyme';
@@ -131,7 +131,7 @@ function newGraphDiv() {
   return graphDiv;
 }
 
-function setupGraphDiv(figure) {
+function setupGraphDiv(figure, plotly = plotlyCartesian) {
   const gd = newGraphDiv();
 
   mockMissingSvgApis();
@@ -140,4 +140,11 @@ function setupGraphDiv(figure) {
   return gd;
 }
 
-export {fixtures, plotly, EditorControls as TestEditor, mount, shallow, setupGraphDiv};
+export {
+  fixtures,
+  plotlyCartesian as plotly,
+  EditorControls as TestEditor,
+  mount,
+  shallow,
+  setupGraphDiv,
+};
