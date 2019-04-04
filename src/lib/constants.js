@@ -71,6 +71,7 @@ export const TRACE_TO_AXIS = {
     'carpet',
     'scattercarpet',
     'contourcarpet',
+    'waterfall',
   ],
   ternary: ['scatterternary'],
   gl3d: ['scatter3d', 'surface', 'mesh3d', 'cone', 'streamtube'],
@@ -118,6 +119,7 @@ export const TRANSFORMABLE_TRACES = [
   'candlestick',
   'histogram',
   'histogram2d',
+  'waterfall',
 ];
 
 export const TRACES_WITH_GL = ['scatter', 'scatterpolar', 'scattergl', 'scatterpolargl'];

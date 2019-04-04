@@ -1,0 +1,68 @@
+{
+  "data": [
+    {
+      "type": "waterfall",
+      "mode": "markers",
+      "decreasing": {
+        "line": {
+          "color": "#7f7f7f"
+        }
+      },
+      "increasing": {
+        "line": {
+          "color": "#17becf"
+        }
+      },
+      "x": [
+        1,
+        2,
+        3
+      ],
+      "xsrc": "x1",
+      "connector": {
+        "line": {
+          "width": 4,
+          "color": "#7f7f7f"
+        },
+        "visible": true,
+        "mode": "between"
+      },
+      "totals": {
+        "marker": {
+          "line": {
+            "width": 2
+          }
+        }
+      },
+      "textposition": "auto",
+      "textfont": {
+        "family": "sans-serif"
+      },
+      "measure": [
+        "absolute",
+        "relative",
+        "total"
+      ],
+      "measuresrc": "y2"
+    }
+  ],
+  "layout": {
+    "xaxis": {
+      "range": [
+        0,
+        6.315789473684211
+      ],
+      "autorange": true,
+      "type": "linear"
+    },
+    "yaxis": {
+      "range": [
+        -0.5,
+        2.5
+      ],
+      "autorange": true
+    },
+    "autosize": true
+  },
+  "frames": []
+}

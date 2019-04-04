@@ -51,6 +51,12 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
         decreasing: {line: {color: COLORS.middleGray}},
         increasing: {line: {color: COLORS.blueTeal}},
       };
+    case 'waterfall':
+      return {
+        type: 'waterfall',
+        decreasing: {line: {color: COLORS.middleGray}},
+        increasing: {line: {color: COLORS.blueTeal}},
+      };
     case 'candlestick':
       return {
         type: 'candlestick',
