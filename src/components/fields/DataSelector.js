@@ -43,6 +43,7 @@ export class UnconnectedDataSelector extends Component {
             'heatmap',
             'heatmapgl',
             'violin',
+            'waterfall',
             'box',
             'contour',
             'contourgl',
