@@ -49,7 +49,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
     <NumericFraction label={_('Trace Opacity')} attr="opacity" />
-    <TraceTypeSection name={_('Leafs')} traceTypes={['sunburst']} mode="trace">
+    <TraceTypeSection name={_('Leaves')} traceTypes={['sunburst']} mode="trace">
       <LevelRendered label={_('Start at Level')} attr="level" />
       <Numeric label={_('Max Depth')} attr="maxdepth" min={-1} step={1} />
       <NumericFraction label={_('Opacity')} attr="leaf.opacity" />
