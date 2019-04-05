@@ -123,13 +123,14 @@ class SubplotAccordion extends Component {
     data.forEach((d, i) => {
       if ((d.type === 'pie' && d.values) || d.type === 'table' || d.type === 'sunburst') {
         counter[d.type]++;
+        const currentCount = counter[d.type];
 
         subplotFolds[i] = (
           <TraceFold
             key={i}
             traceIndexes={[i]}
             canDelete={false}
-            name={capitalize(d.type) + ' ' + counter[d.type]}
+            name={capitalize(d.type) + (currentCount > 1 ? ' ' + currentCount : '')}
           >
             {children}
           </TraceFold>
