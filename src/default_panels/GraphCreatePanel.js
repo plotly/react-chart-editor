@@ -30,8 +30,17 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
 
       <LocationSelector attr="type" />
 
-      <DataSelector label={_('Values')} attr="values" />
-      <DataSelector label={_('Labels')} attr="labels" />
+      <TraceTypeSection traceTypes={['pie']} mode="trace">
+        <DataSelector label={_('Values')} attr="values" />
+        <DataSelector label={_('Labels')} attr="labels" />
+      </TraceTypeSection>
+
+      <TraceTypeSection traceTypes={['sunburst']} mode="trace">
+        <DataSelector label={_('Labels')} attr="labels" />
+        <DataSelector label={_('Parents')} attr="parents" />
+        <DataSelector label={_('Ids')} attr="ids" />
+        <DataSelector label={_('Values')} attr="values" />
+      </TraceTypeSection>
 
       <DataSelector
         label={{

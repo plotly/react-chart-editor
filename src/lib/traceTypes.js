@@ -176,6 +176,11 @@ export const traceTypes = _ => [
     category: chartCategory(_).SPECIALIZED,
   },
   {
+    value: 'sunburst',
+    label: _('Sunburst'),
+    category: chartCategory(_).SPECIALIZED,
+  },
+  {
     value: 'candlestick',
     label: _('Candlestick'),
     category: chartCategory(_).FINANCIAL,
