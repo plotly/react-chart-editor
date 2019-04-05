@@ -122,13 +122,7 @@ class SubplotAccordion extends Component {
 
     data.forEach((d, i) => {
       if ((d.type === 'pie' && d.values) || d.type === 'table' || d.type === 'sunburst') {
-        if (d.type === 'pie') {
-          counter.pie++;
-        } else if (d.type === 'table') {
-          counter.table++;
-        } else if (d.type === 'sunburst') {
-          counter.sunburst++;
-        }
+        counter[d.type]++;
 
         subplotFolds[i] = (
           <TraceFold
