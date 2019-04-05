@@ -588,6 +588,14 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         {label: _('Norm'), value: 'norm'},
         {label: _('Divergence'), value: 'divergence'},
       ];
+    } else if (container.type === 'sunburst') {
+      options = [];
+      if (container.labels) {
+        options.push({label: _('Label'), value: 'label'});
+      }
+      if (container.values) {
+        options.push({label: _('Value'), value: 'value'});
+      }
     }
 
     if (container.text) {
@@ -689,5 +697,18 @@ export const HoverColor = connectToContainer(UnconnectedColorPicker, {
   modifyPlotProps: (props, context, plotProps) => {
     plotProps.isVisible = Boolean(context.fullLayout.hovermode);
     return plotProps;
+  },
+});
+
+export const LevelRendered = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const _ = context.localize;
+
+    if (context.container.ids || context.container.ids.length) {
+      plotProps.isVisible = true;
+      plotProps.options = [{label: _('Root'), value: ''}].concat(
+        context.container.ids.map(i => ({label: i, value: i}))
+      );
+    }
   },
 });

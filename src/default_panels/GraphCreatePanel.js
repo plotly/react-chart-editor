@@ -40,6 +40,14 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
         <DataSelector label={_('Parents')} attr="parents" />
         <DataSelector label={_('Ids')} attr="ids" />
         <DataSelector label={_('Values')} attr="values" />
+        <Dropdown
+          label={_('Sum Values by')}
+          attr="branchvalues"
+          options={[
+            {label: _('Total'), value: 'total'},
+            {label: _('Remainder'), value: 'remainder'},
+          ]}
+        />
       </TraceTypeSection>
 
       <DataSelector

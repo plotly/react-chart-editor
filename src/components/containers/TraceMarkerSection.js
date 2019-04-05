@@ -19,6 +19,8 @@ class TraceMarkerSection extends Component {
       this.name = _('Bars');
     } else if (traceType === 'pie') {
       this.name = _('Pie Segments');
+    } else if (traceType === 'sunburst') {
+      this.name = _('Sunburst Segments');
     } else {
       this.name = _('Points');
     }

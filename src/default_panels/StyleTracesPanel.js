@@ -42,12 +42,18 @@ import {
   ShowInLegend,
   TextInfo,
   HoveronDropdown,
+  LevelRendered,
 } from '../components/fields/derived';
 
 const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
     <NumericFraction label={_('Trace Opacity')} attr="opacity" />
+    <TraceTypeSection name={_('Leafs')} traceTypes={['sunburst']} mode="trace">
+      <LevelRendered label={_('Start at Level')} attr="level" />
+      <Numeric label={_('Max Depth')} attr="maxdepth" min={-1} step={1} />
+      <NumericFraction label={_('Opacity')} attr="leaf.opacity" />
+    </TraceTypeSection>
     <PlotlySection name={_('Legend')}>
       <ShowInLegend
         label={_('Show in Legend')}
@@ -95,6 +101,16 @@ const StyleTracesPanel = (props, {localize: _}) => (
         <Radio
           label={_('Extended Colors')}
           attr="extendpiecolors"
+          options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+        />
+      </LayoutSection>
+    </TraceTypeSection>
+    <TraceTypeSection name={_('Sunburst Colors')} traceTypes={['sunburst']} mode="trace">
+      <LayoutSection attr="name">
+        <ColorwayPicker label={_('Colors')} attr="sunburstcolorway" />
+        <Radio
+          label={_('Extended Colors')}
+          attr="extendsunburstcolors"
           options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
         />
       </LayoutSection>
