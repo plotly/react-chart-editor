@@ -161,7 +161,10 @@ export const TickFormat = connectToContainer(UnconnectedDropdownCustom, {
 
 export const ShowInLegend = connectToContainer(UnconnectedVisibilitySelect, {
   modifyPlotProps: (props, context, plotProps) => {
-    plotProps.isVisible = context.fullLayout.showlegend;
+    if (context.type && context.type !== 'sunburst') {
+      plotProps.isVisible = context.fullLayout.showlegend;
+    }
+
     return plotProps;
   },
 });
