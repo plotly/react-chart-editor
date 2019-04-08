@@ -11,6 +11,7 @@ import {
   NumericFractionInverse,
   Radio,
   TextEditor,
+  Text,
   PlotlySection,
   LayoutSection,
   SymbolSelector,
@@ -694,6 +695,25 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <NumericFraction label={_('Meanline Width')} attr="meanline.width" />
       <MultiColorPicker label={_('Meanline Color')} attr="meanline.color" />
     </PlotlySection>
+    <PlotlySection name={_('Nodes')}>
+      <MultiColorPicker label={_('Color')} attr="node.color" />
+      <Numeric label={_('Padding')} attr="node.pad" min={0} />
+      <Numeric label={_('Thickness')} attr="node.thickness" min={0} />
+      <Dropdown
+        label={_('Arrangement')}
+        attr="arrangement"
+        options={[
+          {label: _('Snap'), value: 'snap'},
+          {label: _('Perpendicular'), value: 'perpendicular'},
+          {label: _('Freeform'), value: 'freeform'},
+          {label: _('Fixed'), value: 'fixed'},
+        ]}
+        clearable={false}
+      />
+    </PlotlySection>
+    <PlotlySection name={_('Links')}>
+      <MultiColorPicker label={_('Color')} attr="link.color" />
+    </PlotlySection>
     <PlotlySection name={_('Hover/Tooltip Text')}>
       <HoverTemplateSwitch attr="hovertemplate" label={_('Mode')} />
       <HoverInfo attr="hoverinfo" label={_('Show')} />
@@ -713,6 +733,8 @@ const StyleTracesPanel = (props, {localize: _}) => (
         <MultiColorPicker label={_('Contour Color')} attr="contour.color" />
         <Numeric label={_('Contour Width')} attr="contour.width" />
       </VisibilitySelect>
+      <Text label={_('Value Format')} attr="valueformat" />
+      <Text label={_('Value Suffix')} attr="valuesuffix" />
     </PlotlySection>
     <PlotlySection name={_('Hover Action')}>
       <HoveronDropdown attr="hoveron" label={_('Hover on')} />
