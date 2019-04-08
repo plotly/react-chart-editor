@@ -161,7 +161,10 @@ export const TickFormat = connectToContainer(UnconnectedDropdownCustom, {
 
 export const ShowInLegend = connectToContainer(UnconnectedVisibilitySelect, {
   modifyPlotProps: (props, context, plotProps) => {
-    plotProps.isVisible = context.fullLayout.showlegend;
+    if (context.container.type && context.container.type !== 'sunburst') {
+      plotProps.isVisible = context.fullLayout.showlegend;
+    }
+
     return plotProps;
   },
 });
@@ -570,11 +573,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
     } else if (['scatterpolar', 'scatterpolargl', 'barpolar'].includes(container.type)) {
       options = [{label: _('R'), value: 'r'}, {label: _('Theta'), value: 'theta'}];
     } else if (container.type === 'pie') {
-      options = [
-        {label: _('Label'), value: 'label'},
-        {label: _('Value'), value: 'value'},
-        {label: _('Percent'), value: 'percent'},
-      ];
+      options = [{label: _('Percent'), value: 'percent'}];
     } else if (container.type === 'table') {
       plotProps.isVisible = false;
     } else if (['cone', 'streamtube'].includes(container.type)) {
@@ -588,6 +587,16 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         {label: _('Norm'), value: 'norm'},
         {label: _('Divergence'), value: 'divergence'},
       ];
+    } else if (container.type === 'sunburst') {
+      options = [];
+    }
+
+    if (container.labels && ['pie', 'sunburst'].includes(container.type)) {
+      options.push({label: _('Label'), value: 'label'});
+    }
+
+    if (container.values && ['pie', 'sunburst'].includes(container.type)) {
+      options.push({label: _('Value'), value: 'value'});
     }
 
     if (container.text) {
@@ -689,5 +698,18 @@ export const HoverColor = connectToContainer(UnconnectedColorPicker, {
   modifyPlotProps: (props, context, plotProps) => {
     plotProps.isVisible = Boolean(context.fullLayout.hovermode);
     return plotProps;
+  },
+});
+
+export const LevelRendered = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const _ = context.localize;
+
+    if (context.container.ids || context.container.ids.length) {
+      plotProps.isVisible = true;
+      plotProps.options = [{label: _('Root'), value: ''}].concat(
+        context.container.ids.map(i => ({label: i, value: i}))
+      );
+    }
   },
 });

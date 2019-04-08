@@ -7,6 +7,7 @@ import {
   connectCartesianSubplotToLayout,
   connectNonCartesianSubplotToLayout,
   getSubplotTitle,
+  capitalize,
 } from 'lib';
 import {TRACE_TO_AXIS, SUBPLOT_TO_ATTR} from 'lib/constants';
 
@@ -113,25 +114,23 @@ class SubplotAccordion extends Component {
       }
     });
 
-    let pieCounter = 0;
-    let tableCounter = 0;
+    const counter = {
+      pie: 0,
+      table: 0,
+      sunburst: 0,
+    };
+
     data.forEach((d, i) => {
-      if ((d.type === 'pie' && d.values) || d.type === 'table') {
-        if (d.type === 'pie') {
-          pieCounter++;
-        } else if (d.type === 'table') {
-          tableCounter++;
-        }
+      if ((d.type === 'pie' && d.values) || d.type === 'table' || d.type === 'sunburst') {
+        counter[d.type]++;
+        const currentCount = counter[d.type];
+
         subplotFolds[i] = (
           <TraceFold
             key={i}
             traceIndexes={[i]}
             canDelete={false}
-            name={
-              d.type === 'pie'
-                ? `${_('Pie')} ${pieCounter > 1 ? pieCounter : ''}`
-                : `${_('Table')} ${tableCounter > 1 ? tableCounter : ''}`
-            }
+            name={capitalize(d.type) + (currentCount > 1 ? ' ' + currentCount : '')}
           >
             {children}
           </TraceFold>

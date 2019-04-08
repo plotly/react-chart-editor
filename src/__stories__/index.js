@@ -25,6 +25,7 @@ const panelsToTest = {
   histogram2d: ['GraphCreatePanel', 'StyleTracesPanel'],
   violin: ['GraphCreatePanel', 'StyleTracesPanel'],
   waterfall: ['GraphCreatePanel', 'StyleTracesPanel'],
+  sunburst: ['GraphCreatePanel', 'StyleTracesPanel'],
 };
 
 window.URL.createObjectURL = function() {
