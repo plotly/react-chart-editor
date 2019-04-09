@@ -72,8 +72,30 @@ export class Fold extends Component {
         </div>
       ) : null;
 
-    const moveUpArrowIcon = canMoveUp ? 'up' : null;
-    const moveDownArrowIcon = canMoveDown ? 'down' : null;
+    const movingControls = (canMoveDown || canMoveUp) && (
+      <div className="fold__top__moving-controls">
+        <span
+          className="fold__top__moving-controls--up"
+          onClick={e => {
+            // prevents fold toggle to happen when clicking on moving arrow controls
+            e.stopPropagation();
+            alert('up');
+          }}
+        >
+          {canMoveUp ? <AngleDownIcon /> : null}
+        </span>
+        <span
+          className="fold__top__moving-controls--down"
+          onClick={e => {
+            // prevents fold toggle to happen when clicking on moving arrow controls
+            e.stopPropagation();
+            alert('down');
+          }}
+        >
+          {canMoveDown ? <AngleDownIcon /> : null}
+        </span>
+      </div>
+    );
 
     const foldHeader = !hideHeader && (
       <div className={headerClass} onClick={toggleFold}>
@@ -82,8 +104,7 @@ export class Fold extends Component {
           {icon}
           <div className="fold__top__title">{striptags(name)}</div>
         </div>
-        {moveUpArrowIcon}
-        {moveDownArrowIcon}
+        {movingControls}
         {deleteButton}
       </div>
     );
