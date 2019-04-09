@@ -33,6 +33,8 @@ export class Fold extends Component {
       icon: Icon,
       messageIfEmpty,
       name,
+      canMoveUp,
+      canMoveDown,
     } = this.props;
 
     const contentClass = classnames('fold__content', {
@@ -47,7 +49,7 @@ export class Fold extends Component {
       'fold__top__arrow--open': !folded,
     });
 
-    const arrowIcon = (
+    const arrowDownIcon = (
       <div className={arrowClass}>
         <div className="fold__top__arrow__wrapper">
           <AngleDownIcon />
@@ -70,13 +72,18 @@ export class Fold extends Component {
         </div>
       ) : null;
 
+    const moveUpArrowIcon = canMoveUp ? 'up' : null;
+    const moveDownArrowIcon = canMoveDown ? 'down' : null;
+
     const foldHeader = !hideHeader && (
       <div className={headerClass} onClick={toggleFold}>
         <div className="fold__top__arrow-title">
-          {arrowIcon}
+          {arrowDownIcon}
           {icon}
           <div className="fold__top__title">{striptags(name)}</div>
         </div>
+        {moveUpArrowIcon}
+        {moveDownArrowIcon}
         {deleteButton}
       </div>
     );
@@ -118,6 +125,8 @@ Fold.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   messageIfEmpty: PropTypes.string,
   name: PropTypes.string,
+  canMoveUp: PropTypes.bool,
+  canMoveDown: PropTypes.bool,
 };
 
 Fold.contextTypes = {
