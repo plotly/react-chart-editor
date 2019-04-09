@@ -26,6 +26,7 @@ const panelsToTest = {
   violin: ['GraphCreatePanel', 'StyleTracesPanel'],
   waterfall: ['GraphCreatePanel', 'StyleTracesPanel'],
   sunburst: ['GraphCreatePanel', 'StyleTracesPanel'],
+  sankey: ['GraphCreatePanel', 'StyleTracesPanel'],
 };
 
 window.URL.createObjectURL = function() {
