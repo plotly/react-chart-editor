@@ -14,12 +14,12 @@ import SubplotAccordion from './SubplotAccordion';
 import TraceAccordion from './TraceAccordion';
 import TransformAccordion from './TransformAccordion';
 import TraceMarkerSection from './TraceMarkerSection';
-import {LayoutPanel, LayoutSection, TraceTypeSection} from './derived';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import SingleSidebarItem from './SingleSidebarItem';
 import ModalProvider from './ModalProvider';
 import Modal from './Modal';
 
+export * from './derived';
 export {
   AnnotationAccordion,
   ShapeAccordion,
@@ -40,11 +40,8 @@ export {
   TransformAccordion,
   TraceMarkerSection,
   TraceRequiredPanel,
-  LayoutPanel,
-  LayoutSection,
   AxesFold,
   SingleSidebarItem,
-  TraceTypeSection,
   Modal,
   ModalProvider,
   PanelMessage,
