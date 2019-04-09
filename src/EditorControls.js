@@ -289,6 +289,26 @@ class EditorControls extends Component {
         }
         break;
 
+      case EDITOR_ACTIONS.MOVE_TO:
+        // checking is fromIndex and toIndex is a number because just checking
+        // if not there will not work as index can be 0 and that value is falsy
+        if (payload.path && !isNaN(payload.fromIndex) && !isNaN(payload.toIndex)) {
+          if (payload.path === 'data') {
+            const a = graphDiv.data[payload.fromIndex];
+            const b = graphDiv.data[payload.toIndex];
+            graphDiv.data.splice(payload.toIndex, 1, a);
+            graphDiv.data.splice(payload.fromIndex, 1, b);
+          }
+          if (this.props.onUpdate) {
+            this.props.onUpdate(
+              graphDiv.data.slice(),
+              graphDiv.layout,
+              graphDiv._transitionData._frames
+            );
+          }
+        }
+        break;
+
       default:
         throw new Error(this.localize('must specify an action type to handleEditorUpdate'));
     }

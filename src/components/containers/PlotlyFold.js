@@ -21,7 +21,7 @@ export class Fold extends Component {
     if (!this.foldVisible && !this.props.messageIfEmpty) {
       return null;
     }
-    const {deleteContainer} = this.context;
+    const {deleteContainer, moveContainer} = this.context;
     const {
       canDelete,
       children,
@@ -79,7 +79,10 @@ export class Fold extends Component {
           onClick={e => {
             // prevents fold toggle to happen when clicking on moving arrow controls
             e.stopPropagation();
-            alert('up');
+            if (!moveContainer || typeof moveContainer !== 'function') {
+              throw new Error('moveContainer must be a function');
+            }
+            moveContainer('up');
           }}
         >
           {canMoveUp ? <AngleDownIcon /> : null}
@@ -89,7 +92,10 @@ export class Fold extends Component {
           onClick={e => {
             // prevents fold toggle to happen when clicking on moving arrow controls
             e.stopPropagation();
-            alert('down');
+            if (!moveContainer || typeof moveContainer !== 'function') {
+              throw new Error('moveContainer must be a function');
+            }
+            moveContainer('down');
           }}
         >
           {canMoveDown ? <AngleDownIcon /> : null}
@@ -205,6 +211,7 @@ PlotlyFold.plotly_editor_traits = {
 PlotlyFold.contextTypes = Object.assign(
   {
     deleteContainer: PropTypes.func,
+    moveContainer: PropTypes.func,
   },
   containerConnectedContextTypes
 );

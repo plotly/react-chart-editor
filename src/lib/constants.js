@@ -38,6 +38,7 @@ export const EDITOR_ACTIONS = {
   DELETE_IMAGE: 'plotly-editor-delete-image',
   DELETE_RANGESELECTOR: 'plotly-editor-delete-rangeselector',
   DELETE_TRANSFORM: 'plotly-editor-delete-transform',
+  MOVE_TO: 'plotly-editor-move-to',
 };
 
 export const DEFAULT_FONTS = [
