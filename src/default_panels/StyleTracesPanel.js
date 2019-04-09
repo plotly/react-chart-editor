@@ -20,6 +20,7 @@ import {
   TraceMarkerSection,
   ColorscalePicker,
   ColorwayPicker,
+  ColorArrayPicker,
   HoverInfo,
   HoverTemplateText,
   HoverTemplateSwitch,
@@ -696,9 +697,11 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <MultiColorPicker label={_('Meanline Color')} attr="meanline.color" />
     </PlotlySection>
     <PlotlySection name={_('Nodes')}>
-      <MultiColorPicker label={_('Color')} attr="node.color" />
+      <ColorArrayPicker label={_('Color')} attr="node.color" />
       <Numeric label={_('Padding')} attr="node.pad" min={0} />
       <Numeric label={_('Thickness')} attr="node.thickness" min={0} />
+      <MultiColorPicker label={_('Line Color')} attr="node.line.color" />
+      <Numeric label={_('Line Width')} attr="node.line.width" min={0} />
       <Dropdown
         label={_('Arrangement')}
         attr="arrangement"
@@ -712,7 +715,9 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
     </PlotlySection>
     <PlotlySection name={_('Links')}>
-      <MultiColorPicker label={_('Color')} attr="link.color" />
+      <ColorArrayPicker label={_('Color')} attr="link.color" />
+      <MultiColorPicker label={_('Line Color')} attr="link.line.color" />
+      <Numeric label={_('Line Width')} attr="link.line.width" min={0} />
     </PlotlySection>
     <PlotlySection name={_('Hover/Tooltip Text')}>
       <HoverTemplateSwitch attr="hovertemplate" label={_('Mode')} />

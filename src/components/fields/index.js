@@ -4,6 +4,7 @@ import ColorPicker from './ColorPicker';
 import ColorscalePicker from './ColorscalePicker';
 import PieColorscalePicker from './PieColorscalePicker';
 import ColorwayPicker from './ColorwayPicker';
+import ColorArrayPicker from './ColorArrayPicker';
 import Dropdown from './Dropdown';
 import Dropzone from './Dropzone';
 import FontSelector from './FontSelector';
@@ -45,6 +46,7 @@ export {
   ColorPicker,
   ColorscalePicker,
   ColorwayPicker,
+  ColorArrayPicker,
   DataSelector,
   Dropdown,
   ErrorBars,
