@@ -1,6 +1,5 @@
 .checkbox {
   &__group {
-    padding-left: var(--spacing-half-unit);
     text-align: left;
   }
 
@@ -28,14 +27,14 @@
     &:hover {
       background: var(--color-background-light);
     }
-    &--checked{
+    &--checked {
       border: var(--border-accent-shade);
       background: var(--color-accent);
       &:hover {
         background: var(--color-accent-shade);
       }
 
-      & + .checkbox__label{
+      & + .checkbox__label {
         color: var(--color-text-active);
       }
     }
@@ -61,14 +60,11 @@
   &__label {
     padding-left: var(--spacing-quarter-unit);
     font-size: var(--font-size-base);
-    color:var(--color-text-base);
+    color: var(--color-text-base);
     display: inline-block;
     line-height: 20px;
     text-align: left;
     vertical-align: middle;
     cursor: pointer;
   }
-}
-
-.icon-check-mark:before {
 }

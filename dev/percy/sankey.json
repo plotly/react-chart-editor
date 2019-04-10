@@ -1,0 +1,54 @@
+{
+  "data": [
+    {
+      "type": "sankey",
+      "mode": "markers",
+      "link": {
+        "value": [
+          124.729,
+          0.597,
+          26.862
+        ],
+        "valuesrc": "x1",
+        "source": [
+          0,
+          1,
+          1
+        ],
+        "sourcesrc": "x1",
+        "target": [
+          1,
+          2,
+          3
+        ],
+        "targetsrc": "x1"
+      },
+      "node": {
+        "label": [
+          "A",
+          "B",
+          "C"
+        ],
+        "labelsrc": "x1"
+      }
+    }
+  ],
+  "layout": {
+    "xaxis": {
+      "range": [
+        -1,
+        6
+      ],
+      "autorange": true
+    },
+    "yaxis": {
+      "range": [
+        -1,
+        4
+      ],
+      "autorange": true
+    },
+    "autosize": true
+  },
+  "frames": []
+}

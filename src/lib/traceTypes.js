@@ -181,6 +181,11 @@ export const traceTypes = _ => [
     category: chartCategory(_).SPECIALIZED,
   },
   {
+    value: 'sankey',
+    label: _('Sankey'),
+    category: chartCategory(_).SPECIALIZED,
+  },
+  {
     value: 'candlestick',
     label: _('Candlestick'),
     category: chartCategory(_).FINANCIAL,
@@ -231,11 +236,6 @@ export const traceTypes = _ => [
   {
     value: 'splom',
     label: _('Scatterplot Matrix'),
-    category: chartCategory(_).HIDDEN,
-  },
-  {
-    value: 'sankey',
-    label: _('Sankey'),
     category: chartCategory(_).HIDDEN,
   },
   {
