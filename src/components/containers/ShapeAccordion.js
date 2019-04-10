@@ -14,7 +14,7 @@ class ShapeAccordion extends Component {
       layout: {shapes = []},
       localize: _,
     } = this.context;
-    const {canAdd, children} = this.props;
+    const {canAdd, children, canReorder} = this.props;
 
     const content =
       shapes.length &&
@@ -48,7 +48,7 @@ class ShapeAccordion extends Component {
     };
 
     return (
-      <LayoutPanel addAction={canAdd ? addAction : null}>
+      <LayoutPanel addAction={canAdd ? addAction : null} canReorder={canReorder}>
         {content ? (
           content
         ) : (
@@ -74,6 +74,7 @@ ShapeAccordion.contextTypes = {
 ShapeAccordion.propTypes = {
   children: PropTypes.node,
   canAdd: PropTypes.bool,
+  canReorder: PropTypes.bool,
 };
 
 export default ShapeAccordion;

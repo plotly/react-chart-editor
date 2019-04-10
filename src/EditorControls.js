@@ -293,18 +293,23 @@ class EditorControls extends Component {
         // checking is fromIndex and toIndex is a number because just checking
         // if not there will not work as index can be 0 and that value is falsy
         if (payload.path && !isNaN(payload.fromIndex) && !isNaN(payload.toIndex)) {
+          function move(container) {
+            const movedEl = container[payload.fromIndex];
+            const replacedEl = container[payload.toIndex];
+            container[payload.toIndex] = movedEl;
+            container[payload.fromIndex] = replacedEl;
+          }
+
           if (payload.path === 'data') {
-            const traceMoved = graphDiv.data[payload.fromIndex];
-            const traceReplaced = graphDiv.data[payload.toIndex];
-            graphDiv.data[payload.toIndex] = traceMoved;
-            graphDiv.data[payload.fromIndex] = traceReplaced;
+            move(graphDiv.data);
           }
 
           if (payload.path === 'layout.images') {
-            const imageMoved = graphDiv.layout.images[payload.fromIndex];
-            const imageReplaced = graphDiv.layout.images[payload.toIndex];
-            graphDiv.layout.images[payload.toIndex] = imageMoved;
-            graphDiv.layout.images[payload.fromIndex] = imageReplaced;
+            move(graphDiv.layout.images);
+          }
+
+          if (payload.path === 'layout.shapes') {
+            move(graphDiv.layout.shapes);
           }
 
           const updatedData = payload.path.startsWith('data')
