@@ -46,6 +46,10 @@ import {
   HoveronDropdown,
   LevelRendered,
 } from '../components/fields/derived';
+import {traceTypes} from 'lib/traceTypes';
+import localize from 'lib/localize';
+
+const allTraceTypes = traceTypes(localize).map(({value}) => value);
 
 const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
@@ -477,22 +481,19 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <TraceTypeSection
       name={_('Text')}
-      traceTypes={[
-        'scatter',
-        'scattergl',
-        'scatterpolar',
-        'scatterpolargl',
-        'barpolar',
-        'pie',
-        'scatter3d',
-        'scatterternary',
-        'bar',
-        'choropleth',
-        'scattergeo',
-        'scattermapbox',
-        'sunburst',
-        'waterfall',
-      ]}
+      traceTypes={allTraceTypes.filter(
+        t =>
+          ![
+            'histogram2d',
+            'histogram2dcontour',
+            'parcoords',
+            'parcats',
+            'sankey',
+            'table',
+            'scattercarpet',
+            'carpet',
+          ].includes(t)
+      )}
       mode="trace"
     >
       <DataSelector label={_('Text')} attr="text" />
