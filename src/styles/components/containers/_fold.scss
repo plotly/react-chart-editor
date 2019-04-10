@@ -109,7 +109,6 @@
         }
         &--disabled {
           @extend .fold__top__moving-controls--up;
-          cursor: not-allowed;
           svg {
             transform: rotate(-180deg);
             transform-origin: center center;
@@ -131,7 +130,6 @@
         }
         &--disabled {
           @extend .fold__top__moving-controls--down;
-          cursor: not-allowed;
           svg {
             opacity: 0.3;
           }
