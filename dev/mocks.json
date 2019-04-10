@@ -10,6 +10,7 @@
   "/percy/waterfall.json",
   "/percy/sunburst.json",
   "/percy/sankey.json",
+  "/percy/choropleth.json",
   "0.json",
   "1.json",
   "10.json",
