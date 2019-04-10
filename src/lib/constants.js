@@ -142,17 +142,4 @@ export const COLORS = {
   black: '#000000',
 };
 
-export const DEFAULT_COLORS = [
-  COLORS.charcoal,
-  COLORS.white,
-  COLORS.mutedBlue,
-  COLORS.safetyOrange,
-  COLORS.cookedAsparagusGreen,
-  COLORS.brickRed,
-  COLORS.mutedPurple,
-  COLORS.chestnutBrown,
-  COLORS.raspberryYogurtPink,
-  COLORS.middleGray,
-  COLORS.curryYellowGreen,
-  COLORS.blueTeal,
-];
+export const DEFAULT_COLORS = Object.values(COLORS);
