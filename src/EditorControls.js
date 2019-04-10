@@ -294,10 +294,10 @@ class EditorControls extends Component {
         // if not there will not work as index can be 0 and that value is falsy
         if (payload.path && !isNaN(payload.fromIndex) && !isNaN(payload.toIndex)) {
           if (payload.path === 'data') {
-            const a = graphDiv.data[payload.fromIndex];
-            const b = graphDiv.data[payload.toIndex];
-            graphDiv.data.splice(payload.toIndex, 1, a);
-            graphDiv.data.splice(payload.fromIndex, 1, b);
+            const traceMoved = graphDiv.data[payload.fromIndex];
+            const traceReplaced = graphDiv.data[payload.toIndex];
+            graphDiv.data[payload.toIndex] = traceMoved;
+            graphDiv.data[payload.fromIndex] = traceReplaced;
           }
           if (this.props.onUpdate) {
             this.props.onUpdate(
