@@ -290,8 +290,8 @@ class EditorControls extends Component {
         break;
 
       case EDITOR_ACTIONS.MOVE_TO:
-        // checking is fromIndex and toIndex is a number because just checking
-        // if not there will not work as index can be 0 and that value is falsy
+        // checking if fromIndex and toIndex is a number because
+        // gives errors if index is 0 (falsy value)
         if (payload.path && !isNaN(payload.fromIndex) && !isNaN(payload.toIndex)) {
           function move(container) {
             const movedEl = container[payload.fromIndex];
