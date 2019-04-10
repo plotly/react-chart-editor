@@ -13,7 +13,7 @@ class AnnotationAccordion extends Component {
       layout: {annotations = [], meta = []},
       localize: _,
     } = this.context;
-    const {canAdd, children} = this.props;
+    const {canAdd, children, canReorder} = this.props;
 
     const content =
       annotations.length &&
@@ -50,7 +50,7 @@ class AnnotationAccordion extends Component {
     };
 
     return (
-      <LayoutPanel addAction={canAdd ? addAction : null}>
+      <LayoutPanel addAction={canAdd ? addAction : null} canReorder={canReorder}>
         {content ? (
           content
         ) : (
@@ -76,6 +76,7 @@ AnnotationAccordion.contextTypes = {
 AnnotationAccordion.propTypes = {
   children: PropTypes.node,
   canAdd: PropTypes.bool,
+  canReorder: PropTypes.bool,
 };
 
 export default AnnotationAccordion;

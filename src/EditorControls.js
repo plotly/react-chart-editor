@@ -312,6 +312,10 @@ class EditorControls extends Component {
             move(graphDiv.layout.shapes);
           }
 
+          if (payload.path === 'layout.annotations') {
+            move(graphDiv.layout.annotations);
+          }
+
           const updatedData = payload.path.startsWith('data')
             ? graphDiv.data.slice()
             : graphDiv.data;

@@ -17,7 +17,7 @@ import {
 } from '../components';
 
 const StyleNotesPanel = (props, {localize: _}) => (
-  <AnnotationAccordion canAdd>
+  <AnnotationAccordion canAdd canReorder>
     <PlotlySection name={_('Note Text')} attr="text">
       <TextEditor attr="text" />
       <FontSelector label={_('Typeface')} attr="font.family" />
