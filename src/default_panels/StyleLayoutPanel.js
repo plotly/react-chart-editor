@@ -144,6 +144,16 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       </PlotlySection>
       <PlotlySection name={_('Hover')}>
         <HovermodeDropdown label={_('Mode')} attr="hovermode">
+          <Dropdown
+            label={_('Text Alignment')}
+            attr="hoverlabel.align"
+            options={[
+              {label: _('Auto'), value: 'auto'},
+              {label: _('Left'), value: 'left'},
+              {label: _('Right'), value: 'right'},
+            ]}
+            clearable={false}
+          />
           <HoverColor
             label={_('Background Color')}
             attr="hoverlabel.bgcolor"
