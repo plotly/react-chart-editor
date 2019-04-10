@@ -299,12 +299,23 @@ class EditorControls extends Component {
             graphDiv.data[payload.toIndex] = traceMoved;
             graphDiv.data[payload.fromIndex] = traceReplaced;
           }
+
+          if (payload.path === 'layout.images') {
+            const imageMoved = graphDiv.layout.images[payload.fromIndex];
+            const imageReplaced = graphDiv.layout.images[payload.toIndex];
+            graphDiv.layout.images[payload.toIndex] = imageMoved;
+            graphDiv.layout.images[payload.fromIndex] = imageReplaced;
+          }
+
+          const updatedData = payload.path.startsWith('data')
+            ? graphDiv.data.slice()
+            : graphDiv.data;
+          const updatedLayout = payload.path.startsWith('layout')
+            ? Object.assign({}, graphDiv.layout)
+            : graphDiv.layout;
+
           if (this.props.onUpdate) {
-            this.props.onUpdate(
-              graphDiv.data.slice(),
-              graphDiv.layout,
-              graphDiv._transitionData._frames
-            );
+            this.props.onUpdate(updatedData, updatedLayout, graphDiv._transitionData._frames);
           }
         }
         break;

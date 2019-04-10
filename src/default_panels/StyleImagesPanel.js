@@ -11,7 +11,7 @@ import {
 } from '../components';
 
 const StyleImagesPanel = (props, {localize: _}) => (
-  <ImageAccordion canAdd>
+  <ImageAccordion canAdd canReorder>
     <Radio
       attr="visible"
       options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
