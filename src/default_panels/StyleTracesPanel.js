@@ -487,6 +487,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         'scatter3d',
         'scatterternary',
         'bar',
+        'choropleth',
         'scattergeo',
         'scattermapbox',
         'sunburst',
