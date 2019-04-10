@@ -25,6 +25,7 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
       traceFilterCondition={t =>
         !(t.transforms && t.transforms.some(tr => ['fit', 'moving-average'].includes(tr.type)))
       }
+      canReorder
     >
       <TraceSelector label={_('Type')} attr="type" show />
 

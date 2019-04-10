@@ -13,7 +13,7 @@ import {
 } from '../components';
 
 const StyleShapesPanel = (props, {localize: _}) => (
-  <ShapeAccordion canAdd>
+  <ShapeAccordion canAdd canReorder>
     <Radio
       attr="visible"
       options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}

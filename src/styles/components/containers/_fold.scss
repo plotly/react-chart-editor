@@ -13,8 +13,7 @@
     height: 15px;
     border-radius: var(--border-radius);
     text-shadow: var(--text-shadow-dark-ui);
-    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out,
-      border 0.1s ease-in-out;
+    transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out, border 0.1s ease-in-out;
 
     &:hover {
       cursor: pointer;
@@ -83,6 +82,60 @@
       &--open {
         svg {
           transform: rotate(0deg);
+        }
+      }
+    }
+
+    &__moving-controls {
+      height: 27px;
+      margin-top: -7px;
+      margin-right: 5px;
+
+      svg {
+        font-weight: bold;
+        opacity: 0.75;
+      }
+
+      &--up {
+        height: 13px;
+        width: 18px;
+        display: block;
+        svg {
+          transform: rotate(-180deg);
+          transform-origin: center center;
+        }
+        svg:hover {
+          opacity: 1;
+        }
+        &--disabled {
+          @extend .fold__top__moving-controls--up;
+          svg {
+            transform: rotate(-180deg);
+            transform-origin: center center;
+            opacity: 0.3;
+          }
+          svg:hover {
+            opacity: 0.3;
+          }
+        }
+      }
+
+      &--down {
+        height: 13px;
+        width: 18px;
+        display: block;
+        margin-top: -2px;
+        svg:hover {
+          opacity: 1;
+        }
+        &--disabled {
+          @extend .fold__top__moving-controls--down;
+          svg {
+            opacity: 0.3;
+          }
+          svg:hover {
+            opacity: 0.3;
+          }
         }
       }
     }

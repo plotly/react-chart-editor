@@ -289,6 +289,46 @@ class EditorControls extends Component {
         }
         break;
 
+      case EDITOR_ACTIONS.MOVE_TO:
+        // checking if fromIndex and toIndex is a number because
+        // gives errors if index is 0 (falsy value)
+        if (payload.path && !isNaN(payload.fromIndex) && !isNaN(payload.toIndex)) {
+          function move(container) {
+            const movedEl = container[payload.fromIndex];
+            const replacedEl = container[payload.toIndex];
+            container[payload.toIndex] = movedEl;
+            container[payload.fromIndex] = replacedEl;
+          }
+
+          if (payload.path === 'data') {
+            move(graphDiv.data);
+          }
+
+          if (payload.path === 'layout.images') {
+            move(graphDiv.layout.images);
+          }
+
+          if (payload.path === 'layout.shapes') {
+            move(graphDiv.layout.shapes);
+          }
+
+          if (payload.path === 'layout.annotations') {
+            move(graphDiv.layout.annotations);
+          }
+
+          const updatedData = payload.path.startsWith('data')
+            ? graphDiv.data.slice()
+            : graphDiv.data;
+          const updatedLayout = payload.path.startsWith('layout')
+            ? Object.assign({}, graphDiv.layout)
+            : graphDiv.layout;
+
+          if (this.props.onUpdate) {
+            this.props.onUpdate(updatedData, updatedLayout, graphDiv._transitionData._frames);
+          }
+        }
+        break;
+
       default:
         throw new Error(this.localize('must specify an action type to handleEditorUpdate'));
     }

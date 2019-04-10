@@ -13,7 +13,7 @@ class ImageAccordion extends Component {
       layout: {images = []},
       localize: _,
     } = this.context;
-    const {canAdd, children} = this.props;
+    const {canAdd, children, canReorder} = this.props;
 
     const content =
       images.length &&
@@ -48,7 +48,7 @@ class ImageAccordion extends Component {
     };
 
     return (
-      <LayoutPanel addAction={canAdd ? addAction : null}>
+      <LayoutPanel addAction={canAdd ? addAction : null} canReorder={canReorder}>
         {content ? (
           content
         ) : (
@@ -74,6 +74,7 @@ ImageAccordion.contextTypes = {
 ImageAccordion.propTypes = {
   children: PropTypes.node,
   canAdd: PropTypes.bool,
+  canReorder: PropTypes.bool,
 };
 
 export default ImageAccordion;

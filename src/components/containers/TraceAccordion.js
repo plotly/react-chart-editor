@@ -130,7 +130,7 @@ class TraceAccordion extends Component {
   }
 
   render() {
-    const {canAdd, canGroup} = this.props;
+    const {canAdd, canGroup, canReorder} = this.props;
     const _ = this.context.localize;
 
     if (canAdd) {
@@ -146,7 +146,7 @@ class TraceAccordion extends Component {
       };
       const traceFolds = this.renderTraceFolds();
       return (
-        <PlotlyPanel addAction={addAction}>
+        <PlotlyPanel addAction={addAction} canReorder={canReorder}>
           {traceFolds ? traceFolds : this.renderTracePanelHelp()}
         </PlotlyPanel>
       );
@@ -190,6 +190,7 @@ TraceAccordion.contextTypes = {
 TraceAccordion.propTypes = {
   canAdd: PropTypes.bool,
   canGroup: PropTypes.bool,
+  canReorder: PropTypes.bool,
   children: PropTypes.node,
   traceFilterCondition: PropTypes.func,
 };
