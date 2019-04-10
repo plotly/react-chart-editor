@@ -439,12 +439,19 @@ const StyleTracesPanel = (props, {localize: _}) => (
         'scatterternary',
         'scatterpolar',
         'scatterpolargl',
+        'box',
+        'violin',
         'scatter3d',
         'scattergl',
         'scattergeo',
+        'parcoords',
+        'parcats',
         'scattermapbox',
-        'box',
-        'violin',
+        'scattercarpet',
+        'contourcarpet',
+        'ohlc',
+        'candlestick',
+        'histogram2dcontour',
       ]}
       mode="trace"
     >
