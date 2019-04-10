@@ -75,30 +75,35 @@ export class Fold extends Component {
     const movingControls = (canMoveDown || canMoveUp) && (
       <div className="fold__top__moving-controls">
         <span
-          className="fold__top__moving-controls--up"
+          className={`fold__top__moving-controls--up${canMoveUp ? '' : '--disabled'}`}
           onClick={e => {
             // prevents fold toggle to happen when clicking on moving arrow controls
             e.stopPropagation();
-            if (!moveContainer || typeof moveContainer !== 'function') {
-              throw new Error('moveContainer must be a function');
+
+            if (canMoveUp) {
+              if (!moveContainer || typeof moveContainer !== 'function') {
+                throw new Error('moveContainer must be a function');
+              }
+              moveContainer('up');
             }
-            moveContainer('up');
           }}
         >
-          {canMoveUp ? <AngleDownIcon /> : null}
+          <AngleDownIcon />
         </span>
         <span
-          className="fold__top__moving-controls--down"
+          className={`fold__top__moving-controls--down${canMoveDown ? '' : '--disabled'}`}
           onClick={e => {
             // prevents fold toggle to happen when clicking on moving arrow controls
             e.stopPropagation();
-            if (!moveContainer || typeof moveContainer !== 'function') {
-              throw new Error('moveContainer must be a function');
+            if (canMoveDown) {
+              if (!moveContainer || typeof moveContainer !== 'function') {
+                throw new Error('moveContainer must be a function');
+              }
+              moveContainer('down');
             }
-            moveContainer('down');
           }}
         >
-          {canMoveDown ? <AngleDownIcon /> : null}
+          <AngleDownIcon />
         </span>
       </div>
     );
