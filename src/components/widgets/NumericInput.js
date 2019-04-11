@@ -185,6 +185,7 @@ export default class NumericInput extends Component {
         />
         {this.renderArrows()}
         {this.renderSlider()}
+        {this.props.units ? this.props.units : null}
       </div>
     );
   }
@@ -203,6 +204,7 @@ NumericInput.propTypes = {
   step: PropTypes.number,
   stepmode: PropTypes.string,
   value: PropTypes.any,
+  units: PropTypes.string,
 };
 
 NumericInput.defaultProps = {

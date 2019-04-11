@@ -36,6 +36,7 @@ import LocationSelector from './LocationSelector';
 import AxisInterval from './AxisInterval';
 import DateTimePicker from './DateTimePicker';
 import TextPosition from './TextPosition';
+import HoverLabelNameLength from './HoverLabelNameLength';
 
 export * from './derived';
 export * from './LineSelectors';
@@ -80,4 +81,5 @@ export {
   AxisInterval,
   NumericOrDate,
   DateTimePicker,
+  HoverLabelNameLength,
 };
