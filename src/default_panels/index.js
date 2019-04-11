@@ -1,29 +1,14 @@
-import GraphCreatePanel from './GraphCreatePanel';
-import GraphTransformsPanel from './GraphTransformsPanel';
-import StyleLayoutPanel from './StyleLayoutPanel';
-import StyleAxesPanel from './StyleAxesPanel';
-import StyleLegendPanel from './StyleLegendPanel';
-import StyleNotesPanel from './StyleNotesPanel';
-import StyleShapesPanel from './StyleShapesPanel';
-import StyleSlidersPanel from './StyleSlidersPanel';
-import StyleImagesPanel from './StyleImagesPanel';
-import StyleTracesPanel from './StyleTracesPanel';
-import StyleColorbarsPanel from './StyleColorbarsPanel';
-import StyleUpdateMenusPanel from './StyleUpdateMenusPanel';
-import GraphSubplotsPanel from './GraphSubplotsPanel';
-
-export {
-  GraphCreatePanel,
-  GraphTransformsPanel,
-  StyleLayoutPanel,
-  StyleAxesPanel,
-  StyleLegendPanel,
-  StyleNotesPanel,
-  StyleShapesPanel,
-  StyleSlidersPanel,
-  StyleImagesPanel,
-  StyleTracesPanel,
-  StyleColorbarsPanel,
-  StyleUpdateMenusPanel,
-  GraphSubplotsPanel,
-};
+export {default as GraphCreatePanel} from './GraphCreatePanel';
+export {default as GraphTransformsPanel} from './GraphTransformsPanel';
+export {default as StyleLayoutPanel} from './StyleLayoutPanel';
+export {default as StyleAxesPanel} from './StyleAxesPanel';
+export {default as StyleMapsPanel} from './StyleMapsPanel';
+export {default as StyleLegendPanel} from './StyleLegendPanel';
+export {default as StyleNotesPanel} from './StyleNotesPanel';
+export {default as StyleShapesPanel} from './StyleShapesPanel';
+export {default as StyleSlidersPanel} from './StyleSlidersPanel';
+export {default as StyleImagesPanel} from './StyleImagesPanel';
+export {default as StyleTracesPanel} from './StyleTracesPanel';
+export {default as StyleColorbarsPanel} from './StyleColorbarsPanel';
+export {default as StyleUpdateMenusPanel} from './StyleUpdateMenusPanel';
+export {default as GraphSubplotsPanel} from './GraphSubplotsPanel';

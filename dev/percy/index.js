@@ -8,4 +8,4 @@ export {default as box} from './box.json';
 export {default as waterfall} from './waterfall.json';
 export {default as sunburst} from './sunburst.json';
 export {default as sankey} from './sankey.json';
-export {default as choropleth} from './choropleth.json';
+export {default as geoTest} from './geoTest.json';

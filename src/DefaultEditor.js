@@ -7,6 +7,7 @@ import {
   GraphSubplotsPanel,
   StyleLayoutPanel,
   StyleAxesPanel,
+  StyleMapsPanel,
   StyleLegendPanel,
   StyleNotesPanel,
   StyleShapesPanel,
@@ -64,6 +65,14 @@ class DefaultEditor extends Component {
     return this.context.fullData.some(d => traceHasColorbar({}, d));
   }
 
+  hasMaps() {
+    const {
+      layout: {geo, mapbox},
+    } = this.context;
+
+    return Boolean(geo) || Boolean(mapbox);
+  }
+
   render() {
     const _ = this.context.localize;
     const logo = this.props.logoSrc && <Logo src={this.props.logoSrc} />;
@@ -79,6 +88,7 @@ class DefaultEditor extends Component {
         <StyleLayoutPanel group={_('Style')} name={_('General')} />
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
         {this.hasAxes() && <StyleAxesPanel group={_('Style')} name={_('Axes')} />}
+        {this.hasMaps() && <StyleMapsPanel group={_('Style')} name={_('Maps')} />}
         <StyleLegendPanel group={_('Style')} name={_('Legend')} />
         {this.hasColorbars() && <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />}
         <StyleNotesPanel group={_('Style')} name={_('Annotation')} />
