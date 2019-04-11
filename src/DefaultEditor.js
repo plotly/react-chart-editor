@@ -19,7 +19,7 @@ import {
 } from './default_panels';
 import {traceHasColorbar} from './default_panels/StyleColorbarsPanel';
 import Logo from './components/widgets/Logo';
-import {TRANSFORMABLE_TRACES} from './lib/constants';
+import {TRANSFORMABLE_TRACES, TRACE_TO_AXIS} from './lib/constants';
 
 class DefaultEditor extends Component {
   constructor(props, context) {
@@ -71,11 +71,9 @@ class DefaultEditor extends Component {
   }
 
   hasMaps() {
-    const {
-      layout: {geo, mapbox},
-    } = this.context;
-
-    return Boolean(geo) || Boolean(mapbox);
+    return this.context.fullData.some(d =>
+      [...TRACE_TO_AXIS.geo, ...TRACE_TO_AXIS.mapbox].includes(d.type)
+    );
   }
 
   render() {
