@@ -27,6 +27,7 @@ const panelsToTest = {
   waterfall: ['GraphCreatePanel', 'StyleTracesPanel'],
   sunburst: ['GraphCreatePanel', 'StyleTracesPanel'],
   sankey: ['GraphCreatePanel', 'StyleTracesPanel'],
+  choropleth: ['GraphCreatePanel', 'GraphSubplotsPanel', 'StyleTracesPanel'],
 };
 
 window.URL.createObjectURL = function() {

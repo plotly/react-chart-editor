@@ -46,6 +46,10 @@ import {
   HoveronDropdown,
   LevelRendered,
 } from '../components/fields/derived';
+import {traceTypes} from 'lib/traceTypes';
+import localize from 'lib/localize';
+
+const allTraceTypes = traceTypes(localize).map(({value}) => value);
 
 const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
@@ -435,12 +439,19 @@ const StyleTracesPanel = (props, {localize: _}) => (
         'scatterternary',
         'scatterpolar',
         'scatterpolargl',
+        'box',
+        'violin',
         'scatter3d',
         'scattergl',
         'scattergeo',
+        'parcoords',
+        'parcats',
         'scattermapbox',
-        'box',
-        'violin',
+        'scattercarpet',
+        'contourcarpet',
+        'ohlc',
+        'candlestick',
+        'histogram2dcontour',
       ]}
       mode="trace"
     >
@@ -477,21 +488,19 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <TraceTypeSection
       name={_('Text')}
-      traceTypes={[
-        'scatter',
-        'scattergl',
-        'scatterpolar',
-        'scatterpolargl',
-        'barpolar',
-        'pie',
-        'scatter3d',
-        'scatterternary',
-        'bar',
-        'scattergeo',
-        'scattermapbox',
-        'sunburst',
-        'waterfall',
-      ]}
+      traceTypes={allTraceTypes.filter(
+        t =>
+          ![
+            'histogram2d',
+            'histogram2dcontour',
+            'parcoords',
+            'parcats',
+            'sankey',
+            'table',
+            'scattercarpet',
+            'carpet',
+          ].includes(t)
+      )}
       mode="trace"
     >
       <DataSelector label={_('Text')} attr="text" />
@@ -738,6 +747,16 @@ const StyleTracesPanel = (props, {localize: _}) => (
         <MultiColorPicker label={_('Contour Color')} attr="contour.color" />
         <Numeric label={_('Contour Width')} attr="contour.width" />
       </VisibilitySelect>
+      <Dropdown
+        label={_('Text Alignment')}
+        attr="hoverlabel.align"
+        options={[
+          {label: _('Auto'), value: 'auto'},
+          {label: _('Left'), value: 'left'},
+          {label: _('Right'), value: 'right'},
+        ]}
+        clearable={false}
+      />
       <Text label={_('Value Format')} attr="valueformat" />
       <Text label={_('Value Suffix')} attr="valuesuffix" />
     </PlotlySection>
