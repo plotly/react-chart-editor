@@ -29,6 +29,7 @@ class DefaultEditor extends Component {
     this.hasMenus = this.hasMenus.bind(this);
     this.hasSliders = this.hasSliders.bind(this);
     this.hasColorbars = this.hasColorbars.bind(this);
+    this.hasLegend = this.hasLegend.bind(this);
   }
 
   hasTransforms() {
@@ -65,6 +66,10 @@ class DefaultEditor extends Component {
     return this.context.fullData.some(d => traceHasColorbar({}, d));
   }
 
+  hasLegend() {
+    return this.context.fullData.some(t => t.showlegend !== undefined); // eslint-disable-line no-undefined
+  }
+
   hasMaps() {
     const {
       layout: {geo, mapbox},
@@ -89,7 +94,7 @@ class DefaultEditor extends Component {
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
         {this.hasAxes() && <StyleAxesPanel group={_('Style')} name={_('Axes')} />}
         {this.hasMaps() && <StyleMapsPanel group={_('Style')} name={_('Maps')} />}
-        <StyleLegendPanel group={_('Style')} name={_('Legend')} />
+        {this.hasLegend() && <StyleLegendPanel group={_('Style')} name={_('Legend')} />}
         {this.hasColorbars() && <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />}
         <StyleNotesPanel group={_('Style')} name={_('Annotation')} />
         <StyleShapesPanel group={_('Style')} name={_('Shapes')} />
