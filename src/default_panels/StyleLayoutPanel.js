@@ -184,12 +184,12 @@ const StyleLayoutPanel = (props, {localize: _}) => (
           {_(
             'You can refer to the items in this column in any text fields of the editor like so: '
           )}
-          <p>
-            {_('Ex: ')}
-            <span style={{letterSpacing: '1px', fontStyle: 'italic', userSelect: 'text'}}>
-              {_('My custom title %{meta[1]}')}
-            </span>
-          </p>
+        </p>
+        <p>
+          {_('Ex: ')}
+          <span style={{letterSpacing: '1px', fontStyle: 'italic', userSelect: 'text'}}>
+            {_('My custom title %{meta[1]}')}
+          </span>
         </p>
       </Info>
     </PlotlyFold>

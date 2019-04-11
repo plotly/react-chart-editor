@@ -37,6 +37,7 @@ import {
   GroupCreator,
   NumericOrDate,
   AxisInterval,
+  HoverLabelNameLength,
 } from '../components';
 import {
   BinningDropdown,
@@ -737,6 +738,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         attr="hoverlabel.split"
         options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
       />
+      <HoverLabelNameLength label={_('Trace Name')} attr="hoverlabel.namelength" />
       <VisibilitySelect
         attr="contour.show"
         label={_('Show Contour')}
