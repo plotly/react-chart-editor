@@ -747,6 +747,16 @@ const StyleTracesPanel = (props, {localize: _}) => (
         <MultiColorPicker label={_('Contour Color')} attr="contour.color" />
         <Numeric label={_('Contour Width')} attr="contour.width" />
       </VisibilitySelect>
+      <Dropdown
+        label={_('Text Alignment')}
+        attr="hoverlabel.align"
+        options={[
+          {label: _('Auto'), value: 'auto'},
+          {label: _('Left'), value: 'left'},
+          {label: _('Right'), value: 'right'},
+        ]}
+        clearable={false}
+      />
       <Text label={_('Value Format')} attr="valueformat" />
       <Text label={_('Value Suffix')} attr="valuesuffix" />
     </PlotlySection>
