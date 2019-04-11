@@ -1,0 +1,95 @@
+{
+  "data": [
+    {
+      "type": "choropleth",
+      "mode": "markers",
+      "stackgroup": null,
+      "locations": [
+        "Angola",
+        "Albania",
+        "Armenia"
+      ],
+      "locationssrc": "x1",
+      "locationmode": "country names",
+      "z": [
+        1.01,
+        1.66,
+        3.5
+      ],
+      "zsrc": "x1",
+      "zauto": false,
+      "hovertemplate": ""
+    },
+    {
+      "type": "scattermapbox",
+      "lat": [
+        1,
+        2,
+        3
+      ],
+      "latsrc": "x1",
+      "lon": [
+        1,
+        2,
+        3
+      ],
+      "lonsrc": "x1",
+      "mode": "markers+lines+text",
+      "connectgaps": false,
+      "fill": "toself"
+    },
+    {
+      "type": "scattergeo",
+      "lat": [
+        16.99,
+        10.34,
+        21.01
+      ],
+      "latsrc": "x1",
+      "lon": [
+        16.99,
+        10.34,
+        21.01
+      ],
+      "lonsrc": "x1",
+      "geo": "geo2",
+      "mode": "markers+lines+text"
+    }
+  ],
+  "layout": {
+    "xaxis": {
+      "range": [
+        0.8304469606674613,
+        3.679553039332539
+      ],
+      "autorange": true,
+      "type": "linear"
+    },
+    "yaxis": {
+      "range": [
+        -0.12629852378348821,
+        2.1262985237834884
+      ],
+      "autorange": true
+    },
+    "autosize": true,
+    "geo": {
+      "showcountries": true,
+      "showocean": true,
+      "showland": true,
+      "showlakes": true,
+      "showrivers": true
+    },
+    "geo2": {
+      "showcountries": true,
+      "showrivers": true,
+      "showlakes": true,
+      "showland": true,
+      "showocean": true
+    },
+    "mapbox": {
+      "style": "basic"
+    }
+  },
+  "frames": []
+}
