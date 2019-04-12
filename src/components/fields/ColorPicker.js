@@ -33,7 +33,7 @@ export class UnconnectedColorPicker extends Component {
     }
 
     return (
-      <Field {...this.props}>
+      <Field {...this.props} noDefaultIndicator={this.props.noDefaultIndicator}>
         <ColorPickerWidget
           selectedColor={this.props.fullValue}
           onColorChange={this.props.updatePlot}
@@ -48,6 +48,7 @@ UnconnectedColorPicker.propTypes = {
   updatePlot: PropTypes.func,
   handleEmpty: PropTypes.bool,
   defaultColor: PropTypes.string,
+  noDefaultIndicator: PropTypes.bool,
   ...Field.propTypes,
 };
 

@@ -90,7 +90,11 @@ class UnconnectedMultiColorPicker extends Component {
 
     if (this.context.traceIndexes.length > 1) {
       return (
-        <Field {...this.props} suppressMultiValuedMessage>
+        <Field
+          {...this.props}
+          suppressMultiValuedMessage
+          noDefaultIndicator={this.props.noDefaultIndicator}
+        >
           <RadioBlocks
             options={constantOptions}
             activeOption={selectedConstantColorOption}
@@ -100,9 +104,11 @@ class UnconnectedMultiColorPicker extends Component {
                 : value => this.setState({selectedConstantColorOption: value})
             }
           />
-          <Info>{selectedConstantColorOption === 'single' ? singleMessage : multiMessage}</Info>
+          <Info noDefaultIndicator>
+            {selectedConstantColorOption === 'single' ? singleMessage : multiMessage}
+          </Info>
           {selectedConstantColorOption === 'single' ? (
-            <ColorPicker attr={this.props.attr} updatePlot={this.setColor} />
+            <ColorPicker attr={this.props.attr} updatePlot={this.setColor} noDefaultIndicator />
           ) : (
             <CustomColorscalePicker
               suppressMultiValuedMessage
@@ -117,7 +123,12 @@ class UnconnectedMultiColorPicker extends Component {
     }
 
     return (
-      <ColorPicker attr={this.props.attr} updatePlot={this.setColor} label={this.props.label} />
+      <ColorPicker
+        attr={this.props.attr}
+        updatePlot={this.setColor}
+        label={this.props.label}
+        noDefaultIndicator={this.props.noDefaultIndicator}
+      />
     );
   }
 }
@@ -132,6 +143,7 @@ UnconnectedMultiColorPicker.propTypes = {
   messageKeyWordSingle: PropTypes.string,
   messageKeyWordPlural: PropTypes.string,
   tracesToColor: PropTypes.array,
+  noDefaultIndicator: PropTypes.bool,
   ...Field.propTypes,
 };
 

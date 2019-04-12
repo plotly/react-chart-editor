@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import {bem} from 'lib';
 import {getMultiValueText} from 'lib/constants';
 import {CloseIcon} from 'plotly-icons';
+import nestedProperty from 'plotly.js/src/lib/nested_property';
 
 export class FieldDelete extends Component {
   render() {
@@ -29,9 +30,10 @@ class Field extends Component {
       extraComponent,
       fieldContainerClassName,
       labelWidth,
+      noDefaultIndicator,
     } = this.props;
 
-    const {localize: _} = this.context;
+    const {localize: _, container, attr} = this.context;
 
     let fieldClass;
     if (!label) {
@@ -53,8 +55,14 @@ class Field extends Component {
       [fieldContainerClassName]: Boolean(fieldContainerClassName),
     });
 
+    const isDefaultValue = attr && nestedProperty(container, attr).get() !== undefined; // eslint-disable-line no-undefined
+    const defaultIndicatorClassName = classnames('field__default-indicator', {
+      'field__default-indicator__is-default': Boolean(isDefaultValue),
+    });
+
     return (
       <div className={containerClassName}>
+        {!noDefaultIndicator && <div className={defaultIndicatorClassName} />}
         {label ? (
           <div
             className={bem('field', 'title')}
@@ -106,6 +114,7 @@ Field.propTypes = {
   children: PropTypes.node,
   extraComponent: PropTypes.any,
   fieldContainerClassName: PropTypes.string,
+  noDefaultIndicator: PropTypes.bool,
 };
 
 Field.contextTypes = {
@@ -113,6 +122,7 @@ Field.contextTypes = {
   description: PropTypes.string,
   attr: PropTypes.string,
   showFieldTooltips: PropTypes.bool,
+  container: PropTypes.object,
 };
 
 Field.defaultProps = {

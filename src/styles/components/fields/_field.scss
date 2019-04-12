@@ -11,6 +11,15 @@
   padding: var(--spacing-quarter-unit) 0;
   width: 100%;
   position: relative;
+  &__default-indicator {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: var(--spacing-quarter-unit);
+    &__is-default {
+      background-color: $color-cornflower;
+    }
+  }
   &__no-title {
     width: 100%;
     padding: 0 var(--spacing-half-unit);
