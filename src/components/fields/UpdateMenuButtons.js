@@ -25,6 +25,7 @@ class UpdateMenuButtons extends Component {
         updatePlot={index => this.setState({currentButtonIndex: index})}
         clearable={false}
         fullValue={this.state.currentButtonIndex}
+        noDefaultIndicator
       />
     );
   }
@@ -33,7 +34,11 @@ class UpdateMenuButtons extends Component {
     return (
       <Field>
         {this.renderDropdown()}
-        <TextEditor attr={`buttons[${this.state.currentButtonIndex}].label`} richTextOnly />
+        <TextEditor
+          attr={`buttons[${this.state.currentButtonIndex}].label`}
+          richTextOnly
+          noDefaultIndicator
+        />
       </Field>
     );
   }

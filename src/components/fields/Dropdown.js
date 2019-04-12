@@ -12,7 +12,7 @@ export class UnconnectedDropdown extends Component {
     }
 
     return (
-      <Field {...this.props}>
+      <Field {...this.props} noDefaultIndicator={this.props.noDefaultIndicator}>
         <DropdownWidget
           backgroundDark={this.props.backgroundDark}
           options={this.props.options}

@@ -80,7 +80,12 @@ class UnconnectedMarkerSize extends Component {
             noDefaultIndicator
           />
         ) : multiValued ? null : (
-          <DataSelector suppressMultiValuedMessage attr="marker.size" updatePlot={this.setValue} />
+          <DataSelector
+            suppressMultiValuedMessage
+            attr="marker.size"
+            updatePlot={this.setValue}
+            noDefaultIndicator
+          />
         )}
       </Field>
     );

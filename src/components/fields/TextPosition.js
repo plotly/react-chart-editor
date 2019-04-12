@@ -24,12 +24,17 @@ export class UnconnectedTextPosition extends Component {
     const control =
       this.state.posType === 'simple' ? (
         <>
-          <Info>
+          <Info noDefaultIndicator>
             {_(
               'This will position all text values on the plot according to the selected position.'
             )}
           </Info>
-          <Dropdown options={this.props.options} attr="textposition" clearable={false} />
+          <Dropdown
+            options={this.props.options}
+            attr="textposition"
+            clearable={false}
+            noDefaultIndicator
+          />
         </>
       ) : (
         <>

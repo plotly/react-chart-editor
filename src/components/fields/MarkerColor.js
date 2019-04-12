@@ -127,7 +127,7 @@ class UnconnectedMarkerColor extends Component {
           this.props.container.marker.colorsrc === MULTI_VALUED));
     return (
       <Field multiValued={multiValued} noDefaultIndicator>
-        <DataSelector suppressMultiValuedMessage attr="marker.color" />
+        <DataSelector suppressMultiValuedMessage attr="marker.color" noDefaultIndicator />
         {this.props.container.marker &&
         this.props.container.marker.colorscale === MULTI_VALUED ? null : (
           <ColorscalePicker
@@ -135,6 +135,7 @@ class UnconnectedMarkerColor extends Component {
             attr="marker.colorscale"
             updatePlot={this.setColorScale}
             colorscale={this.state.colorscale}
+            noDefaultIndicator
           />
         )}
       </Field>

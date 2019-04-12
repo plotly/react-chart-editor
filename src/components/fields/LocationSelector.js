@@ -102,6 +102,7 @@ class UnconnectedLocationSelector extends Component {
             fullValue={mode}
             updatePlot={this.setMode}
             attr={this.props.attr}
+            noDefaultIndicator
           />
         </Field>
         {mode === 'latlon' ? (
