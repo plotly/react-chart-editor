@@ -705,7 +705,7 @@ export const LevelRendered = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
     const _ = context.localize;
 
-    if (context.container.ids || context.container.ids.length) {
+    if (context.container.ids && context.container.ids.length) {
       plotProps.isVisible = true;
       plotProps.options = [{label: _('Root'), value: ''}].concat(
         context.container.ids.map(i => ({label: i, value: i}))
