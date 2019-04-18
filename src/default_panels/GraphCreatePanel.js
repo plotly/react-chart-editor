@@ -30,20 +30,19 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
       <TraceSelector label={_('Type')} attr="type" show />
 
       <LocationSelector attr="type" />
+      <DataSelector label={_('Values')} attr="values" />
+      <DataSelector label={_('Labels')} attr="labels" />
+      <DataSelector label={_('Parents')} attr="parents" />
 
       <TraceTypeSection traceTypes={['sunburst']} mode="trace">
-        <DataSelector label={_('Ids')} attr="ids" />
+        <DataSelector label={_('IDs')} attr="ids" />
       </TraceTypeSection>
-
-      <DataSelector label={_('Values')} attr="values" />
       <Dropdown
-        label={_('Sum Values by')}
+        label={_('Parent Value Mode')}
         attr="branchvalues"
         options={[{label: _('Total'), value: 'total'}, {label: _('Remainder'), value: 'remainder'}]}
         clearable={false}
       />
-      <DataSelector label={_('Labels')} attr="labels" />
-      <DataSelector label={_('Parents')} attr="parents" />
 
       <DataSelector
         label={{
