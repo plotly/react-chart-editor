@@ -70,7 +70,7 @@
     "react": "16.8.6",
     "react-ace": "6.6.0",
     "react-dom": "16.8.6",
-    "react-hot-loader": "4.8.8",
+    "react-hot-loader": "4.9.0",
     "react-inspector": "3.0.2",
     "react-test-renderer": "16.8.6",
     "request": "2.88.0",
@@ -79,7 +79,7 @@
     "style-loader": "0.23.1",
     "webpack": "4.32.2",
     "webpack-cli": "3.3.2",
-    "webpack-dev-server": "3.4.1"
+    "webpack-dev-server": "3.5.1"
   },
   "peerDependencies": {
     "react": ">15",
