@@ -591,11 +591,11 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       options = [];
     }
 
-    if (container.labels && ['pie', 'sunburst'].includes(container.type)) {
+    if (container.labels && ['pie', 'sunburst', 'funnelarea'].includes(container.type)) {
       options.push({label: _('Label'), value: 'label'});
     }
 
-    if (container.values && ['pie', 'sunburst'].includes(container.type)) {
+    if (container.values && ['pie', 'sunburst', 'funnelarea'].includes(container.type)) {
       options.push({label: _('Value'), value: 'value'});
     }
 

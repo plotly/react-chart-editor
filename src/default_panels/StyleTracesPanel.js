@@ -122,7 +122,28 @@ const StyleTracesPanel = (props, {localize: _}) => (
         />
       </LayoutSection>
     </TraceTypeSection>
-    <PlotlySection name={_('Pie Title')} attr="title.text">
+    <TraceTypeSection name={_('Funnel Area Colors')} traceTypes={['funnelarea']} mode="trace">
+      <LayoutSection attr="name">
+        <ColorwayPicker label={_('Colors')} attr="funnelareacolorway" />
+        <Radio
+          label={_('Extended Colors')}
+          attr="extendfunnelareacolors"
+          options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+        />
+      </LayoutSection>
+    </TraceTypeSection>
+    <PlotlySection name={_('Funnel Dimensions')} traceTypes={['funnelarea']} attr="aspectratio">
+      <Numeric
+        label={_('Aspect Ratio')}
+        attr="aspectratio"
+        step={0.01}
+        min={0}
+        max={2}
+        showSlider
+      />
+      <NumericFraction label={_('Base Ratio')} attr="baseratio" />
+    </PlotlySection>
+    <PlotlySection name={_('Subplot Title')} attr="title.text">
       <TextEditor label={_('Name')} attr="title.text" />
       <Dropdown
         label={'Title Position'}
@@ -637,6 +658,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         attr="connector.visible"
         options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
       />
+      <MultiColorPicker label={_('Fill Color')} attr="connector.fillcolor" />
       <Numeric label={_('Line Width')} attr="connector.line.width" />
       <MultiColorPicker label={_('Line Color')} attr="connector.line.color" />
       <LineDashSelector label={_('Line Type')} attr="connector.line.dash" />
