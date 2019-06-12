@@ -612,40 +612,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
         options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
       />
     </TraceTypeSection>
-    <PlotlySection name={_('Hover/Tooltip')}>
-      <HoveronDropdown attr="hoveron" label={_('Hover on')} />
-      <HoverTemplateSwitch attr="hovertemplate" label={_('Mode')} />
-      <HoverInfo attr="hoverinfo" label={_('Show')} />
-      <HoverTemplateText attr="hovertemplate" label={_('Template')} />
-      <Radio
-        label={_('Split labels')}
-        attr="hoverlabel.split"
-        options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
-      />
-      <HoverLabelNameLength label={_('Trace Name')} attr="hoverlabel.namelength" />
-      <VisibilitySelect
-        attr="contour.show"
-        label={_('Show Contour')}
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
-        showOn={true}
-        defaultOpt={false}
-      >
-        <MultiColorPicker label={_('Contour Color')} attr="contour.color" />
-        <Numeric label={_('Contour Width')} attr="contour.width" />
-      </VisibilitySelect>
-      <Dropdown
-        label={_('Text Alignment')}
-        attr="hoverlabel.align"
-        options={[
-          {label: _('Auto'), value: 'auto'},
-          {label: _('Left'), value: 'left'},
-          {label: _('Right'), value: 'right'},
-        ]}
-        clearable={false}
-      />
-      <Text label={_('Value Format')} attr="valueformat" />
-      <Text label={_('Value Suffix')} attr="valuesuffix" />
-    </PlotlySection>
     <PlotlySection name={_('Colorscale')}>
       <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
       <Radio
@@ -795,6 +761,40 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <ColorArrayPicker label={_('Color')} attr="link.color" />
       <MultiColorPicker label={_('Line Color')} attr="link.line.color" />
       <Numeric label={_('Line Width')} attr="link.line.width" min={0} />
+    </PlotlySection>
+    <PlotlySection name={_('Hover/Tooltip')}>
+      <HoveronDropdown attr="hoveron" label={_('Hover on')} />
+      <HoverTemplateSwitch attr="hovertemplate" label={_('Mode')} />
+      <HoverInfo attr="hoverinfo" label={_('Show')} />
+      <HoverTemplateText attr="hovertemplate" label={_('Template')} />
+      <Radio
+        label={_('Split labels')}
+        attr="hoverlabel.split"
+        options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
+      />
+      <HoverLabelNameLength label={_('Trace Name')} attr="hoverlabel.namelength" />
+      <VisibilitySelect
+        attr="contour.show"
+        label={_('Show Contour')}
+        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        showOn={true}
+        defaultOpt={false}
+      >
+        <MultiColorPicker label={_('Contour Color')} attr="contour.color" />
+        <Numeric label={_('Contour Width')} attr="contour.width" />
+      </VisibilitySelect>
+      <Dropdown
+        label={_('Text Alignment')}
+        attr="hoverlabel.align"
+        options={[
+          {label: _('Auto'), value: 'auto'},
+          {label: _('Left'), value: 'left'},
+          {label: _('Right'), value: 'right'},
+        ]}
+        clearable={false}
+      />
+      <Text label={_('Value Format')} attr="valueformat" />
+      <Text label={_('Value Suffix')} attr="valuesuffix" />
     </PlotlySection>
     <TraceTypeSection
       name={_('Error Bars X')}
