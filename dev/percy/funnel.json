@@ -1,0 +1,9 @@
+{
+  "data": [
+    {
+      "type": "funnel",
+      "y": ["Lead", "Pipeline", "Proposal", "Negotiation", "Closed (Won)"],
+      "x": [ 610, 432, 231, 103, 54 ]
+    }
+  ]
+}
