@@ -500,11 +500,22 @@ function computeAxesRefOptions(axes, propsAttr) {
 export const TextInfo = connectToContainer(UnconnectedFlaglist, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _, container} = context;
-    const options = [
+
+    let options = [
       {label: _('Label'), value: 'label'},
       {label: _('Value'), value: 'value'},
       {label: _('%'), value: 'percent'},
     ];
+
+    if (container.type === 'funnel') {
+      options = [
+        {label: _('Label'), value: 'label'},
+        {label: _('Value'), value: 'value'},
+        {label: _('% initial'), value: 'percent initial'},
+        {label: _('% previous'), value: 'percent previous'},
+        {label: _('% total'), value: 'percent total'},
+      ];
+    }
 
     if (container.text) {
       options.push({label: _('Text'), value: 'text'});
