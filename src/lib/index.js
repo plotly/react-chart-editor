@@ -206,7 +206,7 @@ function getFullTrace(props, context) {
 function getParsedTemplateString(originalString, meta) {
   let text = originalString;
 
-  if (originalString && meta && meta.length) {
+  if (originalString && meta && (meta.length || Object.keys(meta).length)) {
     text = templateString(originalString, {meta});
   }
 

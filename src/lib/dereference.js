@@ -3,7 +3,26 @@ import {maybeTransposeData} from './index';
 
 const SRC_ATTR_PATTERN = /src$/;
 
-export default function dereference(container, dataSources, config = {deleteKeys: false}) {
+export function getColumnNames(srcArray, dataSourceOptions) {
+  return srcArray
+    .map(src => {
+      const columns = dataSourceOptions.filter(dso => dso.value === src);
+      if (columns.length === 1) {
+        return columns[0].columnName || columns[0].label;
+      }
+      return '';
+    })
+    .join(' - ');
+}
+
+export default function dereference(
+  container,
+  dataSources,
+  config = {deleteKeys: false},
+  dataSourceOptions = null
+) {
+  const containerIsData = Array.isArray(container);
+
   const replacer = (key, parent, srcPath) => {
     if (!SRC_ATTR_PATTERN.test(key)) {
       return;
@@ -34,22 +53,31 @@ export default function dereference(container, dataSources, config = {deleteKeys
       return;
     }
 
-    if (Array.isArray(container)) {
-      // Case where we were originally given data to dereference
-      const traceType = parent.type;
-      parent[dataKey] = maybeTransposeData(dereferencedData, srcPath, traceType);
+    if (containerIsData) {
+      if (parent.type !== null) {
+        // we're at the top level of the trace
+        if (dataSourceOptions !== null) {
+          parent.meta = parent.meta || {};
+          parent.meta.columnNames = parent.meta.columnNames || {};
+          parent.meta.columnNames[dataKey] = getColumnNames(srcRef, dataSourceOptions);
+        }
+        parent[dataKey] = maybeTransposeData(dereferencedData, srcPath, parent.type);
+      } else {
+        parent[dataKey] = dereferencedData;
+      }
     } else {
-      // This means we're dereferencing layout
+      // container is layout
       parent[dataKey] = dereferencedData;
     }
   };
 
-  if (Array.isArray(container)) {
+  if (containerIsData) {
     walkObject(container, replacer, {
       walkArraysMatchingKeys: ['data', 'transforms'],
       pathType: 'nestedProperty',
     });
   } else {
+    // container is layout
     walkObject(container, replacer, {pathType: 'nestedProperty'});
   }
 }
