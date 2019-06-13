@@ -201,6 +201,16 @@ export const traceTypes = _ => [
     category: chartCategory(_).FINANCIAL,
   },
   {
+    value: 'funnel',
+    label: _('Funnel'),
+    category: chartCategory(_).FINANCIAL,
+  },
+  {
+    value: 'funnelarea',
+    label: _('Funnel Area'),
+    category: chartCategory(_).FINANCIAL,
+  },
+  {
     value: 'scattergl',
     icon: 'scatter',
     label: _('Scatter'),

@@ -1,0 +1,9 @@
+{
+  "data": [
+    {
+      "type": "funnelarea",
+      "labels": ["Lead", "Pipeline", "Proposal", "Negotiation", "Closed (Won)"],
+      "values": [ 610, 432, 231, 103, 54 ]
+    }
+  ]
+}

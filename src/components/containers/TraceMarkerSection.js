@@ -15,12 +15,10 @@ class TraceMarkerSection extends Component {
   setLocals(context) {
     const _ = this.context.localize;
     const traceType = context.fullContainer.type;
-    if (['bar', 'histogram'].includes(traceType)) {
+    if (['bar', 'histogram', 'funnel', 'waterfall'].includes(traceType)) {
       this.name = _('Bars');
-    } else if (traceType === 'pie') {
-      this.name = _('Pie Segments');
-    } else if (traceType === 'sunburst') {
-      this.name = _('Sunburst Segments');
+    } else if (['funnelarea', 'pie', 'sunburst'].includes(traceType)) {
+      this.name = _('Segments');
     } else {
       this.name = _('Points');
     }
