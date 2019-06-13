@@ -3,6 +3,8 @@
   "/percy/panelTest.json",
   "/percy/bar.json",
   "/percy/box.json",
+  "/percy/funnel.json",
+  "/percy/funnelarea.json",
   "/percy/histogram.json",
   "/percy/histogram2d.json",
   "/percy/pie.json",

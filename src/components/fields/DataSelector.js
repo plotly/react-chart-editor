@@ -40,6 +40,7 @@ export class UnconnectedDataSelector extends Component {
             'scatter',
             'scattergl',
             'bar',
+            'funnel',
             'heatmap',
             'heatmapgl',
             'violin',

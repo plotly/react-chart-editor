@@ -64,7 +64,7 @@ class SubplotAccordion extends Component {
     // of right type that have attr 'subplot': 'ternary' in their data.
 
     /**
-    Example: 
+    Example:
     {
       "data": [
         {
@@ -126,7 +126,9 @@ class SubplotAccordion extends Component {
     data.forEach((d, i) => {
       if (
         (d.type === 'pie' && d.values) ||
-        ['pie', 'table', 'sunburst', 'sankey', 'parcoords', 'parcats'].includes(d.type)
+        ['pie', 'table', 'sunburst', 'sankey', 'parcoords', 'parcats', 'funnelarea'].includes(
+          d.type
+        )
       ) {
         counter[d.type]++;
         const currentCount = counter[d.type];

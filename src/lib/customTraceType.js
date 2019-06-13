@@ -1,5 +1,3 @@
-import {COLORS} from 'lib/constants';
-
 export function plotlyTraceToCustomTrace(trace) {
   if (typeof trace !== 'object') {
     throw new Error(
@@ -45,29 +43,10 @@ export function traceTypeToPlotlyInitFigure(traceType, gl = '') {
       return {type: 'scatter' + gl, mode: 'lines', stackgroup: 1};
     case 'scatterpolar':
       return {type: 'scatterpolar' + gl};
-    case 'ohlc':
-      return {
-        type: 'ohlc',
-        decreasing: {line: {color: COLORS.middleGray}},
-        increasing: {line: {color: COLORS.blueTeal}},
-      };
     case 'waterfall':
       return {
         type: 'waterfall',
-        decreasing: {line: {color: COLORS.middleGray}},
-        increasing: {line: {color: COLORS.blueTeal}},
-      };
-    case 'candlestick':
-      return {
-        type: 'candlestick',
-        decreasing: {
-          line: {color: COLORS.middleGray},
-          fillcolor: 'rgba(127, 127, 127, 0.5)',
-        },
-        increasing: {
-          line: {color: COLORS.blueTeal},
-          fillcolor: 'rgba(23, 190, 207, 0.5)',
-        },
+        orientation: 'v',
       };
     case 'box':
       return {

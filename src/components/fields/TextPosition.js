@@ -91,13 +91,16 @@ export default connectToContainer(UnconnectedTextPosition, {
       {label: _('Bottom Center'), value: 'bottom center'},
       {label: _('Bottom Right'), value: 'bottom right'},
     ];
-    if (['pie', 'bar', 'waterfall'].includes(context.container.type)) {
+    if (['pie', 'bar', 'funnel', 'waterfall'].includes(context.container.type)) {
       options = [
         {label: _('Inside'), value: 'inside'},
         {label: _('Outside'), value: 'outside'},
         {label: _('Auto'), value: 'auto'},
         {label: _('None'), value: 'none'},
       ];
+    }
+    if (['funnelarea'].includes(context.container.type)) {
+      options = [{label: _('Inside'), value: 'inside'}, {label: _('None'), value: 'none'}];
     }
     plotProps.options = options;
     plotProps.clearable = false;

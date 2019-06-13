@@ -212,3 +212,9 @@ export const shamefullyAdjustSizeref = (gd, {update}) => {
     update['marker.sizemode'] = 'area';
   }
 };
+
+export const shamefullyAdjustAxisDirection = (gd, {update}) => {
+  if (update.type === 'funnel' && gd.data.length === 1) {
+    gd.layout.yaxis.autorange = 'reversed';
+  }
+};
