@@ -94,11 +94,11 @@ class DefaultEditor extends Component {
         {this.hasMaps() && <StyleMapsPanel group={_('Style')} name={_('Maps')} />}
         {this.hasLegend() && <StyleLegendPanel group={_('Style')} name={_('Legend')} />}
         {this.hasColorbars() && <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />}
-        <StyleNotesPanel group={_('Layers')} name={_('Annotation')} />
-        <StyleShapesPanel group={_('Layers')} name={_('Shapes')} />
-        <StyleImagesPanel group={_('Layers')} name={_('Images')} />
-        {this.hasSliders() && <StyleSlidersPanel group={_('Layers')} name={_('Sliders')} />}
-        {this.hasMenus() && <StyleUpdateMenusPanel group={_('Layers')} name={_('Menus')} />}
+        <StyleNotesPanel group={_('Annotate')} name={_('Text')} />
+        <StyleShapesPanel group={_('Annotate')} name={_('Shapes')} />
+        <StyleImagesPanel group={_('Annotate')} name={_('Images')} />
+        {this.hasSliders() && <StyleSlidersPanel group={_('Control')} name={_('Sliders')} />}
+        {this.hasMenus() && <StyleUpdateMenusPanel group={_('Control')} name={_('Menus')} />}
         {this.props.children ? this.props.children : null}
       </PanelMenuWrapper>
     );
