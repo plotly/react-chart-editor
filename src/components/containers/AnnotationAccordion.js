@@ -22,7 +22,7 @@ class AnnotationAccordion extends Component {
           <AnnotationFold
             key={i}
             annotationIndex={i}
-            name={getParsedTemplateString(ann.text, meta)}
+            name={getParsedTemplateString(ann.text, {meta})}
             canDelete={canAdd}
           >
             {children}

@@ -5,6 +5,7 @@ import Field from './Field';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {connectToContainer, maybeAdjustSrc, maybeTransposeData} from 'lib';
 import {TRANSFORMS_LIST} from 'lib/constants';
+import {getColumnNames} from 'lib/dereference';
 
 export function attributeIsData(meta = {}) {
   return meta.valType === 'data_array' || meta.arrayOk;
@@ -93,6 +94,14 @@ export class UnconnectedDataSelector extends Component {
     update[this.srcAttr] = maybeAdjustSrc(adjustedValue, this.srcAttr, this.props.container.type, {
       fromSrc: this.context.srcConverters ? this.context.srcConverters.fromSrc : null,
     });
+
+    if (this.props.container.type) {
+      // this means we're at the top level of the trace
+      update['meta.columnNames.' + this.props.attr] = getColumnNames(
+        Array.isArray(adjustedValue) ? adjustedValue : [adjustedValue],
+        this.dataSourceOptions
+      );
+    }
 
     this.props.updateContainer(update);
   }

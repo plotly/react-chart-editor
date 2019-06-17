@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Dropdown from '../widgets/Dropdown';
 import RadioBlocks from '../widgets/RadioBlocks';
 import React, {Component} from 'react';
+import {getParsedTemplateString} from 'lib';
 
 class AxesSelector extends Component {
   constructor(props, context) {
@@ -30,7 +31,9 @@ class AxesSelector extends Component {
           option.value === 'allaxes'
             ? option
             : {
-                label: option.title,
+                label: getParsedTemplateString(option.title, {
+                  meta: fullLayout.meta,
+                }),
                 value: option.value,
               }
         )

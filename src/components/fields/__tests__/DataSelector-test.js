@@ -45,7 +45,7 @@ describe('DataSelector', () => {
     beforeUpdateTraces.mockClear();
     wrapper.prop('onChange')('y1');
     expect(beforeUpdateTraces.mock.calls[0][0]).toEqual({
-      update: {xsrc: 'y1', x: [2, 3, 4]},
+      update: {'meta.columnNames.x': 'yCol', xsrc: 'y1', x: [2, 3, 4]},
       traceIndexes: [1],
     });
   });
