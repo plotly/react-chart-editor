@@ -71,7 +71,7 @@ export default function connectTraceToPlot(WrappedComponent) {
 
       if (trace && fullTrace) {
         this.icon = renderTraceIcon(plotlyTraceToCustomTrace(trace));
-        this.name = getParsedTemplateString(fullTrace.name, fullTrace.meta);
+        this.name = getParsedTemplateString(fullTrace.name, {meta: fullTrace.meta});
       }
     }
 

@@ -33,7 +33,7 @@ class RangeSelectorAccordion extends Component {
         <RangeSelectorFold
           key={i}
           rangeselectorIndex={i}
-          name={getParsedTemplateString(btn.label, meta)}
+          name={getParsedTemplateString(btn.label, {meta})}
           canDelete={true}
         >
           {children}
