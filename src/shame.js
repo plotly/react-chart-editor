@@ -110,7 +110,7 @@ export const shamefullyAdjustSplitStyleTargetContainers = (graphDiv, {traceIndex
 
       if (transform && transform.type === 'groupby' && transform.styles) {
         // Create style containers for all groups
-        if (!transform.styles.length && update[attr]) {
+        if (!transform.styles.length && update[attr] && Array.isArray(update[attr])) {
           const dedupedGroups = [];
           update[attr].forEach(group => {
             if (!dedupedGroups.includes(group)) {
