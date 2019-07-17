@@ -193,6 +193,7 @@ function getFullTrace(props, context) {
     // This is true except for fit transforms, where reading in fullData is
     // what we want
     if (
+      fullTrace &&
       fullTrace.transforms &&
       !fullTrace.transforms.some(t => ['moving-average', 'fits'].includes(t.type)) &&
       !props.fullDataArrayPosition
