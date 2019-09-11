@@ -11,6 +11,7 @@ import {
   TraceSelector,
   TraceTypeSection,
   LocationSelector,
+  Numeric,
 } from '../components';
 import {
   HistogramInfoVertical,
@@ -68,6 +69,7 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
         }}
         attr="z"
       />
+      <Numeric label={_('Radius')} attr="radius" min={0} max={50} showSlider />
       <DataSelector label={_('Measure')} attr="measure" />
 
       <PlotlySection name={_('Nodes')}>

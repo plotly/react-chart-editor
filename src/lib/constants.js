@@ -78,7 +78,7 @@ export const TRACE_TO_AXIS = {
   ternary: ['scatterternary'],
   gl3d: ['scatter3d', 'surface', 'mesh3d', 'cone', 'streamtube'],
   geo: ['scattergeo', 'choropleth'],
-  mapbox: ['scattermapbox'],
+  mapbox: ['scattermapbox', 'choroplethmapbox', 'densitymapbox'],
   polar: ['scatterpolar', 'scatterpolargl', 'barpolar'],
 };
 
@@ -104,8 +104,8 @@ export const subplotName = (type, _) =>
     ternary: _('Ternary'),
     gl3d: _('Scene'),
     scene: _('Scene'),
-    geo: _('Geo'),
-    mapbox: _('Mapbox'),
+    geo: _('Map'),
+    mapbox: _('Tile Map'),
     polar: _('Polar'),
   }[type]);
 
