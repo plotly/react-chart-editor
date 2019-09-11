@@ -92,7 +92,7 @@ All Fields except `<Info />` accept an `attr` property to bind them to a key in 
 
 ### Widgets
 
-Simple component that takes in props and renders.
+Simple component that takes  in props and renders.
 
 * `<Button/>`: simple button component, useful when combined with `<SingleSidebarItem/>` to add as menu item
 
