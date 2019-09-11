@@ -11,17 +11,24 @@ import {
 
 const StyleMapsPanel = (props, {localize: _}) => (
   <SubplotAccordion>
-    <PlotlySection name={_('Map Style')} attr="style">
+    <PlotlySection name={_('Base Map')} attr="style">
       <Dropdown
-        label={_('Mapbox Style')}
+        label={_('Tiles')}
         attr="style"
         options={[
-          {label: _('Basic'), value: 'basic'},
-          {label: _('Outdoors'), value: 'outdoors'},
-          {label: _('Light'), value: 'light'},
-          {label: _('Dark'), value: 'dark'},
-          {label: _('Satellite'), value: 'satellite'},
-          {label: _('Satellite with Streets'), value: 'satellite-streets'},
+          {label: _('No tiles (white background)'), value: 'white-bg'},
+          {label: _('Open Street Map'), value: 'open-street-map'},
+          {label: _('Carto Positron'), value: 'carto-positron'},
+          {label: _('Carto Dark Matter'), value: 'carto-darkmatter'},
+          {label: _('Stamen Terrain'), value: 'stamen-terrain'},
+          {label: _('Stamen Toner'), value: 'stamen-toner'},
+          {label: _('Stamen Watercolor'), value: 'stamen-watercolor'},
+          {label: _('Mapbox Basic'), value: 'basic'},
+          {label: _('Mapbox Outdoors'), value: 'outdoors'},
+          {label: _('Mapbox Light'), value: 'light'},
+          {label: _('Mapbox Dark'), value: 'dark'},
+          {label: _('Mapbox Satellite'), value: 'satellite'},
+          {label: _('Mapbox Satellite with Streets'), value: 'satellite-streets'},
         ]}
         clearable={false}
       />

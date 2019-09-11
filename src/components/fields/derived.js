@@ -574,8 +574,14 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
       } else if (container.lat || container.lon) {
         options = [{label: _('Longitude'), value: 'lon'}, {label: _('Latitude'), value: 'lat'}];
       }
-    } else if (container.type === 'scattermapbox') {
+    } else if (container.type === 'scattermapbox' || container.type === 'densitymapbox') {
       options = [{label: _('Longitude'), value: 'lon'}, {label: _('Latitude'), value: 'lat'}];
+    } else if (container.type === 'densitymapbox') {
+      options = [
+        {label: _('Longitude'), value: 'lon'},
+        {label: _('Latitude'), value: 'lat'},
+        {label: _('Z'), value: 'z'},
+      ];
     } else if (container.type === 'scatterternary') {
       options = [
         {label: _('A'), value: 'a'},
@@ -651,6 +657,34 @@ export const FillDropdown = connectToContainer(UnconnectedDropdown, {
     }
 
     plotProps.options = options;
+    plotProps.clearable = false;
+  },
+});
+
+export const MapboxStyleDropdown = connectToContainer(UnconnectedDropdown, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {mapBoxAccess, localize: _} = context;
+
+    plotProps.options = [
+      {label: _('No tiles (white background)'), value: 'white-bg'},
+      {label: _('Open Street Map'), value: 'open-street-map'},
+      {label: _('Carto Positron'), value: 'carto-positron'},
+      {label: _('Carto Dark Matter'), value: 'carto-darkmatter'},
+      {label: _('Stamen Terrain'), value: 'stamen-terrain'},
+      {label: _('Stamen Toner'), value: 'stamen-toner'},
+      {label: _('Stamen Watercolor'), value: 'stamen-watercolor'},
+    ].concat(
+      !mapBoxAccess
+        ? []
+        : [
+            {label: _('Mapbox Basic'), value: 'basic'},
+            {label: _('Mapbox Outdoors'), value: 'outdoors'},
+            {label: _('Mapbox Light'), value: 'light'},
+            {label: _('Mapbox Dark'), value: 'dark'},
+            {label: _('Mapbox Satellite'), value: 'satellite'},
+            {label: _('Mapbox Satellite with Streets'), value: 'satellite-streets'},
+          ]
+    );
     plotProps.clearable = false;
   },
 });

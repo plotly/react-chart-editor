@@ -18,6 +18,7 @@ import {
   shamefullyDeleteRelatedAnalysisTransforms,
   shamefullyAdjustSizeref,
   shamefullyAdjustAxisDirection,
+  shamefullyAdjustMapbox,
 } from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
@@ -87,6 +88,9 @@ class EditorControls extends Component {
         shamefullyAdjustAxisRef(graphDiv, payload);
         shamefullyAddTableColumns(graphDiv, payload);
         shamefullyAdjustSplitStyleTargetContainers(graphDiv, payload);
+        if (!this.props.mapBoxAccess) {
+          shamefullyAdjustMapbox(graphDiv, payload);
+        }
 
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {

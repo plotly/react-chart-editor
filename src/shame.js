@@ -89,6 +89,13 @@ export const shamefullyAdjustGeo = ({layout}, {update}) => {
   });
 };
 
+export const shamefullyAdjustMapbox = gd => {
+  if (gd.layout && gd.layout.mapbox && gd.layout.mapbox.style) {
+    return;
+  }
+  nestedProperty(gd.layout, 'mapbox.style').set('open-street-map');
+};
+
 export const shamefullyAddTableColumns = (graphDiv, {traceIndexes, update}) => {
   if (
     update['cells.values'] &&
