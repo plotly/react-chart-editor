@@ -62,7 +62,10 @@ class Field extends Component {
 
     return (
       <div className={containerClassName}>
-        {!noDefaultIndicator && <div className={defaultIndicatorClassName} />}
+        {!noDefaultIndicator && (
+          <div onHover={this.setState({showClear: true})} className={defaultIndicatorClassName} />
+        )}
+        {!noDefaultIndicator && <div className="field__default-indicator__clear" />}
         {label ? (
           <div
             className={bem('field', 'title')}

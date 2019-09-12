@@ -16,8 +16,28 @@
     top: 0;
     height: 100%;
     width: var(--spacing-quarter-unit);
+    z-index: 2;
     &__is-default {
       background-color: $color-cornflower;
+    }
+    &__clear {
+      position: absolute;
+      display: flex;
+      width: 15px;
+      height: 100%;
+      top: 0;
+      left: var(--spacing-quarter-unit);
+      border-radius: 0 50% 50% 0;
+      background-color: $color-cornflower;
+      z-index: 1;
+      &::before {
+        content: '\00D7';
+        font-size: 20px;
+        font-weight: 600;
+        color: white;
+        display: flex;
+        align-items: center;
+      }
     }
   }
   &__no-title {
