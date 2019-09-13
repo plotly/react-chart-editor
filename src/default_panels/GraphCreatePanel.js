@@ -11,6 +11,7 @@ import {
   TraceSelector,
   TraceTypeSection,
   LocationSelector,
+  Dropzone,
   Numeric,
 } from '../components';
 import {
@@ -30,6 +31,7 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
     >
       <TraceSelector label={_('Type')} attr="type" show />
 
+      <Dropzone attr="geojson" fileType="geojson" />
       <LocationSelector attr="type" />
       <DataSelector label={_('Values')} attr="values" />
       <DataSelector label={_('Labels')} attr="labels" />
