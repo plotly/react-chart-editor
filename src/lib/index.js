@@ -23,7 +23,11 @@ import getAllAxes, {
 } from './getAllAxes';
 import localize, {localizeString} from './localize';
 import tinyColor from 'tinycolor2';
-import unpackPlotProps from './unpackPlotProps';
+import unpackPlotProps, {
+  computeCustomConfigVisibility,
+  hasValidCustomConfigVisibilityRules,
+  isVisibleGivenCustomConfig,
+} from './unpackPlotProps';
 import walkObject, {isPlainObject} from './walkObject';
 import {traceTypeToPlotlyInitFigure, plotlyTraceToCustomTrace} from './customTraceType';
 import * as PlotlyIcons from 'plotly-icons';
@@ -216,6 +220,7 @@ function getParsedTemplateString(originalString, context) {
 
 export {
   adjustColorscale,
+  computeCustomConfigVisibility,
   axisIdToAxisName,
   bem,
   camelCase,
@@ -244,6 +249,7 @@ export {
   getFullTrace,
   getSubplotTitle,
   isPlainObject,
+  hasValidCustomConfigVisibilityRules,
   localize,
   localizeString,
   lowerCase,
@@ -261,5 +267,6 @@ export {
   transpose,
   unpackPlotProps,
   upperCase,
+  isVisibleGivenCustomConfig,
   walkObject,
 };

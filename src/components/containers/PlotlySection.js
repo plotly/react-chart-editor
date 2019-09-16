@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {containerConnectedContextTypes, unpackPlotProps} from '../../lib';
+import {
+  containerConnectedContextTypes,
+  unpackPlotProps,
+  isVisibleGivenCustomConfig,
+} from '../../lib';
 
 export class Section extends Component {
   constructor() {
@@ -45,7 +49,7 @@ export default class PlotlySection extends Section {
 
   determineVisibility(nextProps, nextContext) {
     const {isVisible} = unpackPlotProps(nextProps, nextContext);
-    this.sectionVisible = Boolean(isVisible);
+    this.sectionVisible = isVisibleGivenCustomConfig(isVisible, nextProps, nextContext);
 
     React.Children.forEach(nextProps.children, child => {
       if (!child || this.sectionVisible) {
@@ -57,7 +61,13 @@ export default class PlotlySection extends Section {
         if (child.type.modifyPlotProps) {
           child.type.modifyPlotProps(child.props, nextContext, plotProps);
         }
-        this.sectionVisible = this.sectionVisible || plotProps.isVisible;
+
+        this.sectionVisible = isVisibleGivenCustomConfig(
+          this.sectionVisible || plotProps.isVisible,
+          child.props,
+          nextContext,
+          child.type && child.type.displayName ? child.type.displayName : null
+        );
         return;
       }
 

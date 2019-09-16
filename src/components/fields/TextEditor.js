@@ -127,6 +127,8 @@ UnconnectedTextEditor.contextTypes = {
   fullLayout: PropTypes.object,
 };
 
+UnconnectedTextEditor.displayName = 'UnconnectedTextEditor';
+
 export default connectToContainer(UnconnectedTextEditor, {
   modifyPlotProps: (props, context, plotProps) => {
     if (plotProps.isVisible && plotProps.multiValued) {

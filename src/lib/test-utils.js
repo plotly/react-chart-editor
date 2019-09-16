@@ -104,7 +104,7 @@ function applyConfig(config = {}, {graphDiv: {data, layout}, dataSourceOptions, 
   // replace simple graphDiv with properly mocked GD including fullData/fullLayout
   const graphDiv = setupGraphDiv({data, layout});
 
-  return {dataSources, dataSourceOptions, graphDiv};
+  return {dataSources, dataSourceOptions, graphDiv, customConfig: config.customConfig || {}};
 }
 
 /*

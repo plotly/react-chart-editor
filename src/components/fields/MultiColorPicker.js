@@ -142,6 +142,8 @@ UnconnectedMultiColorPicker.contextTypes = {
   fullData: PropTypes.array,
 };
 
+UnconnectedMultiColorPicker.displayName = 'UnconnectedMultiColorPicker';
+
 export default connectToContainer(UnconnectedMultiColorPicker, {
   modifyPlotProps(props, context, plotProps) {
     if (plotProps.isVisible) {

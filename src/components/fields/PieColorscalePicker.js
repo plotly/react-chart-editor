@@ -47,6 +47,8 @@ UnconnectedPieColorscalePicker.contextTypes = {
   graphDiv: PropTypes.object,
 };
 
+UnconnectedPieColorscalePicker.displayName = 'UnconnectedPieColorscalePicker';
+
 export default connectToContainer(UnconnectedPieColorscalePicker, {
   modifyPlotProps: (props, context, plotProps) => {
     if (

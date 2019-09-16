@@ -39,4 +39,6 @@ UnconnectedDropdown.propTypes = {
   ...Field.propTypes,
 };
 
+UnconnectedDropdown.displayName = 'UnconnectedDropdown';
+
 export default connectToContainer(UnconnectedDropdown);

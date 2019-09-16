@@ -81,6 +81,8 @@ UnconnectedHoverLabelNameLength.contextTypes = {
   localize: PropTypes.func,
 };
 
+UnconnectedHoverLabelNameLength.displayName = 'UnconnectedHoverLabelNameLength';
+
 export default connectToContainer(UnconnectedHoverLabelNameLength, {
   modifyPlotProps: (props, context, plotProps) => {
     const {container} = plotProps;

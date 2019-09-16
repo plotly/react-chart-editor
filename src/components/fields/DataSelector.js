@@ -156,6 +156,8 @@ UnconnectedDataSelector.contextTypes = {
   container: PropTypes.object,
 };
 
+UnconnectedDataSelector.displayName = 'UnconnectedDataSelector';
+
 function modifyPlotProps(props, context, plotProps) {
   if (
     attributeIsData(plotProps.attrMeta) &&
