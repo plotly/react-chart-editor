@@ -74,6 +74,57 @@ describe('Basic PlotlySection rules', () => {
       it('HIDES Field', () => expect(wrapper.find('input').length).toEqual(0));
     });
 
+    describe('PlotlyPanel > PlotlySection > Field-with-no-visible-attr-based-on-customConfig', () => {
+      const wrapper = mount(
+        <TestEditor
+          {...fixtures.scatter({
+            customConfig: {
+              visibility_rules: {
+                blacklist: [{type: 'attrName', regex_match: 'color'}],
+              },
+            },
+          })}
+        >
+          <LayoutPanel>
+            <PlotlySection>
+              <Numeric attr="title.font.color" />
+            </PlotlySection>
+          </LayoutPanel>
+        </TestEditor>
+      );
+
+      it('HIDES Field based on customConfig', () =>
+        expect(wrapper.find('input').length).toEqual(0));
+      it('HIDES PlotlySection because no visible children according to custom config', () =>
+        expect(wrapper.find('div.section').length).toEqual(0));
+    });
+
+    describe('PlotlyPanel > PlotlySection > Field-with-no-visible-attr-based-on-customConfig', () => {
+      const wrapper = mount(
+        <TestEditor
+          {...fixtures.scatter({
+            customConfig: {
+              visibility_rules: {
+                blacklist: [{type: 'attrName', regex_match: 'color'}],
+              },
+            },
+          })}
+        >
+          <LayoutPanel>
+            <PlotlySection attr="title">
+              <Numeric attr="title.font.color" />
+              <Numeric attr="title" />
+            </PlotlySection>
+          </LayoutPanel>
+        </TestEditor>
+      );
+
+      it('HIDES the title.font.color Field based on customConfig', () =>
+        expect(wrapper.find('input').length).toEqual(1));
+      it('SHOWS PlotlySection if it has an attr that is accepted by customConfig', () =>
+        expect(wrapper.find('div.section').length).toEqual(1));
+    });
+
     describe('div > PlotlySection > Field-with-visible-attr', () => {
       const wrapper = mount(
         <TestEditor {...fixtures.scatter()}>
