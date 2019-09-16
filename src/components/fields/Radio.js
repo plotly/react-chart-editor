@@ -7,7 +7,7 @@ import {connectToContainer} from 'lib';
 export class UnconnectedRadio extends Component {
   render() {
     return (
-      <Field {...this.props}>
+      <Field {...this.props} noDefaultIndicator={this.props.noDefaultIndicator}>
         <RadioBlocks
           options={this.props.options}
           activeOption={this.props.fullValue}

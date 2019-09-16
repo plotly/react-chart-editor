@@ -14,7 +14,7 @@ export class UnconnectedNumeric extends Component {
     }
 
     return (
-      <Field {...this.props}>
+      <Field {...this.props} noDefaultIndicator={this.props.noDefaultIndicator}>
         <NumericInput
           value={fullValue}
           defaultValue={this.props.defaultValue}
@@ -44,6 +44,7 @@ UnconnectedNumeric.propTypes = {
   step: PropTypes.number,
   stepmode: PropTypes.string,
   updatePlot: PropTypes.func,
+  noDefaultIndicator: PropTypes.bool,
   ...Field.propTypes,
 };
 

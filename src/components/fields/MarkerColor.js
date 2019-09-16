@@ -112,6 +112,7 @@ class UnconnectedMarkerColor extends Component {
         setColorScale={this.setColorScale}
         onConstantColorOptionChange={this.onConstantColorOptionChange}
         parentSelectedConstantColorOption={this.state.selectedConstantColorOption}
+        noDefaultIndicator
       />
     );
   }
@@ -125,8 +126,8 @@ class UnconnectedMarkerColor extends Component {
         (this.props.container.marker.colorsrc &&
           this.props.container.marker.colorsrc === MULTI_VALUED));
     return (
-      <Field multiValued={multiValued}>
-        <DataSelector suppressMultiValuedMessage attr="marker.color" />
+      <Field multiValued={multiValued} noDefaultIndicator>
+        <DataSelector suppressMultiValuedMessage attr="marker.color" noDefaultIndicator />
         {this.props.container.marker &&
         this.props.container.marker.colorscale === MULTI_VALUED ? null : (
           <ColorscalePicker
@@ -134,6 +135,7 @@ class UnconnectedMarkerColor extends Component {
             attr="marker.colorscale"
             updatePlot={this.setColorScale}
             colorscale={this.state.colorscale}
+            noDefaultIndicator
           />
         )}
       </Field>
@@ -159,11 +161,11 @@ class UnconnectedMarkerColor extends Component {
       return (
         <>
           <Field {...this.props} attr={attr}>
-            <Field multiValued={this.isMultiValued() && !this.state.type}>
+            <Field multiValued={this.isMultiValued() && !this.state.type} noDefaultIndicator>
               <RadioBlocks options={options} activeOption={type} onOptionChange={this.setType} />
 
               {!type ? null : (
-                <Info>
+                <Info noDefaultIndicator>
                   {type === 'constant'
                     ? _('All points in a trace are colored in the same color.')
                     : _('Each point in a trace is colored according to data.')}
