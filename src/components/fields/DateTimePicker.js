@@ -25,4 +25,6 @@ UnconnectedDateTimePicker.propTypes = {
   ...Field.propTypes,
 };
 
+UnconnectedDateTimePicker.displayName = 'UnconnectedDateTimePicker';
+
 export default connectToContainer(UnconnectedDateTimePicker);

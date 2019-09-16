@@ -32,4 +32,6 @@ UnconnectedRadio.defaultProps = {
   center: true,
 };
 
+UnconnectedRadio.displayName = 'UnconnectedRadio';
+
 export default connectToContainer(UnconnectedRadio);

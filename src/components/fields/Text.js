@@ -36,4 +36,6 @@ UnconnectedText.propTypes = {
   ...Field.propTypes,
 };
 
+UnconnectedText.displayName = 'UnconnectedText';
+
 export default connectToContainer(UnconnectedText);

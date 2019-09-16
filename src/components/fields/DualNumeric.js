@@ -90,4 +90,6 @@ UnconnectedDualNumericFraction.contextTypes = {
   fullContainer: PropTypes.object,
 };
 
+UnconnectedDualNumericFraction.displayName = 'UnconnectedDualNumericFraction';
+
 export default connectToContainer(UnconnectedDualNumericFraction);

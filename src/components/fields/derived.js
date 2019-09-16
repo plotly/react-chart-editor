@@ -254,6 +254,7 @@ UnconnectedNumericFraction.defaultProps = {
   units: '%',
   showSlider: true,
 };
+UnconnectedNumericFraction.displayName = 'UnconnectedNumericFraction';
 
 const numericFractionModifyPlotProps = (props, context, plotProps) => {
   const {attrMeta, fullValue, updatePlot} = plotProps;

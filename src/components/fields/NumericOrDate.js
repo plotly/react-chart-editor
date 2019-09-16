@@ -35,4 +35,6 @@ UnconnectedNumericOrDate.propTypes = {
   ...Field.propTypes,
 };
 
+UnconnectedNumericOrDate.displayName = 'UnconnectedNumericOrDate';
+
 export default connectToContainer(UnconnectedNumericOrDate);

@@ -97,4 +97,6 @@ UnconnectedMarkerSize.contextTypes = {
   updateContainer: PropTypes.func,
 };
 
+UnconnectedMarkerSize.displayName = 'UnconnectedMarkerSize';
+
 export default connectToContainer(UnconnectedMarkerSize);

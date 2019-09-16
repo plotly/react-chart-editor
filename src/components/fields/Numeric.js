@@ -47,4 +47,6 @@ UnconnectedNumeric.propTypes = {
   ...Field.propTypes,
 };
 
+UnconnectedNumeric.displayName = 'UnconnectedNumeric';
+
 export default connectToContainer(UnconnectedNumeric);

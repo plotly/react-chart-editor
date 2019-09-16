@@ -25,4 +25,6 @@ UnconnectedColorwayPicker.propTypes = {
   ...Field.propTypes,
 };
 
+UnconnectedColorwayPicker.displayName = 'UnconnectedColorwayPicker';
+
 export default connectToContainer(UnconnectedColorwayPicker);

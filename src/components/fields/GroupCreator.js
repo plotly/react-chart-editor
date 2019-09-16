@@ -81,4 +81,6 @@ UnconnectedGroupCreator.contextTypes = {
   fullData: PropTypes.array,
 };
 
+UnconnectedGroupCreator.displayName = 'UnconnectedGroupCreator';
+
 export default connectToContainer(UnconnectedGroupCreator);

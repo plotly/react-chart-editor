@@ -226,4 +226,6 @@ UnconnectedMarkerColor.contextTypes = {
   container: PropTypes.object,
 };
 
+UnconnectedMarkerColor.displayName = 'UnconnectedMarkerColor';
+
 export default connectToContainer(UnconnectedMarkerColor);

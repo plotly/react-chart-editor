@@ -97,4 +97,6 @@ UnconnectedDropdownCustom.contextTypes = {
   updateContainer: PropTypes.func,
 };
 
+UnconnectedDropdownCustom.displayName = 'UnconnectedDropdownCustom';
+
 export default connectToContainer(UnconnectedDropdownCustom);

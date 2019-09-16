@@ -25,4 +25,6 @@ UnconnectedFlaglist.propTypes = {
   ...Field.propTypes,
 };
 
+UnconnectedFlaglist.displayName = 'UnconnectedFlaglist';
+
 export default connectToContainer(UnconnectedFlaglist);

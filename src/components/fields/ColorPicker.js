@@ -51,4 +51,6 @@ UnconnectedColorPicker.propTypes = {
   ...Field.propTypes,
 };
 
+UnconnectedColorPicker.displayName = 'UnconnectedColorPicker';
+
 export default connectToContainer(UnconnectedColorPicker);

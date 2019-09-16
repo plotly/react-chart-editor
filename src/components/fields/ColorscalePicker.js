@@ -65,4 +65,6 @@ UnconnectedColorscalePicker.contextTypes = {
   onUpdate: PropTypes.func,
 };
 
+UnconnectedColorscalePicker.displayName = 'UnconnectedColorscalePicker';
+
 export default connectToContainer(UnconnectedColorscalePicker);

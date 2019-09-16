@@ -24,4 +24,6 @@ UnconnectedDropzone.propTypes = {
   ...Field.propTypes,
 };
 
+UnconnectedDropzone.displayName = 'UnconnectedDropzone';
+
 export default connectToContainer(UnconnectedDropzone);

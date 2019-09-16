@@ -130,4 +130,6 @@ UnconnectedColorArrayPicker.contextTypes = {
   updateContainer: PropTypes.func,
 };
 
+UnconnectedColorArrayPicker.displayName = 'UnconnectedColorArrayPicker';
+
 export default connectToContainer(UnconnectedColorArrayPicker);

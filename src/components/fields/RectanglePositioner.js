@@ -185,4 +185,6 @@ UnconnectedRectanglePositioner.contextTypes = {
   fullLayout: PropTypes.object,
 };
 
+UnconnectedRectanglePositioner.displayName = 'UnconnectedRectanglePositioner';
+
 export default connectToContainer(UnconnectedRectanglePositioner);

@@ -77,6 +77,8 @@ UnconnectedTextPosition.contextTypes = {
   localize: PropTypes.func,
 };
 
+UnconnectedTextPosition.displayName = 'UnconnectedTextPosition';
+
 export default connectToContainer(UnconnectedTextPosition, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _} = context;
