@@ -14,6 +14,8 @@ import 'brace/theme/textmate';
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
 
+import {customConfigTest} from '../src/__stories__';
+
 const dataSourceOptions = Object.keys(dataSources).map(name => ({
   value: name,
   label: name,
@@ -183,6 +185,7 @@ class App extends Component {
           // makeDefaultTrace={() => ({type: 'scattergl', mode: 'markers'})}
           // fontOptions={[{label:'Arial', value: 'arial'}]}
           // chartHelp={chartHelp}
+          // customConfig={customConfigTest}
         >
           <DefaultEditor
           // menuPanelOrder={[

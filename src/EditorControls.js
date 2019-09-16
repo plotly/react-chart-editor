@@ -1,7 +1,13 @@
 import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem, localizeString, plotlyTraceToCustomTrace, traceTypeToPlotlyInitFigure} from './lib';
+import {
+  bem,
+  localizeString,
+  plotlyTraceToCustomTrace,
+  traceTypeToPlotlyInitFigure,
+  hasValidCustomConfigVisibilityRules,
+} from './lib';
 import {
   shamefullyClearAxisTypes,
   shamefullyAdjustAxisRef,
@@ -59,6 +65,10 @@ class EditorControls extends Component {
       mapBoxAccess: this.props.mapBoxAccess,
       fontOptions: this.props.fontOptions,
       chartHelp: this.props.chartHelp,
+      customConfig: this.props.customConfig,
+      hasValidCustomConfigVisibilityRules: hasValidCustomConfigVisibilityRules(
+        this.props.customConfig
+      ),
     };
   }
 
@@ -391,6 +401,7 @@ EditorControls.propTypes = {
   mapBoxAccess: PropTypes.bool,
   fontOptions: PropTypes.array,
   chartHelp: PropTypes.object,
+  customConfig: PropTypes.object,
 };
 
 EditorControls.defaultProps = {
@@ -432,6 +443,8 @@ EditorControls.childContextTypes = {
   mapBoxAccess: PropTypes.bool,
   fontOptions: PropTypes.array,
   chartHelp: PropTypes.object,
+  customConfig: PropTypes.object,
+  hasValidCustomConfigVisibilityRules: PropTypes.bool,
 };
 
 export default EditorControls;

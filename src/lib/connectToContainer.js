@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import unpackPlotProps from './unpackPlotProps';
+import unpackPlotProps, {isVisibleGivenCustomConfig} from './unpackPlotProps';
 import {getDisplayName} from '../lib';
 
 export const containerConnectedContextTypes = {
@@ -18,6 +18,8 @@ export const containerConnectedContextTypes = {
   plotly: PropTypes.object,
   updateContainer: PropTypes.func,
   traceIndexes: PropTypes.array,
+  customConfig: PropTypes.object,
+  hasValidCustomConfigVisibilityRules: PropTypes.bool,
 };
 
 export default function connectToContainer(WrappedComponent, config = {}) {
@@ -44,7 +46,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
     }
 
     setLocals(props, context) {
-      this.plotProps = unpackPlotProps(props, context);
+      this.plotProps = unpackPlotProps(props, context, WrappedComponent);
       this.attr = props.attr;
       ContainerConnectedComponent.modifyPlotProps(props, context, this.plotProps);
     }
@@ -62,7 +64,17 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       // is also wrapped by a component that `unpackPlotProps`. That way inner
       // component can skip computation as it can see plotProps is already defined.
       const {plotProps = this.plotProps, ...props} = Object.assign({}, this.plotProps, this.props);
-      if (props.isVisible) {
+      const wrappedComponentDisplayName =
+        WrappedComponent && WrappedComponent.displayName ? WrappedComponent.displayName : null;
+
+      if (
+        isVisibleGivenCustomConfig(
+          props.isVisible,
+          props,
+          this.context,
+          wrappedComponentDisplayName
+        )
+      ) {
         return <WrappedComponent {...props} plotProps={plotProps} />;
       }
 
