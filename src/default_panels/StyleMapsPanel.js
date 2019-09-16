@@ -4,6 +4,8 @@ import {
   SubplotAccordion,
   PlotlySection,
   Dropdown,
+  MapboxStyleDropdown,
+  MapboxLayersAccordion,
   Radio,
   Numeric,
   ColorPicker,
@@ -12,26 +14,20 @@ import {
 const StyleMapsPanel = (props, {localize: _}) => (
   <SubplotAccordion>
     <PlotlySection name={_('Base Map')} attr="style">
-      <Dropdown
-        label={_('Tiles')}
-        attr="style"
-        options={[
-          {label: _('No tiles (white background)'), value: 'white-bg'},
-          {label: _('Open Street Map'), value: 'open-street-map'},
-          {label: _('Carto Positron'), value: 'carto-positron'},
-          {label: _('Carto Dark Matter'), value: 'carto-darkmatter'},
-          {label: _('Stamen Terrain'), value: 'stamen-terrain'},
-          {label: _('Stamen Toner'), value: 'stamen-toner'},
-          {label: _('Stamen Watercolor'), value: 'stamen-watercolor'},
-          {label: _('Mapbox Basic'), value: 'basic'},
-          {label: _('Mapbox Outdoors'), value: 'outdoors'},
-          {label: _('Mapbox Light'), value: 'light'},
-          {label: _('Mapbox Dark'), value: 'dark'},
-          {label: _('Mapbox Satellite'), value: 'satellite'},
-          {label: _('Mapbox Satellite with Streets'), value: 'satellite-streets'},
-        ]}
-        clearable={false}
-      />
+      <MapboxStyleDropdown label={_('Tiles')} attr="style" />
+    </PlotlySection>
+    <PlotlySection name={_('Layers')} attr="style">
+      <MapboxLayersAccordion>
+        <Radio
+          attr="visible"
+          options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        />
+        <Radio
+          label={_('Layer Type')}
+          attr="sourcetype"
+          options={[{label: _('GeoJSON'), value: 'geojson'}, {label: _('Tiles'), value: 'raster'}]}
+        />
+      </MapboxLayersAccordion>
     </PlotlySection>
     <PlotlySection name={_('Map Positioning')}>
       <Numeric label={_('Center Latitude')} attr="center.lat" />
