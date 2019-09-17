@@ -9,24 +9,21 @@ import {
   Radio,
   Numeric,
   ColorPicker,
+  MapboxSourceArray,
 } from '../components';
 
 const StyleMapsPanel = (props, {localize: _}) => (
   <SubplotAccordion>
     <PlotlySection name={_('Base Map')} attr="style">
-      <MapboxStyleDropdown label={_('Tiles')} attr="style" />
+      <MapboxStyleDropdown label={_('Tile Source')} attr="style" />
     </PlotlySection>
     <PlotlySection name={_('Layers')} attr="style">
       <MapboxLayersAccordion>
         <Radio
-          attr="visible"
-          options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+          attr="below"
+          options={[{label: _('Above Data'), value: ''}, {label: _('Below Data'), value: 'traces'}]}
         />
-        <Radio
-          label={_('Layer Type')}
-          attr="sourcetype"
-          options={[{label: _('GeoJSON'), value: 'geojson'}, {label: _('Tiles'), value: 'raster'}]}
-        />
+        <MapboxSourceArray label={_('Tile Source URL')} attr="source" show />
       </MapboxLayersAccordion>
     </PlotlySection>
     <PlotlySection name={_('Map Positioning')}>

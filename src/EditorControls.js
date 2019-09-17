@@ -344,6 +344,10 @@ class EditorControls extends Component {
             move(graphDiv.layout.annotations);
           }
 
+          if (payload.path === 'layout.mapbox.layers') {
+            move(graphDiv.layout[payload.mapboxId].layers);
+          }
+
           const updatedData = payload.path.startsWith('data')
             ? graphDiv.data.slice()
             : graphDiv.data;

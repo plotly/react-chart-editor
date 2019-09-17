@@ -13,6 +13,7 @@ import {UnconnectedTextEditor} from './TextEditor';
 import {UnconnectedVisibilitySelect} from './VisibilitySelect';
 import {connectToContainer, getAllAxes, getAxisTitle, axisIdToAxisName} from 'lib';
 import PropTypes from 'prop-types';
+import Text from './Text';
 
 export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
@@ -659,6 +660,23 @@ export const FillDropdown = connectToContainer(UnconnectedDropdown, {
 
     plotProps.options = options;
     plotProps.clearable = false;
+  },
+});
+
+export const MapboxSourceArray = connectToContainer(Text, {
+  modifyPlotProps: (props, context, plotProps) => {
+    const {fullValue, updatePlot} = plotProps;
+    if (plotProps.fullValue && plotProps.fullValue.length > 0) {
+      plotProps.fullValue = fullValue[0];
+    }
+
+    plotProps.updatePlot = v => {
+      if (v.length) {
+        updatePlot([v]);
+      } else {
+        updatePlot([]);
+      }
+    };
   },
 });
 
