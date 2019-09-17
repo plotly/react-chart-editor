@@ -40,18 +40,19 @@ class MapboxLayersAccordion extends Component {
           updateContainer({
             [`layers[${mapboxLayerIndex}]`]: {
               name: `Layer ${mapboxLayerIndex}`,
-              sourcetype: 'geojson',
-              source: {
-                type: 'FeatureCollection',
-                features: [],
-              },
+              sourcetype: 'raster',
+              below: '',
             },
           });
         }
       },
     };
 
-    return <PlotlyPanel addAction={addAction}>{content ? content : null}</PlotlyPanel>;
+    return (
+      <PlotlyPanel addAction={addAction} canReorder>
+        {content ? content : null}
+      </PlotlyPanel>
+    );
   }
 }
 
