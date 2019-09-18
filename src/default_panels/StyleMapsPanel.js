@@ -21,7 +21,7 @@ const StyleMapsPanel = (props, {localize: _}) => (
       <MapboxLayersAccordion>
         <Radio
           attr="below"
-          options={[{label: _('Above Data'), value: ''}, {label: _('Below Data'), value: 'traces'}]}
+          options={[{label: _('Below Data'), value: 'traces'}, {label: _('Above Data'), value: ''}]}
         />
         <MapboxSourceArray label={_('Tile Source URL')} attr="source" show />
       </MapboxLayersAccordion>

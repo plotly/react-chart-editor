@@ -41,7 +41,7 @@ class MapboxLayersAccordion extends Component {
             [`layers[${mapboxLayerIndex}]`]: {
               name: `Layer ${mapboxLayerIndex}`,
               sourcetype: 'raster',
-              below: '',
+              below: 'traces',
             },
           });
         }
