@@ -17,7 +17,7 @@ const StyleImagesPanel = (props, {localize: _}) => (
       options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
     />
 
-    <Dropzone attr="source" fileType={_('image')} show />
+    <Dropzone attr="source" fileType="image" show />
 
     <Dropdown
       label={_('Aspect Ratio')}

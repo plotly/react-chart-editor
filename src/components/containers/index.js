@@ -4,6 +4,7 @@ import SliderAccordion from './SliderAccordion';
 import ImageAccordion from './ImageAccordion';
 import UpdateMenuAccordion from './UpdateMenuAccordion';
 import RangeSelectorAccordion from './RangeSelectorAccordion';
+import MapboxLayersAccordion from './MapboxLayersAccordion';
 import AxesFold from './AxesFold';
 import PlotlyFold, {Fold} from './PlotlyFold';
 import MenuPanel from './MenuPanel';
@@ -27,6 +28,7 @@ export {
   ImageAccordion,
   UpdateMenuAccordion,
   RangeSelectorAccordion,
+  MapboxLayersAccordion,
   MenuPanel,
   PlotlyFold,
   Fold,

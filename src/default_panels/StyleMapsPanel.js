@@ -4,27 +4,27 @@ import {
   SubplotAccordion,
   PlotlySection,
   Dropdown,
+  MapboxStyleDropdown,
+  MapboxLayersAccordion,
   Radio,
   Numeric,
   ColorPicker,
+  MapboxSourceArray,
 } from '../components';
 
 const StyleMapsPanel = (props, {localize: _}) => (
   <SubplotAccordion>
-    <PlotlySection name={_('Map Style')} attr="style">
-      <Dropdown
-        label={_('Mapbox Style')}
-        attr="style"
-        options={[
-          {label: _('Basic'), value: 'basic'},
-          {label: _('Outdoors'), value: 'outdoors'},
-          {label: _('Light'), value: 'light'},
-          {label: _('Dark'), value: 'dark'},
-          {label: _('Satellite'), value: 'satellite'},
-          {label: _('Satellite with Streets'), value: 'satellite-streets'},
-        ]}
-        clearable={false}
-      />
+    <PlotlySection name={_('Base Map')} attr="style">
+      <MapboxStyleDropdown label={_('Tile Source')} attr="style" />
+    </PlotlySection>
+    <PlotlySection name={_('Layers')} attr="style">
+      <MapboxLayersAccordion>
+        <Radio
+          attr="below"
+          options={[{label: _('Below Data'), value: 'traces'}, {label: _('Above Data'), value: ''}]}
+        />
+        <MapboxSourceArray label={_('Tile Source URL')} attr="source" show />
+      </MapboxLayersAccordion>
     </PlotlySection>
     <PlotlySection name={_('Map Positioning')}>
       <Numeric label={_('Center Latitude')} attr="center.lat" />

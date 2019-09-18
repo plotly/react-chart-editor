@@ -18,6 +18,7 @@ import {
   shamefullyDeleteRelatedAnalysisTransforms,
   shamefullyAdjustSizeref,
   shamefullyAdjustAxisDirection,
+  shamefullyAdjustMapbox,
 } from './shame';
 import {EDITOR_ACTIONS} from './lib/constants';
 import isNumeric from 'fast-isnumeric';
@@ -87,6 +88,9 @@ class EditorControls extends Component {
         shamefullyAdjustAxisRef(graphDiv, payload);
         shamefullyAddTableColumns(graphDiv, payload);
         shamefullyAdjustSplitStyleTargetContainers(graphDiv, payload);
+        if (!this.props.mapBoxAccess) {
+          shamefullyAdjustMapbox(graphDiv, payload);
+        }
 
         for (let i = 0; i < payload.traceIndexes.length; i++) {
           for (const attr in payload.update) {
@@ -283,6 +287,19 @@ class EditorControls extends Component {
         }
         break;
 
+      case EDITOR_ACTIONS.DELETE_MAPBOXLAYER:
+        if (isNumeric(payload.mapboxLayerIndex)) {
+          graphDiv.layout[payload.mapboxId].layers.splice(payload.mapboxLayerIndex, 1);
+          if (this.props.onUpdate) {
+            this.props.onUpdate(
+              graphDiv.data,
+              Object.assign({}, graphDiv.layout),
+              graphDiv._transitionData._frames
+            );
+          }
+        }
+        break;
+
       case EDITOR_ACTIONS.DELETE_TRANSFORM:
         if (isNumeric(payload.transformIndex) && payload.traceIndex < graphDiv.data.length) {
           if (graphDiv.data[payload.traceIndex].transforms.length === 1) {
@@ -325,6 +342,10 @@ class EditorControls extends Component {
 
           if (payload.path === 'layout.annotations') {
             move(graphDiv.layout.annotations);
+          }
+
+          if (payload.path === 'layout.mapbox.layers') {
+            move(graphDiv.layout[payload.mapboxId].layers);
           }
 
           const updatedData = payload.path.startsWith('data')

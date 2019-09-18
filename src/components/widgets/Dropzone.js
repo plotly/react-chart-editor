@@ -5,17 +5,18 @@ import Drop from 'react-dropzone';
 class Dropzone extends Component {
   constructor(props, context) {
     super(props, context);
-    const _ = context.localize;
 
     this.state = {
       content: '',
     };
 
     this.validFiletypes = {
-      image: _('image/jpeg, image/jpg, image/svg, image/png, image/gif, image/bmp, image/webp'),
+      image: 'image/jpeg, image/jpg, image/svg, image/png, image/gif, image/bmp, image/webp',
+      geojson: 'application/json',
     };
 
     this.onDrop = this.onDrop.bind(this);
+    this.parsingError = this.parsingError.bind(this);
     this.renderSuccess = this.renderSuccess.bind(this);
   }
 
@@ -25,6 +26,14 @@ class Dropzone extends Component {
     if (this.props.fileType === 'image') {
       return (
         <div className="dropzone-container__image" style={{backgroundImage: `url(${value})`}} />
+      );
+    }
+    if (this.props.fileType === 'geojson') {
+      return (
+        <div className="dropzone-container__message">
+          <p>{_('GeoJSON loaded!')}</p>
+          <p>{value.features.length + _(' features detected.')}</p>
+        </div>
       );
     }
 
@@ -48,7 +57,7 @@ class Dropzone extends Component {
               _(' to upload here or click to choose a file from your computer.')}
           </p>
 
-          {this.props.fileType === 'image' ? (
+          {this.validFiletypes[this.props.fileType] ? (
             <p>
               {_('Supported formats are: ') +
                 this.validFiletypes[this.props.fileType].split('image/').join('') +
@@ -60,32 +69,34 @@ class Dropzone extends Component {
     });
   }
 
-  onLoad(e) {
+  parsingError() {
     const _ = this.context.localize;
     const supportedFileTypes =
       this.props.fileType === 'image'
         ? this.validFiletypes[this.props.fileType].split('image/').join('')
         : this.validFiletypes[this.props.fileType];
 
-    const parsingError = (
+    return (
       <div className="dropzone-container__message">
-        <p>{_('Yikes! An error occurred while parsing this file.')}</p>
+        {_("Yikes! This doesn't look like a valid ") + this.props.fileType}
         <p>{_('Try again with a supported file format: ') + supportedFileTypes + '.'}</p>
       </div>
     );
+  }
 
-    if (this.props.fileType === 'image') {
-      try {
-        this.props.onUpdate(e.target.result);
-        this.setState({
-          content: this.renderSuccess(e.target.result),
-        });
-      } catch (error) {
-        console.warn(error); // eslint-disable-line
-        this.setState({
-          content: parsingError,
-        });
-      }
+  onLoad(e) {
+    try {
+      const payload = e.target.result;
+      const parsedValue = this.props.fileType === 'image' ? payload : JSON.parse(payload);
+      this.props.onUpdate(parsedValue);
+      this.setState({
+        content: this.renderSuccess(parsedValue),
+      });
+    } catch (error) {
+      console.warn(error); // eslint-disable-line
+      this.setState({
+        content: this.parsingError(),
+      });
     }
   }
 
@@ -99,9 +110,6 @@ class Dropzone extends Component {
           content: (
             <div className="dropzone-container__message">
               <p>{_('Yikes! You can only upload one file at a time.')}</p>
-              <p>
-                {_('To upload multiple files, create multiple files and upload them individually.')}
-              </p>
             </div>
           ),
         });
@@ -111,24 +119,14 @@ class Dropzone extends Component {
       reader.onload = e => this.onLoad(e);
       if (this.props.fileType === 'image') {
         reader.readAsDataURL(accepted[0]);
+      } else if (this.props.fileType === 'geojson') {
+        reader.readAsText(accepted[0]);
       }
     }
 
     if (rejected.length) {
-      const supportedFileTypes =
-        this.props.fileType === 'image'
-          ? this.validFiletypes[this.props.fileType].split('image/').join('')
-          : this.validFiletypes[this.props.fileType];
-
       this.setState({
-        content: (
-          <div className="dropzone-container__message">
-            <p>
-              {_("Yikes! This doesn't look like a valid ") + this.props.fileType + _(' to us. ')}
-            </p>
-            <p>{_('Try again with a ') + supportedFileTypes + ' file.'}</p>
-          </div>
-        ),
+        content: this.parsingError(),
       });
     }
   }
