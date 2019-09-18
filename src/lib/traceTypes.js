@@ -146,18 +146,28 @@ export const traceTypes = _ => [
     category: chartCategory(_).DISTRIBUTIONS,
   },
   {
-    value: 'choropleth',
-    label: _('Choropleth'),
-    category: chartCategory(_).MAPS,
-  },
-  {
     value: 'scattermapbox',
-    label: _('Satellite Map'),
+    label: _('Tile Map'),
     category: chartCategory(_).MAPS,
   },
   {
     value: 'scattergeo',
     label: _('Atlas Map'),
+    category: chartCategory(_).MAPS,
+  },
+  {
+    value: 'choroplethmapbox',
+    label: _('Choropleth Tile Map'),
+    category: chartCategory(_).MAPS,
+  },
+  {
+    value: 'choropleth',
+    label: _('Choropleth Atlas Map'),
+    category: chartCategory(_).MAPS,
+  },
+  {
+    value: 'densitymapbox',
+    label: _('Density Tile Map'),
     category: chartCategory(_).MAPS,
   },
   {

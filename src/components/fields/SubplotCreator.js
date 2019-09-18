@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Dropdown from './Dropdown';
 import Info from './Info';
 import PropTypes from 'prop-types';
-import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR} from 'lib/constants';
+import {EDITOR_ACTIONS, SUBPLOT_TO_ATTR, subplotName} from 'lib/constants';
 import Button from '../widgets/Button';
 import {PlusIcon} from 'plotly-icons';
 import {connectToContainer, traceTypeToAxisType, getSubplotTitle} from 'lib';
@@ -127,7 +127,7 @@ class UnconnectedSubplotCreator extends Component {
         <SingleSubplotCreator
           attr={SUBPLOT_TO_ATTR[subplotType].data}
           layoutAttr={subplotType}
-          label={SUBPLOT_TO_ATTR[subplotType].layout}
+          label={subplotName(SUBPLOT_TO_ATTR[subplotType].layout, _)}
           options={getOptions(subplotType)}
         />
         <Info>

@@ -7,6 +7,7 @@ import connectSliderToLayout from './connectSliderToLayout';
 import connectImageToLayout from './connectImageToLayout';
 import connectUpdateMenuToLayout from './connectUpdateMenuToLayout';
 import connectRangeSelectorToAxis from './connectRangeSelectorToAxis';
+import connectLayersToMapbox from './connectLayersToMapbox';
 import connectTransformToTrace from './connectTransformToTrace';
 import connectAggregationToTransform from './connectAggregationToTransform';
 import connectAxesToLayout from './connectAxesToLayout';
@@ -235,6 +236,7 @@ export {
   connectLayoutToPlot,
   connectNonCartesianSubplotToLayout,
   connectRangeSelectorToAxis,
+  connectLayersToMapbox,
   connectShapeToLayout,
   connectSliderToLayout,
   connectToContainer,

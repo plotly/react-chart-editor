@@ -91,31 +91,36 @@ class UnconnectedLocationSelector extends Component {
       container: {type: type},
     } = this.context;
 
-    return type === 'scattergeo' ? (
-      <>
-        <Field {...this.props} attr={this.props.attr}>
-          <Radio
-            options={[
-              {value: 'latlon', label: _('Lat/Lon')},
-              {value: 'location', label: _('Location')},
-            ]}
-            fullValue={mode}
-            updatePlot={this.setMode}
-            attr={this.props.attr}
-          />
-        </Field>
-        {mode === 'latlon' ? (
-          <>
-            <DataSelector label={_('Latitude')} attr="lat" />
-            <DataSelector label={_('Longitude')} attr="lon" />
-          </>
-        ) : (
-          <Location attr="type" />
-        )}
-      </>
-    ) : type === 'choropleth' ? (
-      <Location attr="type" />
-    ) : (
+    if (type === 'scattergeo') {
+      return (
+        <>
+          <Field {...this.props} attr={this.props.attr}>
+            <Radio
+              options={[
+                {value: 'latlon', label: _('Lat/Lon')},
+                {value: 'location', label: _('Location')},
+              ]}
+              fullValue={mode}
+              updatePlot={this.setMode}
+              attr={this.props.attr}
+            />
+          </Field>
+          {mode === 'latlon' ? (
+            <>
+              <DataSelector label={_('Latitude')} attr="lat" />
+              <DataSelector label={_('Longitude')} attr="lon" />
+            </>
+          ) : (
+            <Location attr="type" />
+          )}
+        </>
+      );
+    } else if (type === 'choropleth') {
+      return <Location attr="type" />;
+    } else if (type === 'choroplethmapbox') {
+      return <DataSelector label={_('Locations')} attr="locations" />;
+    }
+    return (
       <>
         <DataSelector label={_('Latitude')} attr="lat" />
         <DataSelector label={_('Longitude')} attr="lon" />

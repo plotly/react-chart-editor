@@ -26,4 +26,10 @@ UnconnectedDropzone.propTypes = {
 
 UnconnectedDropzone.displayName = 'UnconnectedDropzone';
 
-export default connectToContainer(UnconnectedDropzone);
+function modifyPlotProps(props, context, plotProps) {
+  if (context.container.type === 'choroplethmapbox') {
+    plotProps.isVisible = true;
+  }
+}
+
+export default connectToContainer(UnconnectedDropzone, {modifyPlotProps});

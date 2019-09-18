@@ -137,19 +137,15 @@ class TraceTypeSelector extends Component {
 
   renderCategories() {
     const {fullValue} = this.props;
-    const {mapBoxAccess, localize: _, chartHelp} = this.context;
+    const {localize: _, chartHelp} = this.context;
     const {
       traceTypesConfig: {traces, categories, complex},
     } = this.props;
 
     return categories(_).map((category, i) => {
-      let items = traces(_)
+      const items = traces(_)
         .filter(({category: {value}}) => value === category.value)
         .filter(i => i.value !== 'scattergl' && i.value !== 'scatterpolargl');
-
-      if (!mapBoxAccess) {
-        items = items.filter(i => i.value !== 'scattermapbox');
-      }
 
       const MAX_ITEMS = 4;
 
