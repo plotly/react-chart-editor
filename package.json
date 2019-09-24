@@ -76,7 +76,7 @@
     "request": "2.88.0",
     "rimraf": "3.0.0",
     "sass-loader": "7.1.0",
-    "style-loader": "0.23.1",
+    "style-loader": "1.0.0",
     "webpack": "4.32.2",
     "webpack-cli": "3.3.2",
     "webpack-dev-server": "3.5.1"
