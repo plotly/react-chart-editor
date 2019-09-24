@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  devtool: false,
+  devtool: 'false',
   module: {
     rules: [
       {
@@ -10,8 +10,5 @@ module.exports = {
         include: path.resolve(__dirname, '../'),
       },
     ],
-  },
-  optimization: {
-    minimize: false,
   },
 };

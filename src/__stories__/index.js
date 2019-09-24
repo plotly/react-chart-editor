@@ -94,6 +94,8 @@ const panelsToTest = {
   sunburst: ['GraphCreatePanel', 'StyleTracesPanel'],
   sankey: ['GraphCreatePanel', 'StyleTracesPanel'],
   geoTest: ['GraphCreatePanel', 'StyleMapsPanel', 'StyleTracesPanel'],
+  funnel: ['GraphCreatePanel', 'StyleTracesPanel'],
+  funnelarea: ['GraphCreatePanel', 'StyleTracesPanel'],
 };
 
 window.URL.createObjectURL = function() {

@@ -40,8 +40,8 @@
     "@babel/preset-react": "7.0.0",
     "@babel/traverse": "7.4.5",
     "@hot-loader/react-dom": "16.8.6",
-    "@percy-io/percy-storybook": "2.1.0",
-    "@storybook/react": "5.0.11",
+    "@percy/storybook": "3.2.0",
+    "@storybook/react": "5.2.1",
     "autoprefixer": "9.5.1",
     "babel-eslint": "10.0.1",
     "babel-jest": "24.8.0",
@@ -126,8 +126,8 @@
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill --maxWorkers=2",
     "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:percy": "build-storybook && percy-storybook --widths=500",
-    "test:percy-local": "build-storybook",
+    "test:percy": "node --max-old-space-size=4096 $(npm bin)/build-storybook && percy-storybook --widths=500",
+    "test:percy-local": "node --max-old-space-size=4096 $(npm bin)/build-storybook",
     "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
     "watch-test": "jest --watch"
   }
