@@ -27,7 +27,7 @@ const internetExplorerPostCSS = () => {
     combineSelectors,
     customProperties({preserve: false}),
     removeRoot,
-    autoprefixer({browsers: ['ie 11'], grid: true}),
+    autoprefixer({grid: true}),
     cssnano,
   ];
   fs.readFile(`${BUILD_ENV}/${fileName}.ie.css`, (err, css) => {

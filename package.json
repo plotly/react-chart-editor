@@ -111,6 +111,9 @@
     "type": "git",
     "url": "https://github.com/plotly/react-chart-editor.git"
   },
+  "browserslist": [
+    "ie 11"
+  ],
   "scripts": {
     "lint": "prettier --write \"src/**/*.js\"",
     "make:arrows": "node scripts/makeArrows.js",
