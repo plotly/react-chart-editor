@@ -63,7 +63,7 @@
     "mkdirp": "0.5.1",
     "node-sass": "4.12.0",
     "postcss": "7.0.16",
-    "postcss-combine-duplicated-selectors": "7.0.0",
+    "postcss-combine-duplicated-selectors": "8.0.2",
     "postcss-custom-properties": "9.0.2",
     "postcss-remove-root": "0.0.2",
     "prettier": "1.17.1",
