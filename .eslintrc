@@ -92,6 +92,7 @@
     "no-param-reassign": ["error"],
     "no-process-env": ["warn"],
     "no-proto": ["error"],
+    "no-prototype-builtins": ["off"],
     "no-redeclare": ["error"],
     "no-return-assign": ["error"],
     "no-script-url": ["error"],
