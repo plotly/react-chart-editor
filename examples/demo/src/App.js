@@ -28,9 +28,7 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch(
-      'https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks'
-    )
+    fetch('https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks')
       .then(response => response.json())
       .then(mocks => this.setState({mocks}));
   }
@@ -62,9 +60,7 @@ class App extends Component {
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}
-          onUpdate={(data, layout, frames) =>
-            this.setState({data, layout, frames})
-          }
+          onUpdate={(data, layout, frames) => this.setState({data, layout, frames})}
           useResizeHandler
           debug
           advancedTraceTypeSelector

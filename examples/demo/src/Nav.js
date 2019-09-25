@@ -1,26 +1,26 @@
-import 'react-select/dist/react-select.css';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Select from 'react-select';
+import Dropdown from 'react-chart-editor/lib/components/widgets/Dropdown';
 
-const Nav = props => (
+const Nav = ({mocks, currentMockIndex, loadMock}) => (
   <div className="mock-nav">
     <span className="mock-nav__label">Select mock:</span>
     <div className="mock-nav__select">
-      <Select
-        clearable={true}
-        value={props.currentMockIndex}
+      <Dropdown
         name="mock-dropdown"
-        options={props.mocks.map((item, i) => ({
+        clearable={true}
+        searchable={true}
+        searchPromptText="Search for a mock"
+        noResultsText="No Results"
+        className="open-top"
+        classNamePrefix="Select"
+        placeholder="plotly.js/contents/test/image/mocks"
+        options={mocks.map((item, i) => ({
           label: item.name,
           value: i,
         }))}
-        className="open-top"
-        searchable={true}
-        searchPromptText="Search for a mock"
-        onChange={option => props.loadMock(option.value)}
-        noResultsText={'No Results'}
-        placeholder={'plotly.js/contents/test/image/mocks'}
+        value={currentMockIndex}
+        onChange={option => loadMock(option)}
       />
     </div>
   </div>
