@@ -71,7 +71,7 @@
     "react-ace": "7.0.4",
     "react-dom": "16.9.0",
     "react-hot-loader": "4.12.14",
-    "react-inspector": "3.0.2",
+    "react-inspector": "4.0.0",
     "react-test-renderer": "16.9.0",
     "request": "2.88.0",
     "rimraf": "3.0.0",
