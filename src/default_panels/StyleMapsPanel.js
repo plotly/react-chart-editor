@@ -21,7 +21,10 @@ const StyleMapsPanel = (props, {localize: _}) => (
       <MapboxLayersAccordion>
         <Radio
           attr="below"
-          options={[{label: _('Below Data'), value: 'traces'}, {label: _('Above Data'), value: ''}]}
+          options={[
+            {label: _('Below Data'), value: 'traces'},
+            {label: _('Above Data'), value: ''},
+          ]}
         />
         <MapboxSourceArray label={_('Tile Source URL')} attr="source" show />
       </MapboxLayersAccordion>
@@ -86,7 +89,10 @@ const StyleMapsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Country Borders')} attr="showcountries">
       <Radio
         attr="showcountries"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <Numeric label={_('Border Width')} attr="countrywidth" units="px" />
       <ColorPicker label={_('Border Color')} attr="countrycolor" />
@@ -94,7 +100,10 @@ const StyleMapsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Sub-Country Unit Borders')} attr="showsubunits">
       <Radio
         attr="showsubunits"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <Numeric label={_('Border Width')} attr="subunitwidth" units="px" />
       <ColorPicker label={_('Border Color')} attr="subunitcolor" />
@@ -102,7 +111,10 @@ const StyleMapsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Coastlines')} attr="showcoastlines">
       <Radio
         attr="showcoastlines"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <Numeric label={_('Width')} attr="coastlinewidth" units="px" />
       <ColorPicker label={_('Color')} attr="coastlinecolor" />
@@ -110,28 +122,40 @@ const StyleMapsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Oceans')} attr="showocean">
       <Radio
         attr="showocean"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <ColorPicker label={_('Color')} attr="oceancolor" />
     </PlotlySection>
     <PlotlySection name={_('Land')} attr="showland">
       <Radio
         attr="showland"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <ColorPicker label={_('Color')} attr="landcolor" />
     </PlotlySection>
     <PlotlySection name={_('Lakes')} attr="showlakes">
       <Radio
         attr="showlakes"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <ColorPicker label={_('Color')} attr="lakecolor" />
     </PlotlySection>
     <PlotlySection name={_('Rivers')} attr="showrivers">
       <Radio
         attr="showrivers"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <Numeric label={_('Width')} attr="riverwidth" units="px" />
       <ColorPicker label={_('Color')} attr="rivercolor" />
@@ -140,7 +164,10 @@ const StyleMapsPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Map Frame')} attr="showframe">
       <Radio
         attr="showframe"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <Numeric label={_('Width')} attr="framewidth" units="px" />
       <ColorPicker label={_('Color')} attr="framecolor" />
@@ -150,7 +177,10 @@ const StyleMapsPanel = (props, {localize: _}) => (
       <Radio
         label={_('Resolution')}
         attr="resolution"
-        options={[{label: _('1:110,000,000'), value: 110}, {label: _('1:50,000,000'), value: 50}]}
+        options={[
+          {label: _('1:110,000,000'), value: 110},
+          {label: _('1:50,000,000'), value: 50},
+        ]}
       />
       <Numeric label={_('Scale')} attr="projection.scale" min={0} />
       <Numeric label={_('Latitude')} attr="projection.rotation.lon" min={0} />

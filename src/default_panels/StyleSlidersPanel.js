@@ -14,7 +14,10 @@ const StyleSlidersPanel = (props, {localize: _}) => (
   <SliderAccordion>
     <Radio
       attr="visible"
-      options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+      options={[
+        {label: _('Show'), value: true},
+        {label: _('Hide'), value: false},
+      ]}
     />
     <PlotlySection name={_('Background')}>
       <ColorPicker label={_('Color')} attr="bgcolor" />

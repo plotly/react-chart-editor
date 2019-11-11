@@ -15,7 +15,8 @@ const CustomColorscalePicker = connectToContainer(UnconnectedColorscalePicker, {
       context.fullData
         .filter(t => context.traceIndexes.includes(t.index))
         .every(t => t.marker && t.marker.color) &&
-      (plotProps.fullValue && typeof plotProps.fullValue === 'string')
+      plotProps.fullValue &&
+      typeof plotProps.fullValue === 'string'
     ) {
       plotProps.fullValue =
         context.fullData &&

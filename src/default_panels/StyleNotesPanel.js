@@ -49,7 +49,10 @@ const StyleNotesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Arrow')}>
       <Radio
         attr="showarrow"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <Numeric label={_('Line Width')} attr="arrowwidth" units="px" />
       <ColorPicker label={_('Color')} attr="arrowcolor" />

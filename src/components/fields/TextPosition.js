@@ -102,7 +102,10 @@ export default connectToContainer(UnconnectedTextPosition, {
       ];
     }
     if (['funnelarea'].includes(context.container.type)) {
-      options = [{label: _('Inside'), value: 'inside'}, {label: _('None'), value: 'none'}];
+      options = [
+        {label: _('Inside'), value: 'inside'},
+        {label: _('None'), value: 'none'},
+      ];
     }
     plotProps.options = options;
     plotProps.clearable = false;

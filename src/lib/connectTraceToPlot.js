@@ -146,10 +146,10 @@ export default function connectTraceToPlot(WrappedComponent) {
           this.context.fullData.some(
             trace =>
               (trace[SUBPLOT_TO_ATTR[subplotType].data] === subplotName ||
-                (((subplotType === 'xaxis' || subplotType === 'yaxis') && subplotName.charAt(1)) ===
+                ((subplotType === 'xaxis' || subplotType === 'yaxis') && subplotName.charAt(1)) ===
                   '' ||
-                  (subplotName.split(subplotType)[1] === '' &&
-                    trace[SUBPLOT_TO_ATTR[subplotType].data] === null))) &&
+                (subplotName.split(subplotType)[1] === '' &&
+                  trace[SUBPLOT_TO_ATTR[subplotType].data] === null)) &&
               trace.index !== this.props.traceIndexes[0]
           );
 

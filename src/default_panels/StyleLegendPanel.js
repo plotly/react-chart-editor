@@ -16,7 +16,10 @@ const StyleLegendPanel = (props, {localize: _}) => (
     <PlotlyFold name={_('Legend')}>
       <Radio
         attr="showlegend"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <PlotlySection name={_('Text')}>
         <FontSelector label={_('Typeface')} attr="legend.font.family" />
@@ -69,7 +72,10 @@ const StyleLegendPanel = (props, {localize: _}) => (
       <PlotlySection name={_('Orientation')}>
         <Radio
           attr="legend.orientation"
-          options={[{label: _('Vertical'), value: 'v'}, {label: _('Horizontal'), value: 'h'}]}
+          options={[
+            {label: _('Vertical'), value: 'v'},
+            {label: _('Horizontal'), value: 'h'},
+          ]}
         />
       </PlotlySection>
       <PlotlySection name={_('Traces')}>
@@ -86,7 +92,10 @@ const StyleLegendPanel = (props, {localize: _}) => (
         <Dropdown
           label={_('Item Sizing')}
           attr="legend.itemsizing"
-          options={[{label: _('Trace'), value: 'trace'}, {label: _('Constant'), value: 'constant'}]}
+          options={[
+            {label: _('Trace'), value: 'trace'},
+            {label: _('Constant'), value: 'constant'},
+          ]}
         />
         <Numeric label={_('Gap Between Groups')} attr="legend.tracegroupgap" units="px" />
       </PlotlySection>

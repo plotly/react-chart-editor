@@ -16,7 +16,10 @@ describe('<Radio>', () => {
           <Radio
             label="Connect Gaps"
             attr="connectgaps"
-            options={[{label: 'Connect', value: true}, {label: 'Blank', value: false}]}
+            options={[
+              {label: 'Connect', value: true},
+              {label: 'Blank', value: false},
+            ]}
           />
         </Trace>
       </TestEditor>
@@ -33,7 +36,10 @@ describe('<Radio>', () => {
             center={false}
             label="Connect Gaps"
             attr="connectgaps"
-            options={[{label: 'Connect', value: true}, {label: 'Blank', value: false}]}
+            options={[
+              {label: 'Connect', value: true},
+              {label: 'Blank', value: false},
+            ]}
           />
         </Trace>
       </TestEditor>

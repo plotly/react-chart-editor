@@ -65,7 +65,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <ShowInLegend
         label={_('Show in Legend')}
         attr="showlegend"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
         showOn={true}
       >
         <GroupCreator label={_('Legend Group')} prefix={_('Group')} attr="legendgroup" />
@@ -75,7 +78,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Numeric label={_('Size')} attr="sizeref" stepmode="relative" />
       <Dropdown
         label={_('Size Mode')}
-        options={[{label: _('scaled'), value: 'scaled'}, {label: _('absolute'), value: 'absolute'}]}
+        options={[
+          {label: _('scaled'), value: 'scaled'},
+          {label: _('absolute'), value: 'absolute'},
+        ]}
         attr="sizemode"
       />
       <Dropdown
@@ -101,19 +107,28 @@ const StyleTracesPanel = (props, {localize: _}) => (
         <Radio
           label={_('Extended Colors')}
           attr="extendpiecolors"
-          options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+          options={[
+            {label: _('On'), value: true},
+            {label: _('Off'), value: false},
+          ]}
         />
         <ColorwayPicker label={_('Colors')} attr="sunburstcolorway" />
         <Radio
           label={_('Extended Colors')}
           attr="extendsunburstcolors"
-          options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+          options={[
+            {label: _('On'), value: true},
+            {label: _('Off'), value: false},
+          ]}
         />
         <ColorwayPicker label={_('Colors')} attr="funnelareacolorway" />
         <Radio
           label={_('Extended Colors')}
           attr="extendfunnelareacolors"
-          options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+          options={[
+            {label: _('On'), value: true},
+            {label: _('Off'), value: false},
+          ]}
         />
       </LayoutSection>
     </TraceTypeSection>
@@ -164,7 +179,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Cumulative')}
         attr="cumulative.enabled"
-        options={[{label: _('Enabled'), value: true}, {label: _('Disabled'), value: false}]}
+        options={[
+          {label: _('Enabled'), value: true},
+          {label: _('Disabled'), value: false},
+        ]}
       />
       <Radio
         label={_('Direction')}
@@ -232,7 +250,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         attr="flatshading"
         label={_('Flatshading')}
-        options={[{label: _('Enable'), value: true}, {label: _('Disable'), value: false}]}
+        options={[
+          {label: _('Enable'), value: true},
+          {label: _('Disable'), value: false},
+        ]}
       />
     </PlotlySection>
     <TraceTypeSection
@@ -313,7 +334,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
         <Radio
           label={_('Box Mode')}
           attr="boxmode"
-          options={[{label: _('Overlay'), value: 'overlay'}, {label: _('Group'), value: 'group'}]}
+          options={[
+            {label: _('Overlay'), value: 'overlay'},
+            {label: _('Group'), value: 'group'},
+          ]}
         />
         <NumericFractionInverse label={_('Box Width')} attr="boxgap" />
         <NumericFraction label={_('Box Padding')} attr="boxgroupgap" />
@@ -324,7 +348,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
         <Radio
           label={_('Violin Mode')}
           attr="violinmode"
-          options={[{label: _('Overlay'), value: 'overlay'}, {label: _('Group'), value: 'group'}]}
+          options={[
+            {label: _('Overlay'), value: 'overlay'},
+            {label: _('Group'), value: 'group'},
+          ]}
         />
         <NumericFractionInverse label={_('Violin Width')} attr="violingap" />
         <NumericFraction label={_('Violin Padding')} attr="violingroupgap" />
@@ -335,7 +362,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Order')}
         attr="sort"
-        options={[{label: _('Sorted'), value: true}, {label: _('Unsorted'), value: false}]}
+        options={[
+          {label: _('Sorted'), value: true},
+          {label: _('Unsorted'), value: false},
+        ]}
       />
       <Radio
         label={_('Direction')}
@@ -387,7 +417,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Size Mode')}
         attr="marker.sizemode"
-        options={[{label: _('Area'), value: 'area'}, {label: _('Diameter'), value: 'diameter'}]}
+        options={[
+          {label: _('Area'), value: 'area'},
+          {label: _('Diameter'), value: 'diameter'},
+        ]}
       />
       <Numeric label={_('Minimum Size')} attr="marker.sizemin" />
       <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
@@ -398,7 +431,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Connector Styles')}>
       <Radio
         attr="connector.visible"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <MultiColorPicker label={_('Fill Color')} attr="connector.fillcolor" />
       <Numeric label={_('Line Width')} attr="connector.line.width" />
@@ -426,7 +462,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Show in Legend')}
         attr="increasing.showlegend"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
     </PlotlySection>
     <PlotlySection name={_('Decreasing Marker Styles')}>
@@ -441,7 +480,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Show in Legend')}
         attr="decreasing.showlegend"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
     </PlotlySection>
     <PlotlySection name={_('Total Marker Styles')}>
@@ -475,17 +517,26 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Contour Lines')}
         attr="contours.showlines"
-        options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+        options={[
+          {label: _('On'), value: true},
+          {label: _('Off'), value: false},
+        ]}
       />
       <Radio
         label={_('Contour Labels')}
         attr="contours.showlabels"
-        options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+        options={[
+          {label: _('On'), value: true},
+          {label: _('Off'), value: false},
+        ]}
       />
       <Radio
         label={_('Number of Contours')}
         attr="autocontour"
-        options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
       />
       <Numeric label={_('Max Contours')} attr="ncontours" />
 
@@ -506,7 +557,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Orientation')}
         attr="orientation"
-        options={[{label: _('Horizontal'), value: 'h'}, {label: _('Vertical'), value: 'v'}]}
+        options={[
+          {label: _('Horizontal'), value: 'h'},
+          {label: _('Vertical'), value: 'v'},
+        ]}
       />
       <Radio
         label={_('Normalization')}
@@ -547,7 +601,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Color Bar')}
         attr="line.showscale"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <ColorscalePicker label={_('Colorscale')} attr="line.colorscale" />
       <LineDashSelector label={_('Type')} attr="line.dash" />
@@ -556,7 +613,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Connect Gaps')}
         attr="connectgaps"
-        options={[{label: _('Connect'), value: true}, {label: _('Blank'), value: false}]}
+        options={[
+          {label: _('Connect'), value: true},
+          {label: _('Blank'), value: false},
+        ]}
       />
     </TraceTypeSection>
     <PlotlySection name={_('Filled Area')}>
@@ -566,7 +626,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Notches')}>
       <Radio
         attr="notched"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <Numeric label={_('Width')} attr="notchwidth" min={0} max={0.5} step={0.1} />
     </PlotlySection>
@@ -609,7 +672,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Clip on Axes')}
         attr="cliponaxis"
-        options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
+        options={[
+          {label: _('Yes'), value: true},
+          {label: _('No'), value: false},
+        ]}
       />
     </TraceTypeSection>
     <PlotlySection name={_('Colorscale')}>
@@ -617,17 +683,26 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Color Bar')}
         attr="showscale"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <Radio
         label={_('Orientation')}
         attr="reversescale"
-        options={[{label: _('Normal'), value: false}, {label: _('Reversed'), value: true}]}
+        options={[
+          {label: _('Normal'), value: false},
+          {label: _('Reversed'), value: true},
+        ]}
       />
       <VisibilitySelect
         label={_('Range')}
         attr="zauto"
-        options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
         showOn={false}
         defaultOpt={true}
       >
@@ -637,7 +712,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <VisibilitySelect
         label={_('Range')}
         attr="cauto"
-        options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
         showOn={false}
         defaultOpt={true}
       >
@@ -647,7 +725,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Smoothing')}
         attr="zsmooth"
-        options={[{label: _('On'), value: 'best'}, {label: _('Off'), value: false}]}
+        options={[
+          {label: _('On'), value: 'best'},
+          {label: _('Off'), value: false},
+        ]}
       />
     </PlotlySection>
     <PlotlySection name={_('Gaps Between Cells')}>
@@ -666,7 +747,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Interpolate Gaps')}
         attr="connectgaps"
-        options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+        options={[
+          {label: _('On'), value: true},
+          {label: _('Off'), value: false},
+        ]}
       />
     </TraceTypeSection>
     <PlotlySection name={_('Lighting')}>
@@ -688,7 +772,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Scale Mode')}
         attr="scalemode"
-        options={[{label: _('Width'), value: 'width'}, {label: _('Count'), value: 'count'}]}
+        options={[
+          {label: _('Width'), value: 'width'},
+          {label: _('Count'), value: 'count'},
+        ]}
       />
       <Radio
         label={_('Span Mode')}
@@ -724,7 +811,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Box')}>
       <Radio
         attr="box.visible"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <NumericFraction label={_('Box Width')} attr="box.width" />
       <MultiColorPicker label={_('Box Fill Color')} attr="box.color" />
@@ -734,7 +824,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Meanline')}>
       <Radio
         attr="meanline.visible"
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
       />
       <NumericFraction label={_('Meanline Width')} attr="meanline.width" />
       <MultiColorPicker label={_('Meanline Color')} attr="meanline.color" />
@@ -770,13 +863,19 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Radio
         label={_('Split labels')}
         attr="hoverlabel.split"
-        options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
+        options={[
+          {label: _('Yes'), value: true},
+          {label: _('No'), value: false},
+        ]}
       />
       <HoverLabelNameLength label={_('Trace Name')} attr="hoverlabel.namelength" />
       <VisibilitySelect
         attr="contour.show"
         label={_('Show Contour')}
-        options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
         showOn={true}
         defaultOpt={false}
       >
