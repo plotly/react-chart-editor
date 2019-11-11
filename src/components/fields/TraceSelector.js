@@ -98,7 +98,10 @@ class TraceSelector extends Component {
     });
     const {localize: _, advancedTraceTypeSelector} = this.context;
 
-    const options = [{label: _('SVG'), value: ''}, {label: _('WebGL'), value: 'gl'}];
+    const options = [
+      {label: _('SVG'), value: ''},
+      {label: _('WebGL'), value: 'gl'},
+    ];
 
     // Check and see if the advanced selector prop is true
     if (advancedTraceTypeSelector) {

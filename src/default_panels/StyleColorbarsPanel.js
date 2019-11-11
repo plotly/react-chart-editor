@@ -30,7 +30,10 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
           <VisibilitySelect
             attr={prefix + 'showscale'}
             key={'x' + prefix}
-            options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+            options={[
+              {label: _('Show'), value: true},
+              {label: _('Hide'), value: false},
+            ]}
             showOn={true}
           >
             <PlotlyPanel key={prefix + ' panel'}>
@@ -118,7 +121,10 @@ const StyleColorBarsPanel = (props, {localize: _}) => {
               <PlotlyFold name={_('Labels')}>
                 <VisibilitySelect
                   attr={prefix + 'colorbar.showticklabels'}
-                  options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+                  options={[
+                    {label: _('Show'), value: true},
+                    {label: _('Hide'), value: false},
+                  ]}
                   showOn={true}
                   defaultOpt={true}
                 >

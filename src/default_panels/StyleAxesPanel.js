@@ -55,7 +55,10 @@ class StyleAxesPanel extends Component {
             <Radio
               attr="autorange"
               label={_('Range')}
-              options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
+              options={[
+                {label: _('Auto'), value: true},
+                {label: _('Custom'), value: false},
+              ]}
             />
             <AxesRange label={_('Min')} attr="range[0]" />
             <AxesRange label={_('Max')} attr="range[1]" />
@@ -64,7 +67,10 @@ class StyleAxesPanel extends Component {
           <PlotlySection name={_('Zoom Interactivity')} attr="fixedrange">
             <Radio
               attr="fixedrange"
-              options={[{label: _('Enable'), value: false}, {label: _('Disable'), value: true}]}
+              options={[
+                {label: _('Enable'), value: false},
+                {label: _('Disable'), value: true},
+              ]}
             />
           </PlotlySection>
           <Dropdown
@@ -82,7 +88,10 @@ class StyleAxesPanel extends Component {
           <PlotlySection name={_('Axis Line')} attr="showline">
             <VisibilitySelect
               attr="showline"
-              options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+              options={[
+                {label: _('Show'), value: true},
+                {label: _('Hide'), value: false},
+              ]}
               showOn={true}
               defaultOpt={true}
             >
@@ -93,14 +102,20 @@ class StyleAxesPanel extends Component {
               <Radio
                 label={_('Mirror Axis')}
                 attr="mirror"
-                options={[{label: _('On'), value: 'ticks'}, {label: _('Off'), value: false}]}
+                options={[
+                  {label: _('On'), value: 'ticks'},
+                  {label: _('Off'), value: false},
+                ]}
               />
             </VisibilitySelect>
           </PlotlySection>
           <PlotlySection name={_('Grid Lines')} attr="showgrid">
             <VisibilitySelect
               attr="showgrid"
-              options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+              options={[
+                {label: _('Show'), value: true},
+                {label: _('Hide'), value: false},
+              ]}
               showOn={true}
               defaultOpt={true}
             >
@@ -118,7 +133,10 @@ class StyleAxesPanel extends Component {
               <Radio
                 label={_('Grid Spacing')}
                 attr="tickmode"
-                options={[{label: _('Auto'), value: 'auto'}, {label: _('Custom'), value: 'linear'}]}
+                options={[
+                  {label: _('Auto'), value: 'auto'},
+                  {label: _('Custom'), value: 'linear'},
+                ]}
               />
 
               <DTicks label={_('Step Offset')} attr="tick0" />
@@ -129,7 +147,10 @@ class StyleAxesPanel extends Component {
           <PlotlySection name={_('Zero Line')} attr="zeroline">
             <Radio
               attr="zeroline"
-              options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+              options={[
+                {label: _('Show'), value: true},
+                {label: _('Hide'), value: false},
+              ]}
             />
             <Numeric label={_('Thickness')} attr="zerolinewidth" units="px" />
             <ColorPicker label={_('Color')} attr="zerolinecolor" />
@@ -138,7 +159,10 @@ class StyleAxesPanel extends Component {
           <PlotlySection name={_('Axis Background')} attr="showbackground">
             <Radio
               attr="showbackground"
-              options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+              options={[
+                {label: _('Show'), value: true},
+                {label: _('Hide'), value: false},
+              ]}
             />
             <ColorPicker label={_('Color')} attr="backgroundcolor" />
           </PlotlySection>
@@ -148,7 +172,10 @@ class StyleAxesPanel extends Component {
           <PlotlySection name={_('Tick Labels')} attr="showticklabels">
             <VisibilitySelect
               attr="showticklabels"
-              options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+              options={[
+                {label: _('Show'), value: true},
+                {label: _('Hide'), value: false},
+              ]}
               showOn={true}
               defaultOpt={true}
             >
@@ -156,7 +183,10 @@ class StyleAxesPanel extends Component {
               <Radio
                 label={_('Auto margins')}
                 attr="automargin"
-                options={[{label: _('True'), value: true}, {label: _('False'), value: false}]}
+                options={[
+                  {label: _('True'), value: true},
+                  {label: _('False'), value: false},
+                ]}
               />
               <Radio
                 label={_('Position on')}
@@ -191,7 +221,10 @@ class StyleAxesPanel extends Component {
               <Radio
                 label={_('Separate Thousands')}
                 attr="separatethousands"
-                options={[{label: _('True'), value: true}, {label: _('False'), value: false}]}
+                options={[
+                  {label: _('True'), value: true},
+                  {label: _('False'), value: false},
+                ]}
               />
               <Dropdown
                 label={_('Exponents')}
@@ -271,7 +304,10 @@ class StyleAxesPanel extends Component {
               <Radio
                 label={_('Tick Spacing')}
                 attr="tickmode"
-                options={[{label: _('Auto'), value: 'auto'}, {label: _('Custom'), value: 'linear'}]}
+                options={[
+                  {label: _('Auto'), value: 'auto'},
+                  {label: _('Custom'), value: 'linear'},
+                ]}
               />
 
               <DTicks label={_('Step Offset')} attr="tick0" />
@@ -307,7 +343,10 @@ class StyleAxesPanel extends Component {
               <Radio
                 label={_('Tick Spacing')}
                 attr="tickmode"
-                options={[{label: _('Auto'), value: 'auto'}, {label: _('Custom'), value: 'linear'}]}
+                options={[
+                  {label: _('Auto'), value: 'auto'},
+                  {label: _('Custom'), value: 'linear'},
+                ]}
               />
 
               <DTicks label={_('Step Offset')} attr="tick0" />
@@ -318,7 +357,10 @@ class StyleAxesPanel extends Component {
           <PlotlySection name={_('Multicategory Dividers')} attr="showdividers">
             <VisibilitySelect
               attr="showdividers"
-              options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+              options={[
+                {label: _('Show'), value: true},
+                {label: _('Hide'), value: false},
+              ]}
               showOn={true}
             >
               <Numeric label={_('Width')} attr="dividerwidth" units="px" />
@@ -330,7 +372,10 @@ class StyleAxesPanel extends Component {
         <AxesFold name={_('Range Slider')} axisFilter={axis => axis._subplot.includes('xaxis')}>
           <RangesliderVisible
             attr="rangeslider.visible"
-            options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+            options={[
+              {label: _('Show'), value: true},
+              {label: _('Hide'), value: false},
+            ]}
           />
           <NumericFraction label={_('Height')} attr="rangeslider.thickness" />
           <ColorPicker label={_('Background Color')} attr="rangeslider.bgcolor" />
@@ -344,7 +389,10 @@ class StyleAxesPanel extends Component {
         >
           <Radio
             attr="rangeselector.visible"
-            options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+            options={[
+              {label: _('Show'), value: true},
+              {label: _('Hide'), value: false},
+            ]}
           />
 
           <RangeSelectorAccordion>
@@ -427,12 +475,18 @@ class StyleAxesPanel extends Component {
         >
           <Radio
             attr="showspikes"
-            options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+            options={[
+              {label: _('Show'), value: true},
+              {label: _('Hide'), value: false},
+            ]}
           />
           <Radio
             attr="spikesides"
             label={_('Show Sides')}
-            options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+            options={[
+              {label: _('Show'), value: true},
+              {label: _('Hide'), value: false},
+            ]}
           />
 
           <Numeric label={_('Thickness')} attr="spikethickness" units="px" />

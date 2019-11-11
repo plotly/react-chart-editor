@@ -182,17 +182,26 @@ class UnconnectedMarkerColor extends Component {
               <Radio
                 label={_('Colorscale Direction')}
                 attr="marker.reversescale"
-                options={[{label: _('Normal'), value: false}, {label: _('Reversed'), value: true}]}
+                options={[
+                  {label: _('Normal'), value: false},
+                  {label: _('Reversed'), value: true},
+                ]}
               />
               <Radio
                 label={_('Color Bar')}
                 attr="marker.showscale"
-                options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+                options={[
+                  {label: _('Show'), value: true},
+                  {label: _('Hide'), value: false},
+                ]}
               />
               <VisibilitySelect
                 label={_('Colorscale Range')}
                 attr="marker.cauto"
-                options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
+                options={[
+                  {label: _('Auto'), value: true},
+                  {label: _('Custom'), value: false},
+                ]}
                 showOn={false}
                 defaultOpt={true}
               >

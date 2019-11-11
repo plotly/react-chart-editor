@@ -74,7 +74,10 @@ const GraphSubplotsPanel = (props, {localize: _}) => (
       <Radio
         label={_('Bar Mode')}
         attr="barmode"
-        options={[{label: _('Stack'), value: 'stack'}, {label: _('Overlay'), value: 'overlay'}]}
+        options={[
+          {label: _('Stack'), value: 'stack'},
+          {label: _('Overlay'), value: 'overlay'},
+        ]}
       />
       <NumericFraction label={_('Bar Padding')} attr="bargap" showSlider />
     </PlotlySection>

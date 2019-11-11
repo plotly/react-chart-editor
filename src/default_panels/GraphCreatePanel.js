@@ -43,7 +43,10 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
       <Dropdown
         label={_('Parent Value Mode')}
         attr="branchvalues"
-        options={[{label: _('Total'), value: 'total'}, {label: _('Remainder'), value: 'remainder'}]}
+        options={[
+          {label: _('Total'), value: 'total'},
+          {label: _('Remainder'), value: 'remainder'},
+        ]}
         clearable={false}
       />
 
@@ -89,7 +92,10 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
       <Radio
         label={_('Orientation')}
         attr="orientation"
-        options={[{label: _('Vertical'), value: 'v'}, {label: _('Horizontal'), value: 'h'}]}
+        options={[
+          {label: _('Vertical'), value: 'v'},
+          {label: _('Horizontal'), value: 'h'},
+        ]}
       />
       <HistogramInfoVertical>
         {_(
@@ -179,7 +185,10 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
         <Radio
           label={_('Transpose')}
           attr="transpose"
-          options={[{label: _('No'), value: false}, {label: _('Yes'), value: true}]}
+          options={[
+            {label: _('No'), value: false},
+            {label: _('Yes'), value: true},
+          ]}
         />
       </PlotlySection>
     </TraceAccordion>

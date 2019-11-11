@@ -82,7 +82,10 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <Radio
         label={_('Orientation')}
         attr="modebar.orientation"
-        options={[{label: _('Horizontal'), value: 'h'}, {label: _('Vertical'), value: 'v'}]}
+        options={[
+          {label: _('Horizontal'), value: 'h'},
+          {label: _('Vertical'), value: 'v'},
+        ]}
       />
       <ColorPicker label={_('Icon Color')} attr="modebar.color" />
       <ColorPicker label={_('Active Icon Color')} attr="modebar.activecolor" />
@@ -92,7 +95,10 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       <VisibilitySelect
         attr="autosize"
         label={_('Size')}
-        options={[{label: _('Auto'), value: true}, {label: _('Custom'), value: false}]}
+        options={[
+          {label: _('Auto'), value: true},
+          {label: _('Custom'), value: false},
+        ]}
         showOn={false}
         defaultOpt={true}
       >

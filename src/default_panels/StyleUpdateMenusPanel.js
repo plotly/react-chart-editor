@@ -15,7 +15,10 @@ const StyleUpdateMenusPanel = (props, {localize: _}) => (
   <UpdateMenuAccordion>
     <VisibilitySelect
       attr="visible"
-      options={[{label: _('Show'), value: true}, {label: _('Hide'), value: false}]}
+      options={[
+        {label: _('Show'), value: true},
+        {label: _('Hide'), value: false},
+      ]}
       showOn={true}
     >
       <PlotlySection name={_('Button Labels')}>

@@ -88,6 +88,7 @@ export default connectToContainer(UnconnectedHoverLabelNameLength, {
     const {container} = plotProps;
     plotProps.isVisible =
       (container.hoverinfo && container.hoverinfo.includes('name')) ||
-      (container.hovertemplate || container.hovertemplate === ' ');
+      container.hovertemplate ||
+      container.hovertemplate === ' ';
   },
 });

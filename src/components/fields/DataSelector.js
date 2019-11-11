@@ -161,7 +161,8 @@ UnconnectedDataSelector.displayName = 'UnconnectedDataSelector';
 function modifyPlotProps(props, context, plotProps) {
   if (
     attributeIsData(plotProps.attrMeta) &&
-    (context.container && TRANSFORMS_LIST.indexOf(context.container.type) === -1)
+    context.container &&
+    TRANSFORMS_LIST.indexOf(context.container.type) === -1
   ) {
     plotProps.isVisible = true;
   }

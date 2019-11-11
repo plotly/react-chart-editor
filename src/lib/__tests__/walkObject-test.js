@@ -184,7 +184,10 @@ describe('objectUtils', () => {
             ],
           },
           {
-            z: [[1, 2, 3], [1, 2, 3]],
+            z: [
+              [1, 2, 3],
+              [1, 2, 3],
+            ],
             type: 'heatmap',
             transforms: [
               {

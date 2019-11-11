@@ -70,7 +70,10 @@ const GraphTransformsPanel = (props, {localize: _}) => {
       <TransformAccordion>
         <Radio
           attr="enabled"
-          options={[{label: _('Enabled'), value: true}, {label: _('Disabled'), value: false}]}
+          options={[
+            {label: _('Enabled'), value: true},
+            {label: _('Disabled'), value: false},
+          ]}
         />
 
         <DataSelector label={_('By')} attr="groups" />

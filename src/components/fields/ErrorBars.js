@@ -92,12 +92,18 @@ class ErrorBars extends Component {
         <Radio
           label={_('Copy Y Style')}
           attr={`${this.props.attr}.copy_ystyle`}
-          options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
+          options={[
+            {label: _('Yes'), value: true},
+            {label: _('No'), value: false},
+          ]}
         />
         <Radio
           label={_('Copy Z Style')}
           attr={`${this.props.attr}.copy_zstyle`}
-          options={[{label: _('Yes'), value: true}, {label: _('No'), value: false}]}
+          options={[
+            {label: _('Yes'), value: true},
+            {label: _('No'), value: false},
+          ]}
         />
         <MultiColorPicker label={_('Color')} attr={`${this.props.attr}.color`} />
         <Numeric label={_('Thickness')} attr={`${this.props.attr}.thickness`} />

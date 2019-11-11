@@ -84,7 +84,10 @@ class UnconnectedRectanglePositioner extends Component {
               alignment="center"
               onOptionChange={snap => this.setState({snap: snap})}
               activeOption={this.state.snap}
-              options={[{label: _('On'), value: true}, {label: _('Off'), value: false}]}
+              options={[
+                {label: _('On'), value: true},
+                {label: _('Off'), value: false},
+              ]}
             />
           </Field>
           <div

@@ -93,12 +93,18 @@ export const AxisSide = connectToContainer(UnconnectedRadio, {
     const _ = context.localize;
 
     if (plotProps.fullValue === 'left' || plotProps.fullValue === 'right') {
-      plotProps.options = [{label: _('Left'), value: 'left'}, {label: _('Right'), value: 'right'}];
+      plotProps.options = [
+        {label: _('Left'), value: 'left'},
+        {label: _('Right'), value: 'right'},
+      ];
       return;
     }
 
     if (plotProps.fullValue === 'top' || plotProps.fullValue === 'bottom') {
-      plotProps.options = [{label: _('Top'), value: 'top'}, {label: _('Bottom'), value: 'bottom'}];
+      plotProps.options = [
+        {label: _('Top'), value: 'top'},
+        {label: _('Bottom'), value: 'bottom'},
+      ];
       return;
     }
 
@@ -552,7 +558,10 @@ export const HoverTemplateText = connectToContainer(UnconnectedTextEditor, {
 export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
   modifyPlotProps: (props, context, plotProps) => {
     const {localize: _, container} = context;
-    let options = [{label: _('X'), value: 'x'}, {label: _('Y'), value: 'y'}];
+    let options = [
+      {label: _('X'), value: 'x'},
+      {label: _('Y'), value: 'y'},
+    ];
 
     if (
       [
@@ -569,15 +578,24 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
     ) {
       options.push({label: _('Z'), value: 'z'});
     } else if (container.type === 'choropleth') {
-      options = [{label: _('Location'), value: 'location'}, {label: _('Values'), value: 'z'}];
+      options = [
+        {label: _('Location'), value: 'location'},
+        {label: _('Values'), value: 'z'},
+      ];
     } else if (container.type === 'scattergeo') {
       if (container.locations) {
         options = [{label: _('Location'), value: 'location'}];
       } else if (container.lat || container.lon) {
-        options = [{label: _('Longitude'), value: 'lon'}, {label: _('Latitude'), value: 'lat'}];
+        options = [
+          {label: _('Longitude'), value: 'lon'},
+          {label: _('Latitude'), value: 'lat'},
+        ];
       }
     } else if (container.type === 'scattermapbox' || container.type === 'densitymapbox') {
-      options = [{label: _('Longitude'), value: 'lon'}, {label: _('Latitude'), value: 'lat'}];
+      options = [
+        {label: _('Longitude'), value: 'lon'},
+        {label: _('Latitude'), value: 'lat'},
+      ];
     } else if (container.type === 'densitymapbox') {
       options = [
         {label: _('Longitude'), value: 'lon'},
@@ -591,7 +609,10 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         {label: _('C'), value: 'c'},
       ];
     } else if (['scatterpolar', 'scatterpolargl', 'barpolar'].includes(container.type)) {
-      options = [{label: _('R'), value: 'r'}, {label: _('Theta'), value: 'theta'}];
+      options = [
+        {label: _('R'), value: 'r'},
+        {label: _('Theta'), value: 'theta'},
+      ];
     } else if (container.type === 'pie') {
       options = [{label: _('Percent'), value: 'percent'}];
     } else if (container.type === 'table') {
@@ -655,7 +676,10 @@ export const FillDropdown = connectToContainer(UnconnectedDropdown, {
       context.container.type === 'scattergeo' ||
       context.container.type === 'scattermapbox'
     ) {
-      options = [{label: _('None'), value: 'none'}, {label: _('To Self'), value: 'toself'}];
+      options = [
+        {label: _('None'), value: 'none'},
+        {label: _('To Self'), value: 'toself'},
+      ];
     }
 
     plotProps.options = options;
@@ -755,7 +779,10 @@ export const HovermodeDropdown = connectToContainer(UnconnectedVisibilitySelect,
             {label: _('Y Axis'), value: 'y'},
             {label: _('Disable'), value: false},
           ]
-        : [{label: _('Closest'), value: 'closest'}, {label: _('Disable'), value: false}];
+        : [
+            {label: _('Closest'), value: 'closest'},
+            {label: _('Disable'), value: false},
+          ];
     plotProps.clearable = false;
     plotProps.dropdown = true;
     plotProps.showOn = ['closest', 'x', 'y'];

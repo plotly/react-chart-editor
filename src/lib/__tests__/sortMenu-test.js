@@ -6,7 +6,10 @@ describe('sortMenu', () => {
       {props: {group: 'DEV', name: 'Inspector'}},
       {props: {group: 'DEV', name: 'JSON'}},
     ];
-    const orderProp = [{group: 'DEV', name: 'JSON'}, {group: 'DEV', name: 'Inspector'}];
+    const orderProp = [
+      {group: 'DEV', name: 'JSON'},
+      {group: 'DEV', name: 'Inspector'},
+    ];
     const newArray = sortMenu(initialArray, orderProp);
 
     expect(initialArray).toEqual([
