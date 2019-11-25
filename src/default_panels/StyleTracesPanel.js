@@ -857,6 +857,14 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <PlotlySection name={_('Hover/Tooltip')}>
       <HoveronDropdown attr="hoveron" label={_('Hover on')} />
+      <Radio
+        label={_('Hover on Gaps')}
+        attr="hoverongaps"
+        options={[
+          {label: _('Yes'), value: true},
+          {label: _('No'), value: false},
+        ]}
+      />
       <HoverTemplateSwitch attr="hovertemplate" label={_('Mode')} />
       <HoverInfo attr="hoverinfo" label={_('Show')} />
       <HoverTemplateText attr="hovertemplate" label={_('Template')} />
