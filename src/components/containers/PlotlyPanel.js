@@ -68,7 +68,7 @@ export class Panel extends Component {
     });
 
     if (this.state.individualFoldStates.length !== numFolds) {
-      const newFoldStates = new Array(numFolds).fill(false);
+      const newFoldStates = new Array(numFolds).fill(this.props.collapseByDefault);
       this.setState({
         individualFoldStates: this.props.addAction
           ? newFoldStates.map((e, i) => i !== numFolds - 1)
@@ -128,11 +128,13 @@ Panel.propTypes = {
   deleteAction: PropTypes.func,
   noPadding: PropTypes.bool,
   showExpandCollapse: PropTypes.bool,
+  collapseByDefault: PropTypes.bool,
   canReorder: PropTypes.bool,
 };
 
 Panel.defaultProps = {
   showExpandCollapse: true,
+  collapseByDefault: true,
 };
 
 Panel.contextTypes = {
