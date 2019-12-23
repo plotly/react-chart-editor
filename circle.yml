@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/node:8.11.2-browsers
+      - image: circleci/node:12.13.1-browsers
 
     working_directory: ~/react-chart-editor
 
