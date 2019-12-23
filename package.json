@@ -6,6 +6,26 @@
   "bugs": {
     "url": "https://github.com/plotly/react-chart-editor/issues"
   },
+  "scripts": {
+    "lint": "prettier --write \"src/**/*.js\"",
+    "make:arrows": "node scripts/makeArrows.js",
+    "make:combined-translation-keys": "npm run make:translation-keys && node scripts/combineTranslationKeys.js",
+    "make:lib:css": "mkdirp lib && babel-node scripts/styles.js && SASS_ENV=ie babel-node scripts/styles.js && babel-node scripts/postcss.js && SASS_ENV=ie babel-node scripts/postcss.js",
+    "make:lib:js": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps",
+    "make:lib": "rimraf lib && mkdir lib && npm run make:lib:js && npm run make:lib:css && npm run make:combined-translation-keys",
+    "make:translation-keys": "node scripts/findTranslationKeys.js",
+    "prepublishOnly": "npm run make:lib",
+    "start": "webpack-dev-server --hot",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "test": "npm run test:lint && npm run test:pretty && npm run test:js",
+    "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill --maxWorkers=2",
+    "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:percy": "node --max-old-space-size=4096 $(npm bin)/build-storybook && percy-storybook --widths=500",
+    "test:percy-local": "node --max-old-space-size=4096 $(npm bin)/build-storybook",
+    "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
+    "watch-test": "jest --watch"
+  },
   "dependencies": {
     "@plotly/draft-js-export-html": "1.2.0",
     "classnames": "^2.2.6",
@@ -113,25 +133,5 @@
   },
   "browserslist": [
     "ie 11"
-  ],
-  "scripts": {
-    "lint": "prettier --write \"src/**/*.js\"",
-    "make:arrows": "node scripts/makeArrows.js",
-    "make:combined-translation-keys": "npm run make:translation-keys && node scripts/combineTranslationKeys.js",
-    "make:lib:css": "mkdirp lib && babel-node scripts/styles.js && SASS_ENV=ie babel-node scripts/styles.js && babel-node scripts/postcss.js && SASS_ENV=ie babel-node scripts/postcss.js",
-    "make:lib:js": "mkdirp lib && babel src --out-dir lib --ignore=__tests__/* --source-maps",
-    "make:lib": "rimraf lib && mkdir lib && npm run make:lib:js && npm run make:lib:css && npm run make:combined-translation-keys",
-    "make:translation-keys": "node scripts/findTranslationKeys.js",
-    "prepublishOnly": "npm run make:lib",
-    "start": "webpack-dev-server --hot",
-    "storybook": "start-storybook -p 9001 -c .storybook",
-    "test": "npm run test:lint && npm run test:pretty && npm run test:js",
-    "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill --maxWorkers=2",
-    "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:percy": "node --max-old-space-size=4096 $(npm bin)/build-storybook && percy-storybook --widths=500",
-    "test:percy-local": "node --max-old-space-size=4096 $(npm bin)/build-storybook",
-    "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
-    "watch-test": "jest --watch"
-  }
+  ]
 }
