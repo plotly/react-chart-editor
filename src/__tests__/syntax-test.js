@@ -7,7 +7,7 @@ const REGEXS = BLACK_LIST.map(token => new RegExp(`^\\s*${token}\\(.*`));
 
 describe('Syntax and test validation', () => {
   describe(`ensures ${BLACK_LIST} is not present in tests`, () => {
-    const files = glob.sync('**/__tests__/*.js');
+    const files = glob.sync('!(node_modules|examples)/**/__tests__/*.js');
     files.forEach(file =>
       it(`checks ${file} for test checks`, () => {
         const code = fs.readFileSync(file, {encoding: 'utf-8'});
