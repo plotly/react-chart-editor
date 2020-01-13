@@ -27,7 +27,7 @@ UnconnectedDropzone.propTypes = {
 UnconnectedDropzone.displayName = 'UnconnectedDropzone';
 
 function modifyPlotProps(props, context, plotProps) {
-  if (context.container.type === 'choroplethmapbox') {
+  if (context.container.type === 'choroplethmapbox' || context.container.type === 'choropleth') {
     plotProps.isVisible = true;
   }
 }

@@ -35,6 +35,16 @@ const StyleMapsPanel = (props, {localize: _}) => (
       <Numeric label={_('Zoom Level')} attr="zoom" min={0} />
       <Numeric label={_('Bearing')} attr="bearing" />
       <Numeric label={_('Pitch')} attr="pitch" min={0} />
+      <Dropdown
+        label={_('Bounds Fitting')}
+        attr="fitbounds"
+        options={[
+          {label: _('Off'), value: false},
+          {label: _('Locations'), value: 'locations'},
+          {label: _('GeoJSON'), value: 'geojson'},
+        ]}
+        clearable={false}
+      />
     </PlotlySection>
 
     <PlotlySection name={_('Map Projection')}>
@@ -82,6 +92,28 @@ const StyleMapsPanel = (props, {localize: _}) => (
           {label: _('Transverse Mercator'), value: 'transverse mercator'},
           {label: _('Aitoff'), value: 'aitoff'},
           {label: _('Sinusoidal'), value: 'sinusoidal'},
+        ]}
+      />
+      <Numeric label={_('Scale')} attr="projection.scale" min={0} />
+      <Numeric label={_('Center Latitude')} attr="projection.rotation.lon" min={0} />
+      <Numeric label={_('Center Longitude')} attr="projection.rotation.lat" min={0} />
+      <Numeric label={_('Roll')} attr="projection.rotation.roll" min={0} />
+    </PlotlySection>
+
+    <PlotlySection name={_('Base Map')} attr="visible">
+      <Radio
+        attr="visible"
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
+      />
+      <Radio
+        label={_('Resolution')}
+        attr="resolution"
+        options={[
+          {label: _('1:110,000,000'), value: 110},
+          {label: _('1:50,000,000'), value: 50},
         ]}
       />
     </PlotlySection>
@@ -171,21 +203,6 @@ const StyleMapsPanel = (props, {localize: _}) => (
       />
       <Numeric label={_('Width')} attr="framewidth" units="px" />
       <ColorPicker label={_('Color')} attr="framecolor" />
-    </PlotlySection>
-
-    <PlotlySection name={_('Map Options')}>
-      <Radio
-        label={_('Resolution')}
-        attr="resolution"
-        options={[
-          {label: _('1:110,000,000'), value: 110},
-          {label: _('1:50,000,000'), value: 50},
-        ]}
-      />
-      <Numeric label={_('Scale')} attr="projection.scale" min={0} />
-      <Numeric label={_('Latitude')} attr="projection.rotation.lon" min={0} />
-      <Numeric label={_('Longitude')} attr="projection.rotation.lat" min={0} />
-      <Numeric label={_('Roll')} attr="projection.rotation.roll" min={0} />
     </PlotlySection>
   </SubplotAccordion>
 );
