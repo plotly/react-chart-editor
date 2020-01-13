@@ -54,7 +54,7 @@ const StyleLayoutPanel = (props, {localize: _}) => (
       </PlotlySection>
       <PlotlySection name={_('Text')} attr="font.family">
         <FontSelector label={_('Typeface')} attr="font.family" clearable={false} />
-        <Numeric label={_('Font Size')} attr="font.size" units="px" />
+        <Numeric label={_('Base Font Size')} attr="font.size" units="px" />
         <ColorPicker label={_('Font Color')} attr="font.color" />
         <Dropdown
           label={_('Number format')}
@@ -67,6 +67,17 @@ const StyleLayoutPanel = (props, {localize: _}) => (
           ]}
           clearable={false}
         />
+        <Dropdown
+          label={_('Uniform Text Mode')}
+          attr="uniformtext.mode"
+          options={[
+            {label: _('Off'), value: false},
+            {label: _('Show'), value: 'show'},
+            {label: _('Hide'), value: 'hide'},
+          ]}
+          clearable={false}
+        />
+        <Numeric label={_('Uniform Text Size Minimum')} attr="uniformtext.minsize" units="px" />
       </PlotlySection>
     </PlotlyFold>
 
