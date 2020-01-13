@@ -659,6 +659,30 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
       <MultiColorPicker label={_('Font Color')} attr="textfont.color" />
       <Dropdown
+        label={_('Inside Text Orientation')}
+        options={[
+          {label: _('Auto'), value: 'auto'},
+          {label: _('Radial'), value: 'radial'},
+          {label: _('Tangential'), value: 'tangential'},
+          {label: _('Horizontal'), value: 'horizontal'},
+        ]}
+        attr="insidetextorientation"
+        clearable={false}
+      />
+      <Dropdown
+        label={_('Text Angle')}
+        options={[
+          {label: _('Auto'), value: 'auto'},
+          {label: _('Horizontal'), value: 0},
+          {label: _('Vertical Up'), value: -90},
+          {label: _('Vertical Down'), value: 90},
+          {label: _('Angled Down'), value: 45},
+          {label: _('Angled Up'), value: -45},
+        ]}
+        attr="textangle"
+        clearable={false}
+      />
+      <Dropdown
         label={_('Constrain Text')}
         options={[
           {label: _('Inside'), value: 'inside'},
