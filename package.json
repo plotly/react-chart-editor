@@ -47,7 +47,7 @@
     "react-resizable-rotatable-draggable": "^0.2.0",
     "react-select": "^2.4.2",
     "react-tabs": "^3.0.0",
-    "styled-components": "^4.2.0",
+    "styled-components": "^5.0.0",
     "tinycolor2": "^1.4.1"
   },
   "devDependencies": {
