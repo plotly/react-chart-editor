@@ -633,9 +633,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
       <Numeric label={_('Width')} attr="notchwidth" min={0} max={0.5} step={0.1} />
     </PlotlySection>
-    <PlotlySection name={_('Text Attributes')}>
-      <TextInfo attr="textinfo" />
-    </PlotlySection>
     <TraceTypeSection
       name={_('Text')}
       traceTypes={allTraceTypes.filter(
@@ -653,8 +650,11 @@ const StyleTracesPanel = (props, {localize: _}) => (
       )}
       mode="trace"
     >
-      <DataSelector label={_('Text')} attr="text" />
       <TextPosition label={_('Text Position')} attr="textposition" />
+      <HoverTemplateSwitch attr="texttemplate" label={_('Mode')} />
+      <TextInfo attr="textinfo" label={_('Show')} />
+      <HoverTemplateText attr="texttemplate" label={_('Template')} />
+      <DataSelector label={_('Text')} attr="text" />
       <FontSelector label={_('Typeface')} attr="textfont.family" />
       <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
       <MultiColorPicker label={_('Font Color')} attr="textfont.color" />
