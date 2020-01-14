@@ -56,7 +56,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
     <NumericFraction label={_('Trace Opacity')} attr="opacity" />
-    <TraceTypeSection name={_('Leaves')} traceTypes={['sunburst']} mode="trace">
+    <TraceTypeSection name={_('Leaves')} traceTypes={['sunburst', 'treemap']} mode="trace">
       <LevelRendered label={_('Start at Level')} attr="level" />
       <Numeric label={_('Max Depth')} attr="maxdepth" min={-1} step={1} />
       <NumericFraction label={_('Opacity')} attr="leaf.opacity" />
@@ -99,7 +99,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <MultiColorPicker label={_('Color')} attr="color" />
     <TraceTypeSection
       name={_('Segment Colors')}
-      traceTypes={['pie', 'sunburst', 'funnelarea']}
+      traceTypes={['pie', 'sunburst', 'treemap', 'funnelarea']}
       mode="trace"
     >
       <LayoutSection attr="name">
@@ -113,9 +113,18 @@ const StyleTracesPanel = (props, {localize: _}) => (
           ]}
         />
         <ColorwayPicker label={_('Colors')} attr="sunburstcolorway" />
+        <ColorwayPicker label={_('Colors')} attr="treemapcolorway" />
         <Radio
           label={_('Extended Colors')}
           attr="extendsunburstcolors"
+          options={[
+            {label: _('On'), value: true},
+            {label: _('Off'), value: false},
+          ]}
+        />
+        <Radio
+          label={_('Extended Colors')}
+          attr="extendtreemapcolors"
           options={[
             {label: _('On'), value: true},
             {label: _('Off'), value: false},
@@ -878,6 +887,23 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <ColorArrayPicker label={_('Color')} attr="link.color" />
       <MultiColorPicker label={_('Line Color')} attr="link.line.color" />
       <Numeric label={_('Line Width')} attr="link.line.width" min={0} />
+    </PlotlySection>
+    <PlotlySection name={_('Path Bar')} attr="pathbar.visible">
+      <Radio
+        attr="pathbar.visible"
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
+      />
+      <Radio
+        attr="pathbar.side"
+        options={[
+          {label: _('Top'), value: 'top'},
+          {label: _('Bottom'), value: 'bottom'},
+        ]}
+        label={_('Side')}
+      />
     </PlotlySection>
     <PlotlySection name={_('Hover/Tooltip')}>
       <HoveronDropdown attr="hoveron" label={_('Hover on')} />

@@ -191,6 +191,11 @@ export const traceTypes = _ => [
     category: chartCategory(_).SPECIALIZED,
   },
   {
+    value: 'treemap',
+    label: _('Treemap'),
+    category: chartCategory(_).SPECIALIZED,
+  },
+  {
     value: 'sankey',
     label: _('Sankey'),
     category: chartCategory(_).SPECIALIZED,

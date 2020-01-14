@@ -118,6 +118,7 @@ class SubplotAccordion extends Component {
       pie: 0,
       table: 0,
       sunburst: 0,
+      treemap: 0,
       sankey: 0,
       parcoords: 0,
       parcats: 0,
@@ -126,9 +127,16 @@ class SubplotAccordion extends Component {
     data.forEach((d, i) => {
       if (
         (d.type === 'pie' && d.values) ||
-        ['pie', 'table', 'sunburst', 'sankey', 'parcoords', 'parcats', 'funnelarea'].includes(
-          d.type
-        )
+        [
+          'pie',
+          'table',
+          'sunburst',
+          'treemap',
+          'sankey',
+          'parcoords',
+          'parcats',
+          'funnelarea',
+        ].includes(d.type)
       ) {
         counter[d.type]++;
         const currentCount = counter[d.type];

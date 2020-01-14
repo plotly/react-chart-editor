@@ -38,7 +38,7 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
       <DataSelector label={_('Labels')} attr="labels" />
       <DataSelector label={_('Parents')} attr="parents" />
 
-      <TraceTypeSection traceTypes={['sunburst']} mode="trace">
+      <TraceTypeSection traceTypes={['sunburst', 'treemap']} mode="trace">
         <DataSelector label={_('IDs')} attr="ids" />
       </TraceTypeSection>
       <Dropdown

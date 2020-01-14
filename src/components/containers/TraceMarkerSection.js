@@ -17,7 +17,7 @@ class TraceMarkerSection extends Component {
     const traceType = context.fullContainer.type;
     if (['bar', 'histogram', 'funnel', 'waterfall'].includes(traceType)) {
       this.name = _('Bars');
-    } else if (['funnelarea', 'pie', 'sunburst'].includes(traceType)) {
+    } else if (['funnelarea', 'pie', 'sunburst', 'treemap'].includes(traceType)) {
       this.name = _('Segments');
     } else {
       this.name = _('Points');
