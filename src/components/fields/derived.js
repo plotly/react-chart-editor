@@ -169,7 +169,11 @@ export const TickFormat = connectToContainer(UnconnectedDropdownCustom, {
 
 export const ShowInLegend = connectToContainer(UnconnectedVisibilitySelect, {
   modifyPlotProps: (props, context, plotProps) => {
-    if (context.container.type && context.container.type !== 'sunburst') {
+    if (
+      context.container.type &&
+      context.container.type !== 'sunburst' &&
+      context.container.type !== 'treemap'
+    ) {
       plotProps.isVisible = context.fullLayout.showlegend;
     }
 
@@ -628,15 +632,15 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
         {label: _('Norm'), value: 'norm'},
         {label: _('Divergence'), value: 'divergence'},
       ];
-    } else if (container.type === 'sunburst') {
+    } else if (container.type === 'sunburst' || container.type === 'treemap') {
       options = [];
     }
 
-    if (container.labels && ['pie', 'sunburst', 'funnelarea'].includes(container.type)) {
+    if (container.labels && ['pie', 'sunburst', 'treemap', 'funnelarea'].includes(container.type)) {
       options.push({label: _('Label'), value: 'label'});
     }
 
-    if (container.values && ['pie', 'sunburst', 'funnelarea'].includes(container.type)) {
+    if (container.values && ['pie', 'sunburst', 'treemap', 'funnelarea'].includes(container.type)) {
       options.push({label: _('Value'), value: 'value'});
     }
 

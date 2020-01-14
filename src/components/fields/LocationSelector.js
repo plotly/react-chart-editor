@@ -28,6 +28,7 @@ class UnconnectedLocation extends Component {
           attr="locationmode"
           clearable={false}
           options={[
+            {label: _('GeoJSON feature'), value: 'geojson-id'},
             {label: _('Country Names'), value: 'country names'},
             {label: _('Country Abbreviations (ISO-3)'), value: 'ISO-3'},
             {

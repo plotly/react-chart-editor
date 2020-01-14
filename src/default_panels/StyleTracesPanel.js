@@ -56,7 +56,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
     <NumericFraction label={_('Trace Opacity')} attr="opacity" />
-    <TraceTypeSection name={_('Leaves')} traceTypes={['sunburst']} mode="trace">
+    <TraceTypeSection name={_('Leaves')} traceTypes={['sunburst', 'treemap']} mode="trace">
       <LevelRendered label={_('Start at Level')} attr="level" />
       <Numeric label={_('Max Depth')} attr="maxdepth" min={-1} step={1} />
       <NumericFraction label={_('Opacity')} attr="leaf.opacity" />
@@ -99,7 +99,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <MultiColorPicker label={_('Color')} attr="color" />
     <TraceTypeSection
       name={_('Segment Colors')}
-      traceTypes={['pie', 'sunburst', 'funnelarea']}
+      traceTypes={['pie', 'sunburst', 'treemap', 'funnelarea']}
       mode="trace"
     >
       <LayoutSection attr="name">
@@ -113,9 +113,18 @@ const StyleTracesPanel = (props, {localize: _}) => (
           ]}
         />
         <ColorwayPicker label={_('Colors')} attr="sunburstcolorway" />
+        <ColorwayPicker label={_('Colors')} attr="treemapcolorway" />
         <Radio
           label={_('Extended Colors')}
           attr="extendsunburstcolors"
+          options={[
+            {label: _('On'), value: true},
+            {label: _('Off'), value: false},
+          ]}
+        />
+        <Radio
+          label={_('Extended Colors')}
+          attr="extendtreemapcolors"
           options={[
             {label: _('On'), value: true},
             {label: _('Off'), value: false},
@@ -633,9 +642,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
       <Numeric label={_('Width')} attr="notchwidth" min={0} max={0.5} step={0.1} />
     </PlotlySection>
-    <PlotlySection name={_('Text Attributes')}>
-      <TextInfo attr="textinfo" />
-    </PlotlySection>
     <TraceTypeSection
       name={_('Text')}
       traceTypes={allTraceTypes.filter(
@@ -653,11 +659,38 @@ const StyleTracesPanel = (props, {localize: _}) => (
       )}
       mode="trace"
     >
-      <DataSelector label={_('Text')} attr="text" />
       <TextPosition label={_('Text Position')} attr="textposition" />
+      <HoverTemplateSwitch attr="texttemplate" label={_('Mode')} />
+      <TextInfo attr="textinfo" label={_('Show')} />
+      <HoverTemplateText attr="texttemplate" label={_('Template')} />
+      <DataSelector label={_('Text')} attr="text" />
       <FontSelector label={_('Typeface')} attr="textfont.family" />
       <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
       <MultiColorPicker label={_('Font Color')} attr="textfont.color" />
+      <Dropdown
+        label={_('Inside Text Orientation')}
+        options={[
+          {label: _('Auto'), value: 'auto'},
+          {label: _('Radial'), value: 'radial'},
+          {label: _('Tangential'), value: 'tangential'},
+          {label: _('Horizontal'), value: 'horizontal'},
+        ]}
+        attr="insidetextorientation"
+        clearable={false}
+      />
+      <Dropdown
+        label={_('Text Angle')}
+        options={[
+          {label: _('Auto'), value: 'auto'},
+          {label: _('Horizontal'), value: 0},
+          {label: _('Vertical Up'), value: -90},
+          {label: _('Vertical Down'), value: 90},
+          {label: _('Angled Down'), value: 45},
+          {label: _('Angled Up'), value: -45},
+        ]}
+        attr="textangle"
+        clearable={false}
+      />
       <Dropdown
         label={_('Constrain Text')}
         options={[
@@ -854,6 +887,23 @@ const StyleTracesPanel = (props, {localize: _}) => (
       <ColorArrayPicker label={_('Color')} attr="link.color" />
       <MultiColorPicker label={_('Line Color')} attr="link.line.color" />
       <Numeric label={_('Line Width')} attr="link.line.width" min={0} />
+    </PlotlySection>
+    <PlotlySection name={_('Path Bar')} attr="pathbar.visible">
+      <Radio
+        attr="pathbar.visible"
+        options={[
+          {label: _('Show'), value: true},
+          {label: _('Hide'), value: false},
+        ]}
+      />
+      <Radio
+        attr="pathbar.side"
+        options={[
+          {label: _('Top'), value: 'top'},
+          {label: _('Bottom'), value: 'bottom'},
+        ]}
+        label={_('Side')}
+      />
     </PlotlySection>
     <PlotlySection name={_('Hover/Tooltip')}>
       <HoveronDropdown attr="hoveron" label={_('Hover on')} />

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   DataSelector,
   Dropdown,
+  DropdownCustom,
   Radio,
   PlotlySection,
   AxesCreator,
@@ -37,7 +38,7 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
       <DataSelector label={_('Labels')} attr="labels" />
       <DataSelector label={_('Parents')} attr="parents" />
 
-      <TraceTypeSection traceTypes={['sunburst']} mode="trace">
+      <TraceTypeSection traceTypes={['sunburst', 'treemap']} mode="trace">
         <DataSelector label={_('IDs')} attr="ids" />
       </TraceTypeSection>
       <Dropdown
@@ -73,6 +74,17 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
           '*': _('Z'),
         }}
         attr="z"
+      />
+      <DropdownCustom
+        label={_('GeoJSON Location Field')}
+        attr="featureidkey"
+        options={[
+          {label: _('id'), value: 'id'},
+          {label: _('Custom'), value: 'custom'},
+        ]}
+        customOpt="custom"
+        dafaultOpt=""
+        clearable={false}
       />
       <Numeric label={_('Radius')} attr="radius" min={0} max={50} showSlider />
       <DataSelector label={_('Measure')} attr="measure" />
