@@ -24,7 +24,7 @@ const StyleLegendPanel = (props, {localize: _}) => (
       />
 
       <PlotlySection name={_('Legend Title')}>
-        <TextEditor label={_('text')} attr="legend.title.text" richTextOnly />
+        <TextEditor label={_('Text')} attr="legend.title.text" richTextOnly />
         <FontSelector label={_('Typeface')} attr="legend.title.font.family" />
         <Numeric label={_('Size')} attr="legend.title.font.size" units="px" />
         <ColorPicker label={_('Color')} attr="legend.title.font.color" />
