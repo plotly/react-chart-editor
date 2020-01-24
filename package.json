@@ -80,7 +80,7 @@
     "glob": "7.1.6",
     "jest": "25.1.0",
     "jest-cli": "25.1.0",
-    "mkdirp": "0.5.1",
+    "mkdirp": "1.0.3",
     "node-sass": "4.13.1",
     "postcss": "7.0.26",
     "postcss-combine-duplicated-selectors": "8.1.0",
