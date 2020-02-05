@@ -28,6 +28,10 @@
         "plotly.js"
       ],
       "groupName": "plotly.js"
+    },
+    {
+      "packagePatterns": ["^sass-loader"],
+      "enabled": false
     }
   ]
 }
