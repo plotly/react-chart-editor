@@ -30,7 +30,7 @@
       "groupName": "plotly.js"
     },
     {
-      "packagePatterns": ["^sass-loader"],
+      "packagePatterns": ["^sass-loader$"],
       "enabled": false
     }
   ]
