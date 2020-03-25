@@ -379,7 +379,7 @@ class SymbolSelector extends Component {
 
     this.symbolOptions =
       this.props.container.type === 'scatter3d'
-        ? SYMBOLS.filter(option => option.threeD)
+        ? SYMBOLS.filter((option) => option.threeD)
         : [...SYMBOLS];
   }
 

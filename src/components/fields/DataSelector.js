@@ -84,8 +84,8 @@ export class UnconnectedDataSelector extends Component {
 
     if (Array.isArray(adjustedValue)) {
       data = adjustedValue
-        .filter(v => Array.isArray(this.dataSources[v]))
-        .map(v => this.dataSources[v]);
+        .filter((v) => Array.isArray(this.dataSources[v]))
+        .map((v) => this.dataSources[v]);
     } else {
       data = this.dataSources[adjustedValue] || null;
     }

@@ -26,7 +26,7 @@ export default function connectSliderToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
-        getValObject: attr =>
+        getValObject: (attr) =>
           !this.context.getValObject ? null : this.context.getValObject(`sliders[].${attr}`),
         updateContainer: this.updateSlider,
         container: this.container,

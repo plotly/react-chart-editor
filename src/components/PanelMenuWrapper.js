@@ -9,7 +9,7 @@ class PanelsWithSidebar extends Component {
     super(props);
 
     const opts = this.computeMenuOptions(props);
-    const firstSidebarGroup = opts.filter(o => o.panels)[0];
+    const firstSidebarGroup = opts.filter((o) => o.panels)[0];
 
     this.state = {
       group: firstSidebarGroup.name,
@@ -53,7 +53,7 @@ class PanelsWithSidebar extends Component {
     let groupIndex;
     const childrenArray = sortMenu(React.Children.toArray(children), menuPanelOrder);
 
-    childrenArray.forEach(child => {
+    childrenArray.forEach((child) => {
       if (!child) {
         return;
       }

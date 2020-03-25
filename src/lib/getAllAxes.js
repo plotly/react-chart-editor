@@ -8,10 +8,10 @@ export default function getAllAxes(fullLayout) {
     Object.keys(fullLayout._subplots)
       .filter(
         // xaxis and yaxis already included separately in _fullLayout._subplots
-        type => type !== 'cartesian' && fullLayout._subplots[type].length !== 0
+        (type) => type !== 'cartesian' && fullLayout._subplots[type].length !== 0
       )
-      .forEach(type => {
-        fullLayout._subplots[type].forEach(subplot => {
+      .forEach((type) => {
+        fullLayout._subplots[type].forEach((subplot) => {
           if (['xaxis', 'yaxis'].includes(type)) {
             // subplot will look like x2, x45, convert it to xaxis2, xaxis45
             subplot = // eslint-disable-line no-param-reassign
@@ -24,8 +24,8 @@ export default function getAllAxes(fullLayout) {
             axes.push(fullLayout[subplot]);
           } else {
             Object.keys(fullLayout[subplot])
-              .filter(key => key.includes('axis'))
-              .forEach(axis => {
+              .filter((key) => key.includes('axis'))
+              .forEach((axis) => {
                 fullLayout[subplot][axis]._subplot = subplot;
                 fullLayout[subplot][axis]._axisGroup = type;
 
@@ -57,7 +57,7 @@ export function traceTypeToAxisType(traceType, subplot = false) {
     delete traceToAxis.gl3d;
   }
 
-  Object.keys(traceToAxis).forEach(c => {
+  Object.keys(traceToAxis).forEach((c) => {
     if (traceToAxis[c].includes(traceType)) {
       category = c;
     }

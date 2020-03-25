@@ -42,7 +42,7 @@ class RangeSelectorAccordion extends Component {
 
     const addAction = {
       label: _('Button'),
-      handler: context => {
+      handler: (context) => {
         const {fullContainer, updateContainer} = context;
         if (updateContainer) {
           const rangeselectorIndex = Array.isArray(fullContainer.rangeselector.buttons)

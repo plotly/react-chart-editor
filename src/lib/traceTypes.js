@@ -2,7 +2,7 @@
  * Trace type constants
  */
 
-export const chartCategory = _ => {
+export const chartCategory = (_) => {
   return {
     SIMPLE: {
       value: 'SIMPLE',
@@ -40,7 +40,7 @@ export const chartCategory = _ => {
 };
 
 // Layout specification for TraceTypeSelector.js
-export const categoryLayout = _ => [
+export const categoryLayout = (_) => [
   chartCategory(_).SIMPLE,
   chartCategory(_).DISTRIBUTIONS,
   chartCategory(_).THREE_D,
@@ -49,7 +49,7 @@ export const categoryLayout = _ => [
   chartCategory(_).SPECIALIZED,
 ];
 
-export const traceTypes = _ => [
+export const traceTypes = (_) => [
   {
     value: 'scatter',
     label: _('Scatter'),

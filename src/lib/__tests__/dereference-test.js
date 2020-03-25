@@ -50,7 +50,7 @@ describe('dereference', () => {
   });
 
   it('uses custom function if provided in config', () => {
-    const customParsing = src => src.split(',');
+    const customParsing = (src) => src.split(',');
     const container = [{zsrc: 'z1,z2', type: 'heatmap'}];
     dereference(container, {z1: [1, 2, 3], z2: [2, 2, 2]}, {toSrc: customParsing});
 

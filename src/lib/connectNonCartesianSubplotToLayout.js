@@ -33,7 +33,7 @@ export default function connectNonCartesianSubplotToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
-        getValObject: attr =>
+        getValObject: (attr) =>
           !this.context.getValObject
             ? null
             : this.context.getValObject(`${this.props.subplot}.${attr}`),

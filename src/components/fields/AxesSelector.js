@@ -24,10 +24,10 @@ class AxesSelector extends Component {
     const multipleSublots =
       fullLayout &&
       fullLayout._subplots &&
-      Object.values(fullLayout._subplots).some(s => s.length > 1);
+      Object.values(fullLayout._subplots).some((s) => s.length > 1);
 
     const options = multipleSublots
-      ? axesOptions.map(option =>
+      ? axesOptions.map((option) =>
           option.value === 'allaxes'
             ? option
             : {
@@ -40,7 +40,7 @@ class AxesSelector extends Component {
       : axesOptions;
 
     const totalCharsInOptions =
-      (options && options.map(o => o.label).reduce((acc, o) => acc + o.length, 0)) || 0;
+      (options && options.map((o) => o.label).reduce((acc, o) => acc + o.length, 0)) || 0;
 
     return maxOptions || totalCharsInOptions >= maxCharsThatFitInRadio ? (
       <Field {...this.props} label={_('Axis to Style')}>

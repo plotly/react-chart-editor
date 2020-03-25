@@ -30,7 +30,7 @@ class StyleAxesPanel extends Component {
       <LayoutPanel>
         <AxesFold
           name={_('Titles')}
-          axisFilter={axis => !(axis._name.includes('angular') || axis._subplot.includes('geo'))}
+          axisFilter={(axis) => !(axis._name.includes('angular') || axis._subplot.includes('geo'))}
         >
           <TextEditor attr="title.text" />
           <FontSelector label={_('Typeface')} attr="title.font.family" />
@@ -168,7 +168,7 @@ class StyleAxesPanel extends Component {
           </PlotlySection>
         </AxesFold>
 
-        <AxesFold name={_('Tick Labels')} axisFilter={axis => !axis._subplot.includes('geo')}>
+        <AxesFold name={_('Tick Labels')} axisFilter={(axis) => !axis._subplot.includes('geo')}>
           <PlotlySection name={_('Tick Labels')} attr="showticklabels">
             <VisibilitySelect
               attr="showticklabels"
@@ -316,7 +316,7 @@ class StyleAxesPanel extends Component {
             </VisibilitySelect>
           </PlotlySection>
         </AxesFold>
-        <AxesFold name={_('Tick Markers')} axisFilter={axis => !axis._subplot.includes('geo')}>
+        <AxesFold name={_('Tick Markers')} axisFilter={(axis) => !axis._subplot.includes('geo')}>
           <PlotlySection name={_('Tick Markers')} attr="ticks">
             <VisibilitySelect
               attr="ticks"
@@ -369,7 +369,7 @@ class StyleAxesPanel extends Component {
           </PlotlySection>
         </AxesFold>
 
-        <AxesFold name={_('Range Slider')} axisFilter={axis => axis._subplot.includes('xaxis')}>
+        <AxesFold name={_('Range Slider')} axisFilter={(axis) => axis._subplot.includes('xaxis')}>
           <RangesliderVisible
             attr="rangeslider.visible"
             options={[
@@ -385,7 +385,7 @@ class StyleAxesPanel extends Component {
 
         <AxesFold
           name={_('Timescale Buttons')}
-          axisFilter={axis => axis._subplot.includes('xaxis') && axis.type === 'date'}
+          axisFilter={(axis) => axis._subplot.includes('xaxis') && axis.type === 'date'}
         >
           <Radio
             attr="rangeselector.visible"
@@ -465,7 +465,7 @@ class StyleAxesPanel extends Component {
 
         <AxesFold
           name={_('Spike Lines')}
-          axisFilter={axis =>
+          axisFilter={(axis) =>
             !(
               axis._subplot.includes('ternary') ||
               axis._subplot.includes('polar') ||

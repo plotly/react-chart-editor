@@ -22,7 +22,7 @@ export default class TextInput extends Component {
         placeholder={this.props.placeholder}
         text={this.state.value}
         type="text"
-        onChange={value => {
+        onChange={(value) => {
           if (this.props.onChange) {
             this.props.onChange(value);
           }

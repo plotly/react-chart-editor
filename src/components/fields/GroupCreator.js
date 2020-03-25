@@ -9,7 +9,7 @@ import {MULTI_VALUED} from 'lib/constants';
 
 class UnconnectedGroupCreator extends Component {
   getAllGroups() {
-    return [...new Set(this.context.data.map(t => t[this.props.attr]))].filter(g => Boolean(g));
+    return [...new Set(this.context.data.map((t) => t[this.props.attr]))].filter((g) => Boolean(g));
   }
 
   canAddGroup() {
@@ -23,14 +23,14 @@ class UnconnectedGroupCreator extends Component {
 
     return (
       !currentGroup ||
-      this.context.fullData.some(d => d.index !== currentTraceIndex && d[attr] === currentGroup)
+      this.context.fullData.some((d) => d.index !== currentTraceIndex && d[attr] === currentGroup)
     );
   }
 
   addAndUpdateGroup() {
     const allGroups = this.context.fullData
-      .map(t => parseInt(t[this.props.attr], 10))
-      .filter(n => Number.isInteger(n));
+      .map((t) => parseInt(t[this.props.attr], 10))
+      .filter((n) => Number.isInteger(n));
     // don't want to pass empty array to max
     allGroups.push(0);
 
@@ -45,7 +45,7 @@ class UnconnectedGroupCreator extends Component {
 
     const options = [{label: _('None'), value: ''}];
     const allGroups = this.getAllGroups();
-    allGroups.forEach(g => options.push({label: `${prefix} ${g}`, value: g}));
+    allGroups.forEach((g) => options.push({label: `${prefix} ${g}`, value: g}));
     options.sort((a, b) => a.value - b.value);
 
     const icon = <PlusIcon />;

@@ -66,13 +66,13 @@ function renderTraceIcon(trace, prefix = 'Plot') {
 
 function transpose(originalArray) {
   // if we want to transpose a uni dimensional array
-  if (originalArray.every(a => !Array.isArray(a))) {
-    return originalArray.map(a => [a]);
+  if (originalArray.every((a) => !Array.isArray(a))) {
+    return originalArray.map((a) => [a]);
   }
 
   let longestArrayItem = Array.isArray(originalArray[0]) ? originalArray[0].length : 1;
 
-  originalArray.forEach(a => {
+  originalArray.forEach((a) => {
     // if it's not an array, it's a string
     const length = Array.isArray(a) ? a.length : 1;
     if (length > longestArrayItem) {
@@ -122,7 +122,7 @@ const specialTableCase = (traceType, srcAttributePath) => {
       'header.font.sizesrc',
       'header.fill.colorsrc',
       'columnwidthsrc',
-    ].some(a => srcAttributePath.endsWith(a))
+    ].some((a) => srcAttributePath.endsWith(a))
   );
 };
 
@@ -190,7 +190,7 @@ function getFullTrace(props, context) {
       fullTrace = context.fullData[props.fullDataArrayPosition[0]];
     } else {
       // for all other panels, we'll find fullTrace with the data index
-      fullTrace = context.fullData.filter(t => t && props.traceIndexes[0] === t.index)[0];
+      fullTrace = context.fullData.filter((t) => t && props.traceIndexes[0] === t.index)[0];
     }
 
     // For transformed traces, we actually want to read in _fullInput because
@@ -200,7 +200,7 @@ function getFullTrace(props, context) {
     if (
       fullTrace &&
       fullTrace.transforms &&
-      !fullTrace.transforms.some(t => ['moving-average', 'fits'].includes(t.type)) &&
+      !fullTrace.transforms.some((t) => ['moving-average', 'fits'].includes(t.type)) &&
       !props.fullDataArrayPosition
     ) {
       fullTrace = fullTrace._fullInput;

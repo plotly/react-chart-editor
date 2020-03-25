@@ -30,7 +30,7 @@ export default function connectImageToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
-        getValObject: attr =>
+        getValObject: (attr) =>
           !this.context.getValObject ? null : this.context.getValObject(`images[].${attr}`),
         updateContainer: this.updateImage,
         deleteContainer: this.deleteImage,

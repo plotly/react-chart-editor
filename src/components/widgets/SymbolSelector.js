@@ -30,7 +30,7 @@ export default class SymbolSelector extends Component {
 
   renderActiveOption() {
     const {markerColor, borderColor, symbolOptions, value} = this.props;
-    const currentSymbol = symbolOptions.find(symbol => symbol.value === value);
+    const currentSymbol = symbolOptions.find((symbol) => symbol.value === value);
     if (!currentSymbol) {
       return (
         <span
@@ -64,7 +64,7 @@ export default class SymbolSelector extends Component {
 
   renderOptions() {
     const {markerColor, borderColor, symbolOptions} = this.props;
-    return symbolOptions.map(option => {
+    return symbolOptions.map((option) => {
       const {fill, value, label} = option;
 
       const symbolStyle = {

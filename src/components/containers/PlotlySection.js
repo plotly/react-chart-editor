@@ -51,7 +51,7 @@ export default class PlotlySection extends Section {
     const {isVisible} = unpackPlotProps(nextProps, nextContext);
     this.sectionVisible = isVisibleGivenCustomConfig(isVisible, nextProps, nextContext);
 
-    React.Children.forEach(nextProps.children, child => {
+    React.Children.forEach(nextProps.children, (child) => {
       if (!child || this.sectionVisible) {
         return;
       }

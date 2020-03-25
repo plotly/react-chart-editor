@@ -17,7 +17,7 @@ class Dropdown extends Component {
       return onChange(null);
     }
 
-    return multi ? onChange(selection.map(s => s[valueKey])) : onChange(selection[valueKey]);
+    return multi ? onChange(selection.map((s) => s[valueKey])) : onChange(selection[valueKey]);
   }
 
   render() {
@@ -43,7 +43,7 @@ class Dropdown extends Component {
       dropdownStyle.width = width;
     }
 
-    const opts = options.map(opt =>
+    const opts = options.map((opt) =>
       typeof opt === 'string' ? {label: opt, [valueKey]: opt} : opt
     );
 
@@ -57,7 +57,7 @@ class Dropdown extends Component {
         <Select
           placeholder={placeholder || _('Select an Option')}
           isClearable={clearable}
-          value={opts.filter(o =>
+          value={opts.filter((o) =>
             Array.isArray(value) ? value.includes(o[valueKey]) : value === o[valueKey]
           )}
           options={opts}
@@ -65,8 +65,8 @@ class Dropdown extends Component {
           onChange={this.onChange}
           isMulti={multi}
           noOptionsMessage={() => noResultsText || _('No Results')}
-          getOptionValue={o => o[valueKey]}
-          getOptionLabel={o => o.label}
+          getOptionValue={(o) => o[valueKey]}
+          getOptionLabel={(o) => o.label}
           isDisabled={disabled}
           className={dropdownContainerClass}
           classNamePrefix="Select"

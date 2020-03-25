@@ -107,7 +107,7 @@ class TraceTypeSelector extends Component {
         onClick:
           chartHelp[value] &&
           chartHelp[value].feedQuery &&
-          (e =>
+          ((e) =>
             onClick(e, () =>
               window.open(
                 `https://plot.ly/feed/?q=${chartHelp[value] ? chartHelp[value].feedQuery : value}`,
@@ -121,7 +121,7 @@ class TraceTypeSelector extends Component {
         onClick:
           chartHelp[value] &&
           chartHelp[value].helpDoc &&
-          (e => onClick(e, () => window.open(chartHelp[value].helpDoc, '_blank'))),
+          ((e) => onClick(e, () => window.open(chartHelp[value].helpDoc, '_blank'))),
         icon: <ThumnailViewIcon />,
       },
       {
@@ -129,7 +129,7 @@ class TraceTypeSelector extends Component {
         onClick:
           chartHelp[value] &&
           chartHelp[value].examplePlot &&
-          (e => onClick(e, chartHelp[value].examplePlot)),
+          ((e) => onClick(e, chartHelp[value].examplePlot)),
         icon: <GraphIcon />,
       },
     ];
@@ -145,7 +145,7 @@ class TraceTypeSelector extends Component {
     return categories(_).map((category, i) => {
       const items = traces(_)
         .filter(({category: {value}}) => value === category.value)
-        .filter(i => i.value !== 'scattergl' && i.value !== 'scatterpolargl');
+        .filter((i) => i.value !== 'scattergl' && i.value !== 'scatterpolargl');
 
       const MAX_ITEMS = 4;
 
@@ -159,7 +159,7 @@ class TraceTypeSelector extends Component {
         <div className={columnClasses} key={i}>
           <div className="trace-grid__column__header">{category.label}</div>
           <div className="trace-grid__column__items">
-            {items.map(item => (
+            {items.map((item) => (
               <Item
                 complex={complex}
                 key={item.value}
@@ -189,7 +189,7 @@ class TraceTypeSelector extends Component {
 
     return (
       <div className="trace-grid-single-block">
-        {traces(_).map(item => (
+        {traces(_).map((item) => (
           <Item
             key={item.value}
             complex={complex}
@@ -244,7 +244,7 @@ export class TraceTypeSelectorButton extends Component {
     const {localize: _} = this.context;
 
     const inferredType = plotlyTraceToCustomTrace(container);
-    const {label, icon, value} = traces(_).find(type => type.value === inferredType);
+    const {label, icon, value} = traces(_).find((type) => type.value === inferredType);
 
     const Icon = renderTraceIcon(icon ? icon : value);
 

@@ -7,7 +7,7 @@ describe('transpose', () => {
 
     expect(transposedArray.length).toBe(3);
 
-    transposedArray.forEach(subArray => {
+    transposedArray.forEach((subArray) => {
       expect(Array.isArray(subArray)).toBe(true);
       expect(subArray.length).toBe(1);
     });
@@ -25,7 +25,7 @@ describe('transpose', () => {
     const transposedArray = transpose(originalArray);
 
     expect(transposedArray.length).toBe(3);
-    transposedArray.forEach(subArray => {
+    transposedArray.forEach((subArray) => {
       expect(Array.isArray(subArray)).toBe(true);
       expect(subArray.length).toBe(2);
     });
@@ -46,7 +46,7 @@ describe('transpose', () => {
     const transposedArray = transpose(originalArray);
 
     expect(transposedArray.length).toBe(3);
-    transposedArray.forEach(subArray => {
+    transposedArray.forEach((subArray) => {
       expect(Array.isArray(subArray)).toBe(true);
       expect(subArray.length).toBe(2);
     });

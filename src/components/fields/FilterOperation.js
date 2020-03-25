@@ -5,7 +5,7 @@ import DropdownWidget from '../widgets/Dropdown';
 import TextInput from '../widgets/TextInput';
 import {connectToContainer} from 'lib';
 
-const operations = _ => ({
+const operations = (_) => ({
   inequality: [
     {value: '!=', label: _('Target ≠ Reference')},
     {value: '<', label: _('Target < Reference')},
@@ -34,7 +34,7 @@ const findOperation = (operator, _) => {
   let op = 'inequality';
   const ops = operations(_);
   for (const key in ops) {
-    if (ops.hasOwnProperty(key) && ops[key].map(o => o.value).indexOf(operator) !== -1) {
+    if (ops.hasOwnProperty(key) && ops[key].map((o) => o.value).indexOf(operator) !== -1) {
       op = key;
       break;
     }
@@ -142,7 +142,7 @@ class UnconnectedFilterValue extends Component {
     val = op === 'inrange' || op === 'exrange' ? [v, this.state.valueMax] : v;
     if (op === 'inset' || op === 'exset') {
       val = val.split(',');
-      val = val.map(v => v.trim());
+      val = val.map((v) => v.trim());
     }
     this.props.updatePlot(val);
   }

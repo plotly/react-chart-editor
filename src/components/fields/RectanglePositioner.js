@@ -28,7 +28,7 @@ class UnconnectedRectanglePositioner extends Component {
     const y0 = (fieldHeightPx - (height + y)) / fieldHeightPx;
     const y1 = (fieldHeightPx - y) / fieldHeightPx;
 
-    const snap = this.state.snap ? v => Math.round(v * gridRes) / gridRes : v => v;
+    const snap = this.state.snap ? (v) => Math.round(v * gridRes) / gridRes : (v) => v;
 
     const payload = {};
 
@@ -82,7 +82,7 @@ class UnconnectedRectanglePositioner extends Component {
           <Field label={_('Snap to Grid')}>
             <RadioBlocks
               alignment="center"
-              onOptionChange={snap => this.setState({snap: snap})}
+              onOptionChange={(snap) => this.setState({snap: snap})}
               activeOption={this.state.snap}
               options={[
                 {label: _('On'), value: true},
@@ -120,7 +120,7 @@ class UnconnectedRectanglePositioner extends Component {
               rotatable={false}
               draggable={!this.state.snap}
               zoomable={zoomable}
-              onResize={style => {
+              onResize={(style) => {
                 this.sendUpdate({
                   fieldWidthPx,
                   fieldHeightPx,

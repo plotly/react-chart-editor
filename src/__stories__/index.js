@@ -98,7 +98,7 @@ const panelsToTest = {
   funnelarea: ['GraphCreatePanel', 'StyleTracesPanel'],
 };
 
-window.URL.createObjectURL = function() {
+window.URL.createObjectURL = function () {
   return null;
 };
 
@@ -128,10 +128,10 @@ const panelFixture = (Panel, group, name, figure, customConfig) => {
 
 let stories = storiesOf('Panels', module);
 
-Object.keys(mocks).forEach(m => {
+Object.keys(mocks).forEach((m) => {
   const selectedPanels = panelsToTest[m] ? panelsToTest[m] : Object.keys(panels);
 
-  selectedPanels.forEach(p => {
+  selectedPanels.forEach((p) => {
     const words = p.split(/(?=[A-Z])/);
     const panelGroup = words[0];
     const panelName = words.slice(1, -1).join(' ');

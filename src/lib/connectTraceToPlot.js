@@ -35,7 +35,7 @@ export default function connectTraceToPlot(WrappedComponent) {
       const fullTrace = getFullTrace(props, context);
 
       this.childContext = {
-        getValObject: attr =>
+        getValObject: (attr) =>
           !plotly
             ? null
             : plotly.PlotSchema.getTraceValObject(fullTrace, nestedProperty({}, attr).parts),
@@ -49,16 +49,16 @@ export default function connectTraceToPlot(WrappedComponent) {
 
       if (traceIndexes.length > 1) {
         const multiValuedFullContainer = deepCopyPublic(fullTrace);
-        fullData.forEach(t =>
-          Object.keys(t).forEach(key =>
+        fullData.forEach((t) =>
+          Object.keys(t).forEach((key) =>
             setMultiValuedContainer(multiValuedFullContainer, deepCopyPublic(t), key, {
               searchArrays: true,
             })
           )
         );
         const multiValuedContainer = deepCopyPublic(trace);
-        data.forEach(t =>
-          Object.keys(t).forEach(key =>
+        data.forEach((t) =>
+          Object.keys(t).forEach((key) =>
             setMultiValuedContainer(multiValuedContainer, deepCopyPublic(t), key, {
               searchArrays: true,
             })
@@ -82,10 +82,10 @@ export default function connectTraceToPlot(WrappedComponent) {
     updateTrace(update) {
       if (this.context.onUpdate) {
         const splitTraceGroup = this.props.fullDataArrayPosition
-          ? this.props.fullDataArrayPosition.map(p => this.context.fullData[p]._group)
+          ? this.props.fullDataArrayPosition.map((p) => this.context.fullData[p]._group)
           : null;
 
-        const containsAnSrc = Object.keys(update).filter(a => a.endsWith('src')).length > 0;
+        const containsAnSrc = Object.keys(update).filter((a) => a.endsWith('src')).length > 0;
 
         if (Array.isArray(update)) {
           update.forEach((u, i) => {
@@ -144,7 +144,7 @@ export default function connectTraceToPlot(WrappedComponent) {
 
         const isSubplotUsedAnywhereElse = (subplotType, subplotName) =>
           this.context.fullData.some(
-            trace =>
+            (trace) =>
               (trace[SUBPLOT_TO_ATTR[subplotType].data] === subplotName ||
                 ((subplotType === 'xaxis' || subplotType === 'yaxis') && subplotName.charAt(1)) ===
                   '' ||

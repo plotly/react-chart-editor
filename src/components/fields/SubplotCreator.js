@@ -13,7 +13,7 @@ class UnconnectedSingleSubplotCreator extends Component {
     const currentAxisId = this.props.fullContainer[this.props.attr];
     const currentTraceIndex = this.props.fullContainer.index;
     return this.context.fullData.some(
-      d => d.index !== currentTraceIndex && d[this.props.attr] === currentAxisId
+      (d) => d.index !== currentTraceIndex && d[this.props.attr] === currentAxisId
     );
   }
 
@@ -42,7 +42,7 @@ class UnconnectedSingleSubplotCreator extends Component {
     if (
       currentSubplotId !== update &&
       !this.context.fullData.some(
-        trace =>
+        (trace) =>
           trace[SUBPLOT_TO_ATTR[this.props.layoutAttr].data] === currentSubplotId &&
           trace.index !== this.props.fullContainer.index
       )
@@ -74,7 +74,7 @@ class UnconnectedSingleSubplotCreator extends Component {
         attr={this.props.attr}
         clearable={false}
         options={this.props.options}
-        updatePlot={u => this.updateSubplot(u)}
+        updatePlot={(u) => this.updateSubplot(u)}
         extraComponent={extraComponent}
       />
     );
@@ -103,12 +103,12 @@ const SingleSubplotCreator = connectToContainer(UnconnectedSingleSubplotCreator)
 class UnconnectedSubplotCreator extends Component {
   render() {
     const subplotType = traceTypeToAxisType(this.props.container.type);
-    if (!['geo', 'mapbox', 'polar', 'gl3d', 'ternary'].some(t => t === subplotType)) {
+    if (!['geo', 'mapbox', 'polar', 'gl3d', 'ternary'].some((t) => t === subplotType)) {
       return null;
     }
 
     const isFirstTraceOfAxisType =
-      this.context.data.filter(d => traceTypeToAxisType(d.type) === subplotType).length === 1;
+      this.context.data.filter((d) => traceTypeToAxisType(d.type) === subplotType).length === 1;
     if (isFirstTraceOfAxisType) {
       return null;
     }
@@ -116,7 +116,7 @@ class UnconnectedSubplotCreator extends Component {
     const {fullLayout, localize: _} = this.context;
 
     function getOptions(subplotType) {
-      return fullLayout._subplots[subplotType].map(subplotId => ({
+      return fullLayout._subplots[subplotType].map((subplotId) => ({
         label: getSubplotTitle(subplotId, subplotType, _),
         value: subplotId,
       }));
@@ -162,7 +162,7 @@ export default connectToContainer(UnconnectedSubplotCreator, {
       data.length > 1 &&
       data[fullContainer.index] &&
       ['geo', 'mapbox', 'polar', 'gl3d', 'ternary'].some(
-        t => t === traceTypeToAxisType(data[fullContainer.index].type)
+        (t) => t === traceTypeToAxisType(data[fullContainer.index].type)
       );
   },
 });

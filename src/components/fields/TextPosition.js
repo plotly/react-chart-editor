@@ -52,7 +52,7 @@ export class UnconnectedTextPosition extends Component {
         <RadioBlocks
           options={radioOptions}
           activeOption={this.state.posType}
-          onOptionChange={value => {
+          onOptionChange={(value) => {
             this.setState({posType: value});
             if (value === 'simple') {
               this.props.updatePlot('middle center');

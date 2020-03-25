@@ -33,13 +33,13 @@ class DefaultEditor extends Component {
   }
 
   hasTransforms() {
-    return this.context.fullData.some(d => TRANSFORMABLE_TRACES.includes(d.type));
+    return this.context.fullData.some((d) => TRANSFORMABLE_TRACES.includes(d.type));
   }
 
   hasAxes() {
     return (
       Object.keys(this.context.fullLayout._subplots).filter(
-        type =>
+        (type) =>
           !['cartesian', 'mapbox'].includes(type) &&
           this.context.fullLayout._subplots[type].length > 0
       ).length > 0
@@ -63,15 +63,15 @@ class DefaultEditor extends Component {
   }
 
   hasColorbars() {
-    return this.context.fullData.some(d => traceHasColorbar({}, d));
+    return this.context.fullData.some((d) => traceHasColorbar({}, d));
   }
 
   hasLegend() {
-    return this.context.fullData.some(t => t.showlegend !== undefined); // eslint-disable-line no-undefined
+    return this.context.fullData.some((t) => t.showlegend !== undefined); // eslint-disable-line no-undefined
   }
 
   hasMaps() {
-    return this.context.fullData.some(d =>
+    return this.context.fullData.some((d) =>
       [...TRACE_TO_AXIS.geo, ...TRACE_TO_AXIS.mapbox].includes(d.type)
     );
   }

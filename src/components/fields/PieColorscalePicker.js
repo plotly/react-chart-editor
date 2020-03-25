@@ -59,7 +59,7 @@ export default connectToContainer(UnconnectedPieColorscalePicker, {
         (Array.isArray(plotProps.fullValue) && !plotProps.fullValue.length)) &&
       context.graphDiv.calcdata
     ) {
-      plotProps.fullValue = context.graphDiv.calcdata[0].map(d => d.color);
+      plotProps.fullValue = context.graphDiv.calcdata[0].map((d) => d.color);
     }
 
     if (context.traceIndexes.length > 1) {

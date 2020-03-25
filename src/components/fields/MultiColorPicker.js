@@ -13,16 +13,16 @@ const CustomColorscalePicker = connectToContainer(UnconnectedColorscalePicker, {
     if (
       props.attr === 'marker.color' &&
       context.fullData
-        .filter(t => context.traceIndexes.includes(t.index))
-        .every(t => t.marker && t.marker.color) &&
+        .filter((t) => context.traceIndexes.includes(t.index))
+        .every((t) => t.marker && t.marker.color) &&
       plotProps.fullValue &&
       typeof plotProps.fullValue === 'string'
     ) {
       plotProps.fullValue =
         context.fullData &&
         context.fullData
-          .filter(t => context.traceIndexes.includes(t.index))
-          .map(t => [0, t.marker.color]);
+          .filter((t) => context.traceIndexes.includes(t.index))
+          .map((t) => [0, t.marker.color]);
     }
   },
 });
@@ -34,7 +34,7 @@ class UnconnectedMultiColorPicker extends Component {
       selectedConstantColorOption:
         context.traceIndexes.length > 1 &&
         props.fullValue &&
-        props.fullValue.every(v => v[1] === props.fullValue[0][1])
+        props.fullValue.every((v) => v[1] === props.fullValue[0][1])
           ? 'single'
           : 'multiple',
     };
@@ -52,7 +52,7 @@ class UnconnectedMultiColorPicker extends Component {
 
   setColors(colorscale, colorscaleType) {
     const numberOfTraces = this.props.tracesToColor.length;
-    const colors = colorscale.map(c => c[1]);
+    const colors = colorscale.map((c) => c[1]);
 
     let adjustedColors = colors;
 
@@ -60,11 +60,11 @@ class UnconnectedMultiColorPicker extends Component {
       adjustedColors = adjustColorscale(colors, numberOfTraces, colorscaleType);
     }
 
-    if (adjustedColors.every(c => c === adjustedColors[0]) || colorscaleType === 'categorical') {
+    if (adjustedColors.every((c) => c === adjustedColors[0]) || colorscaleType === 'categorical') {
       adjustedColors = adjustColorscale(colors, numberOfTraces, colorscaleType, {repeat: true});
     }
 
-    const updates = adjustedColors.map(color => ({
+    const updates = adjustedColors.map((color) => ({
       [this.props.attr]: color,
     }));
 
@@ -98,7 +98,7 @@ class UnconnectedMultiColorPicker extends Component {
             onOptionChange={
               this.props.onConstantColorOptionChange
                 ? this.props.onConstantColorOptionChange
-                : value => this.setState({selectedConstantColorOption: value})
+                : (value) => this.setState({selectedConstantColorOption: value})
             }
           />
           <Info>{selectedConstantColorOption === 'single' ? singleMessage : multiMessage}</Info>
@@ -152,17 +152,17 @@ export default connectToContainer(UnconnectedMultiColorPicker, {
       let tracesToColor = [];
       const dedupedTraceIndexes = [];
 
-      context.traceIndexes.forEach(i => {
+      context.traceIndexes.forEach((i) => {
         if (!dedupedTraceIndexes.includes(i)) {
           dedupedTraceIndexes.push(i);
         }
       });
 
-      dedupedTraceIndexes.forEach(traceIndex => {
-        const traces = context.fullData.filter(trace => trace.index === traceIndex);
+      dedupedTraceIndexes.forEach((traceIndex) => {
+        const traces = context.fullData.filter((trace) => trace.index === traceIndex);
         tracesToColor = tracesToColor.concat(traces);
 
-        traces.forEach(t => {
+        traces.forEach((t) => {
           const value = nestedProperty(t, props.attr).get();
           if (value) {
             colors.push(value);
@@ -171,7 +171,7 @@ export default connectToContainer(UnconnectedMultiColorPicker, {
       });
 
       plotProps.tracesToColor = tracesToColor;
-      plotProps.fullValue = colors.map(c => [0, c]);
+      plotProps.fullValue = colors.map((c) => [0, c]);
     }
   },
 });

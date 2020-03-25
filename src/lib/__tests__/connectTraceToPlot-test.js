@@ -7,11 +7,11 @@ import {TestEditor, fixtures, plotly} from '../test-utils';
 import {mount} from 'enzyme';
 
 const Traces = [PlotlyPanel, PlotlyFold, PlotlySection].map(connectTraceToPlot);
-const Editor = props => <TestEditor {...{plotly, onUpdate: jest.fn(), ...props}} />;
+const Editor = (props) => <TestEditor {...{plotly, onUpdate: jest.fn(), ...props}} />;
 
 const defaultMarkerSize = 6;
 
-Traces.forEach(Trace => {
+Traces.forEach((Trace) => {
   describe(`<${Trace.displayName}>`, () => {
     it('wraps container with fullValue pointing to gd._fullData[i]', () => {
       const wrapper = mount(

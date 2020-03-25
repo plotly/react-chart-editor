@@ -59,7 +59,7 @@ describe('objectUtils', () => {
       const actualCounts = {};
       const actualKeys = [];
 
-      callback.mock.calls.forEach(call => {
+      callback.mock.calls.forEach((call) => {
         const [key, parent, path] = call;
         const pathString = path.join('.');
         actualCounts[pathString] = (actualCounts[pathString] || 0) + 1;
@@ -74,7 +74,7 @@ describe('objectUtils', () => {
 
       // We should get each key *once*.
       expect(actualKeys.length).toEqual(expectedKeys.length);
-      expectedKeys.forEach(key => {
+      expectedKeys.forEach((key) => {
         expect(actualKeys.indexOf(key)).not.toEqual(-1);
       });
     });
@@ -143,7 +143,7 @@ describe('objectUtils', () => {
       const actualCounts = {};
       const actualKeys = [];
 
-      callback.mock.calls.forEach(call => {
+      callback.mock.calls.forEach((call) => {
         const [key, parent, path] = call;
         const pathString = path.join('.');
         actualCounts[pathString] = (actualCounts[pathString] || 0) + 1;
@@ -158,7 +158,7 @@ describe('objectUtils', () => {
 
       // We should get each key *once*.
       expect(actualKeys.length).toEqual(expectedKeys.length);
-      expectedKeys.forEach(key => {
+      expectedKeys.forEach((key) => {
         expect(actualKeys.indexOf(key)).not.toEqual(-1);
       });
     });
@@ -208,7 +208,7 @@ describe('objectUtils', () => {
       const actualCounts = {};
       const actualKeys = [];
 
-      callback.mock.calls.forEach(call => {
+      callback.mock.calls.forEach((call) => {
         const [key, parent, path] = call;
         const pathString = path.join('.');
         actualCounts[pathString] = (actualCounts[pathString] || 0) + 1;
@@ -262,7 +262,7 @@ describe('objectUtils', () => {
         pathType: 'nestedProperty',
       });
 
-      let actualPaths = callback.mock.calls.map(args => args[2]);
+      let actualPaths = callback.mock.calls.map((args) => args[2]);
       let expectedPaths = ['a', 'b', 'b[0]', 'b[0].c', 'b[1]', 'b[2]'];
 
       expect(actualPaths).toEqual(expectedPaths);
@@ -274,7 +274,7 @@ describe('objectUtils', () => {
         pathType: 'nestedProperty',
       });
 
-      actualPaths = callback.mock.calls.map(args => args[2]);
+      actualPaths = callback.mock.calls.map((args) => args[2]);
       expectedPaths = [
         'undefined',
         'b',

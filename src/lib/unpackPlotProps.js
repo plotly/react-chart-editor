@@ -4,7 +4,7 @@ import nestedProperty from 'plotly.js/src/lib/nested_property';
 import isNumeric from 'fast-isnumeric';
 import {MULTI_VALUED, MULTI_VALUED_PLACEHOLDER} from './constants';
 
-const hasFullValue = fullValue => fullValue !== void 0 && fullValue !== null;
+const hasFullValue = (fullValue) => fullValue !== void 0 && fullValue !== null;
 
 export function hasValidCustomConfigVisibilityRules(customConfig) {
   if (
@@ -21,7 +21,7 @@ export function hasValidCustomConfigVisibilityRules(customConfig) {
     }
 
     if (
-      !Object.keys(customConfig.visibility_rules).some(key =>
+      !Object.keys(customConfig.visibility_rules).some((key) =>
         ['blacklist', 'whitelist'].includes(key)
       )
     ) {
@@ -31,7 +31,7 @@ export function hasValidCustomConfigVisibilityRules(customConfig) {
       return false;
     }
 
-    const isValidRule = rule => {
+    const isValidRule = (rule) => {
       if (rule.exceptions) {
         return rule.exceptions.every(isValidRule);
       }
@@ -65,15 +65,15 @@ export function hasValidCustomConfigVisibilityRules(customConfig) {
 export function computeCustomConfigVisibility(props, customConfig, wrappedComponentDisplayName) {
   let isVisible;
 
-  const isRegexMatch = rule => {
+  const isRegexMatch = (rule) => {
     const stringToTest = rule.type === 'attrName' ? props.attr : wrappedComponentDisplayName;
     return RegExp(rule.regex_match).test(stringToTest);
   };
 
-  const passesTest = rule => {
-    const hasException = rule => {
+  const passesTest = (rule) => {
+    const hasException = (rule) => {
       if (rule.exceptions) {
-        return rule.exceptions.some(exception => passesTest(exception));
+        return rule.exceptions.some((exception) => passesTest(exception));
       }
       return false;
     };
@@ -144,7 +144,7 @@ export default function unpackPlotProps(props, context) {
     description = attrMeta.description;
   }
 
-  const updatePlot = v => {
+  const updatePlot = (v) => {
     if (updateContainer) {
       updateContainer({[props.attr]: v});
     }

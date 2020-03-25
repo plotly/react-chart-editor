@@ -42,7 +42,7 @@ describe('computeCustomConfigVisibility', () => {
       'colorscale.tickcolor': false,
     };
 
-    Object.keys(cases).forEach(c => validate(c, cases, customConfig));
+    Object.keys(cases).forEach((c) => validate(c, cases, customConfig));
   });
 
   it('correctly whitelists attributes taking into account exceptions', () => {
@@ -58,7 +58,7 @@ describe('computeCustomConfigVisibility', () => {
       'colorscale.tickcolor': true,
     };
 
-    Object.keys(cases).forEach(c => validate(c, cases, config));
+    Object.keys(cases).forEach((c) => validate(c, cases, config));
   });
 
   it('correctly displays visibility based on controlType', () => {
@@ -82,7 +82,7 @@ describe('computeCustomConfigVisibility', () => {
 
     const case1 = {'marker.color': false};
     const case2 = {'marker.color': true};
-    Object.keys(case1).forEach(c => validate(c, case1, config, 'ColorscalePicker'));
-    Object.keys(case2).forEach(c => validate(c, case2, config, 'AnotherPicker'));
+    Object.keys(case1).forEach((c) => validate(c, case1, config, 'ColorscalePicker'));
+    Object.keys(case2).forEach((c) => validate(c, case2, config, 'AnotherPicker'));
   });
 });

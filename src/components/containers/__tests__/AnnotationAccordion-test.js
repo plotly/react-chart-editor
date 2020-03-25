@@ -60,10 +60,7 @@ describe('<AnnotationAccordion>', () => {
         </LayoutPanel>
       </TestEditor>
     );
-    editor
-      .find('.js-fold__delete')
-      .at(0)
-      .simulate('click');
+    editor.find('.js-fold__delete').at(0).simulate('click');
 
     const update = beforeDeleteAnnotation.mock.calls[0][0];
     expect(update.annotationIndex).toBe(0);

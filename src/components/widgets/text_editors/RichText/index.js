@@ -334,7 +334,7 @@ class RichText extends Component {
             onFocus={this.onFocus}
             placeholder={this.props.placeholder}
             spellCheck={false}
-            ref={input => (this.editorInput = input)}
+            ref={(input) => (this.editorInput = input)}
           />
         </div>
         {this.renderLinkEditor(selectedLinkID)}

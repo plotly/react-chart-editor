@@ -18,7 +18,7 @@ export class UnconnectedDropdownCustom extends Component {
     this.state = {
       custom:
         this.value === props.customOpt ||
-        !this.props.options.map(o => o.value).includes(this.value),
+        !this.props.options.map((o) => o.value).includes(this.value),
     };
   }
 
@@ -47,7 +47,7 @@ export class UnconnectedDropdownCustom extends Component {
   render() {
     const {options, attr, customOpt} = this.props;
     const value =
-      (this.value === '' || !options.map(o => o.value).includes(this.value)) && this.state.custom
+      (this.value === '' || !options.map((o) => o.value).includes(this.value)) && this.state.custom
         ? customOpt
         : this.value;
 
@@ -66,8 +66,8 @@ export class UnconnectedDropdownCustom extends Component {
         {this.state.custom && (
           <Text
             attr={attr}
-            updatePlot={value => this.setValue(value, true)}
-            onChange={value => {
+            updatePlot={(value) => this.setValue(value, true)}
+            onChange={(value) => {
               if (value) {
                 this.setValue(value, true);
               }

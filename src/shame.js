@@ -46,14 +46,14 @@ function clearAxisTypes(gd, traces) {
 
 export const shamefullyAdjustAxisRef = (graphDiv, payload) => {
   if (payload.axesToBeGarbageCollected) {
-    payload.axesToBeGarbageCollected.forEach(a => {
+    payload.axesToBeGarbageCollected.forEach((a) => {
       const axis = a.charAt(0);
       const axisIdNumber = Number(a.slice(1));
 
       nestedProperty(graphDiv.layout, `${axis}axis${axisIdNumber || ''}`).set(null);
       Object.keys(graphDiv.layout)
-        .filter(key => key.startsWith(axis + 'axis'))
-        .forEach(key => {
+        .filter((key) => key.startsWith(axis + 'axis'))
+        .forEach((key) => {
           if (nestedProperty(graphDiv.layout, `${key}.overlaying`).get() === a) {
             nestedProperty(graphDiv.layout, `${key}.overlaying`).set(null);
           }
@@ -67,7 +67,7 @@ export const shamefullyAdjustAxisRef = (graphDiv, payload) => {
 
 const geoRegex = /^(geo\d*)\./;
 export const shamefullyAdjustGeo = ({layout}, {update}) => {
-  Object.keys(update).forEach(k => {
+  Object.keys(update).forEach((k) => {
     const geoMatch = geoRegex.exec(k);
     if (geoMatch) {
       const geo = geoMatch[1];
@@ -89,7 +89,7 @@ export const shamefullyAdjustGeo = ({layout}, {update}) => {
   });
 };
 
-export const shamefullyAdjustMapbox = gd => {
+export const shamefullyAdjustMapbox = (gd) => {
   if (gd.layout && gd.layout.mapbox && gd.layout.mapbox.style) {
     return;
   }
@@ -119,13 +119,13 @@ export const shamefullyAdjustSplitStyleTargetContainers = (graphDiv, {traceIndex
         // Create style containers for all groups
         if (!transform.styles.length && update[attr] && Array.isArray(update[attr])) {
           const dedupedGroups = [];
-          update[attr].forEach(group => {
+          update[attr].forEach((group) => {
             if (!dedupedGroups.includes(group)) {
               dedupedGroups.push(group);
             }
           });
 
-          const styles = dedupedGroups.map(groupEl => ({
+          const styles = dedupedGroups.map((groupEl) => ({
             target: groupEl,
             value: {},
           }));
@@ -168,7 +168,7 @@ export const shamefullyCreateSplitStyleProps = (graphDiv, attr, traceIndex, spli
     let path =
       graphDiv.data[traceIndex].transforms[indexOfSplitTransform].styles[indexOfStyleObject].value;
 
-    attr.split('.').forEach(p => {
+    attr.split('.').forEach((p) => {
       if (!path[p]) {
         path[p] = {};
       }
@@ -181,7 +181,7 @@ export const shamefullyCreateSplitStyleProps = (graphDiv, attr, traceIndex, spli
     );
   }
 
-  return splitTraceGroup.map(g => getProp(g));
+  return splitTraceGroup.map((g) => getProp(g));
 };
 
 export const shamefullyDeleteRelatedAnalysisTransforms = (graphDiv, payload) => {
@@ -194,7 +194,7 @@ export const shamefullyDeleteRelatedAnalysisTransforms = (graphDiv, payload) => 
       if (
         d.transforms &&
         d.transforms.some(
-          transform =>
+          (transform) =>
             ['moving-average', 'fit'].includes(transform.type) && transform.inputUid === parentUid
         )
       ) {
@@ -203,7 +203,7 @@ export const shamefullyDeleteRelatedAnalysisTransforms = (graphDiv, payload) => 
     });
 
     if (relatedAnalysisTraceIndexes.length) {
-      relatedAnalysisTraceIndexes.forEach(i => {
+      relatedAnalysisTraceIndexes.forEach((i) => {
         graphDiv.data.splice(i, 1);
       });
     }

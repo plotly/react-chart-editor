@@ -72,8 +72,8 @@ export default function connectAxesToLayout(WrappedComponent) {
 
       if (axesTarget === 'allaxes') {
         const multiValuedContainer = deepCopyPublic(this.axes[0]);
-        this.axes.slice(1).forEach(ax =>
-          Object.keys(ax).forEach(key =>
+        this.axes.slice(1).forEach((ax) =>
+          Object.keys(ax).forEach((key) =>
             setMultiValuedContainer(multiValuedContainer, deepCopyPublic(ax), key, {
               searchArrays: true,
             })
@@ -90,7 +90,7 @@ export default function connectAxesToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
-        getValObject: attr =>
+        getValObject: (attr) =>
           !this.context.getValObject
             ? null
             : this.context.getValObject(`${this.state.axesTarget}.${attr}`),

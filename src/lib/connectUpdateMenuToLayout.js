@@ -26,7 +26,7 @@ export default function connectUpdateMenuToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
-        getValObject: attr =>
+        getValObject: (attr) =>
           !this.context.getValObject ? null : this.context.getValObject(`updatemenus[].${attr}`),
         updateContainer: this.updateUpdateMenu,
         container: this.container,

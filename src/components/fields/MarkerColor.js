@@ -147,7 +147,7 @@ class UnconnectedMarkerColor extends Component {
     // TO DO: https://github.com/plotly/react-chart-editor/issues/654
     const noSplitsPresent =
       container &&
-      (!container.transforms || !container.transforms.filter(t => t.type === 'groupby').length);
+      (!container.transforms || !container.transforms.filter((t) => t.type === 'groupby').length);
 
     if (noSplitsPresent) {
       const {type} = this.state;

@@ -9,7 +9,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const LinkDecorator = props => {
+const LinkDecorator = (props) => {
   return (
     <a href="#" style={props.style}>
       {props.children}

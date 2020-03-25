@@ -34,8 +34,8 @@ class Scale extends Component {
     const {selectedColorscaleType, showColorscalePicker} = this.state;
     const description = COLOR_PICKER_CONSTANTS.COLORSCALE_DESCRIPTIONS[selectedColorscaleType];
     const colorscaleOptions = COLOR_PICKER_CONSTANTS.COLORSCALE_TYPES.filter(
-      type => type !== 'custom'
-    ).map(type => ({
+      (type) => type !== 'custom'
+    ).map((type) => ({
       label: type + ' scales',
       value: type,
     }));

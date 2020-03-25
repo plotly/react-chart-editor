@@ -19,7 +19,7 @@ class UnconnectedAxisCreator extends Component {
     const currentAxisId = this.props.fullContainer[this.props.attr];
     const currentTraceIndex = this.props.fullContainer.index;
     return this.context.fullData.some(
-      d => d.index !== currentTraceIndex && d[this.props.attr] === currentAxisId
+      (d) => d.index !== currentTraceIndex && d[this.props.attr] === currentAxisId
     );
   }
 
@@ -63,7 +63,7 @@ class UnconnectedAxisCreator extends Component {
     if (
       currentAxisId !== update &&
       !this.context.fullData.some(
-        trace =>
+        (trace) =>
           trace[this.props.attr] === currentAxisId && trace.index !== this.props.fullContainer.index
       )
     ) {
@@ -94,7 +94,7 @@ class UnconnectedAxisCreator extends Component {
         attr={this.props.attr}
         clearable={false}
         options={this.props.options}
-        updatePlot={u => this.updateAxis(u)}
+        updatePlot={(u) => this.updateAxis(u)}
         extraComponent={extraComponent}
       />
     );
@@ -123,7 +123,7 @@ class UnconnectedAxesCreator extends Component {
   render() {
     const axisType = traceTypeToAxisType(this.props.container.type);
     const isFirstTraceOfAxisType =
-      this.context.data.filter(d => traceTypeToAxisType(d.type) === axisType).length === 1;
+      this.context.data.filter((d) => traceTypeToAxisType(d.type) === axisType).length === 1;
 
     if (isFirstTraceOfAxisType) {
       return null;
@@ -133,7 +133,7 @@ class UnconnectedAxesCreator extends Component {
     const controls = [];
 
     function getOptions(axisType) {
-      return fullLayout._subplots[axisType].map(axisId => ({
+      return fullLayout._subplots[axisType].map((axisId) => ({
         label: getParsedTemplateString(getAxisTitle(fullLayout[axisIdToAxisName(axisId)]), {
           meta: fullLayout.meta,
         }),

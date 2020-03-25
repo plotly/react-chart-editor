@@ -51,10 +51,7 @@ describe('<TraceAccordion>', () => {
       </TestEditor>
     );
 
-    editor
-      .find('.js-fold__delete')
-      .at(0)
-      .simulate('click');
+    editor.find('.js-fold__delete').at(0).simulate('click');
 
     expect(beforeDeleteTrace).toBeCalled();
     const update = beforeDeleteTrace.mock.calls[0][0];

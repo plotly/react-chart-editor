@@ -21,14 +21,14 @@ export const AxisAnchorDropdown = connectToContainer(UnconnectedDropdown, {
     let options = [];
 
     if (props.attr.startsWith('xaxis')) {
-      options = context.fullLayout._subplots.yaxis.map(axis => {
+      options = context.fullLayout._subplots.yaxis.map((axis) => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
           value: axis,
         };
       });
     } else if (props.attr.startsWith('yaxis')) {
-      options = context.fullLayout._subplots.xaxis.map(axis => {
+      options = context.fullLayout._subplots.xaxis.map((axis) => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
           value: axis,
@@ -46,14 +46,14 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
     let options = [];
 
     if (props.attr.startsWith('xaxis')) {
-      options = context.fullLayout._subplots.xaxis.map(axis => {
+      options = context.fullLayout._subplots.xaxis.map((axis) => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
           value: axis,
         };
       });
     } else if (props.attr.startsWith('yaxis')) {
-      options = context.fullLayout._subplots.yaxis.map(axis => {
+      options = context.fullLayout._subplots.yaxis.map((axis) => {
         return {
           label: getAxisTitle(context.fullLayout[axisIdToAxisName(axis)]),
           value: axis,
@@ -65,7 +65,7 @@ export const AxisOverlayDropdown = connectToContainer(UnconnectedDropdown, {
 
     // filter out the current axisID, can't overlay over itself
     plotProps.options = options.filter(
-      option =>
+      (option) =>
         context.fullContainer &&
         context.fullContainer.xaxis &&
         context.fullContainer.yaxis &&
@@ -276,7 +276,7 @@ const numericFractionModifyPlotProps = (props, context, plotProps) => {
     plotProps.fullValue = Math.round((100 * (fullValue - min)) / (max - min));
   }
 
-  plotProps.updatePlot = v => {
+  plotProps.updatePlot = (v) => {
     if (isNumeric(v)) {
       updatePlot((v / 100) * (max - min) + min);
     } else {
@@ -307,7 +307,7 @@ export const NumericFractionInverse = connectToContainer(UnconnectedNumericFract
       plotProps.fullValue = Math.round((1 - fullValue) * 100);
     }
 
-    plotProps.updatePlot = v => {
+    plotProps.updatePlot = (v) => {
       if (isNumeric(v)) {
         updatePlot(1 - v / 100);
       } else {
@@ -336,7 +336,7 @@ export const NumericReciprocal = connectToContainer(UnconnectedNumeric, {
       plotProps.fullValue = 1 / fullValue;
     }
 
-    plotProps.updatePlot = v => {
+    plotProps.updatePlot = (v) => {
       if (isNumeric(v)) {
         updatePlot(1 / v);
       } else {
@@ -374,7 +374,7 @@ export const AnnotationArrowRef = connectToContainer(UnconnectedDropdown, {
     if (currentAxisRef === 'paper') {
       // If currentAxesRef is paper provide all axes options to user.
 
-      const axes = getAllAxes(context.fullLayout).filter(a => a._id);
+      const axes = getAllAxes(context.fullLayout).filter((a) => a._id);
       if (axes.length > 0) {
         plotProps.options = [
           {label: _('in pixels'), value: 'pixel'},
@@ -419,7 +419,7 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
       );
     }
 
-    const axes = getAllAxes(context.fullLayout).filter(a => a._id);
+    const axes = getAllAxes(context.fullLayout).filter((a) => a._id);
     if (axes.length > 0) {
       plotProps.options = [
         {label: _('Canvas'), value: 'paper'},
@@ -430,7 +430,7 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
     }
 
     if (currentOffsetRef !== 'pixel') {
-      plotProps.updatePlot = v => {
+      plotProps.updatePlot = (v) => {
         if (!plotProps.updateContainer) {
           return;
         }
@@ -455,7 +455,7 @@ export const AnnotationRef = connectToContainer(UnconnectedDropdown, {
 
 export const PositioningRef = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
-    const axes = getAllAxes(context.fullLayout).filter(a => a._id);
+    const axes = getAllAxes(context.fullLayout).filter((a) => a._id);
     if (axes.length > 0) {
       plotProps.options = [
         {label: 'Canvas', value: 'paper'},
@@ -486,7 +486,7 @@ export const PositioningNumeric = connectToContainer(UnconnectedNumericOrDate, {
         plotProps.fullValue = Math.round(100 * fullValue);
       }
 
-      plotProps.updatePlot = v => {
+      plotProps.updatePlot = (v) => {
         if (isNumeric(v)) {
           updatePlot(v / 100);
         } else {
@@ -698,7 +698,7 @@ export const MapboxSourceArray = connectToContainer(Text, {
       plotProps.fullValue = fullValue[0];
     }
 
-    plotProps.updatePlot = v => {
+    plotProps.updatePlot = (v) => {
       if (v.length) {
         updatePlot([v]);
       } else {
@@ -807,7 +807,7 @@ export const LevelRendered = connectToContainer(UnconnectedDropdown, {
     if (context.container.ids && context.container.ids.length) {
       plotProps.isVisible = true;
       plotProps.options = [{label: _('Root'), value: ''}].concat(
-        context.container.ids.map(i => ({label: i, value: i}))
+        context.container.ids.map((i) => ({label: i, value: i}))
       );
     }
   },

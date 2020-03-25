@@ -27,7 +27,7 @@ export class UnconnectedTextEditor extends Component {
     let adjustedValue = value;
 
     if (templateStrings) {
-      adjustedValue = adjustedValue.replace(TEMPLATE_STRING_REGEX, match => {
+      adjustedValue = adjustedValue.replace(TEMPLATE_STRING_REGEX, (match) => {
         const index = INDEX_IN_TEMPLATE_STRING_REGEX.exec(match);
         if (index) {
           const adjustedIndex = parseInt(index[3], 10) - 1;
@@ -45,7 +45,7 @@ export class UnconnectedTextEditor extends Component {
   getAdjustedFullValue(fullValue) {
     const templateStrings = this.hasTemplateStrings(fullValue);
     if (templateStrings) {
-      return fullValue.replace(TEMPLATE_STRING_REGEX, match => {
+      return fullValue.replace(TEMPLATE_STRING_REGEX, (match) => {
         const index = INDEX_IN_TEMPLATE_STRING_REGEX.exec(match);
         if (index) {
           const adjustedIndex = parseInt(index[3], 10) + 1;

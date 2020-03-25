@@ -47,7 +47,7 @@ export class Panel extends Component {
 
   toggleFolds() {
     const {individualFoldStates} = this.state;
-    const hasOpen = individualFoldStates.length > 0 && individualFoldStates.some(s => s !== true);
+    const hasOpen = individualFoldStates.length > 0 && individualFoldStates.some((s) => s !== true);
     this.setState({
       individualFoldStates: individualFoldStates.map(() => hasOpen),
     });
@@ -61,7 +61,7 @@ export class Panel extends Component {
     // to get proper number of child folds and initialize component state
     let numFolds = 0;
 
-    React.Children.forEach(this.props.children, child => {
+    React.Children.forEach(this.props.children, (child) => {
       if (((child && child.type && child.type.plotly_editor_traits) || {}).foldable) {
         numFolds++;
       }
@@ -114,7 +114,7 @@ export class Panel extends Component {
           addAction={this.props.addAction}
           allowCollapse={this.props.showExpandCollapse && individualFoldStates.length > 1}
           toggleFolds={this.toggleFolds}
-          hasOpen={individualFoldStates.some(s => s === false)}
+          hasOpen={individualFoldStates.some((s) => s === false)}
         />
         <div className={bem('panel', 'content')}>{newChildren}</div>
       </div>

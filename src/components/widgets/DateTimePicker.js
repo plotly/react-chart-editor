@@ -136,7 +136,7 @@ export default class DateTimePicker extends Component {
     }, []);
 
     const isNoon =
-      parsedTime[0] === '12' && parsedTime.slice(1).every(part => parseInt(part, 10) === 0);
+      parsedTime[0] === '12' && parsedTime.slice(1).every((part) => parseInt(part, 10) === 0);
 
     return !isValidDateTime || time === '' || JSDate.toDateString() === 'Invalid Date'
       ? ''
@@ -271,7 +271,7 @@ export default class DateTimePicker extends Component {
                   className="datepicker-container-rce"
                   modifiers={{highlighted: isValidJSDate ? JSDate : ''}}
                   month={isValidJSDate ? JSDate : new Date()}
-                  onDayClick={value => {
+                  onDayClick={(value) => {
                     const plotlyDate = this.toPlotlyJSDate(value).split(' ')[0];
                     this.onDateChange(plotlyDate);
                     this.onDateUpdate(plotlyDate);

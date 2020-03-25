@@ -8,7 +8,7 @@
  */
 import {Entity} from 'draft-js';
 
-const characterIsLinkEntity = character => {
+const characterIsLinkEntity = (character) => {
   const entityKey = character.getEntity();
 
   if (entityKey === null) {

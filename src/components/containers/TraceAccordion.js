@@ -30,7 +30,7 @@ class TraceAccordion extends Component {
 
     if (base && base.length && context.fullData.length) {
       this.filteredTraces = base.filter((t, i) => {
-        const fullTrace = props.canGroup ? t : context.fullData.filter(tr => tr.index === i)[0];
+        const fullTrace = props.canGroup ? t : context.fullData.filter((tr) => tr.index === i)[0];
 
         if (fullTrace) {
           const trace = context.data[fullTrace.index];
@@ -54,7 +54,7 @@ class TraceAccordion extends Component {
     const dataArrayPositionsByTraceType = {};
     const fullDataArrayPositionsByTraceType = {};
 
-    this.filteredTraces.forEach(trace => {
+    this.filteredTraces.forEach((trace) => {
       const traceType = plotlyTraceToCustomTrace(trace);
       if (!dataArrayPositionsByTraceType[traceType]) {
         dataArrayPositionsByTraceType[traceType] = [];
@@ -73,7 +73,7 @@ class TraceAccordion extends Component {
       <TraceFold
         key={index}
         traceIndexes={dataArrayPositionsByTraceType[type]}
-        name={traceTypes(_).find(t => t.value === type).label}
+        name={traceTypes(_).find((t) => t.value === type).label}
         fullDataArrayPosition={fullDataArrayPositionsByTraceType[type]}
       >
         {this.props.children}
