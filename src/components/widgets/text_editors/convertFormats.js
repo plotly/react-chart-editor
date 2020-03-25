@@ -8,9 +8,9 @@ const getTextBlockRegExp = () => /\\text\{([^}]*)}/g;
  */
 const getLaTeXWrappedRegExp = () => /^\$[\s\S]*\$$/;
 
-const stripHTMLTags = html => html.replace(/<[^>]*>/g, '').trim();
+const stripHTMLTags = (html) => html.replace(/<[^>]*>/g, '').trim();
 
-const extractTextBlocks = laTeX => {
+const extractTextBlocks = (laTeX) => {
   let matchObj;
   let matchStr;
   const matches = [];
@@ -32,23 +32,23 @@ const extractTextBlocks = laTeX => {
   return matches.join('<br>');
 };
 
-const wrapLaTeX = value => (value ? `$${value}$` : '$$');
+const wrapLaTeX = (value) => (value ? `$${value}$` : '$$');
 
-const wrapText = value => (value ? `\\text{${value}}` : '\\text{}');
+const wrapText = (value) => (value ? `\\text{${value}}` : '\\text{}');
 
 // Exports
 // -------
 
-export const isLaTeXExpr = value => getLaTeXWrappedRegExp().test(value);
+export const isLaTeXExpr = (value) => getLaTeXWrappedRegExp().test(value);
 
-export const hasTextExpression = laTeX => {
+export const hasTextExpression = (laTeX) => {
   const regExp = getTextBlockRegExp();
   const stringifiedLaTeX = JSON.stringify(laTeX);
 
   return regExp.test(stringifiedLaTeX);
 };
 
-export const htmlToLaTeX = html => {
+export const htmlToLaTeX = (html) => {
   const breakTag = '<br>';
   const trimmedHTML = html.trim();
 
@@ -67,12 +67,12 @@ export const htmlToLaTeX = html => {
       .split(breakTag)
 
       // Ignore empty linebreaks
-      .map(para => (para.length ? wrapText(stripHTMLTags(para)) : ''))
+      .map((para) => (para.length ? wrapText(stripHTMLTags(para)) : ''))
       .join('\n')
   );
 };
 
-export const laTeXToHTML = laTeX => {
+export const laTeXToHTML = (laTeX) => {
   const trimmedLaTeX = laTeX.trim();
 
   return extractTextBlocks(trimmedLaTeX);

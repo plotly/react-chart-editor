@@ -213,9 +213,9 @@ class MultiFormatTextEditor extends Component {
     });
     const bottomTabClassNames = classnames('multi-format-editor__tab', 'bottom-tab');
 
-    const Editor = this.editors.filter(editor => editor.key === currentTab)[0].component;
+    const Editor = this.editors.filter((editor) => editor.key === currentTab)[0].component;
 
-    const ModeTabsText = this.editors.map(editor => editor.label);
+    const ModeTabsText = this.editors.map((editor) => editor.label);
 
     const showBottomTab = currentTab === 'HTML' || currentTab === 'RICH_TEXT';
     const BottomTab =

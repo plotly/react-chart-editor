@@ -22,7 +22,7 @@ class UpdateMenuButtons extends Component {
         attr="buttons"
         label={_('Button')}
         options={options}
-        updatePlot={index => this.setState({currentButtonIndex: index})}
+        updatePlot={(index) => this.setState({currentButtonIndex: index})}
         clearable={false}
         fullValue={this.state.currentButtonIndex}
       />

@@ -96,9 +96,9 @@ class LinkEditor extends Component {
           className="rich-text-editor__link-editor__input"
           onBlur={onBlur}
           onFocus={onFocus}
-          onChange={ev => this.onInputChange(ev.target.value)}
-          onKeyDown={ev => this.onInputKeyDown(ev)}
-          ref={input => (this.input = input)}
+          onChange={(ev) => this.onInputChange(ev.target.value)}
+          onKeyDown={(ev) => this.onInputKeyDown(ev)}
+          ref={(input) => (this.input = input)}
           value={linkURL}
           placeholder={placeholderText}
         />

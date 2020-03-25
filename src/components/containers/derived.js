@@ -16,7 +16,7 @@ const TraceTypeSection = (props, context) => {
     mode === 'trace' && fullContainer && traceTypes.includes(fullContainer.type);
 
   const ifConnectedToLayout =
-    mode === 'layout' && fullData && fullData.some(t => traceTypes.includes(t.type));
+    mode === 'layout' && fullData && fullData.some((t) => traceTypes.includes(t.type));
 
   if (ifConnectedToTrace || ifConnectedToLayout) {
     return <PlotlySection {...props} />;

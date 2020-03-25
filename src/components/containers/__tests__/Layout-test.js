@@ -7,9 +7,9 @@ import {connectLayoutToPlot} from 'lib';
 import {mount} from 'enzyme';
 
 const Layouts = [PlotlyPanel, PlotlyFold, PlotlySection].map(connectLayoutToPlot);
-const Editor = props => <TestEditor {...{onUpdate: jest.fn(), ...props}} />;
+const Editor = (props) => <TestEditor {...{onUpdate: jest.fn(), ...props}} />;
 
-Layouts.forEach(Layout => {
+Layouts.forEach((Layout) => {
   describe(`<${Layout.displayName}>`, () => {
     it(`wraps container with fullValue pointing to gd._fullLayout`, () => {
       const wrapper = mount(

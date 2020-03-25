@@ -25,7 +25,7 @@ export const traceHasColorbar = (trace, fullTrace) =>
 const StyleColorBarsPanel = (props, {localize: _}) => {
   return (
     <TraceAccordion traceFilterCondition={traceHasColorbar}>
-      {['', 'marker.'].map(prefix => {
+      {['', 'marker.'].map((prefix) => {
         return (
           <VisibilitySelect
             attr={prefix + 'showscale'}

@@ -645,7 +645,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <TraceTypeSection
       name={_('Text')}
       traceTypes={allTraceTypes.filter(
-        t =>
+        (t) =>
           ![
             'histogram2d',
             'histogram2dcontour',

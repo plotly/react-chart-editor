@@ -31,7 +31,7 @@ class EditorControls extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.localize = key => localizeString(this.props.dictionaries || {}, this.props.locale, key);
+    this.localize = (key) => localizeString(this.props.dictionaries || {}, this.props.locale, key);
 
     // we only need to compute this once.
     if (this.props.plotly) {
@@ -107,7 +107,7 @@ class EditorControls extends Component {
               props = shamefullyCreateSplitStyleProps(graphDiv, attr, traceIndex, splitTraceGroup);
             }
 
-            props.forEach(p => {
+            props.forEach((p) => {
               if (value !== void 0) {
                 p.set(value);
               }
@@ -429,8 +429,8 @@ EditorControls.defaultProps = {
   showFieldTooltips: false,
   locale: 'en',
   traceTypesConfig: {
-    categories: _ => categoryLayout(_),
-    traces: _ => traceTypes(_),
+    categories: (_) => categoryLayout(_),
+    traces: (_) => traceTypes(_),
     complex: true,
   },
   fontOptions: DEFAULT_FONTS,

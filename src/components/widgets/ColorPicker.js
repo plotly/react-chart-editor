@@ -7,9 +7,9 @@ import {CustomPicker as customPicker} from 'react-color';
 
 // Utility functions for converting ColorPicker color objects or raw strings
 // into TinyColor objects.
-const extractRGB = c => c.rgb || c;
-const getColorSource = c => (c.source === 'hex' ? c.hex : extractRGB(c));
-const toTinyColor = c => tinycolor(getColorSource(c));
+const extractRGB = (c) => c.rgb || c;
+const getColorSource = (c) => (c.source === 'hex' ? c.hex : extractRGB(c));
+const toTinyColor = (c) => tinycolor(getColorSource(c));
 
 class Custom extends Component {
   render() {

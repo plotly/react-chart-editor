@@ -26,15 +26,15 @@ class TransformAccordion extends Component {
 
     const transformBy =
       container.transforms &&
-      container.transforms.map(tr => {
+      container.transforms.map((tr) => {
         let foldNameSuffix = '';
         if (tr.groupssrc) {
           const groupssrc =
-            dataSourceOptions && dataSourceOptions.find(d => d.value === tr.groupssrc);
+            dataSourceOptions && dataSourceOptions.find((d) => d.value === tr.groupssrc);
           foldNameSuffix = `: ${groupssrc && groupssrc.label ? groupssrc.label : tr.groupssrc}`;
         } else if (tr.targetsrc) {
           const targetsrc =
-            dataSourceOptions && dataSourceOptions.find(d => d.value === tr.targetsrc);
+            dataSourceOptions && dataSourceOptions.find((d) => d.value === tr.targetsrc);
           foldNameSuffix = `: ${targetsrc && targetsrc.label ? targetsrc.label : tr.targetsrc}`;
         }
         return foldNameSuffix;
@@ -47,8 +47,9 @@ class TransformAccordion extends Component {
         <TransformFold
           key={i}
           transformIndex={i}
-          name={`${transformTypes.filter(({type}) => type === tr.type)[0].label}${transformBy &&
-            transformBy[i]}`}
+          name={`${transformTypes.filter(({type}) => type === tr.type)[0].label}${
+            transformBy && transformBy[i]
+          }`}
           canDelete={true}
         >
           {children}
@@ -58,8 +59,8 @@ class TransformAccordion extends Component {
     // cannot have 2 Split transforms on one trace:
     // https://github.com/plotly/plotly.js/issues/1742
     const addActionOptions =
-      container.transforms && container.transforms.some(t => t.type === 'groupby')
-        ? transformTypes.filter(t => t.type !== 'groupby')
+      container.transforms && container.transforms.some((t) => t.type === 'groupby')
+        ? transformTypes.filter((t) => t.type !== 'groupby')
         : transformTypes;
 
     const addAction = {
@@ -67,7 +68,7 @@ class TransformAccordion extends Component {
       handler: addActionOptions.map(({label, type}) => {
         return {
           label,
-          handler: context => {
+          handler: (context) => {
             const {fullContainer, updateContainer} = context;
             if (updateContainer) {
               const transformIndex = Array.isArray(fullContainer.transforms)

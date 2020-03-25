@@ -9,7 +9,7 @@ export default function connectLayoutToPlot(WrappedComponent) {
     getChildContext() {
       const {layout, fullLayout, plotly, onUpdate} = this.context;
 
-      const updateContainer = update => {
+      const updateContainer = (update) => {
         if (!onUpdate) {
           return;
         }
@@ -22,7 +22,7 @@ export default function connectLayoutToPlot(WrappedComponent) {
       };
 
       return {
-        getValObject: attr =>
+        getValObject: (attr) =>
           !plotly
             ? null
             : plotly.PlotSchema.getLayoutValObject(fullLayout, nestedProperty({}, attr).parts),

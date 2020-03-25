@@ -22,7 +22,7 @@ class UpdateMenuAccordion extends Component {
           buttons: _('Buttons'),
         };
         const menuType = localizedType[upd.type] || localizedType.dropdown;
-        const activeBtn = upd.buttons.filter(b => b._index === upd.active)[0];
+        const activeBtn = upd.buttons.filter((b) => b._index === upd.active)[0];
         const foldName = menuType + (activeBtn ? ': ' + activeBtn.label : '');
 
         return (

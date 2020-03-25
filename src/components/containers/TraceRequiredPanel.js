@@ -5,7 +5,7 @@ import {LayoutPanel} from './derived';
 
 class TraceRequiredPanel extends Component {
   hasTrace() {
-    return this.context.fullData.filter(trace => trace.visible).length > 0;
+    return this.context.fullData.filter((trace) => trace.visible).length > 0;
   }
 
   render() {

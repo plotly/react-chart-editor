@@ -43,14 +43,14 @@ const computeOptions = (strokeData, stroke) =>
     value,
   }));
 
-export const LineShapeSelector = props => (
+export const LineShapeSelector = (props) => (
   <LineSelector {...props} computeOptions={computeOptions.bind(null, strokeShapes)} />
 );
 
-export const LineDashSelector = props => (
+export const LineDashSelector = (props) => (
   <LineSelector
     {...props}
-    computeOptions={lineColor =>
+    computeOptions={(lineColor) =>
       computeOptions(strokeDashes, lineColor).concat([
         {
           label: '',

@@ -26,7 +26,7 @@
 
 // minimal symbol polyfill for IE11 and others
 if (typeof Symbol !== 'function') {
-  var Symbol = function(name) {
+  var Symbol = function (name) {
     return name;
   };
 

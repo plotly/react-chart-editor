@@ -30,7 +30,7 @@ export default function connectLayersToMapbox(WrappedComponent) {
 
     getChildContext() {
       return {
-        getValObject: attr =>
+        getValObject: (attr) =>
           !this.context.getValObject ? null : this.context.getValObject(`layers[].${attr}`),
         updateContainer: this.updateMapboxLayer,
         deleteContainer: this.deleteMapboxLayer,

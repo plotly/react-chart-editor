@@ -42,15 +42,15 @@ export default function sortMenu(children, order) {
   // PART 2: validate order prop, if a desired panel specified in order, matches no actual panel rendered
   // in the panels array, it is excluded from ordering considerations
   // eslint-disable-next-line
-  order = order.filter(desiredPanel =>
+  order = order.filter((desiredPanel) =>
     panels.some(
-      actualPanel =>
+      (actualPanel) =>
         actualPanel.props.name === desiredPanel.name &&
         actualPanel.props.group === desiredPanel.group
     )
   );
 
-  const desiredGroupOrder = order.map(panel => panel.group).filter(getUniqueValues);
+  const desiredGroupOrder = order.map((panel) => panel.group).filter(getUniqueValues);
 
   // PART 3: Sort panels
   panels.sort((a, b) => {
@@ -92,8 +92,8 @@ export default function sortMenu(children, order) {
         // have to because within a given group we'd assume that there will be
         // no 2 subpanels named the same.
         const desiredNameOrder = order
-          .filter(panel => panel.group === a.props.group)
-          .map(panel => panel.name)
+          .filter((panel) => panel.group === a.props.group)
+          .map((panel) => panel.name)
           .filter(getUniqueValues);
 
         const panelAHasNameCustomOrder = desiredNameOrder.includes(a.props.name);

@@ -27,7 +27,7 @@ class FlaglistCheckboxGroup extends Component {
   parseFlags(option) {
     let activeOption;
     if (option === 'all') {
-      activeOption = this.props.options.map(o => o.value).join('+');
+      activeOption = this.props.options.map((o) => o.value).join('+');
     } else if (option === 'none') {
       activeOption = '';
     } else {
@@ -47,7 +47,7 @@ class FlaglistCheckboxGroup extends Component {
   handleChange(newOptions) {
     let newActiveOptions = '';
 
-    newOptions.map(option => {
+    newOptions.map((option) => {
       if (option.checked === true) {
         newActiveOptions += option.value + '+';
       }
@@ -73,7 +73,7 @@ class FlaglistCheckboxGroup extends Component {
     const allOptions = this.props.options;
     const newOptions = [];
 
-    allOptions.map(option => {
+    allOptions.map((option) => {
       let currentChecked;
 
       if (activeOptions.indexOf(option.value) > -1) {

@@ -39,7 +39,7 @@ export default function connectCartesianSubplotToLayout(WrappedComponent) {
 
     getChildContext() {
       return {
-        getValObject: attr =>
+        getValObject: (attr) =>
           !this.context.getValObject
             ? null
             : this.context.getValObject(

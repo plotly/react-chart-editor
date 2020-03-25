@@ -22,11 +22,11 @@ class SubplotAccordion extends Component {
     const subplotFolds = [];
 
     const allCartesianAxisCombinations = data.reduce((acc, curVal, inx) => {
-      if (TRACE_TO_AXIS.cartesian.some(c => c === curVal.type)) {
+      if (TRACE_TO_AXIS.cartesian.some((c) => c === curVal.type)) {
         const xaxis = 'xaxis' + (curVal.xaxis ? curVal.xaxis.substring(1) : '');
         const yaxis = 'yaxis' + (curVal.yaxis ? curVal.yaxis.substring(1) : '');
 
-        const existingComboIndex = acc.findIndex(t => t.xaxis === xaxis && t.yaxis === yaxis);
+        const existingComboIndex = acc.findIndex((t) => t.xaxis === xaxis && t.yaxis === yaxis);
         if (existingComboIndex === -1) {
           acc.push({
             xaxis: xaxis,
@@ -43,7 +43,7 @@ class SubplotAccordion extends Component {
     }, []);
 
     allCartesianAxisCombinations.forEach(
-      d =>
+      (d) =>
         (subplotFolds[d.index[0]] = (
           <CartesianSubplotFold
             key={d.index[0]}
@@ -84,16 +84,18 @@ class SubplotAccordion extends Component {
     }
      */
 
-    Object.keys(layout).forEach(layoutKey => {
+    Object.keys(layout).forEach((layoutKey) => {
       const traceIndexes = [];
       let subplotName;
       if (
-        ['geo', 'mapbox', 'polar', 'gl3d', 'ternary'].some(subplotType => {
+        ['geo', 'mapbox', 'polar', 'gl3d', 'ternary'].some((subplotType) => {
           subplotName = getSubplotTitle(layoutKey, subplotType, _);
           const trIndex =
             SUBPLOT_TO_ATTR[subplotType].layout === layoutKey
-              ? data.findIndex(trace => TRACE_TO_AXIS[subplotType].some(tt => tt === trace.type))
-              : data.findIndex(trace => trace[SUBPLOT_TO_ATTR[subplotType].data] === layoutKey);
+              ? data.findIndex((trace) =>
+                  TRACE_TO_AXIS[subplotType].some((tt) => tt === trace.type)
+                )
+              : data.findIndex((trace) => trace[SUBPLOT_TO_ATTR[subplotType].data] === layoutKey);
           if (trIndex !== -1) {
             traceIndexes.push(trIndex);
           }

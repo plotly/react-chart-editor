@@ -30,7 +30,7 @@ class MapboxLayersAccordion extends Component {
 
     const addAction = {
       label: _('Layer'),
-      handler: context => {
+      handler: (context) => {
         const {fullContainer, updateContainer} = context;
         if (updateContainer) {
           const mapboxLayerIndex = Array.isArray(fullContainer.layers)

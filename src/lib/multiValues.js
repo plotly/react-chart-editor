@@ -71,7 +71,7 @@ function setMultiValuedContainer(intoObj, fromObj, key, config = {}) {
     if (!isPlainObject(intoVal)) {
       throw new Error('tried to merge object into non-object: ' + key);
     }
-    Object.keys(fromVal).forEach(function(key2) {
+    Object.keys(fromVal).forEach(function (key2) {
       setMultiValuedContainer(intoVal, fromVal, key2, config);
     });
   } else if (isPlainObject(intoVal)) {

@@ -128,7 +128,7 @@ export function makeAttrSetterPath(parts) {
  */
 function _walkObject(object, callback, path, config) {
   const {walkArrays, walkArraysMatchingKeys} = config;
-  Object.keys(object).forEach(key => {
+  Object.keys(object).forEach((key) => {
     // Callback can force traversal to stop by returning `true`.
     if (callback(key, object, path.get(object, key))) {
       return;

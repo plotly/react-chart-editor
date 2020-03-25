@@ -116,7 +116,7 @@ class Dropzone extends Component {
         return;
       }
       this.setState({content: _('Loading...')});
-      reader.onload = e => this.onLoad(e);
+      reader.onload = (e) => this.onLoad(e);
       if (this.props.fileType === 'image') {
         reader.readAsDataURL(accepted[0]);
       } else if (this.props.fileType === 'geojson') {

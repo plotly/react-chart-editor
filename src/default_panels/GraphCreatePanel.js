@@ -25,8 +25,8 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
   return (
     <TraceAccordion
       canAdd
-      traceFilterCondition={t =>
-        !(t.transforms && t.transforms.some(tr => ['fit', 'moving-average'].includes(tr.type)))
+      traceFilterCondition={(t) =>
+        !(t.transforms && t.transforms.some((tr) => ['fit', 'moving-average'].includes(tr.type)))
       }
       canReorder
     >

@@ -26,7 +26,7 @@ function getSmallestUnit(milliseconds) {
 
   let smallestUnit = 'milliseconds';
 
-  ['seconds', 'minutes', 'days'].forEach(unit => {
+  ['seconds', 'minutes', 'days'].forEach((unit) => {
     if (
       milliseconds % units[unit] === 0 &&
       (smallestUnit === 'milliseconds' ||
@@ -167,13 +167,13 @@ export class UnconnectedAxisInterval extends Component {
             {value: 'milliseconds', label: _('Milliseconds')},
           ]}
           clearable={false}
-          onChange={value => this.onUnitChange(value)}
+          onChange={(value) => this.onUnitChange(value)}
           value={this.state.units}
         />
         <div style={{width: '100%', display: 'block'}}> </div>
         <NumericInput
           value={this.getDisplayValue(this.props.fullValue)}
-          onUpdate={value => this.update(value)}
+          onUpdate={(value) => this.update(value)}
           editableClassName="AxisInterval-milliseconds"
         />
       </Field>
@@ -181,7 +181,7 @@ export class UnconnectedAxisInterval extends Component {
       <Field {...this.props}>
         <NumericInput
           value={this.props.fullValue}
-          onUpdate={value => this.props.updatePlot(value)}
+          onUpdate={(value) => this.props.updatePlot(value)}
         />
       </Field>
     );

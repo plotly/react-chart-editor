@@ -29,7 +29,7 @@ export default function connectTransformToTrace(WrappedComponent) {
 
     getChildContext() {
       return {
-        getValObject: attr =>
+        getValObject: (attr) =>
           !this.context.getValObject ? null : this.context.getValObject(`transforms[].${attr}`),
         updateContainer: this.updateTransform,
         deleteContainer: this.deleteTransform,

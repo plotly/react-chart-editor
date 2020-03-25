@@ -1,7 +1,9 @@
 function computeTraceOptionsFromSchema(schema, _, context) {
   // Filter out Polar "area" type as it is fairly broken and we want to present
   // scatter with fill as an "area" chart type for convenience.
-  const traceTypes = Object.keys(schema.traces).filter(t => !['area', 'scattermapbox'].includes(t));
+  const traceTypes = Object.keys(schema.traces).filter(
+    (t) => !['area', 'scattermapbox'].includes(t)
+  );
 
   const traceOptions = [
     {
@@ -136,9 +138,9 @@ function computeTraceOptionsFromSchema(schema, _, context) {
       value: 'isosurface',
       label: _('Isosurface'),
     },
-  ].filter(obj => traceTypes.indexOf(obj.value) !== -1);
+  ].filter((obj) => traceTypes.indexOf(obj.value) !== -1);
 
-  const traceIndex = traceType => traceOptions.findIndex(opt => opt.value === traceType);
+  const traceIndex = (traceType) => traceOptions.findIndex((opt) => opt.value === traceType);
 
   traceOptions.splice(
     traceIndex('scatter') + 1,

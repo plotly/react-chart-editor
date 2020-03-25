@@ -63,7 +63,7 @@ export class Fold extends Component {
       canDelete && typeof deleteContainer === 'function' ? (
         <div
           className="fold__top__delete js-fold__delete"
-          onClick={e => {
+          onClick={(e) => {
             e.stopPropagation();
             deleteContainer(foldInfo);
           }}
@@ -76,7 +76,7 @@ export class Fold extends Component {
       <div className="fold__top__moving-controls">
         <span
           className={`fold__top__moving-controls--up${canMoveUp ? '' : '--disabled'}`}
-          onClick={e => {
+          onClick={(e) => {
             // prevents fold toggle to happen when clicking on moving arrow controls
             e.stopPropagation();
 
@@ -92,7 +92,7 @@ export class Fold extends Component {
         </span>
         <span
           className={`fold__top__moving-controls--down${canMoveDown ? '' : '--disabled'}`}
-          onClick={e => {
+          onClick={(e) => {
             // prevents fold toggle to happen when clicking on moving arrow controls
             e.stopPropagation();
             if (canMoveDown) {
@@ -184,7 +184,7 @@ class PlotlyFold extends Fold {
   determineVisibility(nextProps, nextContext) {
     this.foldVisible = false;
 
-    React.Children.forEach(nextProps.children, child => {
+    React.Children.forEach(nextProps.children, (child) => {
       if (!child || this.foldVisible) {
         return;
       }

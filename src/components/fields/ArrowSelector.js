@@ -29,7 +29,7 @@ const ARROW_OPTIONS = ARROW_PATHS.map(({path}, index) => {
   };
 });
 
-const ArrowSelector = props => {
+const ArrowSelector = (props) => {
   return <Dropdown {...props} options={ARROW_OPTIONS} />;
 };
 

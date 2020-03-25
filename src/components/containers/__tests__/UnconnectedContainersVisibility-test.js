@@ -54,18 +54,8 @@ describe('Basic Panel rules', () => {
 
     it('PANEL shows collapse functionality, FOLD is foldable', () => {
       expect(wrapper.find('.panel__header__collapse').length).toEqual(1);
-      expect(
-        wrapper
-          .find(Fold)
-          .first()
-          .props().folded
-      ).toBe(false);
-      expect(
-        typeof wrapper
-          .find(Fold)
-          .first()
-          .props().toggleFold
-      ).toBe('function');
+      expect(wrapper.find(Fold).first().props().folded).toBe(false);
+      expect(typeof wrapper.find(Fold).first().props().toggleFold).toBe('function');
     });
   });
 });

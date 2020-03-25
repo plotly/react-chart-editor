@@ -5,8 +5,8 @@ const SRC_ATTR_PATTERN = /src$/;
 
 export function getColumnNames(srcArray, dataSourceOptions) {
   return srcArray
-    .map(src => {
-      const columns = dataSourceOptions.filter(dso => dso.value === src);
+    .map((src) => {
+      const columns = dataSourceOptions.filter((dso) => dso.value === src);
       if (columns.length === 1) {
         return columns[0].columnName || columns[0].label;
       }
@@ -37,7 +37,7 @@ export default function dereference(
       srcRef = [srcRef];
     }
 
-    let dereferencedData = srcRef.map(ref => {
+    let dereferencedData = srcRef.map((ref) => {
       if (config.deleteKeys && !(ref in dataSources)) {
         delete parent[dataKey];
       }
