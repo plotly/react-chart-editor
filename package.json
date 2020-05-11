@@ -82,7 +82,7 @@
     "jest-cli": "26.0.1",
     "mkdirp": "1.0.4",
     "node-sass": "4.14.1",
-    "postcss": "7.0.29",
+    "postcss": "7.0.30",
     "postcss-combine-duplicated-selectors": "8.1.0",
     "postcss-custom-properties": "8.0.11",
     "postcss-remove-root": "0.0.2",
@@ -99,7 +99,7 @@
     "style-loader": "1.2.1",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11",
-    "webpack-dev-server": "3.10.3"
+    "webpack-dev-server": "3.11.0"
   },
   "peerDependencies": {
     "react": ">15",
