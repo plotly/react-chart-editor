@@ -595,7 +595,7 @@ export const HoverInfo = connectToContainer(UnconnectedFlaglist, {
           {label: _('Latitude'), value: 'lat'},
         ];
       }
-    } else if (container.type === 'scattermapbox' || container.type === 'densitymapbox') {
+    } else if (container.type === 'scattermapbox') {
       options = [
         {label: _('Longitude'), value: 'lon'},
         {label: _('Latitude'), value: 'lat'},
