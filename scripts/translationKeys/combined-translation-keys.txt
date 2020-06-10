@@ -160,7 +160,7 @@ Click to enter Colorscale title                                                 
 Click to enter Component A title                                                                                                                                           // plotly.js: plots/ternary/ternary.js:380
 Click to enter Component B title                                                                                                                                           // plotly.js: plots/ternary/ternary.js:390
 Click to enter Component C title                                                                                                                                           // plotly.js: plots/ternary/ternary.js:400
-Click to enter Plot title                                                                                                                                                  // plotly.js: plot_api/plot_api.js:580
+Click to enter Plot title                                                                                                                                                  // plotly.js: plot_api/plot_api.js:586
 Click to enter X axis title                                                                                                                                                // plotly.js: plots/plots.js:332
 Click to enter Y axis title                                                                                                                                                // plotly.js: plots/plots.js:333
 Click to enter radial axis title                                                                                                                                           // plotly.js: plots/polar/polar.js:492
