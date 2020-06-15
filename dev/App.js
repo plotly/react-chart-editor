@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {hot} from 'react-hot-loader/root';
 import plotly from 'plotly.js/dist/plotly-with-meta';
-import '../src/styles/main.scss';
+import 'whatwg-fetch';
+import '../lib/react-chart-editor.ie.min.css';
 import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
@@ -16,7 +17,7 @@ import ACCESS_TOKENS from '../accessTokens';
 
 // import {customConfigTest} from '../src/__stories__';
 
-const dataSourceOptions = Object.keys(dataSources).map(name => ({
+const dataSourceOptions = Object.keys(dataSources).map((name) => ({
   value: name,
   label: name,
 }));
@@ -24,7 +25,7 @@ const dataSourceOptions = Object.keys(dataSources).map(name => ({
 const config = {mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true};
 
 const traceTypesConfig = {
-  traces: _ => [
+  traces: (_) => [
     {
       value: 'scatter',
       icon: 'scatter',
@@ -122,8 +123,8 @@ class App extends Component {
     // curl https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks \
     // | jq '[.[] | .name ]' > mocks.json
     fetch('/mocks.json')
-      .then(response => response.json())
-      .then(mocks => this.setState({mocks}));
+      .then((response) => response.json())
+      .then((mocks) => this.setState({mocks}));
   }
 
   loadMock(mockIndex) {
@@ -135,8 +136,8 @@ class App extends Component {
     fetch(prefix + mockName, {
       headers: new Headers({Accept: 'application/vnd.github.v3.raw'}),
     })
-      .then(response => response.json())
-      .then(figure => {
+      .then((response) => response.json())
+      .then((figure) => {
         const {data, layout, frames} = figure;
         this.updateState(data, layout, frames, mockIndex);
       });
@@ -219,7 +220,7 @@ class App extends Component {
                   }))}
                   searchable={true}
                   searchPromptText="Search for a mock"
-                  onChange={option => this.loadMock(option.value)}
+                  onChange={(option) => this.loadMock(option.value)}
                   noResultsText={'No Results'}
                   placeholder={'Search for a mock'}
                 />
@@ -234,7 +235,7 @@ class App extends Component {
               <AceEditor
                 mode="json"
                 theme="textmate"
-                onChange={json_string => this.setState({json_string})}
+                onChange={(json_string) => this.setState({json_string})}
                 value={this.state.json_string}
                 name="UNIQUE_ID_OF_DIV"
                 style={{height: '80vh'}}
