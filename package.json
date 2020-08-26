@@ -61,7 +61,7 @@
     "@babel/traverse": "7.10.3",
     "@hot-loader/react-dom": "16.13.0",
     "@percy/storybook": "3.3.0",
-    "@storybook/react": "5.3.19",
+    "@storybook/react": "6.0.19",
     "autoprefixer": "9.8.4",
     "babel-eslint": "10.1.0",
     "babel-jest": "26.1.0",
