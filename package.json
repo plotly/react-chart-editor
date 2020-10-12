@@ -15,7 +15,7 @@
     "make:lib": "rimraf lib && mkdir lib && npm run make:lib:js && npm run make:lib:css && npm run make:combined-translation-keys",
     "make:translation-keys": "node scripts/findTranslationKeys.js",
     "prepublishOnly": "npm run make:lib",
-    "start": "webpack-dev-server --hot",
+    "start": "webpack serve --hot",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill --maxWorkers=2",
@@ -98,7 +98,7 @@
     "sass-loader": "7.1.0",
     "style-loader": "2.0.0",
     "webpack": "5.1.2",
-    "webpack-cli": "3.3.12",
+    "webpack-cli": "4.5.0",
     "webpack-dev-server": "3.11.2"
   },
   "peerDependencies": {
