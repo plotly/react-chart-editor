@@ -22,7 +22,7 @@ export class UnconnectedDropdownCustom extends Component {
     };
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     this.setLocals(props);
   }
 

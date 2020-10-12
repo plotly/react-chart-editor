@@ -26,7 +26,7 @@ class LinkEditor extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {props} = this;
 
     // Update position if we are editing a new link

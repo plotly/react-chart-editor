@@ -61,7 +61,7 @@ class TraceSelector extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     const {container, fullContainer, updateContainer} = nextProps;
     this.setTraceDefaults(container, fullContainer, updateContainer);
     this.setLocals(nextProps, nextContext);

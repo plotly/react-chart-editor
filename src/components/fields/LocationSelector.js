@@ -65,7 +65,7 @@ class UnconnectedLocationSelector extends Component {
     this.setMode = this.setMode.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.setState({
       mode: this.props.container.locations ? 'location' : 'latlon',
     });

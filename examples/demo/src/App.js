@@ -27,7 +27,7 @@ class App extends Component {
     this.loadMock = this.loadMock.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     fetch('https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks')
       .then(response => response.json())
       .then(mocks => this.setState({mocks}));

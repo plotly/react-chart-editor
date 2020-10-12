@@ -19,7 +19,7 @@ export default class LaTeX extends TextArea {
     this.onBlur = this.onBlur.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const unwrappedNextValue = this.unwrap(nextProps.value);
 
     if (unwrappedNextValue !== this.state.value) {

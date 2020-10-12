@@ -12,7 +12,7 @@ export default class TextArea extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // Reset the value to the graph's actual value
     if (nextProps.value !== this.state.value) {
       this.setState({

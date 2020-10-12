@@ -37,7 +37,7 @@ class FlaglistCheckboxGroup extends Component {
   }
 
   // Sync local state to parent props.
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({activeOption: this.parseFlags(nextProps.activeOption)});
   }
 

@@ -10,7 +10,7 @@ class CheckboxGroup extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({options: nextProps.options});
   }
 

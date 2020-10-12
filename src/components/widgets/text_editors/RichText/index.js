@@ -41,7 +41,7 @@ class RichText extends Component {
      * After this, as long as this component is mounted, it owns the source
      * of truth for the annotation value via `this.state.editorState`.
      * This state may be updated externally via a prop update.
-     * See `componentWillReceiveProps`.
+     * See `UNSAFE_componentWillReceiveProps`.
      */
     this.state = {
       editorState: props.value.toString().trim().length
@@ -67,7 +67,7 @@ class RichText extends Component {
     this.renderLinkEditor = this.renderLinkEditor.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const {linkEditorFocus, editorFocus} = this.state;
 
     /*

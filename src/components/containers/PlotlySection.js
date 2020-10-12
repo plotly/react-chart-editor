@@ -43,7 +43,7 @@ export default class PlotlySection extends Section {
     this.determineVisibility(props, context);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     this.determineVisibility(nextProps, nextContext);
   }
 

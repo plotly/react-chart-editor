@@ -9,7 +9,7 @@ export default class TextInput extends Component {
     this.state = {value: props.value};
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.state.value) {
       this.setState({value: nextProps.value});
     }

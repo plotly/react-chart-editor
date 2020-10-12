@@ -18,7 +18,7 @@ export class UnconnectedHoverLabelNameLength extends Component {
     return props.fullValue > 0 ? 'clip' : props.fullValue === 0 ? 'hide' : 'no-clip';
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.fullValue !== this.props.fullValue) {
       this.setState({
         currentOption: this.getCurrentOption(nextProps),

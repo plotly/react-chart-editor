@@ -8,7 +8,7 @@ class TraceMarkerSection extends Component {
     this.setLocals(context);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     this.setLocals(nextContext);
   }
 

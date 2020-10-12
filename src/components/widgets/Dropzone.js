@@ -40,7 +40,7 @@ class Dropzone extends Component {
     return <div className="dropzone-container__message">{_('File loaded!')}</div>;
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const _ = this.context.localize;
 
     if (this.props.value && this.props.value !== '') {

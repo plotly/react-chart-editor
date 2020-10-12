@@ -118,7 +118,7 @@ class App extends Component {
     this.updateState = this.updateState.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     // curl https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks \
     // | jq '[.[] | .name ]' > mocks.json
     fetch('/mocks.json')
