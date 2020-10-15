@@ -1,6 +1,6 @@
 import Field from './Field';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import DropdownWidget from '../widgets/Dropdown';
 import TextInput from '../widgets/TextInput';
 import {connectToContainer} from 'lib';

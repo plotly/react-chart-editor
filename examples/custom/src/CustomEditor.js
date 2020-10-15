@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {
   Flaglist,
   ColorPicker,
@@ -47,19 +47,28 @@ export default class CustomEditor extends Component {
                 label="Dropdown"
                 attr="xaxis.title"
                 show
-                options={[{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}]}
+                options={[
+                  {label: 'Yes', value: 'yes'},
+                  {label: 'No', value: 'no'},
+                ]}
               />
               <Radio
                 label="Radio"
                 attr="yaxis.title"
                 show
-                options={[{label: 'Yes', value: 'yes'}, {label: 'No', value: 'no'}]}
+                options={[
+                  {label: 'Yes', value: 'yes'},
+                  {label: 'No', value: 'no'},
+                ]}
               />
               <Flaglist
                 label="Flaglist"
                 attr="title.font.family"
                 show
-                options={[{label: 'Yes', value: 'y'}, {label: 'No', value: 'n'}]}
+                options={[
+                  {label: 'Yes', value: 'y'},
+                  {label: 'No', value: 'n'},
+                ]}
               />
               <ColorPicker label="ColorPicker" attr="plot_bgcolor" show />
               <TextEditor attr="title" label="TextEditor default" />

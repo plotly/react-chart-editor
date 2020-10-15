@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly';
 import PlotlyEditor from 'react-chart-editor';
 import 'react-chart-editor/lib/react-chart-editor.css';
 import Nav from './Nav';
 import dataSources from './dataSources';
 
-const dataSourceOptions = Object.keys(dataSources).map(name => ({
+const dataSourceOptions = Object.keys(dataSources).map((name) => ({
   value: name,
   label: name,
 }));
@@ -29,8 +29,8 @@ class App extends Component {
 
   UNSAFE_componentWillMount() {
     fetch('https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks')
-      .then(response => response.json())
-      .then(mocks => this.setState({mocks}));
+      .then((response) => response.json())
+      .then((mocks) => this.setState({mocks}));
   }
 
   loadMock(mockIndex) {
@@ -38,8 +38,8 @@ class App extends Component {
     fetch(mock.url, {
       headers: new Headers({Accept: 'application/vnd.github.v3.raw'}),
     })
-      .then(response => response.json())
-      .then(figure => {
+      .then((response) => response.json())
+      .then((figure) => {
         this.setState({
           currentMockIndex: mockIndex,
           data: figure.data,

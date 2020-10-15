@@ -1,5 +1,4 @@
 import NumericInput from '../../components/widgets/NumericInput';
-import React from 'react';
 import {Numeric} from '../../components/fields';
 import {TestEditor, fixtures, mount} from '../test-utils';
 import {connectLayoutToPlot, connectAnnotationToLayout} from '..';

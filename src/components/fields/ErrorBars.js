@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {DataSelector, Radio, Numeric, MultiColorPicker} from '../index';
 import RadioBlocks from '../widgets/RadioBlocks';
 import Field from './Field';

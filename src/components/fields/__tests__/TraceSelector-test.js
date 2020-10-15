@@ -1,6 +1,5 @@
 /* eslint-disable no-magic-numbers */
 import Dropdown from '../../widgets/Dropdown';
-import React from 'react';
 import TraceSelector from '../TraceSelector';
 import {PlotlySection} from '../../containers';
 import {TestEditor, fixtures, plotly, mount} from 'lib/test-utils';

@@ -1,5 +1,5 @@
 import Fields from 'react-color/lib/components/sketch/SketchFields';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import tinycolor from 'tinycolor2';
 import {Hue, Saturation} from 'react-color/lib/components/common';

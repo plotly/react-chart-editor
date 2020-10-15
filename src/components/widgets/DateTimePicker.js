@@ -3,7 +3,7 @@ import {CalendarMultiselectIcon} from 'plotly-icons';
 import {ms2DateTime, dateTime2ms, isDateTime} from 'plotly.js/src/lib/dates';
 import DayPicker from 'react-day-picker';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import TextInput from './TextInput';
 import Dropdown from './Dropdown';
 import {MULTI_VALUED_PLACEHOLDER} from 'lib/constants';

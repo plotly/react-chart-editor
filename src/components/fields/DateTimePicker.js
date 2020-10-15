@@ -1,7 +1,7 @@
 import Field from './Field';
 import Picker from '../widgets/DateTimePicker';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connectToContainer} from 'lib';
 
 export class UnconnectedDateTimePicker extends Component {

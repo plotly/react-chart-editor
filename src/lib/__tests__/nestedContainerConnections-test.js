@@ -1,5 +1,4 @@
 import NumericInput from '../../components/widgets/NumericInput';
-import React from 'react';
 import {Numeric, PlotlySection, PlotlyPanel} from '../../components';
 import {TestEditor, fixtures, mount} from '../test-utils';
 import {connectAxesToLayout, connectLayoutToPlot, connectToContainer, connectTraceToPlot} from '..';

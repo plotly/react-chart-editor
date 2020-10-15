@@ -1,5 +1,4 @@
 import Dropdown from './Dropdown';
-import React from 'react';
 import PropTypes from 'prop-types';
 
 const FontSelector = (props, context) => (

@@ -1,6 +1,6 @@
 import ModalBox from './ModalBox';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import classnames from 'classnames';
 import {QuestionIcon, CogIcon} from 'plotly-icons';
 

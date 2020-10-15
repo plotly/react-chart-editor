@@ -6,7 +6,6 @@
  * https://facebook.github.io/draft-js/docs/advanced-topics-decorators.html#decorator-components
  */
 
-import React from 'react';
 import PropTypes from 'prop-types';
 
 const LinkDecorator = (props) => {

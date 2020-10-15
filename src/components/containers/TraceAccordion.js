@@ -2,7 +2,7 @@ import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {EDITOR_ACTIONS} from 'lib/constants';
 import {connectTraceToPlot, plotlyTraceToCustomTrace} from 'lib';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';

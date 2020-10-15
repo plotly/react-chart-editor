@@ -13,7 +13,15 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/react', '@babel/env'],
+            presets: [
+              [
+                '@babel/preset-react',
+                {
+                  runtime: 'automatic',
+                },
+              ],
+              '@babel/env',
+            ],
             plugins: [
               'react-hot-loader/babel',
               '@babel/plugin-proposal-object-rest-spread',

@@ -2,7 +2,7 @@ import Field from './Field';
 import {UnconnectedNumeric} from './Numeric';
 import {UnconnectedDateTimePicker} from './DateTimePicker';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connectToContainer} from 'lib';
 import Info from './Info';
 import {MULTI_VALUED} from 'lib/constants';

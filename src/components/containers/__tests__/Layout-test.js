@@ -1,7 +1,6 @@
 import {Numeric} from '../../fields';
 import {PlotlyFold, PlotlyPanel, PlotlySection} from '..';
 import NumericInput from '../../widgets/NumericInput';
-import React from 'react';
 import {TestEditor, fixtures} from 'lib/test-utils';
 import {connectLayoutToPlot} from 'lib';
 import {mount} from 'enzyme';

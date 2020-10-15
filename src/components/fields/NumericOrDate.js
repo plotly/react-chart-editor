@@ -1,7 +1,7 @@
 import Field from './Field';
 import {UnconnectedNumeric} from './Numeric';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connectToContainer} from 'lib';
 import {isDateTime} from 'plotly.js/src/lib';
 import {isJSDate} from 'plotly.js/src/lib/dates';

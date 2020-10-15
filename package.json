@@ -7,7 +7,7 @@
     "url": "https://github.com/plotly/react-chart-editor/issues"
   },
   "scripts": {
-    "lint": "prettier --write \"src/**/*.js\"",
+    "lint": "prettier --write \"src/**/*.js\" \"dev/**/*.js\" \"examples/**/*.js\"",
     "make:arrows": "node scripts/makeArrows.js",
     "make:combined-translation-keys": "npm run make:translation-keys && node scripts/combineTranslationKeys.js",
     "make:lib:css": "mkdirp lib && babel-node scripts/styles.js && SASS_ENV=ie babel-node scripts/styles.js && babel-node scripts/postcss.js && SASS_ENV=ie babel-node scripts/postcss.js",
@@ -19,8 +19,8 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill --maxWorkers=2",
-    "test:lint": "eslint \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:pretty": "prettier -l \"src/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:lint": "eslint \"src/**/*.js\" \"dev/**/*.js\" \"examples/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:pretty": "prettier -l \"src/**/*.js\" \"dev/**/*.js\" \"examples/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:percy": "node --max-old-space-size=4096 $(npm bin)/build-storybook && percy-storybook --widths=500",
     "test:percy-local": "node --max-old-space-size=4096 $(npm bin)/build-storybook",
     "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",

@@ -1,6 +1,6 @@
 import Field from './Field';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connectToContainer} from 'lib';
 import ResizableRect from 'react-resizable-rotatable-draggable';
 import RadioBlocks from '../widgets/RadioBlocks';

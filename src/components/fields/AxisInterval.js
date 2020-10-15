@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import Field from './Field';
 import Dropdown from '../widgets/Dropdown';
 import NumericInput from '../widgets/NumericInput';

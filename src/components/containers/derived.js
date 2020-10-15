@@ -1,4 +1,3 @@
-import React from 'react';
 import PlotlyPanel from './PlotlyPanel';
 import PlotlySection from './PlotlySection';
 import PropTypes from 'prop-types';

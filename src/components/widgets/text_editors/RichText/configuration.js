@@ -1,4 +1,3 @@
-import React from 'react';
 import {INLINE_STYLE} from 'draft-js-utils';
 import {LinkIcon} from 'plotly-icons';
 import {COLORS} from 'lib/constants';

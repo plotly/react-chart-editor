@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {getDisplayName} from 'lib';
 
 export default function localize(Comp) {
