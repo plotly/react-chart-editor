@@ -97,7 +97,7 @@
     "rimraf": "3.0.2",
     "sass-loader": "7.1.0",
     "style-loader": "2.0.0",
-    "webpack": "4.46.0",
+    "webpack": "5.1.2",
     "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.2"
   },
