@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
@@ -10,7 +10,7 @@ class RadioBlocks extends Component {
     this.renderOption = this.renderOption.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     // Reset the value to the graph's actual value
     if (nextProps.activeOption !== this.state.activeOption) {
       this.setState({

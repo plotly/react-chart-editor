@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 import Dropdown from 'react-chart-editor/lib/components/widgets/Dropdown';
 
 const Nav = ({mocks, currentMockIndex, loadMock}) => (
@@ -20,7 +19,7 @@ const Nav = ({mocks, currentMockIndex, loadMock}) => (
           value: i,
         }))}
         value={currentMockIndex}
-        onChange={option => loadMock(option)}
+        onChange={(option) => loadMock(option)}
       />
     </div>
   </div>

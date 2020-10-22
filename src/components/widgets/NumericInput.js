@@ -1,5 +1,5 @@
 import EditableText from './EditableText';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import isNumeric from 'fast-isnumeric';
 import Slider from 'react-rangeslider';
@@ -31,7 +31,7 @@ export default class NumericInput extends Component {
         }`;
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.state.value) {
       this.setState({value: nextProps.value});
     }

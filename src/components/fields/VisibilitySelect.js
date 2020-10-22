@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
 import {MULTI_VALUED_PLACEHOLDER} from 'lib/constants';
@@ -16,7 +16,7 @@ export class UnconnectedVisibilitySelect extends Component {
     this.setLocals(props);
   }
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     this.setLocals(props);
   }
 

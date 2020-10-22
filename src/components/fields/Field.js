@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import MenuPanel from '../containers/MenuPanel';
 import classnames from 'classnames';
 import {bem} from 'lib';

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connectToContainer} from 'lib';
 import Field from './Field';
 import Dropdown from './Dropdown';

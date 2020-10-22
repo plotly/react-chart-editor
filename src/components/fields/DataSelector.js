@@ -1,6 +1,6 @@
 import DropdownWidget from '../widgets/Dropdown';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import Field from './Field';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {connectToContainer, maybeAdjustSrc, maybeTransposeData} from 'lib';
@@ -19,7 +19,7 @@ export class UnconnectedDataSelector extends Component {
     this.setLocals(props, context);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     this.setLocals(nextProps, nextContext);
   }
 

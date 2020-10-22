@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {getDisplayName} from '../lib';

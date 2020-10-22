@@ -1,5 +1,5 @@
 import Field from './Field';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
 import nestedProperty from 'plotly.js/src/lib/nested_property';

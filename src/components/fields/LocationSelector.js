@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
 import Field from './Field';
@@ -65,7 +65,7 @@ class UnconnectedLocationSelector extends Component {
     this.setMode = this.setMode.bind(this);
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.setState({
       mode: this.props.container.locations ? 'location' : 'latlon',
     });

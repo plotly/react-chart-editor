@@ -1,5 +1,5 @@
 import EditableText from './EditableText';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 
 export default class TextInput extends Component {
@@ -9,7 +9,7 @@ export default class TextInput extends Component {
     this.state = {value: props.value};
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.state.value) {
       this.setState({value: nextProps.value});
     }

@@ -1,5 +1,5 @@
 import PlotlySection from './PlotlySection';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 
 class TraceMarkerSection extends Component {
@@ -8,7 +8,7 @@ class TraceMarkerSection extends Component {
     this.setLocals(context);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     this.setLocals(nextContext);
   }
 

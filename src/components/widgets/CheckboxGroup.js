@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import {CheckIcon} from 'plotly-icons';
@@ -10,7 +10,7 @@ class CheckboxGroup extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({options: nextProps.options});
   }
 

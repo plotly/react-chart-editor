@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {getDisplayName} from '../lib';
 
@@ -11,7 +11,7 @@ export default function connectAggregationToTransform(WrappedComponent) {
       this.setLocals(props, context);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
       this.setLocals(nextProps, nextContext);
     }
 

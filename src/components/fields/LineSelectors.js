@@ -1,6 +1,6 @@
 import Dropdown from './Dropdown';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {tooLight} from 'lib';
 import {COLORS, MULTI_VALUED} from 'lib/constants';
@@ -67,7 +67,7 @@ class LineSelector extends Component {
     this.setLocals(props, context);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     this.setLocals(nextProps, nextContext);
   }
 

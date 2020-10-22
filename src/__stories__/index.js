@@ -10,7 +10,6 @@ import '../../dev/styles.css';
 import '../styles/main.scss';
 import './stories.css';
 
-import React from 'react';
 import {storiesOf} from '@storybook/react';
 export const customConfigTest = {
   visibility_rules: {

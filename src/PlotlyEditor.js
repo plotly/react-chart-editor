@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import createPlotComponent from 'react-plotly.js/factory';
 import EditorControls from './EditorControls';
 import PropTypes from 'prop-types';

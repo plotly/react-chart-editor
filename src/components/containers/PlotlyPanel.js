@@ -1,7 +1,7 @@
 import PanelHeader from './PanelHeader';
 import PanelEmpty from './PanelEmpty';
 import PropTypes from 'prop-types';
-import React, {Component, cloneElement} from 'react';
+import {Children, Component, cloneElement} from 'react';
 import update from 'immutability-helper';
 import {bem} from 'lib';
 import {EmbedIconIcon} from 'plotly-icons';
@@ -61,7 +61,7 @@ export class Panel extends Component {
     // to get proper number of child folds and initialize component state
     let numFolds = 0;
 
-    React.Children.forEach(this.props.children, (child) => {
+    Children.forEach(this.props.children, (child) => {
       if (((child && child.type && child.type.plotly_editor_traits) || {}).foldable) {
         numFolds++;
       }
@@ -92,7 +92,7 @@ export class Panel extends Component {
       return <PanelError />;
     }
 
-    const newChildren = React.Children.map(this.props.children, (child, index) => {
+    const newChildren = Children.map(this.props.children, (child, index) => {
       if (((child && child.type && child.type.plotly_editor_traits) || {}).foldable) {
         return cloneElement(child, {
           key: index,

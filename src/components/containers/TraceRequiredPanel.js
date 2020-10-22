@@ -1,6 +1,6 @@
 import PanelEmpty from './PanelEmpty';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {LayoutPanel} from './derived';
 
 class TraceRequiredPanel extends Component {

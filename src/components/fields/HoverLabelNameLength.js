@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connectToContainer} from 'lib';
 import Field from './Field';
@@ -18,7 +18,7 @@ export class UnconnectedHoverLabelNameLength extends Component {
     return props.fullValue > 0 ? 'clip' : props.fullValue === 0 ? 'hide' : 'no-clip';
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.fullValue !== this.props.fullValue) {
       this.setState({
         currentOption: this.getCurrentOption(nextProps),

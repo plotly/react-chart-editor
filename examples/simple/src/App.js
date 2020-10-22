@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly';
 import PlotlyEditor from 'react-chart-editor';
 import 'react-chart-editor/lib/react-chart-editor.css';
@@ -9,7 +9,7 @@ const dataSources = {
   col3: [17, 13, 9], // eslint-disable-line no-magic-numbers
 };
 
-const dataSourceOptions = Object.keys(dataSources).map(name => ({
+const dataSourceOptions = Object.keys(dataSources).map((name) => ({
   value: name,
   label: name,
 }));
@@ -33,9 +33,7 @@ class App extends Component {
           dataSources={dataSources}
           dataSourceOptions={dataSourceOptions}
           plotly={plotly}
-          onUpdate={(data, layout, frames) =>
-            this.setState({data, layout, frames})
-          }
+          onUpdate={(data, layout, frames) => this.setState({data, layout, frames})}
           useResizeHandler
           debug
           advancedTraceTypeSelector

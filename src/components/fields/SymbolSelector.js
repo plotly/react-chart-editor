@@ -1,6 +1,6 @@
 import Field from './Field';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import SymbolSelectorWidget from '../widgets/SymbolSelector';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {connectToContainer, tooLight} from 'lib';
@@ -351,7 +351,7 @@ class SymbolSelector extends Component {
     this.setLocals(props, context);
   }
 
-  componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     this.setLocals(nextProps, nextContext);
   }
 

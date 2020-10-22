@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import CheckboxGroup from './CheckboxGroup';
 
@@ -37,7 +37,7 @@ class FlaglistCheckboxGroup extends Component {
   }
 
   // Sync local state to parent props.
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({activeOption: this.parseFlags(nextProps.activeOption)});
   }
 

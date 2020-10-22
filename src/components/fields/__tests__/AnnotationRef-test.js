@@ -1,6 +1,5 @@
 import {AnnotationRef, AnnotationArrowRef} from '../derived';
 import DropdownWidget from '../../widgets/Dropdown';
-import React from 'react';
 import {PlotlyPanel} from '../../';
 import {TestEditor, fixtures, plotly, mount} from 'lib/test-utils';
 import {connectAnnotationToLayout, connectLayoutToPlot} from 'lib';

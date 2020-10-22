@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import unpackPlotProps, {isVisibleGivenCustomConfig} from './unpackPlotProps';
 import {getDisplayName} from '../lib';
@@ -41,7 +41,7 @@ export default function connectToContainer(WrappedComponent, config = {}) {
       this.setLocals(props, context);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
       this.setLocals(nextProps, nextContext);
     }
 

@@ -1,5 +1,4 @@
 import Dropdown from './Dropdown';
-import React from 'react';
 import ARROW_PATHS from 'plotly.js/src/components/annotations/arrow_paths';
 
 const ARROW_OPTIONS = ARROW_PATHS.map(({path}, index) => {

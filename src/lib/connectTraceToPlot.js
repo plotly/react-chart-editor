@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import nestedProperty from 'plotly.js/src/lib/nested_property';
 import {
@@ -23,7 +23,7 @@ export default function connectTraceToPlot(WrappedComponent) {
       this.setLocals(props, context);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
+    UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
       this.setLocals(nextProps, nextContext);
     }
 

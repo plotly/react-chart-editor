@@ -1,5 +1,13 @@
 {
-  "presets": ["@babel/react", "@babel/env"],
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ],
+    "@babel/env"
+  ],
   "plugins": [
     "@babel/plugin-proposal-object-rest-spread",
     [
