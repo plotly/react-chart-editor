@@ -38,7 +38,7 @@
     "plotly.js": "1.57.x",
     "prop-types": "15.7.2",
     "raf": "3.4.1",
-    "react-color": "2.18.1",
+    "react-color": "2.19.3",
     "react-colorscales": "0.7.3",
     "react-day-picker": "7.4.8",
     "react-dropzone": "10.2.2",
@@ -47,7 +47,7 @@
     "react-resizable-rotatable-draggable": "0.2.0",
     "react-select": "2.4.4",
     "react-tabs": "3.1.1",
-    "styled-components": "5.2.0",
+    "styled-components": "5.2.1",
     "tinycolor2": "1.4.2"
   },
   "devDependencies": {
