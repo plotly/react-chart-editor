@@ -58,7 +58,7 @@
     "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.12.11",
     "@babel/preset-react": "7.12.10",
-    "@babel/traverse": "7.12.10",
+    "@babel/traverse": "7.12.12",
     "@hot-loader/react-dom": "16.14.0",
     "@percy/storybook": "3.3.1",
     "@storybook/react": "5.3.21",
