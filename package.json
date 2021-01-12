@@ -84,7 +84,7 @@
     "node-sass": "4.14.1",
     "postcss": "8.2.4",
     "postcss-combine-duplicated-selectors": "10.0.2",
-    "postcss-custom-properties": "8.0.11",
+    "postcss-custom-properties": "11.0.0",
     "postcss-remove-root": "0.0.2",
     "prettier": "2.2.1",
     "react": "16.14.0",
