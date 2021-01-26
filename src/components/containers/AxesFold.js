@@ -1,7 +1,7 @@
 import AxesSelector from '../fields/AxesSelector';
 import PlotlyFold from './PlotlyFold';
 import PropTypes from 'prop-types';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import {connectAxesToLayout} from 'lib';
 
 class AxesFold extends Component {

@@ -1,7 +1,7 @@
 import PlotlyFold from './PlotlyFold';
 import TraceRequiredPanel from './TraceRequiredPanel';
 import PropTypes from 'prop-types';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import {connectUpdateMenuToLayout} from 'lib';
 
 const UpdateMenuFold = connectUpdateMenuToLayout(PlotlyFold);

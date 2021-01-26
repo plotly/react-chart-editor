@@ -1,5 +1,6 @@
 import {Numeric} from '../../fields';
 import {PlotlyFold, PlotlyPanel} from '..';
+import React from 'react';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';
 import {connectTraceToPlot} from 'lib';
 

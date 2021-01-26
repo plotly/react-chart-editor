@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {Component} from 'react';
+import React, {Component} from 'react';
 
 export default class SingleSidebarItem extends Component {
   render() {

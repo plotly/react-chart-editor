@@ -1,4 +1,5 @@
 import NumericInput from '../../components/widgets/NumericInput';
+import React from 'react';
 import connectLayoutToPlot from '../connectLayoutToPlot';
 import {PlotlyFold, PlotlyPanel, PlotlySection} from '../../components/containers';
 import {Numeric} from '../../components/fields';

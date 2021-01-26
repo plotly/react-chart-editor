@@ -1,3 +1,4 @@
+import React from 'react';
 import PlotlySection from '../PlotlySection';
 import {TraceTypeSection} from '../derived';
 import {Flaglist, Info, Numeric} from '../../fields';

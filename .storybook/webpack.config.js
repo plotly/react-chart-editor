@@ -6,23 +6,5 @@ module.exports = async ({config, mode}) => {
     use: ['style-loader', 'css-loader', 'sass-loader'],
     include: path.resolve(__dirname, '../'),
   });
-  config.module.rules.push({
-    test: /\.js?$/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: [
-          [
-            '@babel/preset-react',
-            {
-              runtime: 'automatic',
-            },
-          ],
-          '@babel/env',
-        ],
-      },
-    },
-    exclude: [/node_modules/],
-  });
   return config;
 };

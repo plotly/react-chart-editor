@@ -1,6 +1,7 @@
 /* eslint-disable no-magic-numbers*/
 import DataSelector from '../DataSelector';
 import DropdownWidget from '../../widgets/Dropdown';
+import React from 'react';
 import {TestEditor, fixtures, plotly} from 'lib/test-utils';
 import connectTraceToPlot from 'lib/connectTraceToPlot';
 import {mount} from 'enzyme';

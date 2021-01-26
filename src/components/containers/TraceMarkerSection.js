@@ -1,5 +1,5 @@
 import PlotlySection from './PlotlySection';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
 class TraceMarkerSection extends Component {

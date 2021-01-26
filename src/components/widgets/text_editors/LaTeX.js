@@ -1,3 +1,4 @@
+import React from 'react';
 import TextArea from '../TextArea';
 import PropTypes from 'prop-types';
 

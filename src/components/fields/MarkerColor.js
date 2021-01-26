@@ -1,6 +1,6 @@
 import Field from './Field';
 import PropTypes from 'prop-types';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 import RadioBlocks from '../widgets/RadioBlocks';
 import MultiColorPicker from './MultiColorPicker';

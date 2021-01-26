@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import Select from 'react-select';
 import classnames from 'classnames';
 

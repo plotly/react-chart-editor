@@ -1,3 +1,4 @@
+import React from 'react';
 import {TraceAccordion, PlotlyFold, LayoutPanel} from '..';
 import {TextEditor} from '../../fields';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';
