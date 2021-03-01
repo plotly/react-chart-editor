@@ -59,7 +59,7 @@
     "@babel/preset-env": "7.13.8",
     "@babel/preset-react": "7.12.13",
     "@babel/traverse": "7.13.0",
-    "@hot-loader/react-dom": "16.14.0",
+    "@hot-loader/react-dom": "17.0.1",
     "@percy/storybook": "3.3.1",
     "@storybook/react": "5.3.21",
     "autoprefixer": "10.2.4",
