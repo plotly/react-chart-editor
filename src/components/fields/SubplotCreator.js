@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import React, {Component} from 'react';
 import Dropdown from './Dropdown';
 import Info from './Info';
 import PropTypes from 'prop-types';

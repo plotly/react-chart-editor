@@ -1,4 +1,4 @@
-import {Component} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {CompositeDecorator, Editor, EditorState, Entity, RichUtils} from 'draft-js';
 import {stateToHTML} from '@plotly/draft-js-export-html';

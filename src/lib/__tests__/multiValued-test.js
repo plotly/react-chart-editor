@@ -1,3 +1,4 @@
+import React from 'react';
 import {Numeric} from '../../components';
 import {TestEditor, fixtures, plotly} from '../test-utils';
 import {connectLayoutToPlot, connectAxesToLayout} from '..';

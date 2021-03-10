@@ -2,7 +2,7 @@ import ColorscalePicker, {Colorscale, COLOR_PICKER_CONSTANTS} from 'react-colors
 import Dropdown from './Dropdown';
 import Info from '../fields/Info';
 import PropTypes from 'prop-types';
-import {Component} from 'react';
+import React, {Component} from 'react';
 // CAREFUL: needs to be the same value as $colorscalepicker-width in _colorscalepicker.scss
 const colorscalepickerContainerWidth = 240;
 

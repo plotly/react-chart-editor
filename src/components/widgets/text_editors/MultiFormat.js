@@ -1,6 +1,6 @@
 import HTMLEditor from './HTML';
 import LaTeXEditor from './LaTeX';
-import {Component} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import RichTextEditor from './RichText';
 import {isLaTeXExpr, htmlToLaTeX, laTeXToHTML, hasTextExpression} from './convertFormats';

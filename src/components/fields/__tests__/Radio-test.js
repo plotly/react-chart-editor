@@ -1,3 +1,4 @@
+import React from 'react';
 import Field from '../Field';
 import Radio from '../Radio';
 import {PlotlySection} from '../../containers';

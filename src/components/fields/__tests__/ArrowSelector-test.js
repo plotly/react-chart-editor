@@ -1,5 +1,6 @@
 import ArrowSelector from '../ArrowSelector';
 import Dropdown from '../Dropdown';
+import React from 'react';
 import {shallow} from 'lib/test-utils';
 
 describe('<ArrowSelector>', () => {

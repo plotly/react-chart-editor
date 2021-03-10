@@ -1,5 +1,6 @@
 import {Numeric, Info} from '../../fields';
 import {LayoutPanel, PlotlyFold, PlotlySection} from '..';
+import React from 'react';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';
 
 // Visibility rules are computed Top -> Down,
