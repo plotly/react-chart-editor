@@ -10,6 +10,7 @@ npm-debug.log*
 !.npmignore
 !.eslintrc
 !.eslintignore
+!.prettierignore
 
 example/dist
 
