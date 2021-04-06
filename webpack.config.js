@@ -47,7 +47,7 @@ module.exports = {
   plugins: [new webpack.IgnorePlugin(/vertx/)],
   devServer: {
     open: true,
-    contentBase: './dev',
+    static: './dev',
   },
   devtool: 'eval-source-map',
 };
