@@ -91,7 +91,7 @@
     "react-ace": "7.0.5",
     "react-dom": "16.14.0",
     "react-hot-loader": "4.13.0",
-    "react-inspector": "4.0.1",
+    "react-inspector": "5.1.1",
     "react-test-renderer": "16.14.0",
     "request": "2.88.2",
     "rimraf": "3.0.2",
