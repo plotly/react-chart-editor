@@ -88,7 +88,7 @@
     "postcss-remove-root": "0.0.2",
     "prettier": "2.2.1",
     "react": "16.14.0",
-    "react-ace": "7.0.5",
+    "react-ace": "9.5.0",
     "react-dom": "16.14.0",
     "react-hot-loader": "4.13.0",
     "react-inspector": "4.0.1",
