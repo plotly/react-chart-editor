@@ -140,6 +140,7 @@
     "ie 11"
   ],
   "resolutions": {
-    "node-sass": "7.0.0"
+    "node-sass": "7.0.0",
+    "node-forge": "1.3.1"
   }
 }
