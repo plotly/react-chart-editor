@@ -20,9 +20,9 @@
     width: 100%;
 
     &__title {
-      color: var(--color-text-base);
+      color: var(--color-text-active);
       font-size: var(--font-size-medium);
-      font-weight: var(--font-weight-normal);
+      font-weight: var(--font-weight-semibold);
       padding: var(--spacing-half-unit) 0;
       text-transform: capitalize;
       text-align: left;
@@ -62,7 +62,7 @@
 
     //  has active child
     &--is-active {
-      color: var(--color-text-active);
+      color: govuk-colour("white");
       cursor: default;
       .sidebar__group__title {
         &__label {
@@ -91,22 +91,19 @@
       .sidebar__group__title {
         position: relative;
         z-index: 4;
-        box-shadow: var(--box-shadow-base);
       }
     }
   }
 
   &__item {
-    color: var(--color-text-base);
+    color: var(--color-text-active);
     cursor: pointer;
     font-size: var(--font-size-medium);
     font-weight: var(--font-weight-normal);
     line-height: var(--font-size-medium);
     text-transform: capitalize;
     background-color: var(--sidebar-item-background-base);
-    padding: 10px;
-    padding-left: 18px;
-    padding-right: var(--spacing-quarter-unit);
+    padding: 10px var(--spacing-quarter-unit) 10px 18px;
     text-align: left;
     border-bottom: var(--border-light);
     position: relative;
@@ -119,19 +116,6 @@
       }
     }
 
-    &::before {
-      content: '';
-      position: absolute;
-      height: 100%;
-      top: 0;
-      left: 0;
-      width: 5px;
-      background-color: var(--color-accent);
-      transform: scaleX(0);
-      transform-origin: left center;
-      will-change: transform;
-      @include trans;
-    }
     span {
       display: block;
       will-change: transform;
@@ -139,7 +123,7 @@
     }
     &:not(.sidebar__item--is-active) {
       &:hover {
-        background-color: var(--sidebar-item-background-hover);
+        text-decoration: underline;
       }
     }
 
@@ -147,9 +131,10 @@
       &::before {
         transform: none;
       }
-      color: var(--color-text-active);
-      font-weight: var(--font-weight-semibold);
+      color: var(--color-white);
+      font-weight: var(--font-weight-normal);
       cursor: default;
+      background-color: var(--sidebar-item-background-active);
       span {
         transform: translateX(5px);
       }

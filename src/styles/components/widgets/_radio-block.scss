@@ -5,44 +5,49 @@
   &__option {
     flex-grow: 1;
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
-    background-color: var(--color-background-top);
-    border: var(--border-default);
     display: inline-block;
     cursor: pointer;
-    min-width: 0px;
+    min-width: 0;
     text-align: center;
     font-size: var(--font-size-small);
-    &:not(.radio-block__option--active) {
-      &:hover {
-        background-color: var(--color-background-light);
-        color: var(--color-text-active);
-      }
-    }
     &--active {
-      background-color: var(--color-button-primary-base-fill);
-      color: var(--color-button-primary-base-text);
-      border: 1px solid var(--color-button-primary-base-border);
-      margin-left: -1px;
       cursor: default;
-      text-shadow: var(--text-shadow-dark-ui);
-      font-weight: var(--font-weight-semibold);
-      &:not(:first-child), &:last-child {
-        border-left: var(--border-accent-shade) !important;
+      background-color: govuk-colour("mid-grey");
+      border-color: govuk-colour("mid-grey");
+    }
+  }
+
+  .govuk-radios {
+    margin-left: -10px;
+
+    &__item {
+      min-height: 30px;
+      margin-bottom: 10px;
+      padding-left: 35px;
+      margin-right: 10px;
+    }
+    &__input {
+      top: 10px;
+      left: 10px;
+      width: 20px;
+      height: 20px;
+    }
+    &__label {
+      font-size: var(--font-size-base);
+      padding: 12px 0px 5px;
+
+      &:before {
+        border-width: 2px !important;
+        top: 10px;
+        left: 10px;
+        width: 20px;
+        height: 20px;
       }
-    }
-    &:not(:first-child):not(:last-child) {
-      border-left: 0;
-    }
-    &:last-child {
-      border-top-right-radius: var(--border-radius-small);
-      border-bottom-right-radius: var(--border-radius-small);
-      border-left: 0;
-    }
-    &:first-child {
-      border-top-left-radius: var(--border-radius-small);
-      border-bottom-left-radius: var(--border-radius-small);
-      &:not(.radio-block__option--active) {
-        border-left: var(--border-default);
+
+      &:after {
+        top: 15px;
+        left: 15px;
+        border-width: 5px;
       }
     }
   }

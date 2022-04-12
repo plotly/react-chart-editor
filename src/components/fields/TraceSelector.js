@@ -7,10 +7,8 @@ import {
   plotlyTraceToCustomTrace,
   computeTraceOptionsFromSchema,
 } from 'lib';
-import {TRACES_WITH_GL} from 'lib/constants';
-import {TraceTypeSelector, TraceTypeSelectorButton, RadioBlocks} from 'components/widgets';
+import {TraceTypeSelector, TraceTypeSelectorButton} from 'components/widgets';
 import Field from './Field';
-import {CogIcon} from 'plotly-icons';
 
 class TraceSelector extends Component {
   constructor(props, context) {
@@ -96,12 +94,7 @@ class TraceSelector extends Component {
       options: this.traceOptions,
       clearable: false,
     });
-    const {localize: _, advancedTraceTypeSelector} = this.context;
-
-    const options = [
-      {label: _('SVG'), value: ''},
-      {label: _('WebGL'), value: 'gl'},
-    ];
+    const {advancedTraceTypeSelector} = this.context;
 
     // Check and see if the advanced selector prop is true
     if (advancedTraceTypeSelector) {
@@ -126,24 +119,8 @@ class TraceSelector extends Component {
                   })
                 }
               />
-              {!TRACES_WITH_GL.includes(this.props.container.type) ? (
-                ''
-              ) : (
-                <CogIcon className="menupanel__icon" onClick={this.toggleGlControls} />
-              )}
             </div>
           </Field>
-          {!(TRACES_WITH_GL.includes(this.props.container.type) && this.state.showGlControls) ? (
-            ''
-          ) : (
-            <Field label={_('Rendering')}>
-              <RadioBlocks
-                options={options}
-                activeOption={this.glEnabled()}
-                onOptionChange={this.setGl}
-              />
-            </Field>
-          )}
         </div>
       );
     }

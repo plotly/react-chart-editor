@@ -187,7 +187,7 @@ $row-height: $image-size + $label-height + $default-half-spacing-unit +
 
   &--active {
     .trace-item__image {
-      border-color: var(--color-accent);
+      border-color: var(--govuk-link-colour);
       border-width: 2px;
       color: var(--color-accent);
     }
@@ -235,12 +235,12 @@ $row-height: $image-size + $label-height + $default-half-spacing-unit +
 
   &:hover {
     cursor: pointer;
-    color: var(--color-accent);
+    color: var(--color-hover);
     .trace-item__label {
-      color: var(--color-accent);
+      color: var(--color-hover);
     }
     .trace-item__image {
-      border-color: var(--color-accent);
+      border-color: var(--color-hover);
     }
   }
   &__image {
@@ -295,7 +295,7 @@ $row-height: $image-size + $label-height + $default-half-spacing-unit +
     &:hover {
       cursor: pointer;
       .Select:not(.is-open) .Select-control {
-        border-color: var(--color-border-dark);
+        border-color: var(--color-border-input);
       }
     }
   }
@@ -304,14 +304,13 @@ $row-height: $image-size + $label-height + $default-half-spacing-unit +
 .trace-type-select-button {
   display: flex;
   align-items: center;
-  border: var(--border-default);
+  border: var(--border-input);
   width: 100%;
   height: 36px;
   border-radius: var(--border-radius);
   padding: 0 var(--spacing-quarter-unit);
   &:hover {
     cursor: pointer;
-    border-color: var(--color-border-dark);
   }
   &__icon {
     max-width: 20px;

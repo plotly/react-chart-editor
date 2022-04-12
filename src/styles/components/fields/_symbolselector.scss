@@ -1,6 +1,5 @@
 .symbol-selector__toggle {
-  border: var(--border-default);
-  border-radius: var(--border-radius);
+  border: var(--border-input);
   width: 80px;
   cursor: pointer;
   padding: var(--spacing-quarter-unit) var(--spacing-quarter-unit) 3px var(--spacing-quarter-unit);
@@ -17,7 +16,7 @@
 
 .symbol-selector__toggle__caret {
   float: right;
-  fill: var(--color-text-light);
+  fill: var(--color-text-base);
   padding-top: var(--spacing-eighth-unit);
   // prevent user agent override
   width: 13px !important;
@@ -41,6 +40,6 @@
 
 .symbol-selector__symbol {
   &:hover {
-    background-color: var(--color-border-default);
+    background-color: govuk-colour("light-grey");
   }
 }

@@ -99,9 +99,9 @@ class UnconnectedColorArrayPicker extends Component {
           <MultiColorPicker
             attr={this.rootAttr + '.color'}
             multiColorMessage={_(
-              'Each trace will be colored according to the selected colorscale.'
+              'Each plot will be colored according to the selected colorscale.'
             )}
-            singleColorMessage={_('All traces will be colored in the the same color.')}
+            singleColorMessage={_('All plots will be colored in the the same color.')}
             setColor={this.setColor}
             setColorScale={this.setColorScale}
             onConstantColorOptionChange={this.onConstantColorOptionChange}

@@ -25,22 +25,24 @@ class RadioBlocks extends Component {
   }
 
   renderOption(optionName) {
-    const {label, value, icon: Icon} = optionName;
+    const {label, value} = optionName;
     const defaultActive = this.state.activeOption === value;
 
-    const optionClass = classnames('radio-block__option', {
-      'radio-block__option--active': defaultActive,
-    });
-
     return (
-      <div
-        className={optionClass}
-        key={value}
-        checked={defaultActive}
-        onClick={() => this.handleChange(value)}
-      >
-        {Icon ? <Icon className="radio-block__icon" /> : null}
-        {label ? <span>{label}</span> : null}
+      <div className="govuk-radios__item" key={value}>
+        <input
+          className="govuk-radios__input"
+          type="radio"
+          value={value}
+          onChange={() => this.handleChange(value)}
+          checked={defaultActive}
+        />
+        <label
+          className="govuk-label govuk-radios__label"
+          onClick={() => this.handleChange(value)}
+        >
+          {label}
+        </label>
       </div>
     );
   }
@@ -48,10 +50,9 @@ class RadioBlocks extends Component {
   render() {
     const optionList = this.props.options.map(this.renderOption);
 
-    const groupClass = classnames('radio-block', 'radio-block__group', {
+    const groupClass = classnames('radio-block', 'radio-block__group', 'govuk-radios', 'govuk-radios--inline', {
       'radio-block__group--center': this.props.alignment === 'center',
     });
-
     return <div className={groupClass}>{optionList}</div>;
   }
 }
@@ -61,7 +62,6 @@ RadioBlocks.propTypes = {
     PropTypes.shape({
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool, PropTypes.number]).isRequired,
       label: PropTypes.string,
-      icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
       disabled: PropTypes.bool,
     })
   ),

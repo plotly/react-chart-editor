@@ -32,7 +32,7 @@
 
 .numeric-input__number {
   display: inline-block;
-  border: var(--border-default);
+  border: var(--border-input);
   background: var(--color-background-inputs);
   cursor: text;
   overflow: hidden;
@@ -69,6 +69,10 @@
   line-height: var(--spacing-half-unit);
   text-align: center;
   max-height: 13px;
+  &:hover {
+    cursor: pointer;
+    background-color: govuk-colour("mid-grey");
+  }
 }
 
 .numeric-top-caret-modifier {

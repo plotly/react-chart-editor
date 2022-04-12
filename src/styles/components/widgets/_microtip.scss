@@ -45,7 +45,7 @@
 }
 
 [aria-label][role~='tooltip']::after {
-  background: $color-rhino-dark;
+  background: $govuk-secondary-text-colour;
   border-radius: 4px;
   color: #ffffff;
   content: attr(aria-label);

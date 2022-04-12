@@ -1,7 +1,7 @@
 import Button from 'components/widgets/Button';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {PlusIcon, ResizeUpIcon, ResizeDownIcon} from 'plotly-icons';
+import {ResizeUpIcon, ResizeDownIcon} from 'plotly-icons';
 
 class PanelHeader extends Component {
   constructor() {
@@ -20,7 +20,6 @@ class PanelHeader extends Component {
     const {children, addAction, allowCollapse, toggleFolds, hasOpen} = this.props;
 
     // dropdown is styled with same styles as react-select component - see _dropdown.scss
-    const icon = <PlusIcon />;
     return !children && !addAction && !allowCollapse ? null : (
       <div className="panel__header">
         {children && children.length ? (
@@ -46,14 +45,13 @@ class PanelHeader extends Component {
           {addAction ? (
             <div className="panel__header__action dropdown-container">
               <Button
-                variant="primary"
+                variant="small"
                 className="js-add-button"
                 onClick={
                   Array.isArray(addAction.handler)
                     ? this.togglePanel
                     : () => addAction.handler(this.context)
                 }
-                icon={icon}
                 label={addAction.label}
               />
               {this.state.addPanelOpen && (

@@ -96,7 +96,6 @@
 
     &:hover:not(.selected) {
       cursor: pointer;
-      color: var(--color-text-active);
       background-color: var(--color-background-light);
     }
   }
@@ -226,7 +225,7 @@
       border: var(--border-default);
       color: var(--color-text-base);
       overflow: scroll;
-      padding: 0 10px;
+      padding: 10px;
       width: 100%;
       margin-top: 10px;
     }
@@ -249,38 +248,18 @@
       padding: 0 var(--spacing-quarter-unit);
     }
     &--active {
-      background-color: var(--color-accent);
-      border: var(--border-accent-shade);
       color: var(--color-white);
+      background-color: var(--color-background-top);
       // Repeating the same styles to override the natural hover
       &:hover {
-        background-color: var(--color-accent);
-        border: var(--border-accent-shade);
         color: var(--color-white);
         &::before {
           transform: scaleX(0);
         }
       }
     }
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      height: 1px;
-      width: calc(100% + 2px);
-      left: -1px;
-      background: var(--color-accent);
-      will-change: transform;
-      transform-origin: center center;
-      transform: scaleX(0);
-      @include trans;
-    }
     &:hover {
-      color: var(--color-text-active);
       background-color: var(--color-background-top);
-      &::before {
-        transform: none;
-      }
     }
   }
 }

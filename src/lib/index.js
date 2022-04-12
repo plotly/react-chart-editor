@@ -2,14 +2,9 @@ import bem from './bem';
 import connectCartesianSubplotToLayout from './connectCartesianSubplotToLayout';
 import connectNonCartesianSubplotToLayout from './connectNonCartesianSubplotToLayout';
 import connectAnnotationToLayout from './connectAnnotationToLayout';
-import connectShapeToLayout from './connectShapeToLayout';
 import connectSliderToLayout from './connectSliderToLayout';
-import connectImageToLayout from './connectImageToLayout';
 import connectUpdateMenuToLayout from './connectUpdateMenuToLayout';
-import connectRangeSelectorToAxis from './connectRangeSelectorToAxis';
 import connectLayersToMapbox from './connectLayersToMapbox';
-import connectTransformToTrace from './connectTransformToTrace';
-import connectAggregationToTransform from './connectAggregationToTransform';
 import connectAxesToLayout from './connectAxesToLayout';
 import connectLayoutToPlot from './connectLayoutToPlot';
 import connectToContainer, {containerConnectedContextTypes} from './connectToContainer';
@@ -228,20 +223,15 @@ export {
   capitalize,
   clamp,
   computeTraceOptionsFromSchema,
-  connectAggregationToTransform,
   connectAnnotationToLayout,
   connectAxesToLayout,
   connectCartesianSubplotToLayout,
-  connectImageToLayout,
   connectLayoutToPlot,
   connectNonCartesianSubplotToLayout,
-  connectRangeSelectorToAxis,
   connectLayersToMapbox,
-  connectShapeToLayout,
   connectSliderToLayout,
   connectToContainer,
   connectTraceToPlot,
-  connectTransformToTrace,
   connectUpdateMenuToLayout,
   containerConnectedContextTypes,
   dereference,

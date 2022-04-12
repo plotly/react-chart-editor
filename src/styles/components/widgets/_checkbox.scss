@@ -17,27 +17,12 @@
     $size: 18px;
     height: $size;
     width: $size;
-    border: var(--border-default);
-    border-radius: var(--border-radius-small);
+    border: var(--border-input);
     cursor: pointer;
     display: inline-block;
     vertical-align: middle;
     text-align: center;
     position: relative;
-    &:hover {
-      background: var(--color-background-light);
-    }
-    &--checked {
-      border: var(--border-accent-shade);
-      background: var(--color-accent);
-      &:hover {
-        background: var(--color-accent-shade);
-      }
-
-      & + .checkbox__label {
-        color: var(--color-text-active);
-      }
-    }
   }
   &__check {
     color: var(--color-text-base);
@@ -51,7 +36,6 @@
     align-items: center;
     justify-content: center;
     svg {
-      @include drop-shadow--dark-ui;
       path {
         fill: var(--color-white);
       }

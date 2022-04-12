@@ -6,14 +6,14 @@
     color: var(--color-text-section-header);
     font-weight: var(--font-weight-semibold);
     cursor: default;
-    background-color: var(--color-background-light);
+    background-color: govuk-colour("white");
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
     clear: both;
     text-transform: capitalize;
   }
   &:not(:first-child){
     .section__heading {
-      border-top: var(--border-light);
+      border-top: var(--border-default);
     }
   }
   &:first-child{

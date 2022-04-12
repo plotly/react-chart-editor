@@ -1,6 +1,6 @@
 .field {
   align-items: flex-start;
-  border-top: var(--border-light);
+  border-top: var(--border-default);
   color: var(--color-text-base);
   display: flex;
   font-size: var(--font-size-base);
@@ -41,7 +41,6 @@
   }
   &__title {
     width: 80px;
-    //flex-shrink:0;
     padding-left: var(--spacing-half-unit);
     display: block;
     font-size: var(--font-size-small);
@@ -52,6 +51,7 @@
     &-text {
       text-transform: capitalize;
       cursor: default;
+      line-height: 2;
     }
   }
 
