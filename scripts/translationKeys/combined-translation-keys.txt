@@ -19,21 +19,21 @@ $                                                                               
 @                                                                                                           // react-chart-editor: /default_panels/StyleAxesPanel.js:170
 A                                                                                                           // react-chart-editor: /components/fields/derived.js:611
 Above Data                                                                                                  // react-chart-editor: /default_panels/StyleMapsPanel.js:26
-Add plot                                                                                                    // react-chart-editor: /components/containers/TraceAccordion.js:135
+Add plot                                                                                                    // react-chart-editor: /components/containers/TraceAccordion.js:130
 Advanced (d3-format)                                                                                        // react-chart-editor: /components/fields/derived.js:163
 Advanced (d3-time-format)                                                                                   // react-chart-editor: /components/fields/derived.js:157
 Africa                                                                                                      // react-chart-editor: /default_panels/StyleMapsPanel.js:59
 Aitoff                                                                                                      // react-chart-editor: /default_panels/StyleMapsPanel.js:93
 Albers USA                                                                                                  // react-chart-editor: /default_panels/StyleMapsPanel.js:74
 All                                                                                                         // react-chart-editor: /components/fields/TextPosition.js:21
-All plot will be colored in the the same color.                                                             // react-chart-editor: /components/fields/MarkerColor.js:110
+All plot will be colored in the the same color.                                                             // react-chart-editor: /components/fields/MarkerColor.js:109
 All plots will be colored in the the same color.                                                            // react-chart-editor: /components/fields/ColorArrayPicker.js:104
-All points in a plot are colored in the same color.                                                         // react-chart-editor: /components/fields/MarkerColor.js:159
+All points in a plot are colored in the same color.                                                         // react-chart-editor: /components/fields/MarkerColor.js:158
 All will be colored in the same color.                                                                      // react-chart-editor: /components/fields/MultiColorPicker.js:90
-Anchor                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:83
+Anchor                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:81
 Anchor to                                                                                                   // react-chart-editor: /default_panels/GraphSubplotsPanel.js:31
 Angle                                                                                                       // react-chart-editor: /default_panels/StyleAxesPanel.js:110
-Annotate                                                                                                    // react-chart-editor: /DefaultEditor.js:61
+Annotate                                                                                                    // react-chart-editor: /DefaultEditor.js:60
 Annotation                                                                                                  // react-chart-editor: /components/containers/AnnotationAccordion.js:34
 AnnotationArrowRef must be given either "axref" or "ayref" as attrs. Instead was given                      // react-chart-editor: /components/fields/derived.js:369
 AnnotationRef must be given either "xref" or "yref" as attrs. Instead was given                             // react-chart-editor: /components/fields/derived.js:416
@@ -48,10 +48,10 @@ Aspect Ratio                                                                    
 Asymmetric                                                                                                  // react-chart-editor: /components/fields/ErrorBars.js:78
 Atlas Map                                                                                                   // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:75
 August                                                                                                      // react-chart-editor: /components/widgets/DateTimePicker.js:82
-Auto                                                                                                        // react-chart-editor: /components/fields/MarkerColor.js:193
+Auto                                                                                                        // react-chart-editor: /components/fields/MarkerColor.js:192
 Autoscale                                                                                                   // plotly.js: components/modebar/buttons.js:209
 Average                                                                                                     // react-chart-editor: /components/fields/derived.js:144
-Axes                                                                                                        // react-chart-editor: /DefaultEditor.js:57
+Axes                                                                                                        // react-chart-editor: /DefaultEditor.js:56
 Axes to Use                                                                                                 // react-chart-editor: /components/fields/AxesCreator.js:158
 AxesSelector must be nested within a connectAxesToPlot component                                            // react-chart-editor: /components/fields/AxesSelector.js:14
 Axis                                                                                                        // react-chart-editor: /components/fields/AxesCreator.js:150
@@ -89,7 +89,7 @@ Boxes                                                                           
 Boxes and Points                                                                                            // react-chart-editor: /components/fields/derived.js:751
 Button                                                                                                      // react-chart-editor: /components/fields/UpdateMenuButtons.js:18
 Buttons                                                                                                     // react-chart-editor: /components/containers/UpdateMenuAccordion.js:22
-By Type                                                                                                     // react-chart-editor: /components/containers/TraceAccordion.js:164
+By Type                                                                                                     // react-chart-editor: /components/containers/TraceAccordion.js:158
 C                                                                                                           // react-chart-editor: /components/fields/derived.js:613
 Call out your data.                                                                                         // react-chart-editor: /components/containers/AnnotationAccordion.js:57
 Candlestick                                                                                                 // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:123
@@ -100,9 +100,9 @@ Carpet Scatter                                                                  
 Carto Dark Matter                                                                                           // react-chart-editor: /components/fields/derived.js:729
 Carto Positron                                                                                              // react-chart-editor: /components/fields/derived.js:728
 Categorical                                                                                                 // react-chart-editor: /default_panels/StyleAxesPanel.js:38
-Cell Options                                                                                                // react-chart-editor: /default_panels/GraphCreatePanel.js:129
+Cell Options                                                                                                // react-chart-editor: /default_panels/GraphCreatePanel.js:123
 Cells                                                                                                       // react-chart-editor: /default_panels/StyleTracesPanel.js:112
-Center                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:87
+Center                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:85
 Center Latitude                                                                                             // react-chart-editor: /default_panels/StyleMapsPanel.js:33
 Center Longitude                                                                                            // react-chart-editor: /default_panels/StyleMapsPanel.js:34
 Charts like this by Plotly users.                                                                           // react-chart-editor: /components/widgets/TraceTypeSelector.js:106
@@ -111,7 +111,7 @@ Choropleth Atlas Map                                                            
 Choropleth Tile Map                                                                                         // react-chart-editor: /lib/traceTypes.js:78
 Click                                                                                                       // react-chart-editor: /default_panels/StyleLayoutPanel.js:69
 Click Event                                                                                                 // react-chart-editor: /default_panels/StyleLayoutPanel.js:74
-Click on the + button above to add a plot.                                                                  // react-chart-editor: /components/containers/TraceAccordion.js:124
+Click on the + button above to add a plot.                                                                  // react-chart-editor: /components/containers/TraceAccordion.js:119
 Click on the + button above to add an annotation.                                                           // react-chart-editor: /components/containers/AnnotationAccordion.js:63
 Click to enter Colorscale title                                                                             // plotly.js: plots/plots.js:335
 Click to enter Component A title                                                                            // plotly.js: plots/ternary/ternary.js:381
@@ -125,16 +125,16 @@ Clip To                                                                         
 Clockwise                                                                                                   // react-chart-editor: /components/fields/derived.js:113
 Closest                                                                                                     // react-chart-editor: /components/fields/derived.js:781
 Coastlines                                                                                                  // react-chart-editor: /default_panels/StyleMapsPanel.js:143
-Collapse All                                                                                                // react-chart-editor: /components/containers/PanelHeader.js:35
+Collapse All                                                                                                // react-chart-editor: /components/containers/PanelHeader.js:34
 Color                                                                                                       // react-chart-editor: /components/fields/ErrorBars.js:108
-Color Bar                                                                                                   // react-chart-editor: /components/fields/MarkerColor.js:182
-Color Bars                                                                                                  // react-chart-editor: /DefaultEditor.js:60
+Color Bar                                                                                                   // react-chart-editor: /components/fields/MarkerColor.js:181
+Color Bars                                                                                                  // react-chart-editor: /DefaultEditor.js:59
 Coloring                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:330
 Colorscale                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:436
-Colorscale Direction                                                                                        // react-chart-editor: /components/fields/MarkerColor.js:174
-Colorscale Range                                                                                            // react-chart-editor: /components/fields/MarkerColor.js:190
-Column Options                                                                                              // react-chart-editor: /default_panels/GraphCreatePanel.js:135
-Columns                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:118
+Colorscale Direction                                                                                        // react-chart-editor: /components/fields/MarkerColor.js:173
+Colorscale Range                                                                                            // react-chart-editor: /components/fields/MarkerColor.js:189
+Column Options                                                                                              // react-chart-editor: /default_panels/GraphCreatePanel.js:129
+Columns                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:112
 Common Case: An 'All' tab might display this message because the X and Y tabs contain different settings.   // react-chart-editor: /lib/constants.js:24
 Compare data on hover                                                                                       // plotly.js: components/modebar/buttons.js:237
 Cone                                                                                                        // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:67
@@ -167,7 +167,7 @@ Crossbar Width                                                                  
 Cube                                                                                                        // react-chart-editor: /default_panels/GraphSubplotsPanel.js:44
 Cumulative                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:69
 Current Bin                                                                                                 // react-chart-editor: /default_panels/StyleTracesPanel.js:87
-Custom                                                                                                      // react-chart-editor: /components/fields/MarkerColor.js:194
+Custom                                                                                                      // react-chart-editor: /components/fields/MarkerColor.js:193
 Custom Data                                                                                                 // react-chart-editor: /components/fields/ErrorBars.js:129
 Data                                                                                                        // react-chart-editor: /components/fields/ErrorBars.js:124
 Date                                                                                                        // react-chart-editor: /default_panels/StyleAxesPanel.js:37
@@ -199,7 +199,7 @@ Drop the                                                                        
 Dropdown                                                                                                    // react-chart-editor: /components/containers/UpdateMenuAccordion.js:21
 E+6                                                                                                         // react-chart-editor: /default_panels/StyleAxesPanel.js:143
 Each plot will be colored according to the selected colorscale.                                             // react-chart-editor: /components/fields/ColorArrayPicker.js:102
-Each point in a plot is colored according to data.                                                          // react-chart-editor: /components/fields/MarkerColor.js:160
+Each point in a plot is colored according to data.                                                          // react-chart-editor: /components/fields/MarkerColor.js:159
 Each will be colored according to the selected colors.                                                      // react-chart-editor: /components/fields/MultiColorPicker.js:86
 Eckert 4                                                                                                    // react-chart-editor: /default_panels/StyleMapsPanel.js:79
 Edit in Chart Studio                                                                                        // plotly.js: components/modebar/buttons.js:85
@@ -221,14 +221,14 @@ Ex:                                                                             
 Exclude                                                                                                     // react-chart-editor: /components/fields/FilterOperation.js:30
 Exclude Range                                                                                               // react-chart-editor: /components/fields/FilterOperation.js:79
 Exclude Values                                                                                              // react-chart-editor: /components/fields/FilterOperation.js:87
-Expand All                                                                                                  // react-chart-editor: /components/containers/PanelHeader.js:40
+Expand All                                                                                                  // react-chart-editor: /components/containers/PanelHeader.js:39
 Exponents                                                                                                   // react-chart-editor: /default_panels/StyleAxesPanel.js:137
-Facecolor                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:142
+Facecolor                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:136
 False                                                                                                       // react-chart-editor: /default_panels/StyleAxesPanel.js:133
 February                                                                                                    // react-chart-editor: /components/widgets/DateTimePicker.js:76
 File loaded!                                                                                                // react-chart-editor: /components/widgets/Dropzone.js:40
 Fill                                                                                                        // react-chart-editor: /default_panels/StyleTracesPanel.js:333
-Fill Color                                                                                                  // react-chart-editor: /default_panels/GraphCreatePanel.js:124
+Fill Color                                                                                                  // react-chart-editor: /default_panels/GraphCreatePanel.js:118
 Fill to                                                                                                     // react-chart-editor: /default_panels/StyleTracesPanel.js:424
 Filled Area                                                                                                 // react-chart-editor: /default_panels/StyleTracesPanel.js:423
 Fills                                                                                                       // react-chart-editor: /components/fields/derived.js:764
@@ -237,17 +237,17 @@ First label                                                                     
 Fixed Width                                                                                                 // react-chart-editor: /default_panels/StyleLayoutPanel.js:33
 Fixed height                                                                                                // react-chart-editor: /default_panels/StyleLayoutPanel.js:34
 Flatshading                                                                                                 // react-chart-editor: /default_panels/StyleTracesPanel.js:140
-Font Color                                                                                                  // react-chart-editor: /default_panels/GraphCreatePanel.js:125
-Font Size                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:126
+Font Color                                                                                                  // react-chart-editor: /default_panels/GraphCreatePanel.js:119
+Font Size                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:120
 Fraction                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:169
-Fraction of Plot                                                                                            // react-chart-editor: /default_panels/StyleColorbarsPanel.js:60
+Fraction of Plot                                                                                            // react-chart-editor: /default_panels/StyleColorbarsPanel.js:58
 Free                                                                                                        // react-chart-editor: /components/fields/derived.js:38
 Gaps                                                                                                        // react-chart-editor: /default_panels/StyleTracesPanel.js:372
 Gaps Between Cells                                                                                          // react-chart-editor: /default_panels/StyleTracesPanel.js:488
 Gaps in Data                                                                                                // react-chart-editor: /default_panels/StyleTracesPanel.js:497
-General                                                                                                     // react-chart-editor: /DefaultEditor.js:55
+General                                                                                                     // react-chart-editor: /DefaultEditor.js:54
 GeoJSON                                                                                                     // react-chart-editor: /default_panels/StyleMapsPanel.js:44
-GeoJSON Location Field                                                                                      // react-chart-editor: /default_panels/GraphCreatePanel.js:72
+GeoJSON Location Field                                                                                      // react-chart-editor: /default_panels/GraphCreatePanel.js:66
 GeoJSON feature                                                                                             // react-chart-editor: /components/fields/LocationSelector.js:31
 GeoJSON loaded!                                                                                             // react-chart-editor: /components/widgets/Dropzone.js:34
 Gnomonic                                                                                                    // react-chart-editor: /default_panels/StyleMapsPanel.js:88
@@ -255,61 +255,61 @@ Go back                                                                         
 Go to the                                                                                                   // react-chart-editor: /components/containers/TraceRequiredPanel.js:24
 Grid Lines                                                                                                  // react-chart-editor: /default_panels/StyleAxesPanel.js:76
 Grouped                                                                                                     // react-chart-editor: /default_panels/StyleTracesPanel.js:157
-Groups                                                                                                      // react-chart-editor: /default_panels/GraphCreatePanel.js:87
+Groups                                                                                                      // react-chart-editor: /default_panels/GraphCreatePanel.js:81
 Half                                                                                                        // react-chart-editor: /default_panels/StyleTracesPanel.js:92
 Hammer                                                                                                      // react-chart-editor: /default_panels/StyleMapsPanel.js:91
 Header                                                                                                      // react-chart-editor: /default_panels/StyleTracesPanel.js:96
-Header Options                                                                                              // react-chart-editor: /default_panels/GraphCreatePanel.js:123
-Headers                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:117
+Header Options                                                                                              // react-chart-editor: /default_panels/GraphCreatePanel.js:117
+Headers                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:111
 Heads up!                                                                                                   // react-chart-editor: /components/widgets/text_editors/MultiFormat.js:169
 Heatmap                                                                                                     // react-chart-editor: /default_panels/StyleTracesPanel.js:334
 Heatmap GL                                                                                                  // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:91
-Height                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:55
+Height                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:53
 Hide                                                                                                        // react-chart-editor: /components/fields/HoverLabelNameLength.js:56
 Histogram                                                                                                   // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:27
 Histogram Function                                                                                          // react-chart-editor: /default_panels/StyleTracesPanel.js:56
 Histogram Normalization                                                                                     // react-chart-editor: /default_panels/StyleTracesPanel.js:58
 Hole                                                                                                        // react-chart-editor: /default_panels/GraphSubplotsPanel.js:92
 Hole Size                                                                                                   // react-chart-editor: /default_panels/StyleTracesPanel.js:213
-Horizontal                                                                                                  // react-chart-editor: /default_panels/GraphCreatePanel.js:102
+Horizontal                                                                                                  // react-chart-editor: /default_panels/GraphCreatePanel.js:96
 Horizontal Gap                                                                                              // react-chart-editor: /default_panels/StyleTracesPanel.js:489
 Horizontal Gaps                                                                                             // react-chart-editor: /default_panels/StyleTracesPanel.js:493
-Horizontal Positioning                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:75
+Horizontal Positioning                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:73
 Hover                                                                                                       // react-chart-editor: /default_panels/StyleLayoutPanel.js:79
 Hover on                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:511
 Hover on Gaps                                                                                               // react-chart-editor: /default_panels/StyleTracesPanel.js:513
 Hover/Tooltip                                                                                               // react-chart-editor: /default_panels/StyleTracesPanel.js:510
-I (Optional)                                                                                                // react-chart-editor: /default_panels/GraphCreatePanel.js:105
+I (Optional)                                                                                                // react-chart-editor: /default_panels/GraphCreatePanel.js:99
 IE only supports svg.  Changing format to svg.                                                              // plotly.js: components/modebar/buttons.js:63
 Include                                                                                                     // react-chart-editor: /components/fields/FilterOperation.js:29
 Include Range                                                                                               // react-chart-editor: /components/fields/FilterOperation.js:75
 Include Values                                                                                              // react-chart-editor: /components/fields/FilterOperation.js:83
 Increasing                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:82
 Increasing Marker Styles                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:276
-Individually                                                                                                // react-chart-editor: /components/containers/TraceAccordion.js:163
+Individually                                                                                                // react-chart-editor: /components/containers/TraceAccordion.js:157
 Inequality                                                                                                  // react-chart-editor: /components/fields/FilterOperation.js:71
 Infer Zero                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:375
 Inside                                                                                                      // react-chart-editor: /components/fields/TextPosition.js:98
-Intensity                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:141
+Intensity                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:135
 Interactions                                                                                                // react-chart-editor: /default_panels/StyleLayoutPanel.js:42
 Interpolate                                                                                                 // react-chart-editor: /default_panels/StyleTracesPanel.js:376
 Interpolate Gaps                                                                                            // react-chart-editor: /default_panels/StyleTracesPanel.js:502
 Isosurface                                                                                                  // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:139
-J (Optional)                                                                                                // react-chart-editor: /default_panels/GraphCreatePanel.js:106
+J (Optional)                                                                                                // react-chart-editor: /default_panels/GraphCreatePanel.js:100
 January                                                                                                     // react-chart-editor: /components/widgets/DateTimePicker.js:75
 Jitter                                                                                                      // react-chart-editor: /default_panels/StyleTracesPanel.js:225
 July                                                                                                        // react-chart-editor: /components/widgets/DateTimePicker.js:81
 June                                                                                                        // react-chart-editor: /components/widgets/DateTimePicker.js:80
-K (Optional)                                                                                                // react-chart-editor: /default_panels/GraphCreatePanel.js:107
+K (Optional)                                                                                                // react-chart-editor: /default_panels/GraphCreatePanel.js:101
 KDE                                                                                                         // react-chart-editor: /components/fields/derived.js:757
 Kavrayskiy 7                                                                                                // react-chart-editor: /default_panels/StyleMapsPanel.js:78
 LaTeX                                                                                                       // react-chart-editor: /components/widgets/text_editors/MultiFormat.js:24
 LaTeX is a math typesetting language that doesn't work with rich text.                                      // react-chart-editor: /components/widgets/text_editors/MultiFormat.js:105
 Label                                                                                                       // react-chart-editor: /components/fields/derived.js:518
 Label Format                                                                                                // react-chart-editor: /default_panels/StyleAxesPanel.js:123
-Label Prefix                                                                                                // react-chart-editor: /default_panels/StyleColorbarsPanel.js:150
-Label Suffix                                                                                                // react-chart-editor: /default_panels/StyleColorbarsPanel.js:177
-Labels                                                                                                      // react-chart-editor: /default_panels/GraphCreatePanel.js:34
+Label Prefix                                                                                                // react-chart-editor: /default_panels/StyleColorbarsPanel.js:148
+Label Suffix                                                                                                // react-chart-editor: /default_panels/StyleColorbarsPanel.js:175
+Labels                                                                                                      // react-chart-editor: /default_panels/GraphCreatePanel.js:28
 Lakes                                                                                                       // react-chart-editor: /default_panels/StyleMapsPanel.js:174
 Land                                                                                                        // react-chart-editor: /default_panels/StyleMapsPanel.js:164
 Lasso                                                                                                       // react-chart-editor: /default_panels/StyleLayoutPanel.js:51
@@ -321,9 +321,9 @@ Latitude                                                                        
 Layer                                                                                                       // react-chart-editor: /components/containers/MapboxLayersAccordion.js:32
 Layers                                                                                                      // react-chart-editor: /default_panels/StyleMapsPanel.js:20
 Left                                                                                                        // react-chart-editor: /components/fields/derived.js:97
-Legend                                                                                                      // react-chart-editor: /default_panels/StyleLegendPanel.js:14
-Legend Title                                                                                                // react-chart-editor: /default_panels/StyleLegendPanel.js:22
-Length                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:224
+Legend                                                                                                      // react-chart-editor: /default_panels/StyleLegendPanel.js:13
+Legend Title                                                                                                // react-chart-editor: /default_panels/StyleLegendPanel.js:21
+Length                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:222
 Levels                                                                                                      // react-chart-editor: /default_panels/StyleTracesPanel.js:325
 Line                                                                                                        // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:148
 Line Color                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:264
@@ -332,7 +332,7 @@ Line Type                                                                       
 Line Width                                                                                                  // react-chart-editor: /default_panels/StyleNotesPanel.js:28
 Linear                                                                                                      // react-chart-editor: /default_panels/StyleAxesPanel.js:35
 Lines                                                                                                       // react-chart-editor: /default_panels/StyleAxesPanel.js:54
-Links                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:91
+Links                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:85
 Loading...                                                                                                  // react-chart-editor: /components/widgets/Dropzone.js:118
 Location                                                                                                    // react-chart-editor: /components/fields/derived.js:586
 Location Format                                                                                             // react-chart-editor: /components/fields/LocationSelector.js:27
@@ -356,26 +356,26 @@ Mapbox Light                                                                    
 Mapbox Outdoors                                                                                             // react-chart-editor: /components/fields/derived.js:719
 Mapbox Satellite                                                                                            // react-chart-editor: /components/fields/derived.js:722
 Mapbox Satellite with Streets                                                                               // react-chart-editor: /components/fields/derived.js:723
-Maps                                                                                                        // react-chart-editor: /DefaultEditor.js:58
+Maps                                                                                                        // react-chart-editor: /DefaultEditor.js:57
 March                                                                                                       // react-chart-editor: /components/widgets/DateTimePicker.js:77
 Marker Color                                                                                                // react-chart-editor: /default_panels/StyleTracesPanel.js:280
-Max                                                                                                         // react-chart-editor: /components/fields/MarkerColor.js:200
+Max                                                                                                         // react-chart-editor: /components/fields/MarkerColor.js:199
 Max Contour                                                                                                 // react-chart-editor: /default_panels/StyleTracesPanel.js:368
 Max Contours                                                                                                // react-chart-editor: /default_panels/StyleTracesPanel.js:364
 Max X Bins                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:181
 Max Y Bins                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:186
 Maximum                                                                                                     // react-chart-editor: /components/fields/derived.js:146
 May                                                                                                         // react-chart-editor: /components/widgets/DateTimePicker.js:79
-Measure                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:83
+Measure                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:77
 Mercator                                                                                                    // react-chart-editor: /default_panels/StyleMapsPanel.js:71
 Meta Text                                                                                                   // react-chart-editor: /default_panels/StyleLayoutPanel.js:94
-Middle                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:104
+Middle                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:102
 Middle Center                                                                                               // react-chart-editor: /components/fields/TextPosition.js:90
 Middle Left                                                                                                 // react-chart-editor: /components/fields/TextPosition.js:89
 Middle Right                                                                                                // react-chart-editor: /components/fields/TextPosition.js:91
 Miller                                                                                                      // react-chart-editor: /default_panels/StyleMapsPanel.js:77
 Milliseconds                                                                                                // react-chart-editor: /components/fields/AxisInterval.js:167
-Min                                                                                                         // react-chart-editor: /components/fields/MarkerColor.js:199
+Min                                                                                                         // react-chart-editor: /components/fields/MarkerColor.js:198
 Min Contour                                                                                                 // react-chart-editor: /default_panels/StyleTracesPanel.js:367
 Minimum                                                                                                     // react-chart-editor: /components/fields/derived.js:145
 Minimum Size                                                                                                // react-chart-editor: /default_panels/StyleTracesPanel.js:250
@@ -395,11 +395,11 @@ No                                                                              
 No Clip                                                                                                     // react-chart-editor: /components/fields/HoverLabelNameLength.js:55
 No Results                                                                                                  // react-chart-editor: /components/widgets/Dropdown.js:67
 No tiles (white background)                                                                                 // react-chart-editor: /components/fields/derived.js:726
-Nodes                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:85
+Nodes                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:79
 None                                                                                                        // react-chart-editor: /components/fields/derived.js:64
-None label                                                                                                  // react-chart-editor: /default_panels/StyleColorbarsPanel.js:172
+None label                                                                                                  // react-chart-editor: /default_panels/StyleColorbarsPanel.js:170
 Norm                                                                                                        // react-chart-editor: /components/fields/derived.js:632
-Normal                                                                                                      // react-chart-editor: /components/fields/MarkerColor.js:177
+Normal                                                                                                      // react-chart-editor: /components/fields/MarkerColor.js:176
 Normalization                                                                                               // react-chart-editor: /default_panels/StyleTracesPanel.js:165
 North America                                                                                               // react-chart-editor: /default_panels/StyleMapsPanel.js:60
 Notches                                                                                                     // react-chart-editor: /default_panels/StyleTracesPanel.js:426
@@ -414,30 +414,30 @@ Off                                                                             
 Offset                                                                                                      // react-chart-editor: /default_panels/StyleTracesPanel.js:191
 On                                                                                                          // react-chart-editor: /components/fields/RectanglePositioner.js:88
 Open Street Map                                                                                             // react-chart-editor: /components/fields/derived.js:727
-Options                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:140
+Options                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:134
 Orbit                                                                                                       // react-chart-editor: /default_panels/StyleLayoutPanel.js:52
 Orbital rotation                                                                                            // plotly.js: components/modebar/buttons.js:338
-Order                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:137
-Orientation                                                                                                 // react-chart-editor: /default_panels/GraphCreatePanel.js:98
+Order                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:131
+Orientation                                                                                                 // react-chart-editor: /default_panels/GraphCreatePanel.js:92
 Orthographic                                                                                                // react-chart-editor: /default_panels/GraphSubplotsPanel.js:64
 Outliers                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:218
 Outside                                                                                                     // react-chart-editor: /components/fields/TextPosition.js:99
 Overlaid                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:160
 Overlay                                                                                                     // react-chart-editor: /default_panels/GraphSubplotsPanel.js:79
-Padding                                                                                                     // react-chart-editor: /default_panels/StyleColorbarsPanel.js:109
+Padding                                                                                                     // react-chart-editor: /default_panels/StyleColorbarsPanel.js:107
 Pan                                                                                                         // plotly.js: components/modebar/buttons.js:112 && react-chart-editor: /default_panels/StyleLayoutPanel.js:50
 Parallel Coordinates                                                                                        // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:95
-Parent Value Mode                                                                                           // react-chart-editor: /default_panels/GraphCreatePanel.js:38
-Parents                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:35
+Parent Value Mode                                                                                           // react-chart-editor: /default_panels/GraphCreatePanel.js:32
+Parents                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:29
 Percent                                                                                                     // react-chart-editor: /components/fields/derived.js:621
 Perspective                                                                                                 // react-chart-editor: /default_panels/GraphSubplotsPanel.js:63
 Pie                                                                                                         // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:39
 Pitch                                                                                                       // react-chart-editor: /default_panels/StyleMapsPanel.js:37
-Pixels                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:61
+Pixels                                                                                                      // react-chart-editor: /default_panels/StyleColorbarsPanel.js:59
 Plot Background                                                                                             // react-chart-editor: /default_panels/GraphSubplotsPanel.js:70
-Plot your data.                                                                                             // react-chart-editor: /components/containers/TraceAccordion.js:115
+Plot your data.                                                                                             // react-chart-editor: /components/containers/TraceAccordion.js:110
 Plots                                                                                                       // react-chart-editor: /components/containers/TraceRequiredPanel.js:25
-Plots of various types like bar and line are the building blocks of your chart.                             // react-chart-editor: /components/containers/TraceAccordion.js:117
+Plots of various types like bar and line are the building blocks of your chart.                             // react-chart-editor: /components/containers/TraceAccordion.js:112
 Point Cloud                                                                                                 // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:87
 Point Opacity                                                                                               // react-chart-editor: /default_panels/StyleTracesPanel.js:233
 Points                                                                                                      // react-chart-editor: /components/containers/TraceMarkerSection.js:21
@@ -459,11 +459,11 @@ Produced with Plotly                                                            
 Projection                                                                                                  // react-chart-editor: /default_panels/GraphSubplotsPanel.js:58
 Pull                                                                                                        // react-chart-editor: /default_panels/StyleTracesPanel.js:214
 R                                                                                                           // react-chart-editor: /components/fields/derived.js:617
-Radius                                                                                                      // react-chart-editor: /default_panels/GraphCreatePanel.js:82
+Radius                                                                                                      // react-chart-editor: /default_panels/GraphCreatePanel.js:76
 Range                                                                                                       // react-chart-editor: /default_panels/StyleAxesPanel.js:28
 Reference                                                                                                   // react-chart-editor: /components/fields/FilterOperation.js:163
 Region                                                                                                      // react-chart-editor: /default_panels/StyleMapsPanel.js:52
-Remainder                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:42
+Remainder                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:36
 Reset                                                                                                       // plotly.js: components/modebar/buttons.js:505
 Reset axes                                                                                                  // plotly.js: components/modebar/buttons.js:218
 Reset camera to default                                                                                     // plotly.js: components/modebar/buttons.js:376
@@ -471,7 +471,7 @@ Reset camera to last save                                                       
 Reset view                                                                                                  // plotly.js: components/modebar/buttons.js:586
 Reset views                                                                                                 // plotly.js: components/modebar/buttons.js:624
 Resolution                                                                                                  // react-chart-editor: /default_panels/StyleMapsPanel.js:112
-Reversed                                                                                                    // react-chart-editor: /components/fields/MarkerColor.js:178
+Reversed                                                                                                    // react-chart-editor: /components/fields/MarkerColor.js:177
 Rich Text                                                                                                   // react-chart-editor: /components/widgets/text_editors/MultiFormat.js:19
 Rich text is incompatible with LaTeX.                                                                       // react-chart-editor: /components/widgets/text_editors/MultiFormat.js:110
 Right                                                                                                       // react-chart-editor: /components/fields/derived.js:98
@@ -480,11 +480,10 @@ Robinson                                                                        
 Roll                                                                                                        // react-chart-editor: /default_panels/StyleMapsPanel.js:100
 Root                                                                                                        // react-chart-editor: /components/fields/derived.js:809
 Rotation                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:212
-SVG                                                                                                         // react-chart-editor: /components/fields/TraceSelector.js:102
 Sankey                                                                                                      // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:99
 Satellite Map                                                                                               // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:161
 Scale                                                                                                       // react-chart-editor: /default_panels/StyleMapsPanel.js:97
-Scatter                                                                                                     // react-chart-editor: /components/fields/TraceSelector.js:48
+Scatter                                                                                                     // react-chart-editor: /components/fields/TraceSelector.js:46
 Scatter GL                                                                                                  // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:83
 Scene                                                                                                       // react-chart-editor: /lib/constants.js:105
 Seconds                                                                                                     // react-chart-editor: /components/fields/AxisInterval.js:166
@@ -498,7 +497,7 @@ Select an Option                                                                
 Separate Thousands                                                                                          // react-chart-editor: /default_panels/StyleAxesPanel.js:129
 September                                                                                                   // react-chart-editor: /components/widgets/DateTimePicker.js:83
 Shape                                                                                                       // react-chart-editor: /default_panels/StyleTracesPanel.js:412
-Show                                                                                                        // react-chart-editor: /components/fields/MarkerColor.js:185
+Show                                                                                                        // react-chart-editor: /components/fields/MarkerColor.js:184
 Show All                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:217
 Show Contour                                                                                                // react-chart-editor: /default_panels/StyleTracesPanel.js:533
 Show Exponents                                                                                              // react-chart-editor: /default_panels/StyleAxesPanel.js:150
@@ -511,18 +510,18 @@ Side                                                                            
 Simple                                                                                                      // react-chart-editor: /components/fields/derived.js:162
 Single                                                                                                      // react-chart-editor: /components/fields/MultiColorPicker.js:77
 Sinusoidal                                                                                                  // react-chart-editor: /default_panels/StyleMapsPanel.js:94
-Size                                                                                                        // react-chart-editor: /default_panels/StyleColorbarsPanel.js:54
+Size                                                                                                        // react-chart-editor: /default_panels/StyleColorbarsPanel.js:52
 Size Mode                                                                                                   // react-chart-editor: /default_panels/StyleTracesPanel.js:243
 Size Scale                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:236
 Size and Margins                                                                                            // react-chart-editor: /default_panels/StyleLayoutPanel.js:22
-Size and Positioning                                                                                        // react-chart-editor: /default_panels/StyleColorbarsPanel.js:53
+Size and Positioning                                                                                        // react-chart-editor: /default_panels/StyleColorbarsPanel.js:51
 Slider                                                                                                      // react-chart-editor: /components/containers/SliderAccordion.js:20
 Smoothing                                                                                                   // react-chart-editor: /default_panels/StyleTracesPanel.js:413
 Snap to Grid                                                                                                // react-chart-editor: /components/fields/RectanglePositioner.js:82
 Snapshot succeeded                                                                                          // plotly.js: components/modebar/buttons.js:75
 Sorry, there was a problem downloading your snapshot!                                                       // plotly.js: components/modebar/buttons.js:78
 Sorted                                                                                                      // react-chart-editor: /default_panels/StyleTracesPanel.js:200
-Sources                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:92
+Sources                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:86
 South America                                                                                               // react-chart-editor: /default_panels/StyleMapsPanel.js:61
 Spanning                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:269
 Spike Lines                                                                                                 // react-chart-editor: /default_panels/StyleAxesPanel.js:250
@@ -532,13 +531,13 @@ Stacking                                                                        
 Stamen Terrain                                                                                              // react-chart-editor: /components/fields/derived.js:730
 Stamen Toner                                                                                                // react-chart-editor: /components/fields/derived.js:731
 Stamen Watercolor                                                                                           // react-chart-editor: /components/fields/derived.js:732
-Step Offset                                                                                                 // react-chart-editor: /default_panels/StyleColorbarsPanel.js:209
-Step Size                                                                                                   // react-chart-editor: /default_panels/StyleColorbarsPanel.js:210
+Step Offset                                                                                                 // react-chart-editor: /default_panels/StyleColorbarsPanel.js:207
+Step Size                                                                                                   // react-chart-editor: /default_panels/StyleColorbarsPanel.js:208
 Stereographic                                                                                               // react-chart-editor: /default_panels/StyleMapsPanel.js:89
 Streamtube                                                                                                  // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:71
 Strict Sum Stacked                                                                                          // react-chart-editor: /default_panels/StyleTracesPanel.js:159
-Structure                                                                                                   // react-chart-editor: /DefaultEditor.js:54
-Style                                                                                                       // react-chart-editor: /DefaultEditor.js:55
+Structure                                                                                                   // react-chart-editor: /DefaultEditor.js:53
+Style                                                                                                       // react-chart-editor: /DefaultEditor.js:54
 Sub-Country Unit Borders                                                                                    // react-chart-editor: /default_panels/StyleMapsPanel.js:132
 Subplots                                                                                                    // react-chart-editor: /components/fields/AxesCreator.js:162
 Subplots to Use                                                                                             // react-chart-editor: /components/fields/SubplotCreator.js:126
@@ -557,7 +556,7 @@ Target > Reference                                                              
 Target ≠ Reference                                                                                          // react-chart-editor: /components/fields/FilterOperation.js:10
 Target ≤ Reference                                                                                          // react-chart-editor: /components/fields/FilterOperation.js:12
 Target ≥ Reference                                                                                          // react-chart-editor: /components/fields/FilterOperation.js:15
-Targets                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:93
+Targets                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:87
 Template                                                                                                    // react-chart-editor: /components/fields/derived.js:547
 Ternary                                                                                                     // react-chart-editor: /default_panels/GraphSubplotsPanel.js:85
 Ternary Scatter                                                                                             // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:47
@@ -571,13 +570,13 @@ This will position all text values on the plot according to the selected positio
 This will position text values individually, according to the provided data positions array.                // react-chart-editor: /components/fields/TextPosition.js:39
 Tick Labels                                                                                                 // react-chart-editor: /default_panels/StyleAxesPanel.js:89
 Tick Markers                                                                                                // react-chart-editor: /default_panels/StyleAxesPanel.js:214
-Tick spacing                                                                                                // react-chart-editor: /default_panels/StyleColorbarsPanel.js:206
-Ticks                                                                                                       // react-chart-editor: /default_panels/StyleColorbarsPanel.js:213
+Tick spacing                                                                                                // react-chart-editor: /default_panels/StyleColorbarsPanel.js:204
+Ticks                                                                                                       // react-chart-editor: /default_panels/StyleColorbarsPanel.js:211
 Tile Map                                                                                                    // react-chart-editor: /lib/constants.js:108
 Tile Source                                                                                                 // react-chart-editor: /default_panels/StyleMapsPanel.js:18
 Tile Source URL                                                                                             // react-chart-editor: /default_panels/StyleMapsPanel.js:29
 Timeseries                                                                                                  // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:150
-Title                                                                                                       // react-chart-editor: /default_panels/StyleColorbarsPanel.js:40
+Title                                                                                                       // react-chart-editor: /default_panels/StyleColorbarsPanel.js:38
 Titles                                                                                                      // react-chart-editor: /default_panels/StyleAxesPanel.js:22
 To Next                                                                                                     // react-chart-editor: /components/fields/derived.js:677
 To Self                                                                                                     // react-chart-editor: /components/fields/derived.js:676
@@ -587,16 +586,16 @@ Top                                                                             
 Top Center                                                                                                  // react-chart-editor: /components/fields/TextPosition.js:87
 Top Left                                                                                                    // react-chart-editor: /components/fields/TextPosition.js:86
 Top Right                                                                                                   // react-chart-editor: /components/fields/TextPosition.js:88
-Total                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:41
+Total                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:35
 Total Marker Styles                                                                                         // react-chart-editor: /default_panels/StyleTracesPanel.js:312
 Trace name                                                                                                  // react-chart-editor: /components/fields/derived.js:651
-Transpose                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:145
+Transpose                                                                                                   // react-chart-editor: /default_panels/GraphCreatePanel.js:139
 Transverse Mercator                                                                                         // react-chart-editor: /default_panels/StyleMapsPanel.js:92
 True                                                                                                        // react-chart-editor: /default_panels/StyleAxesPanel.js:132
 Try again with a supported file format:                                                                     // react-chart-editor: /components/widgets/Dropzone.js:82
 Turntable                                                                                                   // react-chart-editor: /default_panels/StyleLayoutPanel.js:53
 Turntable rotation                                                                                          // plotly.js: components/modebar/buttons.js:347
-Type                                                                                                        // react-chart-editor: /default_panels/GraphCreatePanel.js:30
+Type                                                                                                        // react-chart-editor: /default_panels/GraphCreatePanel.js:24
 Typeface                                                                                                    // react-chart-editor: /default_panels/StyleTracesPanel.js:99
 U                                                                                                           // react-chart-editor: /components/fields/derived.js:629
 URL                                                                                                         // react-chart-editor: /components/widgets/text_editors/RichText/LinkEditor.js:90
@@ -611,21 +610,20 @@ Value Format                                                                    
 Value Suffix                                                                                                // react-chart-editor: /default_panels/StyleTracesPanel.js:544
 Values                                                                                                      // react-chart-editor: /components/fields/derived.js:546
 Variable                                                                                                    // react-chart-editor: /components/fields/ColorArrayPicker.js:90
-Vertexcolor                                                                                                 // react-chart-editor: /default_panels/GraphCreatePanel.js:143
-Vertical                                                                                                    // react-chart-editor: /default_panels/GraphCreatePanel.js:101
+Vertexcolor                                                                                                 // react-chart-editor: /default_panels/GraphCreatePanel.js:137
+Vertical                                                                                                    // react-chart-editor: /default_panels/GraphCreatePanel.js:95
 Vertical Gap                                                                                                // react-chart-editor: /default_panels/StyleTracesPanel.js:490
 Vertical Gaps                                                                                               // react-chart-editor: /default_panels/StyleTracesPanel.js:494
-Vertical Positioning                                                                                        // react-chart-editor: /default_panels/StyleColorbarsPanel.js:92
+Vertical Positioning                                                                                        // react-chart-editor: /default_panels/StyleColorbarsPanel.js:90
 View tutorials on this chart type.                                                                          // react-chart-editor: /components/widgets/TraceTypeSelector.js:120
 Violin                                                                                                      // react-chart-editor: /lib/computeTraceOptionsFromSchema.js:51
 Violins                                                                                                     // react-chart-editor: /components/fields/derived.js:755
 Violins and Points                                                                                          // react-chart-editor: /components/fields/derived.js:758
 Violins, Points and KDE                                                                                     // react-chart-editor: /components/fields/derived.js:759
 W                                                                                                           // react-chart-editor: /components/fields/derived.js:631
-WebGL                                                                                                       // react-chart-editor: /components/fields/TraceSelector.js:103
 Well this is embarrassing.                                                                                  // react-chart-editor: /components/containers/PlotlyPanel.js:14
 Whisker Width                                                                                               // react-chart-editor: /default_panels/StyleTracesPanel.js:194
-Width                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:136
+Width                                                                                                       // react-chart-editor: /default_panels/GraphCreatePanel.js:130
 Winkel Tripel                                                                                               // react-chart-editor: /default_panels/StyleMapsPanel.js:75
 World                                                                                                       // react-chart-editor: /default_panels/StyleMapsPanel.js:55
 X                                                                                                           // react-chart-editor: /components/fields/derived.js:566
@@ -636,8 +634,8 @@ X Bin End                                                                       
 X Bin Size                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:182
 X Bin Start                                                                                                 // react-chart-editor: /default_panels/StyleTracesPanel.js:179
 X Overlay                                                                                                   // react-chart-editor: /default_panels/GraphSubplotsPanel.js:23
-X Values                                                                                                    // react-chart-editor: /default_panels/GraphCreatePanel.js:49
-X start                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:114
+X Values                                                                                                    // react-chart-editor: /default_panels/GraphCreatePanel.js:43
+X start                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:108
 Y                                                                                                           // react-chart-editor: /components/fields/derived.js:567
 Y = 0                                                                                                       // react-chart-editor: /components/fields/derived.js:663
 Y Anchor                                                                                                    // react-chart-editor: /default_panels/GraphSubplotsPanel.js:34
@@ -646,20 +644,20 @@ Y Bin End                                                                       
 Y Bin Size                                                                                                  // react-chart-editor: /default_panels/StyleTracesPanel.js:187
 Y Bin Start                                                                                                 // react-chart-editor: /default_panels/StyleTracesPanel.js:184
 Y Overlay                                                                                                   // react-chart-editor: /default_panels/GraphSubplotsPanel.js:24
-Y Values                                                                                                    // react-chart-editor: /default_panels/GraphCreatePanel.js:57
-Y start                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:115
+Y Values                                                                                                    // react-chart-editor: /default_panels/GraphCreatePanel.js:51
+Y start                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:109
 Years                                                                                                       // react-chart-editor: /components/fields/AxisInterval.js:162
 Yes                                                                                                         // react-chart-editor: /components/fields/ErrorBars.js:96
 Yikes! This doesn't look like a valid                                                                       // react-chart-editor: /components/widgets/Dropzone.js:81
 Yikes! You can only upload one file at a time.                                                              // react-chart-editor: /components/widgets/Dropzone.js:112
-You can add as many as you like, mixing and matching types.                                                 // react-chart-editor: /components/containers/TraceAccordion.js:121
+You can add as many as you like, mixing and matching types.                                                 // react-chart-editor: /components/containers/TraceAccordion.js:116
 You can refer to the items in this column in any text fields of the editor like so:                         // react-chart-editor: /default_panels/StyleLayoutPanel.js:99
 You can style and position your axes in the                                                                 // react-chart-editor: /components/fields/AxesCreator.js:161
 You can style and position your subplots in the                                                             // react-chart-editor: /components/fields/SubplotCreator.js:134
 You need to provide a component for the modal to open!                                                      // react-chart-editor: /components/containers/ModalProvider.js:33
 Z                                                                                                           // react-chart-editor: /components/fields/derived.js:583
-Z Values                                                                                                    // react-chart-editor: /default_panels/GraphCreatePanel.js:66
-Z start                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:116
+Z Values                                                                                                    // react-chart-editor: /default_panels/GraphCreatePanel.js:60
+Z start                                                                                                     // react-chart-editor: /default_panels/GraphCreatePanel.js:110
 Zoom                                                                                                        // plotly.js: components/modebar/buttons.js:103 && react-chart-editor: /default_panels/StyleLayoutPanel.js:48
 Zoom Level                                                                                                  // react-chart-editor: /default_panels/StyleMapsPanel.js:35
 Zoom in                                                                                                     // plotly.js: components/modebar/buttons.js:191
@@ -671,7 +669,7 @@ concentration:                                                                  
 e+6                                                                                                         // react-chart-editor: /default_panels/StyleAxesPanel.js:142
 features detected.                                                                                          // react-chart-editor: /components/widgets/Dropzone.js:35
 high:                                                                                                       // plotly.js: traces/ohlc/calc.js:114
-id                                                                                                          // react-chart-editor: /default_panels/GraphCreatePanel.js:75
+id                                                                                                          // react-chart-editor: /default_panels/GraphCreatePanel.js:69
 in pixels                                                                                                   // react-chart-editor: /components/fields/derived.js:380
 incoming flow count:                                                                                        // plotly.js: traces/sankey/plot.js:168
 k/M/B                                                                                                       // react-chart-editor: /default_panels/StyleAxesPanel.js:146
