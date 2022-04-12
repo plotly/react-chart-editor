@@ -23,23 +23,15 @@ class TraceAccordion extends Component {
 
   setLocals(props, context) {
     const base = props.canGroup ? context.fullData : context.data;
-    const traceFilterCondition = this.props.traceFilterCondition || (() => true);
-
     this.filteredTracesDataIndexes = [];
     this.filteredTraces = [];
-
     if (base && base.length && context.fullData.length) {
       this.filteredTraces = base.filter((t, i) => {
         const fullTrace = props.canGroup ? t : context.fullData.filter((tr) => tr.index === i)[0];
-
         if (fullTrace) {
-          const trace = context.data[fullTrace.index];
-          if (traceFilterCondition(trace, fullTrace)) {
-            this.filteredTracesDataIndexes.push(fullTrace.index);
-            return true;
-          }
+          this.filteredTracesDataIndexes.push(fullTrace.index);
+          return true;
         }
-
         return false;
       });
     }
@@ -115,16 +107,16 @@ class TraceAccordion extends Component {
   renderTracePanelHelp() {
     const _ = this.context.localize;
     return (
-      <PanelMessage heading={_('Trace your data.')}>
+      <PanelMessage heading={_('Plot your data.')}>
         <p>
-          {_('Traces of various types like bar and line are the building blocks of your figure.')}
+          {_('Plots of various types like bar and line are the building blocks of your chart.')}
         </p>
         <p>
           {_(
-            'You can add as many as you like, mixing and matching types and arranging them into subplots.'
+            'You can add as many as you like, mixing and matching types.'
           )}
         </p>
-        <p>{_('Click on the + button above to add a trace.')}</p>
+        <p>{_('Click on the + button above to add a plot.')}</p>
       </PanelMessage>
     );
   }
@@ -135,7 +127,7 @@ class TraceAccordion extends Component {
 
     if (canAdd) {
       const addAction = {
-        label: _('Trace'),
+        label: _('Add plot'),
         handler: ({onUpdate}) => {
           if (onUpdate) {
             onUpdate({
@@ -192,7 +184,6 @@ TraceAccordion.propTypes = {
   canGroup: PropTypes.bool,
   canReorder: PropTypes.bool,
   children: PropTypes.node,
-  traceFilterCondition: PropTypes.func,
 };
 
 export default TraceAccordion;

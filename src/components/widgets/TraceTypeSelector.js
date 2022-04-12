@@ -212,7 +212,7 @@ class TraceTypeSelector extends Component {
     } = this.props;
 
     return (
-      <Modal title={_('Select Trace Type')}>
+      <Modal title={_('Select Plot Type')}>
         {categories ? this.renderGrid() : this.renderSingleBlock()}
       </Modal>
     );

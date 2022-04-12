@@ -178,6 +178,7 @@ class EditorControls extends Component {
             )
           );
         }
+        graphDiv.data[graphDiv.data.length - 1].name = `Plot ${graphDiv.data.length - 1}`;
 
         if (this.props.afterAddTrace) {
           this.props.afterAddTrace(payload);

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
-import {bem} from 'lib';
 
 class Button extends Component {
   constructor(props) {
@@ -8,28 +7,26 @@ class Button extends Component {
   }
 
   render() {
-    const {children, className, icon, label, variant, ...rest} = this.props;
+    const {children, className, label, variant, onClick, ...rest} = this.props;
 
-    let classes = `button`;
+    let classes = `govuk-button`;
 
     if (variant) {
-      classes += ` button--${variant}`;
-    } else {
-      classes += ` button--default`;
+      classes += ` govuk-button--${variant}`;
     }
 
     if (className) {
       classes += ` ${className}`;
     }
 
-    const Icon = icon ? <div className={bem('button', 'icon')}>{icon}</div> : null;
+    const handleClick = e => {
+      onClick(e);
+      e.currentTarget.blur();
+    }
 
     return (
-      <button className={classes} {...rest}>
-        <div className={bem('button', 'wrapper')}>
-          {Icon}
-          <div className="button__label">{label ? label : children}</div>
-        </div>
+      <button data-module="govuk-button" className={classes} onClick={handleClick} {...rest}>
+        {label ? label : children}
       </button>
     );
   }
@@ -41,6 +38,7 @@ Button.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.node, PropTypes.func]),
   label: PropTypes.any,
   variant: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default Button;

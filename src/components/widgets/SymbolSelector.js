@@ -53,7 +53,7 @@ export default class SymbolSelector extends Component {
 
     return (
       <span>
-        <svg width="18" height="18">
+        <svg width="18" height="18" color="red">
           <g transform="translate(8,8)">
             <path d={currentSymbol.label} style={symbolStyle} />
           </g>

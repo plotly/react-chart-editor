@@ -4,51 +4,59 @@
 // custom css properties / css4 variables.
 // ---------------------------------------------------------------------------------------------------------------------
 
+@import "node_modules/govuk-frontend/govuk/settings/colours-applied";
+@import "node_modules/govuk-frontend/govuk/helpers/colour";
+
 // Brand Colors
 $brand: (
-  accent:var(--color-dodger),
-  accent-shade:var(--color-dodger-shade),
-  accent-shade-mid:var(--color-dodger-shade-mid),
-  brand: var(--color-dodger),
-  hightlight-darker: var(--color-gray-blue-pale)
+  accent: govuk-colour("blue"),
+  accent-shade: govuk-colour("dark-blue"),
+  accent-shade-mid: govuk-colour("light-blue"),
+  brand: govuk-colour("blue"),
+  hover: govuk-colour("blue")
 );
 // Text Colors
 $text: (
-  text-base: var(--color-rhino-dark),
-  text-light: var(--color-rhino-medium-1),
-  text-dark: var(--color-rhino-core),
-  text-headings: var(--color-text-dark),
-  text-section-header: var(--color-text-dark),
-  text-active: var(--color-rhino-core),
-  text-placeholder: var(--color-rhino-medium-1)
+  text-base: govuk-colour("black"),
+  text-light: govuk-colour("dark-grey"),
+  text-dark: govuk-colour("black"),
+  text-headings: govuk-colour("black"),
+  text-section-header: govuk-colour("black"),
+  text-active: govuk-colour("blue"),
+  text-placeholder: govuk-colour("dark-grey")
 );
 // Border Colors
 $border-colors: (
-  default: var(--color-rhino-medium-2),
-  light: var(--color-rhino-light-1),
-  dark: var(--color-rhino-medium-1),
+  default: govuk-colour("mid-grey"),
+  light: govuk-colour("light-grey"),
+  dark: govuk-colour("dark-grey"),
+  hover: govuk-colour("mid-grey"),
   accent: var(--color-accent),
-  accent-shade: var(--color-accent-shade)
+  accent-shade: var(--color-accent-shade),
+  input: govuk-colour("black")
 );
 // Border styles
 $borders: (
-  default:1px solid var(--color-border-default),
-  light:1px solid var(--color-border-light),
-  dark:1px solid var(--color-border-dark),
+  default: 1px solid govuk-colour("mid-grey"),
+  light:1px solid govuk-colour("light-grey"),
+  dark:1px solid govuk-colour("dark-grey"),
+  input: 1px solid govuk-colour("black"),
   accent:1px solid var(--color-border-accent),
   accent-shade:1px solid var(--color-border-accent-shade),
-  radius: 5px,
-  radius-small: 3px
+  focused: 3px solid govuk-colour("yellow"),
+  active: 1px solid var(--color-border-accent-shade),
+  radius: 0,
+  radius-small: 0
 );
 $fills: (
-  background: var(--color-rhino-light-2),
-  background-base: var(--color-rhino-light-2),
-  background-light: var(--color-rhino-light-3),
-  background-medium: var(--color-rhino-light-1),
-  background-dark: var(--color-rhino-medium-1),
-  background-top: var(--color-white),
-  background-inverse: var(--color-rhino-dark),
-  background-inputs: var(--color-background-top)
+  background: govuk-colour("light-grey"),
+  background-base: govuk-colour("light-grey"),
+  background-light: govuk-colour("light-grey"),
+  background-medium: govuk-colour("light-grey"),
+  background-dark: govuk-colour("dark-grey"),
+  background-top: govuk-colour("white"),
+  background-inverse: govuk-colour("mid-grey"),
+  background-inputs: govuk-colour("white")
 );
 
 $box-shadows: (
@@ -66,25 +74,25 @@ $scrollbar: (
 );
 // Panel Styles + Colors
 $panel: (
-  background: var(--color-background-base),
+  background: govuk-colour("white"),
   width: $layout-panel-width
 );
 // Sidebar
 $sidebar: (
-  background: var(--color-background-top),
+  background: govuk-colour("white"),
   width: $layout-sidebar-width,
   group-background-base: var(--sidebar-background),
-  item-background-base:var(--color-background-light),
+  item-background-base: var(--color-white),
   item-background-hover: var(--color-background-base),
-  item-background-active: var(--color-background-medium)
+  item-background-active: govuk-colour("blue")
 );
 $fold: (
-  header-text-color-base: var(--color-white),
-  header-text-color-closed: var(--color-white),
-  header-background-base:var(--color-rhino-dark),
-  header-background-closed:var(--color-rhino-core),
-  header-border-color-closed:var(--color-rhino-core),
-  header-border-color-base:var(--color-rhino-dark)
+  header-text-color-base: govuk-colour("white"),
+  header-text-color-closed: govuk-colour("white"),
+  header-background-base: govuk-colour("mid-grey"),
+  header-background-closed: govuk-colour("dark-grey"),
+  header-border-color-closed: govuk-colour("dark-grey"),
+  header-border-color-base: govuk-colour("mid-grey")
 );
 // Buttons
 $buttons: (

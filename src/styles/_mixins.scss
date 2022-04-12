@@ -82,22 +82,22 @@
 }
 
 @mixin generateVars() {
-  // Base Color Variables
-  @each $var, $val in $colors {
-    @if type-of($val) == map {
-      @each $var-n, $val-n in $val {
-        @if type-of($val-n) == map {
-          @each $var-i, $val-i in $val-n {
-            #{--color}-#{$var}-#{$var-n}-#{$var-i}: $val-i;
-          }
-        } @else {
-          #{--color}-#{$var}-#{$var-n}: $val-n;
-        }
-      }
-    } @else {
-      #{--color}-#{$var}: $val;
-    }
-  }
+  //// Base Color Variables
+  //@each $var, $val in $colors {
+  //  @if type-of($val) == map {
+  //    @each $var-n, $val-n in $val {
+  //      @if type-of($val-n) == map {
+  //        @each $var-i, $val-i in $val-n {
+  //          #{--color}-#{$var}-#{$var-n}-#{$var-i}: $val-i;
+  //        }
+  //      } @else {
+  //        #{--color}-#{$var}-#{$var-n}: $val-n;
+  //      }
+  //    }
+  //  } @else {
+  //    #{--color}-#{$var}: $val;
+  //  }
+  //}
 
   // Brand Colors
   @each $var, $val in $brand {

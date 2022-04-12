@@ -18,49 +18,29 @@ import {
   TraceAccordion,
   TraceTypeSection,
   TraceMarkerSection,
-  ColorscalePicker,
-  ColorwayPicker,
-  ColorArrayPicker,
   HoverInfo,
   HoverTemplateText,
   HoverTemplateSwitch,
   Dropdown,
   FillDropdown,
   FontSelector,
-  TextPosition,
   MarkerSize,
   MarkerColor,
   MultiColorPicker,
-  ErrorBars,
-  DataSelector,
   VisibilitySelect,
-  GroupCreator,
   NumericOrDate,
   AxisInterval,
-  HoverLabelNameLength,
 } from '../components';
 import {
   BinningDropdown,
   NumericReciprocal,
   ShowInLegend,
-  TextInfo,
   HoveronDropdown,
-  LevelRendered,
 } from '../components/fields/derived';
-import {traceTypes} from 'lib/traceTypes';
-import localize from 'lib/localize';
-
-const allTraceTypes = traceTypes(localize).map(({value}) => value);
 
 const StyleTracesPanel = (props, {localize: _}) => (
   <TraceAccordion canGroup>
     <TextEditor label={_('Name')} attr="name" richTextOnly />
-    <NumericFraction label={_('Trace Opacity')} attr="opacity" />
-    <TraceTypeSection name={_('Leaves')} traceTypes={['sunburst', 'treemap']} mode="trace">
-      <LevelRendered label={_('Start at Level')} attr="level" />
-      <Numeric label={_('Max Depth')} attr="maxdepth" min={-1} step={1} />
-      <NumericFraction label={_('Opacity')} attr="leaf.opacity" />
-    </TraceTypeSection>
     <PlotlySection name={_('Legend')}>
       <ShowInLegend
         label={_('Show in Legend')}
@@ -70,112 +50,14 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Hide'), value: false},
         ]}
         showOn={true}
-      >
-        <GroupCreator label={_('Legend Group')} prefix={_('Group')} attr="legendgroup" />
-      </ShowInLegend>
-    </PlotlySection>
-    <PlotlySection name={_('Cones & Streamtubes')}>
-      <Numeric label={_('Size')} attr="sizeref" stepmode="relative" />
-      <Dropdown
-        label={_('Size Mode')}
-        options={[
-          {label: _('scaled'), value: 'scaled'},
-          {label: _('absolute'), value: 'absolute'},
-        ]}
-        attr="sizemode"
       />
-      <Dropdown
-        label={_('Cone Anchor')}
-        options={[
-          {label: _('Tip'), value: 'tip'},
-          {label: _('Tail'), value: 'tail'},
-          {label: _('Center'), value: 'center'},
-          {label: _('Center of Mass'), value: 'cm'},
-        ]}
-        attr="anchor"
-      />
-      <Numeric label={_('Max Tube segments')} attr="maxdisplayed" />
-    </PlotlySection>
-    <MultiColorPicker label={_('Color')} attr="color" />
-    <TraceTypeSection
-      name={_('Segment Colors')}
-      traceTypes={['pie', 'sunburst', 'treemap', 'funnelarea']}
-      mode="trace"
-    >
-      <LayoutSection attr="name">
-        <ColorwayPicker label={_('Colors')} attr="piecolorway" />
-        <Radio
-          label={_('Extended Colors')}
-          attr="extendpiecolors"
-          options={[
-            {label: _('On'), value: true},
-            {label: _('Off'), value: false},
-          ]}
-        />
-        <ColorwayPicker label={_('Colors')} attr="sunburstcolorway" />
-        <ColorwayPicker label={_('Colors')} attr="treemapcolorway" />
-        <Radio
-          label={_('Extended Colors')}
-          attr="extendsunburstcolors"
-          options={[
-            {label: _('On'), value: true},
-            {label: _('Off'), value: false},
-          ]}
-        />
-        <Radio
-          label={_('Extended Colors')}
-          attr="extendtreemapcolors"
-          options={[
-            {label: _('On'), value: true},
-            {label: _('Off'), value: false},
-          ]}
-        />
-        <ColorwayPicker label={_('Colors')} attr="funnelareacolorway" />
-        <Radio
-          label={_('Extended Colors')}
-          attr="extendfunnelareacolors"
-          options={[
-            {label: _('On'), value: true},
-            {label: _('Off'), value: false},
-          ]}
-        />
-      </LayoutSection>
-    </TraceTypeSection>
-    <PlotlySection name={_('Funnel Dimensions')} traceTypes={['funnelarea']} attr="aspectratio">
-      <Numeric
-        label={_('Aspect Ratio')}
-        attr="aspectratio"
-        step={0.01}
-        min={0}
-        max={2}
-        showSlider
-      />
-      <NumericFraction label={_('Base Ratio')} attr="baseratio" />
-    </PlotlySection>
-    <PlotlySection name={_('Subplot Title')} attr="title.text">
-      <TextEditor label={_('Name')} attr="title.text" />
-      <Dropdown
-        label={'Title Position'}
-        attr="titleposition"
-        options={[
-          {label: _('Top Left'), value: 'top left'},
-          {label: _('Top Center'), value: 'top center'},
-          {label: _('Top Right'), value: 'top right'},
-          {label: _('Middle Center'), value: 'middle center'},
-          {label: _('Bottom Left'), value: 'bottom left'},
-          {label: _('Bottom Center'), value: 'bottom center'},
-          {label: _('Bottom Right'), value: 'bottom right'},
-        ]}
-      />
-      <FontSelector label={_('Typeface')} attr="title.font.family" clearable={false} />
-      <Numeric label={_('Font Size')} attr="title.font.size" units="px" />
     </PlotlySection>
     <PlotlySection name={_('Values')}>
       <BinningDropdown label={_('Histogram Function')} attr="histfunc" />
       <Dropdown
         label={_('Histogram Normalization')}
         options={[
-          {label: _('Number of Occurences'), value: ''},
+          {label: _('Number of Occurrences'), value: ''},
           {label: _('Percent'), value: 'percent'},
           {label: _('Probability'), value: 'probability'},
           {label: _('Density'), value: 'density'},
@@ -212,10 +94,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
     </PlotlySection>
     <PlotlySection name={_('Header')}>
-      <Numeric label={_('Height')} attr="header.height" />
+      <Numeric label={_('Height')} attr="header.height" showSlider={false} />
       <MultiColorPicker label={_('Fill Color')} attr="header.fill.color" />
       <FontSelector label={_('Typeface')} attr="header.font.family" />
-      <Numeric label={_('Font Size')} attr="header.font.size" />
+      <Numeric label={_('Font Size')} attr="header.font.size" showSlider={false} />
       <Dropdown
         label={_('Text Alignment')}
         options={[
@@ -225,15 +107,13 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
         attr="header.align"
       />
-      <MultiColorPicker label={_('Font Color')} attr="header.font.color" />
-      <Numeric label={_('Border Width')} attr="header.line.width" />
-      <MultiColorPicker label={_('Border Color')} attr="header.line.color" />
+      <Numeric label={_('Border Width')} attr="header.line.width" showSlider={false} />
     </PlotlySection>
     <PlotlySection name={_('Cells')}>
-      <Numeric label={_('Height')} attr="cells.height" />
+      <Numeric label={_('Height')} attr="cells.height" showSlider={false} />
       <MultiColorPicker label={_('Fill Color')} attr="cells.fill.color" />
       <FontSelector label={_('Typeface')} attr="cells.font.family" />
-      <Numeric label={_('Font Size')} attr="cells.font.size" />
+      <Numeric label={_('Font Size')} attr="cells.font.size" showSlider={false} />
       <Dropdown
         label={_('Text Alignment')}
         options={[
@@ -244,8 +124,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         attr="cells.align"
       />
       <MultiColorPicker label={_('Font Color')} attr="cells.font.color" />
-      <Numeric label={_('Border Width')} attr="cells.line.width" />
-      <MultiColorPicker label={_('Border Color')} attr="cells.line.color" />
+      <Numeric label={_('Border Width')} attr="cells.line.width" showSlider={false} />
     </PlotlySection>
     <PlotlySection name={_('Display')}>
       <Flaglist
@@ -267,7 +146,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <TraceTypeSection
       name={_('Bar Grouping, Sizing and Spacing')}
-      traceTypes={['bar', 'histogram', 'funnel', 'waterfall']}
+      traceTypes={['bar']}
       mode="trace"
     >
       <LayoutSection attr="name">
@@ -292,81 +171,27 @@ const StyleTracesPanel = (props, {localize: _}) => (
           ]}
           clearable={false}
         />
-        <NumericFractionInverse label={_('Bar Width')} attr="bargap" />
-        <NumericFraction label={_('Bar Padding')} attr="bargroupgap" />
-
-        <Dropdown
-          label={_('Bar Mode')}
-          attr="funnelmode"
-          options={[
-            {label: _('Grouped'), value: 'group'},
-            {label: _('Stacked'), value: 'stack'},
-            {label: _('Overlaid'), value: 'overlay'},
-          ]}
-          clearable={false}
-        />
-        <NumericFractionInverse label={_('Bar Width')} attr="funnelgap" />
-        <NumericFraction label={_('Bar Padding')} attr="funnelgroupgap" />
-
-        <Dropdown
-          label={_('Bar Mode')}
-          attr="waterfallmode"
-          options={[
-            {label: _('Grouped'), value: 'group'},
-            {label: _('Stacked'), value: 'stack'},
-            {label: _('Overlaid'), value: 'overlay'},
-          ]}
-          clearable={false}
-        />
-        <NumericFractionInverse label={_('Bar Width')} attr="waterfallgap" />
-        <NumericFraction label={_('Bar Padding')} attr="waterfallgroupgap" />
+        <NumericFractionInverse label={_('Bar Width')} attr="bargap" showSlider={false} />
+        <NumericFraction label={_('Bar Padding')} attr="bargroupgap" showSlider={false} />
       </LayoutSection>
     </TraceTypeSection>
     <PlotlySection name={_('Binning')}>
-      <NumericOrDate label={_('X Bin Start')} attr="xbins.start" axis="x" />
-      <NumericOrDate label={_('X Bin End')} attr="xbins.end" axis="x" />
-      <Numeric label={_('Max X Bins')} attr="nbinsx" />
+      <NumericOrDate label={_('X Bin Start')} attr="xbins.start" axis="x" showSlider={false} />
+      <NumericOrDate label={_('X Bin End')} attr="xbins.end" axis="x" showSlider={false} />
+      <Numeric label={_('Max X Bins')} attr="nbinsx" showSlider={false} />
       <AxisInterval label={_('X Bin Size')} attr="xbins.size" axis="x" />
 
-      <NumericOrDate label={_('Y Bin Start')} attr="ybins.start" axis="y" />
-      <NumericOrDate label={_('Y Bin End')} attr="ybins.end" axis="y" />
-      <Numeric label={_('Max Y Bins')} attr="nbinsy" />
+      <NumericOrDate label={_('Y Bin Start')} attr="ybins.start" axis="y" showSlider={false} />
+      <NumericOrDate label={_('Y Bin End')} attr="ybins.end" axis="y" showSlider={false} />
+      <Numeric label={_('Max Y Bins')} attr="nbinsy" showSlider={false} />
       <AxisInterval label={_('Y Bin Size')} attr="ybins.size" axis="y" />
     </PlotlySection>
     <PlotlySection label={_('Bar Position')}>
-      <NumericOrDate label={_('Base')} attr="base" />
-      <Numeric label={_('Offset')} attr="offset" />
-      <Numeric label={_('Width')} attr="width" />
+      <NumericOrDate label={_('Base')} attr="base" showSlider={false} />
+      <Numeric label={_('Offset')} attr="offset" showSlider={false} />
+      <Numeric label={_('Width')} attr="width" showSlider={false} />
     </PlotlySection>
-    <TraceTypeSection name={_('Box Size and Spacing')} traceTypes={['box']} mode="trace">
-      <LayoutSection attr="name">
-        <Radio
-          label={_('Box Mode')}
-          attr="boxmode"
-          options={[
-            {label: _('Overlay'), value: 'overlay'},
-            {label: _('Group'), value: 'group'},
-          ]}
-        />
-        <NumericFractionInverse label={_('Box Width')} attr="boxgap" />
-        <NumericFraction label={_('Box Padding')} attr="boxgroupgap" />
-      </LayoutSection>
-    </TraceTypeSection>
-    <TraceTypeSection name={_('Violin Size and Spacing')} traceTypes={['violin']} mode="trace">
-      <LayoutSection attr="name">
-        <Radio
-          label={_('Violin Mode')}
-          attr="violinmode"
-          options={[
-            {label: _('Overlay'), value: 'overlay'},
-            {label: _('Group'), value: 'group'},
-          ]}
-        />
-        <NumericFractionInverse label={_('Violin Width')} attr="violingap" />
-        <NumericFraction label={_('Violin Padding')} attr="violingroupgap" />
-      </LayoutSection>
-    </TraceTypeSection>
-    <NumericFraction label={_('Whisker Width')} attr="whiskerwidth" />
+    <NumericFraction label={_('Whisker Width')} attr="whiskerwidth" showSlider={false} />
     <TraceMarkerSection>
       <Radio
         label={_('Order')}
@@ -384,19 +209,9 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Counterclockwise'), value: 'counterclockwise'},
         ]}
       />
-      <Numeric label={_('Rotation')} attr="rotation" />
-      <NumericFraction label={_('Hole Size')} attr="hole" />
-      <NumericFraction label={_('Pull')} attr="pull" />
-      <Dropdown
-        options={[
-          {label: _('Show All'), value: 'all'},
-          {label: _('Outliers'), value: 'outliers'},
-          {label: _('Suspected Outliers'), value: 'suspectedoutliers'},
-          {label: _('Hide'), value: false},
-        ]}
-        attr="boxpoints"
-        clearable={false}
-      />
+      <Numeric label={_('Rotation')} attr="rotation" showSlider={false} />
+      <NumericFraction label={_('Hole Size')} attr="hole" showSlider={false} />
+      <NumericFraction label={_('Pull')} attr="pull" showSlider={false} />
       <Dropdown
         options={[
           {label: _('Show All'), value: 'all'},
@@ -407,21 +222,22 @@ const StyleTracesPanel = (props, {localize: _}) => (
         attr="points"
         clearable={false}
       />
-      <NumericFraction label={_('Jitter')} attr="jitter" />
-      <Numeric label={_('Position')} attr="pointpos" step={0.1} showSlider />
+      <NumericFraction label={_('Jitter')} attr="jitter" showSlider={false} />
+      <Numeric label={_('Position')} attr="pointpos" step={0.1} showSlider={false} />
       <MarkerColor
         suppressMultiValuedMessage
         label={_('Color')}
         attr="marker.color"
         labelWidth={80}
       />
-      <NumericFraction label={_('Point Opacity')} attr="marker.opacity" />
+      <NumericFraction label={_('Point Opacity')} attr="marker.opacity" showSlider={false} />
       <MarkerSize label={_('Size')} attr="marker.size" />
       <NumericReciprocal
         label={_('Size Scale')}
         attr="marker.sizeref"
         step={0.2}
         stepmode="relative"
+        showSlider={false}
       />
       <Radio
         label={_('Size Mode')}
@@ -431,11 +247,9 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Diameter'), value: 'diameter'},
         ]}
       />
-      <Numeric label={_('Minimum Size')} attr="marker.sizemin" />
+      <Numeric label={_('Minimum Size')} attr="marker.sizemin" showSlider={false} />
       <SymbolSelector label={_('Symbol')} attr="marker.symbol" />
-      <Numeric label={_('Border Width')} attr="marker.line.width" />
-      <MultiColorPicker label={_('Border Color')} attr="marker.line.color" />
-      <Numeric label={_('Max Number of Points')} attr="marker.maxdisplayed" />
+      <Numeric label={_('Border Width')} attr="marker.line.width" showSlider={false} />
     </TraceMarkerSection>
     <PlotlySection name={_('Connector Styles')}>
       <Radio
@@ -446,7 +260,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
       />
       <MultiColorPicker label={_('Fill Color')} attr="connector.fillcolor" />
-      <Numeric label={_('Line Width')} attr="connector.line.width" />
+      <Numeric label={_('Line Width')} attr="connector.line.width" showSlider={false} />
       <MultiColorPicker label={_('Line Color')} attr="connector.line.color" />
       <LineDashSelector label={_('Line Type')} attr="connector.line.dash" />
       <Dropdown
@@ -461,11 +275,11 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <PlotlySection name={_('Increasing Marker Styles')}>
       <TextEditor label={_('Name')} attr="increasing.name" richTextOnly />
-      <Numeric label={_('Width')} attr="increasing.line.width" />
+      <Numeric label={_('Width')} attr="increasing.line.width" showSlider={false} />
       <MultiColorPicker label={_('Line Color')} attr="increasing.line.color" />
       <MultiColorPicker label={_('Marker Color')} attr="increasing.marker.color" />
       <MultiColorPicker label={_('Line Color')} attr="increasing.marker.line.color" />
-      <Numeric label={_('Line Width')} attr="increasing.marker.line.width" />
+      <Numeric label={_('Line Width')} attr="increasing.marker.line.width" showSlider={false} />
       <MultiColorPicker label={_('Fill Color')} attr="increasing.fillcolor" />
       <LineDashSelector label={_('Type')} attr="increasing.line.dash" />
       <Radio
@@ -479,11 +293,11 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </PlotlySection>
     <PlotlySection name={_('Decreasing Marker Styles')}>
       <TextEditor label={_('Name')} attr="decreasing.name" richTextOnly />
-      <Numeric label={_('Width')} attr="decreasing.line.width" />
+      <Numeric label={_('Width')} attr="decreasing.line.width" showSlider={false} />
       <MultiColorPicker label={_('Line Color')} attr="decreasing.line.color" />
       <MultiColorPicker label={_('Marker Color')} attr="decreasing.marker.color" />
       <MultiColorPicker label={_('Line Color')} attr="decreasing.marker.line.color" />
-      <Numeric label={_('Line Width')} attr="decreasing.marker.line.width" />
+      <Numeric label={_('Line Width')} attr="decreasing.marker.line.width" showSlider={false} />
       <MultiColorPicker label={_('Fill Color')} attr="decreasing.fillcolor" />
       <LineDashSelector label={_('Type')} attr="decreasing.line.dash" />
       <Radio
@@ -498,10 +312,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
     <PlotlySection name={_('Total Marker Styles')}>
       <MultiColorPicker label={_('Marker Color')} attr="totals.marker.color" />
       <MultiColorPicker label={_('Line Color')} attr="totals.marker.line.color" />
-      <Numeric label={_('Line Width')} attr="totals.marker.line.width" />
+      <Numeric label={_('Line Width')} attr="totals.marker.line.width" showSlider={false} />
     </PlotlySection>
     <PlotlySection name={_('Ticks')}>
-      <Numeric label={_('Width')} attr="tickwidth" />
+      <Numeric label={_('Width')} attr="tickwidth" showSlider={false} />
     </PlotlySection>
     <PlotlySection name={_('Contours')}>
       <Radio
@@ -547,14 +361,13 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Custom'), value: false},
         ]}
       />
-      <Numeric label={_('Max Contours')} attr="ncontours" />
+      <Numeric label={_('Max Contours')} attr="ncontours" showSlider={false} />
 
-      <ContourNumeric label={_('Step Size')} attr="contours.size" />
-      <ContourNumeric label={_('Min Contour')} attr="contours.start" />
-      <ContourNumeric label={_('Max Contour')} attr="contours.end" />
+      <ContourNumeric label={_('Step Size')} attr="contours.size" showSlider={false} />
+      <ContourNumeric label={_('Min Contour')} attr="contours.start" showSlider={false} />
+      <ContourNumeric label={_('Max Contour')} attr="contours.end"  showSlider={false}/>
     </PlotlySection>
     <TraceTypeSection name={_('Stacking')} traceTypes={['scatter']} mode="trace">
-      <GroupCreator label={_('Group')} prefix={_('Stack')} attr="stackgroup" />
       <Radio
         label={_('Gaps')}
         attr="stackgaps"
@@ -583,30 +396,10 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </TraceTypeSection>
     <TraceTypeSection
       name={_('Lines')}
-      traceTypes={[
-        'scatter',
-        'contour',
-        'scatterternary',
-        'scatterpolar',
-        'scatterpolargl',
-        'box',
-        'violin',
-        'scatter3d',
-        'scattergl',
-        'scattergeo',
-        'parcoords',
-        'parcats',
-        'scattermapbox',
-        'scattercarpet',
-        'contourcarpet',
-        'ohlc',
-        'candlestick',
-        'histogram2dcontour',
-      ]}
+      traceTypes={['scatter', 'contour']}
       mode="trace"
     >
-      <Numeric label={_('Width')} attr="line.width" />
-      <MultiColorPicker label={_('Color')} attr="line.color" />
+      <Numeric label={_('Width')} attr="line.width" showSlider={false} />
       <Radio
         label={_('Color Bar')}
         attr="line.showscale"
@@ -615,10 +408,9 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Hide'), value: false},
         ]}
       />
-      <ColorscalePicker label={_('Colorscale')} attr="line.colorscale" />
       <LineDashSelector label={_('Type')} attr="line.dash" />
       <LineShapeSelector label={_('Shape')} attr="line.shape" />
-      <Numeric label={_('Smoothing')} attr="line.smoothing" showSlider step={0.1} />
+      <Numeric label={_('Smoothing')} attr="line.smoothing" step={0.1} showSlider={false}/>
       <Radio
         label={_('Connect Gaps')}
         attr="connectgaps"
@@ -630,7 +422,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
     </TraceTypeSection>
     <PlotlySection name={_('Filled Area')}>
       <FillDropdown attr="fill" label={_('Fill to')} />
-      <MultiColorPicker label={_('Color')} attr="fillcolor" />
     </PlotlySection>
     <PlotlySection name={_('Notches')}>
       <Radio
@@ -640,79 +431,9 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('Hide'), value: false},
         ]}
       />
-      <Numeric label={_('Width')} attr="notchwidth" min={0} max={0.5} step={0.1} />
+      <Numeric label={_('Width')} attr="notchwidth" min={0} max={0.5} step={0.1} showSlider={false} />
     </PlotlySection>
-    <TraceTypeSection
-      name={_('Text')}
-      traceTypes={allTraceTypes.filter(
-        (t) =>
-          ![
-            'histogram2d',
-            'histogram2dcontour',
-            'parcoords',
-            'parcats',
-            'sankey',
-            'table',
-            'scattercarpet',
-            'carpet',
-          ].includes(t)
-      )}
-      mode="trace"
-    >
-      <TextPosition label={_('Text Position')} attr="textposition" />
-      <HoverTemplateSwitch attr="texttemplate" label={_('Mode')} />
-      <TextInfo attr="textinfo" label={_('Show')} />
-      <HoverTemplateText attr="texttemplate" label={_('Template')} />
-      <DataSelector label={_('Text')} attr="text" />
-      <FontSelector label={_('Typeface')} attr="textfont.family" />
-      <Numeric label={_('Font Size')} attr="textfont.size" units="px" />
-      <MultiColorPicker label={_('Font Color')} attr="textfont.color" />
-      <Dropdown
-        label={_('Inside Text Orientation')}
-        options={[
-          {label: _('Auto'), value: 'auto'},
-          {label: _('Radial'), value: 'radial'},
-          {label: _('Tangential'), value: 'tangential'},
-          {label: _('Horizontal'), value: 'horizontal'},
-        ]}
-        attr="insidetextorientation"
-        clearable={false}
-      />
-      <Dropdown
-        label={_('Text Angle')}
-        options={[
-          {label: _('Auto'), value: 'auto'},
-          {label: _('Horizontal'), value: 0},
-          {label: _('Vertical Up'), value: -90},
-          {label: _('Vertical Down'), value: 90},
-          {label: _('Angled Down'), value: 45},
-          {label: _('Angled Up'), value: -45},
-        ]}
-        attr="textangle"
-        clearable={false}
-      />
-      <Dropdown
-        label={_('Constrain Text')}
-        options={[
-          {label: _('Inside'), value: 'inside'},
-          {label: _('Outside'), value: 'outside'},
-          {label: _('Both'), value: 'both'},
-          {label: _('None'), value: 'none'},
-        ]}
-        attr="constraintext"
-        clearable={false}
-      />
-      <Radio
-        label={_('Clip on Axes')}
-        attr="cliponaxis"
-        options={[
-          {label: _('Yes'), value: true},
-          {label: _('No'), value: false},
-        ]}
-      />
-    </TraceTypeSection>
     <PlotlySection name={_('Colorscale')}>
-      <ColorscalePicker label={_('Colorscale')} attr="colorscale" />
       <Radio
         label={_('Color Bar')}
         attr="showscale"
@@ -739,8 +460,8 @@ const StyleTracesPanel = (props, {localize: _}) => (
         showOn={false}
         defaultOpt={true}
       >
-        <Numeric label={_('Min')} attr="zmin" />
-        <Numeric label={_('Max')} attr="zmax" />
+        <Numeric label={_('Min')} attr="zmin" showSlider={false} />
+        <Numeric label={_('Max')} attr="zmax" showSlider={false} />
       </VisibilitySelect>
       <VisibilitySelect
         label={_('Range')}
@@ -752,8 +473,8 @@ const StyleTracesPanel = (props, {localize: _}) => (
         showOn={false}
         defaultOpt={true}
       >
-        <Numeric label={_('Min')} attr="cmin" />
-        <Numeric label={_('Max')} attr="cmax" />
+        <Numeric label={_('Min')} attr="cmin" showSlider={false} />
+        <Numeric label={_('Max')} attr="cmax" showSlider={false} />
       </VisibilitySelect>
       <Radio
         label={_('Smoothing')}
@@ -765,16 +486,16 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
     </PlotlySection>
     <PlotlySection name={_('Gaps Between Cells')}>
-      <Numeric label={_('Horizontal Gap')} attr="xgap" />
-      <Numeric label={_('Vertical Gap')} attr="ygap" />
+      <Numeric label={_('Horizontal Gap')} attr="xgap" showSlider={false} />
+      <Numeric label={_('Vertical Gap')} attr="ygap" showSlider={false} />
     </PlotlySection>
     <PlotlySection name={_('Heatmap')}>
-      <Numeric label={_('Horizontal Gaps')} attr="xgap" />
-      <Numeric label={_('Vertical Gaps')} attr="ygap" />
+      <Numeric label={_('Horizontal Gaps')} attr="xgap" showSlider={false} />
+      <Numeric label={_('Vertical Gaps')} attr="ygap" showSlider={false} />
     </PlotlySection>
     <TraceTypeSection
       name={_('Gaps in Data')}
-      traceTypes={['heatmap', 'contour', 'heatmapgl']}
+      traceTypes={['heatmap', 'contour']}
       mode="trace"
     >
       <Radio
@@ -786,125 +507,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
         ]}
       />
     </TraceTypeSection>
-    <PlotlySection name={_('Lighting')}>
-      <NumericFraction label={_('Ambient')} attr="lighting.ambient" />
-      <NumericFraction label={_('Diffuse')} attr="lighting.diffuse" />
-      <NumericFraction label={_('Specular')} attr="lighting.specular" />
-      <NumericFraction label={_('Roughness')} attr="lighting.roughness" />
-      <NumericFraction label={_('Fresnel')} attr="lighting.fresnel" />
-      <NumericFraction label={_('Vertex Normal')} attr="lighting.vertexnormalsepsilon" />
-      <NumericFraction label={_('Face Normal')} attr="lighting.facenormalsepsilon" />
-    </PlotlySection>
-    <PlotlySection name={_('Light Position')}>
-      <NumericFraction label={_('X')} attr="lightposition.x" />
-      <NumericFraction label={_('Y')} attr="lightposition.y" />
-      <NumericFraction label={_('Z')} attr="lightposition.z" />
-    </PlotlySection>
-    <PlotlySection name={_('Scaling')}>
-      <GroupCreator label={_('Scale Group')} prefix={_('Group')} attr="scalegroup" />
-      <Radio
-        label={_('Scale Mode')}
-        attr="scalemode"
-        options={[
-          {label: _('Width'), value: 'width'},
-          {label: _('Count'), value: 'count'},
-        ]}
-      />
-      <Radio
-        label={_('Span Mode')}
-        attr="spanmode"
-        options={[
-          {label: _('Soft'), value: 'soft'},
-          {label: _('Hard'), value: 'hard'},
-          {label: _('Manual'), value: 'manual'},
-        ]}
-      />
-      <Numeric label={_('Bandwidth')} attr="bandwidth" />
-      <Numeric label={_('Span')} attr="span" />
-      <Radio
-        attr="side"
-        label={_('Visible Sides')}
-        options={[
-          {label: _('Both'), value: 'both'},
-          {label: _('Positive'), value: 'positive'},
-          {label: _('Negative'), value: 'negative'},
-        ]}
-      />
-    </PlotlySection>
-    <PlotlySection name={_('Box Mean')}>
-      <Radio
-        attr="boxmean"
-        options={[
-          {label: _('Mean'), value: true},
-          {label: _('Mean & SD'), value: 'sd'},
-          {label: _('None'), value: false},
-        ]}
-      />
-    </PlotlySection>
-    <PlotlySection name={_('Box')}>
-      <Radio
-        attr="box.visible"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
-      />
-      <NumericFraction label={_('Box Width')} attr="box.width" />
-      <MultiColorPicker label={_('Box Fill Color')} attr="box.color" />
-      <NumericFraction label={_('Box Line Width')} attr="box.line.width" />
-      <MultiColorPicker label={_('Box Line Color')} attr="box.line.color" />
-    </PlotlySection>
-    <PlotlySection name={_('Meanline')}>
-      <Radio
-        attr="meanline.visible"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
-      />
-      <NumericFraction label={_('Meanline Width')} attr="meanline.width" />
-      <MultiColorPicker label={_('Meanline Color')} attr="meanline.color" />
-    </PlotlySection>
-    <PlotlySection name={_('Nodes')}>
-      <ColorArrayPicker label={_('Color')} attr="node.color" />
-      <Numeric label={_('Padding')} attr="node.pad" min={0} />
-      <Numeric label={_('Thickness')} attr="node.thickness" min={0} />
-      <MultiColorPicker label={_('Line Color')} attr="node.line.color" />
-      <Numeric label={_('Line Width')} attr="node.line.width" min={0} />
-      <Dropdown
-        label={_('Arrangement')}
-        attr="arrangement"
-        options={[
-          {label: _('Snap'), value: 'snap'},
-          {label: _('Perpendicular'), value: 'perpendicular'},
-          {label: _('Freeform'), value: 'freeform'},
-          {label: _('Fixed'), value: 'fixed'},
-        ]}
-        clearable={false}
-      />
-    </PlotlySection>
-    <PlotlySection name={_('Links')}>
-      <ColorArrayPicker label={_('Color')} attr="link.color" />
-      <MultiColorPicker label={_('Line Color')} attr="link.line.color" />
-      <Numeric label={_('Line Width')} attr="link.line.width" min={0} />
-    </PlotlySection>
-    <PlotlySection name={_('Path Bar')} attr="pathbar.visible">
-      <Radio
-        attr="pathbar.visible"
-        options={[
-          {label: _('Show'), value: true},
-          {label: _('Hide'), value: false},
-        ]}
-      />
-      <Radio
-        attr="pathbar.side"
-        options={[
-          {label: _('Top'), value: 'top'},
-          {label: _('Bottom'), value: 'bottom'},
-        ]}
-        label={_('Side')}
-      />
-    </PlotlySection>
     <PlotlySection name={_('Hover/Tooltip')}>
       <HoveronDropdown attr="hoveron" label={_('Hover on')} />
       <Radio
@@ -917,7 +519,7 @@ const StyleTracesPanel = (props, {localize: _}) => (
       />
       <HoverTemplateSwitch attr="hovertemplate" label={_('Mode')} />
       <HoverInfo attr="hoverinfo" label={_('Show')} />
-      <HoverTemplateText attr="hovertemplate" label={_('Template')} />
+      <HoverTemplateText attr="hovertemplate" label={_('Template')} richTextOnly />
       <Radio
         label={_('Split labels')}
         attr="hoverlabel.split"
@@ -926,7 +528,6 @@ const StyleTracesPanel = (props, {localize: _}) => (
           {label: _('No'), value: false},
         ]}
       />
-      <HoverLabelNameLength label={_('Trace Name')} attr="hoverlabel.namelength" />
       <VisibilitySelect
         attr="contour.show"
         label={_('Show Contour')}
@@ -937,39 +538,11 @@ const StyleTracesPanel = (props, {localize: _}) => (
         showOn={true}
         defaultOpt={false}
       >
-        <MultiColorPicker label={_('Contour Color')} attr="contour.color" />
-        <Numeric label={_('Contour Width')} attr="contour.width" />
+        <Numeric label={_('Contour Width')} attr="contour.width" showSlider={false} />
       </VisibilitySelect>
-      <Dropdown
-        label={_('Text Alignment')}
-        attr="hoverlabel.align"
-        options={[
-          {label: _('Auto'), value: 'auto'},
-          {label: _('Left'), value: 'left'},
-          {label: _('Right'), value: 'right'},
-        ]}
-        clearable={false}
-      />
       <Text label={_('Value Format')} attr="valueformat" />
       <Text label={_('Value Suffix')} attr="valuesuffix" />
     </PlotlySection>
-    <TraceTypeSection
-      name={_('Error Bars X')}
-      traceTypes={['scatter', 'scattergl', 'scatter3d', 'bar']}
-      mode="trace"
-    >
-      <ErrorBars attr="error_x" />
-    </TraceTypeSection>
-    <TraceTypeSection
-      name={_('Error Bars Y')}
-      traceTypes={['scatter', 'scattergl', 'scatter3d', 'bar']}
-      mode="trace"
-    >
-      <ErrorBars attr="error_y" />
-    </TraceTypeSection>
-    <TraceTypeSection name={_('Error Bars Z')} traceTypes={['scatter3d']} mode="trace">
-      <ErrorBars attr="error_z" />
-    </TraceTypeSection>
   </TraceAccordion>
 );
 

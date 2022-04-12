@@ -4,7 +4,6 @@ import React, {Component} from 'react';
 import {connectToContainer} from 'lib';
 import RadioBlocks from '../widgets/RadioBlocks';
 import MultiColorPicker from './MultiColorPicker';
-import ColorscalePicker from './ColorscalePicker';
 import Numeric from './Numeric';
 import Radio from './Radio';
 import Info from './Info';
@@ -106,8 +105,8 @@ class UnconnectedMarkerColor extends Component {
     return (
       <MultiColorPicker
         attr="marker.color"
-        multiColorMessage={_('Each trace will be colored according to the selected colorscale.')}
-        singleColorMessage={_('All traces will be colored in the the same color.')}
+        multiColorMessage={_('Each plot will be colored according to the selected colorscale.')}
+        singleColorMessage={_('All plot will be colored in the the same color.')}
         setColor={this.setColor}
         setColorScale={this.setColorScale}
         onConstantColorOptionChange={this.onConstantColorOptionChange}
@@ -127,15 +126,6 @@ class UnconnectedMarkerColor extends Component {
     return (
       <Field multiValued={multiValued}>
         <DataSelector suppressMultiValuedMessage attr="marker.color" />
-        {this.props.container.marker &&
-        this.props.container.marker.colorscale === MULTI_VALUED ? null : (
-          <ColorscalePicker
-            suppressMultiValuedMessage
-            attr="marker.colorscale"
-            updatePlot={this.setColorScale}
-            colorscale={this.state.colorscale}
-          />
-        )}
       </Field>
     );
   }
@@ -165,8 +155,8 @@ class UnconnectedMarkerColor extends Component {
               {!type ? null : (
                 <Info>
                   {type === 'constant'
-                    ? _('All points in a trace are colored in the same color.')
-                    : _('Each point in a trace is colored according to data.')}
+                    ? _('All points in a plot are colored in the same color.')
+                    : _('Each point in a plot is colored according to data.')}
                 </Info>
               )}
             </Field>
@@ -174,7 +164,7 @@ class UnconnectedMarkerColor extends Component {
             {!type
               ? null
               : type === 'constant'
-              ? this.renderConstantControls()
+              ? null
               : this.renderVariableControls()}
           </Field>
           {type === 'constant' ? null : (

@@ -135,6 +135,22 @@ export default class NumericInput extends Component {
       return null;
     }
 
+    // return (
+    //   <div className="numeric-input__caret-box">
+    //     <div
+    //       className="numeric-input__caret js-numeric-increase"
+    //       onClick={this.incrementValue.bind(this, 'increase')}
+    //     >
+    //       <div className="caret--up numeric-top-caret-modifier" />
+    //     </div>
+    //     <div
+    //       className="numeric-input__caret js-numeric-decrease"
+    //       onClick={this.incrementValue.bind(this, 'decrease')}
+    //     >
+    //       <div className="caret--down numeric-bottom-caret-modifier" />
+    //     </div>
+    //   </div>
+    // );
     return (
       <div className="numeric-input__caret-box">
         <div

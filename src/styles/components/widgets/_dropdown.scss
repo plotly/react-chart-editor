@@ -8,12 +8,12 @@
   .Select {
     &__control {
       background-color: var(--color-background-inputs);
-      border: var(--border-default);
+      border: var(--border-input);
       box-shadow: none !important;
       color: var(--color-text-base);
       min-height: 36px;
+      border-radius: 0;
       &:hover {
-        border-color: var(--color-border-dark);
         .Select__arrow {
           opacity: 1;
         }
@@ -47,31 +47,35 @@
     }
     &__clear-indicator {
       padding: 6px 0;
-      color: $color-rhino-medium-2;
+      color: govuk-colour("mid-grey");
       &:hover {
-        color: $color-sienna;
+        color: govuk-colour("dark-grey");
       }
     }
     &__dropdown-indicator {
       padding: 6px 6px 6px 0;
-      color: $color-rhino-medium-2;
-      &:hover {
-        color: var(--color-border-accent);
-      }
+      color: var(--color-text-base);
     }
     &__single-value {
       font-size: 12px;
       height: 16px;
-      color: var(--color-text-active);
+      color: var(--color-text-base);
       font-weight: 400;
     }
     &__multi-value {
-      background-color: $color-rhino-light-2;
+      background-color: govuk-colour("light-grey");
       border: var(--border-default);
       &__label {
         max-width: 105px;
         white-space: pre-wrap;
         word-break: break-word;
+      }
+      &__remove {
+        color: govuk-colour("dark-grey");
+        &:hover {
+          background-color: govuk-colour("light-grey");
+          color: var(--color-text-base);
+        }
       }
     }
   }
@@ -85,29 +89,21 @@
 
   .Select__option {
     background-color: var(--color-background-inputs);
-    &--is-selected {
-      color: var(--color-text-active);
-      font-weight: var(--font-weight-semibold);
-      background-color: var(--color-background-light);
-    }
-    &--is-focused {
-      background-color: var(--color-background-light);
-      color: var(--color-text-active);
-    }
   }
   .Select__option:hover {
-    color: var(--color-text-active);
-    background-color: var(--color-background-light);
+    color: var(--color-text-base);
   }
 
   .Select__value-container {
     color: var(--color-text-base);
     padding: 2px 6px;
+    line-height: 1.5;
   }
   .Select__placeholder {
     color: var(--color-text-placeholder);
     font-size: 12px;
     height: 16px;
+    line-height: 16px;
     font-weight: 400;
   }
   .dropdown--dark {

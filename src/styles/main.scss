@@ -1,8 +1,17 @@
-@charset 'utf-8';
+@charset "utf-8";
+$govuk-font-family: arial, sans-serif;
+
 @import 'variables/main';
 @import 'mixins';
 @import 'helpers';
 @import 'movement';
+
+@import "node_modules/govuk-frontend/govuk/base";
+@import "node_modules/govuk-frontend/govuk/core/all";
+@import "node_modules/govuk-frontend/govuk/objects/all";
+@import "node_modules/govuk-frontend/govuk/objects/all";
+@import "node_modules/govuk-frontend/govuk/settings/all";
+@import "node_modules/govuk-frontend/govuk/overrides/all";
 
 :root {
   --env: $ENV;

@@ -10,37 +10,24 @@ import {
   SubplotCreator,
   TraceAccordion,
   TraceSelector,
-  TraceTypeSection,
   LocationSelector,
   Dropzone,
   Numeric,
 } from '../components';
-import {
-  HistogramInfoVertical,
-  HistogramInfoHorizontal,
-  Histogram2d,
-} from '../components/fields/derived';
 
-const GraphCreatePanel = (props, {localize: _, setPanel}) => {
+const GraphCreatePanel = (props, {localize: _}) => {
   return (
     <TraceAccordion
       canAdd
-      traceFilterCondition={(t) =>
-        !(t.transforms && t.transforms.some((tr) => ['fit', 'moving-average'].includes(tr.type)))
-      }
       canReorder
     >
       <TraceSelector label={_('Type')} attr="type" show />
-
       <Dropzone attr="geojson" fileType="geojson" />
       <LocationSelector attr="type" />
       <DataSelector label={_('Values')} attr="values" />
       <DataSelector label={_('Labels')} attr="labels" />
       <DataSelector label={_('Parents')} attr="parents" />
 
-      <TraceTypeSection traceTypes={['sunburst', 'treemap']} mode="trace">
-        <DataSelector label={_('IDs')} attr="ids" />
-      </TraceTypeSection>
       <Dropdown
         label={_('Parent Value Mode')}
         attr="branchvalues"
@@ -109,40 +96,9 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
           {label: _('Horizontal'), value: 'h'},
         ]}
       />
-      <HistogramInfoVertical>
-        {_(
-          'Note: in vertical orientation, X values are used for binning. If Y values are provided, they are used as inputs to the histogram function which you can configure in the '
-        )}
-        <a onClick={() => setPanel('Style', 'Traces')}>{_('Traces')}</a>
-        {_(
-          ' panel under Style. If Y values are omitted, the histogram function defaults to Count.'
-        )}
-      </HistogramInfoVertical>
-      <HistogramInfoHorizontal>
-        {_(
-          'Note: in horizontal orientation, Y values are used for binning. If X values are provided, they are used as inputs to the histogram function which you can configure in the '
-        )}
-        <a onClick={() => setPanel('Style', 'Traces')}>{_('Traces')}</a>
-        {_(
-          ' under Style panel. If X values are omitted, the histogram function defaults to Count.'
-        )}
-      </HistogramInfoHorizontal>
-      <Histogram2d>
-        {_(
-          'Note: X and Y Values are used for binning. If Z values are provided, they are used as inputs to the histogram function which you can configure in the '
-        )}
-        <a onClick={() => setPanel('Style', 'Traces')}>{_('Traces')}</a>
-        {_(
-          ' under Style panel. If Z values are omitted, the histogram function defaults to Count.'
-        )}
-      </Histogram2d>
       <DataSelector label={_('I (Optional)')} attr="i" />
       <DataSelector label={_('J (Optional)')} attr="j" />
       <DataSelector label={_('K (Optional)')} attr="k" />
-      <DataSelector label={_('Open')} attr="open" />
-      <DataSelector label={_('High')} attr="high" />
-      <DataSelector label={_('Low')} attr="low" />
-      <DataSelector label={_('Close')} attr="close" />
       <DataSelector label={_('A')} attr="a" />
       <DataSelector label={_('B')} attr="b" />
       <DataSelector label={_('C')} attr="c" />
@@ -154,21 +110,6 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
       <DataSelector label={_('Z start')} attr="starts.z" />
       <DataSelector label={_('Headers')} attr="header.values" />
       <DataSelector label={_('Columns')} attr="cells.values" />
-
-      <TraceTypeSection traceTypes={['scatterpolar', 'scatterpolargl', 'barpolar']} mode="trace">
-        <DataSelector label={_('Radius')} attr="r" />
-        <DataSelector label={_('Theta')} attr="theta" />
-        <Dropdown
-          label={_('Theta Unit')}
-          options={[
-            {label: _('Radians'), value: 'radians'},
-            {label: _('Degrees'), value: 'degrees'},
-            {label: _('Gradians'), value: 'gradians'},
-          ]}
-          attr="thetaunit"
-          clearable={false}
-        />
-      </TraceTypeSection>
 
       <AxesCreator attr="fake_attr" />
       <SubplotCreator attr="fake_attr" />
@@ -210,5 +151,4 @@ const GraphCreatePanel = (props, {localize: _, setPanel}) => {
 export default GraphCreatePanel;
 GraphCreatePanel.contextTypes = {
   localize: PropTypes.func,
-  setPanel: PropTypes.func,
 };

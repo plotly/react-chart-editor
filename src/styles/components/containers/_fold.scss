@@ -11,7 +11,6 @@
     border: 1px solid var(--fold-header-border-color-closed);
     background-color: var(--fold-header-background-closed);
     height: 15px;
-    border-radius: var(--border-radius);
     text-shadow: var(--text-shadow-dark-ui);
     transition: background-color 0.1s ease-in-out, color 0.1s ease-in-out, border 0.1s ease-in-out;
 
@@ -34,7 +33,6 @@
       color: var(--fold-header-text-color-base);
       background-color: var(--fold-header-background-base);
       border: 1px solid var(--fold-header-border-color-base);
-      border-radius: var(--border-radius) var(--border-radius) 0 0;
       text-shadow: var(--text-shadow-dark-ui-inactive);
 
       svg {
@@ -152,15 +150,9 @@
 
   &__content {
     background: var(--color-background-top);
-    border: var(--border-default);
-    border-width: 0 1px 1px 1px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
 
     &__plot {
       overflow: hidden;
-      border-bottom-left-radius: var(--border-radius);
-      border-bottom-right-radius: var(--border-radius);
     }
     & > *:first-child {
       border-top: 0;
