@@ -1,18 +1,18 @@
 # react-chart-editor
 
-> React component for creating & editing D3 charts. [Sponsor an addition to this project](https://plot.ly/products/consulting-and-oem/)
+This is Figlinq's fork of Plotly's React Chart Editor
 
 ![master](https://circleci.com/gh/plotly/react-chart-editor/tree/master.svg?style=svg&circle-token=df4574e01732846dba81d800d062be5f0fef5641)
 
 ## Demo & Screenshots
 
-Check out the [live demo here](https://plotly.github.io/react-chart-editor/).
+Check out the [live demo here](https://figlinq.github.io/react-chart-editor/).
 
 ![gif](examples/editor.gif)
 
 ## Quick start
 
-Check out the demo of the latest release of the `DefaultEditor` at https://plotly.github.io/react-chart-editor/ or run it locally with:
+Check out the demo of the latest release of the `DefaultEditor` at https://figlinq.github.io/react-chart-editor/ or run it locally with:
 
 ```
 git clone [this repo]
@@ -23,21 +23,20 @@ npm start
 ```
 
 See more examples
-[here](https://github.com/plotly/react-chart-editor/tree/master/examples).
+[here](https://github.com/figlinq/react-chart-editor/tree/master/examples).
 
 ## Overview
 
-This module's entry point is a React component called `<PlotlyEditor />` which connects an instance of `<EditorControls />` to a [plotly.js](https://plot.ly/javascript/)-powered `<Plot />` component care of [`react-plotly.js`](https://github.com/plotly/react-plotly.js). `<PlotlyEditor />` accepts as children React components whose descendents are input elements wrapped via `connectToContainer()` calls so as to bind them to the `<Plot />`'s figure's values. If no children are passed to the `<PlotlyEditor />`, the `<DefaultEditor />` is used. This module also exposes the [building block components](#Built-in-Components) that comprise the `<DefaultEditor />` so that developers can create their own customized editors.
+This module's entry point is a React component called `<PlotlyEditor />` which connects an instance of `<EditorControls />` to a [plotly.js](https://plot.ly/javascript/)-powered `<Plot />` component care of [`react-plotly.js`](https://github.com/figlinq/react-plotly.js). `<PlotlyEditor />` accepts as children React components whose descendents are input elements wrapped via `connectToContainer()` calls so as to bind them to the `<Plot />`'s figure's values. If no children are passed to the `<PlotlyEditor />`, the `<DefaultEditor />` is used. This module also exposes the [building block components](#Built-in-Components) that comprise the `<DefaultEditor />` so that developers can create their own customized editors.
 
 ## Styling the `<DefaultEditor />` and the built-in components
 
 * Import editor styles with `import 'react-chart-editor/lib/react-chart-editor.min.css'`
-* Interested in [theming](https://github.com/plotly/react-chart-editor/tree/master/THEMING.md)?
-* Need to support IE11? import the IE css instead: `import 'react-chart-editor/lib/react-chart-editor.ie.min.css'`
+* Interested in [theming](https://github.com/figlinq/react-chart-editor/tree/master/THEMING.md)?
 
 ## Development Setup
 
-This repo contains a [dev app](https://github.com/plotly/react-chart-editor/tree/master/dev) that depends on the components locally and is configured for hot reloading, for easy local development. A `jest`-based test suite is also included.
+This repo contains a [dev app](https://github.com/figlinq/react-chart-editor/tree/master/dev) that depends on the components locally and is configured for hot reloading, for easy local development. A `jest`-based test suite is also included.
 
 ```
 cp accessTokens.tpl.js accessTokens.js # and edit to taste
@@ -61,15 +60,15 @@ At a pseudo-code level it looks like this:
 </PlotlyEditor>
 ```
 
-The [custom editor example](https://github.com/plotly/react-chart-editor/tree/master/examples/custom) shows how to build a custom editor, and shows off all of the general-purpose containers and fields listed below.
+The [custom editor example](https://github.com/figlinq/react-chart-editor/tree/master/examples/custom) shows how to build a custom editor, and shows off all of the general-purpose containers and fields listed below.
 
 ### General-purpose Containers
 
 * `<PanelMenuWrapper />`: renders as a sidebar selector menu for `<Panel />`s
-* `<PlotlyPanel />`: renders as a generic rectangular container with special handling for collapsing/expanding child `<Fold />`s and optionally an 'add' button for creating them, has special [visibility rules](https://github.com/plotly/react-chart-editor/tree/master/src/components/containers/__tests__/ConnectedContainersVisibility-test.js) that depend on plotly figure
-* `<PlotlyFold />`: collapsable container within a `<Panel />`, has special [visibility rules](https://github.com/plotly/react-chart-editor/tree/master/src/components/containers/__tests__/ConnectedContainersVisibility-test.js) that depend on plotly figure
-* `<PlotlySection />`: uncollapsable container within a `<Panel />` or `<Fold />`, has special [visibility rules](https://github.com/plotly/react-chart-editor/tree/master/src/components/containers/__tests__/ConnectedContainersVisibility-test.js) that depend on plotly figure
-* `<Panel/>`, `<Fold/>`, `<Section/>`: same as `PlotlyPanel`, `PlotlyFold`, `PlotlySection`, but there are no special visibility rules, those containers [always show, and always show their children](https://github.com/plotly/react-chart-editor/tree/master/src/components/containers/__tests__/UnconnectedContainersVisibility-test.js), but Fold does not have the canDelete functionality as its context related
+* `<PlotlyPanel />`: renders as a generic rectangular container with special handling for collapsing/expanding child `<Fold />`s and optionally an 'add' button for creating them, has special [visibility rules](https://github.com/figlinq/react-chart-editor/tree/master/src/components/containers/__tests__/ConnectedContainersVisibility-test.js) that depend on plotly figure
+* `<PlotlyFold />`: collapsable container within a `<Panel />`, has special [visibility rules](https://github.com/figlinq/react-chart-editor/tree/master/src/components/containers/__tests__/ConnectedContainersVisibility-test.js) that depend on plotly figure
+* `<PlotlySection />`: uncollapsable container within a `<Panel />` or `<Fold />`, has special [visibility rules](https://github.com/figlinq/react-chart-editor/tree/master/src/components/containers/__tests__/ConnectedContainersVisibility-test.js) that depend on plotly figure
+* `<Panel/>`, `<Fold/>`, `<Section/>`: same as `PlotlyPanel`, `PlotlyFold`, `PlotlySection`, but there are no special visibility rules, those containers [always show, and always show their children](https://github.com/figlinq/react-chart-editor/tree/master/src/components/containers/__tests__/UnconnectedContainersVisibility-test.js), but Fold does not have the canDelete functionality as its context related
 * `<SingleSidebarItem/>`: wraps any item you would like to see appear in the sidebar menu.
 
 ### General-purpose Fields
@@ -82,7 +81,7 @@ All Fields except `<Info />` accept an `attr` property to bind them to a key in 
 * `<Dropdown />`: renders as a dropdown menu useful for mutually-exclusive high-cardinality enumerable values
 * `<Dropzone/>`: renders a dropzone component to drag and drop files to load
 * `<ColorPicker />`: renders as a popup color-picker, useful for CSS color hex value strings
-* `<ColorscalePicker />`: npm module [react-colorscales](https://github.com/plotly/react-colorscales)
+* `<ColorscalePicker />`: npm module [react-colorscales](https://github.com/figlinq/react-colorscales)
 * `<Flaglist />`: renders as a list of checkboxes, useful for `+`-joined flag lists like `data[].mode`
 * `<TextEditor />`: renders as a WYSIWYG editor, useful for text like `layout.title`, takes props: `latexOnly`, `richTextOnly`, `htmlOnly` if no format props given, defaults to the `MultiFormat` text editor (latex && richText && html)
 
@@ -159,5 +158,4 @@ Once you have your tokens, you can provide it as a config prop to the `<PlotlyEd
 
 ## License
 
-&copy; 2019 Plotly, Inc. MIT License.
-
+&copy; 2022 Figlinq, Inc. MIT License.

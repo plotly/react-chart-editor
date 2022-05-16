@@ -89,4 +89,4 @@ The PostCSS plugin we are using only applies to variables that are in the `:root
 
  Finally, you would pipe in the PostCSS plugin(s) to your project and produce a css file with the properties applied as their true value. It's recommended to use the [PostCSS Remove Root](https://github.com/cbracco/postcss-remove-root) plugin after you have converted all of the properties.
 
- You can see our PostCSS scripts [here](https://github.com/plotly/react-chart-editor/tree/master/scripts/postcss.js).
+ You can see our PostCSS scripts [here](https://github.com/figlinq/react-chart-editor/tree/master/scripts/postcss.js).
