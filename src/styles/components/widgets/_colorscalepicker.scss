@@ -29,11 +29,6 @@ $text-padding: 5px;
 .colorscalePickerContainer input:focus {
   outline: none;
 }
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .colorscalePickerContainer {
-    display: inline;
-  }
-}
 .colorscalePickerContainer::-webkit-scrollbar {
   width: 5px;
 }

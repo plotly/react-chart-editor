@@ -6,10 +6,6 @@
   /* Firefox 19+ */
   color: var(--color-text-placeholder);
 }
-:-ms-input-placeholder {
-  /* IE 10+ */
-  color: var(--color-text-placeholder);
-}
 :-moz-placeholder {
   /* Firefox 18- */
   color: var(--color-text-placeholder);
@@ -22,12 +18,6 @@
   display: flex;
   align-items: center;
   color: var(--color-text-base);
-}
-
-@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-  .numeric-input__wrapper {
-    flex-basis: auto;
-  }
 }
 
 .numeric-input__number {

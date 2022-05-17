@@ -8,14 +8,8 @@
   --env: $ENV;
 }
 
-@if $ENV == 'ie' {
-  :root {
-    @include generateVars;
-  }
-} @else {
-  .plotly-editor--theme-provider {
-    @include generateVars;
-  }
+.plotly-editor--theme-provider {
+  @include generateVars;
 }
 
 .editor_controls {
