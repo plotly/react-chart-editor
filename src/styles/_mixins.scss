@@ -1,7 +1,6 @@
 @mixin vendor($property, $value) {
   -webkit-#{$property}: $value;
   -moz-#{$property}: $value;
-  -ms-#{$property}: $value;
   -o-#{$property}: $value;
   #{$property}: $value;
 }
@@ -34,7 +33,11 @@
   }
 }
 
-@mixin scrollbar($width: 5px, $trackbg: var(--scrollbar-track-background), $thumb-color: var(--scrollbar-thumb-color)) {
+@mixin scrollbar(
+  $width: 5px,
+  $trackbg: var(--scrollbar-track-background),
+  $thumb-color: var(--scrollbar-thumb-color)
+) {
   -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
     background: white;
@@ -163,9 +166,7 @@
   @each $var, $val in $sidebar {
     #{--sidebar}-#{$var}: $val;
   }
-  --editor-width: calc(
-    var(--sidebar-width) + var(--panel-width) + 1px
-  ); // +1px for border
+  --editor-width: calc(var(--sidebar-width) + var(--panel-width) + 1px); // +1px for border
 }
 
 @mixin heading($type: 'base') {

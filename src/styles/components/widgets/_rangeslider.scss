@@ -6,11 +6,9 @@
   min-width: 60px;
   position: relative;
   background: var(--color-background-light);
-  -ms-touch-action: none;
   touch-action: none;
   border: 1px solid var(--color-border-default);
   flex-grow: 1;
-
 
   &,
   .rangeslider__fill {
@@ -74,7 +72,7 @@
   .rangeslider__handle {
     $size: 20px;
     width: $size/3;
-    height: $size*1.5;
+    height: $size * 1.5;
     border-radius: $size;
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
