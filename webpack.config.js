@@ -10,27 +10,7 @@ module.exports = {
     rules: [
       {
         test: /\.js?$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/react', '@babel/env'],
-            plugins: [
-              'react-hot-loader/babel',
-              '@babel/plugin-proposal-object-rest-spread',
-              [
-                'module-resolver',
-                {
-                  root: ['./'],
-                  alias: {
-                    components: './src/components',
-                    lib: './src/lib',
-                    styles: './src/styles',
-                  },
-                },
-              ],
-            ],
-          },
-        },
+        use: 'babel-loader',
         exclude: [/node_modules/],
       },
       {
