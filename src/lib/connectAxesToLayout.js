@@ -15,9 +15,10 @@ function computeAxesOptions(axes, props, context) {
   for (let i = 0; i < filteredAxes.length; i++) {
     const ax = filteredAxes[i];
     const label = capitalize(ax._name.split('axis')[0]);
-    const value = (ax._subplot && !ax._subplot.includes('xaxis') && !ax._subplot.includes('yaxis')
-      ? ax._subplot + '.' + ax._name
-      : ax._subplot
+    const value = (
+      ax._subplot && !ax._subplot.includes('xaxis') && !ax._subplot.includes('yaxis')
+        ? ax._subplot + '.' + ax._name
+        : ax._subplot
     ).trim();
 
     options[i] = {
