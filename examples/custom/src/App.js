@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly';
 import PlotlyEditor from 'react-chart-editor';
 import CustomEditor from './CustomEditor';
@@ -9,7 +9,7 @@ const dataSources = {
   col2: [4, 3, 2], // eslint-disable-line no-magic-numbers
   col3: [17, 13, 9], // eslint-disable-line no-magic-numbers
 };
-const dataSourceOptions = Object.keys(dataSources).map(name => ({
+const dataSourceOptions = Object.keys(dataSources).map((name) => ({
   value: name,
   label: name,
 }));

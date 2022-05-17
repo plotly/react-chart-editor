@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import {Children, Component} from 'react';
 import PropTypes from 'prop-types';
 import {
   containerConnectedContextTypes,
@@ -51,7 +51,7 @@ export default class PlotlySection extends Section {
     const {isVisible} = unpackPlotProps(nextProps, nextContext);
     this.sectionVisible = isVisibleGivenCustomConfig(isVisible, nextProps, nextContext);
 
-    React.Children.forEach(nextProps.children, (child) => {
+    Children.forEach(nextProps.children, (child) => {
       if (!child || this.sectionVisible) {
         return;
       }

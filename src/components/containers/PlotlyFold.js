@@ -1,6 +1,6 @@
 import FoldEmpty from './FoldEmpty';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Children, Component} from 'react';
 import classnames from 'classnames';
 import {CloseIcon, AngleDownIcon} from 'plotly-icons';
 import {unpackPlotProps, containerConnectedContextTypes, striptags} from 'lib';
@@ -184,7 +184,7 @@ class PlotlyFold extends Fold {
   determineVisibility(nextProps, nextContext) {
     this.foldVisible = false;
 
-    React.Children.forEach(nextProps.children, (child) => {
+    Children.forEach(nextProps.children, (child) => {
       if (!child || this.foldVisible) {
         return;
       }

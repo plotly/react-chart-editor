@@ -1,7 +1,7 @@
 import ColorscalePickerWidget from '../widgets/ColorscalePicker';
 import Field from './Field';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connectToContainer, adjustColorscale} from 'lib';
 
 class UnconnectedPieColorscalePicker extends Component {

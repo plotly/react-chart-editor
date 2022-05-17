@@ -1,4 +1,3 @@
-import React from 'react';
 import {AnnotationAccordion, PlotlyPanel, PlotlyFold} from '..';
 import {Numeric} from '../../fields';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';

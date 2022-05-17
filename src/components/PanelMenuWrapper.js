@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, {cloneElement, Component} from 'react';
+import {Children, cloneElement, Component} from 'react';
 import SidebarGroup from './sidebar/SidebarGroup';
 import {bem} from 'lib';
 import sortMenu from 'lib/sortMenu';
@@ -51,7 +51,7 @@ class PanelsWithSidebar extends Component {
     const sections = [];
     const groupLookup = {};
     let groupIndex;
-    const childrenArray = sortMenu(React.Children.toArray(children), menuPanelOrder);
+    const childrenArray = sortMenu(Children.toArray(children), menuPanelOrder);
 
     childrenArray.forEach((child) => {
       if (!child) {
@@ -87,7 +87,7 @@ class PanelsWithSidebar extends Component {
     return (
       <div className={bem('editor_controls', 'wrapper')}>
         <div className={bem('sidebar')}>{menuOpts.map(this.renderSection)}</div>
-        {React.Children.map(this.props.children, (child, i) =>
+        {Children.map(this.props.children, (child, i) =>
           child === null ||
           this.state.group !== child.props.group ||
           this.state.panel !== child.props.name

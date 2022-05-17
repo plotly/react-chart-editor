@@ -1,6 +1,5 @@
 import {Numeric, Info} from '../../fields';
 import {Panel, Fold, Section, LayoutPanel, PlotlySection} from '..';
-import React from 'react';
 import {TestEditor, fixtures, mount} from 'lib/test-utils';
 
 // Stylistically Panel, Fold, Section are the same as PlotlyPanel, PlotlyFold, PlotlySection

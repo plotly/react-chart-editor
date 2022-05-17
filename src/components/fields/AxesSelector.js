@@ -2,7 +2,7 @@ import Field from './Field';
 import PropTypes from 'prop-types';
 import Dropdown from '../widgets/Dropdown';
 import RadioBlocks from '../widgets/RadioBlocks';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {getParsedTemplateString} from 'lib';
 
 class AxesSelector extends Component {

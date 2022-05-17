@@ -1,6 +1,6 @@
 import DefaultEditor from './DefaultEditor';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {
   bem,
   localizeString,

@@ -1,7 +1,7 @@
 import PlotlyFold from './PlotlyFold';
 import PlotlyPanel from './PlotlyPanel';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import {connectLayersToMapbox, getParsedTemplateString} from 'lib';
 
 const MapboxLayersFold = connectLayersToMapbox(PlotlyFold);

@@ -1,7 +1,7 @@
 import 'react-chart-editor/lib/react-chart-editor.css';
 import PlotlyEditor from 'react-chart-editor';
 import PropTypes from 'prop-types';
-import React, {Component} from 'react';
+import {Component} from 'react';
 import plotly from 'plotly.js/dist/plotly';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -12,7 +12,7 @@ const dataSources = {
   col2: [4, 3, 2], // eslint-disable-line no-magic-numbers
   col3: [17, 13, 9], // eslint-disable-line no-magic-numbers
 };
-const dataSourceOptions = Object.keys(dataSources).map(name => ({
+const dataSourceOptions = Object.keys(dataSources).map((name) => ({
   value: name,
   label: name,
 }));
@@ -29,14 +29,7 @@ class App extends Component {
   }
 
   render() {
-    const {
-      actions,
-      dataSources,
-      dataSourceOptions,
-      data,
-      layout,
-      frames,
-    } = this.props;
+    const {actions, dataSources, dataSourceOptions, data, layout, frames} = this.props;
 
     return (
       <div className="app">
@@ -67,7 +60,7 @@ App.propTypes = {
   frames: PropTypes.array,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   dataSourceOptions: state.dataSourceOptions,
   dataSources: state.dataSources,
   data: state.data,
@@ -75,7 +68,7 @@ const mapStateToProps = state => ({
   frames: state.frames,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   actions: bindActionCreators(actions, dispatch),
 });
 

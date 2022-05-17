@@ -3,7 +3,7 @@
  * in the RichTextEditor, and lets the user enter a URL.
  */
 
-import React, {Component} from 'react';
+import {Component} from 'react';
 import PropTypes from 'prop-types';
 import {RETURN_KEY, ESCAPE_KEY} from 'lib/constants';
 import {findDOMNode} from 'react-dom';

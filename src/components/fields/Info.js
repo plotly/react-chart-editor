@@ -1,5 +1,5 @@
 import Field from './Field';
-import React, {Component} from 'react';
+import {Component} from 'react';
 
 export default class Info extends Component {
   render() {
