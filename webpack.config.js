@@ -44,10 +44,11 @@ module.exports = {
       'react-dom': '@hot-loader/react-dom',
     },
   },
-  plugins: [new webpack.IgnorePlugin(/vertx/)],
+  plugins: [new webpack.IgnorePlugin({resourceRegExp: /vertx/})],
   devServer: {
     open: true,
-    contentBase: './dev',
+    static: './dev',
   },
   devtool: 'eval-source-map',
+  target: 'browserslist',
 };
