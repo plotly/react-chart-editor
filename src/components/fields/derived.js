@@ -712,16 +712,17 @@ export const MapboxStyleDropdown = connectToContainer(UnconnectedDropdown, {
   modifyPlotProps: (props, context, plotProps) => {
     const {mapBoxAccess, localize: _} = context;
 
-    plotProps.options = (!mapBoxAccess
-      ? []
-      : [
-          {label: _('Mapbox Basic'), value: 'basic'},
-          {label: _('Mapbox Outdoors'), value: 'outdoors'},
-          {label: _('Mapbox Light'), value: 'light'},
-          {label: _('Mapbox Dark'), value: 'dark'},
-          {label: _('Mapbox Satellite'), value: 'satellite'},
-          {label: _('Mapbox Satellite with Streets'), value: 'satellite-streets'},
-        ]
+    plotProps.options = (
+      !mapBoxAccess
+        ? []
+        : [
+            {label: _('Mapbox Basic'), value: 'basic'},
+            {label: _('Mapbox Outdoors'), value: 'outdoors'},
+            {label: _('Mapbox Light'), value: 'light'},
+            {label: _('Mapbox Dark'), value: 'dark'},
+            {label: _('Mapbox Satellite'), value: 'satellite'},
+            {label: _('Mapbox Satellite with Streets'), value: 'satellite-streets'},
+          ]
     ).concat([
       {label: _('No tiles (white background)'), value: 'white-bg'},
       {label: _('Open Street Map'), value: 'open-street-map'},
