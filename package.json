@@ -53,6 +53,7 @@
   "devDependencies": {
     "@babel/cli": "7.17.10",
     "@babel/core": "7.17.12",
+    "@babel/eslint-parser": "7.17.0",
     "@babel/node": "7.17.10",
     "@babel/plugin-proposal-object-rest-spread": "7.17.12",
     "@babel/polyfill": "7.12.1",
@@ -63,7 +64,6 @@
     "@percy/storybook": "3.3.1",
     "@storybook/react": "6.4.22",
     "autoprefixer": "10.4.7",
-    "babel-eslint": "10.1.0",
     "babel-jest": "26.6.3",
     "babel-loader": "8.2.5",
     "babel-plugin-module-resolver": "4.1.0",
@@ -74,6 +74,7 @@
     "eslint": "8.15.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-jsx": "0.1.0",
     "eslint-plugin-react": "7.29.4",
     "eslint-plugin-react-percy": "0.2.4",
     "fs": "0.0.2",
