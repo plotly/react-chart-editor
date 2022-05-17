@@ -59,7 +59,7 @@ export default function connectAxesToLayout(WrappedComponent) {
       this.setLocals(props, this.state, context);
     }
 
-    componentWillUpdate(nextProps, nextState, nextContext) {
+    UNSAFE_componentWillUpdate(nextProps, nextState, nextContext) {
       this.axes = getAllAxes(nextContext.fullContainer);
       this.axesOptions = computeAxesOptions(this.axes, nextProps, nextContext);
       // This is not enough, what if plotly.js adds new axes...
