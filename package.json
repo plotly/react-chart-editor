@@ -102,11 +102,11 @@
     "webpack-dev-server": "3.11.2"
   },
   "peerDependencies": {
-    "react": ">15",
-    "react-dom": ">15"
+    "react": ">16",
+    "react-dom": ">16"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   },
   "homepage": "https://figlinq.github.io/react-chart-editor/",
   "jest": {
