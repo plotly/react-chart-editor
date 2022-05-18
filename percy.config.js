@@ -1,4 +1,7 @@
 export default {
+  snapshot: {
+    widths: [500],
+  },
   webpack: {
     module: {
       rules: [

@@ -21,7 +21,7 @@
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill --maxWorkers=2",
     "test:lint": "eslint \"src/**/*.js\" \"dev/**/*.js\" \"examples/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:pretty": "prettier -l \"src/**/*.js\" \"dev/**/*.js\" \"examples/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:percy": "node --max-old-space-size=4096 $(npm bin)/build-storybook && percy-storybook --widths=500",
+    "test:percy": "node --max-old-space-size=4096 $(npm bin)/build-storybook && percy storybook ./storybook-static",
     "test:percy-local": "node --max-old-space-size=4096 $(npm bin)/build-storybook",
     "watch": "babel src --watch --out-dir lib --source-maps | node-sass -w src/styles/main.scss lib/react-chart-editor.css",
     "watch-test": "jest --watch"
@@ -61,7 +61,8 @@
     "@babel/preset-react": "7.17.12",
     "@babel/traverse": "7.17.12",
     "@hot-loader/react-dom": "16.14.0",
-    "@percy/storybook": "3.3.1",
+    "@percy/cli": "^1.2.1",
+    "@percy/storybook": "4.2.0",
     "@storybook/builder-webpack5": "^6.4.22",
     "@storybook/manager-webpack5": "^6.4.22",
     "@storybook/react": "6.4.22",
