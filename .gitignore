@@ -11,6 +11,7 @@ npm-debug.log*
 !.eslintrc
 !.eslintignore
 !.percy.yml
+!.circleci
 
 example/dist
 
