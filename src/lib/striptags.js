@@ -24,15 +24,6 @@
 
 'use strict';
 
-// minimal symbol polyfill for IE11 and others
-if (typeof Symbol !== 'function') {
-  var Symbol = function (name) {
-    return name;
-  };
-
-  Symbol.nonNative = true;
-}
-
 const STATE_PLAINTEXT = Symbol('plaintext');
 const STATE_HTML = Symbol('html');
 const STATE_COMMENT = Symbol('comment');

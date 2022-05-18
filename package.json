@@ -56,7 +56,6 @@
     "@babel/eslint-parser": "7.17.0",
     "@babel/node": "7.17.10",
     "@babel/plugin-proposal-object-rest-spread": "7.17.12",
-    "@babel/polyfill": "7.12.1",
     "@babel/preset-env": "7.17.12",
     "@babel/preset-react": "7.17.12",
     "@babel/traverse": "7.17.12",

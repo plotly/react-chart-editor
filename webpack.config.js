@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: ['@babel/polyfill', 'react-hot-loader/patch', './dev/index.js'],
+  entry: ['react-hot-loader/patch', './dev/index.js'],
   output: {
     filename: 'bundle.js',
   },
