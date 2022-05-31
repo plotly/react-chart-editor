@@ -26,7 +26,7 @@ module.exports = {
   },
   plugins: [new webpack.IgnorePlugin({resourceRegExp: /vertx/})],
   devServer: {
-    open: true,
+    open: false,
     static: './dev',
   },
   devtool: 'eval-source-map',
