@@ -1,3 +1,5 @@
+@use '../../mixins' as *;
+
 .modal {
   box-sizing: border-box;
   * {

@@ -1,3 +1,5 @@
+@use '../../mixins' as *;
+
 .panel {
   flex-grow: 1;
   overflow-x: hidden;
@@ -14,7 +16,7 @@
     // These are for the first panel
     background-color: var(--panel-background);
     border-right: var(--border-default);
-    width: calc(var(--panel-width));
+    width: var(--panel-width);
   }
   &__content {
     flex-grow: 1;

@@ -1,3 +1,5 @@
+@use '../../mixins' as *;
+
 .sidebar {
   user-select: none;
   height: 100%;

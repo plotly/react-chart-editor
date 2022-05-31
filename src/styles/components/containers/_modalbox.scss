@@ -1,3 +1,5 @@
+@use '../../mixins' as *;
+
 .modalbox {
   position: absolute;
   border-radius: var(--border-radius);

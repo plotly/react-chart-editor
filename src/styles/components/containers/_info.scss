@@ -1,3 +1,5 @@
+@use '../../mixins' as *;
+
 .info {
   &__title {
     @include heading('small');

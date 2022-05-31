@@ -1,15 +1,18 @@
 @charset 'utf-8';
-@import 'variables/main';
-@import 'mixins';
-@import 'helpers';
-@import 'movement';
+@use 'sass:meta';
+@use 'variables/main';
+@use 'mixins';
+@use 'helpers';
+@use 'movement';
+@use 'variables/colors';
+@use 'variables/layout';
 
 :root {
   --env: $ENV;
 }
 
 .plotly-editor--theme-provider {
-  @include generateVars;
+  @include mixins.generateVars;
 }
 
 .editor_controls {
@@ -18,15 +21,15 @@
   flex-shrink: 0;
   overflow: hidden;
   display: flex;
-  @import 'components/main';
-  @include font-smoothing;
+  @include meta.load-css('components/main');
+  @include mixins.font-smoothing;
   font-family: var(--font-family-body);
   &__wrapper {
     display: flex;
     flex-grow: 1;
   }
   a {
-    color: $color-dodger-shade;
+    color: colors.$color-dodger-shade;
     cursor: pointer;
   }
 }

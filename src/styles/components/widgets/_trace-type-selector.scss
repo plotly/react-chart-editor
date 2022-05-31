@@ -1,3 +1,6 @@
+@use '../../variables/defaults' as *;
+@use '../../mixins' as *;
+
 $item-size: 90px;
 $image-size: 60px;
 $label-height: 34px;

@@ -1,3 +1,4 @@
+@use "sass:map";
 .\+flex {
   display: flex;
 }
@@ -15,7 +16,7 @@
 
 @function spacing($name, $true-val: false) {
   @if $true-val == true {
-    @return map-get($spacings, $name);
+    @return map.get($spacings, $name);
   } @else {
     @return var(--spacing-#{$name});
   }
@@ -23,7 +24,7 @@
 
 @function font($name, $true-val: false) {
   @if $true-val == true {
-    @return map-get($fonts, $name);
+    @return map.get($fonts, $name);
   } @else {
     @return var(--font-#{$name});
   }
@@ -31,7 +32,7 @@
 
 @function color($name, $true-val: false) {
   @if $true-val == true {
-    @return map-get($colors, $name);
+    @return map.get($colors, $name);
   } @else {
     @return var(--color-#{$name});
   }

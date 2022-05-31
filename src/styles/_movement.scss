@@ -41,7 +41,8 @@
   }
 }
 
-.animate {
+.animate,
+%animate {
   &--fade-in {
     opacity: 0;
     animation: fade-in 0.1s forwards cubic-bezier(0.19, 1, 0.22, 1);

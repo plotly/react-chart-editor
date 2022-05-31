@@ -1,3 +1,8 @@
+@use 'sass:meta';
+@use 'variables/defaults' as *;
+@use 'variables/main' as *;
+@import 'movement';
+
 @mixin vendor($property, $value) {
   -webkit-#{$property}: $value;
   -moz-#{$property}: $value;
@@ -87,9 +92,9 @@
 @mixin generateVars() {
   // Base Color Variables
   @each $var, $val in $colors {
-    @if type-of($val) == map {
+    @if meta.type-of($val) == map {
       @each $var-n, $val-n in $val {
-        @if type-of($val-n) == map {
+        @if meta.type-of($val-n) == map {
           @each $var-i, $val-i in $val-n {
             #{--color}-#{$var}-#{$var-n}-#{$var-i}: $val-i;
           }
@@ -98,7 +103,7 @@
         }
       }
     } @else {
-      #{--color}-#{$var}: $val;
+      #{--color}-#{"" + $var}: $val;
     }
   }
 
@@ -120,7 +125,7 @@
   }
   // Button Color Variables
   @each $var, $val in $buttons {
-    @if type-of($val) == map {
+    @if meta.type-of($val) == map {
       @each $var-n, $val-n in $val {
         #{--color-button}-#{$var}-#{$var-n}: $val-n;
       }
