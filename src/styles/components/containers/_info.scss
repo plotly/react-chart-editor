@@ -1,8 +1,8 @@
 .info {
   &__title {
     @include heading('small');
-    padding: var(--spacing-half-unit) var(--spacing-half-unit)
-      var(--spacing-quarter-unit) var(--spacing-half-unit);
+    padding: var(--spacing-half-unit) var(--spacing-half-unit) var(--spacing-quarter-unit)
+      var(--spacing-half-unit);
   }
   &__text {
     padding: var(--spacing-quarter-unit) var(--spacing-half-unit);
@@ -17,7 +17,7 @@
     font-weight: var(--font-weight-normal);
     font-style: italic;
     line-height: var(--font-leading-body);
-    padding: var(--spacing-quarter-unit) var(--spacing-half-unit)
-      var(--spacing-half-unit) var(--spacing-half-unit);
+    padding: var(--spacing-quarter-unit) var(--spacing-half-unit) var(--spacing-half-unit)
+      var(--spacing-half-unit);
   }
 }

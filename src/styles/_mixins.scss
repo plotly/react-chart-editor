@@ -106,7 +106,6 @@
   @each $var, $val in $brand {
     #{--color}-#{$var}: $val;
   }
-
   // Text Color
   @each $var, $val in $text {
     #{--color}-#{$var}: $val;

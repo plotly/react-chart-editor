@@ -26,7 +26,8 @@
       cursor: default;
       text-shadow: var(--text-shadow-dark-ui);
       font-weight: var(--font-weight-semibold);
-      &:not(:first-child), &:last-child {
+      &:not(:first-child),
+      &:last-child {
         border-left: var(--border-accent-shade) !important;
       }
     }

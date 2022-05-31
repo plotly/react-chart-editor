@@ -31,8 +31,7 @@
   opacity: 0;
   pointer-events: none;
   transition: all var(--microtip-transition-duration, 0.18s)
-    var(--microtip-transition-easing, ease-in-out)
-    var(--microtip-transition-delay, 0s);
+    var(--microtip-transition-easing, ease-in-out) var(--microtip-transition-delay, 0s);
   position: absolute;
   box-sizing: border-box;
   z-index: 10;
