@@ -28,6 +28,7 @@ module.exports = {
   devServer: {
     open: false,
     static: './dev',
+    client: {overlay: {errors: true, warnings: false}},
   },
   devtool: 'eval-source-map',
   target: 'browserslist',
