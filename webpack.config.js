@@ -1,11 +1,10 @@
 const webpack = require('webpack');
 
-module.exports = {
+module.exports = (env, argv) => ({
   entry: ['react-hot-loader/patch', './dev/index.js'],
   output: {
     filename: 'bundle.js',
   },
-  mode: 'development',
   module: {
     rules: [
       {
@@ -32,4 +31,4 @@ module.exports = {
   },
   devtool: 'eval-source-map',
   target: 'browserslist',
-};
+});
