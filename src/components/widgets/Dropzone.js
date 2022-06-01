@@ -69,7 +69,7 @@ class Dropzone extends Component {
     });
   }
 
-  parsingError() {
+  parsingError(optionalError) {
     const _ = this.context.localize;
     const supportedFileTypes =
       this.props.fileType === 'image'
@@ -80,6 +80,7 @@ class Dropzone extends Component {
       <div className="dropzone-container__message">
         {_("Yikes! This doesn't look like a valid ") + this.props.fileType}
         <p>{_('Try again with a supported file format: ') + supportedFileTypes + '.'}</p>
+        {optionalError && <p>{optionalError}</p>}
       </div>
     );
   }
@@ -100,7 +101,7 @@ class Dropzone extends Component {
     }
   }
 
-  onDrop(accepted, rejected) {
+  onDrop(accepted, rejections) {
     const _ = this.context.localize;
     const reader = new FileReader();
 
@@ -124,9 +125,9 @@ class Dropzone extends Component {
       }
     }
 
-    if (rejected.length) {
+    if (rejections.length) {
       this.setState({
-        content: this.parsingError(),
+        content: this.parsingError(rejections.map((r) => r.errors.map((e) => e.message))),
       });
     }
   }
