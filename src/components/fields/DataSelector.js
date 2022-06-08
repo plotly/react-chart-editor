@@ -30,7 +30,7 @@ export class UnconnectedDataSelector extends Component {
     this.srcAttr = props.attr + 'src';
     this.srcProperty = nestedProperty(props.container, this.srcAttr).get();
     this.fullValue = this.context.srcConverters
-      ? this.context.srcConverters.toSrc(this.srcProperty, props.container.type)
+      ? this.context.srcConverters.toSrc(this.srcProperty, props.container?.type)
       : this.srcProperty;
 
     this.is2D = false;
