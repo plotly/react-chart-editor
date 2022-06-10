@@ -13,18 +13,20 @@ export class UnconnectedColorPicker extends Component {
   }
 
   render() {
+    const {localize: _} = this.context;
+
     if (this.state.empty) {
       return (
         <Field {...this.props}>
           <div className="js-test-info">
-            This color is computed from other parts of the figure but you can{' '}
+            {_('This color is computed from other parts of the figure but you can')}{' '}
             <a
               onClick={() => {
                 this.setState({empty: false});
                 this.props.updatePlot(this.props.defaultColor);
               }}
             >
-              override it
+              {_('override it')}
             </a>
             .
           </div>
@@ -49,6 +51,10 @@ UnconnectedColorPicker.propTypes = {
   handleEmpty: PropTypes.bool,
   defaultColor: PropTypes.string,
   ...Field.propTypes,
+};
+
+UnconnectedColorPicker.contextTypes = {
+  localize: PropTypes.func,
 };
 
 UnconnectedColorPicker.displayName = 'UnconnectedColorPicker';
