@@ -13,6 +13,7 @@ export class UnconnectedColorPicker extends Component {
   }
 
   render() {
+    const {localize: _} = this.context;
     if (this.state.empty) {
       return (
         <Field {...this.props}>

@@ -107,6 +107,7 @@ export class UnconnectedDataSelector extends Component {
   }
 
   render() {
+    const {localize: _} = this.context;
     const {label} = this.props;
     let newLabel;
     if (typeof label === 'object') {
