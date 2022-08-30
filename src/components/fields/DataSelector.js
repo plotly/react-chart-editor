@@ -129,7 +129,7 @@ export class UnconnectedDataSelector extends Component {
           multi={this.is2D}
           searchable={true}
           clearable={true}
-          placeholder={this.hasData ? 'Data inlined in figure' : 'Choose data...'}
+          placeholder={this.hasData ? _('Data inlined in figure') : _('Choose data...')}
           disabled={this.dataSourceOptions.length === 0}
           components={this.props.dataSourceComponents}
         />

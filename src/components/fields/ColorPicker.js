@@ -17,14 +17,14 @@ export class UnconnectedColorPicker extends Component {
       return (
         <Field {...this.props}>
           <div className="js-test-info">
-            This color is computed from other parts of the figure but you can{' '}
+            {_('This color is computed from other parts of the figure but you can')}{' '}
             <a
               onClick={() => {
                 this.setState({empty: false});
                 this.props.updatePlot(this.props.defaultColor);
               }}
             >
-              override it
+              {_('override it')}
             </a>
             .
           </div>
