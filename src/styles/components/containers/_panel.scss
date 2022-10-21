@@ -63,7 +63,7 @@
     padding: var(--spacing-half-unit);
     background-color: var(--panel-background);
     box-sizing: border-box;
-    @include z-index(orbit);
+    @include z-index(floor);
     display: flex;
     &__message {
       text-align: center;
