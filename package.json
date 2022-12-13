@@ -82,7 +82,7 @@
     "jest": "26.6.3",
     "jest-cli": "26.6.3",
     "mkdirp": "1.0.4",
-    "plotly.js": "1.58.5",
+    "plotly.js": "2.16.4",
     "postcss": "8.4.20",
     "postcss-cli": "10.1.0",
     "postcss-combine-duplicated-selectors": "10.0.3",
