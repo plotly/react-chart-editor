@@ -40,6 +40,7 @@ export default function dereference(
     let dereferencedData = srcRef.map((ref) => {
       if (config.deleteKeys && !(ref in dataSources)) {
         delete parent[dataKey];
+        delete parent[dataKey + 'src'];
       }
       return dataSources[ref];
     });
