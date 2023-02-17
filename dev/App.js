@@ -2,14 +2,11 @@ import React, {Component} from 'react';
 import {hot} from 'react-hot-loader/root';
 import plotly from 'plotly.js/dist/plotly-with-meta';
 import '../src/styles/main.scss';
-import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
 import PlotlyEditor, {DefaultEditor, Panel} from '../src';
 import Inspector from 'react-inspector';
 import dataSources from './dataSources';
-import 'brace/mode/json';
-import 'brace/theme/textmate';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
