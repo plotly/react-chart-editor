@@ -1,7 +1,7 @@
 /**
 * Rangeslider
 */
-@use "sass:math";
+@use 'sass:math';
 
 .rangeslider {
   margin: 0 var(--spacing-quarter-unit);
@@ -84,9 +84,9 @@
     &:after {
       content: ' ';
       position: absolute;
-      width: $size*0.2;
+      width: $size * 0.2;
       height: $size;
-      border-radius: $size*0.25;
+      border-radius: $size * 0.25;
       background-color: var(--color-accent);
       display: none;
     }

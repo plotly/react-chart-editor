@@ -20,7 +20,7 @@
     "test": "npm run test:lint && npm run test:pretty && npm run test:js",
     "test:js": "jest --setupTestFrameworkScriptFile=raf/polyfill --maxWorkers=2",
     "test:lint": "eslint \"src/**/*.js\" \"dev/**/*.js\" \"examples/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
-    "test:pretty": "prettier -l \"src/**/*.js\" \"dev/**/*.js\" \"examples/**/*.js\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
+    "test:pretty": "prettier -l \"src/**/*.{js,scss}\" \"dev/**/*.{js,scss}\" \"examples/**/*.{js,scss}\" && echo -e '\\033[0;32m'PASS'\\033[0m'",
     "test:percy": "node --max-old-space-size=4096 $(npm bin)/build-storybook && percy storybook ./storybook-static",
     "test:percy-local": "node --max-old-space-size=4096 $(npm bin)/build-storybook",
     "test:watch": "jest --watch"
