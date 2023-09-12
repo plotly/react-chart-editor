@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 
-module.exports = (env, argv) => ({
+module.exports = () => ({
   entry: ['react-hot-loader/patch', './dev/index.js'],
   output: {
     filename: 'bundle.js',

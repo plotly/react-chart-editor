@@ -11,7 +11,7 @@ import dataSources from './dataSources';
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
 
-// import {customConfigTest} from '../src/__stories__';
+// import {customConfigTest} from './customConfigTest';
 
 const dataSourceOptions = Object.keys(dataSources).map((name) => ({
   value: name,

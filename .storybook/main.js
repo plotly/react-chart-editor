@@ -1,6 +1,13 @@
 module.exports = {
+  stories: ['../src/__stories__/*.stories.js'],
   core: {
-    builder: 'webpack5',
+    disableTelemetry: true, // Disables telemetry
   },
-  stories: ['../src/__stories__/index.js'],
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
+  },
+  docs: {
+    autodocs: false,
+  },
 };
