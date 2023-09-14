@@ -1,7 +1,11 @@
+@use 'sass:meta';
+@use 'variables/defaults' as *;
+@use 'variables/main' as *;
+@import 'movement';
+
 @mixin vendor($property, $value) {
   -webkit-#{$property}: $value;
   -moz-#{$property}: $value;
-  -ms-#{$property}: $value;
   -o-#{$property}: $value;
   #{$property}: $value;
 }
@@ -34,7 +38,11 @@
   }
 }
 
-@mixin scrollbar($width: 5px, $trackbg: var(--scrollbar-track-background), $thumb-color: var(--scrollbar-thumb-color)) {
+@mixin scrollbar(
+  $width: 5px,
+  $trackbg: var(--scrollbar-track-background),
+  $thumb-color: var(--scrollbar-thumb-color)
+) {
   -webkit-overflow-scrolling: touch;
   &::-webkit-scrollbar {
     background: white;
@@ -84,9 +92,9 @@
 @mixin generateVars() {
   // Base Color Variables
   @each $var, $val in $colors {
-    @if type-of($val) == map {
+    @if meta.type-of($val) == map {
       @each $var-n, $val-n in $val {
-        @if type-of($val-n) == map {
+        @if meta.type-of($val-n) == map {
           @each $var-i, $val-i in $val-n {
             #{--color}-#{$var}-#{$var-n}-#{$var-i}: $val-i;
           }
@@ -95,7 +103,7 @@
         }
       }
     } @else {
-      #{--color}-#{$var}: $val;
+      #{--color}-#{"" + $var}: $val;
     }
   }
 
@@ -103,7 +111,6 @@
   @each $var, $val in $brand {
     #{--color}-#{$var}: $val;
   }
-
   // Text Color
   @each $var, $val in $text {
     #{--color}-#{$var}: $val;
@@ -118,7 +125,7 @@
   }
   // Button Color Variables
   @each $var, $val in $buttons {
-    @if type-of($val) == map {
+    @if meta.type-of($val) == map {
       @each $var-n, $val-n in $val {
         #{--color-button}-#{$var}-#{$var-n}: $val-n;
       }
@@ -163,9 +170,7 @@
   @each $var, $val in $sidebar {
     #{--sidebar}-#{$var}: $val;
   }
-  --editor-width: calc(
-    var(--sidebar-width) + var(--panel-width) + 1px
-  ); // +1px for border
+  --editor-width: calc(var(--sidebar-width) + var(--panel-width) + 1px); // +1px for border
 }
 
 @mixin heading($type: 'base') {
@@ -195,22 +200,22 @@
 
 @mixin animate($type: 'fade-in', $time: 1s, $delay: 0s) {
   @if $type == 'fade-in' {
-    @extend .animate--fade-in;
+    @extend %animate--fade-in;
     animation-duration: $time;
     animation-delay: $delay;
   }
   @if $type == 'fade-out' {
-    @extend .animate--fade-out;
+    @extend %animate--fade-out;
     animation-duration: $time;
     animation-delay: $delay;
   }
   @if $type == 'fsb' {
-    @extend .animate--fade-and-slide-in-from-bottom;
+    @extend %animate--fade-and-slide-in-from-bottom;
     animation-duration: $time;
     animation-delay: $delay;
   }
   @if $type == 'fsbr' {
-    @extend .animate--fsbr;
+    @extend %animate--fsbr;
     animation-duration: $time;
     animation-delay: $delay;
   }

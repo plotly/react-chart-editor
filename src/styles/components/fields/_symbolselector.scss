@@ -1,3 +1,5 @@
+@use '../../mixins' as *;
+
 .symbol-selector__toggle {
   border: var(--border-default);
   border-radius: var(--border-radius);

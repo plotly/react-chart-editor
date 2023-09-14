@@ -1,33 +1,24 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base"],
   "packageRules": [
     {
       "updateTypes": "minor",
-      "depTypeList": [
-        "dependencies"
-      ],
+      "depTypeList": ["dependencies"],
       "groupName": "minor deps",
-      "schedule": [
-        "before 2am on monday"
-      ]
+      "schedule": ["before 2am on monday"],
+      "enabled": false
     },
     {
       "updateTypes": "minor",
-      "depTypeList": [
-        "devDependencies"
-      ],
+      "depTypeList": ["devDependencies"],
       "groupName": "minor devDeps",
-      "schedule": [
-        "before 2am on monday"
-      ]
+      "schedule": ["before 2am on monday"],
+      "enabled": false
     },
     {
-      "packageNames": [
-        "plotly.js"
-      ],
-      "groupName": "plotly.js"
+      "packageNames": ["plotly.js"],
+      "groupName": "plotly.js",
+      "enabled": false
     },
     {
       "packagePatterns": ["^sass-loader"],

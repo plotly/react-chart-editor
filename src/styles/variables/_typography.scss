@@ -9,29 +9,39 @@ $font-size-large: 14px;
 $h5-size: 16px;
 
 $font: (
-  size:
-    (
-      base: $font-size,
-      small: $font-size-small,
-      medium:$font-size-medium,
-      large:$font-size-large,
-      heading-base: 24px,
-      heading-small: 18px,
-      heading-large: 28px,
-      h5: 16px
+  size: (
+    base: $font-size,
+    small: $font-size-small,
+    medium: $font-size-medium,
+    large: $font-size-large,
+    heading-base: 24px,
+    heading-small: 18px,
+    heading-large: 28px,
+    h5: 16px,
+  ),
+  weight: (
+    light: $font-weight-light,
+    normal: $font-weight-normal,
+    semibold: $font-weight-semibold,
+    bold: $font-weight-bold,
+  ),
+  leading: (
+    body: 1.6,
+    head: 1.2,
+  ),
+  letter-spacing: (
+    headings: 0.5px,
+  ),
+  family: (
+    body: (
+      'Open Sans',
+      --apple-default,
+      sans-serif,
     ),
-  weight:
-    (
-      light: $font-weight-light,
-      normal: $font-weight-normal,
-      semibold: $font-weight-semibold,
-      bold: $font-weight-bold
+    headings: (
+      'Dosis',
+      'Arial',
+      sans-serif,
     ),
-  leading: (body: 1.6, head: 1.2),
-  letter-spacing: (headings: 0.5px),
-  family:
-    (
-      body: ('Open Sans', --apple-default, sans-serif),
-      headings: ('Dosis', 'Arial', sans-serif)
-    )
+  ),
 );

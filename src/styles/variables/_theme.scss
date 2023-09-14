@@ -1,16 +1,16 @@
-// ---------------------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------
 // _theme.scss
-// This file maps out any variables that we use for theming the editor. These SCSS maps are parsed and result in
-// custom css properties / css4 variables.
-// ---------------------------------------------------------------------------------------------------------------------
+// This file maps out any variables that we use for theming the editor.
+// These SCSS maps are parsed and result in custom css properties / css4 variables.
+// ------------------------------------------------------------------------------------------------
 
 // Brand Colors
 $brand: (
-  accent:var(--color-dodger),
-  accent-shade:var(--color-dodger-shade),
-  accent-shade-mid:var(--color-dodger-shade-mid),
+  accent: var(--color-dodger),
+  accent-shade: var(--color-dodger-shade),
+  accent-shade-mid: var(--color-dodger-shade-mid),
   brand: var(--color-dodger),
-  hightlight-darker: var(--color-gray-blue-pale)
+  hightlight-darker: var(--color-gray-blue-pale),
 );
 // Text Colors
 $text: (
@@ -20,7 +20,7 @@ $text: (
   text-headings: var(--color-text-dark),
   text-section-header: var(--color-text-dark),
   text-active: var(--color-rhino-core),
-  text-placeholder: var(--color-rhino-medium-1)
+  text-placeholder: var(--color-rhino-medium-1),
 );
 // Border Colors
 $border-colors: (
@@ -28,17 +28,17 @@ $border-colors: (
   light: var(--color-rhino-light-1),
   dark: var(--color-rhino-medium-1),
   accent: var(--color-accent),
-  accent-shade: var(--color-accent-shade)
+  accent-shade: var(--color-accent-shade),
 );
 // Border styles
 $borders: (
-  default:1px solid var(--color-border-default),
-  light:1px solid var(--color-border-light),
-  dark:1px solid var(--color-border-dark),
-  accent:1px solid var(--color-border-accent),
-  accent-shade:1px solid var(--color-border-accent-shade),
+  default: 1px solid var(--color-border-default),
+  light: 1px solid var(--color-border-light),
+  dark: 1px solid var(--color-border-dark),
+  accent: 1px solid var(--color-border-accent),
+  accent-shade: 1px solid var(--color-border-accent-shade),
   radius: 5px,
-  radius-small: 3px
+  radius-small: 3px,
 );
 $fills: (
   background: var(--color-rhino-light-2),
@@ -48,140 +48,140 @@ $fills: (
   background-dark: var(--color-rhino-medium-1),
   background-top: var(--color-white),
   background-inverse: var(--color-rhino-dark),
-  background-inputs: var(--color-background-top)
+  background-inputs: var(--color-background-top),
 );
 
 $box-shadows: (
   base-color: rgba(80, 103, 132, 0.2),
-  base: 0px 2px 9px var(--box-shadow-base-color)
+  base: 0px 2px 9px var(--box-shadow-base-color),
 );
 $text-shadows: (
-  dark-color:rgba(42, 63, 95, 0.7),
+  dark-color: rgba(42, 63, 95, 0.7),
   dark-ui: 0 1px 2px var(--text-shadow-dark-color),
-  dark-ui-inactive: 0 1px 1px rgba(42, 63, 95, 0.4)
+  dark-ui-inactive: 0 1px 1px rgba(42, 63, 95, 0.4),
 );
 $scrollbar: (
   track-background: var(--color-background-base),
-  thumb-color: var(--color-accent)
+  thumb-color: var(--color-accent),
 );
 // Panel Styles + Colors
 $panel: (
   background: var(--color-background-base),
-  width: $layout-panel-width
+  width: var(--layout-panel-width),
 );
 // Sidebar
 $sidebar: (
   background: var(--color-background-top),
-  width: $layout-sidebar-width,
+  width: var(--layout-sidebar-width),
   group-background-base: var(--sidebar-background),
-  item-background-base:var(--color-background-light),
+  item-background-base: var(--color-background-light),
   item-background-hover: var(--color-background-base),
-  item-background-active: var(--color-background-medium)
+  item-background-active: var(--color-background-medium),
 );
 $fold: (
   header-text-color-base: var(--color-white),
   header-text-color-closed: var(--color-white),
-  header-background-base:var(--color-rhino-dark),
-  header-background-closed:var(--color-rhino-core),
-  header-border-color-closed:var(--color-rhino-core),
-  header-border-color-base:var(--color-rhino-dark)
+  header-background-base: var(--color-rhino-dark),
+  header-background-closed: var(--color-rhino-core),
+  header-border-color-closed: var(--color-rhino-core),
+  header-border-color-base: var(--color-rhino-dark),
 );
 // Buttons
 $buttons: (
-  primary-base:(
-      fill: var(--color-accent),
-      border: var(--color-accent-shade),
-      text: var(--color-white)
-    ),
-  primary-hover:(
-      fill: var(--color-accent-shade-mid),
-      border: var(--color-accent-shade),
-      text: var(--color-white)
-    ),
-  primary-active:(
-      fill: var(--color-accent-shade),
-      border: var(--color-accent-shade),
-      text: var(--color-white)
-    ),
-  secondary-base:(
-      fill: transparent,
-      border: var(--color-rhino-medium-2),
-      text: var(--color-text-base)
-    ),
-  secondary-hover:(
-      fill: transparent,
-      border: var(--color-rhino-medium-1),
-      text: var(--color-text-dark)
-    ),
-  secondary-active:(
-      fill: transparent,
-      border: var(--color-rhino-medium-1),
-      text: var(--color-text-dark)
-    ),
-  tertiary-base:(
-      fill: transparent,
-      border: transparent,
-      text: var(--color-text-base)
-    ),
-  tertiary-hover:(
-      fill: transparent,
-      border: transparent,
-      text: var(--color-text-dark)
-    ),
-  tertiary-active:(
-      fill: transparent,
-      border: transparent,
-      text: var(--color-text-dark)
-    ),
-  default-base:(
-      fill: var(--color-background-light),
-      border: var(--color-border-default),
-      text: var(--color-text-base)
-    ),
-  default-hover:(
-      fill: var(--color-background-base),
-      border: var(--color-border-dark),
-      text: var(--color-text-dark)
-    ),
-  default-active:(
-      fill: var(--color-background-dark),
-      border: var(--color-border-dark),
-      text: var(--color-text-dark)
-    ),
-  upgrade-base:(
-      fill: var(--color-lavender-shade),
-      border: var(--color-lavender-shade-dark),
-      text: var(--color-white)
-    ),
-  upgrade-hover:(
-      fill: var(--color-lavender-shade-mid),
-      border: var(--color-lavender-shade-dark),
-      text: var(--color-white)
-    ),
-  upgrade-active:(
-      fill: var(--color-lavender-shade-dark),
-      border: var(--color-lavender-shade-dark),
-      text: var(--color-white)
-    ),
-  header-base:(
-      fill: transparent,
-      border: var(--color-dodger),
-      text: var(--color-dodger)
-    ),
-  header-hover:(
-      fill: transparent,
-      border: var(--color-dodger-shade-mid),
-      text: var(--color-dodger-shade)
-    ),
-  header-active:(
-      fill: transparent,
-      border: var(--color-dodger-shade),
-      text: var(--color-dodger-shade)
-    )
+  primary-base: (
+    fill: var(--color-accent),
+    border: var(--color-accent-shade),
+    text: var(--color-white),
+  ),
+  primary-hover: (
+    fill: var(--color-accent-shade-mid),
+    border: var(--color-accent-shade),
+    text: var(--color-white),
+  ),
+  primary-active: (
+    fill: var(--color-accent-shade),
+    border: var(--color-accent-shade),
+    text: var(--color-white),
+  ),
+  secondary-base: (
+    fill: transparent,
+    border: var(--color-rhino-medium-2),
+    text: var(--color-text-base),
+  ),
+  secondary-hover: (
+    fill: transparent,
+    border: var(--color-rhino-medium-1),
+    text: var(--color-text-dark),
+  ),
+  secondary-active: (
+    fill: transparent,
+    border: var(--color-rhino-medium-1),
+    text: var(--color-text-dark),
+  ),
+  tertiary-base: (
+    fill: transparent,
+    border: transparent,
+    text: var(--color-text-base),
+  ),
+  tertiary-hover: (
+    fill: transparent,
+    border: transparent,
+    text: var(--color-text-dark),
+  ),
+  tertiary-active: (
+    fill: transparent,
+    border: transparent,
+    text: var(--color-text-dark),
+  ),
+  default-base: (
+    fill: var(--color-background-light),
+    border: var(--color-border-default),
+    text: var(--color-text-base),
+  ),
+  default-hover: (
+    fill: var(--color-background-base),
+    border: var(--color-border-dark),
+    text: var(--color-text-dark),
+  ),
+  default-active: (
+    fill: var(--color-background-dark),
+    border: var(--color-border-dark),
+    text: var(--color-text-dark),
+  ),
+  upgrade-base: (
+    fill: var(--color-lavender-shade),
+    border: var(--color-lavender-shade-dark),
+    text: var(--color-white),
+  ),
+  upgrade-hover: (
+    fill: var(--color-lavender-shade-mid),
+    border: var(--color-lavender-shade-dark),
+    text: var(--color-white),
+  ),
+  upgrade-active: (
+    fill: var(--color-lavender-shade-dark),
+    border: var(--color-lavender-shade-dark),
+    text: var(--color-white),
+  ),
+  header-base: (
+    fill: transparent,
+    border: var(--color-dodger),
+    text: var(--color-dodger),
+  ),
+  header-hover: (
+    fill: transparent,
+    border: var(--color-dodger-shade-mid),
+    text: var(--color-dodger-shade),
+  ),
+  header-active: (
+    fill: transparent,
+    border: var(--color-dodger-shade),
+    text: var(--color-dodger-shade),
+  ),
 );
 
 $theme: (
   buttons: $buttons,
   panel: $panel,
-  sidebar: $sidebar
+  sidebar: $sidebar,
 );

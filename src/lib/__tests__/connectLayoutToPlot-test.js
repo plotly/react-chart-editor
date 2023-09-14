@@ -53,19 +53,19 @@ Layouts.forEach((Layout) => {
     it(`automatically computes min and max defaults`, () => {
       const onUpdate = jest.fn();
       const wrapper = mount(
-        <Editor onUpdate={onUpdate} {...fixtures.scatter({layout: {showlegend: true}})}>
+        <Editor onUpdate={onUpdate} {...fixtures.scatter()}>
           <PlotlyPanel>
             <Layout>
-              <Numeric label="Position x" step={0.01} attr="legend.x" />
+              <Numeric label="Position x" step={0.01} attr="title.x" />
             </Layout>
           </PlotlyPanel>
         </Editor>
       )
-        .find('[attr="legend.x"]')
+        .find('[attr="title.x"]')
         .find(NumericInput);
 
-      const expectedMin = -2;
-      const expectedMax = 3;
+      const expectedMin = 0;
+      const expectedMax = 1;
       expect(wrapper.prop('min')).toBe(expectedMin);
       expect(wrapper.prop('max')).toBe(expectedMax);
     });

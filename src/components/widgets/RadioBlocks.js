@@ -33,12 +33,7 @@ class RadioBlocks extends Component {
     });
 
     return (
-      <div
-        className={optionClass}
-        key={value}
-        checked={defaultActive}
-        onClick={() => this.handleChange(value)}
-      >
+      <div className={optionClass} key={value} onClick={() => this.handleChange(value)}>
         {Icon ? <Icon className="radio-block__icon" /> : null}
         {label ? <span>{label}</span> : null}
       </div>

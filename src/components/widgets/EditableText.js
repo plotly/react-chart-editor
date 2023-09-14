@@ -56,17 +56,8 @@ class EditableText extends Component {
   }
 
   render() {
-    const {
-      type,
-      className,
-      text,
-      disable,
-      autoFocus,
-      onKeyDown,
-      placeholder,
-      readOnly,
-      size,
-    } = this.props;
+    const {type, className, text, disable, autoFocus, onKeyDown, placeholder, readOnly, size} =
+      this.props;
     return (
       <input
         ref={this.getRef}

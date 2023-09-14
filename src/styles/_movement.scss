@@ -41,7 +41,8 @@
   }
 }
 
-.animate {
+.animate,
+%animate {
   &--fade-in {
     opacity: 0;
     animation: fade-in 0.1s forwards cubic-bezier(0.19, 1, 0.22, 1);
@@ -53,8 +54,7 @@
   &--fade-and-slide-in-from-bottom {
     opacity: 0;
     transform: translateY(20px);
-    animation: fade-and-slide-in-from-bottom 0.1s forwards
-      cubic-bezier(0.19, 1, 0.22, 1);
+    animation: fade-and-slide-in-from-bottom 0.1s forwards cubic-bezier(0.19, 1, 0.22, 1);
   }
   &--fsbr {
     opacity: 1;

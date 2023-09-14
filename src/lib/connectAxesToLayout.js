@@ -15,9 +15,10 @@ function computeAxesOptions(axes, props, context) {
   for (let i = 0; i < filteredAxes.length; i++) {
     const ax = filteredAxes[i];
     const label = capitalize(ax._name.split('axis')[0]);
-    const value = (ax._subplot && !ax._subplot.includes('xaxis') && !ax._subplot.includes('yaxis')
-      ? ax._subplot + '.' + ax._name
-      : ax._subplot
+    const value = (
+      ax._subplot && !ax._subplot.includes('xaxis') && !ax._subplot.includes('yaxis')
+        ? ax._subplot + '.' + ax._name
+        : ax._subplot
     ).trim();
 
     options[i] = {
@@ -59,7 +60,7 @@ export default function connectAxesToLayout(WrappedComponent) {
       this.setLocals(props, this.state, context);
     }
 
-    componentWillUpdate(nextProps, nextState, nextContext) {
+    UNSAFE_componentWillUpdate(nextProps, nextState, nextContext) {
       this.axes = getAllAxes(nextContext.fullContainer);
       this.axesOptions = computeAxesOptions(this.axes, nextProps, nextContext);
       // This is not enough, what if plotly.js adds new axes...

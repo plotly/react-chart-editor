@@ -8,7 +8,7 @@
       &-list {
         background: var(--color-background-medium);
         margin: 0;
-        flex-shrink:0;
+        flex-shrink: 0;
         list-style: none;
         display: flex;
         align-items: flex-end;
@@ -20,7 +20,7 @@
       }
       // Tab Styles
       flex-grow: 1;
-      flex-shrink:0;
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -40,7 +40,6 @@
       &:last-of-type {
         border-top-right-radius: var(--border-radius);
       }
-
 
       &:hover {
         background-color: var(--color-background-base);

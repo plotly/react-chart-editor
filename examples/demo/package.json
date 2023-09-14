@@ -1,17 +1,17 @@
 {
   "name": "demo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "plotly.js": "^1.49.5",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "plotly.js": "2.16.4",
+    "react": "16.14.0",
     "react-chart-editor": "latest",
-    "react-scripts": "1.0.17"
+    "react-dom": "16.14.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -19,6 +19,6 @@
   },
   "homepage": "http://plotly.github.io/react-chart-editor",
   "devDependencies": {
-    "gh-pages": "^1.1.0"
+    "gh-pages": "^5.0.0"
   }
 }

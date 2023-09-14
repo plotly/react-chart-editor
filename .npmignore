@@ -1,16 +1,34 @@
+# Almost all .gitignore content
+
+npm-debug.log*
+*.sublime*
+accessTokens.js
+yarn.lock
+yarn-error.log
+package-lock.json
+storybook-static
+
+
+# Additionally:
+
 test
 src
 build
 examples
 
-circle.yml
-
 .ackrc
 .agignore
+.circleci
+.github
+.storybook
 .babelrc
 .eslintrc
 .gitattributes
+.percy.yml
 .prettierrc
 .git
+babel.config.json
+postcss.config.js
+renovate.json
 
 npm-debug.log

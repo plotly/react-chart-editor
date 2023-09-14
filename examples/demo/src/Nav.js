@@ -20,7 +20,7 @@ const Nav = ({mocks, currentMockIndex, loadMock}) => (
           value: i,
         }))}
         value={currentMockIndex}
-        onChange={option => loadMock(option)}
+        onChange={(option) => loadMock(option)}
       />
     </div>
   </div>

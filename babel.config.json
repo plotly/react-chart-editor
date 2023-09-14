@@ -1,0 +1,30 @@
+{
+  "env": {
+    "development": {"comments": false, "minified": true},
+    "production": {"comments": true, "minified": false}
+  },
+  "presets": [
+    [
+      "@babel/preset-react",
+      {
+        "runtime": "automatic"
+      }
+    ],
+    "@babel/env"
+  ],
+  "plugins": [
+    "react-hot-loader/babel",
+    "@babel/plugin-proposal-object-rest-spread",
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "components": "./src/components",
+          "lib": "./src/lib",
+          "styles": "./src/styles"
+        }
+      }
+    ]
+  ]
+}

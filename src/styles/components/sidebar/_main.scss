@@ -1,3 +1,5 @@
+@use '../../mixins' as *;
+
 .sidebar {
   user-select: none;
   height: 100%;
@@ -12,7 +14,6 @@
   border-right: var(--border-default);
   flex-grow: 1;
   @include scrollbar(0px);
-  -ms-overflow-style: none;
 
   &__group {
     background-color: var(--sidebar-group-background-base);

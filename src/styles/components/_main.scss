@@ -1,4 +1,4 @@
-@import 'sidebar/main';
-@import 'containers/main';
-@import 'fields/main';
-@import 'widgets/main';
+@use 'sidebar/main';
+@use 'containers/main' as main2;
+@use 'fields/main' as main3;
+@use 'widgets/main' as main4;

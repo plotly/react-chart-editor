@@ -18,8 +18,8 @@ Check out the demo of the latest release of the `DefaultEditor` at https://plotl
 git clone [this repo]
 cd react-chart-editor
 cd examples/demo
-npm install
-npm start
+yarn install
+yarn watch
 ```
 
 See more examples
@@ -41,10 +41,10 @@ This repo contains a [dev app](https://github.com/plotly/react-chart-editor/tree
 
 ```
 cp accessTokens.tpl.js accessTokens.js # and edit to taste
-npm install
-npm start
+yarn install
+yarn watch
 # hacking happens here
-npm test
+yarn test
 ```
 
 ## Built-in Components

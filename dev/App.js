@@ -2,29 +2,27 @@ import React, {Component} from 'react';
 import {hot} from 'react-hot-loader/root';
 import plotly from 'plotly.js/dist/plotly-with-meta';
 import '../src/styles/main.scss';
-import brace from 'brace'; // eslint-disable-line no-unused-vars
 import AceEditor from 'react-ace';
 import Select from 'react-select';
 import PlotlyEditor, {DefaultEditor, Panel} from '../src';
 import Inspector from 'react-inspector';
 import dataSources from './dataSources';
-import 'brace/mode/json';
-import 'brace/theme/textmate';
 
 // https://github.com/plotly/react-chart-editor#mapbox-access-tokens
 import ACCESS_TOKENS from '../accessTokens';
 
-// import {customConfigTest} from '../src/__stories__';
+// import {customConfigTest} from './customConfigTest';
 
-const dataSourceOptions = Object.keys(dataSources).map(name => ({
+const dataSourceOptions = Object.keys(dataSources).map((name) => ({
   value: name,
   label: name,
 }));
 
 const config = {mapboxAccessToken: ACCESS_TOKENS.MAPBOX, editable: true};
 
+// eslint-disable-next-line no-unused-vars
 const traceTypesConfig = {
-  traces: _ => [
+  traces: (_) => [
     {
       value: 'scatter',
       icon: 'scatter',
@@ -66,16 +64,19 @@ const traceTypesConfig = {
   complex: true,
 };
 
+// eslint-disable-next-line no-unused-vars
 const chartHelp = {
   area: {
     helpDoc: 'https://help.plot.ly/make-an-area-graph/',
     examplePlot: () => {
+      // eslint-disable-next-line no-console
       console.log('example bar plot!');
     },
   },
   bar: {
     helpDoc: 'https://help.plot.ly/stacked-bar-chart/',
     examplePlot: () => {
+      // eslint-disable-next-line no-console
       console.log('example bar plot!');
     },
   },
@@ -122,8 +123,8 @@ class App extends Component {
     // curl https://api.github.com/repos/plotly/plotly.js/contents/test/image/mocks \
     // | jq '[.[] | .name ]' > mocks.json
     fetch('/mocks.json')
-      .then(response => response.json())
-      .then(mocks => this.setState({mocks}));
+      .then((response) => response.json())
+      .then((mocks) => this.setState({mocks}));
   }
 
   loadMock(mockIndex) {
@@ -135,8 +136,8 @@ class App extends Component {
     fetch(prefix + mockName, {
       headers: new Headers({Accept: 'application/vnd.github.v3.raw'}),
     })
-      .then(response => response.json())
-      .then(figure => {
+      .then((response) => response.json())
+      .then((figure) => {
         const {data, layout, frames} = figure;
         this.updateState(data, layout, frames, mockIndex);
       });
@@ -219,7 +220,7 @@ class App extends Component {
                   }))}
                   searchable={true}
                   searchPromptText="Search for a mock"
-                  onChange={option => this.loadMock(option.value)}
+                  onChange={(option) => this.loadMock(option.value)}
                   noResultsText={'No Results'}
                   placeholder={'Search for a mock'}
                 />
@@ -234,7 +235,7 @@ class App extends Component {
               <AceEditor
                 mode="json"
                 theme="textmate"
-                onChange={json_string => this.setState({json_string})}
+                onChange={(json_string) => this.setState({json_string})}
                 value={this.state.json_string}
                 name="UNIQUE_ID_OF_DIV"
                 style={{height: '80vh'}}

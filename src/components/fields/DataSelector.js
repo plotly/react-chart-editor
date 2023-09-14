@@ -30,7 +30,7 @@ export class UnconnectedDataSelector extends Component {
     this.srcAttr = props.attr + 'src';
     this.srcProperty = nestedProperty(props.container, this.srcAttr).get();
     this.fullValue = this.context.srcConverters
-      ? this.context.srcConverters.toSrc(this.srcProperty, props.container.type)
+      ? this.context.srcConverters.toSrc(this.srcProperty, props.container?.type)
       : this.srcProperty;
 
     this.is2D = false;
@@ -107,6 +107,7 @@ export class UnconnectedDataSelector extends Component {
   }
 
   render() {
+    const {localize: _} = this.context;
     const {label} = this.props;
     let newLabel;
     if (typeof label === 'object') {
@@ -129,7 +130,7 @@ export class UnconnectedDataSelector extends Component {
           multi={this.is2D}
           searchable={true}
           clearable={true}
-          placeholder={this.hasData ? 'Data inlined in figure' : 'Choose data...'}
+          placeholder={this.hasData ? _('Data inlined in figure') : _('Choose data...')}
           disabled={this.dataSourceOptions.length === 0}
           components={this.props.dataSourceComponents}
         />
@@ -154,6 +155,7 @@ UnconnectedDataSelector.contextTypes = {
     fromSrc: PropTypes.func.isRequired,
   }),
   container: PropTypes.object,
+  localize: PropTypes.func,
 };
 
 UnconnectedDataSelector.displayName = 'UnconnectedDataSelector';

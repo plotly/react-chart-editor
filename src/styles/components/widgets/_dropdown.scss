@@ -47,14 +47,14 @@
     }
     &__clear-indicator {
       padding: 6px 0;
-      color: $color-rhino-medium-2;
+      color: var(--color-rhino-medium-2);
       &:hover {
-        color: $color-sienna;
+        color: var(--color-sienna);
       }
     }
     &__dropdown-indicator {
       padding: 6px 6px 6px 0;
-      color: $color-rhino-medium-2;
+      color: var(--color-rhino-medium-2);
       &:hover {
         color: var(--color-border-accent);
       }
@@ -66,7 +66,7 @@
       font-weight: 400;
     }
     &__multi-value {
-      background-color: $color-rhino-light-2;
+      background-color: var(--color-rhino-medium-2);
       border: var(--border-default);
       &__label {
         max-width: 105px;

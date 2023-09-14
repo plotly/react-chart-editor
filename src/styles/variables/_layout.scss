@@ -1,5 +1,8 @@
 /*
  * Layout
  */
-$layout-panel-width: 335px;
-$layout-sidebar-width: 100px;
+
+:root {
+  --layout-panel-width: 335px;
+  --layout-sidebar-width: 100px;
+}

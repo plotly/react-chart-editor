@@ -1,36 +1,15 @@
 const webpack = require('webpack');
 
-module.exports = {
-  entry: ['@babel/polyfill', 'react-hot-loader/patch', './dev/index.js'],
+module.exports = () => ({
+  entry: ['react-hot-loader/patch', './dev/index.js'],
   output: {
     filename: 'bundle.js',
   },
-  mode: 'development',
   module: {
     rules: [
       {
         test: /\.js?$/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/react', '@babel/env'],
-            plugins: [
-              'react-hot-loader/babel',
-              '@babel/plugin-proposal-object-rest-spread',
-              [
-                'module-resolver',
-                {
-                  root: ['./'],
-                  alias: {
-                    components: './src/components',
-                    lib: './src/lib',
-                    styles: './src/styles',
-                  },
-                },
-              ],
-            ],
-          },
-        },
+        use: 'babel-loader',
         exclude: [/node_modules/],
       },
       {
@@ -44,10 +23,12 @@ module.exports = {
       'react-dom': '@hot-loader/react-dom',
     },
   },
-  plugins: [new webpack.IgnorePlugin(/vertx/)],
+  plugins: [new webpack.IgnorePlugin({resourceRegExp: /vertx/})],
   devServer: {
-    open: true,
-    contentBase: './dev',
+    open: false,
+    static: './dev',
+    client: {overlay: {errors: true, warnings: false}},
   },
   devtool: 'eval-source-map',
-};
+  target: 'browserslist',
+});

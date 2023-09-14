@@ -11,8 +11,17 @@ class Dropzone extends Component {
     };
 
     this.validFiletypes = {
-      image: 'image/jpeg, image/jpg, image/svg, image/png, image/gif, image/bmp, image/webp',
-      geojson: 'application/json',
+      image: [
+        'image/jpeg',
+        'image/jpg',
+        'image/svg',
+        'image/svg+xml',
+        'image/png',
+        'image/gif',
+        'image/bmp',
+        'image/webp',
+      ],
+      geojson: ['application/json'],
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -60,7 +69,10 @@ class Dropzone extends Component {
           {this.validFiletypes[this.props.fileType] ? (
             <p>
               {_('Supported formats are: ') +
-                this.validFiletypes[this.props.fileType].split('image/').join('') +
+                this.validFiletypes[this.props.fileType]
+                  .join(', ')
+                  .replaceAll('image/', '')
+                  .toUpperCase() +
                 '.'}
             </p>
           ) : null}
@@ -69,17 +81,18 @@ class Dropzone extends Component {
     });
   }
 
-  parsingError() {
+  parsingError(optionalError) {
     const _ = this.context.localize;
     const supportedFileTypes =
       this.props.fileType === 'image'
-        ? this.validFiletypes[this.props.fileType].split('image/').join('')
-        : this.validFiletypes[this.props.fileType];
+        ? this.validFiletypes[this.props.fileType].join(', ').replaceAll('image/', '').toUpperCase()
+        : this.validFiletypes[this.props.fileType][0];
 
     return (
       <div className="dropzone-container__message">
         {_("Yikes! This doesn't look like a valid ") + this.props.fileType}
         <p>{_('Try again with a supported file format: ') + supportedFileTypes + '.'}</p>
+        {optionalError && <p>{optionalError}</p>}
       </div>
     );
   }
@@ -100,7 +113,7 @@ class Dropzone extends Component {
     }
   }
 
-  onDrop(accepted, rejected) {
+  onDrop(accepted, rejections) {
     const _ = this.context.localize;
     const reader = new FileReader();
 
@@ -124,9 +137,9 @@ class Dropzone extends Component {
       }
     }
 
-    if (rejected.length) {
+    if (rejections.length) {
       this.setState({
-        content: this.parsingError(),
+        content: this.parsingError(rejections.map((r) => r.errors.map((e) => e.message))),
       });
     }
   }

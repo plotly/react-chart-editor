@@ -1,3 +1,6 @@
+@use 'sass:math';
+@use '../../variables/main' as *;
+
 .fold {
   width: 100%;
   user-select: none;
@@ -53,7 +56,7 @@
     }
 
     &__title {
-      margin-left: var(--spacing-half-unit) / 3;
+      margin-left: calc(var(--spacing-half-unit) / 3);
       font-size: var(--font-size-medium);
       line-height: var(--font-size-medium);
       font-weight: var(--font-weight-semibold);
@@ -108,7 +111,9 @@
           opacity: 1;
         }
         &--disabled {
-          @extend .fold__top__moving-controls--up;
+          height: 13px;
+          width: 18px;
+          display: block;
           svg {
             transform: rotate(-180deg);
             transform-origin: center center;
@@ -129,7 +134,10 @@
           opacity: 1;
         }
         &--disabled {
-          @extend .fold__top__moving-controls--down;
+          height: 13px;
+          width: 18px;
+          display: block;
+          margin-top: -2px;
           svg {
             opacity: 0.3;
           }

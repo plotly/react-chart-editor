@@ -1,16 +1,16 @@
 /**
 * Rangeslider
 */
+@use 'sass:math';
+
 .rangeslider {
   margin: 0 var(--spacing-quarter-unit);
   min-width: 60px;
   position: relative;
   background: var(--color-background-light);
-  -ms-touch-action: none;
   touch-action: none;
   border: 1px solid var(--color-border-default);
   flex-grow: 1;
-
 
   &,
   .rangeslider__fill {
@@ -73,8 +73,8 @@
   }
   .rangeslider__handle {
     $size: 20px;
-    width: $size/3;
-    height: $size*1.5;
+    width: math.div($size, 3);
+    height: $size * 1.5;
     border-radius: $size;
     top: 50%;
     transform: translate3d(-50%, -50%, 0);
@@ -84,9 +84,9 @@
     &:after {
       content: ' ';
       position: absolute;
-      width: $size/5;
+      width: $size * 0.2;
       height: $size;
-      border-radius: $size/4;
+      border-radius: $size * 0.25;
       background-color: var(--color-accent);
       display: none;
     }
