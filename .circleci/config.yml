@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: cimg/node:20.6.0-browsers
+      - image: cimg/node:20.9.0-browsers
 
     working_directory: ~/react-chart-editor
 
