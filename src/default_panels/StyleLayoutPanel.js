@@ -21,7 +21,7 @@ import {HoverColor} from '../components/fields/derived';
 import DataSelector from '../components/fields/DataSelector';
 
 const StyleLayoutPanel = (props, {localize: _}) => (
-  <LayoutPanel>
+  <LayoutPanel {...props}>
     <PlotlyFold name={_('Defaults')}>
       <ColorPicker label={_('Plot Background')} attr="plot_bgcolor" />
       <ColorPicker label={_('Margin Color')} attr="paper_bgcolor" />
