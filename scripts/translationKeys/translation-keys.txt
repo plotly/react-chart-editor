@@ -59,7 +59,7 @@ Anchor to                                                                       
 Angle                                                                                                                                                                        // /default_panels/StyleAxesPanel.js:203
 Angled Down                                                                                                                                                                  // /default_panels/StyleTracesPanel.js:688
 Angled Up                                                                                                                                                                    // /default_panels/StyleTracesPanel.js:689
-Annotate                                                                                                                                                                     // /DefaultEditor.js:97
+Annotate                                                                                                                                                                     // /DefaultEditor.js:98
 Annotation                                                                                                                                                                   // /components/containers/AnnotationAccordion.js:34
 AnnotationArrowRef must be given either "axref" or "ayref" as attrs. Instead was given                                                                                       // /components/fields/derived.js:369
 AnnotationRef must be given either "xref" or "yref" as attrs. Instead was given                                                                                              // /components/fields/derived.js:416
@@ -80,7 +80,7 @@ Auto                                                                            
 Auto margins                                                                                                                                                                 // /default_panels/StyleAxesPanel.js:184
 Average                                                                                                                                                                      // /default_panels/GraphTransformsPanel.js:40
 Average                                                                                                                                                                      // /components/fields/derived.js:144
-Axes                                                                                                                                                                         // /DefaultEditor.js:93
+Axes                                                                                                                                                                         // /DefaultEditor.js:94
 Axes to Use                                                                                                                                                                  // /components/fields/AxesCreator.js:158
 AxesSelector must be nested within a connectAxesToPlot component                                                                                                             // /components/fields/AxesSelector.js:14
 Axis Background                                                                                                                                                              // /default_panels/StyleAxesPanel.js:159
@@ -177,7 +177,7 @@ Collapse All                                                                    
 Color                                                                                                                                                                        // /components/fields/ErrorBars.js:108
 Color Bar                                                                                                                                                                    // /components/fields/MarkerColor.js:191
 Color Bar Container                                                                                                                                                          // /default_panels/StyleColorbarsPanel.js:260
-Color Bars                                                                                                                                                                   // /DefaultEditor.js:96
+Color Bars                                                                                                                                                                   // /DefaultEditor.js:97
 Coloring                                                                                                                                                                     // /default_panels/StyleTracesPanel.js:516
 Colors                                                                                                                                                                       // /default_panels/StyleTracesPanel.js:106
 Colorscale                                                                                                                                                                   // /default_panels/StyleTracesPanel.js:618
@@ -211,7 +211,7 @@ Contour Labels                                                                  
 Contour Lines                                                                                                                                                                // /default_panels/StyleTracesPanel.js:527
 Contour Width                                                                                                                                                                // /default_panels/StyleTracesPanel.js:941
 Contours                                                                                                                                                                     // /default_panels/StyleTracesPanel.js:506
-Control                                                                                                                                                                      // /DefaultEditor.js:100
+Control                                                                                                                                                                      // /DefaultEditor.js:101
 Copy Y Style                                                                                                                                                                 // /components/fields/ErrorBars.js:93
 Copy Z Style                                                                                                                                                                 // /components/fields/ErrorBars.js:101
 Count                                                                                                                                                                        // /default_panels/GraphTransformsPanel.js:38
@@ -319,7 +319,7 @@ Gap Between Groups                                                              
 Gaps                                                                                                                                                                         // /default_panels/StyleTracesPanel.js:559
 Gaps Between Cells                                                                                                                                                           // /default_panels/StyleTracesPanel.js:767
 Gaps in Data                                                                                                                                                                 // /default_panels/StyleTracesPanel.js:776
-General                                                                                                                                                                      // /DefaultEditor.js:91
+General                                                                                                                                                                      // /DefaultEditor.js:92
 GeoJSON                                                                                                                                                                      // /default_panels/StyleMapsPanel.js:44
 GeoJSON Location Field                                                                                                                                                       // /default_panels/GraphCreatePanel.js:79
 GeoJSON feature                                                                                                                                                              // /components/fields/LocationSelector.js:31
@@ -366,7 +366,7 @@ I (Optional)                                                                    
 IDs                                                                                                                                                                          // /default_panels/GraphCreatePanel.js:42
 Icon Color                                                                                                                                                                   // /default_panels/StyleLayoutPanel.js:101
 Image                                                                                                                                                                        // /components/containers/ImageAccordion.js:21
-Images                                                                                                                                                                       // /DefaultEditor.js:99
+Images                                                                                                                                                                       // /DefaultEditor.js:100
 Include                                                                                                                                                                      // /components/fields/FilterOperation.js:29
 Include Range                                                                                                                                                                // /components/fields/FilterOperation.js:75
 Include Values                                                                                                                                                               // /components/fields/FilterOperation.js:83
@@ -452,7 +452,7 @@ Mapbox Light                                                                    
 Mapbox Outdoors                                                                                                                                                              // /components/fields/derived.js:720
 Mapbox Satellite                                                                                                                                                             // /components/fields/derived.js:723
 Mapbox Satellite with Streets                                                                                                                                                // /components/fields/derived.js:724
-Maps                                                                                                                                                                         // /DefaultEditor.js:94
+Maps                                                                                                                                                                         // /DefaultEditor.js:95
 March                                                                                                                                                                        // /components/widgets/DateTimePicker.js:77
 Margin Color                                                                                                                                                                 // /default_panels/StyleLayoutPanel.js:27
 Marker Color                                                                                                                                                                 // /default_panels/StyleTracesPanel.js:466
@@ -476,7 +476,7 @@ Meanline Color                                                                  
 Meanline Width                                                                                                                                                               // /default_panels/StyleTracesPanel.js:865
 Measure                                                                                                                                                                      // /default_panels/GraphCreatePanel.js:90
 Median                                                                                                                                                                       // /default_panels/GraphTransformsPanel.js:41
-Menus                                                                                                                                                                        // /DefaultEditor.js:101
+Menus                                                                                                                                                                        // /DefaultEditor.js:102
 Mercator                                                                                                                                                                     // /default_panels/StyleMapsPanel.js:71
 Meta Text                                                                                                                                                                    // /default_panels/StyleLayoutPanel.js:197
 Middle                                                                                                                                                                       // /default_panels/StyleAxesPanel.js:458
@@ -634,7 +634,7 @@ Separate Thousands                                                              
 September                                                                                                                                                                    // /components/widgets/DateTimePicker.js:83
 Sequential                                                                                                                                                                   // /default_panels/StyleLayoutPanel.js:36
 Shape                                                                                                                                                                        // /components/containers/ShapeAccordion.js:22
-Shapes                                                                                                                                                                       // /DefaultEditor.js:98
+Shapes                                                                                                                                                                       // /DefaultEditor.js:99
 Show                                                                                                                                                                         // /components/fields/MarkerColor.js:194
 Show All                                                                                                                                                                     // /default_panels/StyleTracesPanel.js:392
 Show Contour                                                                                                                                                                 // /default_panels/StyleTracesPanel.js:932
@@ -653,7 +653,7 @@ Size Scale                                                                      
 Size and Margins                                                                                                                                                             // /default_panels/StyleLayoutPanel.js:105
 Size and Positioning                                                                                                                                                         // /default_panels/StyleColorbarsPanel.js:60
 Slider                                                                                                                                                                       // /components/containers/SliderAccordion.js:20
-Sliders                                                                                                                                                                      // /DefaultEditor.js:100
+Sliders                                                                                                                                                                      // /DefaultEditor.js:101
 Smoothing                                                                                                                                                                    // /default_panels/StyleTracesPanel.js:621
 Snap                                                                                                                                                                         // /default_panels/StyleTracesPanel.js:878
 Snap to Grid                                                                                                                                                                 // /components/fields/RectanglePositioner.js:82
@@ -687,7 +687,7 @@ Stereographic                                                                   
 Streamtube                                                                                                                                                                   // /lib/computeTraceOptionsFromSchema.js:71
 Stretch                                                                                                                                                                      // /default_panels/StyleImagesPanel.js:31
 Strict Sum Stacked                                                                                                                                                           // /default_panels/StyleTracesPanel.js:280
-Structure                                                                                                                                                                    // /DefaultEditor.js:86
+Structure                                                                                                                                                                    // /DefaultEditor.js:87
 Style                                                                                                                                                                        // /default_panels/StyleAxesPanel.js:430
 Sub-Country Unit Borders                                                                                                                                                     // /default_panels/StyleMapsPanel.js:132
 Subplot Title                                                                                                                                                                // /default_panels/StyleTracesPanel.js:155
@@ -759,7 +759,7 @@ Trace your data.                                                                
 Traces                                                                                                                                                                       // /components/containers/TraceRequiredPanel.js:25
 Traces of various types like bar and line are the building blocks of your figure.                                                                                            // /components/containers/TraceAccordion.js:120
 Transform                                                                                                                                                                    // /components/containers/TransformAccordion.js:67
-Transforms                                                                                                                                                                   // /DefaultEditor.js:89
+Transforms                                                                                                                                                                   // /DefaultEditor.js:90
 Transpose                                                                                                                                                                    // /default_panels/GraphCreatePanel.js:198
 Transverse Mercator                                                                                                                                                          // /default_panels/StyleMapsPanel.js:92
 Treemap                                                                                                                                                                      // /lib/traceTypes.js:195
