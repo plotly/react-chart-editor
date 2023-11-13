@@ -68,7 +68,7 @@ export class Panel extends Component {
     });
 
     if (this.state.individualFoldStates.length !== numFolds) {
-      const newFoldStates = new Array(numFolds).fill(false);
+      const newFoldStates = new Array(numFolds).fill(this.props.collapsedOnStart);
       this.setState({
         individualFoldStates: this.props.addAction
           ? newFoldStates.map((e, i) => i !== numFolds - 1)
@@ -129,10 +129,12 @@ Panel.propTypes = {
   noPadding: PropTypes.bool,
   showExpandCollapse: PropTypes.bool,
   canReorder: PropTypes.bool,
+  collapsedOnStart: PropTypes.bool,
 };
 
 Panel.defaultProps = {
   showExpandCollapse: true,
+  collapsedOnStart: false,
 };
 
 Panel.contextTypes = {

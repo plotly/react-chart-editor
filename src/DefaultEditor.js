@@ -78,19 +78,20 @@ class DefaultEditor extends Component {
 
   render() {
     const _ = this.context.localize;
-    const logo = this.props.logoSrc && <Logo src={this.props.logoSrc} />;
+    const {logoSrc, logoLinkUrl, menuPanelOrder, children} = this.props;
+    const logo = logoSrc && <Logo src={logoSrc} link={logoLinkUrl} />;
 
     return (
-      <PanelMenuWrapper menuPanelOrder={this.props.menuPanelOrder}>
-        {logo ? logo : null}
+      <PanelMenuWrapper menuPanelOrder={menuPanelOrder}>
+        {logo || null}
         <GraphCreatePanel group={_('Structure')} name={_('Traces')} />
         <GraphSubplotsPanel group={_('Structure')} name={_('Subplots')} />
         {this.hasTransforms() && (
           <GraphTransformsPanel group={_('Structure')} name={_('Transforms')} />
         )}
-        <StyleLayoutPanel group={_('Style')} name={_('General')} />
+        <StyleLayoutPanel group={_('Style')} name={_('General')} collapsedOnStart />
         <StyleTracesPanel group={_('Style')} name={_('Traces')} />
-        {this.hasAxes() && <StyleAxesPanel group={_('Style')} name={_('Axes')} />}
+        {this.hasAxes() && <StyleAxesPanel group={_('Style')} name={_('Axes')} collapsedOnStart />}
         {this.hasMaps() && <StyleMapsPanel group={_('Style')} name={_('Maps')} />}
         {this.hasLegend() && <StyleLegendPanel group={_('Style')} name={_('Legend')} />}
         {this.hasColorbars() && <StyleColorbarsPanel group={_('Style')} name={_('Color Bars')} />}
@@ -99,7 +100,7 @@ class DefaultEditor extends Component {
         <StyleImagesPanel group={_('Annotate')} name={_('Images')} />
         {this.hasSliders() && <StyleSlidersPanel group={_('Control')} name={_('Sliders')} />}
         {this.hasMenus() && <StyleUpdateMenusPanel group={_('Control')} name={_('Menus')} />}
-        {this.props.children ? this.props.children : null}
+        {children || null}
       </PanelMenuWrapper>
     );
   }
@@ -108,6 +109,7 @@ class DefaultEditor extends Component {
 DefaultEditor.propTypes = {
   children: PropTypes.node,
   logoSrc: PropTypes.string,
+  logoLinkUrl: PropTypes.string,
   menuPanelOrder: PropTypes.array,
 };
 

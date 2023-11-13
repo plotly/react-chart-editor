@@ -27,7 +27,7 @@ class StyleAxesPanel extends Component {
   render() {
     const {localize: _} = this.context;
     return (
-      <LayoutPanel>
+      <LayoutPanel {...this.props}>
         <AxesFold
           name={_('Titles')}
           axisFilter={(axis) => !(axis._name.includes('angular') || axis._subplot.includes('geo'))}
