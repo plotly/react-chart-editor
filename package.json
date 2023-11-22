@@ -147,7 +147,7 @@
     "last 8 years and not dead"
   ],
   "volta": {
-    "node": "20.6.0",
+    "node": "20.9.0",
     "yarn": "1.22.19"
   },
   "directories": {
