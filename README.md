@@ -4,6 +4,13 @@
 
 ![master](https://circleci.com/gh/plotly/react-chart-editor/tree/master.svg?style=svg&circle-token=df4574e01732846dba81d800d062be5f0fef5641)
 
+<div align="center">
+  <a href="https://dash.plotly.com/project-maintenance">
+    <img src="https://dash.plotly.com/assets/images/maintained-by-plotly.png" width="400px" alt="Maintained by Plotly">
+  </a>
+</div>
+
+
 ## Demo & Screenshots
 
 Check out the [live demo here](https://plotly.github.io/react-chart-editor/).
