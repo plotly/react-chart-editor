@@ -79,7 +79,7 @@
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-percy": "0.2.4",
     "fs": "0.0.2",
-    "glob": "8.1.0",
+    "glob": "10.3.10",
     "jest": "26.6.3",
     "jest-cli": "26.6.3",
     "mkdirp": "3.0.1",
