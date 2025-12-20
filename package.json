@@ -100,7 +100,7 @@
     "rimraf": "5.0.5",
     "sass": "1.69.5",
     "sass-loader": "13.3.2",
-    "storybook": "7.4.1",
+    "storybook": "7.6.21",
     "style-loader": "3.3.3",
     "webpack": "5.89.0",
     "webpack-cli": "5.1.4",
