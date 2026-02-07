@@ -102,7 +102,7 @@
     "sass-loader": "13.3.2",
     "storybook": "7.4.1",
     "style-loader": "3.3.3",
-    "webpack": "5.89.0",
+    "webpack": "5.104.1",
     "webpack-cli": "5.1.4",
     "webpack-dev-server": "4.15.1"
   },
